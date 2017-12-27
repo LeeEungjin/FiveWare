@@ -1,5 +1,6 @@
 Manifest-Version: 1.0
 <<<<<<< HEAD
+<<<<<<< HEAD
 Built-By: enddl
 Build-Jdk: 1.8.0_141
 =======
@@ -25,5 +26,9 @@ Build-Jdk: 1.8.0_121
 >>>>>>> d69634a38d3690e27f956d3290e1cec51193d274
 >>>>>>> a3fca749f2525abbed30dec539772181212c9ef6
 >>>>>>> 86b84bf8ee065d5c486555e35335e374c5bd9027
+=======
+Built-By: ￬ﾡﾰ￬ﾝﾀ￫ﾹﾄ
+Build-Jdk: 1.8.0_131
+>>>>>>> 130b186d2e670c41a371fcacf548d17923f3b397
 Created-By: Maven Integration for Eclipse
 
