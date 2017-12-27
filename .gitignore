@@ -101,3 +101,8 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 
 # End of https://www.gitignore.io/api/java,gradle,eclipse
+
+### Git ###
+*.orig
+
+# End of https://www.gitignore.io/api/git
