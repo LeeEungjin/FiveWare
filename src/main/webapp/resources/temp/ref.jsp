@@ -13,7 +13,7 @@
 	$(function() {
 		$("#ej_sidebar").css("height", window.innerHeight);
 		$("#fw_container").css("height", window.innerHeight);
-		$("#fw_mainwrap").css("width", "68%");
+		$("#fw_mainwrap").css("width", "70%");
 		$("#fw_mainwrap").css("margin-left", "1%");
 		$("#fw_subcontainer").css("height", "100%");
 		
@@ -24,7 +24,7 @@
 				menu = false;
 				$("#ej_sidebar").css("width", "59px");
 				$("#fw_container").css("width", (window.innerWidth - 60)+'px');
-				$("#fw_mainwrap").css("width", "81%");
+				$("#fw_mainwrap").css("width", "84%");
 				$("#fw_mainwrap").css("margin-left", "1%");
 				$("#fw_container").css("margin-left", "60px");
 				$("#fw_subcontainer").css("width", "15%");
