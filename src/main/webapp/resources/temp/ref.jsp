@@ -7,6 +7,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  
  <link href="${url }/resources/css/header/header.css" rel="stylesheet">
+  <link href="${url }/resources/css/header/sample.css" rel="stylesheet">
 
 <script type="text/javascript">
 	$(function() {
@@ -15,12 +16,14 @@
 			if(menu) {
 				menu = false;
 				$("#ej_sidebar").css("width", "3.05%");
-				$("#fw_container").css("width", "95.95%");
+				$("#fw_container").css("width", "96.95%");
+				$("#fw_container").css("margin-left", "3.05%");
 				$("#ej_icon_contents").hide();
 			} else {
 				menu = true;
 				$("#ej_sidebar").css("width", "10%");
-				$("#fw_container").css("width", "89%");
+				$("#fw_container").css("width", "90%");
+				$("#fw_container").css("margin-left", "10%");
 				$("#ej_icon_contents").show();
 			}
 		});
