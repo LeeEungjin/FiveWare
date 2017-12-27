@@ -1,19 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
-<<<<<<< HEAD
-Built-By: dmdwl
-Build-Jdk: 1.8.0_121
-=======
 Built-By: enddl
 Build-Jdk: 1.8.0_141
->>>>>>> jihyun1
-=======
-Built-By: ￬ﾡﾰ￬ﾝﾀ￫ﾹﾄ
-Build-Jdk: 1.8.0_131
-=======
-Built-By: dmdwl
-Build-Jdk: 1.8.0_121
->>>>>>> dee25c926f5f15e6a5917bee0e6c00c0f6eeb200
->>>>>>> d69634a38d3690e27f956d3290e1cec51193d274
 Created-By: Maven Integration for Eclipse
 
