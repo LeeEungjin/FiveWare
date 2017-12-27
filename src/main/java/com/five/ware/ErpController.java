@@ -10,5 +10,6 @@ public class ErpController {
 	public String menuRegist(){
 		return "erp/memuRegist";
 	}
-
+	
+	
 }
