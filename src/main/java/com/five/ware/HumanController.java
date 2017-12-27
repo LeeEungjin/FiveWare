@@ -8,6 +8,6 @@ public class HumanController {
 
 	@RequestMapping(value="/")
 	public String humanplus(){
-		return "sample1";
+		return "sample2";
 	}
 }
