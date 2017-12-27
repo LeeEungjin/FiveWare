@@ -1,5 +1,44 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: admin
 Build-Jdk: 1.8.0_151
+=======
+<<<<<<< HEAD
+Built-By: ar025
+Build-Jdk: 1.8.0_144
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+Built-By: enddl
+Build-Jdk: 1.8.0_141
+=======
+<<<<<<< HEAD
+Built-By: ￬ﾡﾰ￬ﾝﾀ￫ﾹﾄ
+Build-Jdk: 1.8.0_131
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+Built-By: dmdwl
+Build-Jdk: 1.8.0_121
+=======
+Built-By: enddl
+Build-Jdk: 1.8.0_141
+>>>>>>> jihyun1
+=======
+Built-By: ￬ﾡﾰ￬ﾝﾀ￫ﾹﾄ
+Build-Jdk: 1.8.0_131
+=======
+Built-By: dmdwl
+Build-Jdk: 1.8.0_121
+>>>>>>> dee25c926f5f15e6a5917bee0e6c00c0f6eeb200
+>>>>>>> d69634a38d3690e27f956d3290e1cec51193d274
+>>>>>>> a3fca749f2525abbed30dec539772181212c9ef6
+>>>>>>> 86b84bf8ee065d5c486555e35335e374c5bd9027
+=======
+Built-By: ￬ﾡﾰ￬ﾝﾀ￫ﾹﾄ
+Build-Jdk: 1.8.0_131
+>>>>>>> 130b186d2e670c41a371fcacf548d17923f3b397
+>>>>>>> fba509e91e3e63ced740f726f5d2c410e6d8fe33
+>>>>>>> 7e61b63c809101044c2c40e597d3d76065e663a9
 Created-By: Maven Integration for Eclipse
 

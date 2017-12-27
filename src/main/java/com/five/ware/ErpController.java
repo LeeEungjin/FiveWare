@@ -4,10 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class HumanController {
-
-	@RequestMapping(value="/")
-	public String humanplus(){
-		return "sample1";
+@RequestMapping(value="erp/")
+public class ErpController {
+	
+	@RequestMapping(value="memuRegist")
+	public String menuRegist(){
+		return "memuRegist";
 	}
+
 }

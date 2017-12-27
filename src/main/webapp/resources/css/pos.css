@@ -1,0 +1,256 @@
+@CHARSET "UTF-8";
+
+	
+	    *{
+	    	margin: 0px;
+	    	padding: 0px;
+	    }
+		.wrap{
+			width: 90%;
+			height : 100%;
+			margin: 0 auto;
+		}
+		.logo{
+			width: 100%;
+			height: 10%;
+			margin: 0 auto;
+	
+			background-color: 337AB7;
+		}
+	
+		.menuWrap1{
+		 	width: 45%;
+		 	height: 90%;
+		 	float: left;
+		
+		}
+		 .menuWrap2{
+			width: 55%;
+			height: 90%;
+			float: right;
+		}
+		.menu1{
+			width: 99%;
+			height: 37%;
+			border: 1px solid black;
+			margin-top: 5px;
+		}
+		.menu2{
+			width: 99%;
+			height: 8%;
+			border: 1px solid black;
+			margin-top: 5px;
+		}
+		
+		.menu3{
+			width: 99%;
+			height: 10%;
+			margin-top: 5px;
+		}
+		
+		.menu4{
+			width: 40%;
+			height: 42%;
+			border: 1px solid black;
+			margin-top: 5px;
+			float: left;
+		}
+		
+		.menu4_1{
+			width: 40%;
+			height: 42%;
+			border: 1px solid black;
+			margin-top: 5px;
+			margin-left : 5px;
+			float: right;
+			float: left;
+		}
+		.menu4_2{
+			width: 17%;
+			height: 42%;
+			margin-top: 5px;
+			margin-right : 5px;
+			float: right;
+		}
+		
+		.menu5{
+			width: 100%;
+			height: 73%;
+			border: 1px solid black;
+			margin-top: 5px;
+		}
+		
+		.menu6{
+			width: 100%;
+			height: 25%;
+			margin-top: 5px;
+		}
+		
+		#logo_Table td{
+			width: 300px;
+			height: 75px;
+			text-align: center;
+			color : white;
+		}
+		
+		#menu1_table {
+		 	width: 100%;
+		 	border-collapse: collapse;
+		 	height: 30px;
+		 	text-align: center;
+		}
+	   
+	    #menu1_table tr,td,th{
+			height: 30px;
+			text-align: center;
+			border-bottom: 1px solid #ddd; 
+		} 
+		
+		
+		
+		#p1{
+			float: left;
+			height: 50%;
+			width: 45%;
+			margin-left: 10px;
+			margin-top: 15px;
+		}
+		
+		
+		#p2{
+			float: right;
+			height: 50%;
+			width: 45%;
+			margin-right: 10px;
+			text-align: right;
+			margin-top: 15px;
+		}
+		
+		.b1{
+			height: 100%;
+			width: 65px;
+		}
+		
+		.b2{
+			width : 100% !important;
+			height: 25%;
+		}
+		
+		.btn-group-vertical1>.btn:first-child:not(:last-child){
+			width : 100% !important;
+		}
+		
+		#p3{
+			margin-top : 10px;
+			text-align: center;
+		}
+		
+		.blank{
+			 width: 100%;
+			 height: 20px;
+		}
+		
+		#menu4_table {
+			 width: 100%;
+		 	height: 78%;
+		}
+	
+	  	.price{
+	  		width: 95%;
+	  		height: 15%;
+	  		border: 1px solid gray;
+	  		margin: 0 auto;
+	  		margin-top: 5px;
+	  	}
+	  	.price_p{
+	  		font-size: 25px;
+	  		text-align: right;
+	  	}
+	  	.price_1{
+	  		width: 30%;
+	  		height:60%;
+	  		margin-left: 5px;
+	  		margin-top: 5px;
+	  		float: left;
+	  	}
+	  	
+	  	.price_2{
+	  		width: 30%;
+	  		height:60%;
+	  		margin-left: 5px;
+	  		margin-top: 5px;
+	  		float: right;
+	  		float: left;
+	  	}
+	  	
+	  	.price_3{
+	  		width: 30%;
+	  		height:60%;
+	  		margin-right : 5px;
+	  		margin-top: 5px;
+	  		float: right;
+	  	}
+	  	
+	  	.price_4{
+	  		width: 30%;
+	  		height: 18%;
+	  		margin-top: 5px;
+	  		margin-left : 5px;
+	  		float: left;
+	  	}
+	  	
+	  	.price_5{
+	  		width: 63%;
+	  		height:18%;
+	  		margin-top: 5px;
+	  		float: right;
+	  	  	margin-right : 5px;
+	  	}
+	  
+	   .b3{
+	   		width: 100%;
+	   		height: 25%;
+	   }
+	   .b4{
+	   		width: 100%;
+	   		height: 100%;
+	   }
+	   
+	   .menu6_1{
+	    	width: 31%;
+	    	height: 100%;
+	        float: left;
+	   }
+	   
+	   .menu6_234{
+	   float: left;
+	   width:36%;
+	   height: 100%;
+	   margin-left: 5px;
+	   }
+	   
+	   .menu6_2{
+	   		width:99%;
+	   		height: 48%; 		 
+	   }
+	   
+	    .menu6_3{
+	   		width:48%;
+	   		height: 48%;
+	   		float: left;
+	   		margin-top : 5px;
+	   }
+	    .menu6_4{
+	   		width:48%;
+	   		height: 48%;
+	   		float: left;
+	   		margin-top : 5px;
+	   		margin-left: 5px;
+	   }
+	    .menu6_5{
+	   		width: 31%;
+	   		height: 100%;
+	   		float: left;
+	   		margin-left: 5px;
+	   } 
+	
