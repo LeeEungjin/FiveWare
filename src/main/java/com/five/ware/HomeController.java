@@ -36,4 +36,24 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value="/afterLoginHome")
+	public String AfterLoginHome(){
+		return "AfterLoginMain/AfterLoginHome";
+	}
+	
+	@RequestMapping(value="/erp")
+	public String erp(){
+		return "AfterLoginMain/erp";
+	}
+	
+	@RequestMapping(value="/groupware")
+	public String groupware(){
+		return "AfterLoginMain/groupware";
+	}
+	
+	@RequestMapping(value="/srm")
+	public String srm(){
+		return "AfterLoginMain/srm";
+	}
+	
 }
