@@ -53,7 +53,7 @@
 			</div>
 			
 			<div class="menu2">
-				<p id="p1">total price : </p>
+				<p id="p1">총금액 : </p>
 				<p id="p2"> 10000 won</p>
 			</div>
 			
@@ -146,7 +146,7 @@
 			
 			<div class="menu4_2">
 				<div class="btn-group-vertical1">
-    				<button type="button" class="btn btn-primary b2">Home</button>
+    				<button type="button" class="btn btn-primary b2">Home Page</button>
     				<button type="button" class="btn btn-primary b2">주문</button>
     				<button type="button" class="btn btn-primary b2">환전</button>
     				<button type="button" class="btn btn-primary b2">상품<br>등록</button>

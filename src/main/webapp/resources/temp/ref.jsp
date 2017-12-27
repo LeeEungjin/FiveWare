@@ -15,21 +15,24 @@
 		$("#ej_menu").click(function(){
 			if(menu) {
 				menu = false;
-				$("#ej_sidebar").css("width", "3.05%");
+				$("#ej_sidebar").css("width", "3.35%");
 				$("#fw_container").css("width", "96.95%");
-				$("#fw_container").css("margin-left", "3.05%");
+				$("#fw_container").css("margin-left", "3.35%");				
+				$("#fw_subcontainer").css("#fw_subcontainer", "15%");
 				$("#ej_icon_contents").hide();
 			} else {
 				menu = true;
 				$("#ej_sidebar").css("width", "10%");
 				$("#fw_container").css("width", "90%");
-				$("#fw_container").css("margin-left", "10%");
+				$("#fw_container").css("margin-left", "10%");	
+				$("#fw_subcontainer").css("#fw_subcontainer", "17%");
 				$("#ej_icon_contents").show();
 			}
 		});
 		
 		$("#ej_sidebar").css("height", window.innerHeight);
 		$("#fw_container").css("height", window.innerHeight);
+		$("#fw_subcontainer").css("height", "100%");
 	});
 	
 </script>
