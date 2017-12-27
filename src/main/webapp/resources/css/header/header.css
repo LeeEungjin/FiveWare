@@ -7,10 +7,9 @@
 }
 
 #ej_sidebar {
-			width: 10%;
+			width: 195px;
 			overflow: hidden;
 			background-color: black;
-			border: 1px solid black;
 		}
 	
 		
@@ -51,6 +50,10 @@
 		.ej_sidebar_nav ul {
 			margin: 0;
 			padding: 8px 0 8px 8px;
+		}
+		
+		.ej_menu_color {
+			color: red !important;
 		}
 		
 		/* 메뉴리스트 - images */

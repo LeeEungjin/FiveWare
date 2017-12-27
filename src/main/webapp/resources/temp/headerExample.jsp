@@ -26,6 +26,21 @@
 		
 		<div class="ej_sidebar_nav">
 			<ul id="ej_menuList">
+				<!-- ERP, GroupWare, SRM -->
+				<li class="productMenu menuTooltip" title="ERP">
+					<a href="#">
+						<span class="ej_sidebar_menu ej_menu_color">ERP</span>
+					</a>
+				</li><li class="productMenu menuTooltip" title="GroupWare">
+					<a href="#">
+						<span class="ej_sidebar_menu ej_menu_color">GroupWare</span>
+					</a>
+				</li><li class="productMenu menuTooltip" title="SRM">
+					<a href="#">
+						<span class="ej_sidebar_menu ej_menu_color">SRM</span>
+					</a>
+				</li>
+			
 				<li class="productMenu menuTooltip" title="공지">
 					<a href="#">
 						<span class="ej_sidebar_menu ej_notice">공지</span>
