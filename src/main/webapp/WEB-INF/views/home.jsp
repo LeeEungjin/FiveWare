@@ -7,6 +7,7 @@
 <body>
 <h1>
 	Hello world!  
+	아린이가 테스트중이다 
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
