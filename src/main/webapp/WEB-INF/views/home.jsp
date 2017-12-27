@@ -32,7 +32,7 @@
                 Store
              </div>
        </div>
-       
+       zxzxzxzxzx
        <!-- 로그인 -->
        <div class="login_wrap">
           <div class="logini_pic">
