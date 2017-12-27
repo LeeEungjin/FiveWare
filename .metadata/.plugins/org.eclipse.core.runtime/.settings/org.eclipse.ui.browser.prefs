@@ -1,0 +1,4 @@
+browser-choice=1
+browsers=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<web-browsers current\="2">\r\n<system/>\r\n<external location\="C\:\\Program Files\\Internet Explorer\\iexplore.exe" name\="Internet Explorer"/>\r\n<external location\="C\:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe" name\="Chrome"/>\r\n</web-browsers>
+eclipse.preferences.version=1
+internalWebBrowserHistory=http\://localhost/ware/|*|http\://localhost/ware|*|http\://localhost/ware/WEB-INF/views/home.jsp|*|file\:/C\:/Users/user1/Desktop/FiveWare/.metadata/.plugins/org.springsource.ide.eclipse.commons.gettingstarted/dashboard/1514338890074/index.html|*|file\:/C\:/Users/user1/Downloads/sts/sts-bundle/sts-3.8.2.RELEASE/plugins/org.springsource.ide.eclipse.commons.gettingstarted_3.8.2.201610040540-RELEASE/resources/welcome/index.html|*|
