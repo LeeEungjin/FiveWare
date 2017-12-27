@@ -14,9 +14,10 @@
 <body>
 <c:import url="${url}/resources/temp/headerExample.jsp"></c:import> 
 
-<h1>test</h1>
+<h1>only header</h1>
 <div id="fw_container">
-zz</div>
+	don't remove
+</div>
 
 </body>
 </html>
