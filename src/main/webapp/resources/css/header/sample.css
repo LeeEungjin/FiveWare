@@ -6,21 +6,22 @@
 }
 
 #fw_container{
+	width: 100%;
+	height: 100%;
 	background-color: lightblue;	
 }
 
 #fw_subcontainer{
 	background-color: pink;
 	float:left;
-	width: 17%;
-	/* height: 100%; */
+	width: 15%;
+	height: 100%;
 } 
 
 #fw_subbanner{
 		background-color: red;
 		height: 8.5%;
 		width: 100%;
-		
 }
 
 #fw_main{
