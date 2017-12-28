@@ -10,9 +10,4 @@ public class SampleController {
 	public String humanplus(){
 		return "sample2";
 	}
-	
-	@RequestMapping(value="/notice/notice")
-	public String notice(){
-		return "notice/notice";
-	}
 }
