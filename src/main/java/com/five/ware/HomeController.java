@@ -22,7 +22,7 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-/*	@RequestMapping(value = "/", method = RequestMethod.GET)
+/*@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
@@ -35,5 +35,26 @@ public class HomeController {
 		
 		return "home";
 	}*/
+	
+	@RequestMapping(value="/afterLoginHome")
+	public String AfterLoginHome(){
+		return "AfterLoginMain/AfterLoginHome";
+	}
+	
+	@RequestMapping(value="/erp")
+	public String erp(){
+		return "AfterLoginMain/erp";
+	}
+	
+	@RequestMapping(value="/groupware")
+	public String groupware(){
+		return "AfterLoginMain/groupware";
+	}
+	
+	@RequestMapping(value="/srm")
+	public String srm(){
+		return "AfterLoginMain/srm";
+	}
+	
 	
 }

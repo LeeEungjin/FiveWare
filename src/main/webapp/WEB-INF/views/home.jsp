@@ -21,15 +21,15 @@
    <!-- 메뉴 -->
        <div class="menu_wrap">
              <div class="menu">
-                ERP
+                <a href="erp">ERP</a>
              </div>
              
                 <div class="menu">
-                GroupWare
+                <a href="groupware">GroupWare</a>
              </div>
              
                 <div class="menu">
-                Store
+                <a href="srm">SRM</a>
              </div>
        </div>
        

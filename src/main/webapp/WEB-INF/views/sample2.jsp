@@ -31,8 +31,6 @@
 				mainTitle
 			</div>
 	</div>
-<h1>header+submenu</h1>
-	don't remove
 </div>
 
 </body>
