@@ -4,10 +4,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class HumanController {
+public class SampleController {
 
 	@RequestMapping(value="/")
 	public String humanplus(){
-		return "sample1";
+		return "sample2";
+	}
+	
+	@RequestMapping(value="/notice/notice")
+	public String notice(){
+		return "notice/notice";
 	}
 }
