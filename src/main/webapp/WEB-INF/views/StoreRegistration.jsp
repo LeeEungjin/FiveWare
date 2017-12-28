@@ -96,22 +96,37 @@
 	<!-- submenu end -->
 	
 	<div id="fw_mainwrap">
+		
 		<div id="fw_main">
-				ddddd
+			
+			<div id="eb_fw_main_1"></div>
+			
+			<div id="eb_fw_main_2">
+				<table id="eb_fw_main_2_table">
+					<tr >
+						<td class="eb_row">회계</td>
+						<td class="eb_row">예산</td>
+						<td class="eb_row">영업/구매</td>
+						<td class="eb_row">인사</td>
+					</tr>
+				</table>
+			</div>
+				
+				
 		</div>
 			
-			<div id="contents_wrap">
+			<div id="eb_contents_wrap">
 				 
-				<div class="contents_text">
-				 	<span class="glyphicon glyphicon-file" id="contents_text_p">지점등록</span>
+				<div class="eb_contents_text">
+				 	<span class="glyphicon glyphicon-file" id="eb_contents_text_p">지점등록</span>
 				</div>
 				
-				<div id="contents_box">
+				<div id="eb_contents_box">
 				
-				 <div class="blank"></div>
+				 <div class="eb_blank"></div>
 					
 				
-					<table id="contents_box_table" >
+					<table id="eb_contents_box_table" >
 						
 						<tr>
 						 <td>지점 분류</td>
@@ -138,12 +153,12 @@
 				  
 				</div> 
 				
-				<div id="contents_table">
+				<div id="eb_contents_table">
 				  	
              				
              		<table class="table table-striped">
 						   
-						<thead id="table_head">
+						<thead id="eb_table_head">
 						    <tr>
 						     <th><input type="checkbox" class="input_all"></th>
 						     <th>코드</th>
@@ -170,7 +185,7 @@
 					 </table>
 					
 				
-				<div id="page">
+				<div id="eb_page">
 					<p>◀ 1 2 3 4 5  ▶</p>
 				</div>
 						  
@@ -188,7 +203,7 @@
 						        <!-- Modal Header -->
 						<div class="modal-header">
 						
-						   <h4 class="modal-title">지점 등록</h4>
+						   <h4 class="modal-title"> | 지점 등록</h4>
 						   
 						    <button type="button" class="close" data-dismiss="modal">&times;</button>
 						       
@@ -197,10 +212,10 @@
 						        <!-- Modal body -->
 				 <div class="modal-body">
 				 
-					<table id="modal_table">
+					<table id="eb_modal_table">
 						<tr>
 						   <td>거래처 코드 </td>
-						   <td><input type="text"></td>
+						   <td><input type="text">[중복확인]</td>
 						   <td>지점명</td>
 						   <td><input type="text"></td>
 						</tr>
