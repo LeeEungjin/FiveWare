@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class TestController {
 
-	 @RequestMapping(value="/")
+ @RequestMapping(value="/")
 	 public String store(){
 		 return "StoreRegistration";
 	 }
