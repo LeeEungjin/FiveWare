@@ -8,8 +8,10 @@ public class SampleController {
 
 	@RequestMapping(value="/")
 	public String humanplus(){
-		return "sample2";
+		return "human/positionPlus";
 	}
+	
+
 	
 	@RequestMapping(value="/notice/notice")
 	public String notice(){
