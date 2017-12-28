@@ -3,12 +3,14 @@
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
- 
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
  <link href="${url }/resources/css/header/header.css" rel="stylesheet">
   <link href="${url }/resources/css/header/sample.css" rel="stylesheet">
-
+  
+   
 <script type="text/javascript">
 	$(function() {
 		$("#ej_sidebar").css("height", window.innerHeight);

@@ -5,7 +5,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link href="resources/css/pos.css" rel="stylesheet">
+  <link href="./resources/css/pos.css" rel="stylesheet">
 <html>
 <head>
 	<title>Home</title>
@@ -57,7 +57,7 @@
 				<p id="p2"> 10000 won</p>
 			</div>
 			
-			<div class="menu3 ">
+			<div class="menu3">
 			
 			<div class="btn-group">
    			 	<button type="button" class="btn btn-primary b1">전체<br>취소</button>

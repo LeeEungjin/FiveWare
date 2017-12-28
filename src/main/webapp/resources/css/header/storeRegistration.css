@@ -1,0 +1,97 @@
+@CHARSET "UTF-8";
+@CHARSET "UTF-8";
+
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+#fw_container{
+	width: 100%;
+	height: 100%;
+	background-color: lightblue;	
+}
+
+#fw_subcontainer{
+	background-color: pink;
+	float:left;
+	width: 15%;
+	height: 100%;
+} 
+
+#fw_subbanner{
+		background-color: red;
+		height: 8.5%;
+		width: 100%;
+}
+
+#fw_main{
+	background-color: green;
+		height: 8.5%;
+		width: 100%;
+}
+
+#fw_mainwrap{
+	 /* background-color: blue;   */
+	width: 72%;
+	height : 100%;
+	/* margin-left: 28%; */
+	float: left;
+}
+
+#contents_wrap{
+	width:100%;
+	height: 90%;
+	margin : 0 auto;
+	margin-top : 10px;
+	background-color: white;  
+}
+
+.contents_text{
+	width: 70%;
+	height:5%;
+}
+
+#contents_text_p{
+    font-size : 20px;
+	margin-top: 20px;
+}
+
+#contents_box{
+	width: 70%;
+	height:20%;
+    background-color :#EAEAEA;
+	margin-top: 5px;
+}
+
+#contents_box_table{
+	width: 90%;
+	height: 65%;
+	margin-top: 70px;
+	margin: 0 auto;
+}
+.text{
+	font-size: 20px;
+	color:red;
+}
+
+
+
+#contents_table{
+	width: 70%;
+	height:60%;
+	margin-top : 20px;
+}
+
+#table_head{
+	background-color: #4E2800;
+	color:white;
+}
+
+#page{
+	width: 50%;
+	height: 7%;
+	margin: 0 auto;
+	text-align: center;
+	font-size: 20px;
+}
