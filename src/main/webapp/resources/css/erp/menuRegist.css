@@ -77,7 +77,7 @@
 }
 
 #erp_jh_contents_table{
-	width: 100%;
+	width: 99%;
 	height: 65%;
 	background-color: #ffffce;
 }
@@ -115,11 +115,6 @@
 	background-color: #cee7ff;
 }
 
-.btn{
-	float: right !important;
-	margin-right: 25%;
-}
-
 #jh_bold_text{
 	font-weight: bold;
 }
@@ -152,7 +147,7 @@
     margin-top: 60%;
 }
 
-label {
+.jh_label {
     display: inline-block;
     max-width: 100%;
     margin-bottom: 5px;

@@ -9,7 +9,7 @@
 <c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 <c:import url="${url}/resources/temp/ref.jsp"></c:import> 
 
-<link href="${url}/resources/css/erp/menuRegist.css" rel="stylesheet">
+<link href="${url}/resources/css/erp/supplier.css" rel="stylesheet">
 
 <title>Insert title here</title>
 
@@ -84,14 +84,6 @@
     background-color: #5cb85c;
     color: white;
 }
-</style>
-
-<style type="text/css">
-	.ej_container{
-		width: 500px;
-		margin: auto;
-	}
-
 </style>
 
 
@@ -207,85 +199,91 @@
 				<div class="sales_title_menu">조 회</div>
 			</div>
 			
+			<!-- main contents -->
 			<div id="fw_main_contents">
 				<div id="erp_jh_contents_title">
 					<div id="mr_icon">icon</div>
 					<p id="mr_title">거래처 등록</p>
 				</div>
+				
+				<!-- 검색 기능 -->
 				<div id="erp_jh_contents_search">
-					<form action="" method="get">
-					<!-- 검색 기능 -->
-					  	<!-- select -->
-					  	<div class="ej_container">
-							<label for="count_sel">거래처 분류</label>
-							<select id="count_sel" name="///////////">
-							  <option>1</option>
-							  <option>2</option>
-							  <option>3</option>
-							  <option>4</option>
-							</select>
+					<form action="#" method="get">
+						<div class="erp_ej_search">
+							<div class="erp_ej_inputBox">
+								<label for="">거래처 분류</label>
+								<select class="erp_ej_account_select" name="///////">
+									<option value="">전체</option>
+									<option value="">매출서</option>
+									<option value="">매입서</option>
+									<option value="">매출 및 매입</option>
+								</select>
+							</div>
+							
+							<div class="erp_ej_inputBox">
+								<label for="">거래처명</label>
+								<input type="text" class="ej_inputText" name="///////">
+							</div>
+							
+							<div class="erp_ej_inputBox">
+								<input class="ej_search_btn btn" type="button" value="검색">
+							</div>
+							
 						</div>
-					  	
-					  	<!-- select END-->
-					  
-					  	<!-- 거래처명 검색 -->
-					    <div class="ej_container">
-					      <label for="count_name">거래처명</label>
-					      <input id="count_name" type="text" name="/////////">
-					    </div>
-					    <!-- 거래처명 검색 끝 -->
-					<!-- 검색 기능 끝 -->
-					</form>
+					</form>					
 				</div>
-			</div>
+				<!-- 검색 기능 끝 -->
+				
 				
 				<!-- table -->
-					<div id="erp_jh_contents_table">
-						<table class="table">
-						    <thead>
-						      <tr>
-						        <th><input type="checkbox"></th>
-						        <th>코드</th>
-						        <th>거래처명</th>
-						        <th>사업자번호</th>
-						        <th>대표자</th>
-						        <th>전화번호</th>
-						        <th>사용구분</th>
-						      </tr>
-						    </thead>
-						    <tbody>
-						    <tr>
-						      	<td><input type="checkbox"></td>
-						        <td>003</td>
-						        <td>국민은행</td>
-						        <td>110-232-41243421-31</td>
-						        <td>이응진</td>
-						        <td>010-5496-8631</td>
-						        <td>사용</td>
-						      </tr>
-						    </tbody>
-						 </table>
-						 
-						 <!-- pager -->
-						 	<div id="mr_pager">
-						 		  <a href="#" class="pager_a">◀</a>
-								  <a href="#" class="pager_a">1</a>
-								  <a href="#" class="pager_a">2</a>
-								  <a href="#" class="pager_a">3</a>
-								  <a href="#" class="pager_a">4</a>
-								  <a href="#" class="pager_a">5</a>
-								  <a href="#" class="pager_a">▶</a>
-						 	</div>
-						 <!-- pager 끝 -->
-					</div>
+				<div id="erp_jh_contents_table">
+					<table class="table">
+					    <thead>
+					      <tr>
+					        <th><input type="checkbox"></th>
+					        <th>코드</th>
+					        <th>거래처명</th>
+					        <th>사업자번호</th>
+					        <th>대표자</th>
+					        <th>전화번호</th>
+					        <th>사용구분</th>
+					      </tr>
+					    </thead>
+					    <tbody>
+					    <tr>
+					      	<td><input type="checkbox"></td>
+					        <td>003</td>
+					        <td>국민은행</td>
+					        <td>110-232-41243421-31</td>
+					        <td>이응진</td>
+					        <td>010-5496-8631</td>
+					        <td>사용</td>
+					      </tr>
+					    </tbody>
+					 </table>
+					 
+					 <!-- pager -->
+					 	<div id="mr_pager">
+					 		  <a href="#" class="pager_a">◀</a>
+							  <a href="#" class="pager_a">1</a>
+							  <a href="#" class="pager_a">2</a>
+							  <a href="#" class="pager_a">3</a>
+							  <a href="#" class="pager_a">4</a>
+							  <a href="#" class="pager_a">5</a>
+							  <a href="#" class="pager_a">▶</a>
+					 	</div>
+					 <!-- pager 끝 -->
+				</div>
 				<!-- table 끝 -->
-				
+					
 				<!-- 등록 버튼 -->
-					<div id="erp_jh_contents_bottom">
-						<button class="modal_btn" id="ej_write_btn">신규등록</button>
-					</div>
+				<div id="erp_jh_contents_bottom">
+					<button class="ej_right_btn btn" id="ej_write_btn">신규등록</button>
+				</div>
 				<!-- 등록 버튼 끝 -->
+				
 			</div>
+			<!-- END_main contents -->
 	</div>
 </div>
 
@@ -324,17 +322,11 @@ var btn = document.getElementById("ej_write_btn");
 var close = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal 
-/* btn.onclick = function() {
-    modal.style.display = "block";
-} */
 btn.addEventListener('click', function() {
 	modal.style.display = "block";
 });
 
 // When the user clicks on <span> (x), close the modal
-/* span.onclick = function() {
-    modal.style.display = "none";
-} */
 close.addEventListener('click', function() {
 	modal.style.display = "none";
 });
