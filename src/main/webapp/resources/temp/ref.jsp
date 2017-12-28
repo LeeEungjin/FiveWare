@@ -28,6 +28,7 @@
 				$("#fw_mainwrap").css("margin-left", "1%");
 				$("#fw_container").css("margin-left", "60px");
 				$("#fw_subcontainer").css("width", "15%");
+				$(".ej_default_img").css("margin-left", "0px");
 				$("#ej_icon_contents").hide();
 			} else {
 				menu = true;
@@ -36,6 +37,7 @@
 				$("#fw_mainwrap").css("width", "82%");
 				$("#fw_container").css("margin-left", "195px");
 				$("#fw_subcontainer").css("width", "17%");
+				$(".ej_default_img").css("margin-left", "10px");
 				$("#ej_icon_contents").show();
 			}
 		});
