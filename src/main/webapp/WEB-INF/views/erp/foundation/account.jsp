@@ -84,6 +84,13 @@
     background-color: #5cb85c;
     color: white;
 }
+</style>
+
+<style type="text/css">
+	.ej_container{
+		width: 500px;
+		margin: auto;
+	}
 
 </style>
 
@@ -96,10 +103,98 @@
 <div id="fw_container">
 	<!-- submenu -->
 	<div id="fw_subcontainer">
+	
 		<!-- submenu banner -->
 		<div id="fw_subbanner">
-			subTitle
+			인사
 		</div>
+		<!-- submenu banner end -->
+		
+		<!-- submenu menu -->
+			<div class="fw_menu fw_selected" data-toggle="collapse" data-target=".fw_subselected" title="sub1">
+				기초정보
+				<div class="fw_arrow sub1">
+					∧
+				</div>
+			</div>
+			
+			<div class="fw_subselected collapse in" id="sub1">
+				<ul>
+					<li> 선택1</li>
+					<li> 선택2</li>
+					<li> 선택3</li>
+					<li> 선택4</li>
+				</ul>
+			</div>
+			
+			<!-- ----------2---------- -->
+				<div class="fw_menu" data-toggle="collapse" data-target="#sub2" title="sub2" >
+					사원관리
+				<div class="fw_arrow sub2">
+					∨
+				</div>
+			</div>
+			
+			<div class="fw_subsub collapse"  id="sub2">
+				<ul>
+					<li> 비선택1</li>
+					<li> 비선택2</li>
+					<li> 비선택3</li>
+					<li> 비선택4</li>
+				</ul>
+			</div>
+			
+			<!-- -------------------- -->
+				<div class="fw_menu" data-toggle="collapse" data-target="#sub3" title="sub3" >
+					사원관리
+				<div class="fw_arrow sub3" >
+					∨
+				</div>
+			</div>
+			
+			<div class="fw_subsub collapse"  id="sub3">
+				<ul>
+					<li> 비선택1</li>
+					<li> 비선택2</li>
+					<li> 비선택3</li>
+					<li> 비선택4</li>
+				</ul>
+			</div>
+			
+			<!-- -------------------- -->
+				<div class="fw_menu" data-toggle="collapse" data-target="#sub4" title="sub4" >
+					사원관리
+				<div class="fw_arrow sub4">
+					∨
+				</div>
+			</div>
+			
+			<div class="fw_subsub collapse"  id="sub4">
+				<ul>
+					<li> 비선택1</li>
+					<li> 비선택2</li>
+					<li> 비선택3</li>
+					<li> 비선택4</li>
+				</ul>
+			</div>
+			
+			<!-- -------------------- -->
+				<div class="fw_menu" data-toggle="collapse" data-target="#sub5" title="sub5" >
+					사원관리
+				<div class="fw_arrow sub5">
+					∨
+				</div>
+			</div>
+			
+			<div class="fw_subsub collapse"  id="sub5">
+				<ul>
+					<li> 비선택1</li>
+					<li> 비선택2</li>
+					<li> 비선택3</li>
+					<li> 비선택4</li>
+				</ul>
+			</div>
+		<!-- submenu menu end -->
 	</div>
 	<!-- submenu end -->
 	
@@ -118,33 +213,31 @@
 					<p id="mr_title">거래처 등록</p>
 				</div>
 				<div id="erp_jh_contents_search">
-					<div id="mr_search">
-						<!-- 검색 기능 -->
-						<form id="erp_ej_search_frm" action="////////////" method="get">
-							<!-- select box -->
-								<select class="form-control" id="sel1" name="///////////">
-							        <option value="">거래처 분류</option>
-							        <option value="">전체</option>
-							        <option value="">매출처</option>
-							        <option value="">매입처</option>
-							        <option value="">매입 및 매출처</option>
-							        <option value="">일반거래처</option>
-							     </select>							
-							<!-- select box 끝 -->
-						
-							<!-- 거래처명 -->
-							<div class="form-group">
-							  <label class="col-sm-2 control-label">거래처명</label>
-							  <div class="col-sm-10">
-							    <input class="form-control" id="focusedInput" type="text" name="///////////////">
-							  </div>
-							</div>
-							<!-- 거래처명 끝  -->
-						</form>
-						<!-- 검색 기능 끝 -->
-						
-					</div>
+					<form action="" method="get">
+					<!-- 검색 기능 -->
+					  	<!-- select -->
+					  	<div class="ej_container">
+							<label for="count_sel">거래처 분류</label>
+							<select id="count_sel" name="///////////">
+							  <option>1</option>
+							  <option>2</option>
+							  <option>3</option>
+							  <option>4</option>
+							</select>
+						</div>
+					  	
+					  	<!-- select END-->
+					  
+					  	<!-- 거래처명 검색 -->
+					    <div class="ej_container">
+					      <label for="count_name">거래처명</label>
+					      <input id="count_name" type="text" name="/////////">
+					    </div>
+					    <!-- 거래처명 검색 끝 -->
+					<!-- 검색 기능 끝 -->
+					</form>
 				</div>
+			</div>
 				
 				<!-- table -->
 					<div id="erp_jh_contents_table">
