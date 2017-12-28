@@ -37,11 +37,10 @@
 		<div class="ej_sidebar_nav">
 			<ul id="ej_menuList">
 				<!-- ERP, GroupWare, SRM -->
-				<li class="productMenu tooltip" title="ERP">
+				<li class="productMenu" title="ERP">
 					<a href="#">
 						<span class="ej_sidebar_menu ej_menu_color ej_erp">ERP</span>
 					</a>
-					<span class="tooltiptext tooltip_notice">ERP</span>
 				</li><li class="productMenu menuTooltip" title="GroupWare">
 					<a href="#">
 						<span class="ej_sidebar_menu  ej_menu_color ej_groupware">GroupWare</span>

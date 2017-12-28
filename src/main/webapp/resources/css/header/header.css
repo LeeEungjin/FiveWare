@@ -53,10 +53,6 @@ a:ACTIVE, a:AFTER, a:HOVER, a:VISITED {
 	padding-top: 20px;
     background: #262626;
     overflow: hidden;
-    /* position: absolute;
-   left: 0;
-   top: 117px;
-   z-index: 6; */
     width: 195px;
     height: 70px;
     white-space: nowrap;
@@ -144,11 +140,11 @@ a:ACTIVE, a:AFTER, a:HOVER, a:VISITED {
 }
 
 .ej_groupware {
-	background-position: 0 -1200px;
+    background-position: 0 -800px;
 }
 
 .ej_srm {
-	background-position: 0 -1200px;
+	background-position: 0 -1120px;
 }
 
 .ej_notice {
@@ -183,42 +179,7 @@ a:ACTIVE, a:AFTER, a:HOVER, a:VISITED {
     background-position: 0 -240px;
 }
 
-/* Tooltip */
-.tooltip {
-    position: relative;
-    display: inline-block;
-}
-
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    left: 50%;
-    margin-left: 70px;
-    opacity: 0;
-    transition: opacity 1s;
-}
-
-.tooltip .tooltiptext::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: 100%;
-    margin-top: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent #555 transparent transparent;
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
+#ej_sidebar {
+	transition: width 0.3s;
 }
 		
