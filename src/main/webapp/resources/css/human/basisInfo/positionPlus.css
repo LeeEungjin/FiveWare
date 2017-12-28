@@ -1,0 +1,108 @@
+@CHARSET "UTF-8";
+
+.ar_plusTitle{
+	width: 100%;
+	height: 5%;
+	background-color: #ff6666;
+	margin-bottom: 1%;
+	
+}
+
+#ar_plustext{
+	font-size: 18px;
+	font-weight: bold;
+	padding-top: 1.5%;
+	margin-left: 2%;
+}
+
+.ar_plusSearchWrap{
+	width: 100%;
+	height: 7%;
+	background-color: #fbc87b;
+	margin-bottom:2%;
+}
+
+.ar_plusSearch{
+	width: 50%;
+	height: 50%;
+	background-color: #c46200;
+	margin-left: 2%;
+}
+
+#ar_psearch{
+	 width: 20%;
+    height: 77%;
+    margin-left: 2%;
+    margin-top: 1%;
+}
+
+#ar_psearchBtn{
+	width: 12%;
+    height: 75%;
+	background-color: #ffff80;
+	margin-left: 2%;
+	border: 0px;
+	font-size: 12px;
+	margin-bottom: 0.5%;
+}
+
+.ar_plusDivWrap{
+	width: 100%;
+	height: 50%;
+	background-color: #f0f779;
+	margin-bottom: 2%;
+}
+
+.ar_titleDiv{
+	background-color: #b68db3;
+	width: 100%;
+	height: 7%;
+	text-align: center;
+}
+
+.ar_titleDiv1{
+ 	display: inline-block;	
+}
+
+.ar_titleCheck{
+	width: 5%;
+	height: 100%;
+}
+
+.ar_titleCode{
+	width: 15%;
+	height: 100%;
+}
+
+.ar_titleName{
+	width: 20%;
+	height: 100%;
+}
+
+.ar_titleRank{
+	width: 15%;
+	height: 100%;
+}
+
+.ar_titleUse{
+	width: 15%;
+	height: 100%;
+}
+
+.ar_titleOther{
+	width: 25%;
+	height: 100%;
+}
+
+
+
+.ar_plusButtonWrap{
+	width: 100%;
+	height: 8%;
+	background-color: #c1ffc1;
+}
+
+.ar_blank {
+	width: 100%;
+	height: 25%;
+}

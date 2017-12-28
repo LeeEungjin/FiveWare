@@ -8,8 +8,15 @@ public class SampleController {
 
 	/*@RequestMapping(value="/")
 	public String humanplus(){
+<<<<<<< HEAD
 		return "sample2";
 	}*/
+=======
+		return "human/positionPlus";
+	}
+>>>>>>> arin
+	
+
 	
 	@RequestMapping(value="/notice/notice")
 	public String notice(){
