@@ -12,7 +12,15 @@ public class ErpController {
 		return "erp/menuRegist";
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
  }
 >>>>>>> eung3
+=======
+
+
+ }
+
+
+>>>>>>> eunbi2
