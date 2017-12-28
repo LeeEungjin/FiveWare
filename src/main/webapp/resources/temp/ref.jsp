@@ -7,7 +7,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  
  <link href="${url }/resources/css/header/header.css" rel="stylesheet">
-  <link href="${url }/resources/css/header/sample.css" rel="stylesheet">
+ <link href="${url }/resources/css/header/sample.css" rel="stylesheet">
 
 <script type="text/javascript">
 	$(function() {
