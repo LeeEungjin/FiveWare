@@ -4,10 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping(value="/erp/**")
 public class ErpController {
 	
-	@RequestMapping(value="memuRegist")
+	@RequestMapping(value="menuRegist")
 	public String menuRegist(){
-		return "erp/memuRegist";
+		return "erp/menuRegist";
 	}
 }
