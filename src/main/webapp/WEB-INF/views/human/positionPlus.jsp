@@ -10,6 +10,13 @@
  
  <link href="${url}/resources/css/human/basisInfo/positionPlus.css" rel="stylesheet">
  
+ <script type="text/javascript">
+ 	$(function(){
+ 		$("#ar_insertBtn").click(function(){
+ 			
+ 		});
+ 	});
+ </script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -126,11 +133,22 @@
 					<div class="ar_titleRank ar_titleDiv1"> 직급순위 </div>
 					<div class="ar_titleUse ar_titleDiv1"> 사용여부 </div>					
 					<div class="ar_titleOther ar_titleDiv1"> 비고</div>
+				</div>
+				
+					<div class="ar_listDiv">
+					<div class="ar_titleCheck ar_listDiv1" ><input type="checkbox" id="title명으로">	</div>
+					<div class="ar_titleCode ar_listDiv1" title="" id="pcode"> B1111 </div>
+					<div class="ar_titleName ar_listDiv1" id="pname"> 사장 </div>
+					<div class="ar_titleRank ar_listDiv1" id="prank"> 1 </div>
+					<div class="ar_titleUse ar_listDiv1" id="puse"> 사용 </div>					
+					<div class="ar_titleOther ar_listDiv1" id="pother"> </div>
 					
 				</div>
 			</div>
 			
 			<div class="ar_plusButtonWrap">
+				<input type="button" id="ar_deleteBtn" value="선택 삭제">
+				<input type="button" id="ar_insertBtn" value="신규 등록">
 			</div>
 			
 	</div>
