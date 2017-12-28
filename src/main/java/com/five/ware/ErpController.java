@@ -12,8 +12,3 @@ public class ErpController {
 		return "erp/menuRegist";
 	}
 }
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 0220c8c1439b779c5dd3b619457a3d3a257ceb59
