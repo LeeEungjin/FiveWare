@@ -19,9 +19,9 @@
 <link href="${url}/resources/css/notice/notice.css" rel="stylesheet">
 </head>
 <body>
-
+ 
 	<c:import url="${url}/resources/temp/headerExample.jsp" />
-
+     
 	<div id="fw_container">
 
 		<div id="login_after_wrap">
