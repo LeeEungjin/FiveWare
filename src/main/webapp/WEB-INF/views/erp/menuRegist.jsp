@@ -5,10 +5,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<<<<<<< HEAD
 
 	<c:import url="${url}/resources/temp/ref.jsp"></c:import> 
 	<link href="${url}/resources/css/erp/menuRegist.css" rel="stylesheet">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+=======
+	
+	<c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
+	<c:import url="${url}/resources/temp/ref.jsp"></c:import> 
+	<link href="${url}/resources/css/erp/menuRegist.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+>>>>>>> 92a15b8d6551e5e8e01f796442b7deaa7773f524
 
 <title>Insert title here</title>
 
@@ -20,102 +28,46 @@
 <div id="fw_container">
 	<!-- submenu -->
 	<div id="fw_subcontainer">
-	
-		<!-- submenu banner -->
-		<div id="fw_subbanner">
-			인사
-		</div>
-		<!-- submenu banner end -->
-		
-		<!-- submenu menu -->
-			<div class="fw_menu fw_selected" data-toggle="collapse" data-target=".fw_subselected" title="sub1">
-				기초정보
-				<div class="fw_arrow sub1">
-					∧
-				</div>
-			</div>
-			
-			<div class="fw_subselected collapse in" id="sub1">
-				<ul>
-					<li> 선택1</li>
-					<li> 선택2</li>
-					<li> 선택3</li>
-					<li> 선택4</li>
-				</ul>
-			</div>
-			
-			<!-- ----------2---------- -->
-				<div class="fw_menu" data-toggle="collapse" data-target="#sub2" title="sub2" >
-					사원관리
-				<div class="fw_arrow sub2">
-					∨
-				</div>
-			</div>
-			
-			<div class="fw_subsub collapse"  id="sub2">
-				<ul>
-					<li> 비선택1</li>
-					<li> 비선택2</li>
-					<li> 비선택3</li>
-					<li> 비선택4</li>
-				</ul>
-			</div>
-			
-			<!-- -------------------- -->
-				<div class="fw_menu" data-toggle="collapse" data-target="#sub3" title="sub3" >
-					사원관리
-				<div class="fw_arrow sub3" >
-					∨
-				</div>
-			</div>
-			
-			<div class="fw_subsub collapse"  id="sub3">
-				<ul>
-					<li> 비선택1</li>
-					<li> 비선택2</li>
-					<li> 비선택3</li>
-					<li> 비선택4</li>
-				</ul>
-			</div>
-			
-			<!-- -------------------- -->
-				<div class="fw_menu" data-toggle="collapse" data-target="#sub4" title="sub4" >
-					사원관리
-				<div class="fw_arrow sub4">
-					∨
-				</div>
-			</div>
-			
-			<div class="fw_subsub collapse"  id="sub4">
-				<ul>
-					<li> 비선택1</li>
-					<li> 비선택2</li>
-					<li> 비선택3</li>
-					<li> 비선택4</li>
-				</ul>
-			</div>
-			
-			<!-- -------------------- -->
-				<div class="fw_menu" data-toggle="collapse" data-target="#sub5" title="sub5" >
-					사원관리
-				<div class="fw_arrow sub5">
-					∨
-				</div>
-			</div>
-			
-			<div class="fw_subsub collapse"  id="sub5">
-				<ul>
-					<li> 비선택1</li>
-					<li> 비선택2</li>
-					<li> 비선택3</li>
-					<li> 비선택4</li>
-				</ul>
-			</div>
-		<!-- submenu menu end -->
-		</div>
-		
-		
-
+   
+      <!-- submenu banner -->
+      <div id="fw_subbanner">
+         회계
+      </div>
+      <!-- submenu banner end -->
+      
+      <!-- submenu menu -->
+         <div class="fw_menu fw_selected" data-toggle="collapse" data-target="#sub1" title="sub1">
+            기초정보
+            <div class="fw_arrow sub1">
+               ∧
+            </div>
+         </div>
+         
+         <div class="fw_subselected collapse in" id="sub1">
+            <ul>
+               <li> 지점 등록</li>
+               <li> 예금 계좌 등록</li>
+               <li> 부서 등록</li>
+            </ul>
+         </div>
+         
+         <!-- ----------2---------- -->
+            <div class="fw_menu" data-toggle="collapse" data-target="#sub2" title="sub2" >
+               전표 입력
+            <div class="fw_arrow sub2">
+               ∨
+            </div>
+         </div>
+         
+         <div class="fw_subsub collapse"  id="sub2">
+            <ul>
+               <li> 일반 전표 입력</li>
+               <li> 일반 관리비 입력</li>
+            </ul>
+         </div>
+         
+      <!-- submenu menu end -->
+   </div>
 	<!-- submenu end -->
 	
 	<div id="fw_mainwrap">
@@ -196,7 +148,7 @@
 						      	<td><input type="checkbox" id="menucheck"></td>
 						        <td>003</td>
 						        <td>[음료]</td>
-						        <td id="jh_bold_text" data-toggle="modal" data-target="#Modal">딸기 크림 푸라푸치노</td>
+						        <td id="jh_bold_text" data-toggle="modal" data-target="#jh_mr_update_Modal">딸기 크림 푸라푸치노</td>
 						        <td>6500원</td>
 						        <td>Y</td>
 						      </tr>
@@ -240,13 +192,13 @@
 				<!-- 등록 버튼 -->
 					<div id="erp_jh_contents_bottom">
 						<button>선택삭제</button>
-						<button class="modal_btn" data-toggle="modal" data-target="#myModal">신규등록</button>
+						<button class="modal_btn" data-toggle="modal" data-target="#jh_mr_Modal">신규등록</button>
 					</div>
 				<!-- 등록 버튼 끝 -->
 				
 				<!-- Modal -->
 				
-				<div class="modal fade" id="myModal" role="dialog">
+				<div class="modal fade" id="jh_mr_Modal" role="dialog">
 				    <div class="modal-dialog modal-m">
 				      <div class="modal-content">
 				      
@@ -312,7 +264,7 @@
 				
 				<!-- 수정 Modal -->
 				
-				<div class="modal fade" id="Modal" role="dialog">
+				<div class="modal fade" id="jh_mr_update_Modal" role="dialog">
 				    <div class="modal-dialog modal-m">
 				      <div class="modal-content">
 				      	<!-- modal header -->
@@ -381,8 +333,7 @@
 				
 				
 			</div>
+		</div>
 	</div>
-</div>
-
 </body>
 </html>
