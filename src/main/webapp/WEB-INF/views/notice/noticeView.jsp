@@ -41,15 +41,15 @@
 							<table class="table table-hover" id="notice_jk_table">
 								<thead>
 									<tr>
-										<td class="notice_jk_td">부서<!-- 부서이름 나오게 --></td>
-										<td class="notice_jk_td">제목<!-- 제목이 나오게 --></td>
-										<td class="notice_jk_td">작성자<!-- 작성자 나오게 --></td>
-										<td class="notice_jk_td">0000/00/00<!-- 날짜 나오게 --></td>
+										<td class="notice_jk_td">부서<!-- 부서이름 나오게, part --></td>
+										<td class="notice_jk_td">제목<!-- 제목이 나오게, title --></td>
+										<td class="notice_jk_td">작성자<!-- 작성자 나오게, writer --></td>
+										<td class="notice_jk_td">0000/00/00<!-- 날짜 나오게, reg_date --></td>
 									</tr>
 								</thead>
 								<tr>
 									<td colspan="4" rowspan="4">
-										<div class="notice_jk_textarea">글 내용이 나옵니다.</div>
+										<div class="notice_jk_textarea">글 내용이 나옵니다.<!-- 글 내용, contents --></div>
 									</td>
 								</tr>
 							</table>

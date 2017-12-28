@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -35,9 +35,32 @@
 			<form action="">
 				<div id="login_after_middle">
 					<div id="menu_wrap">
-						<table class="notice_jk_table">
-							
-						</table>
+						<div class="notice_jk_tableBox">
+							<table class="notice_jk_table">
+								<tr>
+									<td>부서</td>
+									<td><select>
+											<option>회계부</option>
+											<option>총무부</option>
+											<option>인사부</option>
+											<option>영업/구매부</option>
+									</select></td>
+									<td>작성자</td>
+									<td><input type="text" name="writer" id="writer"></td>
+								</tr>
+								<tr>
+									<td>제목</td>
+									<td><input type="text" name="title" id="title"></td>
+									<td>등록일</td>
+									<td><input type="text" name="title" id="title"></td>
+								</tr>
+								<tr>
+									<td>에디터가 들어갈 자리</td>
+								</tr>
+							</table>
+							<input type="button" value="등록" class="btn btn-default"
+								id="writeBtn">
+						</div>
 					</div>
 				</div>
 			</form>
