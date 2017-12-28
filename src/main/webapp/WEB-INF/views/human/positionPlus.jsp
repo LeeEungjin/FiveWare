@@ -9,14 +9,7 @@
 <c:import url="${url}/resources/temp/ref.jsp"></c:import> 
  
  <link href="${url}/resources/css/human/basisInfo/positionPlus.css" rel="stylesheet">
- 
- <script type="text/javascript">
- 	$(function(){
- 		$("#ar_insertBtn").click(function(){
- 			
- 		});
- 	});
- </script>
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -148,9 +141,53 @@
 			
 			<div class="ar_plusButtonWrap">
 				<input type="button" id="ar_deleteBtn" value="선택 삭제">
-				<input type="button" id="ar_insertBtn" value="신규 등록">
+				<input type="button" id="ar_insertBtn" data-toggle="modal" data-target="#ar_positionInsert" value="신규 등록">
 			</div>
 			
+			<!-- Modal -->
+				
+				<div class="modal fade" id="ar_positionInsert" role="dialog">
+				    <div class="modal-dialog modal-m">
+				      <div class="modal-content">
+				      
+				      	<!-- modal header -->
+				        <div class="modal-header">
+				          <button type="button" class="close" data-dismiss="modal">&times;</button>
+				          <h4 class="modal-title">| 직책 등록</h4>
+				        </div>
+				        <!-- modal header 끝-->
+				        
+				        <!-- modal contents -->
+				        <div class="modal-body">
+				        	<div class="ar_positionInsert" >
+				        		<span class="ar_positiontext">직책코드</span>
+				        		<input type="text" name="pcode" class="arin_pcodeInput1">
+				        		<input type="button" value="중복 여부" id="pcode_btn">
+				        	</div>
+				        	
+				        	<div class="ar_positionInsert" >
+				        		<span class="ar_positiontext1">직책명</span>
+				        		<input type="text" name="pname" class="arin_pcodeInput">
+				        	</div>
+				        	
+				        	<div class="ar_positionInsert" >
+				        		<span class="ar_positiontext">직책순위</span>
+				        		<input type="text" name="pname" class="arin_pcodeInput">
+				        	</div>
+						
+				        </div>
+				        <!-- modal contents 끝-->
+				        
+				        <!-- modal footer -->
+				        <div class="modal-footer">
+				          <button type="button" class="btn btn-default" data-dismiss="modal">등록</button>
+				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				        </div>
+				      	<!-- modal footer 끝-->
+				      </div>
+				    </div>
+				  </div>
+				<!-- Modal 끝 -->
 	</div>
 </div>
 
