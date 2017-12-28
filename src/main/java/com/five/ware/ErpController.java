@@ -11,4 +11,8 @@ public class ErpController {
 	public String menuRegist(){
 		return "erp/menuRegist";
 	}
+<<<<<<< HEAD
 }
+=======
+ }
+>>>>>>> eung3

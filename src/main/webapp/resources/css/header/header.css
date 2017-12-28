@@ -6,98 +6,180 @@
 	padding: 0;
 }
 
+a{
+	text-decoration: none;
+	color: black;	
+}
+
+a:ACTIVE, a:AFTER, a:HOVER, a:VISITED {
+	color: black;
+}
+
 #ej_sidebar {
-			width: 195px;
-			overflow: hidden;
-			background-color: black;
-		}
-	
+	width: 195px;
+	overflow: hidden;
+	background-color: black;
+}
+
+
+.ej_home {
+	display: block;
+	padding-left: 10px;
+    height: 56px;
+    text-indent: -9999px;
+    background: url(../../images/sidebar/quick_bg.png) no-repeat right 19px;
+}
+
+#ej_menu {
+	padding-left: 8px; 
+}
+
+.ej_icon {
+    display: inline-block;
+    height: 15px;
+    width: 47px;
+    vertical-align: -2px;
+    background: url(../../images/sidebar/quick_bg.png) no-repeat right -51px;
+}
+
+.ej_sidebar_contents p{
+	background-color: white;
+	border: none;
+	padding: 10px 5px;
+}
+
+/* 로그아웃 */
+.ej_info_logout {
+	padding-top: 20px;
+    background: #262626;
+    overflow: hidden;
+    width: 195px;
+    height: 70px;
+    white-space: nowrap;
+}
+
+.ej_user_info {
+	width: 80px;
+	height: 100%;
+	float: left;
+}
+
+.ej_default_img {
+	width: 55px;
+	height: 55px;
+	border-radius: 50px;
+	text-align: center;
+	display: block;
+	margin-left: 10px;
+}
+
+.ej_user_name {
+	width: 113px;
+	height: 49%;
+	color: white;
+	line-height: 50px;
+	float: left;
+}
+
+.ej_user_sub_info {
+	width: 113px;
+	height: 49%;
+	float: left;
+}
+
+.ej_user_sub_info a {
+	font-size: 11px;
+	line-height: 50px;
+	color: white;	
+}
+
+.ej_my_info {
+	padding-left: 10px;
+    margin-right: 2px;
+    color: #414141;
+    background: url(../../images/sidebar/quick_bg.png) 0 1px no-repeat
+}
+
+.ej_logout {
+    padding-left: 13px;
+    background: url(../../images/sidebar/quick_bg.png) 0 -25px no-repeat;
+}
+
+
+/* 메뉴리스트 */
+.ej_sidebar_nav {
+	overflow: hidden;
+    clear: both;
+}
+
+.ej_sidebar_nav ul {
+	margin: 0;
+	padding: 8px 0 8px 8px;
+}
+
+.ej_menu_color {
+	color: red !important;
+}
+
+/* 메뉴리스트 - images */
+
+.ej_sidebar_menu {
+	display: block;
+    height: 40px;
+    margin-top: 4px;
+    line-height: 40px;
+    padding-left: 50px;
+    white-space: nowrap;
+    color: #fff;
+    background-image: url(../../images/sidebar/quick_product.png);
+    background-repeat: no-repeat;
+}
+
+.ej_erp {
+    background-position: 0 -1200px;
+}
+
+.ej_groupware {
+    background-position: 0 -800px;
+}
+
+.ej_srm {
+	background-position: 0 -1120px;
+}
+
+.ej_notice {
+       background-position: 0 -80px;
+}
+
+.ej_account {
+    background-position: 0 -400px;
+}
+
+.ej_sales {
+    background-position: 0 -720px;
+}
+
+.ej_resource {
+    background-position: 0 -320px;
+}
+
+.ej_calendar {
+	background-position: 0 -120px;
+}
+
+.ej_facing {
+    background-position: 0 -840px;
+}
+
+.ej_address {
+    background-position: 0 -280px;
+}
+
+.ej_organization {
+    background-position: 0 -240px;
+}
+
+#ej_sidebar {
+	transition: width 0.3s;
+}
 		
-		.ej_home {
-			display: block;
-			padding-left: 8px;
-		    height: 56px;
-		    text-indent: -9999px;
-		    background: url(../../images/sidebar/quick_bg.png) no-repeat right 19px;
-		}
-		
-		#ej_menu {
-			padding-left: 8px; 
-		}
-		
-		.ej_icon {
-		    display: inline-block;
-		    height: 15px;
-		    width: 47px;
-		    vertical-align: -2px;
-		    background: url(../../images/sidebar/quick_bg.png) no-repeat right -51px;
-		}
-		
-		.ej_sidebar_contents p{
-			background-color: white;
-			border: none;
-			padding: 10px 5px;
-		}
-		
-		/* 로그아웃 */
-		
-		/* 메뉴리스트 */
-		.ej_sidebar_nav {
-			overflow: hidden;
-		    padding-top: 50px;
-		}
-		
-		.ej_sidebar_nav ul {
-			margin: 0;
-			padding: 8px 0 8px 8px;
-		}
-		
-		.ej_menu_color {
-			color: red !important;
-		}
-		
-		/* 메뉴리스트 - images */
-		
-		.ej_sidebar_menu {
-			display: block;
-		    height: 40px;
-		    margin-top: 4px;
-		    line-height: 40px;
-		    padding-left: 50px;
-		    white-space: nowrap;
-		    color: #fff;
-		    background-image: url(../..//images/sidebar/quick_product.png);
-		    background-repeat: no-repeat;
-		}
-		
-		.ej_notice {
-	        background-position: 0 -80px;
-		}
-		
-		.ej_account {
-		    background-position: 0 -400px;
-		}
-		
-		.ej_sales {
-		    background-position: 0 -720px;
-		}
-		
-		.ej_resource {
-		    background-position: 0 -320px;
-		}
-		
-		.ej_calendar {
-			background-position: 0 -120px;
-		}
-		
-		.ej_facing {
-		    background-position: 0 -840px;
-		}
-		
-		.ej_address {
-		    background-position: 0 -280px;
-		}
-		
-		.ej_organization {
-		    background-position: 0 -240px;
-		}
