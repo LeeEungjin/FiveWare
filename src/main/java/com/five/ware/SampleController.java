@@ -10,12 +10,10 @@ public class SampleController {
 	public String humanplus(){
 <<<<<<< HEAD
 		return "sample2";
+	return "human/positionPlus";
+}
+
 	}*/
-=======
-		return "human/positionPlus";
-	}
->>>>>>> arin
-	
 
 	
 	@RequestMapping(value="/notice/notice")
