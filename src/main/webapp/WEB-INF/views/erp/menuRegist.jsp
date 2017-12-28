@@ -15,6 +15,9 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <title>Insert title here</title>
+
+
+
 </head>
 <body>
 
@@ -89,7 +92,7 @@
 						<table class="table">
 						    <thead>
 						      <tr>
-						        <th><input type="checkbox"></th>
+						        <th><input type="checkbox" id="allcheck"></th>
 						        <th>코드</th>
 						        <th>구분</th>
 						        <th>이름</th>
@@ -99,7 +102,7 @@
 						    </thead>
 						    <tbody>
 						    <tr>
-						      	<td><input type="checkbox"></td>
+						      	<td><input type="checkbox" id="menucheck"></td>
 						        <td>003</td>
 						        <td>[음료]</td>
 						        <td>딸기 크림 푸라푸치노</td>
@@ -107,7 +110,7 @@
 						        <td>Y</td>
 						      </tr>
 						      <tr>
-						      	<td><input type="checkbox"></td>
+						      	<td><input type="checkbox" id="menucheck"></td>
 						        <td>003</td>
 						        <td>[음료]</td>
 						        <td>딸기 크림 푸라푸치노</td>
@@ -115,7 +118,7 @@
 						        <td>Y</td>
 						      </tr>
 						      <tr>
-						      	<td><input type="checkbox"></td>
+						      	<td><input type="checkbox" id="menucheck"></td>
 						        <td>003</td>
 						        <td>[음료]</td>
 						        <td>딸기 크림 푸라푸치노</td>
@@ -123,7 +126,7 @@
 						        <td>Y</td>
 						      </tr>
 						      <tr>
-						      	<td><input type="checkbox"></td>
+						      	<td><input type="checkbox" id="menucheck"></td>
 						        <td>003</td>
 						        <td>[음료]</td>
 						        <td>딸기 크림 푸라푸치노</td>
@@ -131,7 +134,7 @@
 						        <td>Y</td>
 						      </tr>
 						      <tr>
-						      	<td><input type="checkbox"></td>
+						      	<td><input type="checkbox" id="menucheck"></td>
 						        <td>003</td>
 						        <td>[음료]</td>
 						        <td>딸기 크림 푸라푸치노</td>
@@ -139,7 +142,7 @@
 						        <td>Y</td>
 						      </tr>
 						      <tr>
-						      	<td><input type="checkbox"></td>
+						      	<td><input type="checkbox" id="menucheck"></td>
 						        <td>003</td>
 						        <td>[음료]</td>
 						        <td>딸기 크림 푸라푸치노</td>
@@ -147,7 +150,7 @@
 						        <td>Y</td>
 						      </tr>
 						      <tr>
-						      	<td><input type="checkbox"></td>
+						      	<td><input type="checkbox" id="menucheck"></td>
 						        <td>003</td>
 						        <td>[음료]</td>
 						        <td>딸기 크림 푸라푸치노</td>
@@ -155,7 +158,7 @@
 						        <td>Y</td>
 						      </tr>
 						      <tr>
-						      	<td><input type="checkbox"></td>
+						      	<td><input type="checkbox" id="menucheck"></td>
 						        <td>003</td>
 						        <td>[음료]</td>
 						        <td>딸기 크림 푸라푸치노</td>
@@ -163,7 +166,7 @@
 						        <td>Y</td>
 						      </tr>
 						      <tr>
-						      	<td><input type="checkbox"></td>
+						      	<td><input type="checkbox" id="menucheck"></td>
 						        <td>002</td>
 						        <td>[디저트]</td>
 						        <td>시나몬 허니 브레드</td>
@@ -171,7 +174,7 @@
 						        <td>N</td>
 						      </tr>
 						      <tr>
-						      	<td><input type="checkbox"></td>
+						      	<td><input type="checkbox" id="menucheck"></td>
 						        <td>001</td>
 						        <td>[커피]</td>
 						        <td>아이스 아메리카노</td>
@@ -197,6 +200,7 @@
 				
 				<!-- 등록 버튼 -->
 					<div id="erp_jh_contents_bottom">
+						<button>선택삭제</button>
 						<button class="modal_btn" data-toggle="modal" data-target="#myModal">신규등록</button>
 					</div>
 				<!-- 등록 버튼 끝 -->
@@ -246,9 +250,9 @@
 							</div>
 							
 							<div class="form-group">
-							  <span class="input-group-addon">설명</span>
-						      <!-- <label for="comment">설명:</label> -->
-						      <textarea class="form-control" rows="5" id="comment"></textarea>
+							  <!-- <span class="input-group-addon">설명</span> -->
+						      <div id="area_text"><label for="comment">메뉴의 설명을 작성해주세요.</label></div> 
+						      <textarea class="form-control form-control_area" rows="5" id="comment"></textarea>
 						    </div>
 							
 				        </div>
@@ -256,6 +260,7 @@
 				        
 				        <!-- modal footer -->
 				        <div class="modal-footer">
+				          <button type="button" class="btn btn-default" data-dismiss="modal">등록</button>
 				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				        </div>
 				      	<!-- modal footer 끝-->
