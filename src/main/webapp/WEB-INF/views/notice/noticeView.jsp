@@ -1,27 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Home</title>
+
+<title>Insert title here</title>
 <c:set
 	value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}"
 	var="url" />
 <c:import url="${url}/resources/temp/ref.jsp" />
-
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link href="${url}/resources/css/notice/notice.css" rel="stylesheet">
+<link href="${url}/resources/css/notice/noticeView.css" rel="stylesheet">
 </head>
 <body>
- 
+
 	<c:import url="${url}/resources/temp/headerExample.jsp" />
-     
+
 	<div id="fw_container">
 
 		<div id="login_after_wrap">
@@ -36,53 +36,27 @@
 			<form action="">
 				<div id="login_after_middle">
 					<div id="menu_wrap">
-						<!-- 부서별 링크 -->
-						<div class="notice_jk_partBox">
-							<a href="#">회계부</a> <a href="#">총무부</a> <a href="#">인사부</a> <a
-								href="#">영업/구매부</a>
-						</div>
-
-						<!-- 검색창 -->
-						<div class="notice_jk_searchBox">
-							<select id="kind">
-								<option>제목</option>
-								<option>부서</option>
-							</select> <input type="text" name="search" id="search" placeholder="검색어">
-							<input type="button" value="검색" class="notice_jk_btn">
-						</div>
-
 						<!-- 리스트 보여지는 곳 -->
 						<div class="notice_jk_listBox">
-							<table class="table table-hover">
+							<table class="table table-hover" id="notice_jk_table">
 								<thead>
 									<tr>
-										<td>번호</td>
-										<td>부서</td>
-										<td>제목</td>
-										<td>작성자</td>
-										<td>작성일</td>
-										<td>조회</td>
+										<td class="notice_jk_td">부서<!-- 부서이름 나오게 --></td>
+										<td class="notice_jk_td">제목<!-- 제목이 나오게 --></td>
+										<td class="notice_jk_td">작성자<!-- 작성자 나오게 --></td>
+										<td class="notice_jk_td">0000/00/00<!-- 날짜 나오게 --></td>
 									</tr>
 								</thead>
 								<tr>
-									<td>1</td>
-									<td>관리부</td>
-									<td><a href="#">회식일정입니다.</a></td>
-									<td>이중기</td>
-									<td>2017/12/28</td>
-									<td>0</td>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td>관리부</td>
-									<td><a href="#">회식일정입니다.</a></td>
-									<td>이중기</td>
-									<td>2017/12/28</td>
-									<td>0</td>
+									<td colspan="4" rowspan="4">
+										<div class="notice_jk_textarea">글 내용이 나옵니다.</div>
+									</td>
 								</tr>
 							</table>
-							<input type="button" value="신규 등록" class="btn btn-default"
-								id="enroBtn">
+							<div class="button">
+								<input type="button" value="목록으로" class="btn btn-default"
+									id="enroBtn">
+							</div>
 						</div>
 					</div>
 

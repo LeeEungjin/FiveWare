@@ -9,6 +9,7 @@ public class SampleController {
 /*	@RequestMapping(value="/")
 	public String humanplus(){
 		return "sample2";
+<<<<<<< HEAD
 	return "human/positionPlus";
 }
 
@@ -19,4 +20,7 @@ public class SampleController {
 	public String notice(){
 		return "notice/notice";
 	}*/
+=======
+	}
+>>>>>>> jk2
 }
