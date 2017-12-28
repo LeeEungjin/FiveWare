@@ -13,6 +13,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <<<<<<< HEAD
+<<<<<<< HEAD
  
 =======
 
@@ -30,13 +31,12 @@
 
 =======
 
+=======
+ 
+>>>>>>> jihyun3
  <link href="${url }/resources/css/header/header.css" rel="stylesheet">
-
   <link href="${url }/resources/css/header/sample.css" rel="stylesheet">
-  
-   
 
- <link href="${url }/resources/css/header/sample.css" rel="stylesheet">
 
 
 >>>>>>> 12015656651b9127a7742e4f07fa754e88bb4cf2
