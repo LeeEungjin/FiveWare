@@ -6,6 +6,11 @@
 	padding: 0;
 }
 
+body, h1, h2, h3, h4, h5, h6, p {
+	margin: 0;
+	padding: 0;
+}
+
 a{
 	text-decoration: none;
 	color: black;	
@@ -50,12 +55,12 @@ a:ACTIVE, a:AFTER, a:HOVER, a:VISITED {
 
 /* 로그아웃 */
 .ej_info_logout {
-	padding-top: 20px;
     background: #262626;
     overflow: hidden;
     width: 195px;
     height: 70px;
     white-space: nowrap;
+    padding-top: 10px;
 }
 
 .ej_user_info {
