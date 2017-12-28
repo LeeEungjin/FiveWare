@@ -20,7 +20,7 @@ public class SampleController {
 	public String notice(){
 		return "notice/notice";
 	}*/
-=======
+
 	}
->>>>>>> jk2
-}
+
+

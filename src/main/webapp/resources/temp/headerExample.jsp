@@ -52,7 +52,7 @@
 				</li>
 			
 				<li class="productMenu menuTooltip" title="공지">
-					<a href="#">
+					<a href="notice/notice">
 						<span class="ej_sidebar_menu ej_notice">공지</span>
 					</a>
 				</li>

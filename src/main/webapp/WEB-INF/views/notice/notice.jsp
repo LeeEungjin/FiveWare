@@ -67,7 +67,7 @@
 								<tr>
 									<td>1</td>
 									<td>관리부</td>
-									<td><a href="#">회식일정입니다.</a></td>
+									<td><a href="noticeView">회식일정입니다.</a></td>
 									<td>이중기</td>
 									<td>2017/12/28</td>
 									<td>0</td>

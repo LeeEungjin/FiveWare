@@ -17,4 +17,9 @@ public class NoticeController {
 		return "notice/noticeView";
 	}
 	
+	@RequestMapping(value="noticeWrite")
+	public String noticeWrite(){
+		return "notice/noticeWrite";
+	}
+	
 }

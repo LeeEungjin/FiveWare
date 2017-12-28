@@ -35,6 +35,9 @@
 			<form action="">
 				<div id="login_after_middle">
 					<div id="menu_wrap">
+						<table class="notice_jk_table">
+							
+						</table>
 					</div>
 				</div>
 			</form>
