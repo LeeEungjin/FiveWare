@@ -60,3 +60,21 @@
 	});
 	
 </script>
+
+<!-- sample -->
+<script type="text/javascript">
+
+	$(function(){
+		
+		$(".fw_menu").click(function(){
+			var sub = $(this).attr("title");
+			
+			if($("."+sub).html().trim()=="∧"){
+				$("."+sub).html("∨");
+			}else{
+				$("."+sub).html("∧");
+			}
+			
+		});
+	});
+</script>
