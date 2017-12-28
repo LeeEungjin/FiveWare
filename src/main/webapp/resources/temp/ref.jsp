@@ -17,9 +17,14 @@
 
 >>>>>>> eunbi2
  <link href="${url }/resources/css/header/header.css" rel="stylesheet">
+<<<<<<< HEAD
   <link href="${url }/resources/css/header/sample.css" rel="stylesheet">
   
    
+=======
+ <link href="${url }/resources/css/header/sample.css" rel="stylesheet">
+
+>>>>>>> jihyun2
 <script type="text/javascript">
 	$(function() {
 		$("#ej_sidebar").css("height", window.innerHeight);
