@@ -5,18 +5,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<<<<<<< HEAD
 
 	<c:import url="${url}/resources/temp/ref.jsp"></c:import> 
 	<link href="${url}/resources/css/erp/menuRegist.css" rel="stylesheet">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-=======
 	
 	<c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
-	<c:import url="${url}/resources/temp/ref.jsp"></c:import> 
-	<link href="${url}/resources/css/erp/menuRegist.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
->>>>>>> 92a15b8d6551e5e8e01f796442b7deaa7773f524
 
 <title>Insert title here</title>
 
