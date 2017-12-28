@@ -43,25 +43,26 @@
 
 #erp_jh_contents_search{
 	width: 100%;
-	height: 15%;
-	background-color: #e7ceff;
-	overflow: hidden;
+    height: 14.5%;
+    background-color: #e7ceff;
+    padding-top: 0.5%;
 }
 
 #mr_search{
-	width: 50%;
-	height: 70%;
-	margin-left: 25%;
-	background-color: #ce9dff;
-	margin-top: 1.5%;
+	width: 70%;
+    height: 70%;
+    margin-left: 20%;
+    ackground-color: #ce9dff;
+    margin-top: 3.5%;
 }
 
 .input-group {
-    width: 65% !important;
+    width: 40% !important;
+    float: left;
 }
 
 #sel1{
-    width: 17% !important;
+    width: 12% !important;
     float: left !important;
     margin-right: 2% !important;
     margin-left: 8% !important;
@@ -79,6 +80,16 @@
 	width: 100%;
 	height: 65%;
 	background-color: #ffffce;
+}
+
+#test{
+	z-index: 999;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 30px !important;
+    left: 63% !important;
 }
 
 .table {
@@ -106,5 +117,30 @@
 
 .btn{
 	float: right !important;
-	margin-right: 10%;
+	margin-right: 25%;
+}
+
+/*------------- modal -----------------*/
+
+.modal-body {
+    height: 500px !important;
+}
+
+.input-group_modal{
+   	width: 80% !important;
+   	    margin-bottom: 2%;
+}
+
+.input-group_area{
+	height: 50px !important;
+}
+
+#mr_img_div{
+	width: 80%;
+	height: 10%;
+	background-color: #cee7ff;
+}
+
+.form-control_area{
+	height: 50px !important;
 }

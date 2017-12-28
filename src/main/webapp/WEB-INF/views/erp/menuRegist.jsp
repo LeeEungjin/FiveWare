@@ -64,35 +64,23 @@
 						<!-- 검색 기능 끝 -->
 						
 						<!-- 부가 검색 -->
-							
-							<!-- <div id="sub_search">
-								가격 |
-								<input type="checkbox">가격 높은순
-								<input type="checkbox">가격 낮은순
-								구분 |<br>
-								<input type="checkbox">커피
-								<input type="checkbox">음료
-								<input type="checkbox">디저트
-							</div> -->
-						<!-- 부가 검색 끝 -->
-						
-						<div class="dropdown">
-						    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">상세검색+
-						    <span class="caret"></span></button>
-						    <ul class="dropdown-menu">
-						      <li class="dropdown-header">가격</li>
-						      <li><a href="#">높은 순</a></li>
-						      <li><a href="#">낮은 순</a></li>
-						      <li class="divider"></li>
-						      <li class="dropdown-header">구분</li>
-						      <li><a href="#">커피</a></li>
-						      <li><a href="#">음료</a></li>
-						      <li><a href="#">디저트</a></li>
-						      <li class="dropdown-header"></li>
-						      <li><a href="#">검색 초기화</a></li>
-						    </ul>
-						 </div>
-						
+							<div class="dropdown">
+							    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">상세검색
+							    <span class="caret"></span></button>
+							    <ul class="dropdown-menu" id="test">
+							      <li class="dropdown-header">가격</li>
+							      <li><a href="#">높은 순</a></li>
+							      <li><a href="#">낮은 순</a></li>
+							      <li class="divider"></li>
+							      <li class="dropdown-header">구분</li>
+							      <li><a href="#">커피</a></li>
+							      <li><a href="#">음료</a></li>
+							      <li><a href="#">디저트</a></li>
+							      <li class="divider"></li>
+							      <li><a href="#">검색 초기화</a></li>
+							    </ul>
+							 </div>
+							<!-- 부가 검색 끝 -->
 					</div>
 				</div>
 				
@@ -209,9 +197,73 @@
 				
 				<!-- 등록 버튼 -->
 					<div id="erp_jh_contents_bottom">
-						<button type="button" class="btn btn-default">신규 등록</button>
+						<button class="modal_btn" data-toggle="modal" data-target="#myModal">신규등록</button>
 					</div>
 				<!-- 등록 버튼 끝 -->
+				
+				<!-- Modal -->
+				
+				<div class="modal fade" id="myModal" role="dialog">
+				    <div class="modal-dialog modal-m">
+				      <div class="modal-content">
+				      	<!-- modal header -->
+				        <div class="modal-header">
+				          <button type="button" class="close" data-dismiss="modal">&times;</button>
+				          <h4 class="modal-title">|메뉴 등록</h4>
+				        </div>
+				        <!-- modal header 끝-->
+				        
+				        <!-- modal contents -->
+				        <div class="modal-body">
+				        	<div class="input-group input-group_modal">
+							  <span class="input-group-addon">메뉴번호</span>
+							  <input id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
+							</div>
+							
+							<div class="input-group input-group_modal">
+							  <span class="input-group-addon">메뉴구분</span>
+							  <input id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
+							</div>
+							
+							<div class="input-group input-group_modal">
+							  <span class="input-group-addon">메뉴명</span>
+							  <input id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
+							</div>
+							
+							<div class="input-group input-group_modal">
+							  <span class="input-group-addon">가격</span>
+							  <input id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
+							</div>
+							
+							<div class="input-group input-group_modal">
+							  <span class="input-group-addon">사진</span>
+							  <div id="mr_img_div"></div>
+							</div>
+							
+							<div class="input-group input-group_modal">
+							  <span class="input-group-addon">레시피</span>
+							  <input id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
+							</div>
+							
+							<div class="form-group">
+							  <span class="input-group-addon">설명</span>
+						      <!-- <label for="comment">설명:</label> -->
+						      <textarea class="form-control" rows="5" id="comment"></textarea>
+						    </div>
+							
+				        </div>
+				        <!-- modal contents 끝-->
+				        
+				        <!-- modal footer -->
+				        <div class="modal-footer">
+				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				        </div>
+				      	<!-- modal footer 끝-->
+				      </div>
+				    </div>
+				  </div>
+				<!-- Modal 끝 -->
+				
 			</div>
 	</div>
 </div>
