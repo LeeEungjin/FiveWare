@@ -165,7 +165,7 @@
 						     <th>지점명</th>
 						     <th>대표자 명</th>
 						     <th>전화번호</th>
-						     <th>담당자</th>
+						    
 						    </tr>
 						 </thead>
 						    
@@ -178,7 +178,7 @@
 							        <td>강남점</td>
 							        <td>신아린</td>
 							        <td>02)123-4567</td>
-							        <td>조은비</td>
+							       
 							      </tr>
 							     </c:forEach>
 						   </tbody>
@@ -214,8 +214,9 @@
 				 
 					<table id="eb_modal_table">
 						<tr>
-						   <td>거래처 코드 </td>
-						   <td><input type="text">[중복확인]</td>
+						   <td>지점명 코드 </td>
+						   <td><input type="text">
+						   		<button class="btn btn-default">중복확인</button></td>
 						   <td>지점명</td>
 						   <td><input type="text"></td>
 						</tr>
@@ -235,10 +236,9 @@
 						</tr>
 						          	
 						<tr>
-						   <td>담당자</td>
+						   <td>E-mail</td>
 						   <td><input type="text"></td>
-						   <td>담당자 Email</td>
-						   <td><input type="text"></td>
+						    
 						</tr>
 						          	
 						<tr>
