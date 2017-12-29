@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" id="propertyPlaceholderConfigurer">
+		<property name="location" value="classpath:/mybatis/db.properties" />	
+	</bean>
+
+	<!-- BasicDataSource: 데이터 베이스 pool 만들어주는 객체 (Connection Pool 객체) -->
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="username" value="${jdbc.user}" />
+		<property name="password" value="${jdbc.pw}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="driverClassName" value="${jdbc.driver}" />
+	</bean>
+
+	<!-- connection 객체와 source 받아오고 연결하기 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath:/mappers/**/*Mapper.xml" />
+		<property name="configLocation" value="classpath:/mybatis/mybatis-config.xml" />
+	</bean>
+	
+	<!-- sql 연결하고 리턴을 받는 객체 -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
+	</bean>
+
+
+</beans>
