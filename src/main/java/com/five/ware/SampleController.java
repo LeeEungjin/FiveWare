@@ -10,7 +10,7 @@ public class SampleController {
 	public String humanplus(){
 		/*return "sample2";*/
 
-	return "human/positionPlus";
+	return "human/salPlus";
 }
 
 	
