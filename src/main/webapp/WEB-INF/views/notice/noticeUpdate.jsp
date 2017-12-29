@@ -76,7 +76,7 @@
 								<input type="button" value="취소" class="btn btn-default"
 									id="deleteBtn"><!-- 버튼을 누르면 썼던 내용이 다 사라지게 -->
 								<input type="button" value="등록" class="btn btn-default"
-									id="writeBtn">
+									id="updateBtn">
 						</div>
 					</div>
 				</div>
