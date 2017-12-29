@@ -6,11 +6,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-	<c:import url="${url}/resources/temp/ref.jsp"></c:import> 
-	<link href="${url}/resources/css/erp/menuRegist.css" rel="stylesheet">
-	
-	<c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
+	<link href="${url}/resources/css/erp/menuRegist.css" rel="stylesheet">
+	<c:import url="${url}/resources/temp/ref.jsp"></c:import> 
 
 <title>Insert title here</title>
 
@@ -25,7 +24,7 @@
    
       <!-- submenu banner -->
       <div id="fw_subbanner">
-         회계
+         구매/영업
       </div>
       <!-- submenu banner end -->
       
@@ -39,9 +38,10 @@
          
          <div class="fw_subselected collapse in" id="sub1">
             <ul>
-               <li> 지점 등록</li>
-               <li> 예금 계좌 등록</li>
-               <li> 부서 등록</li>
+               <li> 거래처 등록</li>
+               <li> 제품 등록</li>
+               <li> 메뉴 등록</li>
+               <li> 창고 등록</li>
             </ul>
          </div>
          
