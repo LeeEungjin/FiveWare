@@ -237,7 +237,7 @@
 							
 							<div class="form-group">
 							  <!-- <span class="input-group-addon">설명</span> -->
-						      <div id="area_text"><label for="comment">메뉴의 설명을 작성해주세요.</label></div> 
+						      <div id="area_text"><label class="jh_label" for="comment">메뉴의 설명을 작성해주세요.</label></div> 
 						      <textarea class="form-control form-control_area" rows="5" id="comment"></textarea>
 						    </div>
 							
@@ -306,7 +306,7 @@
 							
 							<div class="form-group">
 							  <!-- <span class="input-group-addon">설명</span> -->
-						      <div id="area_text"><label for="comment">메뉴의 설명을 작성해주세요.</label></div> 
+						      <div id="area_text"><label class="jh_label" for="comment">메뉴의 설명을 작성해주세요.</label></div> 
 						      <textarea class="form-control form-control_area" rows="5" id="comment">이건 맛있다</textarea>
 						    </div>
 							

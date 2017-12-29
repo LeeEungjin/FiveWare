@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value="erp/foundation/**")
 public class ErpFoundationController {
 
-	@RequestMapping(value="account", method=RequestMethod.GET)
+	@RequestMapping(value="supplier", method=RequestMethod.GET)
 	public void account() {	}
 }
