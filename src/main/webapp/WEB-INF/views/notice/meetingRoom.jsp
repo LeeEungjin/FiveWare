@@ -32,21 +32,39 @@
 	width: 100%;
 }
 
-.choice_meeting	{
-	width: 30%;
-	text-align: center;
+.choice_date	{
+	margin-bottom: 3%;
 }
 
-.choice_date	{
-	width: 30%;
-	text-align: center;
+.choice_meeting	{
+	margin-bottom: 3%;
+	display: none;
 }
 
 .choice_time	{
-	width: 40%;
-	text-align: center;
+	display: none;
+}
+
+.choice_meeting select	{
+	width: 39%;
+	height: 9%;
+}
+
+.choice_time select	{
+	width: 30%;
 }
 </style>
+
+<script type="text/javascript">
+	$(function(){
+		$(".choice_date").on("change", function(){
+			$(".choice_meeting").css("display", "block");
+		});
+		$(".choice_meeting").on("change", function(){
+			$(".choice_time").css("display", "block");
+		});
+	});
+</script>
 </head>
 <body>
 	<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
@@ -59,51 +77,44 @@
 					<span class="modal-title">회의실 예약</span>
 				</div>
 				<div class="modal-body">
-					<table class="modal-table">
-						<tr>
-							<td class="choice_meeting">회의실 선택</td>
-							<td class="choice_date">날짜 선택</td>
-							<td class="choice_time">시간 선택</td>
-						</tr>
-						<tr>
-							<td class="choice_meeting">
-								<select>
-									<option>A 회의실</option>
-									<option>B 회의실</option>
-									<option>C 회의실</option>
-									<option>D 회의실</option>
-								</select>
-							</td>
-							<td>
-								<input type="date" name="date" id="data">
-							</td>
-							<td class="choice_time">
-								<select>
-									<option>09:00</option>
-									<option>10:00</option>
-									<option>11:00</option>
-									<option>12:00</option>
-									<option>13:00</option>
-									<option>14:00</option>
-									<option>15:00</option>
-									<option>16:00</option>
-									<option>17:00</option>
-								</select>
-									~
-								<select>
-									<option>10~00</option>
-									<option>11:00</option>
-									<option>12:00</option>
-									<option>13:00</option>
-									<option>14:00</option>
-									<option>15:00</option>
-									<option>16:00</option>
-									<option>17:00</option>
-									<option>18:00</option>
-								</select>
-							</td>
-						</tr>
-					</table>
+					<div class="choice_date">
+						날짜 선택 : &nbsp;&nbsp;&nbsp;&nbsp;<input type="date" id="date" name="date">
+					</div>
+					<div class="choice_meeting">
+						회의실 선택 : 
+						<select>
+							<option>A 회의실</option>
+							<option>B 회의실</option>
+							<option>C 회의실</option>
+							<option>D 회의실</option>
+						</select>
+					</div>
+					<div class="choice_time">
+						시간 선택 : &nbsp;&nbsp;&nbsp;
+						<select>
+							<option>09:00</option>
+							<option>10:00</option>
+							<option>11:00</option>
+							<option>12:00</option>
+							<option>13:00</option>
+							<option>14:00</option>
+							<option>15:00</option>
+							<option>16:00</option>
+							<option>17:00</option>
+						</select>
+						~
+						<select>
+							<option>10:00</option>
+							<option>11:00</option>
+							<option>12:00</option>
+							<option>13:00</option>
+							<option>14:00</option>
+							<option>15:00</option>
+							<option>16:00</option>
+							<option>17:00</option>
+							<option>18:00</option>
+						</select>
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default">예약</button>
