@@ -1,6 +1,6 @@
 package com.five.ware.erp.menuRegist;
 
-public class menuRegistDTO {
+public class MenuRegistDTO {
 	
 	private String menuCode;
 	private String menuKind;
