@@ -56,7 +56,12 @@
 							<div class="button">
 								<input type="button" value="목록으로" class="btn btn-default"
 									id="enroBtn">
+								
 							</div>
+							<input type="button" value="수정" class="btn btn-default"
+								id="update">
+								<input type="button" value="삭제" class="btn btn-default"
+								id="delete">
 						</div>
 					</div>
 

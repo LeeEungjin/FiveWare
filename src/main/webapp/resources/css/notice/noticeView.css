@@ -74,3 +74,12 @@ div.button input {
 	width: 100%;
 	font-size: 18px;
 }
+
+#update	{
+	float:right;
+	margin-right: 8.5%;
+}
+
+#delete	{
+	float:right;
+}

@@ -22,4 +22,13 @@ public class NoticeController {
 		return "notice/noticeWrite";
 	}
 	
+	@RequestMapping(value="noticeUpdate")
+	public String noticeUpdate(){
+		return "notice/noticeUpdate";
+	}
+	
+	@RequestMapping(value="meetingRoom")
+	public String meetingRoom(){
+		return "notice/meetingRoom";
+	}
 }
