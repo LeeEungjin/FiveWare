@@ -18,11 +18,15 @@ public class SupplierDAOTest extends AbstractTest {
 	@Test
 	public void test() {
 		try {
-			selectList();
+			this.repository();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void repository() {
+		assertNotNull(supplierDAO);
 	}
 	
 	public void selectList() throws Exception {

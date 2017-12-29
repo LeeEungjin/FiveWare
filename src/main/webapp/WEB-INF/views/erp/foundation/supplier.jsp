@@ -245,20 +245,27 @@
 					        <th>거래처명</th>
 					        <th>사업자번호</th>
 					        <th>대표자</th>
-					        <th>전화번호</th>
 					        <th>사용구분</th>
 					      </tr>
 					    </thead>
 					    <tbody>
-					    <tr>
-					      	<td><input type="checkbox"></td>
-					        <td>003</td>
-					        <td>국민은행</td>
-					        <td>110-232-41243421-31</td>
-					        <td>이응진</td>
-					        <td>010-5496-8631</td>
-					        <td>사용</td>
-					      </tr>
+						    <c:forEach items="${list}" var="dto">
+							    <tr>
+							      	<td><input type="checkbox"></td>
+							        <td>${dto.code}</td>
+							        <td>${dto.name}</td>
+							        <td>${dto.business_number}</td>
+							        <td>${dto.representative}</td>
+							        <td>
+							        	<c:if test="${dto.use eq true}">
+							        		사용
+							        	</c:if>
+							        	<c:if test="${dto.use ne true}">
+							        		미사용
+							        	</c:if>
+							        </td>
+							      </tr>
+						    </c:forEach>
 					    </tbody>
 					 </table>
 					 
@@ -289,21 +296,20 @@
 
 
 <!-- Modal Start -->
-<!-- The Modal -->
 <div id="ej_modal" class="modal">
 
   <!-- Modal content -->
   <div class="modal-content">
     <div class="modal-header">
       <span class="close">&times;</span>
-      <h2>Modal Header</h2>
+      <h2>등록</h2>
     </div>
     <div class="modal-body">
       <p>Some text in the Modal Body</p>
       <p>Some other text...</p>
     </div>
     <div class="modal-footer">
-      <h3>Modal Footer</h3>
+      <button id="ej_modal_wirte" class="btn">등록</button>
     </div>
   </div>
 
