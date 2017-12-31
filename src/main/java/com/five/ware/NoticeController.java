@@ -1,15 +1,26 @@
 package com.five.ware;
 
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.five.ware.erp.notice.ListData;
+import com.five.ware.erp.notice.NoticeService;
 
 @Controller
 @RequestMapping(value="/notice/*")
 public class NoticeController {
+	
+	@Inject
+	private NoticeService noticeService;
 
-	@RequestMapping(value="notice")
-	public String notice(){
-		return "notice/notice";
+	//selectList
+	@RequestMapping(value="noticeList")
+	public ModelAndView selectList(ListData listData, ModelAndView mv) throws Exception{
+		mv = noticeService.selectList(listData);
+		return mv;
 	}
 	
 	@RequestMapping(value="noticeView")
