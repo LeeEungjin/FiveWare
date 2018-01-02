@@ -21,6 +21,11 @@
 		 
  $(function(){
 	 
+		 var message = '${message}';
+	     if(message != ""){
+	        alert(message);
+	     }
+	 
 		$(".fw_menu").click(function(){
 			var sub = $(this).attr("title");
 			
@@ -43,7 +48,6 @@
 	 
 	 $(".eb_view").click(function(){
 		 var code=$(this).attr("title");
-		 alert(code);
          $.ajax({
             data : {"code" : code},
             url : "./storeRegistView",
@@ -54,7 +58,7 @@
         	   $(".eb_viewStore").val(data.store);
         	   $(".eb_viewStoreNum").val(data.storeNum);
         	   $(".eb_viewName").val(data.name);
-        	   $(".eb_viewAddr").val(data.addr);
+        	   $(".eb_viewAddr").html(data.addr);
         	   $(".eb_viewTel").val(data.tel);
         	   $(".eb_viewEmail").val(data.email);
         	   $(".eb_viewBank").val(data.bank);
@@ -68,6 +72,31 @@
 	 });
 	 
 	
+	  $("#eb_storeDelete").click(function(){
+		var code= $(".eb_viewCode").val();
+		
+		$.ajax({
+			data : {"code" : code},
+			url : "./storeRegistDelete",
+			type : "get",
+			success : function(){
+				alert("삭제 성공");
+			}
+		});
+	 });
+	 
+/* 	  $("#eb_storeUpdate").click(function(){
+		 var code=$(".eb_viewCode").val();
+		 
+		 $.ajax({
+			data : {"code" : code}, 
+			url : "./storeRegistUpdate",
+			type : "post",
+			success : function(){
+				alert("수정성공");
+			}
+		 });
+	 }); */ 
 
 
 	 
@@ -237,9 +266,8 @@
 						     <th><input type="checkbox" class="input_all"></th>
 						     <th>코드</th>
 						     <th>지점명</th>
-						     <th>주소</th>
-						     <th>전화번호</th>
-						     <th>영업시간</th>	     
+						     <th>대표자</th>
+						     <th>전화번호</th> 
 						    </tr>
 						 </thead>
 						    
@@ -250,9 +278,8 @@
 							        <td><input type="checkbox" class="input_chk"></td>
 							      	<td class="eb_view" title="${dto.code}" data-toggle="modal" data-target="#eb_view_modal">${dto.code}</td>
 							        <td>${dto.store}</td>					
-							        <td>${dto.addr}</td>
-							        <td>${dto.tel}</td>								      
-							        <td>${dto.time}</td>						      			   
+							        <td>${dto.name}</td>
+							        <td>${dto.tel}</td>								      						      			   
 							     </tr>
 							     </c:forEach>
 						   </tbody>
@@ -260,6 +287,7 @@
 					
 					<!-- view Modal -->
 					
+				<form action="./storeRegistUpdate" method="post">	
 					<div class="modal fade" id="eb_view_modal">
 			 
 				<div class="modal-dialog">
@@ -297,7 +325,9 @@
 						          	
 						<tr>
 						   <td>주소</td>
-						   <td><input type="text" class="eb_viewAddr" name="addr"></td>
+						   <td>
+						   	  <textarea name="addr" class="eb_viewAddr" rows="5" ></textarea>
+						   </td>
 						   <td>영업시간</td>
 						   <td><input type="text" class="eb_viewTime" name="time"></td>
 						 
@@ -323,13 +353,14 @@
 						        
 						        <!-- Modal footer -->
 				<div class="modal-footer">
-						<input type="submit" value="수정">
-						<input type="submit" value="삭제">
+						<input id="eb_storeUpdate" type="submit" value="수정">
+						<input id="eb_storeDelete" type="button" value="삭제">
 				 </div>
 						        
 					</div>
 				</div>
 			</div>
+						</form>
 					
 				
 				<div id="eb_page">

@@ -42,4 +42,17 @@ public class StoreRegistService {
 		return storeRegistDTO;
 	}
 	
+	//delete
+	public int delete(String code) throws Exception{
+		int result=storeRegistDAO.delete(code);
+		
+		return result;
+	}
+	
+	//update
+	public int update(StoreRegistDTO storeRegistDTO, String code)throws Exception{
+		int result=storeRegistDAO.update(code);
+		return result;
+		
+	}
 }
