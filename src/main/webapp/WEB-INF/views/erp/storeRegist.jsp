@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 <c:import url="${url}/resources/temp/ref.jsp"></c:import> 
- <link href="${url }/resources/css/header/storeRegistration.css" rel="stylesheet">
+ <link href="${url }/resources/css/erp/storeRegist.css" rel="stylesheet">
  
 
 
@@ -129,22 +129,14 @@
 					<table id="eb_contents_box_table" >
 						
 						<tr>
-						 <td>지점 분류</td>
-						 <td>
-							<select>
-						   	  	<option>선택</option>
-							   	<option>선택</option>
-							   	<option>선택</option>
-						   	</select>
-						  </td>
 						  <td>코드</td>
+						  <td><input type="text"></td>
+						  <td>대표자 명</td>
 						  <td><input type="text"></td>
 						</tr>
 						
 						<tr>
 							<td>지점명</td>
-							<td><input type="text"></td>
-							<td>대표자 명</td>
 							<td><input type="text"></td>
 							<td><button class="btn btn-default">search</button></td>
 						</tr>
@@ -163,29 +155,30 @@
 						     <th><input type="checkbox" class="input_all"></th>
 						     <th>코드</th>
 						     <th>지점명</th>
-						     <th>대표자 명</th>
+						     <th>주소</th>
 						     <th>전화번호</th>
-						    
+						     <th>영업시간</th>	     
 						    </tr>
 						 </thead>
 						    
 						    <tbody>
 						    
-						    	<c:forEach begin="1" end="10">
+						    	<c:forEach items="${list}" var="dto">
 							      <tr>
-							      	<td><input type="checkbox" class="input_chk"></td>
-							        <td>A00001</td>
-							        <td>강남점</td>
-							        <td>신아린</td>
-							        <td>02)123-4567</td>
-							       
-							      </tr>
+							        <td><input type="checkbox" class="input_chk"></td>
+							      	<td>${dto.code}</td>
+							        <td>${dto.store}</td>					
+							        <td>${dto.addr}</td>
+							        <td>${dto.tel}</td>								      
+							        <td>${dto.time}</td>							      			   
+							     </tr>
 							     </c:forEach>
 						   </tbody>
 					 </table>
 					
 				
 				<div id="eb_page">
+				
 					<p>◀ 1 2 3 4 5  ▶</p>
 				</div>
 						  
@@ -194,6 +187,8 @@
 					      <button class="btn btn-default" data-toggle="modal" data-target="#myModal">신규등록</button>
 					      
 			 
+			 
+		<form action="storeRegistWrite" method="post">	 
 			 <div class="modal fade" id="myModal">
 			 
 				<div class="modal-dialog">
@@ -214,38 +209,42 @@
 				 
 					<table id="eb_modal_table">
 						<tr>
-						   <td>지점명 코드 </td>
-						   <td><input type="text">
+						   <td>지점명 코드</td>
+						   <td><input type="text" name="code">
 						   		<button class="btn btn-default">중복확인</button></td>
 						   <td>지점명</td>
-						   <td><input type="text"></td>
+						   <td><input type="text" name="store"></td>
+						   
 						</tr>
-						          	
+						
 						<tr>
-						   <td>사업자 등록 번호</td>
-						   <td><input type="text"></td>
 						   <td>대표자</td>
-						   <td><input type="text"></td>
+						   <td><input type="text" name="name"></td>
+						   <td>사업자 등록 번호</td>
+						   <td><input type="text" name="storeNum"></td>
+						   
 						</tr>
 						          	
 						<tr>
 						   <td>주소</td>
-						   <td><input type="text"></td>
-						   <td>전화번호</td>
-						   <td><input type="text"></td>
+						   <td><input type="text" name="addr"></td>
+						   <td>영업시간</td>
+						   <td><input type="text" name="time"></td>
+						 
 						</tr>
 						          	
 						<tr>
+						   <td>전화번호</td>
+						   <td><input type="text" name="tel"></td> 
 						   <td>E-mail</td>
-						   <td><input type="text"></td>
-						    
+						   <td><input type="text" name="email"></td>
 						</tr>
 						          	
 						<tr>
 						   <td>은행</td>
-						   <td><input type="text"></td>
+						   <td><input type="text" name="bank"></td>
 						   <td>계좌번호</td>
-						   <td><input type="text"></td>
+						   <td><input type="text" name="account"></td>
 						 </tr>
 						          
 					</table>
@@ -254,12 +253,13 @@
 						        
 						        <!-- Modal footer -->
 				<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">등록</button>
+						<input type="submit" value="등록">
 				 </div>
 						        
 					</div>
 				</div>
 			</div>
+		</form>
 		</div>
 	</div>
    </div>
