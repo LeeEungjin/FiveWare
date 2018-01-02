@@ -96,8 +96,14 @@
 		
 		$("#checkDelete").click(function(){
 			alert("click");
-			if($("#menucheck").prop("checked")){
 			
+			for(var i=0; i<$(".menucheck").length; i++){
+				if($(".menucheck").prop("checked")){
+					alert("?");
+					var checkCode=$(".menucheck").attr("title");
+					alert("code : "+checkCode);
+				}
+			 
 			}
 		});
 		
@@ -235,10 +241,10 @@
 						    <tbody>
 						    	<c:forEach items="${mr_list}" var="mr_list">
 							      <tr>
-							      	<td><input type="checkbox" id="menucheck"></td>
+							      	<td><input name="menucheck" type="checkbox" class="menucheck" title="${mr_list.menuCode}"></td>
 							        <td>${mr_list.menuCode}</td>
 							        <td>${mr_list.menuKind }</td>
-							        <td>${mr_list.menuName }</td>
+							        <td  class="menuView" title="${mr_list.menuCode}"  data-toggle="modal" data-target="#jh_mr_update_Modal">${mr_list.menuName }</td>
 							        <td>${mr_list.price }</td>
 							        <td>${mr_list.imgNull }</td>
 							      </tr>

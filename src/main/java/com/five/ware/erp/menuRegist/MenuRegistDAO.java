@@ -27,4 +27,16 @@ public class MenuRegistDAO {
 	public int totalCount(RowNum rowNum )throws Exception{
 		return sqlsession.selectOne(namespace+"totalCount", rowNum);
 	}
+	
+	public MenuRegistDTO selectOne(String menuCode)throws Exception{
+		return sqlsession.selectOne(namespace+"selectOne", menuCode);
+	}
+	
+	public int update(MenuRegistDTO menuRegistDTO)throws Exception{
+		return sqlsession.update(namespace+"update", menuRegistDTO);
+	}
+	
+	public int delete(String menuCode)throws Exception{
+		return sqlsession.delete(namespace+"delete", menuCode);
+	}
 }
