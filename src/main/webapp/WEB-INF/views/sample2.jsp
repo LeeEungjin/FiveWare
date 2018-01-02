@@ -8,22 +8,7 @@
 <c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 <c:import url="${url}/resources/temp/ref.jsp"></c:import> 
  
-<script type="text/javascript">
 
-	$(function(){
-		
-		$(".fw_menu").click(function(){
-			var sub = $(this).attr("title");
-			
-			if($("."+sub).html().trim()=="∧"){
-				$("."+sub).html("∨");
-			}else{
-				$("."+sub).html("∧");
-			}
-			
-		});
-	});
-</script>
 
 <title>Insert title here</title>
 </head>

@@ -3,18 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
   
-<<<<<<< HEAD
-  <configuration>
-  	<typeAliases>
-  		<typeAlias type="com.fiveware.storeRegist.StoreRegistDTO" alias="storeRegistDTO"/>
-  	</typeAliases>
-  </configuration>
-  
-  
-=======
 <configuration>
   	<typeAliases>
   		<typeAlias type="com.five.ware.erp.supplier.SupplierDTO" alias="SupplierDTO" />
 	</typeAliases>
 </configuration>
->>>>>>> master
