@@ -6,18 +6,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class SampleController {
 
-@RequestMapping(value="/")
+	@RequestMapping(value="/")
 	public String humanplus(){
 		/*return "sample2";*/
 
-	return "human/salPlus";
-}
+	return "human/basisInfo/salPlus";
+	}
 
 	
-
-/*	
 	@RequestMapping(value="/notice/notice")
 	public String notice(){
 		return "notice/notice";
-	}*/
+	}
 }

@@ -1,3 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-${message}
+<script type="text/javascript">
+	alert('${message}');
+	location.href='${addr}';
+</script>
