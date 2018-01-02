@@ -17,7 +17,11 @@
   	select * from rankregist where code=#{code}
   </select>
   
-  <update id="positionUpdate" parameterType="PositionDTO">
-  		update rankregist set ranking=#{ranking}, use=#{use} where code=#{code}
+  <update id="positionUpdate" parameterType="PositionDTO" >
+  		update rankregist set ranking=#{ranking}, use=#{use}  where code=#{code, jdbcType=VARCHAR}
   </update>
+  
+  <delete id="positionDelete" parameterType="String">
+  		delete rankregist where code=#{code}
+  </delete>
   </mapper>
