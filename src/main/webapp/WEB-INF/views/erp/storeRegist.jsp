@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 <c:import url="${url}/resources/temp/ref.jsp"></c:import> 
- <link href="${url }/resources/css/header/storeRegistration.css" rel="stylesheet">
+ <link href="${url }/resources/css/erp/storeRegist.css" rel="stylesheet">
  
 
 
@@ -194,6 +194,8 @@
 					      <button class="btn btn-default" data-toggle="modal" data-target="#myModal">신규등록</button>
 					      
 			 
+			 
+		<form action="./storeRegistWrite" method="post">	 
 			 <div class="modal fade" id="myModal">
 			 
 				<div class="modal-dialog">
@@ -215,37 +217,41 @@
 					<table id="eb_modal_table">
 						<tr>
 						   <td>지점명 코드 </td>
-						   <td><input type="text">
+						   <td><input type="text" name="code">
 						   		<button class="btn btn-default">중복확인</button></td>
 						   <td>지점명</td>
-						   <td><input type="text"></td>
+						   <td><input type="text" name="store"></td>
+						   
 						</tr>
-						          	
+						
 						<tr>
-						   <td>사업자 등록 번호</td>
-						   <td><input type="text"></td>
 						   <td>대표자</td>
-						   <td><input type="text"></td>
+						   <td><input type="text" name="name"></td>
+						   <td>사업자 등록 번호</td>
+						   <td><input type="text" name="storeNum"></td>
+						   
 						</tr>
 						          	
 						<tr>
 						   <td>주소</td>
-						   <td><input type="text"></td>
-						   <td>전화번호</td>
-						   <td><input type="text"></td>
+						   <td><input type="text" name="addr"></td>
+						   <td>영업시간</td>
+						   <td><input type="text" name="time"></td>
+						 
 						</tr>
 						          	
 						<tr>
+						   <td>전화번호</td>
+						   <td><input type="text" name="tel"></td> 
 						   <td>E-mail</td>
-						   <td><input type="text"></td>
-						    
+						   <td><input type="text" name="email"></td>
 						</tr>
 						          	
 						<tr>
 						   <td>은행</td>
-						   <td><input type="text"></td>
+						   <td><input type="text" name="bank"></td>
 						   <td>계좌번호</td>
-						   <td><input type="text"></td>
+						   <td><input type="text" name="account"></td>
 						 </tr>
 						          
 					</table>
@@ -260,6 +266,7 @@
 					</div>
 				</div>
 			</div>
+		</form>
 		</div>
 	</div>
    </div>
