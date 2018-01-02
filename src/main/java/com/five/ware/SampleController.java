@@ -8,16 +8,11 @@ public class SampleController {
 
 	@RequestMapping(value="/")
 	public String humanplus(){
-<<<<<<< HEAD
-		return "sample2";
-	}
-=======
 		/*return "sample2";*/
 
 	return "human/basisInfo/salPlus";
 }
 
->>>>>>> arin
 	
 	@RequestMapping(value="/notice/notice")
 	public String notice(){
