@@ -1,4 +1,4 @@
-package com.five.ware.eb.storeRegist;
+package com.five.ware.erp.storeRegist;
 
 public class StoreRegistDTO {
 	

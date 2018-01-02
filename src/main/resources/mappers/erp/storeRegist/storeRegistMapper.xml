@@ -3,13 +3,15 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="storeRegist">
+  <mapper namespace="storeRegistMapper">
   
   <insert id="insert" parameterType="storeRegistDTO">
   	insert into storeRegist values(#{code},#{store},#{storeNum},#{name},#{addr},#{tel},#{email},#{bank},#{account},#{time})
   </insert>
   
-  
+  <select id="selectList" resultType="storeRegistDTO">
+   select * from storeRegist
+  </select>
   
   </mapper>
  

@@ -4,17 +4,15 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
   
 
+
   <configuration>
   	<typeAliases>
-  		<typeAlias type="com.fiveware.storeRegist.StoreRegistDTO" alias="storeRegistDTO"/>
+  		<typeAlias type="com.five.ware.erp.storeRegist.StoreRegistDTO" alias="storeRegistDTO"/>
+  		<typeAlias type="com.five.ware.erp.supplier.SupplierDTO" alias="SupplierDTO"/>
   	</typeAliases>
   </configuration>
   
   
 
-<configuration>
-  	<typeAliases>
-  		<typeAlias type="com.five.ware.erp.supplier.SupplierDTO" alias="SupplierDTO" />
-	</typeAliases>
-</configuration>
+
 

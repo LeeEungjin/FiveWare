@@ -1,8 +1,9 @@
-package com.five.ware.eb.storeRegist;
+package com.five.ware.erp.storeRegist;
 
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 @Service
 public class StoreRegistService {
@@ -16,4 +17,15 @@ public class StoreRegistService {
 		
 		return result;
 	}
+	
+	public ModelAndView selectList() throws Exception{
+		
+		ModelAndView mv=new ModelAndView();
+		mv.setViewName("/erp/storeRegist");
+		mv.addObject("list",storeRegistDAO.selectList());
+		
+		return mv;
+	}
+
+	
 }
