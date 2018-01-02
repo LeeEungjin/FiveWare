@@ -24,8 +24,8 @@
 	<context:component-scan base-package="com.five.ware" />
 	<context:component-scan base-package="com.five.human" />
 	<context:component-scan base-package="com.five.ware.eung.controller"/>
-	<context:component-scan base-package="com.fiveware.jh.controller"/>
-		
+	<context:component-scan base-package="com.five.ware.jh.controller"/>
+	<context:component-scan base-package="com.five.ware.ar.controller"></context:component-scan>
 	
 	
 </beans:beans>

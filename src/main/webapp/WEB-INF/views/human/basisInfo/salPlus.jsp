@@ -36,8 +36,8 @@
 			
 			<div class="fw_subselected collapse in" id="sub1">
 				<ul>
-					<li> 직책 등록 </li>
-					<li> 급여 등록 </li>
+					<li> <a href="positionPlus">직책 등록 </a></li>
+					<li> <a href="salPlus">급여 등록</a> </li>
 				</ul>
 			</div>
 			
@@ -126,7 +126,6 @@
 					<div class="ar_TaxTitle ar_titleDiv1"> 과세여부 </div>
 					<div class="ar_BierTitle ar_titleDiv1"> 상여대상여부 </div>					
 					<div class="ar_OrderTitle ar_titleDiv1"> 항목순서 </div>
-					<div class="ar_UseTitle ar_titleDiv1"> 사용여부 </div>
 					<div class="ar_OtherTitle ar_titleDiv1"> 비고 </div>
 				</div>
 				
@@ -137,7 +136,6 @@
 					<div class="ar_TaxTitle"> 과세여부 </div>
 					<div class="ar_BierTitle"> 상여대상여부 </div>					
 					<div class="ar_OrderTitle"> 항목순서 </div>
-					<div class="ar_UseTitle"> 사용여부 </div>
 					<div class="ar_OtherTitle"> 비고 </div>
 					
 				</div>
@@ -163,22 +161,34 @@
 				        
 				        <!-- modal contents -->
 				        <div class="modal-body">
-				        	<div class="ar_positionInsert" >
-				        		<span class="ar_positiontext">직책코드</span>
-				        		<input type="text" name="pcode" class="arin_pcodeInput1">
-				        		<input type="button" value="중복 여부" id="pcode_btn">
+				        
+				        	<div class="ar_salInsert" >
+				        		<span class="ar_positiontext">항목코드</span>
+				        		<input type="text" name="code" class="arin_pcodeInput1">
+				        		<input type="button" value="중복여부" id="pcode_btn">
 				        	</div>
 				        	
-				        	<div class="ar_positionInsert" >
-				        		<span class="ar_positiontext1">직책명</span>
-				        		<input type="text" name="pname" class="arin_pcodeInput">
+				        	<div class="ar_salInsert" >
+				        		<span class="ar_positiontext1">항목명</span>
+				        		<input type="text" name="salname" class="arin_pcodeInput">
 				        	</div>
 				        	
-				        	<div class="ar_positionInsert" >
-				        		<span class="ar_positiontext">직책순위</span>
-				        		<input type="text" name="pname" class="arin_pcodeInput">
+				        	<div class="ar_salInsert1" >
+				        		<span class="ar_positiontext">과세여부</span>
+				        		<select name="tax"  class="ar_sselect">
+				        			<option value="yes" selected="selected">예</option>
+				        			<option value="no">아니오</option>	
+				        		</select>
 				        	</div>
-						
+				        	
+				        	<div class="ar_salInsert1" >
+				        		<span class="ar_positiontext">상여대상</span>
+				        		<select name="bonus" class="ar_sselect">
+				        			<option value="yes">예</option>
+				        			<option value="no" selected="selected">아니오</option>	
+				        		</select>
+				        	</div>
+				        						
 				        </div>
 				        <!-- modal contents 끝-->
 				        

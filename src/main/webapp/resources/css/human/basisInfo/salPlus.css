@@ -117,14 +117,8 @@
 	display: inline-block;
 }
 
-.ar_UseTitle{
-	width: 7%;
-	height: 50%;
-	display: inline-block;
-}
-
 .ar_OtherTitle{
-	width: 10%;
+	width: 15%;
 	height: 50%;
 	display: inline-block;
 }
@@ -162,6 +156,7 @@
 
 .arin_pcodeInput1{
 	width: 70%;
+	
 }
 
 .arin_pcodeInput{
@@ -172,9 +167,16 @@
 	height: 25%;
 }
 
-.ar_positionInsert{
+.ar_salInsert{
 	margin-top: 3%;
 	margin-left: 3%;
+}
+
+.ar_salInsert1{
+	margin-top: 3%;
+	margin-left: 3%;
+	display: inline-block;
+	width: 45%
 }
 
 .modal-footer{
@@ -186,5 +188,10 @@
 	height: 5%;
 	border: 1px solid #c0bbc6;
 	
+}
+
+.ar_sselect{
+	display: inline-block;
+	margin-left: 1.1%;
 }
 

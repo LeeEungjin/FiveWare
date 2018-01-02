@@ -6,5 +6,6 @@
 <configuration>
   	<typeAliases>
   		<typeAlias type="com.five.ware.erp.supplier.SupplierDTO" alias="SupplierDTO" />
+		<typeAlias type="com.five.ware.erp.human.basis.PositionDTO" alias="PositionDTO"/>
 	</typeAliases>
 </configuration>
