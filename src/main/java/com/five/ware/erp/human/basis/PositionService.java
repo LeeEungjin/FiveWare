@@ -35,5 +35,12 @@ public class PositionService {
 		
 		return result;
 	}
+	
+	public int positionDelete(String code) throws Exception{
+		System.out.println("들어오니 여기는 서비스");
+		int result = positionDAO.positionDelete(code);
+		
+		return result;
+	}
 
 }

@@ -41,6 +41,46 @@
 			});
 		});
 		
+	/* 	var code ="";
+		var count=0;
+		$(".ar_pselect").click(function(){
+			
+			code=$(this).attr("id");
+			
+			alert(code);
+			
+		
+
+		}); */
+		
+		$("#ar_deleteBtn").click(function(){
+			var count = 0;
+			var code="";
+			var cod=[];
+			
+			$(".ar_pselect").each(function(d){
+				if(this.checked){
+					code=$(this).attr("id");
+					count++;
+					cod.push(code);
+				}
+			});
+					alert(cod.toString());
+				$.ajax({
+					type: "POST",
+					url: "./positionDelete",
+					data:{
+						"code" : cod.toString()
+					}, success:function(data){
+						 alert(count+"개의 직책이 삭제되었습니다.");
+					
+						 location.reload();
+				
+				}
+			
+			});
+		});
+		
 	});
 </script>
 
@@ -163,7 +203,7 @@
 				
 				<c:forEach items="${positionList }" var="list">
 					<div class="ar_listDiv">
-						<div class="ar_titleCheck ar_listDiv1" ><input type="checkbox" >	</div>
+						<div class="ar_titleCheck ar_listDiv1" ><input type="checkbox"  class="ar_pselect" id="${list.code}">	</div>
 						<div class="ar_titleCode ar_listDiv1 ar_code"   id="pcode" data-toggle="modal" data-target="#ar_positionUpdate" > ${list.code }</div>
 						<div class="ar_titleName ar_listDiv1" id="pname"> ${list.rank } </div>
 						<div class="ar_titleRank ar_listDiv1" id="prank"> ${list.ranking } </div>
