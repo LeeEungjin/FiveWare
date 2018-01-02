@@ -3,36 +3,90 @@
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
+<<<<<<< HEAD
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
- 
+=======
+>>>>>>> eunbi2
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<<<<<<< HEAD
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link href="${url }/resources/css/header/header.css" rel="stylesheet">
+	<link href="${url }/resources/css/header/sample.css" rel="stylesheet">
+
+=======
+
+
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link href="${url }/resources/css/header/header.css" rel="stylesheet">
+	<link href="${url }/resources/css/header/sample.css" rel="stylesheet">
+
+
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+  
+
+
  <link href="${url }/resources/css/header/header.css" rel="stylesheet">
   <link href="${url }/resources/css/header/sample.css" rel="stylesheet">
 
+>>>>>>> eunbi2
+
 <script type="text/javascript">
 	$(function() {
+		$("#ej_sidebar").css("height", window.innerHeight);
+		$("#fw_container").css("height", window.innerHeight);
+		$("#fw_mainwrap").css("width", "70%");
+		$("#fw_mainwrap").css("margin-left", "1%");
+		$("#fw_subcontainer").css("height", "100%");
+		
 		var menu = true;
 		$("#ej_menu").click(function(){
+			
 			if(menu) {
 				menu = false;
-				$("#ej_sidebar").css("width", "3.35%");
-				$("#fw_container").css("width", "96.95%");
-				$("#fw_container").css("margin-left", "3.35%");				
-				$("#fw_subcontainer").css("#fw_subcontainer", "15%");
+				$("#ej_sidebar").css("width", "59px");
+				$("#fw_container").css("width", (window.innerWidth - 60)+'px');
+				$("#fw_mainwrap").css("width", "84%");
+				$("#fw_mainwrap").css("margin-left", "1%");
+				$("#fw_container").css("margin-left", "60px");
+				$("#fw_subcontainer").css("width", "15%");
+				$(".ej_default_img").css("margin-left", "0px");
 				$("#ej_icon_contents").hide();
 			} else {
 				menu = true;
-				$("#ej_sidebar").css("width", "10%");
-				$("#fw_container").css("width", "90%");
-				$("#fw_container").css("margin-left", "10%");	
-				$("#fw_subcontainer").css("#fw_subcontainer", "17%");
+				$("#ej_sidebar").css("width", "195px");
+				$("#fw_container").css("width", (window.innerWidth - 195)+'px');
+				$("#fw_mainwrap").css("width", "82%");
+				$("#fw_container").css("margin-left", "195px");
+				$("#fw_subcontainer").css("width", "17%");
+				$(".ej_default_img").css("margin-left", "10px");
 				$("#ej_icon_contents").show();
 			}
 		});
 		
-		$("#ej_sidebar").css("height", window.innerHeight);
-		$("#fw_container").css("height", window.innerHeight);
-		$("#fw_subcontainer").css("height", "100%");
 	});
 	
+</script>
+
+<!-- sample -->
+<script type="text/javascript">
+
+	$(function(){
+		
+		$(".fw_menu").click(function(){
+			var sub = $(this).attr("title");
+			
+			if($("."+sub).html().trim()=="∧"){
+				$("."+sub).html("∨");
+			}else{
+				$("."+sub).html("∧");
+			}
+			
+		});
+	});
 </script>

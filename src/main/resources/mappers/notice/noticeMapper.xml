@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="noticeMapper">
+  
+  	<select id="totalCount" resultType="int">
+  		select nvl(count(num), 0) from notice
+  		<if test="kind == 'title'">
+  			where title like '%'||#{search}||'%'
+  		</if>
+  		<if test="kind == 'writer'">
+  			where title like '%'||#{search}||'%'
+  		</if>
+  		<if test="kind == 'contents'">
+  			where title like '%'||#{search}||'%'
+  		</if>
+  	</select>
+  	
+  	<select id="selectList" resultType="com.five.ware.erp.notice.NoticeDTO" parameterType="com.five.ware.erp.notice.RowNum">
+  		select * from
+  		(select rownum R, N.* from
+  		(select * from notice
+  		order by num desc) N)
+  		where R between #{startRow} and #{lastRow}
+  	</select>
+  </mapper>

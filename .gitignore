@@ -1,5 +1,4 @@
-
-# Created by https://www.gitignore.io/api/java,gradle,eclipse
+# Created by https://www.gitignore.io/api/java,windows,eclipse
 
 ### Eclipse ###
 
@@ -84,29 +83,26 @@ local.properties
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-### Gradle ###
-.gradle
-**/build/
+### Windows ###
+# Windows thumbnail cache files
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
 
-# Ignore Gradle GUI config
-gradle-app.setting
+# Folder config file
+Desktop.ini
 
-# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-!gradle-wrapper.jar
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
 
-# Cache of project
-.gradletasknamecache
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
 
-# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
-# gradle/wrapper/gradle-wrapper.properties
+# Windows shortcuts
+*.lnk
 
-# End of https://www.gitignore.io/api/java,gradle,eclipse
-<<<<<<< HEAD
-
-### Git ###
-*.orig
-
-# End of https://www.gitignore.io/api/git
-=======
+# End of https://www.gitignore.io/api/java,windows,eclipse
 /target/
->>>>>>> arin

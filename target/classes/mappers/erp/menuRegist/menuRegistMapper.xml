@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="menuRegistMapper">
+  	<insert id="menuReigstInsert" parameterType="com.five.ware.erp.menuRegist.MenuRegistDTO">
+  		insert into menuregist values(#{menuCode}, #{menuKind}, #{menuName}, #{imgNull}, #{recipe}, #{menuOption}, #{price})
+  	</insert>
+  	
+  	<select id="selectList" parameterType="com.five.ware.util.RowNum" resultType="com.five.ware.erp.menuRegist.MenuRegistDTO">
+  		select * from 
+  		(select rownum R, N.* from
+  		(select * from menuregist 
+  		<if test="kind == 'menuname'">
+  			where menuname like '%'||#{search}||'%'
+  		</if>
+  		<if test="kind == 'recipe'">
+  			where recipe like '%'||#{search}||'%'
+  		</if>
+  		<if test="kind == 'menuoption'">
+  			where menuoption like '%'||#{search}||'%'
+  		</if>
+  		 order by menucode desc) N) 
+  		where R between #{startRow} and #{lastRow}
+  	</select>
+  	
+  	<select id="totalCount" resultType="int">
+  		select nvl(count(menucode),0) from menuregist
+  		<if test="kind == 'menuname'">
+  			where menuname like '%'||#{search}||'%'
+  		</if>
+  		<if test="kind == 'recipe'">
+  		where recipe like '%'||#{search}||'%'
+  		</if>
+  		<if test="kind == 'menuoption'">
+  		where menuoption like '%'||#{search}||'%' 
+  		</if>
+  	</select>
+  	
+  	<select id="selectOne" resultType="com.five.ware.erp.menuRegist.MenuRegistDTO" parameterType="String">
+  		select * from menuregist where menucode=#{code}
+  	</select>
+  	
+  	<update id="update" parameterType="com.five.ware.erp.menuRegist.MenuRegistDTO">
+  		update menuregist set 
+  		menukind=#{menuKind}, 
+ 		menuname=#{menuName},
+ 		menuoption=#{menuOption},
+ 		recipe=#{recipe},
+ 		price=#{price}
+ 		where menucode=#{menuCode}
+  	</update>
+  	
+  	<delete id="delete" parameterType="String">
+  		delete menuregist where menucode=#{menuCode}
+  	</delete>
+  	
+  </mapper>
