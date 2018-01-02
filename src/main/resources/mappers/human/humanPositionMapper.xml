@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
@@ -10,7 +11,10 @@
   </insert>
   
   <select id="positionList"  resultType="PositionDTO">
-  		select * from rankregist order by num desc
+  		select * from rankregist order by num desc 
+  		<if test="search != '' " >
+  			where rank like '%'||#{search}||'%'
+  		</if>
   </select>
   
   <select id="positionOne" parameterType="String" resultType="PositionDTO">

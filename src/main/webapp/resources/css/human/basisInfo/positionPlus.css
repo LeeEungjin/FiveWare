@@ -51,6 +51,7 @@
 	height: 50%;
 	background-color: #f0f779;
 	margin-bottom: 2%;
+	    overflow: scroll;
 }
 
 .ar_titleDiv{
