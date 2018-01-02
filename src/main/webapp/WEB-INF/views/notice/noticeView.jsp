@@ -33,7 +33,7 @@
 					class="notice_jk_subTitle">각 부서별 소식을 알려드립니다.</span>
 
 			</div>
-			<form action="">
+			<form action="./noticeView" method="post">
 				<div id="login_after_middle">
 					<div id="menu_wrap">
 						<!-- 리스트 보여지는 곳 -->

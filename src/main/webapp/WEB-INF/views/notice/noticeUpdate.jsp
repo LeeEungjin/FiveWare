@@ -18,6 +18,29 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link href="${url}/resources/css/notice/noticeWrite.css"
 	rel="stylesheet">
+<script type="text/javascript">
+	$(function(){
+		var index = 0;
+		var count = 0;
+		$("#add").click(function(){
+			if(index < 5)	{
+				var s = '<div id="d'+count+'">';
+				s = s+'<input type="file" name="files"><span class="del" title="d'+count+'">X</span></div>';
+				$("#files").append(s);
+				count++;
+				index++;
+			}else	{
+				alert("더 이상 생성할 수 없습니다.");
+			}
+		});
+		
+		$("#files").on("click", ".del", function(){
+			var id=$(this).attr("title");
+			$("#"+id).remove();
+			index--;
+		});
+	});
+</script>
 </head>
 <body>
 	<c:import url="${url}/resources/temp/headerExample.jsp" />
@@ -33,7 +56,7 @@
 					class="notice_jk_subTitle">각 부서별 소식을 알려드립니다.</span>
 
 			</div>
-			<form action="">
+			<form action="./noticeUpdate" id="frm" name="frm" method="post">
 				<div id="login_after_middle">
 					<div id="menu_wrap">
 						<div class="notice_jk_tableBox">
@@ -68,14 +91,17 @@
 								</tr>
 								<tr>
 									<td>참조파일</td>
-									<td colspan="3"><input type="file"></td><!-- 추가파일 올릴 수 있게
+									<td colspan="3">
+										<input type="button" value="File Add" id="add">
+										<div id="files"></div>
+									</td><!-- 추가파일 올릴 수 있게
 									배웠던거 이용해서 -->
 								</tr>
 							</table>
 							
 								<input type="button" value="취소" class="btn btn-default"
 									id="deleteBtn"><!-- 버튼을 누르면 썼던 내용이 다 사라지게 -->
-								<input type="button" value="등록" class="btn btn-default"
+								<input type="button" value="수정" class="btn btn-default"
 									id="updateBtn">
 						</div>
 					</div>
