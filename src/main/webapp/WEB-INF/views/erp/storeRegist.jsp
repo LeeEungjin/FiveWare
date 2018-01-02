@@ -21,19 +21,19 @@
  $(function(){
 	 
 	 
-		 var code=$(".eb_view").val();
+		  var code=$(".eb_view").val();
 		 
-			$.ajax({
+			 $.ajax({
 				type: "GET",
 				url: "./storeRegistView",
 				data:{
 					code : code
 				},
 				success:function(data){
-					$("#eb_view_modal").html(data);
-				}
-			});
-
+				$(".eb_view").html();
+				
+				}); 
+			 }); 
 	 
 
 		$(".fw_menu").click(function(){
@@ -283,7 +283,7 @@
 						          	
 						<tr>
 						   <td>주소</td>
-						   <td></td>
+						   <td>${view.addr}</td>
 						   <td>영업시간</td>
 						   <td><input type="text" name="time"></td>
 						 
@@ -309,7 +309,8 @@
 						        
 						        <!-- Modal footer -->
 				<div class="modal-footer">
-						<input type="submit" value="등록">
+						<input type="submit" value="수정">
+						<input type="submit" value="삭제">
 				 </div>
 						        
 					</div>

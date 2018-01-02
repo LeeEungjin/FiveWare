@@ -20,7 +20,7 @@
   select nvl(count(code),0) from storeRegist 
   </select>
   
-  <select id="selectOne" parameterType="String" resultType="storeRegistDTO">
+  <select id="selectOne"  resultType="storeRegistDTO">
    select * from storeregist where code=#{code}
   </select>
   </mapper>
