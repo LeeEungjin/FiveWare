@@ -66,6 +66,8 @@ public class StoreRegistController {
 		
 		StoreRegistDTO storeRegistDTO;
 		storeRegistDTO=storeRegistService.selectOne(code);
+		System.out.println(storeRegistDTO.getCode());
+		System.out.println(storeRegistDTO.getStore());
 		model.addAttribute("view", storeRegistDTO);
 		
 		return "redirect:./erp/storeRegist";
