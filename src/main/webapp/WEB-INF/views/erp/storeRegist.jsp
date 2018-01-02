@@ -18,9 +18,6 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 
- $(function(){
-	 
-	 
 		  var code=$(".eb_view").val();
 		 
 			 $.ajax({
@@ -30,10 +27,13 @@
 					code : code
 				},
 				success:function(data){
-				$(".eb_view").html();
-				
-				}); 
-			 }); 
+					alert("success");
+				}
+			}); 
+ $(function(){
+	 
+	 
+
 	 
 
 		$(".fw_menu").click(function(){

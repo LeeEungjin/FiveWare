@@ -8,7 +8,8 @@
 #fw_container{
 	width: 100%;
 	height: 100%;
-	background-color: lightblue;	
+	background-color: lightblue;
+	transition: width 0.3s;	
 }
 
 #fw_subcontainer{
@@ -22,6 +23,50 @@
 		background-color: red;
 		height: 8.5%;
 		width: 100%;
+		font-size : 30px;
+		font-weight: bolder;
+		text-align: center;
+		line-height: 240.5%;
+}
+
+.fw_menu{
+	width: 100%;
+	height: 5%;
+	float:left;
+	background-color: yellow;
+	  font-weight: bold;
+    font-size: 16px;
+    line-height: 324%;
+    padding-left: 6%;
+    padding-top:1%;
+}
+
+
+.fw_selected{
+	color: red;
+   
+}
+
+.fw_arrow{
+	width:15%;
+	float:right;
+	height: 100%;
+	background-color: purple;
+	size:20px; 
+}
+
+.fw_subselected{
+	width: 70%;
+	background-color: #d1eaf1;
+	margin: 0 auto;
+	padding-top:1%;
+}
+
+.fw_subsub{
+		width: 70%;
+	background-color: #d1eaf1;
+	margin: 0 auto;
+	padding-top:1%;
 }
 
 #fw_main{
@@ -31,9 +76,9 @@
 }
 
 #fw_mainwrap{
-	background-color: blue;
-	width: 72%;
-	height : 100%;
-	/* margin-left: 28%; */
-	float: left;
+	 /* background-color: blue; */
+	 width: 72%;
+	 height : 100%;
+	 /* margin-left: 28%; */
+	 float: left;
 }

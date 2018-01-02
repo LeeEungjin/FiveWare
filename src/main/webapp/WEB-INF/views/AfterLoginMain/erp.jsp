@@ -118,7 +118,7 @@
 	                        </span>
 	                     </a> 
 	                     
-	                     <a href="#">
+	                     <a href="./erp/storeRegist">
 	                        <span class="erp_jk_smalldiv">
 	                           <span class="erp_jk_writing">기초정보</span>
 	                        </span>
