@@ -64,23 +64,28 @@
 										<td>조회</td>
 									</tr>
 								</thead>
-								<tr>
-									<td>1</td>
-									<td>관리부</td>
-									<td><a href="#">회식일정입니다.</a></td>
-									<td>이중기</td>
-									<td>2017/12/28</td>
-									<td>0</td>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td>관리부</td>
-									<td><a href="#">회식일정입니다.</a></td>
-									<td>이중기</td>
-									<td>2017/12/28</td>
-									<td>0</td>
-								</tr>
+								<c:forEach items="${list}" var="dto">
+									<tr>
+										<td>${dto.num}</td>
+										<td>${dto.part}</td>
+										<td><a href="./noticeView?num=${dto.num}">${dto.title}</a></td>
+										<td>${dto.writer}</td>
+										<td>${dto.reg_date}</td>
+										<td>${dto.hit}</td>
+									</tr>
+								</c:forEach>
 							</table>
+							<div class="pagination">
+								<c:if test="${pager.curBlock gt 1}">
+									<span class="list" title="${pager.startNum-1}">[이전]</span>
+								</c:if>
+								<c:forEach begin="${pager.startNun}" end="${pager.lastNum}" var="i">
+									<span class="list" title="${i}">${i}</span>
+								</c:forEach>
+								<c:if test="${pager.curBlock lt pager.totalBlock}">
+									<span class="list" title="${pager.lastNum+1}">[다음]</span>
+								</c:if>
+							</div>
 							<input type="button" value="신규 등록" class="btn btn-default"
 								id="enroBtn">
 						</div>
