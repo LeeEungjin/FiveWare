@@ -41,8 +41,6 @@
 			document.mr_search_frm.submit();
 		});
 		
-<<<<<<< HEAD
-=======
 		$("#allcheck").click(function() {
 			if($("#allcheck").prop("checked")){
 				$(".menucheck").prop("checked", true);
