@@ -31,11 +31,10 @@ public class NoticeTestDAO extends AbstractTest {
 		RowNum rowNum = new RowNum();
 		rowNum.setStartRow(1);
 		rowNum.setLastRow(10);
-		rowNum.setKind("title");
-		rowNum.setSearch("suzi1");
 		List<NoticeDTO> ar = noticeDAO.selectList(rowNum);
 		for(NoticeDTO noticeDTO : ar)	{
 			System.out.println(noticeDTO.getNum());
+			System.out.println(noticeDTO.getPart());
 			System.out.println(noticeDTO.getTitle());
 		}
 		assertTrue(ar.size()>0);

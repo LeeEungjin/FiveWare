@@ -25,5 +25,34 @@ public class NoticeDAO {
 	public List<NoticeDTO> selectList(RowNum rowNum) throws Exception	{
 		return sqlSession.selectList(namespace+"selectList", rowNum);
 	}
+	
+	public NoticeDTO selectOne(int num) throws Exception	{
+		return sqlSession.selectOne(namespace+"selectOne", num);
+	}
+	
+	public int hitUpdate(int num) throws Exception	{
+		return sqlSession.update(namespace+"hitUpdate", num);
+	}
+	
+	public int insert(NoticeDTO noticeDTO) throws Exception	{
+		int result = sqlSession.insert(namespace+"insert", noticeDTO);
+		return result;
+	}
+	
+	public int getNum() throws Exception	{
+		return sqlSession.selectOne(namespace+"getNum");
+	}
+	
+	public int update(NoticeDTO noticeDTO) throws Exception	{
+		return sqlSession.update(namespace+"update", noticeDTO);
+	}
+	
+	public int delete(int num) throws Exception	{
+		return sqlSession.delete(namespace+"delete", num);
+	}
+	
+	public List<NoticeDTO> part(String part) throws Exception	{
+		return sqlSession.selectList(namespace+"selectPart", part);
+	}
 
 }

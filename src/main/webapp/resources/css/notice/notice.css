@@ -89,8 +89,18 @@
 
 .notice_jk_listBox a	{
 	text-decoration: none;
+	
 }
 
 #enroBtn	{
+	float: right;
+}
+
+.pagination	{
+	margin: 0 auto;
+	display: table;
+}
+
+#writeBtn	{
 	float: right;
 }

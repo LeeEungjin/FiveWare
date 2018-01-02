@@ -11,18 +11,64 @@
   			where title like '%'||#{search}||'%'
   		</if>
   		<if test="kind == 'writer'">
-  			where title like '%'||#{search}||'%'
+  			where writer like '%'||#{search}||'%'
   		</if>
-  		<if test="kind == 'contents'">
-  			where title like '%'||#{search}||'%'
+  		<if test="kind == 'part'">
+  			where part like '%'||#{search}||'%'
   		</if>
+  	</select>
+  	
+  	
+  	
+  	<select id="selectFile" parameterType="int" resultType="com.five.ware.erp.notice.FileDTO">
+  		select* from upload where num=#{num}
   	</select>
   	
   	<select id="selectList" resultType="com.five.ware.erp.notice.NoticeDTO" parameterType="com.five.ware.erp.notice.RowNum">
   		select * from
   		(select rownum R, N.* from
   		(select * from notice
+  		<if test="kind == 'title'">
+  			where title like '%'||#{search}||'%'
+  		</if>
+  		<if test="kind == 'writer'">
+  			where writer like '%'||#{search}||'%'
+  		</if>
+  		<if test="kind == 'part'">
+  			where part like '%'||#{search}||'%'
+  		</if>
   		order by num desc) N)
   		where R between #{startRow} and #{lastRow}
   	</select>
+  	
+  	<select id="selectOne" parameterType="java.lang.Integer" resultType="com.five.ware.erp.notice.NoticeDTO">
+  		select * from notice where num=#{num}
+  	</select>
+  	
+  	<select id="selectPart" parameterType="java.util.List" resultType="com.five.ware.erp.notice.NoticeDTO">
+  		select * from notice where part=#{part}
+  	</select>
+  	
+  	<update id="update" parameterType="com.five.ware.erp.notice.NoticeDTO">
+  		update notice set title=#{title}, contents=#{contents} where num=#{num}
+  	</update>
+  	
+  	<update id="hitUpdate" parameterType="int">
+  		update notice set hit=hit+1 where num=#{num}
+  	</update>
+  	
+  	<insert id="insert" parameterType="com.five.ware.erp.notice.NoticeDTO">
+  		<selectKey keyProperty="num" resultType="int" order="BEFORE">
+  			select notice_seq.nextval from dual
+  		</selectKey>
+  		insert into notice values(#{num}, #{part}, #{writer}, #{title}, #{contents}, sysdate, 0)
+  	</insert>
+  	
+  	<select id="getNum" parameterType="int" resultType="int">
+  		select notice_seq.nextval from dual
+  	</select>
+  	
+  	<delete id="delete" parameterType="int">
+  		delete notice where num=#{num}
+  	</delete>
   </mapper>

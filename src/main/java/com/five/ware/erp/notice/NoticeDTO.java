@@ -1,6 +1,10 @@
 package com.five.ware.erp.notice;
 
-public class NoticeDTO {
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
+public class NoticeDTO extends FileDTO{
 
 	private int num;
 	private String part;
@@ -9,7 +13,21 @@ public class NoticeDTO {
 	private String contents;
 	private String reg_date;
 	private int hit;
+	private MultipartFile [] files;
+	private List<FileDTO> fileNames;
 	
+	public MultipartFile[] getFiles() {
+		return files;
+	}
+	public void setFiles(MultipartFile[] files) {
+		this.files = files;
+	}
+	public List<FileDTO> getFileNames() {
+		return fileNames;
+	}
+	public void setFileNames(List<FileDTO> fileNames) {
+		this.fileNames = fileNames;
+	}
 	public int getNum() {
 		return num;
 	}

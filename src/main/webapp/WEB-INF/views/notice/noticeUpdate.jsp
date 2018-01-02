@@ -39,6 +39,10 @@
 			$("#"+id).remove();
 			index--;
 		});
+		
+		$("#updateBtn").click(function(){
+			$("#frm").submit();
+		});
 	});
 </script>
 </head>
@@ -73,18 +77,19 @@
 											<option>영업/구매부</option>
 									</select></td>
 									<td>작성자</td>
-									<td><input type="text" name="writer" id="writer"></td>
+									<td><input type="text" name="writer" id="writer" value="${view.writer }"></td>
 								</tr>
 								<tr>
 									<td>제목</td>
-									<td><input type="text" name="title" id="title"></td>
+									<td><input type="text" name="title" id="title" value="${view.title }"></td>
 									<td>등록일</td>
-									<td><input type="text" name="title" id="title"></td>
+									<td><input type="text" name="title" id="title" value="${view.reg_date }"></td>
 								</tr>
 								<tr>
 									<td colspan="4">에디터가 들어갈 자리
 										<div class="notice_jk_textarea">
 											글 내용이 나옵니다.
+											${view.contents }
 											<!-- 글 내용, contents -->
 										</div>
 									</td>
