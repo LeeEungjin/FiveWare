@@ -11,7 +11,7 @@ public class SampleController {
 		/*return "sample2";*/
 
 	return "human/basisInfo/salPlus";
-}
+	}
 
 	
 	@RequestMapping(value="/notice/notice")
