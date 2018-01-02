@@ -38,4 +38,21 @@
   		</if>
   	</select>
   	
+  	<select id="selectOne" resultType="com.five.ware.erp.menuRegist.MenuRegistDTO" parameterType="String">
+  		select * from menuregist where menucode=#{menuCode}
+  	</select>
+  	
+  	<update id="update" parameterType="com.five.ware.erp.menuRegist.MenuRegistDTO">
+  		update menuregist set
+  		menukind=#{menuKind},
+  		menuname=#{menuName},
+  		menuoption=#{menuOption},
+  		price=#{price},
+  		recipe=#{recipe}
+  		where menucode=#{menuCode}
+  	</update>
+  	
+  	<delete id="delete" parameterType="String">
+  		delete menuregist where menucode=#{menuCode}
+  	</delete>
   </mapper>
