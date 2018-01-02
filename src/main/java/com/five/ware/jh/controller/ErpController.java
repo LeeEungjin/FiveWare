@@ -10,6 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.five.ware.erp.menuRegist.MenuRegistDTO;
 import com.five.ware.erp.menuRegist.MenuRegistService;
+import com.five.ware.erp.storageRegist.StorageRegistDTO;
+import com.five.ware.erp.storageRegist.StorageRegistService;
 import com.five.ware.util.ListData;
 
 @Controller
@@ -18,6 +20,8 @@ public class ErpController {
 	
 	@Autowired
 	private MenuRegistService menuRegistService;
+	@Autowired
+	private StorageRegistService storageService;
 	
 	@RequestMapping(value="menuRegist")
 	public ModelAndView menuRegist(ListData listData){
@@ -61,10 +65,11 @@ public class ErpController {
 	public String update(MenuRegistDTO menuRegistDTO, RedirectAttributes rd)throws Exception{
 		String message="Fail";
 		int result=menuRegistService.update(menuRegistDTO);
-
+		
 		if(result>0){
 			message="Success";
 		}
+		
 		rd.addFlashAttribute("message", message);
 		
 		return "redirect:./menuRegist";
@@ -85,6 +90,70 @@ public class ErpController {
 	}
 /////////////////////////////////////////////////////////////////////////////////////////////
 	
-	@RequestMapping(value="storageRegist", method=RequestMethod.GET)
-	public void storageRegist(){}
+
+	
+	@RequestMapping(value="storageRegist")
+	public ModelAndView storageRegist(ListData listData){
+		ModelAndView modelAndView=null;
+		try{
+		modelAndView=storageService.selectList(listData);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="storagetWrite", method=RequestMethod.POST)
+	public String storageWrite(StorageRegistDTO storageRegistDTO, RedirectAttributes rd){
+		int result=0;
+		String message="fail";
+		try {
+			result=storageService.insert(storageRegistDTO);
+			if(result>0){
+				message="Success";
+			}
+			rd.addFlashAttribute("message", message);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "redirect:./storageRegist";
+	}
+	
+	@RequestMapping(value="storageView", method=RequestMethod.GET)
+	@ResponseBody
+	public StorageRegistDTO selectOneStorage(Model model, String storageCode)throws Exception{
+		StorageRegistDTO storageRegistDTO=storageService.selectOne(storageCode);
+
+		return storageRegistDTO;
+	}
+	
+	@RequestMapping(value="storageRegistUpdate", method=RequestMethod.POST)
+	public String update(StorageRegistDTO storageRegistDTO, RedirectAttributes rd)throws Exception{
+		String message="Fail";
+		int result=storageService.update(storageRegistDTO);
+		
+		if(result>0){
+			message="Success";
+		}
+		
+		rd.addFlashAttribute("message", message);
+		
+		return "redirect:./storageRegist";
+	}
+	
+	@RequestMapping(value="storageRegistDelete")
+	public String deleteStorage(String storageCode, RedirectAttributes rd)throws Exception{
+		String message="Fail";
+		int result=storageService.delete(storageCode);
+		
+		if(result>0){
+			message="Success";
+		}
+		
+		rd.addFlashAttribute("message", message);
+		
+		return "redirect:./storageRegist";
+	}
+	
 }
