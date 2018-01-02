@@ -43,20 +43,23 @@
 	 
 	 $(".eb_view").click(function(){
 		 var code=$(this).attr("title");
+		 alert(code);
          $.ajax({
             data : {"code" : code},
             url : "./storeRegistView",
             type : "get",
             success : function(data){
             	alert("success");
-            	/*  $("#eb_view_modal").html(data); */
-           /*     $ (".viewCode").val(data.menuCode);
-               $(".viewName").val(data.menuName);
-               $(".viewPrice").val(data.price);
-               $(".viewRecipe").val(data.recipe);
-               $("#eb_view_modal").html(data.menuOption)
-               var viewKind=data.menuKind;  */
-              
+        	   $(".eb_viewCode").val(data.code);
+        	   $(".eb_viewStore").val(data.store);
+        	   $(".eb_viewStoreNum").val(data.storeNum);
+        	   $(".eb_viewName").val(data.name);
+        	   $(".eb_viewAddr").val(data.addr);
+        	   $(".eb_viewTel").val(data.tel);
+        	   $(".eb_viewEmail").val(data.email);
+        	   $(".eb_viewBank").val(data.bank);
+        	   $(".eb_viewAccount").val(data.account);
+        	   $(".eb_viewTime").val(data.time);
             },
             error : function(data){
                alert("error");
@@ -202,7 +205,7 @@
 				
 				 <div class="eb_blank"></div>
 					
-				<!-- <form action="./storeRegist" method="get"> -->
+				<!-- 검색 -->
 				   <input type="hidden" name="curPage" value="1">
 					
 					<table id="eb_contents_box_table" >
@@ -220,7 +223,7 @@
 							<td><button class="btn btn-default">search</button></td>
 						</tr>
 						</table>
-				   <!-- </form> -->
+				   <!--검색 끝 -->
 				  
 				</div> 
 				
@@ -278,40 +281,40 @@
 					<table id="eb_modal_table">
 						<tr>
 						   <td>지점명 코드</td>
-						   <td>${view.code}</td>
+						   <td><input type="text" class="eb_viewCode" name="code" readonly="readonly"></td>
 						   <td>지점명</td>
-						   <td>${view.store}</td>
+						   <td><input type="text" class="eb_viewStore" name="store"></td>
 						   
 						</tr>
 						
 						<tr>
 						   <td>대표자</td>
-						   <td><input type="text" name="name"></td>
+						   <td><input type="text" class="eb_viewName" name="name"></td>
 						   <td>사업자 등록 번호</td>
-						   <td><input type="text" name="storeNum"></td>
+						   <td><input type="text" class="eb_viewStoreNum" name="storeNum"></td>
 						   
 						</tr>
 						          	
 						<tr>
 						   <td>주소</td>
-						   <td>${view.addr}</td>
+						   <td><input type="text" class="eb_viewAddr" name="addr"></td>
 						   <td>영업시간</td>
-						   <td><input type="text" name="time"></td>
+						   <td><input type="text" class="eb_viewTime" name="time"></td>
 						 
 						</tr>
 						          	
 						<tr>
 						   <td>전화번호</td>
-						   <td><input type="text" name="tel"></td> 
+						   <td><input type="text" class="eb_viewTel" name="tel"></td> 
 						   <td>E-mail</td>
-						   <td><input type="text" name="email"></td>
+						   <td><input type="text" class="eb_viewEmail" name="email"></td>
 						</tr>
 						          	
 						<tr>
 						   <td>은행</td>
-						   <td><input type="text" name="bank"></td>
+						   <td><input type="text" class="eb_viewBank" name="bank"></td>
 						   <td>계좌번호</td>
-						   <td><input type="text" name="account"></td>
+						   <td><input type="text" class="eb_viewAccount" name="account"></td>
 						 </tr>
 						          
 					</table>

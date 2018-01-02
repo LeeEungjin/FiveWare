@@ -68,7 +68,7 @@ public class StoreRegistController {
 		storeRegistDTO=storeRegistService.selectOne(code);
 		model.addAttribute("view", storeRegistDTO);
 		
-		return "erp/storeRegist";
+		return "redirect:./erp/storeRegist";
 	}
 	
 	
