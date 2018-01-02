@@ -13,6 +13,37 @@
 
 <title>Insert title here</title>
 
+<script type="text/javascript">
+	$(function(){
+		var message = '${message}';
+		if(message != ""){
+			alert(message);
+		}
+		
+		$(".mr_btn").click(function(){
+			$("#mr_frm").submit();
+		});
+		
+		var kind='${pager.kind}';
+		$(".op").each(function(){
+			if($(this).val()==kind){
+				$(this).attr("selected", true);
+			}
+		});
+		
+		$(".list").click(function(){
+			var cur = $(this).attr("title");
+			var s = '${pager.search}';
+			var t = '${pager.kind}';
+			document.mr_search_frm.curPage.value=cur;
+			document.mr_search_frm.search.value=s;
+			document.mr_search_frm.kind.value=t;
+			document.mr_search_frm.submit();
+		});
+		
+	});
+</script>
+
 </head>
 <body>
 
@@ -82,21 +113,25 @@
 					<div id="mr_search">
 						<!-- 검색 기능 -->
 							<!-- select box -->
-								<select class="form-control" id="sel1">
-							        <option>메뉴명</option>
-							        <option>레시피</option>
-							        <option>설명</option>
+						
+						
+								<div class="input-group">
+									<form action="./menuRegist" name="mr_search_frm" method="get">
+								<input type="hidden" name="curPage" value="1">
+								<select class="form-control" id="sel1" name="kind">
+							        <option class="op" value="menuname">메뉴명</option>
+							        <option class="op" value="recipe">레시피</option>
+							        <option class="op" value="menuoption">설명</option>
 							     </select>							
 							<!-- select box 끝 -->
-						
-							<div class="input-group">
-						      <input type="text" class="form-control" placeholder="Search" name="search">
-						      
-						      <div class="input-group-btn">
-						        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-						      </div>
-						      
-						    </div>	
+							      <input type="text" class="form-control" placeholder="Search" name="search">
+							      
+							      <div class="input-group-btn">
+							        <button id="search_btn" class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+							      </div>
+							       </form>	
+							    </div>
+						   
 						<!-- 검색 기능 끝 -->
 						
 						<!-- 부가 검색 -->
@@ -138,46 +173,30 @@
 						    </thead>
 						    
 						    <tbody>
-						    <tr>
-						      	<td><input type="checkbox" id="menucheck"></td>
-						        <td>003</td>
-						        <td>[음료]</td>
-						        <td id="jh_bold_text" data-toggle="modal" data-target="#jh_mr_update_Modal">딸기 크림 푸라푸치노</td>
-						        <td>6500원</td>
-						        <td>Y</td>
-						      </tr>
-						      <tr>
-						     
-						      <tr>
-						      	<td><input type="checkbox" id="menucheck"></td>
-						        <td>002</td>
-						        <td>[디저트]</td>
-						        <td>시나몬 허니 브레드</td>
-						        <td>7000원</td>
-						        <td>N</td>
-						      </tr>
-						      
-						      <tr>
-						      	<td><input type="checkbox" id="menucheck"></td>
-						        <td>001</td>
-						        <td>[커피]</td>
-						        <td>아이스 아메리카노</td>
-						        <td>4000원</td>
-						        <td>Y</td>
-						      </tr>
-						      
+						    	<c:forEach items="${mr_list}" var="mr_list">
+							      <tr>
+							      	<td><input type="checkbox" id="menucheck"></td>
+							        <td>${mr_list.menuCode}</td>
+							        <td>${mr_list.menuKind }</td>
+							        <td>${mr_list.menuName }</td>
+							        <td>${mr_list.price }</td>
+							        <td>${mr_list.imgNull }</td>
+							      </tr>
+						      </c:forEach>
 						    </tbody>
 						 </table>
 						 
 						 <!-- pager -->
 						 	<div id="mr_pager">
-						 		  <a href="#" class="pager_a">◀</a>
-								  <a href="#" class="pager_a">1</a>
-								  <a href="#" class="pager_a">2</a>
-								  <a href="#" class="pager_a">3</a>
-								  <a href="#" class="pager_a">4</a>
-								  <a href="#" class="pager_a">5</a>
-								  <a href="#" class="pager_a">▶</a>
+						 		  <c:if test="${pager.curBlock gt 1}">
+									<span class="list" title="${pager.startNum-1}">[이전]</span>
+								</c:if>
+								<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+									<span class="list" title="${i}">${i}</span>
+								</c:forEach>
+								<c:if test="${pager.curBlock lt pager.totalBlock}">
+									<span class="list" title="${pager.lastNum+1}">[다음]</span>
+								</c:if>
 						 	</div>
 						 <!-- pager 끝 -->
 					</div>
@@ -204,41 +223,46 @@
 				        <!-- modal header 끝-->
 				        
 				        <!-- modal contents -->
+				        <form action="./menuRegistWrite" method="post" id="mr_frm">
 				        <div class="modal-body">
 				        	<div class="input-group input-group_modal">
 							  <span class="input-group-addon">메뉴번호</span>
-							  <input id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
+							  <input id="msg" type="text" class="form-control"  placeholder="Additional Info" name="menuCode">
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">메뉴구분</span>
-							  <input id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
+							  <select class="form-control" id="sel1" name="menuKind">
+							        <option value="coffee">커피</option>
+							        <option value="juice">음료</option>
+							        <option value="desert">디저트</option>
+							   </select>			
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">메뉴명</span>
-							  <input id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
+							  <input id="msg" type="text" class="form-control" placeholder="Additional Info" name="menuName">
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">가격</span>
-							  <input id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
+							  <input id="msg" type="text" class="form-control"  placeholder="Additional Info" name="price">
 							</div>
 							
-							<div class="input-group input-group_modal">
+							 <div class="input-group input-group_modal">
 							  <span class="input-group-addon">사진</span>
-							  <div id="mr_img_div"></div>
+							  <input type="text" name="imgNull">
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">레시피</span>
-							  <input id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
+							  <input id="msg" type="text" class="form-control"  placeholder="Additional Info" name="recipe">
 							</div>
 							
 							<div class="form-group">
 							  <!-- <span class="input-group-addon">설명</span> -->
 						      <div id="area_text"><label class="jh_label" for="comment">메뉴의 설명을 작성해주세요.</label></div> 
-						      <textarea class="form-control form-control_area" rows="5" id="comment"></textarea>
+						      <textarea class="form-control form-control_area" rows="5" id="comment" name="menuOption"></textarea>
 						    </div>
 							
 				        </div>
@@ -246,9 +270,10 @@
 				        
 				        <!-- modal footer -->
 				        <div class="modal-footer">
-				          <button type="button" class="btn btn-default" data-dismiss="modal">등록</button>
+				          <button type="button" class="btn btn-default mr_btn" data-dismiss="modal">등록</button>
 				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				        </div>
+				        </form>
 				      	<!-- modal footer 끝-->
 				      </div>
 				    </div>
@@ -272,7 +297,7 @@
 				        <div class="modal-body">
 				        	<div class="input-group input-group_modal">
 							  <span class="input-group-addon">메뉴번호</span>
-							  <input id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info" value="003">
+							  <input id="msg" type="text" class="form-control"  placeholder="Additional Info" value="003">
 							</div>
 							
 							<div class="input-group input-group_modal">
@@ -286,12 +311,12 @@
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">메뉴명</span>
-							  <input id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info" value="딸기 크림 푸라푸치노">
+							  <input id="msg" type="text" class="form-control"placeholder="Additional Info" value="딸기 크림 푸라푸치노">
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">가격</span>
-							  <input id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info" value="6000원">
+							  <input id="msg" type="text" class="form-control" placeholder="Additional Info" value="6000원">
 							</div>
 							
 							<div class="input-group input-group_modal">
@@ -301,7 +326,7 @@
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">레시피</span>
-							  <input id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info" value="딸기를 넣어 만들어요">
+							  <input id="msg" type="text" class="form-control" placeholder="Additional Info" value="딸기를 넣어 만들어요">
 							</div>
 							
 							<div class="form-group">

@@ -8,7 +8,7 @@ public class MenuRegistDTO {
 	private String imgNull;
 	private String recipe;
 	private String menuOption;
-	
+	private int price;
 	
 	public String getMenuCode() {
 		return menuCode;
@@ -46,4 +46,11 @@ public class MenuRegistDTO {
 	public void setMenuOption(String menuOption) {
 		this.menuOption = menuOption;
 	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	
 }
