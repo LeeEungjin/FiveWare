@@ -17,6 +17,19 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link href="${url}/resources/css/notice/notice.css" rel="stylesheet">
+<script type="text/javascript">
+	$(function(){
+		$(".list").click(function(){
+			var cur = $(this).attr("title");
+			var s = '${pager.search}';
+			var t = '${pager.kind}';
+			document.frm.curPage.value=cur;
+			document.frm.search.value=s;
+			document.frm.kind.value=t;
+			document.frm.submit();
+		});
+	});
+</script>
 </head>
 <body>
  
@@ -33,7 +46,7 @@
 					class="notice_jk_subTitle">각 부서별 소식을 알려드립니다.</span>
 
 			</div>
-			<form action="">
+			<form action="./noticeList" name="frm" method="post">
 				<div id="login_after_middle">
 					<div id="menu_wrap">
 						<!-- 부서별 링크 -->
@@ -46,6 +59,7 @@
 						<div class="notice_jk_searchBox">
 							<select id="kind">
 								<option>제목</option>
+								<option>작성자</option>
 								<option>부서</option>
 							</select> <input type="text" name="search" id="search" placeholder="검색어">
 							<input type="button" value="검색" class="notice_jk_btn">
@@ -59,6 +73,7 @@
 										<td>번호</td>
 										<td>부서</td>
 										<td>제목</td>
+										<td>내용</td>
 										<td>작성자</td>
 										<td>작성일</td>
 										<td>조회</td>
@@ -69,6 +84,7 @@
 										<td>${dto.num}</td>
 										<td>${dto.part}</td>
 										<td><a href="./noticeView?num=${dto.num}">${dto.title}</a></td>
+										<td>${dto.contents}</td>
 										<td>${dto.writer}</td>
 										<td>${dto.reg_date}</td>
 										<td>${dto.hit}</td>
