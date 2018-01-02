@@ -9,9 +9,19 @@
   	insert into storeRegist values(#{code},#{store},#{storeNum},#{name},#{addr},#{tel},#{email},#{bank},#{account},#{time})
   </insert>
   
-  <select id="selectList" resultType="storeRegistDTO">
-   select * from storeRegist
+  <select id="selectList" parameterType="com.five.ware.util.RowNum" resultType="storeRegistDTO">
+   	select * from
+	(select rownum R, S.*from
+	(select * from storeregist order by code desc) S)
+	where R between #{startRow} and #{lastRow}
   </select>
   
+  <select id="totalCount" resultType="int">
+  select nvl(count(code),0) from storeRegist 
+  </select>
+  
+  <select id="selectOne" parameterType="String" resultType="storeRegistDTO">
+   select * from storeregist where code=#{code}
+  </select>
   </mapper>
  
