@@ -23,13 +23,10 @@
 	
 	<context:component-scan base-package="com.five.ware" />
 	<context:component-scan base-package="com.five.human" />
-<<<<<<< HEAD
 	
-=======
 	<context:component-scan base-package="com.five.ware.eung.controller"/>
 	<context:component-scan base-package="com.five.ware.jh.controller"/>
 	<context:component-scan base-package="com.five.ware.ar.controller"></context:component-scan>
->>>>>>> arin
-	
+	<context:component-scan base-package="com.five.ware.erp.human.basis"></context:component-scan>
 	
 </beans:beans>
