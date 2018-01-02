@@ -29,5 +29,18 @@ public class MenuRegistService {
 		return mv;
 	}
 	
+	public MenuRegistDTO selectOne(String menuCode)throws Exception{
+		MenuRegistDTO menuRegistDTO=menuRegistDAO.selectOne(menuCode);
+		return menuRegistDTO;
+	}
+	
+	public int update(MenuRegistDTO menuRegistDTO)throws Exception{
+		return menuRegistDAO.update(menuRegistDTO);
+	}
+	
+	public int delete(String menuCode)throws Exception{
+		return menuRegistDAO.delete(menuCode);
+	}
+	
 
 }

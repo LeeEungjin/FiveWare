@@ -24,6 +24,11 @@
 			$("#mr_frm").submit();
 		});
 		
+		$(".menuUpdate").click(function(){
+			$("#mr_update_frm").submit();
+			alert("click");
+		});
+		
 		var kind='${pager.kind}';
 		$(".op").each(function(){
 			if($(this).val()==kind){
@@ -40,6 +45,59 @@
 			document.mr_search_frm.kind.value=t;
 			document.mr_search_frm.submit();
 		});
+		
+		$("#allcheck").click(function() {
+			if($("#allcheck").prop("checked")){
+				$(".menucheck").prop("checked", true);
+			}else{
+				$(".menucheck").prop("checked", false);
+			}
+		});
+		
+		$(".menuView").click(function() {
+			var code=$(this).attr("title");
+			$.ajax({
+				data : {"menuCode" : code},
+				url : "./menuRegistView",
+				type : "get",
+				success : function(data){
+					$(".viewCode").val(data.menuCode);
+					$(".viewName").val(data.menuName);
+					$(".viewPrice").val(data.price);
+					$(".viewRecipe").val(data.recipe);
+					$(".menuOption").html(data.menuOption)
+					var viewKind=data.menuKind;
+					/* var sel2=$("#sel2").val(); */
+					if(viewKind=='coffee'){
+						$("#coffee").attr("selected", "selected");
+					}else if(viewKind=='juice'){
+						$("#juice").attr("selected", "selected");
+					}else if(viewKind=='desert'){
+						$("#desert").attr("selected", "selected");
+					}
+				},
+				error : function(data){
+					alert("error");
+				}
+			});
+		});
+			
+			$(".menuDelete").click(function(){
+				alert("click");
+				var code=$(".viewCode").val();
+				alert(code);
+				$.ajax({
+					data : {"menuCode" : code},
+					url : "./menuRegistDelete",
+					type : "get",
+					success : function(data){
+						alert("삭제 완료");
+					},
+					error : function(data){
+						alert("error");
+					}
+				});
+			});
 		
 	});
 </script>
@@ -175,10 +233,10 @@
 						    <tbody>
 						    	<c:forEach items="${mr_list}" var="mr_list">
 							      <tr>
-							      	<td><input type="checkbox" id="menucheck"></td>
+							      	<td><input type="checkbox" class="menucheck"></td>
 							        <td>${mr_list.menuCode}</td>
 							        <td>${mr_list.menuKind }</td>
-							        <td>${mr_list.menuName }</td>
+							        <td  class="menuView" title="${mr_list.menuCode}"  data-toggle="modal" data-target="#jh_mr_update_Modal">${mr_list.menuName }</td>
 							        <td>${mr_list.price }</td>
 							        <td>${mr_list.imgNull }</td>
 							      </tr>
@@ -294,29 +352,30 @@
 				        <!-- modal header 끝-->
 				        
 				        <!-- modal contents -->
+				        <form action="./menuRegistUpdate" method="post" id="mr_update_frm">
 				        <div class="modal-body">
 				        	<div class="input-group input-group_modal">
 							  <span class="input-group-addon">메뉴번호</span>
-							  <input id="msg" type="text" class="form-control"  placeholder="Additional Info" value="003">
+							  <input name="menuCode" id="msg" type="text" class="form-control viewCode"  placeholder="Additional Info" readonly="readonly">
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">메뉴구분</span>
-							  <select class="form-control" id="sel2">
-							        <option selected="selected">커피</option>
-							        <option>음료</option>
-							        <option>디저트</option>
+							  <select name="menuKind" class="form-control" id="sel2">
+							        <option id="coffee" value="coffee">커피</option>
+							        <option id="juice" value="juice">음료</option>
+							        <option id="desert" value="desert">디저트</option>
 							     </select>				
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">메뉴명</span>
-							  <input id="msg" type="text" class="form-control"placeholder="Additional Info" value="딸기 크림 푸라푸치노">
+							  <input name="menuName" id="msg" type="text" class="form-control viewName"placeholder="Additional Info" >
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">가격</span>
-							  <input id="msg" type="text" class="form-control" placeholder="Additional Info" value="6000원">
+							  <input name="price" id="msg" type="text" class="form-control viewPrice" placeholder="Additional Info" >
 							</div>
 							
 							<div class="input-group input-group_modal">
@@ -326,13 +385,13 @@
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">레시피</span>
-							  <input id="msg" type="text" class="form-control" placeholder="Additional Info" value="딸기를 넣어 만들어요">
+							  <input name="recipe" id="msg" type="text" class="form-control viewRecipe" placeholder="Additional Info">
 							</div>
 							
 							<div class="form-group">
 							  <!-- <span class="input-group-addon">설명</span> -->
 						      <div id="area_text"><label class="jh_label" for="comment">메뉴의 설명을 작성해주세요.</label></div> 
-						      <textarea class="form-control form-control_area" rows="5" id="comment">이건 맛있다</textarea>
+						      <textarea name="menuOption" class="form-control form-control_area menuOption" rows="5" id="comment"></textarea>
 						    </div>
 							
 				        </div>
@@ -340,10 +399,11 @@
 				        
 				        <!-- modal footer -->
 				        <div class="modal-footer">
-				          <button type="button" class="btn btn-default" data-dismiss="modal">수정</button>
-						  <button type="button" class="btn btn-default" data-dismiss="modal">삭제</button>				        
+				          <button type="button" class="btn btn-default menuUpdate" data-dismiss="modal">수정</button>
+						  <button type="button" class="btn btn-default menuDelete" data-dismiss="modal">삭제</button>				        
 				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				        </div>
+				        </form>
 				      	<!-- modal footer 끝-->
 				      </div>
 				    </div>
