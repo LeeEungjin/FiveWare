@@ -1,5 +1,6 @@
 Manifest-Version: 1.0
 <<<<<<< HEAD
+<<<<<<< HEAD
 Built-By: enddl
 Build-Jdk: 1.8.0_141
 =======
@@ -11,5 +12,9 @@ Built-By: dmdwl
 Build-Jdk: 1.8.0_121
 >>>>>>> eung2
 >>>>>>> d9262cbae534b2455f43cbccc1f87518177c94a9
+=======
+Built-By: ar025
+Build-Jdk: 1.8.0_144
+>>>>>>> arin
 Created-By: Maven Integration for Eclipse
 

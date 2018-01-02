@@ -106,7 +106,12 @@ gradle-app.setting
 ### Git ###
 *.orig
 
+<<<<<<< HEAD
 # End of https://www.gitignore.io/api/git
 =======
+/target/
+>>>>>>> arin
+=======
+# End of https://www.gitignore.io/api/java,windows,eclipse
 /target/
 >>>>>>> arin

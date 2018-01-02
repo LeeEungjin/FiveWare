@@ -60,7 +60,7 @@
 				</li>
 				
 				<li class="productMenu menuTooltip" title="인사">
-					<a href="#">
+					<a href="human/basisInfo/positionPlus">
 						<span class="ej_sidebar_menu ej_resource">인사</span>
 					</a>
 				</li>
