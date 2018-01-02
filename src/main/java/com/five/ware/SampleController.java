@@ -11,12 +11,8 @@ public class SampleController {
 		/*return "sample2";*/
 
 	return "human/basisInfo/salPlus";
-<<<<<<< HEAD
 	}
-=======
-}
 
->>>>>>> master
 	
 	@RequestMapping(value="/notice/notice")
 	public String notice(){
