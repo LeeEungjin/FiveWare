@@ -50,8 +50,10 @@ public class StoreRegistService {
 	}
 	
 	//update
-	public int update(StoreRegistDTO storeRegistDTO, String code)throws Exception{
-		int result=storeRegistDAO.update(code);
+	public int update(StoreRegistDTO storeRegistDTO)throws Exception{
+		
+		int result=storeRegistDAO.update(storeRegistDTO);
+		
 		return result;
 		
 	}

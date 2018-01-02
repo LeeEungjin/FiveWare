@@ -52,7 +52,7 @@ private static final String namespace="storeRegistMapper.";
 	}
 
 	//update
-	public int update(String code) throws Exception{
-		return sqlsession.update(namespace+"update", code);
+	public int update(StoreRegistDTO storeRegistDTO) throws Exception{
+		return sqlsession.update(namespace+"update", storeRegistDTO);
 	}
 }

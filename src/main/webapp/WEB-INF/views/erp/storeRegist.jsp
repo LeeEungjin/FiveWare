@@ -53,7 +53,6 @@
             url : "./storeRegistView",
             type : "get",
             success : function(data){
-            	alert("success");
         	   $(".eb_viewCode").val(data.code);
         	   $(".eb_viewStore").val(data.store);
         	   $(".eb_viewStoreNum").val(data.storeNum);
@@ -73,30 +72,34 @@
 	 
 	
 	  $("#eb_storeDelete").click(function(){
-		var code= $(".eb_viewCode").val();
+		  alert("delete");
+		 var code= $(".eb_viewCode").val();
 		
 		$.ajax({
 			data : {"code" : code},
 			url : "./storeRegistDelete",
 			type : "get",
-			success : function(){
-				alert("삭제 성공");
+			success : function(data){
+				alert(data);
 			}
-		});
+		}); 
 	 });
 	 
-/* 	  $("#eb_storeUpdate").click(function(){
+	  
+/*    $("#eb_storeUpdate").click(function(){
 		 var code=$(".eb_viewCode").val();
-		 
+
 		 $.ajax({
-			data : {"code" : code}, 
+			data : {
+				code : code,		
+			},
 			url : "./storeRegistUpdate",
 			type : "post",
 			success : function(){
 				alert("수정성공");
 			}
 		 });
-	 }); */ 
+	 });   */
 
 
 	 
@@ -237,21 +240,20 @@
 				<!-- 검색 -->
 				   <input type="hidden" name="curPage" value="1">
 					
-					<table id="eb_contents_box_table" >
+					
+				<form action="./storeRegist" method="get">
+					<div id="eb_contents_box_div" >
+						<input type="hidden" name="curPage" value="1">
+						  	<select name="kind">
+						  		<option>코드</option>
+						  		<option>지점명</option>
+						  		<option>대표자명</option>
+						  	</select>
+						  	<input type="text" name="search">
+						  	<button class="btn btn-default">search</button>
 						
-						<tr>
-						  <td>코드</td>
-						  <td><input type="text" name="search"></td>
-						  <td>대표자 명</td>
-						  <td><input type="text" name="search"></td>
-						</tr>
-						
-						<tr>
-							<td>지점명</td>
-							<td><input type="text" name="search"></td>
-							<td><button class="btn btn-default">search</button></td>
-						</tr>
-						</table>
+						</div>
+				</form>		
 				   <!--검색 끝 -->
 				  
 				</div> 
@@ -268,6 +270,7 @@
 						     <th>지점명</th>
 						     <th>대표자</th>
 						     <th>전화번호</th> 
+						     <th></th>
 						    </tr>
 						 </thead>
 						    
@@ -276,18 +279,20 @@
 						    	<c:forEach items="${list}" var="dto">
 							      <tr>
 							        <td><input type="checkbox" class="input_chk"></td>
-							      	<td class="eb_view" title="${dto.code}" data-toggle="modal" data-target="#eb_view_modal">${dto.code}</td>
+							      	<td>${dto.code}</td>
 							        <td>${dto.store}</td>					
 							        <td>${dto.name}</td>
-							        <td>${dto.tel}</td>								      						      			   
+							        <td>${dto.tel}</td>		
+							        <td><button class="eb_view" title="${dto.code}" data-toggle="modal" data-target="#eb_view_modal">상세보기</button></td>						      						      			   
 							     </tr>
+							     
 							     </c:forEach>
 						   </tbody>
 					 </table>
 					
 					<!-- view Modal -->
 					
-				<form action="./storeRegistUpdate" method="post">	
+			<form action="storeRegistUpdate" method="post">
 					<div class="modal fade" id="eb_view_modal">
 			 
 				<div class="modal-dialog">
@@ -353,15 +358,18 @@
 						        
 						        <!-- Modal footer -->
 				<div class="modal-footer">
-						<input id="eb_storeUpdate" type="submit" value="수정">
-						<input id="eb_storeDelete" type="button" value="삭제">
+					<button id="eb_storeUpdate">수정</button>
+					<input type="button" id="eb_storeDelete" value="삭제">
+					
+						
 				 </div>
 						        
 					</div>
 				</div>
 			</div>
-						</form>
-					
+				</form>	
+				
+				
 				
 				<div id="eb_page">
 				

@@ -58,7 +58,7 @@ public class StoreRegistController {
 		rd.addFlashAttribute("message", message);
 		
 		
-		return "redirect:./erp/storeRegist";
+		return "redirect:./storeRegist";
 		
 	}
 	
@@ -86,22 +86,24 @@ public class StoreRegistController {
 		
 		rd.addFlashAttribute("message", message);
 		
-		return "redirect:./erp/storeRegist";
+		return message;
 	}
 	
 	//update
 	@RequestMapping(value="storeRegistUpdate")
 	public String update(RedirectAttributes rd, StoreRegistDTO storeRegistDTO) throws Exception{
-		int result=storeRegistService.update(storeRegistDTO, storeRegistDTO.getCode());
-		
+
+		int result=storeRegistService.update(storeRegistDTO);
+	
 		String message="fail";
 		if(result>0){
 			message="success";
 		}
 		
+		
 		rd.addFlashAttribute("message",message);
 		
-		return "redirect:./erp/storeRegist";
+		return "redirect:./storeRegist";
 	}
 	
  }

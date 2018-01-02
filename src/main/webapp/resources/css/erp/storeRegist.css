@@ -140,11 +140,12 @@ td.eb_row:hover {
 	margin-top: 5px;
 }
 
-#eb_contents_box_table{
-	width: 90%;
-	height: 65%;
-	margin-top: 70px;
+#eb_contents_box_div{
+	
+    width : 50%;
+    height : 20%;
 	margin: 0 auto;
+	margin-top : 20px;
 }
 .eb_text{
 	font-size: 20px;
