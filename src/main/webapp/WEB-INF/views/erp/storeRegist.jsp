@@ -18,7 +18,14 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 
-		  var code=$(".eb_view").val();
+ 	
+			 
+			 
+			 
+			 
+	$(function(){
+	 
+		 /*  var code=$(".eb_view").val();
 		 
 			 $.ajax({
 				type: "GET",
@@ -29,13 +36,8 @@
 				success:function(data){
 					alert("success");
 				}
-			}); 
- $(function(){
-	 
-	 
-
-	 
-
+			});  */
+			 
 		$(".fw_menu").click(function(){
 			var sub = $(this).attr("title");
 			
