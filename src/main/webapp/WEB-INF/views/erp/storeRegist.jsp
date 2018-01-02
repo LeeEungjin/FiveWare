@@ -18,24 +18,9 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 
-		  var code=$(".eb_view").val();
 		 
-			 $.ajax({
-				type: "GET",
-				url: "./storeRegistView",
-				data:{
-					code : code
-				},
-				success:function(data){
-					alert("success");
-				}
-			}); 
  $(function(){
 	 
-	 
-
-	 
-
 		$(".fw_menu").click(function(){
 			var sub = $(this).attr("title");
 			
@@ -55,6 +40,32 @@
 			}
 		});
 	 
+	 
+	 $(".eb_view").click(function(){
+		 var code=$(this).attr("title");
+         $.ajax({
+            data : {"code" : code},
+            url : "./storeRegistView",
+            type : "get",
+            success : function(data){
+            	alert("success");
+            	/*  $("#eb_view_modal").html(data); */
+           /*     $ (".viewCode").val(data.menuCode);
+               $(".viewName").val(data.menuName);
+               $(".viewPrice").val(data.price);
+               $(".viewRecipe").val(data.recipe);
+               $("#eb_view_modal").html(data.menuOption)
+               var viewKind=data.menuKind;  */
+              
+            },
+            error : function(data){
+               alert("error");
+            }
+         }); 
+	 });
+	 
+	
+
 
 	 
  });
@@ -234,7 +245,7 @@
 						    	<c:forEach items="${list}" var="dto">
 							      <tr>
 							        <td><input type="checkbox" class="input_chk"></td>
-							      	<td class="eb_view" value="${dto.code}" data-toggle="modal" data-target="#eb_view_modal">${dto.code}</td>
+							      	<td class="eb_view" title="${dto.code}" data-toggle="modal" data-target="#eb_view_modal">${dto.code}</td>
 							        <td>${dto.store}</td>					
 							        <td>${dto.addr}</td>
 							        <td>${dto.tel}</td>								      
@@ -244,7 +255,7 @@
 						   </tbody>
 					 </table>
 					
-					<!-- viewPage Modal -->
+					<!-- view Modal -->
 					
 					<div class="modal fade" id="eb_view_modal">
 			 

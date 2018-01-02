@@ -41,6 +41,68 @@
 			document.mr_search_frm.submit();
 		});
 		
+
+
+		$("#allcheck").click(function() {
+			if($("#allcheck").prop("checked")){
+				$(".menucheck").prop("checked", true);
+			}else{
+				$(".menucheck").prop("checked", false);
+			}
+		});
+		
+		$(".menuView").click(function() {
+			var code=$(this).attr("title");
+			$.ajax({
+				data : {"menuCode" : code},
+				url : "./menuRegistView",
+				type : "get",
+				success : function(data){
+					$(".viewCode").val(data.menuCode);
+					$(".viewName").val(data.menuName);
+					$(".viewPrice").val(data.price);
+					$(".viewRecipe").val(data.recipe);
+					$(".menuOption").html(data.menuOption)
+					var viewKind=data.menuKind;
+					/* var sel2=$("#sel2").val(); */
+					if(viewKind=='coffee'){
+						$("#coffee").attr("selected", "selected");
+					}else if(viewKind=='juice'){
+						$("#juice").attr("selected", "selected");
+					}else if(viewKind=='desert'){
+						$("#desert").attr("selected", "selected");
+					}
+				},
+				error : function(data){
+					alert("error");
+				}
+			});
+		});
+			
+		$(".menuDelete").click(function(){
+			alert("click");
+			var code=$(".viewCode").val();
+			alert(code);
+			$.ajax({
+				data : {"menuCode" : code},
+				url : "./menuRegistDelete",
+				type : "get",
+				success : function(data){
+					alert("삭제 완료");
+				},
+				error : function(data){
+					alert("error");
+				}
+			});
+		});
+		
+		$("#checkDelete").click(function(){
+			alert("click");
+			if($("#menucheck").prop("checked")){
+			
+			}
+		});
+		
 	});
 </script>
 
@@ -204,7 +266,7 @@
 				
 				<!-- 등록 버튼 -->
 					<div id="erp_jh_contents_bottom">
-						<button>선택삭제</button>
+						<button id="checkDelete">선택삭제</button>
 						<button class="modal_btn" data-toggle="modal" data-target="#jh_mr_Modal">신규등록</button>
 					</div>
 				<!-- 등록 버튼 끝 -->
