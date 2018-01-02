@@ -61,7 +61,7 @@ public class StoreRegistController {
 	}
 	
 	//selectOne
-	@RequestMapping(value="storeRegistView" , method=RequestMethod.GET)
+	@RequestMapping(value="storeRegistView")
 	public String selectOne(Model model, String code)throws Exception{
 		
 		StoreRegistDTO storeRegistDTO;
