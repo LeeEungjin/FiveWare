@@ -17,37 +17,27 @@
 			</p>
 		</div>
 		
-		<!-- info -->
 		<div class="ej_info_logout">
-            <div class="ej_user_info">
-            	<img src="${pageContext.request.contextPath}/resources/images/sidebar/avatar82.png" class="ej_default_img">
-            </div>
-            
-            <div class="ej_user_name">
-            	NAME<!-- ${session.name} -->
-            </div>
-            <div class="ej_user_sub_info">
-            	<a href="#" class="ej_my_info">내정보</a>
-            	<a href="#" class="ej_logout">로그아웃</a>
-            </div>
+            <ul class="ej_user_info">
+                <li id="ej_userImg" class="ej_per"></li>
+            </ul>
         </div>
 		
 		
-		<!-- menu list -->
 		<div class="ej_sidebar_nav">
 			<ul id="ej_menuList">
 				<!-- ERP, GroupWare, SRM -->
-				<li class="productMenu" title="ERP">
+				<li class="productMenu menuTooltip" title="ERP">
 					<a href="#">
-						<span class="ej_sidebar_menu ej_menu_color ej_erp">ERP</span>
+						<span class="ej_sidebar_menu ej_menu_color">ERP</span>
 					</a>
 				</li><li class="productMenu menuTooltip" title="GroupWare">
 					<a href="#">
-						<span class="ej_sidebar_menu  ej_menu_color ej_groupware">GroupWare</span>
+						<span class="ej_sidebar_menu ej_menu_color">GroupWare</span>
 					</a>
 				</li><li class="productMenu menuTooltip" title="SRM">
 					<a href="#">
-						<span class="ej_sidebar_menu ej_menu_color ej_srm">SRM</span>
+						<span class="ej_sidebar_menu ej_menu_color">SRM</span>
 					</a>
 				</li>
 			
@@ -101,4 +91,3 @@
 			</ul>
 		</div>
 	</div>
-	

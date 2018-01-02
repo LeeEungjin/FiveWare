@@ -103,6 +103,7 @@
 	    #menu1_table tr,td,th{
 			height: 30px;
 			text-align: center;
+			border-bottom: 1px solid #ddd; 
 		} 
 		
 		
@@ -127,7 +128,7 @@
 		
 		.b1{
 			height: 100%;
-			width: 80px;
+			width: 65px;
 		}
 		
 		.b2{
