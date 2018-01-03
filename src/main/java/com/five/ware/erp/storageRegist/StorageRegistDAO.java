@@ -12,7 +12,8 @@ import com.five.ware.util.RowNum;
 @Repository
 public class StorageRegistDAO {
 	
-	@Inject SqlSession sqlSession;
+	@Inject 
+	SqlSession sqlSession;
 	private static final String namespace="storageRegistMapper.";
 	
 	public int insert(StorageRegistDTO storageRegistDTO)throws Exception{

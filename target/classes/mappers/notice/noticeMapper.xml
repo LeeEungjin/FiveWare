@@ -20,7 +20,7 @@
   	
   	
   	
-  	<select id="selectFile" parameterType="int" resultType="com.five.ware.erp.notice.FileDTO">
+  	<select id="selectFile" parameterType="int" resultType="com.five.ware.file.FileDTO">
   		select* from upload where num=#{num}
   	</select>
   	
