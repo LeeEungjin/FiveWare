@@ -19,6 +19,24 @@
 			alert(message);
 		}
 		
+		var kind='${pager.kind}';
+		$(".op").each(function(){
+			if($(this).val()==kind){
+				$(this).attr("selected", true);
+			}
+		});
+		
+		$(".list").click(function(){
+			var cur = $(this).attr("title");
+			var s = '${pager.search}';
+			var t = '${pager.kind}';
+			alert(cur);
+			document.sr_search_frm.curPage.value=cur;
+			document.sr_search_frm.search.value=s;
+			document.sr_search_frm.kind.value=t;
+			document.sr_search_frm.submit();
+		});
+		
 		$(".sr_btn").click(function(){
 			alert("click");
 			$("#sr_frm").submit();
@@ -34,14 +52,39 @@
 				success : function(data){
 					$(".viewCode").val(data.storageCode);
 					$(".viewName").val(data.storageName);
+					$(".viewAddr").val(data.storageAddr);
 					$(".viewOp").html(data.storageOp);
-					$(".viewImg").html(data.imgNull);
+					$(".viewImg").val(data.imgNull);
 				},
 				error : function(data){
 					alert("error");
 				}
 			});
 		});
+		
+		$(".srUpdate").click(function(){
+			$("#sr_update_frm").submit();
+		});
+		
+		$(".srDelete").click(function(){
+			var code=$(".viewCode").val();
+			alert(code);
+			$.ajax({
+				data : {"storageCode" : code},
+				url : "./storageDelete",
+				type : "get",
+				success : function(data){
+					alert("삭제 완료");
+					location.reload();
+				},
+				error : function(data){
+					alert("error");
+				}
+			});
+		});
+		
+		
+		
 	});
 </script>
 
@@ -118,6 +161,7 @@
 							<!-- select box -->
 							<div class="input-group">
 							<form action="./storageRegist" name="sr_search_frm" method="get">
+								<input type="hidden"  name="curPage" value="${list.curPage}">
 								<select class="form-control" id="sel1" name="kind">
 							        <option class="op" value="storagename">창고명</option>
 							        <option class="op" value="storagecode">창고코드</option>
@@ -161,7 +205,7 @@
 						 </table>
 						 
 						 <!-- pager -->
-						 	<div id="mr_pager">
+						 	<div id="sr_pager">
 						 		  <c:if test="${pager.curBlock gt 1}">
 									<span class="list" title="${pager.startNum-1}">[이전]</span>
 								</c:if>
@@ -255,30 +299,31 @@
 				        <!-- modal header 끝-->
 				        
 				        <!-- modal contents -->
+				        <form action="./storageUpdate" method="post" id="sr_update_frm">
 				        <div class="modal-body">
 				        	<div class="input-group input-group_modal">
 							  <span class="input-group-addon">창고코드</span>
-							  <input name="viewCode" id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
+							  <input readonly="readonly" name="storageCode" id="msg" type="text" class="form-control viewCode"  placeholder="Additional Info">
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">창고명</span>
-							  <input name="viewName" id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
+							  <input name="storageName" id="msg" type="text" class="form-control viewName"placeholder="Additional Info">
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">개요</span>
-							   <textarea name="viewOp" class="form-control form-control_area" rows="5" id="comment"></textarea>
+							   <textarea name="storageOp" class="viewOp form-control form-control_area" rows="5" id="comment"></textarea>
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">주소</span>
-							  <input id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
+							  <input id="msg" type="text" class="form-control viewAddr" name="storageAddr" placeholder="Additional Info">
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">사진</span>
-							  <div id="sr_img_div"><input type="text" name="vireImg"></div>
+							  <div id="sr_img_div"><input type="text" class="viewImg" name="imgNull"></div>
 							</div>
 							
 				        </div>
@@ -286,9 +331,11 @@
 				        
 				        <!-- modal footer -->
 				        <div class="modal-footer">
-				          <button type="button" class="btn btn-default" data-dismiss="modal">수정</button>
-				          <button type="button" class="btn btn-default" data-dismiss="modal">삭제</button>
+				          <button type="button" class="btn btn-default srUpdate" data-dismiss="modal">수정</button>
+				          <button type="button" class="btn btn-default srDelete" data-dismiss="modal">삭제</button>
+				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				        </div>
+				        </form>
 				      	<!-- modal footer 끝-->
 				      </div>
 				    </div>

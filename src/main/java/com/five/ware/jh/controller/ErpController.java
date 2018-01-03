@@ -90,7 +90,6 @@ public class ErpController {
 	}
 /////////////////////////////////////////////////////////////////////////////////////////////
 	
-
 	
 	@RequestMapping(value="storageRegist")
 	public ModelAndView storageRegist(ListData listData){
@@ -128,7 +127,7 @@ public class ErpController {
 		return storageRegistDTO;
 	}
 	
-	@RequestMapping(value="storageRegistUpdate", method=RequestMethod.POST)
+	@RequestMapping(value="storageUpdate", method=RequestMethod.POST)
 	public String update(StorageRegistDTO storageRegistDTO, RedirectAttributes rd)throws Exception{
 		String message="Fail";
 		int result=storageService.update(storageRegistDTO);
@@ -142,7 +141,7 @@ public class ErpController {
 		return "redirect:./storageRegist";
 	}
 	
-	@RequestMapping(value="storageRegistDelete")
+	@RequestMapping(value="storageDelete")
 	public String deleteStorage(String storageCode, RedirectAttributes rd)throws Exception{
 		String message="Fail";
 		int result=storageService.delete(storageCode);
