@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -24,13 +25,16 @@ public class ErpController {
 	private StorageRegistService storageService;
 	
 	@RequestMapping(value="menuRegist")
-	public ModelAndView menuRegist(ListData listData){
+	public ModelAndView menuRegist(ListData listData, @RequestParam(defaultValue="no", required=false)String order, @RequestParam(defaultValue="no", required=false)String menukind){
 		ModelAndView modelAndView=null;
+		
 		try{
-		modelAndView=menuRegistService.selectList(listData);
+		modelAndView=menuRegistService.selectList(listData, order, menukind);
+		
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		return modelAndView;
 	}
 	
@@ -90,7 +94,6 @@ public class ErpController {
 	}
 /////////////////////////////////////////////////////////////////////////////////////////////
 	
-
 	
 	@RequestMapping(value="storageRegist")
 	public ModelAndView storageRegist(ListData listData){
@@ -128,7 +131,7 @@ public class ErpController {
 		return storageRegistDTO;
 	}
 	
-	@RequestMapping(value="storageRegistUpdate", method=RequestMethod.POST)
+	@RequestMapping(value="storageUpdate", method=RequestMethod.POST)
 	public String update(StorageRegistDTO storageRegistDTO, RedirectAttributes rd)throws Exception{
 		String message="Fail";
 		int result=storageService.update(storageRegistDTO);
@@ -142,7 +145,7 @@ public class ErpController {
 		return "redirect:./storageRegist";
 	}
 	
-	@RequestMapping(value="storageRegistDelete")
+	@RequestMapping(value="storageDelete")
 	public String deleteStorage(String storageCode, RedirectAttributes rd)throws Exception{
 		String message="Fail";
 		int result=storageService.delete(storageCode);

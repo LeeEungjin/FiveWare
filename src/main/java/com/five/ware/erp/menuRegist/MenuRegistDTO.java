@@ -1,6 +1,12 @@
 package com.five.ware.erp.menuRegist;
 
-public class MenuRegistDTO {
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import com.five.ware.file.FileDTO;
+
+public class MenuRegistDTO{
 	
 	private String menuCode;
 	private String menuKind;
@@ -9,6 +15,22 @@ public class MenuRegistDTO {
 	private String recipe;
 	private String menuOption;
 	private int price;
+	
+	private MultipartFile [] files;
+	private List<FileDTO> fileNames;
+	
+	public MultipartFile[] getFiles() {
+		return files;
+	}
+	public void setFiles(MultipartFile[] files) {
+		this.files = files;
+	}
+	public List<FileDTO> getFileNames() {
+		return fileNames;
+	}
+	public void setFileNames(List<FileDTO> fileNames) {
+		this.fileNames = fileNames;
+	}
 	
 	public String getMenuCode() {
 		return menuCode;

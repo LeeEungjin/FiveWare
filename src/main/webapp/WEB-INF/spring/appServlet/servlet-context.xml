@@ -22,6 +22,7 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.five.ware" />
+	<context:component-scan base-package="com.five.ware.file" />
 	<context:component-scan base-package="com.five.human" />
 	<context:component-scan base-package="com.five.ware.eung.controller"/>
 	<context:component-scan base-package="com.five.ware.jh.controller"/>

@@ -20,9 +20,22 @@
 			alert(message);
 		}
 		
-		$(".mr_btn").click(function(){
-			$("#mr_frm").submit();
-		});
+ 		$(".mr_btn").click(function(){
+ 			var menuName=$("#menuName").val();
+ 			var price=$("#price").val();
+ 			var recipe=$("#recipe").val();
+ 			
+			if(menuName==""){
+				alert("메뉴명을 입력해주세요.");
+			}else if(price==""){
+				alert("가격을 입력해주세요.");
+			}else if(recipe=""){
+				alert("레시피을 입력해주세요.");
+			}else{
+				$("#mr_frm").submit();
+				$(".mr_btn").attr("data-dismiss", "modal");
+			}
+		}); 
 		
 		$(".menuUpdate").click(function(){
 			$("#mr_update_frm").submit();
@@ -99,7 +112,7 @@
 			});
 		});
 		
-		$("#checkDelete").click(function(){
+		/* $("#checkDelete").click(function(){
 			alert("click");
 			
 			for(var i=0; i<$(".menucheck").length; i++){
@@ -109,6 +122,38 @@
 				}
 			 
 			}
+		}); */
+		
+		$("#mr_checkDelete").click(function(){
+			var count=0;
+			var code="";
+			var codeAr=[];
+			
+			$(".menucheck").each(function(){
+				
+				if(this.checked){
+					code=$(this).attr("title");
+					count++;
+					codeAr.push(code);
+				}
+			});
+				if(codeAr.length<1){
+					alert("삭제할 메뉴를 선택해주세요.");
+				}else{
+			
+				alert("code Ar : "+codeAr.toString());
+				
+				$.ajax({
+					type : "POST",
+					url : "./menuRegistDelete",
+					data : {
+						"menuCode" : codeAr.toString()
+					}, success : function(data){
+						alert(count+"개의 메뉴가 삭제되었습니다.");
+						location.reload();
+					}
+					});
+				}
 		});
 		
 	});
@@ -211,17 +256,18 @@
 							    
 							    <ul class="dropdown-menu" id="test">
 							      <li class="dropdown-header">가격</li>
-							      <li><a href="#">높은 순</a></li>
-							      <li><a href="#">낮은 순</a></li>
+							      <!-- <li><a><span title="price" class="mrFilter" id="mrPriceHigh">높은 순</span></a></li> -->
+							      <li><a href="./menuRegist?order=desc">높은 순</a></li>
+							      <li><a href="./menuRegist?order=asc">낮은 순</a></li>
 							      
 							      <li class="divider"></li>
 							      <li class="dropdown-header">구분</li>
-							      <li><a href="#">커피</a></li>
-							      <li><a href="#">음료</a></li>
-							      <li><a href="#">디저트</a></li>
+							      <li><a href="./menuRegist?kind=menukind&menukind=coffee">커피</a></li>
+							      <li><a href="./menuRegist?kind=menukind&menukind=juice">음료</a></li>
+							      <li><a href="./menuRegist?kind=menukind&menukind=desert">디저트</a></li>
 							      
 							      <li class="divider"></li>
-							      <li><a href="#">검색 초기화</a></li>
+							      <li><a  href="./menuRegist"><span class="mr_cusor" id="searchReset">검색 초기화</span></a></li>
 							    </ul>
 							 </div>
 							<!-- 부가 검색 끝 -->
@@ -274,7 +320,7 @@
 				
 				<!-- 등록 버튼 -->
 					<div id="erp_jh_contents_bottom">
-						<button id="checkDelete">선택삭제</button>
+						<button id="mr_checkDelete">선택삭제</button>
 						<button class="modal_btn" data-toggle="modal" data-target="#jh_mr_Modal">신규등록</button>
 					</div>
 				<!-- 등록 버튼 끝 -->
@@ -296,13 +342,13 @@
 				        <form action="./menuRegistWrite" method="post" id="mr_frm">
 				        <div class="modal-body">
 				        	<div class="input-group input-group_modal">
-							  <span class="input-group-addon">메뉴번호</span>
-							  <input id="msg" type="text" class="form-control"  placeholder="Additional Info" name="menuCode">
+							  <span class="input-group-addon">메뉴번호*</span>
+							  <input id="menuCode" type="text" class="form-control"  placeholder="Additional Info" name="menuCode">
 							</div>
 							
 							<div class="input-group input-group_modal">
-							  <span class="input-group-addon">메뉴구분</span>
-							  <select class="form-control" id="sel1" name="menuKind">
+							  <span class="input-group-addon">메뉴구분*</span>
+							  <select class="form-control" id="sel12" name="menuKind">
 							        <option value="coffee">커피</option>
 							        <option value="juice">음료</option>
 							        <option value="desert">디저트</option>
@@ -310,13 +356,13 @@
 							</div>
 							
 							<div class="input-group input-group_modal">
-							  <span class="input-group-addon">메뉴명</span>
-							  <input id="msg" type="text" class="form-control" placeholder="Additional Info" name="menuName">
+							  <span class="input-group-addon">메뉴명*</span>
+							  <input id="menuName" type="text" class="form-control" placeholder="Additional Info" name="menuName">
 							</div>
 							
 							<div class="input-group input-group_modal">
-							  <span class="input-group-addon">가격</span>
-							  <input id="msg" type="text" class="form-control"  placeholder="Additional Info" name="price">
+							  <span class="input-group-addon">가격*</span>
+							  <input id="price" type="text" class="form-control"  placeholder="Additional Info" name="price">
 							</div>
 							
 							 <div class="input-group input-group_modal">
@@ -325,8 +371,8 @@
 							</div>
 							
 							<div class="input-group input-group_modal">
-							  <span class="input-group-addon">레시피</span>
-							  <input id="msg" type="text" class="form-control"  placeholder="Additional Info" name="recipe">
+							  <span class="input-group-addon">레시피*</span>
+							  <input id="recipe" type="text" class="form-control"  placeholder="Additional Info" name="recipe">
 							</div>
 							
 							<div class="form-group">
@@ -340,7 +386,7 @@
 				        
 				        <!-- modal footer -->
 				        <div class="modal-footer">
-				          <button type="button" class="btn btn-default mr_btn" data-dismiss="modal">등록</button>
+				          <input type="button" class="btn btn-default mr_btn"  value="등록">
 				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				        </div>
 				        </form>
