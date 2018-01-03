@@ -71,24 +71,20 @@ public class HomeController {
 	public String codeName(HttpSession session) throws Exception{
 		
 		String filePath = session.getServletContext().getRealPath("resources/code");
-		System.out.println(filePath);
 		String fileName = "code.code";
 		
-		File f = new File(filePath, fileName);
-		
-	
+		File f = new File(filePath, fileName);		
+		// 파일 읽을 준비
 			FileReader fr = new FileReader(f);
-			
+			// 파일 읽기
 			BufferedReader br = new BufferedReader(fr);
-			
+			// 한 줄을 읽어와라
 			fileName=br.readLine();
 		
-		
-		System.out.println(fileName);
 		String code=fileName;
 		char codeChar= code.charAt(0);
 		
-		String [] cod=code.split("");
+		// String [] cod=code.split("");
 		
 		code=code.substring(1);
 		int num=Integer.parseInt(code);
@@ -119,7 +115,9 @@ public class HomeController {
 		FileWriter fw = new FileWriter(f);
 		
 		fw.write(code);
+		
 		fw.flush();
+		
 		fw.close();
 		br.close();
 		fr.close();
