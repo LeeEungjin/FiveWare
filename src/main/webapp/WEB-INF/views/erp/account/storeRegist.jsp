@@ -86,7 +86,7 @@
 				code : code
 			},
 			success:function(data){
-				alert("success");
+				
 			}
 		});  
 	 });
@@ -156,6 +156,28 @@
 		  });
 	 
 	 
+		 /* 코드 */
+	  $("#eb_insertBtn").click(function(){
+			
+			$.ajax({
+				type:"GET",
+				url:"../codeName",
+				data:{  },
+				success:function(data){
+					alert(data);
+					$("#eb_code").val(data);
+				}
+			});
+		}); 
+		 
+	  //전체삭제
+		 $("#deleteBtn").click(function(){
+		 if(confirm("정말 삭제하시겠습니까 ?") == false){
+			     alert("삭제가 취소되었습니다.")   
+				 return false;
+			    }
+		
+		 });
  });
  
  
@@ -229,7 +251,7 @@
 			<div class="fw_subselected collapse in" id="sub1">
 				<ul>
 					<li><a href="#"> 지점 등록</a></li>
-					<li>예금 계좌 등록</li>
+					<li><a href="./accountRegist">예금 계좌 등록</a></li>
 					<li><a href="./tempRegist">부서 등록</a></li>
 				</ul>
 			</div>
@@ -453,9 +475,9 @@
 				<!-- page 처리 끝 -->		  
 				
 				
-						  <button class="btn btn-default">선택삭제</button>
+						  <button class="btn btn-default" id="deleteBtn">선택삭제</button>
 						  
-					      <button class="btn btn-default" data-toggle="modal" data-target="#myModal">신규등록</button>
+					      <button class="btn btn-default" data-toggle="modal" id="eb_insertBtn" data-target="#myModal">신규등록</button>
 					      
 			 
 			 
@@ -484,7 +506,7 @@
 					<table id="eb_modal_table">
 						<tr>
 						   <td>지점명 코드</td>
-						   <td><input type="text" name="code" id="eb_code"></td>
+						   <td><input type="text" name="code" id="eb_code" readonly="readonly"></td>
 						   <td>지점명</td>
 						   <td><input type="text" name="store" id="eb_store"></td>
 						   

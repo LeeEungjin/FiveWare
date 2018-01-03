@@ -8,6 +8,7 @@
   <configuration>
   	<typeAliases>
   		<typeAlias type="com.five.ware.erp.storeRegist.StoreRegistDTO" alias="storeRegistDTO"/>
+  		<typeAlias type="com.five.ware.erp.accountRegist.AccountRegistDTO" alias="accountRegistDTO"/>
   		<typeAlias type="com.five.ware.erp.tempRegist.TempRegistDTO" alias="tempRegistDTO"/>
   		<typeAlias type="com.five.ware.erp.supplier.SupplierDTO" alias="SupplierDTO"/>
   		<typeAlias type="com.five.ware.erp.human.basis.PositionDTO" alias="PositionDTO"/>

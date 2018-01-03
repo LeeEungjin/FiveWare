@@ -29,7 +29,7 @@ public class StoreRegistController {
 		ModelAndView mv=null;
 		
 		mv=storeRegistService.selectList(listData);
-		mv.setViewName("/erp/storeRegist");
+		mv.setViewName("/erp/account/storeRegist");
 		
 		return mv;
 	}

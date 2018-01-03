@@ -108,6 +108,7 @@
 
 	 });
 	 
+	 /* 코드 */
 	  $("#eb_insertBtn").click(function(){
 			
 			$.ajax({
@@ -153,7 +154,7 @@
 			<div class="fw_subselected collapse in" id="sub1">
 				<ul>
 					<li><a href="./storeRegist"> 지점 등록</a></li>
-					<li>예금 계좌 등록</li>
+					<li><a href="./accountRegist">예금 계좌 등록</a></li>
 					<li><a href="#">부서 등록</a></li>
 				</ul>
 			</div>
@@ -381,7 +382,7 @@
 						<tr>
 						
 						   <td>부서 코드</td>
-						   <td><input type="text" name="code" id="eb_tempCode"></td>
+						   <td><input type="text" name="code" id="eb_tempCode" readonly="readonly"></td>
 						</tr>
 						<tr>  
 							

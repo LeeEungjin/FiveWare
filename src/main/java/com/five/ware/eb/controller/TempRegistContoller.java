@@ -66,7 +66,7 @@ public class TempRegistContoller {
 	public ModelAndView selectList(ListData listData) throws Exception{
 		ModelAndView mv=null;
 		mv=tempRegistService.selectList(listData);
-		mv.setViewName("/erp/tempRegist");
+		mv.setViewName("/erp/account/tempRegist");
 		
 		return mv;
 	}
