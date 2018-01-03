@@ -193,7 +193,7 @@
          
          <!-- ----------2---------- -->
             <div class="fw_menu" data-toggle="collapse" data-target="#sub2" title="sub2" >
-               전표 입력
+               구매관리
             <div class="fw_arrow sub2">
                ∨
             </div>
@@ -201,9 +201,44 @@
          
          <div class="fw_subsub collapse"  id="sub2">
             <ul>
-               <li> 일반 전표 입력</li>
-               <li> 일반 관리비 입력</li>
+               <li> 주문 입력</li>
+               <li> 주문 현황 보기</li>
             </ul>
+         </div>
+         
+         <!-- ----------3---------- -->
+         <div class="fw_menu" data-toggle="collapse" data-target="#sub3" title="sub3" >
+               자재관리
+            <div class="fw_arrow sub3">
+               ∨
+            </div>
+         </div>
+         
+         <div class="fw_subsub collapse"  id="sub3">
+            <ul>
+               <li> 입고 입력</li>
+               <li> 출고</li>
+            </ul>
+         </div>
+         
+         <!-- ----------4---------- -->
+         <div class="fw_menu" data-toggle="collapse" data-target="#sub4" title="sub4" >
+               반품관리
+            <div class="fw_arrow sub4">
+               ∨
+            </div>
+         </div>
+         
+         <div class="fw_subsub collapse"  id="sub4">
+            <ul>
+               <li> 반품 입력</li>
+               <li> 불출 입력</li>
+            </ul>
+         </div>
+         
+         <!-- ----------5---------- -->
+         <div class="fw_menu"  >
+               조회
          </div>
          
       <!-- submenu menu end -->

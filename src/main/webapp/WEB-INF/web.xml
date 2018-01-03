@@ -26,7 +26,6 @@
 		</param-value>
 	</context-param>
 
-<<<<<<< HEAD
 	<filter>
 		<filter-name>URIEncoding</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -42,9 +41,6 @@
 	</filter-mapping>
 
 	
-=======
-
->>>>>>> jk6
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
