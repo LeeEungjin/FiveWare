@@ -23,11 +23,11 @@ public class MenuRegistService {
 		ModelAndView mv=new ModelAndView();
 
 		
-			int totalCount=menuRegistDAO.totalCount(listData.makeRow(), menukind);
+		int totalCount=menuRegistDAO.totalCount(listData.makeRow(), menukind);
 			
-			mv.setViewName("erp/foundation/menuRegist");
-			mv.addObject("pager", listData.makePage(totalCount));
-			mv.addObject("mr_list", menuRegistDAO.selectList(listData.makeRow(), order, menukind));
+		mv.setViewName("erp/foundation/menuRegist");
+		mv.addObject("pager", listData.makePage(totalCount));
+		mv.addObject("mr_list", menuRegistDAO.selectList(listData.makeRow(), order, menukind));
 
 		
 		return mv;

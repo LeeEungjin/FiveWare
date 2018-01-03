@@ -92,6 +92,7 @@ public class ErpController {
 		
 		return "redirect:./menuRegist";
 	}
+	
 /////////////////////////////////////////////////////////////////////////////////////////////
 	
 	
@@ -158,5 +159,4 @@ public class ErpController {
 		
 		return "redirect:./storageRegist";
 	}
-	
 }

@@ -8,81 +8,12 @@
 
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
-	<link href="${url}/resources/css/erp/storageRegist.css" rel="stylesheet">
+	<link href="${url}/resources/css/erp/enterRegist.css" rel="stylesheet">
 	<c:import url="${url}/resources/temp/ref.jsp"></c:import> 
 
 <title>Insert title here</title>
 <script type="text/javascript">
 	$(function(){
-		var message = '${message}';
-		if(message != ""){
-			alert(message);
-		}
-		
-		var kind='${pager.kind}';
-		$(".op").each(function(){
-			if($(this).val()==kind){
-				$(this).attr("selected", true);
-			}
-		});
-		
-		$(".list").click(function(){
-			var cur = $(this).attr("title");
-			var s = '${pager.search}';
-			var t = '${pager.kind}';
-			alert(cur);
-			document.sr_search_frm.curPage.value=cur;
-			document.sr_search_frm.search.value=s;
-			document.sr_search_frm.kind.value=t;
-			document.sr_search_frm.submit();
-		});
-		
-		$(".sr_btn").click(function(){
-			alert("click");
-			$("#sr_frm").submit();
-		});
-		
-		$(".storageView").click(function() {
-			var code=$(this).attr("title");
-			alert(code);
-			$.ajax({
-				data : {"storageCode" : code},
-				url : "./storageView",
-				type : "get",
-				success : function(data){
-					$(".viewCode").val(data.storageCode);
-					$(".viewName").val(data.storageName);
-					$(".viewAddr").val(data.storageAddr);
-					$(".viewOp").html(data.storageOp);
-					$(".viewImg").val(data.imgNull);
-				},
-				error : function(data){
-					alert("error");
-				}
-			});
-		});
-		
-		$(".srUpdate").click(function(){
-			$("#sr_update_frm").submit();
-		});
-		
-		$(".srDelete").click(function(){
-			var code=$(".viewCode").val();
-			alert(code);
-			$.ajax({
-				data : {"storageCode" : code},
-				url : "./storageDelete",
-				type : "get",
-				success : function(data){
-					alert("삭제 완료");
-					location.reload();
-				},
-				error : function(data){
-					alert("error");
-				}
-			});
-		});
-		
 		
 		
 	});
@@ -99,7 +30,7 @@
    
       <!-- submenu banner -->
       <div id="fw_subbanner">
-         구매/영업
+         자재관리
       </div>
       <!-- submenu banner end -->
       
@@ -115,8 +46,8 @@
             <ul>
                <li> 거래처 등록</li>
                <li> 제품 등록</li>
-               <li><a href="./menuRegist">메뉴 등록</a></li>
-               <li><a href="./storageRegist">창고 등록</a></li>
+               <li><a href="../../erp/foundation/menuRegist">메뉴 등록</a></li>
+               <li><a href="../../erp/foundation/storageRegist">창고 등록</a></li>
             </ul>
          </div>
          
@@ -163,35 +94,36 @@
 	
 	<!-- --------------------------------------------------------------------------------------------------------------- -->
 	
+	<input type="hidden" name="materKind" value="enter">
+	
 	<div id="fw_mainwrap">
 			<div id="fw_main">
-				<div class="sales_title_menu">기초 정보</div>
+				<!-- <div class="sales_title_menu">기초 정보</div>
 				<div class="sales_title_menu">구매 관리</div>
 				<div class="sales_title_menu">자재 관리</div>
 				<div class="sales_title_menu">반품 관리</div>
-				<div class="sales_title_menu">조 회</div>
+				<div class="sales_title_menu">조 회</div> -->
 			</div>
 			
 			<div id="fw_main_contents">
 				<div id="erp_jh_contents_title">
-					<div id="sr_icon">icon</div>
-					<p id="sr_title">창고등록</p>
+					<div id="er_icon">icon</div>
+					<p id="er_title">입고등록</p>
 				</div>
 				<div id="erp_jh_contents_search">
-					<div id="sr_search">
+					<div id="er_search">
 						<!-- 검색 기능 -->
 							<!-- select box -->
 							<div class="input-group">
-							<form action="./storageRegist" name="sr_search_frm" method="get">
-								<input type="hidden"  name="curPage" value="${list.curPage}">
-								<select class="form-control" id="sel1" name="kind">
-							        <option class="op" value="storagename">창고명</option>
-							        <option class="op" value="storagecode">창고코드</option>
-							        <option class="op" value="storageaddr">주소</option>
+							<form action="" name="" method="get">
+								<select class="form-control" id="sel1">
+							        <option class="op" value=""></option>
+							        <option class="op" value=""></option>
+							        <option class="op" value=""></option>
 							     </select>							
 							<!-- select box 끝 -->
 						
-						      <input name="search" type="text" class="form-control" placeholder="Search" name="search">
+						      <input name="search" type="text" class="form-control" placeholder="Search">
 						      
 						      <div class="input-group-btn">
 						        <button  id="search_btn" class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
@@ -207,90 +139,85 @@
 						<table class="table">
 						    <thead>
 						      <tr>
-						        <th>창고코드</th>
-						        <th>창고명</th>
-						        <th>개요</th>
-						        <th>주소</th>
+						        <th>입고코드</th>
+						        <th>입고일</th>
+						        <th>입고창고</th>
+						        <th>품목</th>
+						        <th>수량</th>
 						      </tr>
 						    </thead>
 						    
 						    <tbody>
-						    <c:forEach items="${sr_list}" var="sr_list">
+						   <%--  <c:forEach items="${}" var=""> --%>
 						      <tr>
-						        <td>${sr_list.storageCode}</td>
-						        <td  class="storageView"  title="${sr_list.storageCode}" id="jh_bold_text" data-toggle="modal" data-target="#jh_sr_update_Modal">${sr_list.storageName }</td>
-						        <td>${sr_list.storageOp }</td>
-						        <td>${sr_list.storageAddr }</td>
+						        <td data-toggle="modal" data-target=""></td>
+						        <td></td>
+						        <td></td>
+						        <td></td>
+						        <td></td>
 						      </tr>
-						    </c:forEach>
+						    <%-- </c:forEach> --%>
 						    </tbody>
 						 </table>
-						 
-						 <!-- pager -->
-						 	<div id="sr_pager">
-						 		  <c:if test="${pager.curBlock gt 1}">
-									<span class="list" title="${pager.startNum-1}">[이전]</span>
-								</c:if>
-								<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-									<span class="list" title="${i}">${i}</span>
-								</c:forEach>
-								<c:if test="${pager.curBlock lt pager.totalBlock}">
-									<span class="list" title="${pager.lastNum+1}">[다음]</span>
-								</c:if>
-						 	</div>
-						 <!-- pager 끝 -->
 					</div>
 				<!-- table 끝 -->
 				
 				<!-- 등록 버튼 -->
 					<div id="erp_jh_contents_bottom">
-						<button class="modal_btn" data-toggle="modal" data-target="#jh_sr_Modal">신규등록</button>
+						<button class="modal_btn" data-toggle="modal" data-target="#er_modal">신규등록</button>
 					</div>
 				<!-- 등록 버튼 끝 -->
 				
-				<!-- Modal -->
 				
-				<div class="modal fade" id="jh_sr_Modal" role="dialog">
+				<!-- Modal -->
+				<div class="modal fade" id="er_modal" role="dialog">
 				    <div class="modal-dialog modal-m">
 				      <div class="modal-content">
 				      
 				      	<!-- modal header -->
 				        <div class="modal-header">
 				          <button type="button" class="close" data-dismiss="modal">&times;</button>
-				          <h4 class="modal-title">|창고 등록</h4>
+				          <h4 class="modal-title">|입고 등록</h4>
 				        </div>
 				        <!-- modal header 끝-->
 				        
 				        <!-- modal contents -->
-				         <form action="./storagetWrite" method="post" id="sr_frm">
+				         <form action="" method="post" id="">
 				        <div class="modal-body">
 				        	<div class="input-group input-group_modal">
-							  <span class="input-group-addon">창고코드</span>
-							  <input name="storageCode" id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
+							  <span class="input-group-addon">입고코드</span>
+							  <input type="text" class="form-control" placeholder="Additional Info">
+							</div>
+							
+							<div class="input-group input-group_modal">
+							  <span class="input-group-addon">입고일</span>
+							  <input type="date" class="form-control">
+							</div>
+							
+							<div class="input-group input-group_modal">
+							  <span class="input-group-addon">거래처</span>
+							  <input type="text" class="form-control" placeholder="Additional Info">
+							</div>
+							
+							<div class="input-group input-group_modal">
+							  <span class="input-group-addon">부서</span>
+							  <input type="text" class="form-control" placeholder="Additional Info">
+							</div>
+							
+							<div class="input-group input-group_modal">
+							  <span class="input-group-addon">담당자</span>
+							  <input type="text" class="form-control" placeholder="Additional Info">
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">창고명</span>
-							  <input name="storageName" id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
+							  <input type="text" class="form-control" placeholder="Additional Info">
 							</div>
 							
 							<div class="input-group input-group_modal">
-							  <span class="input-group-addon">개요</span>
-							   <textarea name="storageOp" class="form-control form-control_area" rows="5" id="comment"></textarea>
+							  <span class="input-group-addon">비고</span>
+							   <textarea class="form-control form-control_area" rows="5" id="comment"></textarea>
 							</div>
-							
-							<div class="input-group input-group_modal">
-							  <span class="input-group-addon">주소</span>
-							  <input name="storageAddr" id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
-							</div>
-							
-							<div class="input-group input-group_modal">
-							  <span class="input-group-addon">사진</span>
-							  <div id="sr_img_div">
-							  	<input type="text" name="imgNull">
-							  </div>
-							</div>
-							
 				        </div>
 				        <!-- modal contents 끝-->
 				        
@@ -309,52 +236,60 @@
 				
 				<!-- 수정 Modal -->
 				
-				<div class="modal fade" id="jh_sr_update_Modal" role="dialog">
+				<div class="modal fade" id="er_update_modal" role="dialog">
 				    <div class="modal-dialog modal-m">
 				      <div class="modal-content">
 				      
 				      	<!-- modal header -->
 				        <div class="modal-header">
 				          <button type="button" class="close" data-dismiss="modal">&times;</button>
-				          <h4 class="modal-title">|창고 등록</h4>
+				          <h4 class="modal-title">|입고 등록</h4>
 				        </div>
 				        <!-- modal header 끝-->
 				        
 				        <!-- modal contents -->
-				        <form action="./storageUpdate" method="post" id="sr_update_frm">
+				         <form action="" method="post" id="">
 				        <div class="modal-body">
 				        	<div class="input-group input-group_modal">
-							  <span class="input-group-addon">창고코드</span>
-							  <input readonly="readonly" name="storageCode" id="msg" type="text" class="form-control viewCode"  placeholder="Additional Info">
+							  <span class="input-group-addon">입고코드</span>
+							  <input type="text" class="form-control" placeholder="Additional Info">
+							</div>
+							
+							<div class="input-group input-group_modal">
+							  <span class="input-group-addon">입고일</span>
+							  <input type="date" class="form-control">
+							</div>
+							
+							<div class="input-group input-group_modal">
+							  <span class="input-group-addon">거래처</span>
+							  <input type="text" class="form-control" placeholder="Additional Info">
+							</div>
+							
+							<div class="input-group input-group_modal">
+							  <span class="input-group-addon">부서</span>
+							  <input type="text" class="form-control" placeholder="Additional Info">
+							</div>
+							
+							<div class="input-group input-group_modal">
+							  <span class="input-group-addon">담당자</span>
+							  <input type="text" class="form-control" placeholder="Additional Info">
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">창고명</span>
-							  <input name="storageName" id="msg" type="text" class="form-control viewName"placeholder="Additional Info">
+							  <input type="text" class="form-control" placeholder="Additional Info">
 							</div>
 							
 							<div class="input-group input-group_modal">
-							  <span class="input-group-addon">개요</span>
-							   <textarea name="storageOp" class="viewOp form-control form-control_area" rows="5" id="comment"></textarea>
+							  <span class="input-group-addon">비고</span>
+							   <textarea class="form-control form-control_area" rows="5" id="comment"></textarea>
 							</div>
-							
-							<div class="input-group input-group_modal">
-							  <span class="input-group-addon">주소</span>
-							  <input id="msg" type="text" class="form-control viewAddr" name="storageAddr" placeholder="Additional Info">
-							</div>
-							
-							<div class="input-group input-group_modal">
-							  <span class="input-group-addon">사진</span>
-							  <div id="sr_img_div"><input type="text" class="viewImg" name="imgNull"></div>
-							</div>
-							
 				        </div>
 				        <!-- modal contents 끝-->
 				        
 				        <!-- modal footer -->
 				        <div class="modal-footer">
-				          <button type="button" class="btn btn-default srUpdate" data-dismiss="modal">수정</button>
-				          <button type="button" class="btn btn-default srDelete" data-dismiss="modal">삭제</button>
+				          <button type="button" class="btn btn-default" data-dismiss="modal">등록</button>
 				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				        </div>
 				        </form>
