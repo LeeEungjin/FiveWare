@@ -22,7 +22,11 @@
 
   	
 <<<<<<< HEAD
+<<<<<<< HEAD
   	<!-- <select id="selectFile" parameterType="int" resultType="com.five.ware.erp.notice.FileDTO">
+=======
+  	<select id="selectFile" parameterType="int" resultType="com.five.ware.file.FileDTO">
+>>>>>>> jihyun10
   		select* from upload where num=#{num}
   	</select> -->
   	
