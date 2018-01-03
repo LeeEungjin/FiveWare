@@ -27,7 +27,14 @@ public class NoticeController {
 	@RequestMapping(value="noticeList")
 	public ModelAndView selectList(ListData listData, ModelAndView mv, String part) throws Exception{
 		mv = noticeService.selectList(listData);
+		
+		return mv;
+	}
+
+	@RequestMapping(value="noticeAjax", method=RequestMethod.POST)
+	public ModelAndView selectPart(ListData listData, ModelAndView mv, String part) throws Exception	{
 		mv = noticeService.part(listData, part);
+		
 		return mv;
 	}
 	

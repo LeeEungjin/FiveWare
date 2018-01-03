@@ -18,51 +18,50 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link href="${url}/resources/css/notice/notice.css" rel="stylesheet">
 <script type="text/javascript">
-	$(function(){
+	$(function() {
 		var message = '${message}';
-		if(message != '')	{
+		if (message != '') {
 			alert(message);
 		}
-		
-		$(".list").click(function(){
+
+		$(".list").click(function() {
 			var cur = $(this).attr("title");
 			var s = '${pager.search}';
 			var t = '${pager.kind}';
-			document.frm.curPage.value=cur;
-			document.frm.search.value=s;
-			document.frm.kind.value=t;
+			document.frm.curPage.value = cur;
+			document.frm.search.value = s;
+			document.frm.kind.value = t;
 			document.frm.submit();
 		});
-		var acc = $(".acc").attr("title");
-		$(".acc").click(function(){
+		var part = $(".acc").attr("title");
+		$(".acc").click(function() {
 			$.ajax({
-				url: "noticeList.jsp",
-				type: "post",
-				data: {part: acc},
-				dataType: "text",
-				success: function(data){
-					console.log(data);
+				url : "noticeAjax",
+				type : "post",
+				data : {
+					part : part
 				},
-				error: function(data){
-					
+				success : function(data) {
+
+					$(".notice_jk_listBox").load(data);
+				},
+				error : function(data) {
+					alert("요청하신 자료가 없습니다.");
 				}
 			});
 		});
 	});
-			
-
-
 </script>
 <style type="text/css">
-	.list{
-		cursor: pointer;
-	}
+.list {
+	cursor: pointer;
+}
 </style>
 </head>
 <body>
- 
+
 	<c:import url="${url}/resources/temp/headerExample.jsp" />
-     
+
 	<div id="fw_container">
 
 		<div id="login_after_wrap">
@@ -75,13 +74,15 @@
 
 			</div>
 			<form action="./noticeList" name="frm" method="post">
-			<input type="hidden" name="curPage" value="1">
+				<input type="hidden" name="curPage" value="1">
 				<div id="login_after_middle">
 					<div id="menu_wrap">
 						<!-- 부서별 링크 -->
 						<div class="notice_jk_partBox">
-							<a href="noticeList" title="회계부" class="acc">회계부</a> <a href="noticeList" title="총무부" class="gen">총무부</a> <a href="noticeList" title="인사부" class="gre">인사부</a> 
-							<a href="noticeList" title="영업/구매부" class="bp">영업/구매부</a>
+							<a href="noticeAjax" title="회계부" class="acc">회계부</a> <a
+								href="noticeAjax" title="총무부" class="acc">총무부</a> <a
+								href="noticeAjax" title="인사부" class="acc">인사부</a> <a
+								href="noticeAjax" title="영업/구매부" class="acc">영업/구매부</a>
 						</div>
 
 						<!-- 검색창 -->
@@ -124,14 +125,16 @@
 								<c:if test="${pager.curBlock gt 1}">
 									<span class="list" title="${pager.startNum-1}">[이전]</span>
 								</c:if>
-								<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+								<c:forEach begin="${pager.startNum}" end="${pager.lastNum}"
+									var="i">
 									<span class="list" title="${i}">${i}</span>
 								</c:forEach>
 								<c:if test="${pager.curBlock lt pager.totalBlock}">
 									<span class="list" title="${pager.lastNum+1}">[다음]</span>
 								</c:if>
 							</div>
-							<a href="noticeWrite" class="btn btn-default" id="writeBtn">신규 등록</a>
+							<a href="noticeWrite" class="btn btn-default" id="writeBtn">신규
+								등록</a>
 						</div>
 					</div>
 

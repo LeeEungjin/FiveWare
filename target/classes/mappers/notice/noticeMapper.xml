@@ -45,8 +45,11 @@
   		select * from notice where num=#{num}
   	</select>
   	
-  	<select id="selectPart" parameterType="java.util.List" resultType="com.five.ware.erp.notice.NoticeDTO">
-  		select * from notice where part=#{part}
+  	<select id="selectPart" parameterType="com.five.ware.erp.notice.RowNum" resultType="com.five.ware.erp.notice.NoticeDTO">
+  		select * from
+  		(select rownum R, N.* from
+  		(select * from notice where part=#{part} order by num desc) N)
+        where R between #{startRow} and #{lastRow}
   	</select>
   	
   	<update id="update" parameterType="com.five.ware.erp.notice.NoticeDTO">

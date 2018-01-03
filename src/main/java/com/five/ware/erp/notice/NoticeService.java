@@ -17,10 +17,6 @@ public class NoticeService {
 
 	@Inject
 	private NoticeDAO noticeDAO;
-	@Inject
-	private FileDAO fileDAO;
-	@Inject
-	private FileSaver fileSaver;
 	
 	public ModelAndView selectList(ListData listData) throws Exception	{
 		RowNum rowNum = listData.makeRow();
@@ -42,18 +38,10 @@ public class NoticeService {
 	}
 	
 	public int insert(NoticeDTO noticeDTO, HttpSession session) throws Exception	{
-		MultipartFile [] files = noticeDTO.getFiles();
+		
 		List<FileDTO> names = new ArrayList<FileDTO>();
 		int result = noticeDAO.insert(noticeDTO);
-		for(MultipartFile multipartFile : files)	{
-			String name = fileSaver.fileSave(multipartFile, session, "upload");
-			FileDTO fileDTO = new FileDTO();
-			fileDTO.setNum(noticeDTO.getNum());
-			fileDTO.setFileName(name);
-			fileDTO.setOriName(multipartFile.getOriginalFilename());
-			names.add(fileDTO);
-		}
-		fileDAO.insert(names);
+		
 		return result;
 	}
 	
@@ -73,8 +61,8 @@ public class NoticeService {
 		Pager pager = listData.makePage(totalCount);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("pager", pager);
-		mv.addObject("list", noticeDAO.selectList(rowNum));
-		mv.setViewName("notice/noticeList");
+		mv.addObject("list", noticeDAO.part(rowNum));
+		mv.setViewName("notice/noticeAjax");
 		
 		return mv;
 	}

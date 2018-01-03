@@ -51,8 +51,9 @@ public class NoticeDAO {
 		return sqlSession.delete(namespace+"delete", num);
 	}
 	
-	public List<NoticeDTO> part(String part) throws Exception	{
-		return sqlSession.selectList(namespace+"selectPart", part);
+	public List<NoticeDTO> part(RowNum rowNum) throws Exception	{
+		
+		return sqlSession.selectList(namespace+"selectPart", rowNum);
 	}
 
 }
