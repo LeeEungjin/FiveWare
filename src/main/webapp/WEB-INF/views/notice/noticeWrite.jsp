@@ -20,6 +20,10 @@
 	rel="stylesheet">
 <script type="text/javascript">
 	$(function(){
+		$("#writeBtn").click(function(){
+			$("#frm").submit();
+		});
+		
 		var index = 0;
 		var count = 0;
 		$("#add").click(function(){
@@ -39,6 +43,10 @@
 			$("#"+id).remove();
 			index--;
 		});
+		
+		$("#writeBtn").click(function(){
+			document.frm.submit();
+		});
 	});
 </script>
 </head>
@@ -56,7 +64,7 @@
 					class="notice_jk_subTitle">각 부서별 소식을 알려드립니다.</span>
 
 			</div>
-			<form action="./noticeWrite" method="post" enctype="multipart/form-data">
+			<form action="./noticeWrite" method="post" name="frm" id="frm" enctype="multipart/form-data">
 				<div id="login_after_middle">
 					<div id="menu_wrap">
 						<div class="notice_jk_tableBox">
@@ -67,7 +75,7 @@
 								<tr>
 									<td>부서</td>
 									<td><select>
-											<option>회계부</option>
+											<option selected="selected">회계부</option>
 											<option>총무부</option>
 											<option>인사부</option>
 											<option>영업/구매부</option>
@@ -78,8 +86,7 @@
 								<tr>
 									<td>제목</td>
 									<td><input type="text" name="title" id="title"></td>
-									<td>등록일</td>
-									<td><input type="text" name="title" id="title"></td>
+									
 								</tr>
 								<tr>
 									<td colspan="4">에디터가 들어갈 자리

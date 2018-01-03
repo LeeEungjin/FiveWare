@@ -6,6 +6,7 @@ public class RowNum {
 	private int lastRow;
 	private String kind;
 	private String search;
+	
 	public int getStartRow() {
 		return startRow;
 	}

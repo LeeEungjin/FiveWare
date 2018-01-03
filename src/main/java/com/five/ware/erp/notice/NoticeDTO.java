@@ -1,6 +1,10 @@
 package com.five.ware.erp.notice;
 
-public class NoticeDTO {
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
+public class NoticeDTO{
 
 	private int num;
 	private String part;
