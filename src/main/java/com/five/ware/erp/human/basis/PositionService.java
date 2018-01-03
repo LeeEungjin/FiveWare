@@ -18,8 +18,8 @@ public class PositionService {
 		return result;
 	}
 	
-	public List<PositionDTO> positionList() throws Exception{
-		List<PositionDTO> ar = positionDAO.positionList();
+	public List<PositionDTO> positionList(String search) throws Exception{
+		List<PositionDTO> ar = positionDAO.positionList(search);
 		
 		return ar;
 	}

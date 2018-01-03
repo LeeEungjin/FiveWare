@@ -1,5 +1,9 @@
 @CHARSET "UTF-8";
 
+.mrFilter{
+	cursor: pointer;
+}
+
 .sales_title_menu{
 	width: 10%;
 	height: 30%;

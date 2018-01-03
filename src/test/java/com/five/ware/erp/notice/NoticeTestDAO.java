@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import org.junit.Test;
 
 import com.five.ware.AbstractTest;
+import com.five.ware.util.RowNum;
 
 
 public class NoticeTestDAO extends AbstractTest {
@@ -31,11 +32,10 @@ public class NoticeTestDAO extends AbstractTest {
 		RowNum rowNum = new RowNum();
 		rowNum.setStartRow(1);
 		rowNum.setLastRow(10);
-		rowNum.setKind("title");
-		rowNum.setSearch("suzi1");
 		List<NoticeDTO> ar = noticeDAO.selectList(rowNum);
 		for(NoticeDTO noticeDTO : ar)	{
 			System.out.println(noticeDTO.getNum());
+			System.out.println(noticeDTO.getPart());
 			System.out.println(noticeDTO.getTitle());
 		}
 		assertTrue(ar.size()>0);

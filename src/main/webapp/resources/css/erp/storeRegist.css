@@ -34,7 +34,7 @@
 	height: 5%;
 	float:left;
 	background-color: yellow;
-	  font-weight: bold;
+	font-weight: bold;
     font-size: 16px;
     line-height: 324%;
     padding-left: 6%;
@@ -63,7 +63,7 @@
 }
 
 .fw_subsub{
-		width: 70%;
+	width: 70%;
 	background-color: #d1eaf1;
 	margin: 0 auto;
 	padding-top:1%;
@@ -71,8 +71,8 @@
 
 #fw_main{
 	background-color: green;
-		height: 8.5%;
-		width: 100%;
+	height: 8.5%;
+	width: 100%;
 }
 
 #fw_mainwrap{
@@ -138,13 +138,15 @@ td.eb_row:hover {
 	height:20%;
     background-color :#EAEAEA;
 	margin-top: 5px;
+	margin-left: 50px;
 }
 
-#eb_contents_box_table{
-	width: 90%;
-	height: 65%;
-	margin-top: 70px;
+#eb_contents_box_div{
+	
+    width : 50%;
+    height : 20%;
 	margin: 0 auto;
+	margin-top : 20px;
 }
 .eb_text{
 	font-size: 20px;
@@ -154,11 +156,17 @@ td.eb_row:hover {
 
 
 #eb_contents_table{
-	width: 70%;
+	width:80%;
 	height:60%;
 	margin-top : 20px;
 }
 
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.1;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+}
 #eb_table_head{
 	background-color: #4E2800;
 	color:white;
@@ -177,14 +185,31 @@ td.eb_row:hover {
 	width :100%;
 	height: 30px;
 }
-.modal-content{
-	width: 700px;
+#sModel{
+	width: 900px;
 	height: 500px;
 	
+}
+
+#sModel_1{
+	width: 900px;
+	height: 500px;
+	
+}
+
+#tModal{
+	width:600px;
+	height:400px;
 }
 
 #eb_modal_table{
 	width:100%;
 	height:300px;
 	
+}
+
+#eb_modal_tableT{
+	width: 100%;
+	height: 200px;
+	margin-left : 100px;
 }

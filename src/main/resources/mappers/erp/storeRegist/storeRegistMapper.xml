@@ -12,7 +12,19 @@
   <select id="selectList" parameterType="com.five.ware.util.RowNum" resultType="storeRegistDTO">
    	select * from
 	(select rownum R, S.*from
-	(select * from storeregist order by code desc) S)
+	(select * from storeregist 
+		<if test="kind=='code'"> 
+			where code like '%'||#{search}||'%' 
+		</if>
+	
+		<if test="kind=='store'"> 
+			where store like '%'||#{search}||'%' 
+		</if>
+	
+		<if test="kind=='name'"> 
+			where name like '%'||#{search}||'%' 
+		</if>
+	 order by code desc) S)
 	where R between #{startRow} and #{lastRow}
   </select>
   
@@ -23,5 +35,13 @@
   <select id="selectOne"  resultType="storeRegistDTO">
    select * from storeregist where code=#{code}
   </select>
+  
+  <delete id="delete">
+   delete storeregist where code=#{code}
+  </delete>
+  
+  <update id="update">
+  update storeregist set store=#{store},storeNum=#{storeNum},name=#{name},addr=#{addr},tel=#{tel},email=#{email},bank=#{bank},account=#{account},time=#{time} where code=#{code}
+  </update>
   </mapper>
  

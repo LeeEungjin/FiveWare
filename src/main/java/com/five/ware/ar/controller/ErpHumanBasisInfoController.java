@@ -25,8 +25,8 @@ public class ErpHumanBasisInfoController {
 	PositionService positionService;
 	
 	@RequestMapping(value="positionPlus", method=RequestMethod.GET)
-	public ModelAndView positionPlus(ModelAndView mv) throws Exception{ 
-		mv.addObject("positionList", positionService.positionList());
+	public ModelAndView positionPlus(ModelAndView mv,String search) throws Exception{ 
+		mv.addObject("positionList", positionService.positionList(search));
 	    mv.setViewName("human/basisInfo/positionPlus");
 		
 		return mv;

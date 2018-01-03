@@ -16,7 +16,19 @@
 
 	$(function(){
 		$("#positionBtn").click(function(){
-			positionFrm.submit();
+			var rank = $("#porank").val();
+			var ranking=$("#poranking").val();
+				
+			if(rank==""){
+				alert("직책명을 입력하십시오.");
+			}else if(ranking==""){
+				alert("직책순위를 입력하십시오.");
+			}else{
+				$(this).attr("data-dismiss", "modal");
+				 positionFrm.submit();
+				
+			}
+			
 		});
 		
 		$("#UpdateBtn").click(function(){
@@ -41,17 +53,6 @@
 			});
 		});
 		
-	/* 	var code ="";
-		var count=0;
-		$(".ar_pselect").click(function(){
-			
-			code=$(this).attr("id");
-			
-			alert(code);
-			
-		
-
-		}); */
 		
 		$("#ar_deleteBtn").click(function(){
 			var count = 0;
@@ -81,6 +82,19 @@
 			});
 		});
 		
+		$("#ar_insertBtn").click(function(){
+			
+			$.ajax({
+				type:"GET",
+				url:"../../codeName",
+				data:{  },
+				success:function(data){
+					$("#pocode").val(data);
+				}
+			});
+		});
+
+	
 	});
 </script>
 
@@ -185,10 +199,12 @@
 			<div class="ar_plusSearchWrap">
 				<div class="ar_blank"></div>
 				
+			<form action="positionPlus" method="GET">
 				<div class="ar_plusSearch">
 					직급명  <input type="text" name="search" id="ar_psearch">
-					<input type="button" value="검색" id="ar_psearchBtn">
+					<input type="submit" value="검색" id="ar_psearchBtn">
 				</div>
+			</form>
 			</div>
 			
 			<div class="ar_plusDivWrap">
@@ -236,18 +252,18 @@
 					        <div class="modal-body">
 					        	<div class="ar_positionInsert" >
 					        		<span class="ar_positiontext">직책코드</span>
-					        		<input type="text" name="code" class="arin_pcodeInput1">
+					        		<input type="text" name="code" class="arin_pcodeInput1" id="pocode">
 					        		<input type="button" value="중복 여부" id="pcode_btn">
 					        	</div>
 					        	
 					        	<div class="ar_positionInsert" >
 					        		<span class="ar_positiontext1">직책명</span>
-					        		<input type="text" name="rank" class="arin_pcodeInput">
+					        		<input type="text" name="rank" class="arin_pcodeInput" id="porank">
 					        	</div>
 					        	
 					        	<div class="ar_positionInsert" >
 					        		<span class="ar_positiontext">직책순위</span>
-					        		<input type="text" name="ranking" class="arin_pcodeInput">
+					        		<input type="text" name="ranking" class="arin_pcodeInput" id="poranking">
 					        	</div>
 							
 					        </div>
@@ -255,7 +271,7 @@
 					        
 					        <!-- modal footer -->
 					        <div class="modal-footer">
-					          <button type="button" class="btn btn-default" data-dismiss="modal" id="positionBtn">등록</button>
+					          <button type="button" class="btn btn-default" data-dismiss="" id="positionBtn">등록</button>
 					          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					        </div>
 					      	<!-- modal footer 끝-->
