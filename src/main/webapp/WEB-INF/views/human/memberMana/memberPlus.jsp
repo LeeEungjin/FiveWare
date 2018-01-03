@@ -8,95 +8,9 @@
 <c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 <c:import url="${url}/resources/temp/ref.jsp"></c:import> 
  
- <link href="${url}/resources/css/human/basisInfo/positionPlus.css" rel="stylesheet">
+ <link href="${url}/resources/css/human/memberMana/memberPlus.css" rel="stylesheet">
 
 <title>Insert title here</title>
-
-<script type="text/javascript">
-
-	$(function(){
-		$("#positionBtn").click(function(){
-			var rank = $("#porank").val();
-			var ranking=$("#poranking").val();
-				
-			if(rank==""){
-				alert("직책명을 입력하십시오.");
-			}else if(ranking==""){
-				alert("직책순위를 입력하십시오.");
-			}else{
-				$(this).attr("data-dismiss", "modal");
-				 positionFrm.submit();
-				
-			}
-			
-		});
-		
-		$("#UpdateBtn").click(function(){
-			positionFrm2.submit();
-		});
-		
-		$(".ar_code").click(function(){
-			var code = $(this).html().trim();
-			alert(code);
-			
-			$.ajax({
-				type:"GET",
-				url:"./positionUpdate",
-				data:{
-					"code" : code
-				}, success:function(data){
-					alert(data);
-					$("#ppcode").val(data.code);
-					$("#ppname").val(data.rank);
-					$("#ppranking").val(data.ranking);
-				}
-			});
-		});
-		
-		
-		$("#ar_deleteBtn").click(function(){
-			var count = 0;
-			var code="";
-			var cod=[];
-			
-			$(".ar_pselect").each(function(d){
-				if(this.checked){
-					code=$(this).attr("id");
-					count++;
-					cod.push(code);
-				}
-			});
-					alert(cod.toString());
-				$.ajax({
-					type: "POST",
-					url: "./positionDelete",
-					data:{
-						"code" : cod.toString()
-					}, success:function(data){
-						 alert(count+"개의 직책이 삭제되었습니다.");
-					
-						 location.reload();
-				
-				}
-			
-			});
-		});
-		
-		$("#ar_insertBtn").click(function(){
-			
-			$.ajax({
-				type:"GET",
-				url:"../../codeName",
-				data:{  },
-				success:function(data){
-					$("#pocode").val(data);
-				}
-			});
-		});
-
-	
-	});
-</script>
 
 </head>
 <body>
@@ -114,14 +28,14 @@
 		<!-- submenu banner end -->
 		
 		<!-- submenu menu -->
-			<div class="fw_menu fw_selected" data-toggle="collapse" data-target=".fw_subselected" title="sub1">
+			<div class="fw_menu" data-toggle="collapse" data-target=".fw_subselected" title="sub1">
 				기초정보
 				<div class="fw_arrow sub1">
-					∧
+					∨
 				</div>
 			</div>
 			
-			<div class="fw_subselected collapse in" id="sub1">
+			<div class="fw_subselected collapse" id="sub1">
 				<ul>
 					<li> <a href="positionPlus">직책 등록 </a></li>
 					<li> <a href="salPlus">급여 등록</a> </li>
@@ -129,16 +43,16 @@
 			</div>
 			
 			<!-- ----------2---------- -->
-				<div class="fw_menu" data-toggle="collapse" data-target="#sub2" title="sub2" >
+				<div class="fw_menu fw_selected" data-toggle="collapse" data-target="#sub2" title="sub2" >
 					사원관리
 				<div class="fw_arrow sub2">
-					∨
+					∧
 				</div>
 			</div>
 			
-			<div class="fw_subsub collapse"  id="sub2">
+			<div class="fw_subsub collapse in"  id="sub2">
 				<ul>
-					<li><a href="../../human/memberMana/memberPlus"> 사원 등록</a> </li>
+					<li><a href="memberPlus"> 사원 등록</a> </li>
 					<li> 급여 등록 </li>
 					<li> 퇴직자 </li>
 				</ul>
@@ -193,7 +107,7 @@
 			</div>
 			
 			<div class="ar_plusTitle">
-				<p id="ar_plustext">직급 등록</p>
+				<p id="ar_plustext">사원 등록</p>
 			</div>
 			
 			<div class="ar_plusSearchWrap">
@@ -201,7 +115,7 @@
 				
 			<form action="positionPlus" method="GET">
 				<div class="ar_plusSearch">
-					직급명  <input type="text" name="search" id="ar_psearch">
+					사원명  <input type="text" name="search" id="ar_psearch">
 					<input type="submit" value="검색" id="ar_psearchBtn">
 				</div>
 			</form>
@@ -209,22 +123,26 @@
 			
 			<div class="ar_plusDivWrap">
 				<div class="ar_titleDiv">
-					<div class="ar_titleCheck ar_titleDiv1" ><input type="checkbox">	</div>
-					<div class="ar_titleCode ar_titleDiv1"> 직급코드 </div>
-					<div class="ar_titleName ar_titleDiv1"> 직급명 </div>
-					<div class="ar_titleRank ar_titleDiv1"> 직급순위 </div>
-					<div class="ar_titleUse ar_titleDiv1"> 사용여부 </div>					
-					<div class="ar_titleOther ar_titleDiv1"> 비고</div>
+					<div class="ar_memberNum ar_titleDiv1" > 사번	</div>
+					<div class="ar_memberName ar_titleDiv1"> 성명 </div>
+					<div class="ar_memberDepa ar_titleDiv1"> 부서 </div>
+					<div class="ar_memberRank ar_titleDiv1"> 직급 </div>
+					<div class="ar_memberBirth ar_titleDiv1"> 생년월일 </div>		
+					<div class="ar_memberDate ar_titleDiv1"> 입사일 </div>	
+					<div class="ar_memberDiff ar_titleDiv1"> 근속년수 </div>				
+					<div class="ar_memberOther ar_titleDiv1"> 비고</div>
 				</div>
 				
 				<c:forEach items="${positionList }" var="list">
 					<div class="ar_listDiv">
-						<div class="ar_titleCheck ar_listDiv1" ><input type="checkbox"  class="ar_pselect" id="${list.code}">	</div>
-						<div class="ar_titleCode ar_listDiv1 ar_code"   id="pcode" data-toggle="modal" data-target="#ar_positionUpdate" > ${list.code }</div>
-						<div class="ar_titleName ar_listDiv1" id="pname"> ${list.rank } </div>
-						<div class="ar_titleRank ar_listDiv1" id="prank"> ${list.ranking } </div>
-						<div class="ar_titleUse ar_listDiv1" id="puse"> ${list.use } </div>					
-						<div class="ar_titleOther ar_listDiv1" id="pother">${list.other } </div>
+						<div class="ar_memberNum ar_titleDiv1" > 사번	</div>
+						<div class="ar_memberName ar_titleDiv1"> 성명 </div>
+						<div class="ar_memberDepa ar_titleDiv1"> 부서 </div>
+						<div class="ar_memberRank ar_titleDiv1"> 직급 </div>
+						<div class="ar_memberBirth ar_titleDiv1"> 생년월일 </div>		
+						<div class="ar_memberDate ar_titleDiv1"> 입사일 </div>	
+						<div class="ar_memberDiff ar_titleDiv1"> 근속년수 </div>				
+						<div class="ar_memberOther ar_titleDiv1"> 비고</div>
 					</div>
 				</c:forEach>
 			</div>
