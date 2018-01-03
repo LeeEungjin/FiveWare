@@ -1,6 +1,8 @@
 package com.five.ware.erp.human.basis;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -20,8 +22,12 @@ public class PositionDAO {
 		return result;
 	}
 	
-	public List<PositionDTO> positionList() throws Exception{
-		List<PositionDTO> ar = sqlSession.selectList(NAMESPACE+"positionList");
+	public List<PositionDTO> positionList(String search) throws Exception{
+		Map<String, String> map = new HashMap<String, String>();
+		
+		map.put("search", search);
+		
+		List<PositionDTO> ar = sqlSession.selectList(NAMESPACE+"positionList", map);
 		
 		return ar ;
 		

@@ -10,11 +10,12 @@
   		insert into rankregist values(rank_seq.nextval, #{code}, #{rank}, #{ranking}, '사용', '')
   </insert>
   
-  <select id="positionList"  resultType="PositionDTO">
-  		select * from rankregist order by num desc 
-  		<if test="search != '' " >
-  			where rank like '%'||#{search}||'%'
+  <select id="positionList"  parameterType="java.util.Map" resultType="PositionDTO">
+  		select * from rankregist 
+  		<if test="search != null" >
+  			where rank like '%'||#{search}||'%' 
   		</if>
+  		order by num desc 
   </select>
   
   <select id="positionOne" parameterType="String" resultType="PositionDTO">

@@ -80,6 +80,18 @@
 			
 			});
 		});
+		
+		$("#ar_insertBtn").click(function(){
+			
+			$.ajax({
+				type:"GET",
+				url:"../../codeName",
+				data:{  },
+				success:function(data){
+					$("#pocode").val(data);
+				}
+			});
+		});
 
 	
 	});
@@ -239,7 +251,7 @@
 					        <div class="modal-body">
 					        	<div class="ar_positionInsert" >
 					        		<span class="ar_positiontext">직책코드</span>
-					        		<input type="text" name="code" class="arin_pcodeInput1">
+					        		<input type="text" name="code" class="arin_pcodeInput1" id="pocode">
 					        		<input type="button" value="중복 여부" id="pcode_btn">
 					        	</div>
 					        	
