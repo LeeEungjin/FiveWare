@@ -85,10 +85,10 @@
 						<!-- 부서별 링크 -->
 						<div class="notice_jk_partBox" >
 							<a href="./noticeList?part=회계부" title="회계부" class="acc">회계부</a> 
-							<a href="#" title="총무부" class="acc">총무부</a> 
-							<a href="#" title="인사부" class="acc" >인사부</a> 
-							<a href="#" title="영업/구매부" class="acc">영업/구매부</a>
-							<a href="#" title="마케팅부" class="acc">마케팅부</a>
+							<a href="./noticeList?part=총무부" title="총무부" class="acc">총무부</a> 
+							<a href="./noticeList?part=인사부" title="인사부" class="acc" >인사부</a> 
+							<a href="./noticeList?part=영업/구매부" title="영업/구매부" class="acc">영업/구매부</a>
+							<a href="./noticeList?part=마케팅부" title="마케팅부" class="acc">마케팅부</a>
 						</div>
 
 						<!-- 검색창 -->

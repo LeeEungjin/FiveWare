@@ -31,17 +31,17 @@ public class NoticeController {
 	//selectList
 	@RequestMapping(value="noticeList")
 	public ModelAndView selectList(ListData listData, ModelAndView mv, String part) throws Exception{
-		mv = noticeService.selectList(listData);
+		mv = noticeService.selectList(listData, part);
 		
 		return mv;
 	}
 
-	@RequestMapping(value="noticeAjax", method=RequestMethod.GET)
+	/*@RequestMapping(value="noticeAjax", method=RequestMethod.GET)
 	@ResponseBody
 	public ModelAndView selectPart(ListData listData, String part, ModelAndView mv, RedirectAttributes rd) throws Exception	{
 		mv = noticeService.part(listData, part);
 		return mv;
-	}
+	}*/
 	
 	@RequestMapping(value="noticeView")
 	public String noticeView(Model model, @RequestParam(defaultValue="0", required=false)int num) throws Exception{

@@ -13,8 +13,6 @@
 		</param-value>
 	</context-param>
 
-<<<<<<< HEAD
-=======
 
 	<filter>
 		<filter-name>URIEncoding</filter-name>
@@ -24,14 +22,7 @@
 			<param-value>UTF-8</param-value>
 		</init-param>
 	</filter>
->>>>>>> jk7
 
-
-	
-<<<<<<< HEAD
-=======
-
->>>>>>> jk7
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

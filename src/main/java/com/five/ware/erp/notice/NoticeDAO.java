@@ -20,12 +20,24 @@ public class NoticeDAO {
 	private SqlSession sqlSession;
 	private static final String namespace="noticeMapper.";
 	
-	public int totalCount(RowNum rowNum) throws Exception	{
-		return sqlSession.selectOne(namespace+"totalCount", rowNum);
+	public int totalCount(RowNum rowNum, String part) throws Exception	{
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("kind", rowNum.getKind());
+		map.put("search", rowNum.getSearch());
+		map.put("part", part);
+		
+		return sqlSession.selectOne(namespace+"totalCount", map);
 	}
 	
-	public List<NoticeDTO> selectList(RowNum rowNum) throws Exception	{
-		return sqlSession.selectList(namespace+"selectList", rowNum);
+	public List<NoticeDTO> selectList(RowNum rowNum, String part) throws Exception	{
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("kind", rowNum.getKind());
+		map.put("search", rowNum.getSearch());
+		map.put("startRow", rowNum.getStartRow());
+		map.put("lastRow", rowNum.getLastRow());
+		map.put("part", part);
+		return sqlSession.selectList(namespace+"selectList", map);
 	}
 	
 	public NoticeDTO selectOne(int num) throws Exception	{
@@ -53,11 +65,14 @@ public class NoticeDAO {
 		return sqlSession.delete(namespace+"delete", num);
 	}
 	
-	public List<NoticeDTO> part(RowNum rowNum, String part) throws Exception	{
+	/*public List<NoticeDTO> part(RowNum rowNum, String part) throws Exception	{
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("rowNum", rowNum);
+		map.put("kind", rowNum.getKind());
+		map.put("search", rowNum.getSearch());
+		map.put("startRow", rowNum.getStartRow());
+		map.put("lastRow", rowNum.getLastRow());
 		map.put("part", part);
 		return sqlSession.selectList(namespace+"selectPart", map);
-	}
+	}*/
 
 }
