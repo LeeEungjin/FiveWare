@@ -16,7 +16,19 @@
 
 	$(function(){
 		$("#positionBtn").click(function(){
-			positionFrm.submit();
+			var rank = $("#porank").val();
+			var ranking=$("#poranking").val();
+				
+			if(rank==""){
+				alert("직책명을 입력하십시오.");
+			}else if(ranking==""){
+				alert("직책순위를 입력하십시오.");
+			}else{
+				$(this).attr("data-dismiss", "modal");
+				 positionFrm.submit();
+				
+			}
+			
 		});
 		
 		$("#UpdateBtn").click(function(){
@@ -41,17 +53,6 @@
 			});
 		});
 		
-	/* 	var code ="";
-		var count=0;
-		$(".ar_pselect").click(function(){
-			
-			code=$(this).attr("id");
-			
-			alert(code);
-			
-		
-
-		}); */
 		
 		$("#ar_deleteBtn").click(function(){
 			var count = 0;
@@ -257,12 +258,12 @@
 					        	
 					        	<div class="ar_positionInsert" >
 					        		<span class="ar_positiontext1">직책명</span>
-					        		<input type="text" name="rank" class="arin_pcodeInput">
+					        		<input type="text" name="rank" class="arin_pcodeInput" id="porank">
 					        	</div>
 					        	
 					        	<div class="ar_positionInsert" >
 					        		<span class="ar_positiontext">직책순위</span>
-					        		<input type="text" name="ranking" class="arin_pcodeInput">
+					        		<input type="text" name="ranking" class="arin_pcodeInput" id="poranking">
 					        	</div>
 							
 					        </div>
@@ -270,7 +271,7 @@
 					        
 					        <!-- modal footer -->
 					        <div class="modal-footer">
-					          <button type="button" class="btn btn-default" data-dismiss="modal" id="positionBtn">등록</button>
+					          <button type="button" class="btn btn-default" data-dismiss="" id="positionBtn">등록</button>
 					          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					        </div>
 					      	<!-- modal footer 끝-->
