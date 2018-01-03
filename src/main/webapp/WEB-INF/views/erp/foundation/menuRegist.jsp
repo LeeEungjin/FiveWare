@@ -68,7 +68,10 @@
 		
 		$(".menuView").click(function() {
 			var code=$(this).attr("title");
+<<<<<<< HEAD
 			alert(code);
+=======
+>>>>>>> eunbi2
 			$.ajax({
 				data : {"menuCode" : code},
 				url : "./menuRegistView",
@@ -96,6 +99,10 @@
 		});
 			
 		$(".menuDelete").click(function(){
+<<<<<<< HEAD
+=======
+			alert("click");
+>>>>>>> eunbi2
 			var code=$(".viewCode").val();
 			alert(code);
 			$.ajax({
@@ -104,7 +111,10 @@
 				type : "get",
 				success : function(data){
 					alert("삭제 완료");
+<<<<<<< HEAD
 					location.reload();
+=======
+>>>>>>> eunbi2
 				},
 				error : function(data){
 					alert("error");
@@ -112,6 +122,7 @@
 			});
 		});
 		
+<<<<<<< HEAD
 		/* $("#checkDelete").click(function(){
 			alert("click");
 			
@@ -154,6 +165,13 @@
 					}
 					});
 				}
+=======
+		$("#checkDelete").click(function(){
+			alert("click");
+			if($("#menucheck").prop("checked")){
+			
+			}
+>>>>>>> eunbi2
 		});
 		
 	});
@@ -355,7 +373,11 @@
 				
 				<!-- 등록 버튼 -->
 					<div id="erp_jh_contents_bottom">
+<<<<<<< HEAD
 						<button id="mr_checkDelete">선택삭제</button>
+=======
+						<button id="checkDelete">선택삭제</button>
+>>>>>>> eunbi2
 						<button class="modal_btn" data-toggle="modal" data-target="#jh_mr_Modal">신규등록</button>
 					</div>
 				<!-- 등록 버튼 끝 -->

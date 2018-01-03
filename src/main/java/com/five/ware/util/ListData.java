@@ -9,7 +9,7 @@ public class ListData {
 	public ListData() {
 		// TODO Auto-generated constructor stub
 		this.curPage = 1;
-		this.kind = "title";
+		this.kind = "code";
 		this.search = "";
 		this.perPage = 10;
 	}
@@ -74,7 +74,7 @@ public class ListData {
 	}
 	public String getKind() {
 		if(kind == null){
-			kind = "title";
+			kind = "code";
 		}
 		return kind;
 	}

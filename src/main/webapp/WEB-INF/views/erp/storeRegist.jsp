@@ -18,6 +18,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 
+<<<<<<< HEAD
  	
 			 
 			 
@@ -38,6 +39,16 @@
 				}
 			});  */
 			 
+=======
+		 
+ $(function(){
+	 
+		 var message = '${message}';
+	     if(message != ""){
+	        alert(message);
+	     }
+	 
+>>>>>>> eunbi2
 		$(".fw_menu").click(function(){
 			var sub = $(this).attr("title");
 			
@@ -49,6 +60,7 @@
 			
 		});
 	 
+		/*전체선택  */
 	 $("input[class=input_all]").click(function(){
 			if($("input[class=input_all]").prop("checked")){
 				$("input[class=input_chk]").prop("checked",true);
@@ -57,10 +69,101 @@
 			}
 		});
 	 
+		
+	 /* view modal 창 */
+	 $(".eb_view").click(function(){
+		 var code=$(this).attr("title");
+         $.ajax({
+            data : {"code" : code},
+            url : "./storeRegistView",
+            type : "get",
+            success : function(data){
+        	   $(".eb_viewCode").val(data.code);
+        	   $(".eb_viewStore").val(data.store);
+        	   $(".eb_viewStoreNum").val(data.storeNum);
+        	   $(".eb_viewName").val(data.name);
+        	   $(".eb_viewAddr").html(data.addr);
+        	   $(".eb_viewTel").val(data.tel);
+        	   $(".eb_viewEmail").val(data.email);
+        	   $(".eb_viewBank").val(data.bank);
+        	   $(".eb_viewAccount").val(data.account);
+        	   $(".eb_viewTime").val(data.time);
+            },
+            error : function(data){
+               alert("error");
+            }
+         }); 
+	 });
+	 
+	
+	 /* 삭제 */
+	  $("#eb_storeDelete").click(function(){
+		 
+		 var code= $(".eb_viewCode").val();
+		
+		$.ajax({
+			data : {"code" : code},
+			url : "./storeRegistDelete",
+			type : "get",
+			success : function(data){
+				alert(data);
+				location.reload();
+			},error : function(){
+				alert("error");
+			}
+		}); 
+	 });
+	 
+	 
+	 /*page 처리  */
+	  $(".eb_list").click(function(){
+			
+			var cur=$(this).attr("title");
+			var s = '${pager.search}';
+			var t = '${pager.kind}';
+			document.frm.curPage.value=cur;
+			document.frm.search.value=s;
+			document.frm.kind.value=t;
+			document.frm.submit();
+		});
+	  
 
+	 /*계좌번호 확인  */
+	  $("#eb_bankBtn").click(function(){
+		   var bank=$("#eb_bank").val(); 
+		   var account=$("#eb_account").val().length;
+		
+		  if(bank=='국민은행'){
+			  
+			  if(account==14){
+				  alert("확인되었습니다.");
+			  }else{
+				  alert("잘못입력되었습니다. 확인 후 다시 입력해주세요");
+			  }
+		  
+		  }else if(bank=='신한은행'){
+			  
+			  if(account==12){
+				  alert("확인되었습니다.");
+			  }else{
+				  alert("잘못입력되었습니다. 확인 후 다시 입력해주세요");
+			  }
+		 
+		  }else{
+			  if(account==13){
+				  alert("확인되었습니다.");
+			  }else{
+				  alert("잘못입력되었습니다. 확인 후 다시 입력해주세요");
+			  }
+		  }
+		  
+		  });
+	 
 	 
  });
  
+ 
+ /* 주소검색 */
  function sample6_execDaumPostcode() {
      new daum.Postcode({
          oncomplete: function(data) {
@@ -129,9 +232,9 @@
 			
 			<div class="fw_subselected collapse in" id="sub1">
 				<ul>
-					<li> 지점 등록</li>
-					<li> 예금 계좌 등록</li>
-					<li> 부서 등록</li>
+					<li><a href="#"> 지점 등록</a></li>
+					<li>예금 계좌 등록</li>
+					<li><a href="./tempRegist">부서 등록</a></li>
 				</ul>
 			</div>
 			
@@ -183,6 +286,8 @@
 				
 		</div>
 			
+			
+			<!--contents 시작  -->
 			<div id="eb_contents_wrap">
 				 
 				<div class="eb_contents_text">
@@ -193,41 +298,44 @@
 				
 				 <div class="eb_blank"></div>
 					
-				<!-- <form action="./storeRegist" method="get"> -->
+					
+				<!-- 검색 -->
 				   <input type="hidden" name="curPage" value="1">
 					
-					<table id="eb_contents_box_table" >
+					
+				<form name="frm" action="./storeRegist" method="get">
+					<div id="eb_contents_box_div" >
+						<input type="hidden" name="curPage" value="1">
+						  	
+						  	<select name="kind">
+						  		<option value="code">코드</option>
+						  		<option value="store">지점명</option>
+						  		<option value="name">대표자명</option>
+						  	</select>
+						  	
+						<input type="text" name="search">
 						
-						<tr>
-						  <td>코드</td>
-						  <td><input type="text" name="search"></td>
-						  <td>대표자 명</td>
-						  <td><input type="text" name="search"></td>
-						</tr>
+						  <button class="btn btn-default">search</button>
 						
-						<tr>
-							<td>지점명</td>
-							<td><input type="text" name="search"></td>
-							<td><button class="btn btn-default">search</button></td>
-						</tr>
-						</table>
-				   <!-- </form> -->
+						</div>
+				</form>		
+				   <!--검색 끝 -->
 				  
 				</div> 
 				
 				<div id="eb_contents_table">
 				  	
              				
-             		<table class="table table-striped">
+             		<table class="table">
 						   
 						<thead id="eb_table_head">
 						    <tr>
 						     <th><input type="checkbox" class="input_all"></th>
 						     <th>코드</th>
 						     <th>지점명</th>
-						     <th>주소</th>
-						     <th>전화번호</th>
-						     <th>영업시간</th>	     
+						     <th>대표자</th>
+						     <th>전화번호</th> 
+						     <th></th>
 						    </tr>
 						 </thead>
 						    
@@ -236,23 +344,25 @@
 						    	<c:forEach items="${list}" var="dto">
 							      <tr>
 							        <td><input type="checkbox" class="input_chk"></td>
-							      	<td class="eb_view" value="${dto.code}" data-toggle="modal" data-target="#eb_view_modal">${dto.code}</td>
+							      	<td>${dto.code}</td>
 							        <td>${dto.store}</td>					
-							        <td>${dto.addr}</td>
-							        <td>${dto.tel}</td>								      
-							        <td>${dto.time}</td>						      			   
+							        <td>${dto.name}</td>
+							        <td>${dto.tel}</td>		
+							        <td><button class="eb_view" title="${dto.code}" data-toggle="modal" data-target="#eb_view_modal">상세보기</button></td>						      						      			   
 							     </tr>
+							     
 							     </c:forEach>
 						   </tbody>
 					 </table>
 					
-					<!-- viewPage Modal -->
+					<!-- view Modal -->
 					
+			<form action="storeRegistUpdate" method="post">
 					<div class="modal fade" id="eb_view_modal">
 			 
 				<div class="modal-dialog">
 				
-					 <div class="modal-content">
+					 <div class="modal-content" id="sModel_1">
 						      
 						        <!-- Modal Header -->
 						<div class="modal-header">
@@ -268,41 +378,44 @@
 				 
 					<table id="eb_modal_table">
 						<tr>
+						
 						   <td>지점명 코드</td>
-						   <td>${view.code}</td>
+						   <td><input type="text" class="eb_viewCode" name="code" readonly="readonly"></td>
 						   <td>지점명</td>
-						   <td>${view.store}</td>
+						   <td><input type="text" class="eb_viewStore" name="store"></td>
 						   
 						</tr>
 						
 						<tr>
 						   <td>대표자</td>
-						   <td><input type="text" name="name"></td>
+						   <td><input type="text" class="eb_viewName" name="name"></td>
 						   <td>사업자 등록 번호</td>
-						   <td><input type="text" name="storeNum"></td>
+						   <td><input type="text" class="eb_viewStoreNum" name="storeNum"></td>
 						   
 						</tr>
 						          	
 						<tr>
 						   <td>주소</td>
-						   <td>${view.addr}</td>
+						   <td>
+						   	  <textarea name="addr" class="eb_viewAddr" rows="5" ></textarea>
+						   </td>
 						   <td>영업시간</td>
-						   <td><input type="text" name="time"></td>
+						   <td><input type="text" class="eb_viewTime" name="time"></td>
 						 
 						</tr>
 						          	
 						<tr>
 						   <td>전화번호</td>
-						   <td><input type="text" name="tel"></td> 
+						   <td><input type="text" class="eb_viewTel" name="tel"></td> 
 						   <td>E-mail</td>
-						   <td><input type="text" name="email"></td>
+						   <td><input type="text" class="eb_viewEmail" name="email"></td>
 						</tr>
 						          	
 						<tr>
 						   <td>은행</td>
-						   <td><input type="text" name="bank"></td>
+						   <td><input type="text" class="eb_viewBank" name="bank"></td>
 						   <td>계좌번호</td>
-						   <td><input type="text" name="account"></td>
+						   <td><input type="text" class="eb_viewAccount" name="account"></td>
 						 </tr>
 						          
 					</table>
@@ -311,43 +424,54 @@
 						        
 						        <!-- Modal footer -->
 				<div class="modal-footer">
-						<input type="submit" value="수정">
-						<input type="submit" value="삭제">
+					<button id="eb_storeUpdate">수정</button>
+					
+					<input type="button" id="eb_storeDelete" data-dismiss="modal" value="삭제">
+					
+						
 				 </div>
 						        
 					</div>
 				</div>
 			</div>
-					
+				</form>	
 				
+				
+				
+				<!-- page 처리 -->
 				<div id="eb_page">
-				
 					<c:if test="${pager.curBlock gt 1}">
-						<span class="list" title="${pager.startNum-1}">[이전]</span>
+						<span class="eb_list" title="${pager.startNum-1}">[이전]</span>
 					</c:if>
 					
 					<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-						<span class="list" title="${i}">${i}</span>
+						<span class="eb_list" title="${i}">${i}</span>
 					</c:forEach>
-			
-					<c:if test="${pager.curBlock lt pager.totalBlock}">
-						<span class="list" title="${pager.lastNum+1}">[다음]</span>
-					</c:if>
 					
-				</div>
+					<c:if test="${pager.curBlock lt pager.totalBlock}">
+						<span class="eb_list" title="${pager.lastNum+1}">[다음]</span>
+					</c:if>
+				</div>  		  
 						  
+						  
+				<!-- page 처리 끝 -->		  
+				
+				
 						  <button class="btn btn-default">선택삭제</button>
 						  
 					      <button class="btn btn-default" data-toggle="modal" data-target="#myModal">신규등록</button>
 					      
 			 
 			 
+			 
+			 <!--지점등록 modal  -->
+			 
 		<form action="storeRegistWrite" method="post">	 
 			 <div class="modal fade" id="myModal">
 			 
 				<div class="modal-dialog">
 				
-					 <div class="modal-content">
+					 <div class="modal-content" id="sModel">
 						      
 						        <!-- Modal Header -->
 						<div class="modal-header">
@@ -364,18 +488,17 @@
 					<table id="eb_modal_table">
 						<tr>
 						   <td>지점명 코드</td>
-						   <td><input type="text" name="code">
-						   		<button class="btn btn-default">중복확인</button></td>
+						   <td><input type="text" name="code" id="eb_code"></td>
 						   <td>지점명</td>
-						   <td><input type="text" name="store"></td>
+						   <td><input type="text" name="store" id="eb_store"></td>
 						   
 						</tr>
 						
 						<tr>
 						   <td>대표자</td>
-						   <td><input type="text" name="name"></td>
+						   <td><input type="text" name="name" id="eb_name"></td>
 						   <td>사업자 등록 번호</td>
-						   <td><input type="text" name="storeNum"></td>
+						   <td><input type="text" name="storeNum" id="eb_storeNum"></td>
 						   
 						</tr>
 						          	
@@ -383,30 +506,42 @@
 						   <td>주소</td>
 						   <td> 
 							   	<input type="text" id="sample6_postcode" placeholder="우편번호" name="addr">
-								<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-								<input type="text" id="sample6_address" placeholder="주소" name="addr">
-								<input type="text" id="sample6_address2" placeholder="상세주소" name="addr">  
+								<input type="button" class="btn btn-primary" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+								<input type="text"  id="sample6_address" placeholder="주소" name="addr" id="eb_addr"><br>
+								<input type="text" id="sample6_address2" placeholder="나머지 주소를 입력해주세요." name="addr">  
 						   </td>
                                
                              
                               
 						   <td>영업시간</td>
-						   <td><input type="text" name="time"></td>
+						   <td><input type="text" name="time" id="eb_time"></td>
 						 
 						</tr>
 						          	
 						<tr>
 						   <td>전화번호</td>
-						   <td><input type="text" name="tel"></td> 
+						   <td><input type="text" name="tel" id="eb_tel"></td> 
 						   <td>E-mail</td>
-						   <td><input type="text" name="email"></td>
+						   <td><input type="text" name="email" id="eb_email"></td>
 						</tr>
 						          	
 						<tr>
+							
+						</tr>        
+						<tr>
 						   <td>은행</td>
-						   <td><input type="text" name="bank"></td>
+						   <td>
+						   		<select name="bank" id="eb_bank">
+						   			<option value="국민은행">국민 은행</option>
+						   			<option value="신한은행">신한 은행</option>
+						   			<option value="농협">농협</option>
+						   		</select>
+						   </td>
 						   <td>계좌번호</td>
-						   <td><input type="text" name="account"></td>
+						   <td>
+						   		<input type="text" name="account" id="eb_account" placeholder="-없이 입력해주세요.">
+						   		<input type="button" id="eb_bankBtn" value="확인">
+						   </td>
 						 </tr>
 						          
 					</table>
@@ -415,7 +550,7 @@
 						        
 						        <!-- Modal footer -->
 				<div class="modal-footer">
-						<input type="submit" value="등록">
+						<input type="submit" id="eb_btn" class="btn btn-default" value="등록">
 				 </div>
 						        
 					</div>

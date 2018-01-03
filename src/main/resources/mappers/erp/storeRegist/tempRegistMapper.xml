@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="tempRegistMapper">
+	  <insert id="insert" parameterType="tempRegistDTO">
+	  		insert into tempregist values(#{code},#{temp},#{memo})
+	  </insert>
+  
+  	  <select id="selectList" parameterType="com.five.ware.util.RowNum" resultType="tempRegistDTO">
+  	  	select * from
+		(select rownum R, S.*from
+		(select * from tempregist 
+			<if test="kind=='code'"> 
+				where code like '%'||#{search}||'%' 
+			</if>
+		
+			<if test="kind=='temp'"> 
+				where temp like '%'||#{search}||'%' 
+			</if>
+	 	order by code desc) S)
+		where R between #{startRow} and #{lastRow}
+  	  </select>
+  
+  		<select id="totalCount" resultType="int">
+  		select nvl(count(code),0) from tempregist
+  		</select>
+  		
+  		<select id="selectOne" resultType="tempRegistDTO">
+  			select * from tempregist where code=#{code}
+  		</select>
+  		
+  		<update id="update">
+			update tempregist set temp=#{temp}, memo=#{memo} where code=#{code}
+  		</update>
+  		
+  		<delete id="delete">
+  			delete tempregist where code=#{code}
+  		</delete>
+  </mapper>
+ 

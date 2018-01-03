@@ -4,8 +4,10 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -20,8 +22,6 @@ public class StoreRegistController {
 	@Inject
 	private StoreRegistService storeRegistService;
 	
-
-	
 	
 	//storeRegist
 	@RequestMapping(value="storeRegist")
@@ -29,6 +29,7 @@ public class StoreRegistController {
 		ModelAndView mv=null;
 		
 		mv=storeRegistService.selectList(listData);
+		mv.setViewName("/erp/storeRegist");
 		
 		return mv;
 	}
@@ -37,7 +38,7 @@ public class StoreRegistController {
 	//insert
 	@RequestMapping(value="storeRegistWrite" ,method=RequestMethod.POST)
 	public String insert(StoreRegistDTO storeRegistDTO , RedirectAttributes rd){
-		
+		System.out.println(storeRegistDTO.getBank());
 		
 		int result=0;
 		 
@@ -56,22 +57,52 @@ public class StoreRegistController {
 		rd.addFlashAttribute("message", message);
 		
 		
-		return "redirect:./erp/storeRegist";
+		return "redirect:./storeRegist";
 		
 	}
 	
 	//selectOne
 	@RequestMapping(value="storeRegistView")
-	public String selectOne(Model model, String code)throws Exception{
+	@ResponseBody
+	public StoreRegistDTO selectOne(String code)throws Exception{
 		
 		StoreRegistDTO storeRegistDTO;
 		storeRegistDTO=storeRegistService.selectOne(code);
-		model.addAttribute("view", storeRegistDTO);
 		
-		return "erp/storeRegist";
+		return storeRegistDTO;
 	}
 	
+	//delete
+	@RequestMapping(value="storeRegistDelete")
+	@ResponseBody
+	public String delete(String code) throws Exception{
+		
+		int result=storeRegistService.delete(code);
+		
+		String message="fail";
+		if(result>0){
+			message="success";
+		}
+		
+		return message;
+	}
 	
+	//update
+	@RequestMapping(value="storeRegistUpdate")
+	public String update(RedirectAttributes rd, StoreRegistDTO storeRegistDTO) throws Exception{
+
+		int result=storeRegistService.update(storeRegistDTO);
+	
+		String message="fail";
+		if(result>0){
+			message="success";
+		}
+		
+		
+		rd.addFlashAttribute("message",message);
+		
+		return "redirect:./storeRegist";
+	}
 	
  }
 
