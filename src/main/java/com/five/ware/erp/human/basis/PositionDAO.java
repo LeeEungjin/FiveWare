@@ -46,7 +46,6 @@ public class PositionDAO {
 	}
 	
 	public int positionDelete(String code) throws Exception{
-		System.out.println("들어오니 여기는 DAO");
 		int result = sqlSession.delete(NAMESPACE+"positionDelete", code);
 		
 		return result;
