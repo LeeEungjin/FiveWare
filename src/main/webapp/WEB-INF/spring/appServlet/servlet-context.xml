@@ -24,12 +24,9 @@
 	<context:component-scan base-package="com.five.ware" />
 	<context:component-scan base-package="com.five.human" />
 	<context:component-scan base-package="com.five.ware.eung.controller"/>
-<<<<<<< HEAD
 	<context:component-scan base-package="com.five.ware.jh.controller"/>
-=======
-	<context:component-scan base-package="com.fiveware.jh.controller"/>
 	<context:component-scan base-package="com.five.ware.eb.controller"/>
->>>>>>> eunbi2
+
 		
 	
 	

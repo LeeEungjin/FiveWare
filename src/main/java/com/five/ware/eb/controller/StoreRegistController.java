@@ -3,6 +3,7 @@ package com.five.ware.eb.controller;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -10,6 +11,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.five.ware.erp.storeRegist.StoreRegistDTO;
 import com.five.ware.erp.storeRegist.StoreRegistService;
+import com.five.ware.util.ListData;
 
 @Controller
 @RequestMapping(value="/erp/**")
@@ -23,10 +25,10 @@ public class StoreRegistController {
 	
 	//storeRegist
 	@RequestMapping(value="storeRegist")
-	public ModelAndView selectList() throws Exception{
+	public ModelAndView selectList(ListData listData) throws Exception{
 		ModelAndView mv=null;
 		
-		mv=storeRegistService.selectList();
+		mv=storeRegistService.selectList(listData);
 		
 		return mv;
 	}
@@ -58,7 +60,16 @@ public class StoreRegistController {
 		
 	}
 	
-	
+	//selectOne
+	@RequestMapping(value="storeRegistView")
+	public String selectOne(Model model, String code)throws Exception{
+		
+		StoreRegistDTO storeRegistDTO;
+		storeRegistDTO=storeRegistService.selectOne(code);
+		model.addAttribute("view", storeRegistDTO);
+		
+		return "erp/storeRegist";
+	}
 	
 	
 	

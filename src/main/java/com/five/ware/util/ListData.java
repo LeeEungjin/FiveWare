@@ -73,18 +73,18 @@ public class ListData {
 		this.curPage = curPage;
 	}
 	public String getKind() {
-		/*if(kind == null){
+		if(kind == null){
 			kind = "title";
-		}*/
+		}
 		return kind;
 	}
 	public void setKind(String kind) {
 			this.kind = kind;
 	}
 	public String getSearch() {
-		/*if(search == null){
+		if(search == null){
 			search = "";
-		}*/
+		}
 		return search;
 	}
 	public void setSearch(String search) {

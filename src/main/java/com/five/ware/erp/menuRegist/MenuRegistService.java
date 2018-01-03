@@ -22,6 +22,7 @@ public class MenuRegistService {
 	public ModelAndView selectList(ListData listData)throws Exception{
 		ModelAndView mv=new ModelAndView();
 		int totalCount=menuRegistDAO.totalCount(listData.makeRow());
+		
 		mv.setViewName("erp/foundation/menuRegist");
 		mv.addObject("pager", listData.makePage(totalCount));
 		mv.addObject("mr_list", menuRegistDAO.selectList(listData.makeRow()));

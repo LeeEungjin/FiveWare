@@ -12,6 +12,38 @@
 	<c:import url="${url}/resources/temp/ref.jsp"></c:import> 
 
 <title>Insert title here</title>
+<script type="text/javascript">
+	$(function(){
+		var message = '${message}';
+		if(message != ""){
+			alert(message);
+		}
+		
+		$(".sr_btn").click(function(){
+			alert("click");
+			$("#sr_frm").submit();
+		});
+		
+		$(".storageView").click(function() {
+			var code=$(this).attr("title");
+			alert(code);
+			$.ajax({
+				data : {"storageCode" : code},
+				url : "./storageView",
+				type : "get",
+				success : function(data){
+					$(".viewCode").val(data.storageCode);
+					$(".viewName").val(data.storageName);
+					$(".viewOp").html(data.storageOp);
+					$(".viewImg").html(data.imgNull);
+				},
+				error : function(data){
+					alert("error");
+				}
+			});
+		});
+	});
+</script>
 
 </head>
 <body>
@@ -84,20 +116,21 @@
 					<div id="sr_search">
 						<!-- 검색 기능 -->
 							<!-- select box -->
-								<select class="form-control" id="sel1">
-							        <option>창고명</option>
-							        <option>창고코드</option>
-							        <option>주소</option>
+							<div class="input-group">
+							<form action="./storageRegist" name="sr_search_frm" method="get">
+								<select class="form-control" id="sel1" name="kind">
+							        <option class="op" value="storagename">창고명</option>
+							        <option class="op" value="storagecode">창고코드</option>
+							        <option class="op" value="storageaddr">주소</option>
 							     </select>							
 							<!-- select box 끝 -->
 						
-							<div class="input-group">
-						      <input type="text" class="form-control" placeholder="Search" name="search">
+						      <input name="search" type="text" class="form-control" placeholder="Search" name="search">
 						      
 						      <div class="input-group-btn">
-						        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+						        <button  id="search_btn" class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
 						      </div>
-						      
+						      </form>	
 						    </div>	
 						<!-- 검색 기능 끝 -->
 					</div>
@@ -116,25 +149,28 @@
 						    </thead>
 						    
 						    <tbody>
-						    <tr>
-						        <td>003</td>
-						        <td id="jh_bold_text" data-toggle="modal" data-target="#jh_sr_update_Modal">A창고</td>
-						        <td>무엇을 저장하고있습니다.</td>
-						        <td>서울 어딘가</td>
-						      </tr>
+						    <c:forEach items="${sr_list}" var="sr_list">
 						      <tr>
+						        <td>${sr_list.storageCode}</td>
+						        <td  class="storageView"  title="${sr_list.storageCode}" id="jh_bold_text" data-toggle="modal" data-target="#jh_sr_update_Modal">${sr_list.storageName }</td>
+						        <td>${sr_list.storageOp }</td>
+						        <td>${sr_list.storageAddr }</td>
+						      </tr>
+						    </c:forEach>
 						    </tbody>
 						 </table>
 						 
 						 <!-- pager -->
-						 	<div id="sr_pager">
-						 		  <a href="#" class="pager_a">◀</a>
-								  <a href="#" class="pager_a">1</a>
-								  <a href="#" class="pager_a">2</a>
-								  <a href="#" class="pager_a">3</a>
-								  <a href="#" class="pager_a">4</a>
-								  <a href="#" class="pager_a">5</a>
-								  <a href="#" class="pager_a">▶</a>
+						 	<div id="mr_pager">
+						 		  <c:if test="${pager.curBlock gt 1}">
+									<span class="list" title="${pager.startNum-1}">[이전]</span>
+								</c:if>
+								<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+									<span class="list" title="${i}">${i}</span>
+								</c:forEach>
+								<c:if test="${pager.curBlock lt pager.totalBlock}">
+									<span class="list" title="${pager.lastNum+1}">[다음]</span>
+								</c:if>
 						 	</div>
 						 <!-- pager 끝 -->
 					</div>
@@ -160,30 +196,33 @@
 				        <!-- modal header 끝-->
 				        
 				        <!-- modal contents -->
+				         <form action="./storagetWrite" method="post" id="sr_frm">
 				        <div class="modal-body">
 				        	<div class="input-group input-group_modal">
 							  <span class="input-group-addon">창고코드</span>
-							  <input id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
+							  <input name="storageCode" id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">창고명</span>
-							  <input id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
+							  <input name="storageName" id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">개요</span>
-							   <textarea class="form-control form-control_area" rows="5" id="comment"></textarea>
+							   <textarea name="storageOp" class="form-control form-control_area" rows="5" id="comment"></textarea>
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">주소</span>
-							  <input id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
+							  <input name="storageAddr" id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">사진</span>
-							  <div id="sr_img_div"></div>
+							  <div id="sr_img_div">
+							  	<input type="text" name="imgNull">
+							  </div>
 							</div>
 							
 				        </div>
@@ -191,9 +230,10 @@
 				        
 				        <!-- modal footer -->
 				        <div class="modal-footer">
-				          <button type="button" class="btn btn-default" data-dismiss="modal">등록</button>
+				          <button type="button" class="btn btn-default sr_btn" data-dismiss="modal">등록</button>
 				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				        </div>
+				        </form>
 				      	<!-- modal footer 끝-->
 				      </div>
 				    </div>
@@ -218,17 +258,17 @@
 				        <div class="modal-body">
 				        	<div class="input-group input-group_modal">
 							  <span class="input-group-addon">창고코드</span>
-							  <input id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
+							  <input name="viewCode" id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">창고명</span>
-							  <input id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
+							  <input name="viewName" id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">개요</span>
-							   <textarea class="form-control form-control_area" rows="5" id="comment"></textarea>
+							   <textarea name="viewOp" class="form-control form-control_area" rows="5" id="comment"></textarea>
 							</div>
 							
 							<div class="input-group input-group_modal">
@@ -238,7 +278,7 @@
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">사진</span>
-							  <div id="sr_img_div"></div>
+							  <div id="sr_img_div"><input type="text" name="vireImg"></div>
 							</div>
 							
 				        </div>

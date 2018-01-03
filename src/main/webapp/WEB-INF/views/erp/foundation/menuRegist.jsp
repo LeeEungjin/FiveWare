@@ -26,7 +26,6 @@
 		
 		$(".menuUpdate").click(function(){
 			$("#mr_update_frm").submit();
-			alert("click");
 		});
 		
 		var kind='${pager.kind}';
@@ -56,6 +55,7 @@
 		
 		$(".menuView").click(function() {
 			var code=$(this).attr("title");
+			alert(code);
 			$.ajax({
 				data : {"menuCode" : code},
 				url : "./menuRegistView",
@@ -82,22 +82,34 @@
 			});
 		});
 			
-			$(".menuDelete").click(function(){
-				alert("click");
-				var code=$(".viewCode").val();
-				alert(code);
-				$.ajax({
-					data : {"menuCode" : code},
-					url : "./menuRegistDelete",
-					type : "get",
-					success : function(data){
-						alert("삭제 완료");
-					},
-					error : function(data){
-						alert("error");
-					}
-				});
+		$(".menuDelete").click(function(){
+			var code=$(".viewCode").val();
+			alert(code);
+			$.ajax({
+				data : {"menuCode" : code},
+				url : "./menuRegistDelete",
+				type : "get",
+				success : function(data){
+					alert("삭제 완료");
+					location.reload();
+				},
+				error : function(data){
+					alert("error");
+				}
 			});
+		});
+		
+		$("#checkDelete").click(function(){
+			alert("click");
+			
+			for(var i=0; i<$(".menucheck").length; i++){
+				if($(".menucheck").prop("checked")){
+					alert("?");
+					var checkCode=$(".menucheck").attr("title");
+				}
+			 
+			}
+		});
 		
 	});
 </script>
@@ -233,10 +245,10 @@
 						    <tbody>
 						    	<c:forEach items="${mr_list}" var="mr_list">
 							      <tr>
-							      	<td><input type="checkbox" class="menucheck"></td>
+							      	<td><input name="menucheck" type="checkbox" class="menucheck" title="${mr_list.menuCode}"></td>
 							        <td>${mr_list.menuCode}</td>
 							        <td>${mr_list.menuKind }</td>
-							        <td  class="menuView" title="${mr_list.menuCode}"  data-toggle="modal" data-target="#jh_mr_update_Modal">${mr_list.menuName }</td>
+							        <td  class="menuView" title="${mr_list.menuCode}" data-toggle="modal" data-target="#jh_mr_update_Modal">${mr_list.menuName }</td>
 							        <td>${mr_list.price }</td>
 							        <td>${mr_list.imgNull }</td>
 							      </tr>
@@ -262,7 +274,7 @@
 				
 				<!-- 등록 버튼 -->
 					<div id="erp_jh_contents_bottom">
-						<button>선택삭제</button>
+						<button id="checkDelete">선택삭제</button>
 						<button class="modal_btn" data-toggle="modal" data-target="#jh_mr_Modal">신규등록</button>
 					</div>
 				<!-- 등록 버튼 끝 -->
@@ -337,6 +349,8 @@
 				    </div>
 				  </div>
 				<!-- Modal 끝 -->
+				
+				<!-- --------------------------------------------------------------------------------------------------------- -->
 				
 				
 				<!-- 수정 Modal -->
