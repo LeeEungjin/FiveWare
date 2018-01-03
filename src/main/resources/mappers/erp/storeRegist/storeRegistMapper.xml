@@ -24,8 +24,7 @@
 		<if test="kind=='name'"> 
 			where name like '%'||#{search}||'%' 
 		</if>
-	
-	order by code desc) S)
+	 order by code desc) S)
 	where R between #{startRow} and #{lastRow}
   </select>
   

@@ -1,11 +1,16 @@
 package com.five.ware.erp.storeRegist;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.five.ware.util.ListData;
+import com.five.ware.util.Pager;
+import com.five.ware.util.RowNum;
 
 @Service
 public class StoreRegistService {
@@ -24,12 +29,21 @@ public class StoreRegistService {
 	
 	//list
 	public ModelAndView selectList(ListData listData) throws Exception{
-		int totalCount=storeRegistDAO.totalCount(listData.makeRow());
-		ModelAndView mv=new ModelAndView();
-		mv.setViewName("/erp/storeRegist");
-		mv.addObject("list",storeRegistDAO.selectList(listData.makeRow()));
-		mv.addObject("pager", listData.makePage(totalCount));
 		
+		RowNum rowNum=listData.makeRow();
+		
+		int totalCount=storeRegistDAO.totalCount(rowNum);
+		
+		Pager pager=listData.makePage(totalCount);
+		
+		List<StoreRegistDTO> ar=new ArrayList<StoreRegistDTO>();
+		
+		ar=storeRegistDAO.selectList(rowNum,listData);
+		
+		ModelAndView mv=new ModelAndView();
+		
+		mv.addObject("list",ar);
+		mv.addObject("pager", pager);
 		
 		return mv;
 	}

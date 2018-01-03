@@ -1,6 +1,8 @@
 package com.five.ware.erp.storeRegist;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -27,14 +29,22 @@ private static final String namespace="storeRegistMapper.";
 		
 	
     //list
-	public List<StoreRegistDTO> selectList(RowNum rowNum) throws Exception{
+	public List<StoreRegistDTO> selectList(RowNum rowNum, ListData listData) throws Exception{
+		Map<String , Object> map=new HashMap<String, Object>();
+		map.put("startRow", rowNum.getStartRow());
+		map.put("lastRow", rowNum.getLastRow());
+		map.put("kind", listData.getKind());
+		map.put("search", listData.getSearch());
 		
-		return sqlsession.selectList(namespace+"selectList",rowNum);
+		
+		return sqlsession.selectList(namespace+"selectList",map);
 		
 	}
 	
 	//totalCount
 	public int totalCount(RowNum rowNum) throws Exception{
+	
+		
 		return sqlsession.selectOne(namespace+"totalCount", rowNum);
 	}
 

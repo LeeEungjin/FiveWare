@@ -22,8 +22,6 @@ public class StoreRegistController {
 	@Inject
 	private StoreRegistService storeRegistService;
 	
-
-	
 	
 	//storeRegist
 	@RequestMapping(value="storeRegist")
@@ -31,6 +29,7 @@ public class StoreRegistController {
 		ModelAndView mv=null;
 		
 		mv=storeRegistService.selectList(listData);
+		mv.setViewName("/erp/storeRegist");
 		
 		return mv;
 	}
@@ -39,7 +38,7 @@ public class StoreRegistController {
 	//insert
 	@RequestMapping(value="storeRegistWrite" ,method=RequestMethod.POST)
 	public String insert(StoreRegistDTO storeRegistDTO , RedirectAttributes rd){
-		
+		System.out.println(storeRegistDTO.getBank());
 		
 		int result=0;
 		 
@@ -75,7 +74,8 @@ public class StoreRegistController {
 	
 	//delete
 	@RequestMapping(value="storeRegistDelete")
-	public String delete(RedirectAttributes rd, String code) throws Exception{
+	@ResponseBody
+	public String delete(String code) throws Exception{
 		
 		int result=storeRegistService.delete(code);
 		
@@ -83,8 +83,6 @@ public class StoreRegistController {
 		if(result>0){
 			message="success";
 		}
-		
-		rd.addFlashAttribute("message", message);
 		
 		return message;
 	}
