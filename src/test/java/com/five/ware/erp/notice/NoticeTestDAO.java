@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import org.junit.Test;
 
 import com.five.ware.AbstractTest;
+import com.five.ware.util.RowNum;
 
 
 public class NoticeTestDAO extends AbstractTest {

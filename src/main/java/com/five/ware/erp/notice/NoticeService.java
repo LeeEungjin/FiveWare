@@ -1,9 +1,6 @@
 package com.five.ware.erp.notice;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -11,6 +8,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.five.ware.util.ListData;
+import com.five.ware.util.Pager;
+import com.five.ware.util.RowNum;
 
 @Service
 public class NoticeService {
@@ -39,7 +41,7 @@ public class NoticeService {
 	
 	public int insert(NoticeDTO noticeDTO, HttpSession session) throws Exception	{
 		
-		List<FileDTO> names = new ArrayList<FileDTO>();
+		
 		int result = noticeDAO.insert(noticeDTO);
 		
 		return result;
@@ -55,15 +57,14 @@ public class NoticeService {
 		return result;
 	}
 	
-	public ModelAndView part(ListData listData, String part) throws Exception	{
+	public String part(ListData listData, String part, RedirectAttributes rd) throws Exception	{
 		RowNum rowNum = listData.makeRow();
 		int totalCount = noticeDAO.totalCount(rowNum);
 		Pager pager = listData.makePage(totalCount);
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("pager", pager);
-		mv.addObject("list", noticeDAO.part(rowNum));
-		mv.setViewName("notice/noticeAjax");
+		rd.addFlashAttribute("pager", pager);
+		rd.addFlashAttribute("list", noticeDAO.part(rowNum));
 		
-		return mv;
+		
+		return "redirect:./noticeAjax";
 	}
 }

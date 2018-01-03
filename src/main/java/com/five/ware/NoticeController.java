@@ -9,12 +9,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.five.ware.erp.notice.ListData;
+
 import com.five.ware.erp.notice.NoticeDTO;
 import com.five.ware.erp.notice.NoticeService;
+import com.five.ware.util.ListData;
 
 @Controller
 @RequestMapping(value="/notice/*")
@@ -31,11 +33,13 @@ public class NoticeController {
 		return mv;
 	}
 
-	@RequestMapping(value="noticeAjax", method=RequestMethod.POST)
-	public ModelAndView selectPart(ListData listData, ModelAndView mv, String part) throws Exception	{
-		mv = noticeService.part(listData, part);
+	@RequestMapping(value="noticeAjax", method=RequestMethod.GET)
+	@ResponseBody
+	public String selectPart(ListData listData, String part, ModelAndView mv, RedirectAttributes rd) throws Exception	{
 		
-		return mv;
+		System.out.println("partCon : "+part);
+		noticeService.part(listData, part, rd);
+		return "redirect:./noticeList";
 	}
 	
 	@RequestMapping(value="noticeView")

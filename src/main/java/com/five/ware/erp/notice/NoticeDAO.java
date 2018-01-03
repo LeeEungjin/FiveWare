@@ -11,6 +11,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.jdbc.core.metadata.HanaCallMetaDataProvider;
 import org.springframework.stereotype.Repository;
 
+import com.five.ware.util.RowNum;
+
 @Repository
 public class NoticeDAO {
 	
