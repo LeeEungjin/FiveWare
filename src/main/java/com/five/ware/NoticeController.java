@@ -1,5 +1,8 @@
 package com.five.ware;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -35,11 +38,9 @@ public class NoticeController {
 
 	@RequestMapping(value="noticeAjax", method=RequestMethod.GET)
 	@ResponseBody
-	public String selectPart(ListData listData, String part, ModelAndView mv, RedirectAttributes rd) throws Exception	{
-		
-		System.out.println("partCon : "+part);
-		noticeService.part(listData, part, rd);
-		return "redirect:./noticeList";
+	public ModelAndView selectPart(ListData listData, String part, ModelAndView mv, RedirectAttributes rd) throws Exception	{
+		mv = noticeService.part(listData, part);
+		return mv;
 	}
 	
 	@RequestMapping(value="noticeView")

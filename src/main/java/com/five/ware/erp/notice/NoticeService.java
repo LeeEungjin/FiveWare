@@ -57,14 +57,14 @@ public class NoticeService {
 		return result;
 	}
 	
-	public String part(ListData listData, String part, RedirectAttributes rd) throws Exception	{
+	public ModelAndView part(ListData listData, String part) throws Exception	{
 		RowNum rowNum = listData.makeRow();
 		int totalCount = noticeDAO.totalCount(rowNum);
 		Pager pager = listData.makePage(totalCount);
-		rd.addFlashAttribute("pager", pager);
-		rd.addFlashAttribute("list", noticeDAO.part(rowNum));
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("pager", pager);
+		mv.addObject("list", noticeDAO.part(rowNum));
 		
-		
-		return "redirect:./noticeAjax";
+		return mv;
 	}
 }

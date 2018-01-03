@@ -5,7 +5,7 @@
   
   <mapper namespace="noticeMapper">
   
-  	<select id="totalCount" resultType="int">
+  	<select id="totalCount" resultType="int" parameterType="java.util.Map">
   		select nvl(count(num), 0) from notice
   		<if test="kind == 'title'">
   			where title like '%'||#{search}||'%'
@@ -33,6 +33,9 @@
   		</if>
   		<if test="kind == 'part'">
   			where part like '%'||#{search}||'%'
+  			<if test="part == '회계부'">
+  				and 
+  			</if>
   		</if>
   		order by num desc) N)
   		where R between #{startRow} and #{lastRow}
@@ -43,9 +46,13 @@
   	</select>
   	
   	<select id="selectPart" parameterType="com.five.ware.util.RowNum" resultType="com.five.ware.erp.notice.NoticeDTO">
-  		select * from
-  		(select rownum R, N.* from
-  		(select notice.part from notice where part=#{part} order by num desc) N)
+  		select * from 
+  		(select rownum R, N.* from 
+  		(select * from notice 
+  		<if test="kind == 'part'">
+  			where part='회계부'
+  		</if>
+  		order by num desc) N) 
   		where R between #{startRow} and #{lastRow}
   	</select>
   	
