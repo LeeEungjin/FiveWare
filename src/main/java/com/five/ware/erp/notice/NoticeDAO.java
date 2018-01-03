@@ -11,6 +11,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.jdbc.core.metadata.HanaCallMetaDataProvider;
 import org.springframework.stereotype.Repository;
 
+import com.five.ware.util.RowNum;
+
 @Repository
 public class NoticeDAO {
 	
@@ -51,9 +53,11 @@ public class NoticeDAO {
 		return sqlSession.delete(namespace+"delete", num);
 	}
 	
-	public List<NoticeDTO> part(RowNum rowNum) throws Exception	{
-		
-		return sqlSession.selectList(namespace+"selectPart", rowNum);
+	public List<NoticeDTO> part(RowNum rowNum, String part) throws Exception	{
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("rowNum", rowNum);
+		map.put("part", part);
+		return sqlSession.selectList(namespace+"selectPart", map);
 	}
 
 }
