@@ -256,17 +256,18 @@
 							    
 							    <ul class="dropdown-menu" id="test">
 							      <li class="dropdown-header">가격</li>
-							      <li><a href="#">높은 순</a></li>
-							      <li><a href="#">낮은 순</a></li>
+							      <!-- <li><a><span title="price" class="mrFilter" id="mrPriceHigh">높은 순</span></a></li> -->
+							      <li><a href="./menuRegist?order=desc">높은 순</a></li>
+							      <li><a href="./menuRegist?order=asc">낮은 순</a></li>
 							      
 							      <li class="divider"></li>
 							      <li class="dropdown-header">구분</li>
-							      <li><a href="#">커피</a></li>
-							      <li><a href="#">음료</a></li>
-							      <li><a href="#">디저트</a></li>
+							      <li><a href="./menuRegist?kind=menukind&menukind=coffee">커피</a></li>
+							      <li><a href="./menuRegist?kind=menukind&menukind=juice">음료</a></li>
+							      <li><a href="./menuRegist?kind=menukind&menukind=desert">디저트</a></li>
 							      
 							      <li class="divider"></li>
-							      <li><a href="#">검색 초기화</a></li>
+							      <li><a  href="./menuRegist"><span class="mr_cusor" id="searchReset">검색 초기화</span></a></li>
 							    </ul>
 							 </div>
 							<!-- 부가 검색 끝 -->

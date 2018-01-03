@@ -1,6 +1,8 @@
 package com.five.ware.erp.menuRegist;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
@@ -20,12 +22,27 @@ public class MenuRegistDAO {
 		return sqlsession.insert(namespace+"menuReigstInsert", menuRegistDTO);
 	}
 	
-	public List<MenuRegistDTO> selectList(RowNum rowNum)throws Exception{
-		return sqlsession.selectList(namespace+"selectList",rowNum);
+	public List<MenuRegistDTO> selectList(RowNum rowNum, String order, String menukind)throws Exception{
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("kind", rowNum.getKind());
+		map.put("search", rowNum.getSearch());
+		map.put("startRow", rowNum.getStartRow());
+		map.put("lastRow", rowNum.getLastRow());
+		map.put("order", order);
+		map.put("menukind", menukind);
+		
+		
+		return sqlsession.selectList(namespace+"selectList",map);
 	}
 	
-	public int totalCount(RowNum rowNum )throws Exception{
-		return sqlsession.selectOne(namespace+"totalCount", rowNum);
+	public int totalCount(RowNum rowNum, String menukind )throws Exception{
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("kind", rowNum.getKind());
+		map.put("search", rowNum.getSearch());
+		map.put("menukind", menukind);
+		
+		
+		return sqlsession.selectOne(namespace+"totalCount", map);
 	}
 	
 	public MenuRegistDTO selectOne(String menuCode)throws Exception{

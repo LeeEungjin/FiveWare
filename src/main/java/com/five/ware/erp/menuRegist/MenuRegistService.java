@@ -19,7 +19,21 @@ public class MenuRegistService {
 		return result;
 	}
 	
-	public ModelAndView selectList(ListData listData)throws Exception{
+	public ModelAndView selectList(ListData listData, String order, String menukind)throws Exception{
+		ModelAndView mv=new ModelAndView();
+
+		
+			int totalCount=menuRegistDAO.totalCount(listData.makeRow(), menukind);
+			
+			mv.setViewName("erp/foundation/menuRegist");
+			mv.addObject("pager", listData.makePage(totalCount));
+			mv.addObject("mr_list", menuRegistDAO.selectList(listData.makeRow(), order, menukind));
+
+		
+		return mv;
+	}
+	
+/*	public ModelAndView mrPriceHigh(ListData listData)throws Exception{
 		ModelAndView mv=new ModelAndView();
 		int totalCount=menuRegistDAO.totalCount(listData.makeRow());
 		
@@ -28,7 +42,7 @@ public class MenuRegistService {
 		mv.addObject("mr_list", menuRegistDAO.selectList(listData.makeRow()));
 		
 		return mv;
-	}
+	}*/
 	
 	public MenuRegistDTO selectOne(String menuCode)throws Exception{
 		MenuRegistDTO menuRegistDTO=menuRegistDAO.selectOne(menuCode);

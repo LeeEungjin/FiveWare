@@ -8,34 +8,85 @@
   		insert into menuregist values(#{menuCode}, #{menuKind}, #{menuName}, #{imgNull}, #{recipe}, #{menuOption}, #{price})
   	</insert>
   	
-  	<select id="selectList" parameterType="com.five.ware.util.RowNum" resultType="com.five.ware.erp.menuRegist.MenuRegistDTO">
+  	<select id="selectList" parameterType="java.util.Map" resultType="com.five.ware.erp.menuRegist.MenuRegistDTO">
   		select * from 
   		(select rownum R, N.* from
   		(select * from menuregist 
   		<if test="kind == 'menuname'">
   			where menuname like '%'||#{search}||'%'
   		</if>
-  		<if test="kind == 'recipe'">
+  		
+  		<if test="kind  == 'recipe'">
   			where recipe like '%'||#{search}||'%'
   		</if>
-  		<if test="kind == 'menuoption'">
+  		
+  		<if test="kind  == 'menuoption'">
   			where menuoption like '%'||#{search}||'%'
   		</if>
-  		 order by menucode desc) N) 
+  		
+  		<if test="kind  == 'menukind'">
+			where menuname like '%'||#{search}||'%'
+  			<if test="menukind=='coffee'">
+				and menukind='coffee'
+			</if>
+			
+			<if test="menukind=='juice'">
+				and menukind='juice'
+			</if>
+			
+			<if test="menukind=='desert'">
+				and menukind='desert'
+			</if>
+  		</if>
+  		
+  		 	<if test="order=='no'">
+			order by menucode desc) N)
+			</if> 
+	  		 <if test="order=='desc'">
+				order by price desc) N)
+			</if>
+			<if test="order=='asc'">
+				order by price asc) N)
+			</if>
+			
   		where R between #{startRow} and #{lastRow}
   	</select>
   	
-  	<select id="totalCount" resultType="int">
+<!-- ========================================totalCount======================================== -->
+  	<select id="totalCount" resultType="int" parameterType="java.util.Map">
   		select nvl(count(menucode),0) from menuregist
-  		<if test="kind == 'menuname'">
+  		
+  		<if test="kind  == 'menuname'">
   			where menuname like '%'||#{search}||'%'
   		</if>
-  		<if test="kind == 'recipe'">
-  		where recipe like '%'||#{search}||'%'
+  		
+  		<if test="kind  == 'recipe'">
+  			where recipe like '%'||#{search}||'%'
   		</if>
-  		<if test="kind == 'menuoption'">
-  		where menuoption like '%'||#{search}||'%' 
+  		
+  		<if test="kind  == 'menuoption'">
+  			where menuoption like '%'||#{search}||'%' 
   		</if>
+  		
+  		<if test="kind == 'menukind'">
+  			where menuname like '%'||#{search}||'%'
+  		</if>
+  		
+  		
+  		<if test="kind  == 'menukind'">
+  			<if test="menukind=='coffee'">
+				and menukind='coffee'
+			</if>
+  			
+  			<if test="menukind=='juice'">
+				and menukind='juice'
+			</if>
+  			
+  			<if test="menukind=='desert'">
+				and menukind='desert'
+			</if>
+  		</if>
+  		
   	</select>
   	
   	<select id="selectOne" resultType="com.five.ware.erp.menuRegist.MenuRegistDTO" parameterType="String">
