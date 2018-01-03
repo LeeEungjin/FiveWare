@@ -66,6 +66,7 @@ public class HomeController {
 		return "AfterLoginMain/srm";
 	}
 	
+	
 	@RequestMapping(value="/codeName")
 	@ResponseBody
 	public String codeName(HttpSession session) throws Exception{

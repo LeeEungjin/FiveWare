@@ -18,28 +18,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 
-<<<<<<< HEAD
- 	
-			 
-			 
-			 
-			 
-	$(function(){
-	 
-		 /*  var code=$(".eb_view").val();
-		 
-			 $.ajax({
-				type: "GET",
-				url: "./storeRegistView",
-				data:{
-					code : code
-				},
-				success:function(data){
-					alert("success");
-				}
-			});  */
-			 
-=======
+
 		 
  $(function(){
 	 
@@ -48,7 +27,7 @@
 	        alert(message);
 	     }
 	 
->>>>>>> eunbi2
+
 		$(".fw_menu").click(function(){
 			var sub = $(this).attr("title");
 			
@@ -95,7 +74,24 @@
          }); 
 	 });
 	 
-	
+	 /* view */
+	 $(".eb_view").click(function(){
+		 
+	  var code=$(".eb_view").val();
+		 
+		 $.ajax({
+			type: "GET",
+			url: "./storeRegistView",
+			data:{
+				code : code
+			},
+			success:function(data){
+				alert("success");
+			}
+		});  
+	 });
+		 
+	 
 	 /* 삭제 */
 	  $("#eb_storeDelete").click(function(){
 		 

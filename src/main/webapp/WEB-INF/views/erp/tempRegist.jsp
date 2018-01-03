@@ -108,6 +108,18 @@
 
 	 });
 	 
+	  $("#eb_insertBtn").click(function(){
+			
+			$.ajax({
+				type:"GET",
+				url:"../codeName",
+				data:{  },
+				success:function(data){
+					alert(data);
+					$("#eb_tempCode").val(data);
+				}
+			});
+		}); 
 	 
  });
  
@@ -140,9 +152,9 @@
 			
 			<div class="fw_subselected collapse in" id="sub1">
 				<ul>
-					<li><a href="#"> 지점 등록</a></li>
+					<li><a href="./storeRegist"> 지점 등록</a></li>
 					<li>예금 계좌 등록</li>
-					<li><a href="./tempRegist">부서 등록</a></li>
+					<li><a href="#">부서 등록</a></li>
 				</ul>
 			</div>
 			
@@ -339,7 +351,7 @@
 				
 						  <button class="btn btn-default" id="deleteBtn">선택삭제</button>
 						  
-					      <button class="btn btn-default" data-toggle="modal" data-target="#myModal">신규등록</button>
+					      <button class="btn btn-default" id="eb_insertBtn" data-toggle="modal" data-target="#myModal">신규등록</button>
 					      
 			 
 			 
@@ -369,7 +381,7 @@
 						<tr>
 						
 						   <td>부서 코드</td>
-						   <td><input type="text" name="code"></td>
+						   <td><input type="text" name="code" id="eb_tempCode"></td>
 						</tr>
 						<tr>  
 							

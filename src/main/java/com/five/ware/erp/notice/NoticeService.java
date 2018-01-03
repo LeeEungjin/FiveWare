@@ -39,7 +39,7 @@ public class NoticeService {
 	
 	public int insert(NoticeDTO noticeDTO, HttpSession session) throws Exception	{
 		
-		List<FileDTO> names = new ArrayList<FileDTO>();
+		/*List<FileDTO> names = new ArrayList<FileDTO>();*/
 		int result = noticeDAO.insert(noticeDTO);
 		
 		return result;
