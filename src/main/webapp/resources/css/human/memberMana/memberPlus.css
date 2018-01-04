@@ -151,16 +151,25 @@
 	
 }
 .ar_positiontext1{
-	margin-right: 3.5%;
 	font-weight: bold;
+	margin-left: 3%;
 }
 
-.arin_pcodeInput1{
-	width: 70%;
+.arin_pcodeInput3{
+	width: 61%;
+	margin-left: 1.6%;
+}
+
+.ar_memberaddr{
+	
 }
 
 .arin_pcodeInput{
-	width: 83%;
+	width: 60%;
+}
+
+.arin_pcodeInput2{
+	width: 80%;
 }
 .ar_blank {
 	width: 100%;
@@ -180,7 +189,15 @@
 }
 
 .modal-footer{
-	margin-top: 30%;
+	margin-top: 10%;
+}
+
+.ar_membertext1{
+	margin-left: 2%;
+}
+
+.ar_membertext11{
+	margin-left: 15%;
 }
 
 #pcode_btn{
@@ -207,3 +224,94 @@
     height: 220px;;
     margin-left: 2%;
 }
+
+.modal-content{
+    width: 150%;
+    height: 822px;	
+}
+
+#ar_memberPhoto {
+       width: 72%;
+    height: 177px;
+    border: 1px solid black;
+    display: inline-block;
+    margin-top: 5%;
+    margin-left: 7%;
+}
+
+#ar_memberFile{
+	 margin-top: 1%;
+    margin-left: 7%;
+}
+
+.ar_photoInsert{
+	display: inline-block;
+	width: 27%;
+	float:left;
+}
+
+.ar_positionInsert{
+	display: inline-block;
+	 margin-bottom: 3%;
+}
+
+.ar_memberInfo{
+	display: inline-block;
+	 height: 188px;
+	 width: 70%;
+	 float:left;
+	 margin-top: 2%;
+}
+
+.modal-body {
+    border-bottom: 1px solid #e5e5e5;
+    height: 259px;
+    width: 96%;
+    margin: 0 auto;
+}
+
+.modal-body1{
+	border-bottom: 1px solid #e5e5e5;
+    height: 166px;
+    width: 96%;
+    margin: 0 auto;
+}
+
+.ar_employee{
+	width: 40%;
+	height:150px;
+	display: inline-block;
+	margin-left: 4%;
+    margin-top: 3%;
+}
+
+.ar_employeeInput{
+	width: 75%;
+}
+
+.modal-body2{
+    height: 166px;
+    width: 96%;
+    margin: 0 auto;
+}
+
+#ar_memberOther{
+	width: 82%;
+    height: 143px;
+    margin-left: 0.5%;
+}
+
+.ar_positionInsert11{
+	margin-left: 4%;
+	margin-top: 2%;
+}
+
+.ar_positionInsert1{
+	margin-left: 4%;
+	margin-top: 2%;
+	display: inline-block;
+	font-weight: bold;
+	margin-right: 1%;
+}
+
+

@@ -7,7 +7,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.FilterWriter;
 import java.io.IOException;
+import java.nio.Buffer;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -126,5 +129,53 @@ public class HomeController {
 	
 	}
 	
+	@RequestMapping(value="/memberNum")
+	@ResponseBody
+	public String memberNum(HttpSession session) throws Exception{
+		String filePath = session.getServletContext().getRealPath("resources/code");
+		
+		Calendar ca = Calendar.getInstance();		
+		SimpleDateFormat sd = new SimpleDateFormat("yyMMdd");
+		
+		String fileName=sd.format(ca.getTime());
+		
+		File f = new File(filePath, "memberCode");
+		
+		FileReader fr = new FileReader(f);		
+		BufferedReader br = new BufferedReader(fr);		
+		String code = br.readLine();
+		
+		String [] ar = code.split("-");
+		
+		if(ar[0].equals(fileName)){
+			int num = Integer.parseInt(ar[1]);
+			
+			num++;
+			
+			code=String.valueOf(num);
+			
+			String codeNum="";
+			
+			for(int i=0; i<3-code.length(); i++){
+				codeNum="0"+codeNum;
+			}
+			
+			code=codeNum+code;
+			code=ar[0]+"-"+code;
+			
+		}else {
+			code=fileName+"-001";			
+		}
+		
+		FileWriter fw = new FileWriter(f);
+		
+		fw.write(code);
+		fw.flush();
+		fw.close();
+		
+		System.out.println("코드:"+code);		
+		
+		return code;
+	}
 	
 }
