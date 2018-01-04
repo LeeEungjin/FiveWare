@@ -22,11 +22,8 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.five.ware" />
-<<<<<<< HEAD
 	<context:component-scan base-package="com.five.ware.file" />
 	<context:component-scan base-package="com.five.human" />
-=======
->>>>>>> arin
 	<context:component-scan base-package="com.five.ware.eung.controller"/>
 	<context:component-scan base-package="com.five.ware.jh.controller"/>
 	<context:component-scan base-package="com.five.ware.eb.controller"/>

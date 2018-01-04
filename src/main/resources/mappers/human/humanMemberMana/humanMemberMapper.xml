@@ -5,6 +5,6 @@
   
   <mapper namespace="humanMemberMapper">
   
-  <insert id="humanInsert""></insert>
+  <insert id="humanInsert"></insert>
   
   </mapper>
