@@ -39,11 +39,8 @@
 			$("#"+id).remove();
 			index--;
 		});
-		
-		$("#updateBtn").click(function(){
-			$("#frm").submit();
 		});
-	});
+
 </script>
 </head>
 <body>
@@ -77,19 +74,19 @@
 											<option>영업/구매부</option>
 									</select></td>
 									<td>작성자</td>
-									<td><input type="text" name="writer" id="writer" value="${view.writer }"></td>
+									<td><input type="text" name="writer" id="writer" value="${view.writer }" readonly="readonly"></td>
 								</tr>
 								<tr>
 									<td>제목</td>
 									<td><input type="text" name="title" id="title" value="${view.title }"></td>
 									<td>등록일</td>
-									<td><input type="text" name="title" id="title" value="${view.reg_date }"></td>
+									<td><input type="text" name="title" id="title" value="${view.reg_date }" readonly="readonly"></td>
 								</tr>
 								<tr>
 									<td colspan="4">에디터가 들어갈 자리
 										<div class="notice_jk_textarea">
 											글 내용이 나옵니다.
-											${view.contents }
+											<input type="text" name="contents" value="${view.contents}">
 											<!-- 글 내용, contents -->
 										</div>
 									</td>
@@ -98,15 +95,20 @@
 									<td>참조파일</td>
 									<td colspan="3">
 										<input type="button" value="File Add" id="add">
-										<div id="files"></div>
-									</td><!-- 추가파일 올릴 수 있게
-									배웠던거 이용해서 -->
+										<div id="files">
+											<c:forEach items="${view.fileNames}" var="file">
+												${file.oriName}<input type="button" title="${file.num}" value="X" class="del">	
+											</c:forEach>
+										</div>
+										
+									</td>
 								</tr>
 							</table>
 							
+							
 								<input type="button" value="취소" class="btn btn-default"
 									id="deleteBtn"><!-- 버튼을 누르면 썼던 내용이 다 사라지게 -->
-								<input type="button" value="수정" class="btn btn-default"
+								<input type="button" value="등록" class="btn btn-default"
 									id="updateBtn">
 						</div>
 					</div>

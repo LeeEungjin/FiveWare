@@ -52,17 +52,25 @@
 										<div class="notice_jk_textarea">${view.contents}<!-- 글 내용, contents --></div>
 									</td>
 								</tr>
+								
 							</table>
+							
+							<c:forEach items="${view.fileNames}" var="file">
+								<a href="../file/fileDown?fileName=${file.fileName}&oriName=${file.oriName}">${file.oriName}</a>
+							</c:forEach>
+							
 							<div class="button">
 								<input type="button" value="목록으로" class="btn btn-default"
 									id="enroBtn">
 								
 							</div>
-							<input type="button" value="수정" class="btn btn-default"
-								id="update">
+							<!-- <input type="button" value="수정" class="btn btn-default"
+								id="update"> -->
+								<a href="./noticeUpdate?num=${view.num}" class="btn btn-default">수정</a>
+								
 								<!-- <input type="button" value="삭제" class="btn btn-default"
 								id="delete"> -->
-								<a od="delete" class="btn btn-default" href="./noticeDelete?num=${view.num}">Delete</a>
+								<a od="delete" class="btn btn-default" href="./noticeDelete?num=${view.num}">삭제</a>
 						</div>
 					</div>
 

@@ -29,7 +29,7 @@ public class NoticeTestDAO extends AbstractTest {
 	}
 
 	public void selectList() throws Exception	{
-		RowNum rowNum = new RowNum();
+	/*	RowNum rowNum = new RowNum();
 		rowNum.setStartRow(1);
 		rowNum.setLastRow(10);
 		List<NoticeDTO> ar = noticeDAO.selectList(rowNum);
@@ -38,6 +38,6 @@ public class NoticeTestDAO extends AbstractTest {
 			System.out.println(noticeDTO.getPart());
 			System.out.println(noticeDTO.getTitle());
 		}
-		assertTrue(ar.size()>0);
+		assertTrue(ar.size()>0);*/
 	}
 }
