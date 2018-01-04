@@ -85,10 +85,10 @@
 						<!-- 부서별 링크 -->
 						<div class="notice_jk_partBox" >
 							<a href="./noticeList?part=회계부" title="회계부" class="acc">회계부</a> 
-							<a href="#" title="총무부" class="acc">총무부</a> 
-							<a href="#" title="인사부" class="acc" >인사부</a> 
-							<a href="#" title="영업/구매부" class="acc">영업/구매부</a>
-							<a href="#" title="마케팅부" class="acc">마케팅부</a>
+							<a href="./noticeList?part=총무부" title="총무부" class="acc">총무부</a> 
+							<a href="./noticeList?part=인사부" title="인사부" class="acc" >인사부</a> 
+							<a href="./noticeList?part=영업/구매부" title="영업/구매부" class="acc">영업/구매부</a>
+							<a href="./noticeList?part=마케팅부" title="마케팅부" class="acc">마케팅부</a>
 						</div>
 
 						<!-- 검색창 -->
@@ -109,7 +109,6 @@
 										<td>번호</td>
 										<td>부서</td>
 										<td>제목</td>
-										<td>내용</td>
 										<td>작성자</td>
 										<td>작성일</td>
 										<td>조회</td>
@@ -120,7 +119,6 @@
 										<td>${dto.num}</td>
 										<td>${dto.part}</td>
 										<td><a href="./noticeView?num=${dto.num}">${dto.title}</a></td>
-										<td>${dto.contents}</td>
 										<td>${dto.writer}</td>
 										<td>${dto.reg_date}</td>
 										<td>${dto.hit}</td>

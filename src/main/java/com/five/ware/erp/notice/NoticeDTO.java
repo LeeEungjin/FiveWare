@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class NoticeDTO{
+public class NoticeDTO extends NoticeFileDTO{
 
 	private int num;
 	private String part;
@@ -13,7 +13,14 @@ public class NoticeDTO{
 	private String contents;
 	private String reg_date;
 	private int hit;
-	
+	private NoticeFileDTO noticeFileDTO;
+		
+	public NoticeFileDTO getNoticeFileDTO() {
+		return noticeFileDTO;
+	}
+	public void setNoticeFileDTO(NoticeFileDTO noticeFileDTO) {
+		this.noticeFileDTO = noticeFileDTO;
+	}
 	public int getNum() {
 		return num;
 	}
