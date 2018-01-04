@@ -15,8 +15,3 @@
   		<typeAlias type="com.five.ware.erp.human.member.MemberDTO" alias="MemberDTO"/>
   	</typeAliases>
   </configuration>
-  
-  
-
-
-

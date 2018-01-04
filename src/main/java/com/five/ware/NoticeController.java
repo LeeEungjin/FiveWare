@@ -1,4 +1,4 @@
-package com.five.ware;
+/*package com.five.ware;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,12 +37,12 @@ public class NoticeController {
 		return mv;
 	}
 
-	/*@RequestMapping(value="noticeAjax", method=RequestMethod.GET)
+	@RequestMapping(value="noticeAjax", method=RequestMethod.GET)
 	@ResponseBody
 	public ModelAndView selectPart(ListData listData, String part, ModelAndView mv, RedirectAttributes rd) throws Exception	{
 		mv = noticeService.part(listData, part);
 		return mv;
-	}*/
+	}
 	
 	@RequestMapping(value="noticeView")
 	public ModelAndView noticeView(ModelAndView mv, @RequestParam(defaultValue="0", required=false)int num) throws Exception{
@@ -58,7 +58,7 @@ public class NoticeController {
 		return "notice/noticeWrite";
 	}
 	
-/*	@RequestMapping(value="noticeWrite", method = RequestMethod.POST)
+	@RequestMapping(value="noticeWrite", method = RequestMethod.POST)
 	public String insert(NoticeDTO noticeDTO, RedirectAttributes rd, HttpSession session) throws Exception	{
 		int result = 0;
 		
@@ -71,7 +71,7 @@ public class NoticeController {
 		rd.addFlashAttribute("message", message);
 		
 		return "redirect:noticeList";
-	}*/
+	}
 	
 	@RequestMapping(value="noticeUpdate", method=RequestMethod.GET)
 	public String update(int num, Model model) throws Exception{
@@ -108,3 +108,4 @@ public class NoticeController {
 		return "notice/meetingRoom";
 	}
 }
+*/

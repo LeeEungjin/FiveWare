@@ -1,4 +1,4 @@
-package com.five.ware.erp.notice;
+/*package com.five.ware.erp.notice;
 
 
 
@@ -45,7 +45,7 @@ public class NoticeService {
 	public int insert(NoticeDTO noticeDTO, HttpSession session) throws Exception	{
 		
 <<<<<<< HEAD
-		/*List<FileDTO> names = new ArrayList<FileDTO>();*/
+		List<FileDTO> names = new ArrayList<FileDTO>();
 =======
 		MultipartFile [] files = noticeDTO.getFiles();
 >>>>>>> jk8
@@ -75,7 +75,7 @@ public class NoticeService {
 		return result;
 	}
 	
-	/*public ModelAndView part(ListData listData, String part) throws Exception	{
+	public ModelAndView part(ListData listData, String part) throws Exception	{
 		RowNum rowNum = listData.makeRow();
 		int totalCount = noticeDAO.totalCount(rowNum);
 		Pager pager = listData.makePage(totalCount);
@@ -84,5 +84,6 @@ public class NoticeService {
 		mv.addObject("list", noticeDAO.part(rowNum, part));
 		mv.setViewName("notice/noticeList");
 		return mv;
-	}*/
+	}
 }
+*/
