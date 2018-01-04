@@ -5,6 +5,15 @@
   
   <mapper namespace="humanMemberMapper">
   
+<<<<<<< HEAD
   <insert id="humanInsert"></insert>
+=======
+  <insert id="memberInsert" parameterType="MemberDTO">
+  	insert into member values(member_seq.nextval, 'member', #{id}, #{id}, #{name}, #{birth}, #{phone}, #{addr}, #{email}, #{hiredate}, #{temp}, #{rank}, #{sal}, #{bank}, #{banknum}, #{vacation}, #{month}, #{other} )
+  </insert>
+>>>>>>> arin
   
+  <select id="rankList" resultType="String">
+  		select distinct rank from rankregist 
+  </select>
   </mapper>

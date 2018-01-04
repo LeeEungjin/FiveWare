@@ -100,6 +100,7 @@
 .ar_memberRank{
 	width: 7%;
 	height: 50%;
+	
 }
 
 .ar_memberBirth{
@@ -147,8 +148,8 @@
 
 .ar_positiontext{
 	font-weight: bold;
-	margin-right: 1%;
-	
+	margin-right: 3%;
+	float:left;
 }
 .ar_positiontext1{
 	font-weight: bold;
@@ -160,8 +161,10 @@
 	margin-left: 1.6%;
 }
 
-.ar_memberaddr{
-	
+.ar_positionInsert2{
+	display: inline-block;
+	 margin-bottom: 3%;
+	 width: 100%;
 }
 
 .arin_pcodeInput{
@@ -239,7 +242,7 @@
     margin-left: 7%;
 }
 
-#ar_memberFile{
+#f{
 	 margin-top: 1%;
     margin-left: 7%;
 }
@@ -283,6 +286,7 @@
 	display: inline-block;
 	margin-left: 4%;
     margin-top: 3%;
+    float: left;
 }
 
 .ar_employeeInput{
@@ -314,4 +318,14 @@
 	margin-right: 1%;
 }
 
+#memberBank{
+	display: inline-block;
+	float:left;
+	width: 54%;
+}
 
+#memberRank{
+	display: inline-block;
+	float:left;
+	width: 55%;
+}
