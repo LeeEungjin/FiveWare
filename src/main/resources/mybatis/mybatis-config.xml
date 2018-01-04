@@ -11,6 +11,8 @@
   		<typeAlias type="com.five.ware.erp.tempRegist.TempRegistDTO" alias="tempRegistDTO"/>
   		<typeAlias type="com.five.ware.erp.supplier.SupplierDTO" alias="SupplierDTO"/>
   		<typeAlias type="com.five.ware.erp.human.basis.PositionDTO" alias="PositionDTO"/>
+  		<typeAlias type="com.five.ware.erp.human.basis.SalDTO" alias="SalDTO"/>
+  		<typeAlias type="com.five.ware.erp.human.member.MemberDTO" alias="MemberDTO"/>
   	</typeAliases>
   </configuration>
   
