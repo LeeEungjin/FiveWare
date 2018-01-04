@@ -6,60 +6,128 @@
   <mapper namespace="noticeMapper">
   
   	<select id="totalCount" resultType="int" parameterType="java.util.Map">
-  		select nvl(count(num), 0) from notice
-  		<if test="kind == 'title'">
+  		select nvl(count(part), 0) from notice
+  		<if test="kind=='title'">
   			where title like '%'||#{search}||'%'
   		</if>
-  		<if test="kind == 'writer'">
+  		<if test="kind=='writer'">
   			where writer like '%'||#{search}||'%'
   		</if>
-  		<if test="kind == 'part'">
+  		<if test="kind=='part'">
   			where part like '%'||#{search}||'%'
+  			<if test="part=='회계부'">
+  				and part='회계부'
+  			</if>
+  			<if test="part=='총무부'">
+  				and part='총무부'
+  			</if>
+  			<if test="part=='인사부'">
+  				and part='인사부'
+  			</if>
+  			<if test="part=='영업/구매부'">
+  				and part='영업/구매부'
+  			</if>
+  			<if test="part=='마케팅부'">
+  				and part='마케팅부'
+  			</if>
   		</if>
+  		<if test="part=='회계부'">
+  				where part='회계부'
+  			</if>
+  			<if test="part=='총무부'">
+  				where part='총무부'
+  			</if>
+  			<if test="part=='인사부'">
+  				where part='인사부'
+  			</if>
+  			<if test="part=='영업/구매부'">
+  				where part='영업/구매부'
+  			</if>
+  			<if test="part=='마케팅부'">
+  				where part='마케팅부'
+  			</if>
   	</select>
   	
   	
-  	<!-- <select id="selectFile" parameterType="int" resultType="com.five.ware.erp.notice.FileDTO">
+<<<<<<< HEAD
 =======
-  	<select id="selectFile" parameterType="int" resultType="com.five.ware.file.FileDTO">
->>>>>>> jihyun10
+
+  	
+
+>>>>>>> 7ad65d6a628bd538e5cf0d7098ced39ceaf75f5c
+  	<!-- <select id="selectFile" parameterType="int" resultType="com.five.ware.erp.notice.FileDTO">
   		select* from upload where num=#{num}
   	</select> -->
+<<<<<<< HEAD
   	
   	<select id="selectList" resultType="com.five.ware.erp.notice.NoticeDTO" parameterType="com.five.ware.util.RowNum">
+=======
+
+  	<select id="selectList" resultType="com.five.ware.erp.notice.NoticeDTO" parameterType="java.util.Map">
+
+>>>>>>> 7ad65d6a628bd538e5cf0d7098ced39ceaf75f5c
   		select * from
   		(select rownum R, N.* from
   		(select * from notice
-  		<if test="kind == 'title'">
+  		
+  		<if test="kind=='code'">
   			where title like '%'||#{search}||'%'
   		</if>
-  		<if test="kind == 'writer'">
+  		
+  		<if test="kind=='title'">
+  			where title like '%'||#{search}||'%'
+  		</if> 
+  		<if test="kind=='writer'">
   			where writer like '%'||#{search}||'%'
   		</if>
-  		<if test="kind == 'part'">
+  		<if test="kind=='part'">
   			where part like '%'||#{search}||'%'
-  			<if test="part == '회계부'">
-  				and 
-  			</if>
+  		</if>
+  		<if test="part=='회계부'">
+  			and part='회계부'
+  		</if>
+  		<if test="part=='총무부'">
+  			and part='총무부'
+  		</if>
+  		<if test="part=='인사부'">
+  			and part='인사부'
+  		</if>
+  		<if test="part=='영업/구매부'">
+  			and part='영업/구매부'
+  		</if>
+  		<if test="part=='마케팅부'">
+  			and part='마케팅부'
   		</if>
   		order by num desc) N)
   		where R between #{startRow} and #{lastRow}
   	</select>
   	
-  	<select id="selectOne" parameterType="java.lang.Integer" resultType="com.five.ware.erp.notice.NoticeDTO">
+  	<select id="selectOne" parameterType="java.lang.Integer" resultMap="selectF">
   		select * from notice where num=#{num}
   	</select>
   	
-  	<select id="selectPart" parameterType="com.five.ware.util.RowNum" resultType="com.five.ware.erp.notice.NoticeDTO">
+  	<!-- <select id="selectPart" parameterType="java.util.Map" resultType="com.five.ware.erp.notice.NoticeDTO">
   		select * from 
   		(select rownum R, N.* from 
   		(select * from notice 
-  		<if test="kind == 'part'">
+  		<if test="part == '회계부'">
   			where part='회계부'
+  		</if>
+  		<if test="part == '총무부'">
+  			where part='총무부'
+  		</if>
+  		<if test="part == '인사부'">
+  			where part='인사부'
+  		</if>
+  		<if test="part == '영업/구매부'">
+  			where part='영업/구매부'
+  		</if>
+  		<if test="part == '마케팅부'">
+  			where part='마케팅부'
   		</if>
   		order by num desc) N) 
   		where R between #{startRow} and #{lastRow}
-  	</select>
+  	</select> -->
   	
   	<update id="update" parameterType="com.five.ware.erp.notice.NoticeDTO">
   		update notice set title=#{title}, contents=#{contents} where num=#{num}
@@ -83,4 +151,14 @@
   	<delete id="delete" parameterType="int">
   		delete notice where num=#{num}
   	</delete>
+  	
+  	<resultMap type="com.five.ware.erp.notice.NoticeDTO" id="selectF">
+  		<id property="num" column="num"/>
+  		<collection property="fileNames" column="num" ofType="com.five.ware.erp.notice.NoticeDTO" select="selectFile"></collection>
+  	</resultMap>
+  	
+  	<select id="selectFile" parameterType="int" resultType="com.five.ware.erp.notice.NoticeFileDTO">
+  		select * from upload where num=#{num}
+  	</select>
+  	
   </mapper>

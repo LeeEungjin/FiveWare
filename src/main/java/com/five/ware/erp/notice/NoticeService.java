@@ -41,6 +41,10 @@ public class NoticeService {
 	
 	public int insert(NoticeDTO noticeDTO, HttpSession session) throws Exception	{
 		
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7ad65d6a628bd538e5cf0d7098ced39ceaf75f5c
 		/*List<FileDTO> names = new ArrayList<FileDTO>();*/
 		
 		int result = noticeDAO.insert(noticeDTO);
