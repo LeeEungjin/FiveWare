@@ -36,12 +36,12 @@ public class NoticeController {
 		return mv;
 	}
 
-	@RequestMapping(value="noticeAjax", method=RequestMethod.GET)
+	/*@RequestMapping(value="noticeAjax", method=RequestMethod.GET)
 	@ResponseBody
 	public ModelAndView selectPart(ListData listData, String part, ModelAndView mv, RedirectAttributes rd) throws Exception	{
 		mv = noticeService.part(listData, part);
 		return mv;
-	}
+	}*/
 	
 	@RequestMapping(value="noticeView")
 	public String noticeView(Model model, @RequestParam(defaultValue="0", required=false)int num) throws Exception{

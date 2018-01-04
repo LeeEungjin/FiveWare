@@ -39,17 +39,14 @@ public class NoticeService {
 		return noticeDTO;
 	}
 	
-/*	public int insert(NoticeDTO noticeDTO, HttpSession session) throws Exception	{
+	public int insert(NoticeDTO noticeDTO, HttpSession session) throws Exception	{
 		
-<<<<<<< HEAD
 		/*List<FileDTO> names = new ArrayList<FileDTO>();*/
-=======
 		
->>>>>>> jk7
 		int result = noticeDAO.insert(noticeDTO);
 		
 		return result;
-	}*/
+	}
 	
 	public int update(NoticeDTO noticeDTO) throws Exception	{
 		int result = noticeDAO.update(noticeDTO);
@@ -61,7 +58,7 @@ public class NoticeService {
 		return result;
 	}
 	
-	public ModelAndView part(ListData listData, String part) throws Exception	{
+	/*public ModelAndView part(ListData listData, String part) throws Exception	{
 		RowNum rowNum = listData.makeRow();
 		int totalCount = noticeDAO.totalCount(rowNum);
 		Pager pager = listData.makePage(totalCount);
@@ -70,5 +67,5 @@ public class NoticeService {
 		mv.addObject("list", noticeDAO.part(rowNum));
 		
 		return mv;
-	}
+	}*/
 }
