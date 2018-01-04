@@ -1,6 +1,7 @@
 package com.five.ware.jh.controller;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,20 +38,17 @@ public class MaterController {
 	}
 	
 	@RequestMapping(value="materDateList")
-	public List<MaterDTO> materDateSerach(String materKind, String smaterDate, String ematerDate){
-		List<MaterDTO> ar=null;
+	public ModelAndView materDateSerach(ModelAndView mv, String materKind, String smaterDate, String ematerDate){
 
 		try {
-			ar=materService.materDateList(materKind, smaterDate, ematerDate);
+			mv.addObject("dateList", materService.materDateList(materKind, smaterDate, ematerDate));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		for(int i=0; i<ar.size(); i++){
-			System.out.println("ar : "+ar.get(i));
-		}
+		mv.setViewName("erp/mater/materDateList");
 		
-		return ar;
+		return mv;
 	}
 	
 	@RequestMapping(value="materStorageList")

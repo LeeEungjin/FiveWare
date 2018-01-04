@@ -16,14 +16,14 @@
   
   
   <select id="materDateList" parameterType="java.util.Map" resultType="com.five.ware.mater.MaterDTO">
-  	<![CDATA[select * from mater where materkind=#{materKind} and materdate>#{smaterDate} and materdate < #{ematerDate} ]]>
+  	<![CDATA[select * from mater where materkind=#{materKind} and materdate>=#{smaterDate} and materdate<=#{ematerDate} ]]>
   </select>
   
   <select id="materStorageList" resultType="String">
   	select storagename from storage
   </select>
   
-  <select id="selectOne">
+  <select id="selectOne" resultType="com.five.ware.mater.MaterDTO">
   	select * from mater where matercode=#{materCode}
   </select>
   

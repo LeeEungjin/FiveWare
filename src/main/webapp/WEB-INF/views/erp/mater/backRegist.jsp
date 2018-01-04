@@ -64,30 +64,32 @@
 		}); 
 		
 		$("#search_btn").click(function(){
-			alert("click");
 			
 			var smaterDate=$("#smaterDate").val();
-			var ematerDate=$("#ematerDate").val();
-			var materKind="enter";
+			var ematerDate=$("#ematerDate").val(); 
+			var materKind="back";
 			
-			if(smaterDate=="" || ematerDate==""){
+		 	if(smaterDate=="" || ematerDate==""){
 				alert("기간을 입력해주세요.");
-			}else{
+			}else{ 
 				
 				$.ajax({
 					type : "GET",
 					url : "./materDateList",
 					data : {
+						materKind : materKind,
 						smaterDate : smaterDate,
-						ematerDate : ematerDate,
-						materKind : materKind
+						ematerDate : ematerDate
 					},
 					success:function(data){
-						alert(data);
+						$("#erp_jh_contents_table").html(data);
 					}
 				});
-				
 			}
+		});
+		
+		$("#dateListReset").click(function(){
+			location.reload();
 		});
 		
 	});
@@ -188,12 +190,14 @@
 					<div id="br_search">
 						<!-- 검색 기능 -->
 							<div class="input-group search_group">
-								<form id="er_search_frm" name="er_search_frm" method="get">
-									기간 선택 <input id="smaterDate" type="date"> ~ <input id="ematerDate" type="date">		
+								<form id="br_search_frm" method="get">
+								<input type="hidden" name="materKind" value="back">
+									기간 선택 <input id="smaterDate" name="smaterDate" type="date"> ~ <input id="ematerDate" name="ematerDate" type="date">					
 							      <div class="input-group-btn">
-							        <button  id="search_btn" class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+							        <button type="button" id="search_btn" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
 							      </div>
-							    </form>	
+							      <input id="dateListReset" class="btn btn-default" type="button" value="초기화">
+							    </form>
 						    </div>	
 						<!-- 검색 기능 끝 -->
 					</div>

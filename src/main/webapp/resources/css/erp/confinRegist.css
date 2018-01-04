@@ -1,9 +1,6 @@
 @CHARSET "UTF-8";
 
-.search_group{
-	width: 80% !important;
-    float: left;
-}
+
 
 .sales_title_menu{
 	width: 10%;
@@ -116,6 +113,11 @@
 
 #jh_bold_text{
 	font-weight: bold;
+}
+
+.search_group{
+	width: 80% !important;
+    float: left;
 }
 
 /*------------- modal -----------------*/

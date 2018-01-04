@@ -63,15 +63,14 @@
 		}); 
 		
 		$("#search_btn").click(function(){
-			alert("click");
 			
 			var smaterDate=$("#smaterDate").val();
 			var ematerDate=$("#ematerDate").val(); 
 			var materKind="enter";
 			
-			if(smaterDate=="" || ematerDate==""){
+		 	if(smaterDate=="" || ematerDate==""){
 				alert("기간을 입력해주세요.");
-			}else{
+			}else{ 
 				
 				$.ajax({
 					type : "GET",
@@ -82,14 +81,58 @@
 						ematerDate : ematerDate
 					},
 					success:function(data){
-						alert(data);
+						$("#erp_jh_contents_table").html(data);
 					}
 				});
-				
 			}
 		});
 		
+		$("#dateListReset").click(function(){
+			location.reload();
+		});
 		
+		$(".materView").click(function(){
+			var code=$(this).attr("title");
+			var i=0;
+			var storage="";
+			
+			$.ajax({
+				type:"GET",
+				url:"./materStorageList",
+				success:function(data){
+					
+					$(data).each(function(){
+						$(".storageName").append("<option value="+data[i]+">"+data[i]+"</option>");
+						i++;
+					});
+					
+					$.ajax({
+						data : {"materCode" : code},
+						url : "./materView",
+						type : "get",
+						success : function(data){
+							$(".materCode").val(data.materCode);
+							$(".materDate").val(data.materDate);
+							$(".materMemo").html(data.materMemo);
+							$(".account").val(data.account);
+							$(".temp").val(data.temp);
+							$(".name").val(data.name);
+							
+							storage=data.storageName;
+							
+						},
+						error : function(data){
+							alert("error");
+						}
+					});
+					
+					/* ===================================== */
+				}
+				/* ===================================== */
+			});
+			/* ===================================== */
+		});
+		/* ===================================== */
 		
 	});
 </script>
@@ -187,12 +230,13 @@
 					<div id="er_search">
 						<!-- 검색 기능 -->
 							<div class="input-group search_group">
-								<form action="./materRegist" id="er_search_frm" name="er_search_frm" method="get">
+								<form id="er_search_frm" method="get">
 									<input type="hidden" name="materKind" value="enter">
 									기간 선택 <input id="smaterDate" name="smaterDate" type="date"> ~ <input id="ematerDate" name="ematerDate" type="date">		
 							      <div class="input-group-btn">
-							        <button  id="search_btn" class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+							        <button type="button" id="search_btn" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
 							      </div>
+							      <input id="dateListReset" class="btn btn-default" type="button" value="초기화">
 							    </form>	
 						    </div>	
 						<!-- 검색 기능 끝 -->
@@ -215,7 +259,7 @@
 						    <tbody>
 						    <c:forEach items="${enterList}" var="enterList"> 
 						      <tr>
-						        <td data-toggle="modal" data-target="#er_update_modal">${enterList.materCode}</td>
+						        <td class="materView" title="${enterList.materCode}" data-toggle="modal" data-target="#er_update_modal">${enterList.materCode}</td>
 						        <td>${enterList.materDate}</td>
 						        <td>${enterList.storageName}</td>
 						        <td></td>
@@ -320,38 +364,41 @@
 				        <div class="modal-body">
 				        	<div class="input-group input-group_modal">
 							  <span class="input-group-addon">입고코드</span>
-							  <input type="text" class="form-control" placeholder="Additional Info">
+							  <input name="materCode" type="text" class="materCode form-control" readonly="readonly">
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">입고일</span>
-							  <input type="date" class="form-control">
+							  <input name="materDate" type="date" class="materDate form-control">
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">거래처</span>
-							  <input type="text" class="form-control" placeholder="Additional Info">
+							  <input name="account" type="text" class="account form-control" placeholder="Additional Info">
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">부서</span>
-							  <input type="text" class="form-control" placeholder="Additional Info">
+							  <input name="temp" type="text" class="temp form-control" placeholder="Additional Info">
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">담당자</span>
-							  <input type="text" class="form-control" placeholder="Additional Info">
+							  <input name="name" type="text" class="name form-control" placeholder="Additional Info">
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">창고명</span>
-							  <input type="text" class="form-control" placeholder="Additional Info">
+							  <select class="storageName" name="storageName">
+							  </select>
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">비고</span>
-							   <textarea class="form-control form-control_area" rows="5" id="comment"></textarea>
+							   <textarea name="materMemo" class="materMemo form-control form-control_area" rows="5" id="comment"></textarea>
 							</div>
+							
+							<input type="hidden" name="materKind" value="enter">
 				        </div>
 				        <!-- modal contents 끝-->
 				        

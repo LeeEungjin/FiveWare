@@ -63,6 +63,35 @@ var message = '${message}';
 			}
 		}); 
 		
+		$("#search_btn").click(function(){
+			
+			var smaterDate=$("#smaterDate").val();
+			var ematerDate=$("#ematerDate").val(); 
+			var materKind="confin";
+			
+		 	if(smaterDate=="" || ematerDate==""){
+				alert("기간을 입력해주세요.");
+			}else{ 
+				
+				$.ajax({
+					type : "GET",
+					url : "./materDateList",
+					data : {
+						materKind : materKind,
+						smaterDate : smaterDate,
+						ematerDate : ematerDate
+					},
+					success:function(data){
+						$("#erp_jh_contents_table").html(data);
+					}
+				});
+			}
+		});
+		
+		$("#dateListReset").click(function(){
+			location.reload();
+		});
+		
 	});
 </script>
 
@@ -161,11 +190,13 @@ var message = '${message}';
 					<div id="cr_search">
 						<!-- 검색 기능 -->
 							<div class="input-group search_group">
-								<form action="./materRegist" id="er_search_frm" name="er_search_frm" method="get">
-									기간 선택 <input type="date"> ~ <input type="date">		
+								<form id="cr_search_frm" method="get">
+									<input type="hidden" name="materKind" value="confin">
+									기간 선택 <input id="smaterDate" name="smaterDate" type="date"> ~ <input id="ematerDate" name="ematerDate" type="date">				
 							      <div class="input-group-btn">
-							        <button  id="search_btn" class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+							        <button type="button" id="search_btn" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
 							      </div>
+							      <input id="dateListReset" class="btn btn-default" type="button" value="초기화">
 							    </form>	
 						    </div>	
 						<!-- 검색 기능 끝 -->
