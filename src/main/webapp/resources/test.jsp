@@ -11,7 +11,7 @@
 	    box-sizing: border-box;
 	}
 	
-	.erp_ej_inputText, select, textarea{
+	.erp_ej_inputText{
 	    width: 100%;
 	    padding: 12px;
 	    border: 1px solid #ccc;
@@ -20,12 +20,12 @@
 	    resize: vertical;
 	}
 	
-	label {
+	.erp_ej_label {
 	    padding: 12px 12px 12px 0;
 	    display: inline-block;
 	}
 	
-	input[type=submit] {
+	.erp_ej_btn {
 	    background-color: #4CAF50;
 	    color: white;
 	    padding: 12px 20px;
@@ -35,7 +35,7 @@
 	    float: right;
 	}
 	
-	input[type=submit]:hover {
+	.erp_ej_btn:hover {
 	    background-color: #45a049;
 	}
 	
@@ -85,7 +85,7 @@
 	 	<!-- 거래처 분류 Classification -->
 	 	<div class="erp_ej_row">
 		  <div class="erp_ej_col-25">
-		    <label for="country">Country</label>
+		    <label class="erp_ej_label" for="country">Country</label>
 		  </div>
 		  <div class="erp_ej_col-75">
 		    <select id="country" name="classification" class="erp_ej_inputText">
@@ -137,7 +137,7 @@
 		  </div>
 		</div>
 		
-		<!--  담당자 메일 division_mail -->
+		<!-- 담당자 메일 division_mail -->
 		<div class="erp_ej_row">
 		  <div class="erp_ej_col-25">
 		    <label for="division_mail">Division Mail</label>
@@ -169,7 +169,7 @@
 		
 		
 		<div class="erp_ej_row">
-		  <input type="submit" value="Submit">
+		  <input type="submit" value="Write" class="erp_ej_btn">
 		</div>
 		
 	  </form>

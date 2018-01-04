@@ -20,11 +20,30 @@ public class SupplierServiceTest extends AbstractTest {
 	@Test
 	public void test() {
 		try {
-			this.selectList();
+			this.insert();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void insert() throws Exception {
+		SupplierDTO supplierDTO = new SupplierDTO();
+		supplierDTO.setCode("test 03");
+		supplierDTO.setAccount_number("test 03");
+		supplierDTO.setBank("test 03");
+		supplierDTO.setBusiness_number("test 03");
+		supplierDTO.setClassification("test 03");
+		supplierDTO.setDivision("test 03");
+		supplierDTO.setDivision_mail("test 03");
+		supplierDTO.setRepresentative("test 03");
+		supplierDTO.setName("test 03");
+		supplierDTO.setUse("true");
+		
+		int result = supplierService.insert(supplierDTO);
+		System.out.println(result);
+		
+		assertTrue(result > 0);
 	}
 	
 	public void selectList() throws Exception {

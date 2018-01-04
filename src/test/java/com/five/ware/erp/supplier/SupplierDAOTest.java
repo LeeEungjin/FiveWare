@@ -18,11 +18,31 @@ public class SupplierDAOTest extends AbstractTest {
 	@Test
 	public void test() {
 		try {
-			this.repository();
+			this.insert();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void insert() {
+		SupplierDTO supplierDTO = new SupplierDTO();
+		supplierDTO.setCode("test 02");
+		supplierDTO.setAccount_number("test 02");
+		supplierDTO.setBank("test 02");
+		supplierDTO.setBusiness_number("test 02");
+		supplierDTO.setClassification("test 02");
+		supplierDTO.setDivision("test 02");
+		supplierDTO.setDivision_mail("test 02");
+		supplierDTO.setRepresentative("test 02");
+		supplierDTO.setName("test 02");
+		supplierDTO.setUse("true");
+		
+		int result = supplierDAO.insert(supplierDTO);
+		System.out.println(result);
+		
+		assertTrue(result > 0);
+		
 	}
 	
 	public void repository() {
