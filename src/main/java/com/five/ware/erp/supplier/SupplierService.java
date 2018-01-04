@@ -22,4 +22,8 @@ public class SupplierService {
 		
 		return mv;
 	}
+	
+	public int insert(SupplierDTO supplierDTO) throws Exception {
+		return supplierDAO.insert(supplierDTO);
+	}
 }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.five.ware.erp.supplier.SupplierDTO;
 import com.five.ware.erp.supplier.SupplierService;
 
 @Controller
@@ -29,5 +30,25 @@ public class ErpFoundationController {
 		}
 		
 		return mv;
+	}
+	
+	@RequestMapping(value="supplier", method=RequestMethod.POST)
+	public String supplierWrite(SupplierDTO supplierDTO) {
+		String message = "";
+		
+		try {
+			int result = supplierService.insert(supplierDTO);
+			
+			if(result > 0) {
+				message = "redirect:./supplier";
+			} else {
+				// 등록이 실패될 경우 이동할 페이지
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return message;
 	}
 }

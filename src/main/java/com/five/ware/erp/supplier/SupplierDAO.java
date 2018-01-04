@@ -15,7 +15,10 @@ public class SupplierDAO {
 	private final String NAMESPACE = "supplierMapper.";
 	
 	public List<SupplierDTO> selectList() {
-		
-		return sqlSession.selectList(NAMESPACE+"selectList");
+		return sqlSession.selectList(NAMESPACE+"supplierList");
+	}
+	
+	public int insert(SupplierDTO supplierDTO) {
+		return sqlSession.insert(NAMESPACE+"supplierWrite", supplierDTO);
 	}
 }
