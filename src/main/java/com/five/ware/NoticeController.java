@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import com.five.ware.erp.notice.NoticeDTO;
+import com.five.ware.erp.notice.NoticeFileDTO;
 import com.five.ware.erp.notice.NoticeService;
 import com.five.ware.util.ListData;
 
@@ -44,10 +45,11 @@ public class NoticeController {
 	}*/
 	
 	@RequestMapping(value="noticeView")
-	public String noticeView(Model model, @RequestParam(defaultValue="0", required=false)int num) throws Exception{
+	public ModelAndView noticeView(ModelAndView mv, @RequestParam(defaultValue="0", required=false)int num) throws Exception{
 		NoticeDTO noticeDTO = noticeService.selectOne(num);
-		model.addAttribute("view", noticeDTO);
-		return "notice/noticeView";
+		mv.addObject("view", noticeDTO);
+		mv.setViewName("notice/noticeView");
+		return mv;
 	}
 	
 	@RequestMapping(value="noticeWrite", method = RequestMethod.GET)

@@ -1,0 +1,32 @@
+package com.five.ware;
+
+import java.io.File;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.five.ware.erp.notice.NoticeDTO;
+import com.five.ware.erp.notice.NoticeFileDTO;
+
+
+@Controller
+@RequestMapping(value="/file/*")
+public class FileController {
+
+	@RequestMapping(value="noticeFileDown")
+	public ModelAndView fileDown(NoticeDTO noticeDTO, HttpSession session) throws Exception	{
+		String filePath = session.getServletContext().getRealPath("resources/upload");
+		
+		File file = new File(filePath, noticeDTO.getFileName());
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("down", file);
+		mv.addObject("oriname", noticeDTO.getOriName());
+		mv.setViewName("noticeFiledown");
+		
+		return mv;
+	}
+}

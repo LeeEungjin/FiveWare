@@ -41,7 +41,12 @@ public class NoticeDAO {
 	}
 	
 	public NoticeDTO selectOne(int num) throws Exception	{
+		
 		return sqlSession.selectOne(namespace+"selectOne", num);
+	}
+	
+	public NoticeDTO fileView(int num) throws Exception	{
+		return sqlSession.selectOne(namespace+"selectFile", num);
 	}
 	
 	public int hitUpdate(int num) throws Exception	{
@@ -49,7 +54,9 @@ public class NoticeDAO {
 	}
 	
 	public int insert(NoticeDTO noticeDTO) throws Exception	{
+		
 		int result = sqlSession.insert(namespace+"insert", noticeDTO);
+		
 		return result;
 	}
 	

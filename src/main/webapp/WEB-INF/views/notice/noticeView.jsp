@@ -52,7 +52,13 @@
 										<div class="notice_jk_textarea">${view.contents}<!-- 글 내용, contents --></div>
 									</td>
 								</tr>
+								
 							</table>
+							
+							<c:forEach items="${view.fileNames}" var="file">
+								<a href="../file/noticeFileDown?filename=${file.fileName}&oriname=${file.oriName}">${file.oriName}</a>
+							</c:forEach>
+							
 							<div class="button">
 								<input type="button" value="목록으로" class="btn btn-default"
 									id="enroBtn">

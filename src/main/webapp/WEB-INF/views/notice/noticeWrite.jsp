@@ -43,10 +43,6 @@
 			$("#"+id).remove();
 			index--;
 		});
-		
-		$("#writeBtn").click(function(){
-			document.frm.submit();
-		});
 	});
 </script>
 </head>
@@ -64,7 +60,7 @@
 					class="notice_jk_subTitle">각 부서별 소식을 알려드립니다.</span>
 
 			</div>
-			<form action="./noticeWrite" method="post" name="frm" id="frm" enctype="multipart/form-data">
+			<form action="./noticeWrite" method="POST" name="frm" id="frm" enctype="multipart/form-data">
 				<div id="login_after_middle">
 					<div id="menu_wrap">
 						<div class="notice_jk_tableBox">
@@ -74,8 +70,8 @@
 							<table class="table table-hover" id="notice_jk_table">
 								<tr>
 									<td>부서</td>
-									<td><select>
-											<option selected="selected">회계부</option>
+									<td><select name="part">
+											<option selected="selected" value="회계부">회계부</option>
 											<option>총무부</option>
 											<option>인사부</option>
 											<option>영업/구매부</option>
@@ -91,8 +87,7 @@
 								<tr>
 									<td colspan="4">에디터가 들어갈 자리
 										<div class="notice_jk_textarea">
-											글 내용이 나옵니다.
-											<!-- 글 내용, contents -->
+											<input type="text" name="contents" id="contents">
 										</div>
 									</td>
 								</tr>
@@ -100,7 +95,7 @@
 									<td>참조파일</td>
 									<td colspan="3">
 										<input type="button" value="file Add" id="add">
-										<div id="files"></div>
+										<div  id="files"></div>
 									</td><!-- 추가파일 올릴 수 있게
 									배웠던거 이용해서 -->
 								</tr>
