@@ -5,16 +5,40 @@
   
   <mapper namespace="supplierMapper">
   
+  	<!-- update Start -->
+  	<update id="supplierUpdate" parameterType="SupplierDTO">
+  		update supplier set classification=#{classification}, name=#{name}, business_number=#{business_number},
+  			representative=#{representative}, division=#{division}, division_mail=#{division_mail}, 
+  			bank=#{bank}, account_number=#{account_number}
+  		where code=#{code}
+  	</update>
+  	<!-- update End -->
+  
+  	<!-- selectList Start -->
   	<select id="supplierList" resultType="SupplierDTO">
   		select * from supplier order by code desc
   	</select>
+  	<!-- selectList End -->
   	
+  	
+  	<!-- insert Start -->
+	<select id="makeCode" resultType="java.lang.String">
+		select CHR(65) || LPAD(SUPPLIER_CODE.NEXTVAL,3,0) from dual
+	</select>
+	
   	<insert id="supplierWrite" parameterType="SupplierDTO">
   		insert into supplier values(
   			#{code}, #{classification}, #{name}, #{business_number},
   			#{representative}, #{division}, #{division_mail},
-  			#{bank}, #{account_number}
+  			#{bank}, #{account_number}, 'false'
   		)
   	</insert>
-  
+  	<!-- insert End -->
+  	
+  	<!-- selectOne Start-->
+  	<select id="supplierOne" parameterType="java.lang.String" resultType="SupplierDTO">
+  		select * from supplier where code=#{code}
+  	</select>
+  	<!-- selectOne End -->
+  	
   </mapper>

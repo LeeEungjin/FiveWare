@@ -13,6 +13,10 @@ public class SupplierService {
 	@Inject
 	private SupplierDAO supplierDAO;
 	
+	public int update(SupplierDTO supplierDTO) throws Exception {
+		return supplierDAO.update(supplierDTO);
+	}
+	
 	public ModelAndView selectList() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
@@ -25,5 +29,9 @@ public class SupplierService {
 	
 	public int insert(SupplierDTO supplierDTO) throws Exception {
 		return supplierDAO.insert(supplierDTO);
+	}
+	
+	public SupplierDTO selectOne(String code) throws Exception {
+		return supplierDAO.selectOne(code);
 	}
 }
