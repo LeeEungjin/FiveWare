@@ -17,6 +17,14 @@ public class ChitService {
 	@Inject
 	private ChitDAO chitDAO;
 	
+	//insert
+	public int insert(ChitDTO chitDTO) throws Exception{
+		int result=chitDAO.insert(chitDTO);
+		
+		return result;
+	}
+	
+	
 	//accountList
 	public ModelAndView chitAccountList() throws Exception{
 		List<AccountRegistDTO> ar=new ArrayList<AccountRegistDTO>();

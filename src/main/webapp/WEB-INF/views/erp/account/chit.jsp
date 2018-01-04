@@ -35,7 +35,7 @@
 
 	 
 	 /* 코드 */
-/* 	  $("#eb_insertBtn").click(function(){
+/*  	  $("#eb_makeCode").click(function(){
 			
 			$.ajax({
 				type:"GET",
@@ -46,7 +46,7 @@
 					$("#eb_chitCode").val(data);
 				}
 			});
-		});  */
+		});   */
 		
 		//부서 search
 		$("#eb_tempSearch").click(function(){
@@ -98,10 +98,13 @@
 		
 		
 		//table에 뿌려주기 eb_chitTable
+		
+		var count=0;
 		$("#eb_chitTableBtn").click(function(){
+			count++;
 			var regdate=$(".eb_regdate").val();
 			var temp=$(".eb_temp").val();
-			var price=$(".eb_price").val();
+			var price=$("#eb_price").val();
 			var account=$(".eb_account").val();
 			var memo=$(".eb_memo").val();
 			var kind=$(".eb_kind").val();
@@ -111,14 +114,76 @@
 			$(".eb_chitTable").append("<tr>");
 			$(".eb_chitTable").append(table);
 				if(kind=='차변'){
-					$(".eb_chitTable").append("<td><input type='text'  value="+price+"></td><td><input type='text' ></td>");
+					$(".eb_chitTable").append("<td><input type='number' value="+price+" id=eb_table_input"+count+"></td><td><input type='text'></td>");
+					var total="";
+					
+					if(count==1){
+						total=price;
+					}else{
+						total=$("#eb_debtor").val();
+						
+						for(var i=0; i<count; i++){
+							price=$("#eb_table_input"+count).val();
+						} 
+					
+						total=total*1+price*1;
+						
+					}
+					
+					/* price=price*1; */
+					$("#eb_debtor").val(total);
 				}else{
-					$(".eb_chitTable").append("<td><input type='text' ></td><td><input type='text'  value="+price+"></td>");
+					$(".eb_chitTable").append("<td><input type='text'></td><td><input type='text' id=eb_table_input_2"+count+" value="+price+"></td>");
+						var total="";
+						
+						if(count==1){
+							total=price;
+						}else{
+							total=$("#eb_creditor").val();
+							
+							for(var i=0; i<count; i++){
+								price=$("#eb_table_input_2"+count).val();
+							} 
+						
+							total=total*1+price*1;
+							
+						}
+						
+						/* price=price*1; */
+						$("#eb_creditor").val(total);				
 				}
 			$(".eb_chitTable").append("</tr>");
 			
+			
 		});
 		
+		
+		$("#eb_insertBtn").click(function(){
+			var code=$("#eb_chitCode").val();
+			var debtor=$("#eb_debtor").val();
+			var creditor=$("#eb_creditor").val();
+			
+			if(code==""){
+				$.ajax({
+					type:"GET",
+					url:"../codeName",
+					data:{  },
+					success:function(data){
+						alert(data);
+						$("#eb_chitCode").val(data);
+					}
+				});
+			}else if(debtor==null){
+				alert("차변 값을 입력해주세요.");
+			}else if(creditor==""){
+				alert("대변 값을 입력해주세요.");
+			}else if(debtor==creditor){
+				$("#chit_frm").submit();
+			}else{
+				alert("차변, 대변 값이 같아야합니다.");
+			}
+			
+		});
  });
  
  
@@ -167,7 +232,7 @@
 			<div class="fw_subsub collapse in"  id="sub2">
 				<ul>
 					<li> 지점 매출</li>
-					<li> <a href="./chit">전표 관리</a></li>
+					<li id="eb_makeCode"> <a href="./chit">전표 관리</a></li>
 				</ul>
 			</div>
 
@@ -203,6 +268,10 @@
 				 	<span class="glyphicon glyphicon-file" id="eb_contents_text_p">전표관리</span>
 				</div>
 				
+			<form action="./chitInsert" id="chit_frm" method="post">	
+				
+			  <input id="eb_chitCode" type="hidden" name="code" >	
+			 	
 				<div id="eb_contents_box_chit">
 				 <div class="eb_blank"></div>
 					<table class="eb_chit_table">
@@ -221,17 +290,18 @@
 						<tr>
 							<td>부서명</td>
 							<td><input type="text" name="temp" id="eb_tempText" class="eb_temp" readonly="readonly">
-								<button data-toggle="modal" data-target="#eb_view_modal_temp" id="eb_tempSearch">search</button>
+								<input type="button" data-toggle="modal" data-target="#eb_view_modal_temp" id="eb_tempSearch" value="search">
 							</td>
 							<td>계좌명</td>
 							<td><input type="text" name="account" id="eb_memoText" class="eb_account" readonly="readonly">
-								<button data-toggle="modal" data-target="#eb_view_modal_account" id="eb_accountSearch">search</button>
+								<input type="button" data-toggle="modal" data-target="#eb_view_modal_account" id="eb_accountSearch" value="search">
 							</td>
 						</tr>
 						
 						<tr>
 							<td>금액</td>
-							<td><input type="text" name="price" class="eb_price"></td>
+							<td><input type="number" id="eb_price"></td>
+							
 							<td>적요</td>
 							<td><input type="text" name="memo" class="eb_memo"></td>
 						</tr>
@@ -242,6 +312,37 @@
 				  
 				</div> 
 				
+				
+				<div id="eb_contents_table">
+				  	
+             				
+             		<table class="table">
+						   
+						<thead id="eb_table_head">
+						    <tr>
+						     <th>계좌명</th>
+						     <th>부서</th>
+						     <th>적요</th>
+						     <th>차변</th>	
+						     <th>대변</th>					   
+						    </tr>
+						 </thead>
+						    
+						    <tbody class="eb_chitTable">
+						   	 
+						   </tbody>
+					 </table>
+
+
+		</div>
+		
+		  	<div class="eb_total">
+					<input type="number" name="debtor" placeholder="차변" id="eb_debtor" ><input type="number" name="creditor" placeholder="대변" id="eb_creditor" >
+			</div>		
+					      <input type="button" id="eb_insertBtn" class="btn btn-default regist" value="등록">
+				</form>
+				
+			<!-- form 끝 -->	
 				
 				
 				<!--부서 search modal  -->
@@ -308,39 +409,7 @@
                </div>
             </div>
          </div>
-
-		 	 
-				
-				
-				
-				
-				<div id="eb_contents_table">
-				  	
-             				
-             		<table class="table">
-						   
-						<thead id="eb_table_head">
-						    <tr>
-						     <th>계좌명</th>
-						     <th>부서</th>
-						     <th>적요</th>
-						     <th>차변</th>	
-						     <th>대변</th>					   
-						    </tr>
-						 </thead>
-						    
-						    <tbody class="eb_chitTable">
-						   	 
-						   </tbody>
-					 </table>
-
-
-		</div>
 		
-		  	<div class="eb_total">
-					<input type="text" placeholder="차변" id="eb_debtor"><input type="text" placeholder="대변" id="eb_creditor">
-			</div>		
-					      <button class="btn btn-default regist">등록</button>
 	</div>
    </div>
 </div>

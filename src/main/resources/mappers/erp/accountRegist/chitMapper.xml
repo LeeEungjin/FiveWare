@@ -14,5 +14,8 @@
   		select * from accountregist 
       </select>
   		
+  	<insert id="insert">
+  	 insert into chit values(#{code},#{regdate},#{temp},#{account},#{memo},#{kind},#{debtor},#{creditor})
+  	</insert>	
   </mapper>
  

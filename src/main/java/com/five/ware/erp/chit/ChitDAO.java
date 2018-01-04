@@ -28,5 +28,11 @@ public class ChitDAO {
 	public List<AccountRegistDTO> chitAccountList() throws Exception{
 		return sqlSession.selectList(namespace+"selectList_account");
 	}
+	
+	//insert
+	public int insert(ChitDTO chitDTO) throws Exception{
+		int result=sqlSession.insert(namespace+"insert",chitDTO);
+		return result;
+	}
 
 }

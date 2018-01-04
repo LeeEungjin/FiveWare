@@ -4,8 +4,11 @@ public class ChitDTO {
 private String code;
 private String regdate;
 private String temp;
-private String price;
+private String account;
+private String memo;
 private String kind;
+private int debtor;
+private int creditor;
 public String getCode() {
 	return code;
 }
@@ -24,18 +27,6 @@ public String getTemp() {
 public void setTemp(String temp) {
 	this.temp = temp;
 }
-public String getPrice() {
-	return price;
-}
-public void setPrice(String price) {
-	this.price = price;
-}
-public String getKind() {
-	return kind;
-}
-public void setKind(String kind) {
-	this.kind = kind;
-}
 public String getAccount() {
 	return account;
 }
@@ -48,8 +39,25 @@ public String getMemo() {
 public void setMemo(String memo) {
 	this.memo = memo;
 }
-private String account;
-private String memo;
+public String getKind() {
+	return kind;
+}
+public void setKind(String kind) {
+	this.kind = kind;
+}
+public int getDebtor() {
+	return debtor;
+}
+public void setDebtor(int debtor) {
+	this.debtor = debtor;
+}
+public int getCreditor() {
+	return creditor;
+}
+public void setCreditor(int creditor) {
+	this.creditor = creditor;
+}
+
 
 
 
