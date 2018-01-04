@@ -62,6 +62,7 @@ public class NoticeService {
 	
 	public int update(NoticeDTO noticeDTO) throws Exception	{
 		int result = noticeDAO.update(noticeDTO);
+		
 		return result;
 	}
 	

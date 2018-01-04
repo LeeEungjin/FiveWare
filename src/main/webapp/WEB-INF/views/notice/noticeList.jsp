@@ -109,7 +109,6 @@
 										<td>번호</td>
 										<td>부서</td>
 										<td>제목</td>
-										<td>내용</td>
 										<td>작성자</td>
 										<td>작성일</td>
 										<td>조회</td>
@@ -120,7 +119,6 @@
 										<td>${dto.num}</td>
 										<td>${dto.part}</td>
 										<td><a href="./noticeView?num=${dto.num}">${dto.title}</a></td>
-										<td>${dto.contents}</td>
 										<td>${dto.writer}</td>
 										<td>${dto.reg_date}</td>
 										<td>${dto.hit}</td>

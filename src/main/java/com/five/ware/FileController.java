@@ -16,16 +16,17 @@ import com.five.ware.erp.notice.NoticeFileDTO;
 @RequestMapping(value="/file/*")
 public class FileController {
 
-	@RequestMapping(value="noticeFileDown")
+	@RequestMapping(value="fileDown")
 	public ModelAndView fileDown(NoticeDTO noticeDTO, HttpSession session) throws Exception	{
 		String filePath = session.getServletContext().getRealPath("resources/upload");
+		System.out.println("filePath : " +filePath);
 		
 		File file = new File(filePath, noticeDTO.getFileName());
-		
+		System.out.println("filename : "+noticeDTO.getFileName());
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("down", file);
 		mv.addObject("oriname", noticeDTO.getOriName());
-		mv.setViewName("noticeFiledown");
+		mv.setViewName("fileDown");
 		
 		return mv;
 	}

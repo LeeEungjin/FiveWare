@@ -72,9 +72,10 @@
 									<td>부서</td>
 									<td><select name="part">
 											<option selected="selected" value="회계부">회계부</option>
-											<option>총무부</option>
-											<option>인사부</option>
-											<option>영업/구매부</option>
+											<option value="총무부">총무부</option>
+											<option value="인사부">인사부</option>
+											<option value="영업/구매부">영업/구매부</option>
+											<option value="마케팅부">마케팅부</option>
 									</select></td>
 									<td>작성자</td>
 									<td><input type="text" name="writer" id="writer"></td>
@@ -101,7 +102,7 @@
 								</tr>
 							</table>
 							
-								<input type="button" value="취소" class="btn btn-default"
+								<input type="reset" value="취소" class="btn btn-default"
 									id="deleteBtn"><!-- 버튼을 누르면 썼던 내용이 다 사라지게 -->
 								<input type="button" value="등록" class="btn btn-default"
 									id="writeBtn">
