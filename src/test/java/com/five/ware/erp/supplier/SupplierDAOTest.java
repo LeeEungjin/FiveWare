@@ -18,11 +18,17 @@ public class SupplierDAOTest extends AbstractTest {
 	@Test
 	public void test() {
 		try {
-			this.update();
+			this.delete();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void delete() {
+		int result = supplierDAO.delete("test 02");
+		
+		assertTrue(result > 0);
 	}
 	
 	public void update() {

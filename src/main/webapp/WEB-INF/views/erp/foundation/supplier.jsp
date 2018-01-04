@@ -65,8 +65,23 @@
 		});
 		
 		////////////////////////////////////////////////////////////////////
+		$("#ej_modal_delete").click(function() {
+			var del = confirm("Are you sure you want to delete it?")
+			
+			if(del) {
+				$("#ej_modalModify_frm").attr("action", "./supplierDelete")
+				$("#ej_modalModify_frm").submit();
+			}
+		});
 		
-		//./supplierOne?code=${code}
+		$("#ej_modal_stop").click(function() {
+			var del = confirm("Are you sure you want to Stop it?")
+			
+			if(del) {
+				$("#ej_modalModify_frm").attr("action", "./supplierStop")
+				$("#ej_modalModify_frm").submit();
+			}
+		});
 		
 	});
 
@@ -537,7 +552,7 @@
 
 
 <!-- Modal update/delete Start -->
-<form action="./supplierUpdate" method="POST">
+<form id="ej_modalModify_frm" action="./supplierUpdate" method="POST">
 <input type="hidden" id="code_update" name="code">
 <div id="ej_modalOne" class="modal">
 

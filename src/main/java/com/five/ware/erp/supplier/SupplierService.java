@@ -13,6 +13,10 @@ public class SupplierService {
 	@Inject
 	private SupplierDAO supplierDAO;
 	
+	public int delete(String code) throws Exception {
+		return supplierDAO.delete(code);
+	}
+	
 	public int update(SupplierDTO supplierDTO) throws Exception {
 		return supplierDAO.update(supplierDTO);
 	}

@@ -20,7 +20,18 @@ public class SupplierServiceTest extends AbstractTest {
 	@Test
 	public void test() {
 		try {
-			this.update();
+			this.delete();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void delete() {
+		 try {
+			int result = supplierService.delete("test 03");
+			
+			assertTrue(result > 0);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

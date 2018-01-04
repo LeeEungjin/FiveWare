@@ -5,6 +5,12 @@
   
   <mapper namespace="supplierMapper">
   
+  	<!-- delete Start -->
+  	<delete id="supplierDelete" parameterType="java.lang.String">
+  		delete from supplier where code=#{code}
+  	</delete>
+  	<!-- delete End -->
+  
   	<!-- update Start -->
   	<update id="supplierUpdate" parameterType="SupplierDTO">
   		update supplier set classification=#{classification}, name=#{name}, business_number=#{business_number},

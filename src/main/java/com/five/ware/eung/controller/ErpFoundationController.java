@@ -19,19 +19,36 @@ public class ErpFoundationController {
 	
 	@Inject
 	private SupplierService supplierService;
-	//this this this this this this this this this this this this this this this this this this this this 
-	@RequestMapping(value="supplierUpdate", method=RequestMethod.POST)
+	
+	@RequestMapping(value="supplierStop", method={RequestMethod.GET,RequestMethod.POST})
+	public void supplierStop(SupplierDTO supplierDTO) {
+		// this this this this !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	}
+	
+	@RequestMapping(value="supplierDelete", method= {RequestMethod.GET,RequestMethod.POST})
+	public String supplierDelete(SupplierDTO supplierDTO, Model model) {
+		System.out.println("delete code: "+supplierDTO.getCode());
+		
+		int result = 0;
+		try {
+			result = supplierService.delete(supplierDTO.getCode());
+			if(result > 0) {
+				model.addAttribute("message", "Success");
+			} else {
+				model.addAttribute("message", "Fail");
+			}
+			model.addAttribute("path", "../../erp/foundation/supplier");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "common/result";
+	}
+	
+	
+	@RequestMapping(value="supplierUpdate", method={RequestMethod.POST,RequestMethod.GET})
 	public String supplierUpdate(SupplierDTO supplierDTO, Model model) {
-		/*System.out.println(supplierDTO.getAccount_number());
-		System.out.println(supplierDTO.getBank());
-		System.out.println(supplierDTO.getBusiness_number());
-		System.out.println(supplierDTO.getClassification());
-		System.out.println(supplierDTO.getCode());
-		System.out.println(supplierDTO.getDivision());
-		System.out.println(supplierDTO.getDivision_mail());
-		System.out.println(supplierDTO.getName());
-		System.out.println(supplierDTO.getRepresentative());
-		System.out.println(supplierDTO.getUse());*/
 		int result = 0;
 		try {
 			result = supplierService.update(supplierDTO);

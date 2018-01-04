@@ -14,6 +14,11 @@ public class SupplierDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "supplierMapper.";
 	
+	
+	public int delete(String code) {
+		return sqlSession.delete(NAMESPACE+"supplierDelete", code);
+	}
+	
 	public int update(SupplierDTO supplierDTO) {
 		return sqlSession.update(NAMESPACE+"supplierUpdate", supplierDTO);
 	}
