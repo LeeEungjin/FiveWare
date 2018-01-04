@@ -19,6 +19,19 @@ public class AccountRegistDAO {
 	private SqlSession sqlSession;
 	private static final String namespace="accountRegistMapper.";
 	
+	
+	//update 
+	public int update(AccountRegistDTO accountRegistDTO) throws Exception{
+		int result=sqlSession.update(namespace+"update", accountRegistDTO);
+		return result;
+	}
+	
+	//delete
+	public int delete(String code) throws Exception{
+		int result=sqlSession.delete(namespace+"delete",code);
+		return result;
+	}
+	
 	//insert
 	public int insert(AccountRegistDTO accountRegistDTO) throws Exception{
 		int result=sqlSession.insert(namespace+"insert", accountRegistDTO);
@@ -40,6 +53,11 @@ public class AccountRegistDAO {
 	//totalCount
 	public int totalCount(RowNum rowNum) throws Exception{
 		return sqlSession.selectOne(namespace+"totalCount", rowNum);
+	}
+	
+	//selectOne
+	public AccountRegistDTO selectOne(String code) throws Exception{
+		return sqlSession.selectOne(namespace+"selectOne",code);
 	}
 	
 }

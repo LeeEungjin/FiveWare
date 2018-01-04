@@ -18,6 +18,19 @@ public class AccountRegistService {
 	@Inject
 	private AccountRegistDAO accountRegitsDAO;
 	
+	
+	//update
+	public int update(AccountRegistDTO accountRegistDTO) throws Exception{
+		int result=accountRegitsDAO.update(accountRegistDTO);
+		
+		return result;
+	}
+	//delete
+	public int delete(String code) throws Exception{
+		int result=accountRegitsDAO.delete(code);
+		return result;
+	}
+	
 	//insert
 	public int insert(AccountRegistDTO accountRegistDTO) throws Exception{
 		int result=accountRegitsDAO.insert(accountRegistDTO);
@@ -41,4 +54,10 @@ public class AccountRegistService {
 		return mv;
 	}
 
+	//selectOne
+	public AccountRegistDTO selectOne(String code) throws Exception{
+		
+		AccountRegistDTO accountRegistDTO=accountRegitsDAO.selectOne(code);
+		return accountRegistDTO;
+	}
 }

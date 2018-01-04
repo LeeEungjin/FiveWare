@@ -71,6 +71,7 @@ public class TempRegistContoller {
 		return mv;
 	}
 	
+
 	
 	//insert
 	@RequestMapping(value="tempRegistWrite" ,method=RequestMethod.POST)

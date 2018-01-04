@@ -31,5 +31,16 @@
   		select nvl(count(code),0) from accountRegist
   	</select>
   	  
+  	 <select id="selectOne" resultType="accountRegistDTO">
+  	    select * from accountregist where code=#{code}
+  	 </select> 
+  	 
+  	 <delete id="delete">
+  	   delete accountregist where code=#{code}
+  	 </delete>
+  	 
+  	 <update id="update">
+  	 	update accountregist set memo=#{memo}, bank=#{bank}, account=#{account} where code=#{code}
+  	 </update>
   </mapper>
  

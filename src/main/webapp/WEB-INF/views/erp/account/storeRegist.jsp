@@ -128,7 +128,7 @@
 	  $("#eb_bankBtn").click(function(){
 		   var bank=$("#eb_bank").val(); 
 		   var account=$("#eb_account").val().length;
-		
+		alert(account);
 		  if(bank=='국민은행'){
 			  
 			  if(account==14){
@@ -157,7 +157,7 @@
 	 
 	 
 		 /* 코드 */
-	  $("#eb_insertBtn").click(function(){
+/* 	  $("#eb_insertBtn").click(function(){
 			
 			$.ajax({
 				type:"GET",
@@ -168,7 +168,7 @@
 					$("#eb_code").val(data);
 				}
 			});
-		}); 
+		}); */ 
 		 
 	  //전체삭제
 		 $("#deleteBtn").click(function(){
@@ -250,7 +250,7 @@
 			
 			<div class="fw_subselected collapse in" id="sub1">
 				<ul>
-					<li><a href="#"> 지점 등록</a></li>
+					<li><a href="./storeRegist"> 지점 등록</a></li>
 					<li><a href="./accountRegist">예금 계좌 등록</a></li>
 					<li><a href="./tempRegist">부서 등록</a></li>
 				</ul>
@@ -266,17 +266,12 @@
 			
 			<div class="fw_subsub collapse"  id="sub2">
 				<ul>
-					<li> 일반 전표 입력</li>
-					<li> 일반 관리비 입력</li>
+					<li> 지점매출</li>
+					<li><a href="./chit">전표 관리</a></li>
 				</ul>
 			</div>
 			
-			<!-- -------------------- -->
-			<div class="fw_menu" data-toggle="collapse" data-target="#sub3" title="sub3" >
-					결산
-				
-			</div>
-			
+	
 			
 			
 			
@@ -431,9 +426,17 @@
 						          	
 						<tr>
 						   <td>은행</td>
-						   <td><input type="text" class="eb_viewBank" name="bank"></td>
+						   <td>
+						   		<select name="bank" class="eb_viewBank">
+						   			<option value="국민은행">국민 은행</option>
+						   			<option value="신한은행">신한 은행</option>
+						   			<option value="농협">농협</option>
+						   		</select>
+						   </td>
 						   <td>계좌번호</td>
-						   <td><input type="text" class="eb_viewAccount" name="account"></td>
+						   <td>
+						   		<input type="text" name="account" class="eb_viewAccount">
+							</td>
 						 </tr>
 						          
 					</table>
@@ -506,7 +509,7 @@
 					<table id="eb_modal_table">
 						<tr>
 						   <td>지점명 코드</td>
-						   <td><input type="text" name="code" id="eb_code" readonly="readonly"></td>
+						   <td><input type="text" name="code" id="eb_code" ></td>
 						   <td>지점명</td>
 						   <td><input type="text" name="store" id="eb_store"></td>
 						   

@@ -169,17 +169,13 @@
 			
 			<div class="fw_subsub collapse"  id="sub2">
 				<ul>
-					<li> 일반 전표 입력</li>
-					<li> 일반 관리비 입력</li>
+					<li> 지점 매출</li>
+					<li><a href="./chit"> 전표 관리</a></li>
 				</ul>
 			</div>
 			
 		
-			
-			<div class="fw_menu" data-toggle="collapse" data-target="#sub3" title="sub3" >
-					결산
-				
-			</div>
+		
 			
 			
 			

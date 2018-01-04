@@ -38,7 +38,6 @@ public class StoreRegistController {
 	//insert
 	@RequestMapping(value="storeRegistWrite" ,method=RequestMethod.POST)
 	public String insert(StoreRegistDTO storeRegistDTO , RedirectAttributes rd){
-		System.out.println(storeRegistDTO.getBank());
 		
 		int result=0;
 		 

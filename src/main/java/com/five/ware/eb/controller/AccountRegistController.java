@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -18,6 +19,36 @@ public class AccountRegistController {
 
 	@Inject
 	private AccountRegistService accountRegistService;
+	
+	//update
+	@RequestMapping(value="accountRegistUpdate",method=RequestMethod.POST)
+	public String update(AccountRegistDTO accountRegistDTO, RedirectAttributes rd) throws Exception{
+		int result=accountRegistService.update(accountRegistDTO);
+		
+		String message="fail";
+		if(result>0){
+			message="success";
+		}
+		
+		rd.addFlashAttribute("message", message);
+		
+		return "redirect:./accountRegist";
+		
+	}
+	
+	//delete
+	@RequestMapping(value="accountRegistDelete" ,method=RequestMethod.GET)
+	@ResponseBody
+	public String delete(String code) throws Exception{
+		int result=accountRegistService.delete(code);
+		
+		String message="fail";
+		if(result>0){
+			message="success";
+		}
+		
+		return message;
+	}
 	
 	//list
 	@RequestMapping(value="accountRegist")
@@ -45,5 +76,14 @@ public class AccountRegistController {
 		rd.addFlashAttribute("message", message);
 		
 		return "redirect:./accountRegist";
+	}
+	
+	//selectOne
+	@RequestMapping(value="accountRegistView")
+	@ResponseBody
+	public AccountRegistDTO selectOne(String code) throws Exception{
+		AccountRegistDTO accountRegistDTO=accountRegistService.selectOne(code);
+		
+		return accountRegistDTO;
 	}
 }

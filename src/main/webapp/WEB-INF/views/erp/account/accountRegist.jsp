@@ -71,8 +71,9 @@
 			type : "get",
 			success : function(data){
 				$(".eb_viewCode").val(data.code);
-				$(".eb_viewTemp").val(data.temp);
 				$(".eb_viewMemo").val(data.memo);
+				$(".eb_viewBank").val(data.bank);
+				$(".eb_viewAccount").val(data.account);
 			},
 			error : function(){
 				alert("데이터를 불러 오지 못했습니다.");
@@ -117,7 +118,7 @@
 	 });
 	 
 	 /* 코드 */
-/* 	  $("#eb_insertBtn").click(function(){
+ 	  $("#eb_insertBtn").click(function(){
 			
 			$.ajax({
 				type:"GET",
@@ -128,20 +129,21 @@
 					$("#eb_accountCode").val(data);
 				}
 			});
-		}); */ 
+		}); 
 	 
 		
 		/* 계좌번호 확인 */
 	 $("#eb_bankBtn").click(function(){
 		   var bank=$("#eb_bank").val(); 
 		   var account=$("#eb_account").val().length;
-	
+		alert(account);
 		  if(bank=='국민은행'){
 			  
 			  if(account==14){
 				  alert("확인되었습니다.");
 			  }else{
 				  alert("잘못입력되었습니다. 확인 후 다시 입력해주세요(14자리)");
+			
 			  }
 		  
 		  }else if(bank=='신한은행'){
@@ -209,17 +211,13 @@
 			
 			<div class="fw_subsub collapse"  id="sub2">
 				<ul>
-					<li> 일반 전표 입력</li>
-					<li> 일반 관리비 입력</li>
+					<li> 지점매출</li>
+					<li><a href="./chit"> 전표 관리</a></li>
 				</ul>
 			</div>
 			
 		
-			
-			<div class="fw_menu" data-toggle="collapse" data-target="#sub3" title="sub3" >
-					결산
-				
-			</div>
+		
 			
 			
 			
@@ -317,7 +315,7 @@
 					 </table>
 					
 					<!-- view Modal -->
-					<form action="tempRegistUpdate" method="post">
+					<form action="accountRegistUpdate" method="post">
                <div class="modal fade" id="eb_view_modal">
           
             <div class="modal-dialog">
@@ -343,17 +341,23 @@
                   </tr>
                   <tr> 
                      <td>계좌명</td>
-                     <td><input type="text" class="eb_viewTemp" name="memo"></td>
+                     <td><input type="text" class="eb_viewMemo" name="memo"></td>
                   </tr>
                   <tr>   
                      <td>은행</td>
                      <td>
-                     	
+                     	<select name="bank"  class="eb_viewBank">
+						   			<option value="국민은행">국민 은행</option>
+						   			<option value="신한은행">신한 은행</option>
+						   			<option value="농협">농협</option>
+						 </select>
                      </td>
                   </tr>
                   <tr>   
                      <td>계좌번호</td>
-                     <td><input type="text" class="eb_viewMemo" name="account"></td>
+                     <td>
+                     	<input type="text" name="account"  class="eb_viewAccount">
+                  	</td>
                   </tr>
                   
                   
@@ -418,7 +422,7 @@
 						        <!-- Modal Header -->
 						<div class="modal-header">
 						
-						   <h4 class="modal-title"> | 부서 등록</h4>
+						   <h4 class="modal-title"> | 예금계좌 등록</h4>
 						   
 						    <button type="button" class="close" data-dismiss="modal">&times;</button>
 						       
