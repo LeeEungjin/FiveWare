@@ -34,12 +34,10 @@
 			}
 		});
 		
-		$("#files").on("click", ".del", function(){
-			var id=$(this).attr("title");
-			$("#"+id).remove();
-			index--;
+		$(".deleteFile").on("click",function(){
+			$(this).parent.remove();
 		});
-		});
+	});
 
 </script>
 </head>
@@ -80,7 +78,7 @@
 									<td>제목</td>
 									<td><input type="text" name="title" id="title" value="${view.title }"></td>
 									<td>등록일</td>
-									<td><input type="text" name="title" id="title" value="${view.reg_date }" readonly="readonly"></td>
+									<td><input type="text" name="reg_date" id="reg_date" value="${view.reg_date }" readonly="readonly"></td>
 								</tr>
 								<tr>
 									<td colspan="4">에디터가 들어갈 자리
@@ -95,18 +93,20 @@
 									<td>참조파일</td>
 									<td colspan="3">
 										<input type="button" value="File Add" id="add">
-										<div id="files">
-											<c:forEach items="${view.fileNames}" var="file">
-												${file.oriName}<input type="button" title="${file.num}" value="X" class="del">	
-											</c:forEach>
-										</div>
-										
+										<div id="files"></div>
 									</td>
+									<c:forEach items="${view.fileNames}" var="file">
+									<tr>
+									<td id="del">
+										<div class="delete">${file.oriName}<input class="deleteFile" title="${file.fnum}" type="button" value="delete"></div>
+									</td>
+									</tr>
+									</c:forEach>
 								</tr>
 							</table>
 							
-							
-								<input type="button" value="취소" class="btn btn-default"
+								<a href="./noticeList" class="btn btn-default">목록으로</a>
+								<input type="reset" value="취소" class="btn btn-default"
 									id="deleteBtn"><!-- 버튼을 누르면 썼던 내용이 다 사라지게 -->
 								<input type="button" value="등록" class="btn btn-default"
 									id="updateBtn">

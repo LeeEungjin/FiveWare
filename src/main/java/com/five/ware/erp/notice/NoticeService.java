@@ -44,11 +44,8 @@ public class NoticeService {
 	
 	public int insert(NoticeDTO noticeDTO, HttpSession session) throws Exception	{
 		
-<<<<<<< HEAD
-		/*List<FileDTO> names = new ArrayList<FileDTO>();*/
-=======
+
 		MultipartFile [] files = noticeDTO.getFiles();
->>>>>>> jk8
 		
 		int result = noticeDAO.insert(noticeDTO);
 		
