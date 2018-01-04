@@ -11,7 +11,7 @@ public class MemberDTO {
 	private String phone;
 	private String addr;
 	private String email;
-	private String hireDate;
+	private String hiredate;
 	private String temp;
 	private String rank;
 	private String sal;
@@ -74,11 +74,11 @@ public class MemberDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getHireDate() {
-		return hireDate;
+	public String getHiredate() {
+		return hiredate;
 	}
-	public void setHireDate(String hireDate) {
-		this.hireDate = hireDate;
+	public void setHiredate(String hiredate) {
+		this.hiredate = hiredate;
 	}
 	public String getTemp() {
 		return temp;
