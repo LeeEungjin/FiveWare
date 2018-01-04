@@ -156,6 +156,16 @@
 				}
 		});
 		
+		$("#mr_insert").click(function(){
+			$.ajax({
+				type:"GET",
+				url:"../../codeName",
+				success:function(data){
+					$("#menuCode").val(data);
+				}
+			});
+		});
+		
 	});
 </script>
 
@@ -343,7 +353,7 @@
 				<!-- 등록 버튼 -->
 					<div id="erp_jh_contents_bottom">
 						<button id="mr_checkDelete">선택삭제</button>
-						<button class="modal_btn" data-toggle="modal" data-target="#jh_mr_Modal">신규등록</button>
+						<button id="mr_insert" class="modal_btn" data-toggle="modal" data-target="#jh_mr_Modal">신규등록</button>
 					</div>
 				<!-- 등록 버튼 끝 -->
 				

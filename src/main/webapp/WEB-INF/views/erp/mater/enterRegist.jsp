@@ -14,6 +14,81 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	$(function(){
+		var message = '${message}';
+	
+		if(message != ""){
+			alert(message);
+		}
+		
+		$("#er_insert").click(function(){
+			$.ajax({
+				type:"GET",
+				url:"../../codeName",
+				success:function(data){
+					$("#materCode").val(data);
+					
+					$.ajax({
+						type:"GET",
+						url:"./materStorageList",
+						success:function(data){
+							var i=0;
+							$(data).each(function(){
+								$("#storageName").append("<option value="+data[i]+">"+data[i]+"</option>");
+								i++;
+							});
+						}
+					});
+				}
+			});
+		});
+		
+		$(".er_btn").click(function(){
+ 			var materDate=$("#materDate").val();
+ 			var account=$("#account").val();
+ 			var temp=$("#temp").val();
+ 			var name=$("#name").val();
+ 			
+			if(materDate==""){
+				alert("입고날을 입력해주세요.");
+			}else if(account==""){
+				alert("거래처를 입력해주세요.");
+			}else if(temp=""){
+				alert("부서를 입력해주세요.");
+			}else if(name=""){
+				alert("담당자 입력해주세요.");
+			}else{
+				$("#er_write_frm").submit();
+				$(".er_btn").attr("data-dismiss", "modal");
+			}
+		}); 
+		
+		$("#search_btn").click(function(){
+			alert("click");
+			
+			var smaterDate=$("#smaterDate").val();
+			var ematerDate=$("#ematerDate").val(); 
+			var materKind="enter";
+			
+			if(smaterDate=="" || ematerDate==""){
+				alert("기간을 입력해주세요.");
+			}else{
+				
+				$.ajax({
+					type : "GET",
+					url : "./materDateList",
+					data : {
+						materKind : materKind,
+						smaterDate : smaterDate,
+						ematerDate : ematerDate
+					},
+					success:function(data){
+						alert(data);
+					}
+				});
+				
+			}
+		});
+		
 		
 		
 	});
@@ -94,8 +169,6 @@
 	
 	<!-- --------------------------------------------------------------------------------------------------------------- -->
 	
-	<input type="hidden" name="materKind" value="enter">
-	
 	<div id="fw_mainwrap">
 			<div id="fw_main">
 				<!-- <div class="sales_title_menu">기초 정보</div>
@@ -113,22 +186,14 @@
 				<div id="erp_jh_contents_search">
 					<div id="er_search">
 						<!-- 검색 기능 -->
-							<!-- select box -->
-							<div class="input-group">
-							<form action="" name="" method="get">
-								<select class="form-control" id="sel1">
-							        <option class="op" value=""></option>
-							        <option class="op" value=""></option>
-							        <option class="op" value=""></option>
-							     </select>							
-							<!-- select box 끝 -->
-						
-						      <input name="search" type="text" class="form-control" placeholder="Search">
-						      
-						      <div class="input-group-btn">
-						        <button  id="search_btn" class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-						      </div>
-						      </form>	
+							<div class="input-group search_group">
+								<form action="./materRegist" id="er_search_frm" name="er_search_frm" method="get">
+									<input type="hidden" name="materKind" value="enter">
+									기간 선택 <input id="smaterDate" name="smaterDate" type="date"> ~ <input id="ematerDate" name="ematerDate" type="date">		
+							      <div class="input-group-btn">
+							        <button  id="search_btn" class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+							      </div>
+							    </form>	
 						    </div>	
 						<!-- 검색 기능 끝 -->
 					</div>
@@ -148,15 +213,15 @@
 						    </thead>
 						    
 						    <tbody>
-						   <%--  <c:forEach items="${}" var=""> --%>
+						    <c:forEach items="${enterList}" var="enterList"> 
 						      <tr>
-						        <td data-toggle="modal" data-target=""></td>
-						        <td></td>
-						        <td></td>
+						        <td data-toggle="modal" data-target="#er_update_modal">${enterList.materCode}</td>
+						        <td>${enterList.materDate}</td>
+						        <td>${enterList.storageName}</td>
 						        <td></td>
 						        <td></td>
 						      </tr>
-						    <%-- </c:forEach> --%>
+						    </c:forEach>
 						    </tbody>
 						 </table>
 					</div>
@@ -164,7 +229,7 @@
 				
 				<!-- 등록 버튼 -->
 					<div id="erp_jh_contents_bottom">
-						<button class="modal_btn" data-toggle="modal" data-target="#er_modal">신규등록</button>
+						<button id="er_insert" class="modal_btn" data-toggle="modal" data-target="#er_modal">신규등록</button>
 					</div>
 				<!-- 등록 버튼 끝 -->
 				
@@ -182,48 +247,51 @@
 				        <!-- modal header 끝-->
 				        
 				        <!-- modal contents -->
-				         <form action="" method="post" id="">
+				         <form action="./materWrite" method="post" id="er_write_frm">
 				        <div class="modal-body">
 				        	<div class="input-group input-group_modal">
 							  <span class="input-group-addon">입고코드</span>
-							  <input type="text" class="form-control" placeholder="Additional Info">
+							  <input id="materCode" name="materCode" type="text" class="form-control" readonly="readonly">
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">입고일</span>
-							  <input type="date" class="form-control">
+							  <input id="materDate" name="materDate" type="date" class="form-control">
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">거래처</span>
-							  <input type="text" class="form-control" placeholder="Additional Info">
+							  <input id="account" name="account" type="text" class="form-control" placeholder="Additional Info">
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">부서</span>
-							  <input type="text" class="form-control" placeholder="Additional Info">
+							  <input id="temp" name="temp" type="text" class="form-control" placeholder="Additional Info">
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">담당자</span>
-							  <input type="text" class="form-control" placeholder="Additional Info">
+							  <input id="name" name="name" type="text" class="form-control" placeholder="Additional Info">
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">창고명</span>
-							  <input type="text" class="form-control" placeholder="Additional Info">
+							  <select id="storageName" name="storageName">
+							  </select>
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">비고</span>
-							   <textarea class="form-control form-control_area" rows="5" id="comment"></textarea>
+							   <textarea name="materMemo" class="form-control form-control_area" rows="5" id="comment"></textarea>
 							</div>
+							
+							<input type="hidden" name="materKind" value="enter">
 				        </div>
 				        <!-- modal contents 끝-->
 				        
 				        <!-- modal footer -->
 				        <div class="modal-footer">
-				          <button type="button" class="btn btn-default sr_btn" data-dismiss="modal">등록</button>
+				          <button type="button" class="btn btn-default er_btn">등록</button>
 				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				        </div>
 				        </form>

@@ -1,6 +1,8 @@
 package com.five.ware.mater;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -20,6 +22,20 @@ public class MaterDAO {
 	
 	public List<MaterDTO> selectList(String materKind)throws Exception{
 		return sqlSession.selectList(namespace+"selectList", materKind);
+	}
+	
+	public List<MaterDTO> materDateList(String materKind, String smaterDate, String ematerDate)throws Exception{
+		Map<String, Object> map=new HashMap<String, Object>();
+		
+		map.put("materKind", materKind);
+		map.put("smaterDate", smaterDate);
+		map.put("ematerDate", ematerDate);
+		
+		return sqlSession.selectList(namespace+"materDateList", map);
+	}
+	
+	public List<String> materStorageList()throws Exception{
+		return sqlSession.selectList(namespace+"materStorageList");
 	}
 	
 	public MaterDTO selectOne(String materCode)throws Exception{

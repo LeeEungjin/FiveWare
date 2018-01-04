@@ -69,7 +69,6 @@ public class HomeController {
 	@RequestMapping(value="/codeName")
 	@ResponseBody
 	public String codeName(HttpSession session) throws Exception{
-		
 		String filePath = session.getServletContext().getRealPath("resources/code");
 		String fileName = "code.code";
 		

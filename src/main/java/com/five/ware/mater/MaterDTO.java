@@ -10,7 +10,7 @@ public class MaterDTO {
 	private String storageName;
 	private String materMemo;
 	private String materKind;
-	
+
 	public String getMaterCode() {
 		return materCode;
 	}
@@ -53,5 +53,12 @@ public class MaterDTO {
 	public void setMaterMemo(String materMemo) {
 		this.materMemo = materMemo;
 	}
+	public String getMaterKind() {
+		return materKind;
+	}
+	public void setMaterKind(String materKind) {
+		this.materKind = materKind;
+	}
+
 	
 }
