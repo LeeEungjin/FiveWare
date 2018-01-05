@@ -1,6 +1,8 @@
 package com.five.ware.ar.controller;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -34,19 +36,33 @@ public class ErpHumanMemberManaController {
 	
 	@RequestMapping("ajax")
 	@ResponseBody
-	   public String ajaxUp(MultipartFile f, HttpSession session){
-	      System.out.println("in");
-	      System.out.println(f.getOriginalFilename());
-	      
+	   public String ajaxUp(MultipartFile f, HttpSession session) throws Exception {
 	      String filePath=session.getServletContext().getRealPath("resources/member");
-	    
-	      return "";
+	      
+	      File file = new File(filePath);
+	      
+	      if(!file.exists()){
+	    	  file.mkdirs();
+	      }
+	      
+	     String fileName=f.getOriginalFilename();
+	     fileName=fileName.substring(fileName.lastIndexOf("."));
+	     
+	     String name=UUID.randomUUID().toString();
+	     fileName=name+fileName;
+	     
+	     file = new File(filePath, fileName);
+	     System.out.println(filePath);
+	 
+	     f.transferTo(file);
+	     
+	   
+	     
+	     return fileName;
 	   }
 	
 	@RequestMapping(value="memberInsertact", method=RequestMethod.POST)
 	public String memberInsert(Model model, MemberDTO memberDTO) throws Exception{
-		System.out.println("내말 들리니");
-		
 		int result = memberService.memberInsert(memberDTO);
 		
 		String message="등록 실패";
@@ -64,8 +80,6 @@ public class ErpHumanMemberManaController {
 	@RequestMapping(value="rankList")
 	@ResponseBody
 	public List<String> rankList() throws Exception{
-		System.out.println("들어왔니");
-		
 		List<String> rank = memberService.rankList();
 		
 		for(String ar : rank){

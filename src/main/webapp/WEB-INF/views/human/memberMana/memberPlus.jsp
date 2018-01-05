@@ -44,31 +44,6 @@
 				});
 		});
 		
-	/* 	$("#ar_memberFile").change(function(){
-			alert("들어감");
-			//var file=files[0];
-			//var formData = new FormData($("#filefrm"));
-			//formData.append("file", file); 
-	//	var formData = $("#filefrm").serialize();
-			
-		var formData = new FormData(); 
-		formData.append("file", $("input[name=humanPhoto")[0].files[0]);
-
-			$.ajax({
-				data:formData,
-				//enctype : "multipart/form-data",
-		       
-		        contentType: false,
-		        processData: false,
-				url:"./fileAjax",
-				 dataType : "text",
-				 type : "post",
-				 success:function(data){
-					
-				}
-			});
-		}); */
-		
 		$("#memInsertBtn").click(function(){
 			var id=$("#memberId").val();
 			var name=$("#memberName").val();
@@ -115,7 +90,7 @@
 			}else if(month==""){
 				alert("월차일수를 입력하세요");
 			}else{
-				// $(this).attr("data-dismiss", "modal"); 
+				 $(this).attr("data-dismiss", "modal"); 
 				memberInsertFrm.submit();
 			} 
 			
@@ -126,16 +101,15 @@
 	                var formData = new FormData(form);
 	                formData.append("f", $("#f")[0].files[0]);
 	                
-	            var path=$(this).val();
-	                
 	                $.ajax({
 	                    url: 'file/ajax',
 	                            processData: false,
 	                            contentType: false,
-	                            data: {formData},
+	                            data: formData,
 	                            type: 'POST',
 	                            success: function(result){
 	                                alert(result);
+	                                $("#ar_photo").attr("src", "../../resources/member/"+result);
 	                            },error:function(){
 	                            	alert("에러");
 	                            }
