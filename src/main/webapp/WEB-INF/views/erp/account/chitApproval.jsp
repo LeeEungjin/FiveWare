@@ -120,7 +120,6 @@
 	 });
 	 
 
-	 
  });
  
  
@@ -168,7 +167,7 @@
 			
 			<div class="fw_subsub collapse"  id="sub2">
 				<ul>
-					<li> 지점 매출</li>
+					<li><a href="./storeSales">지점매출</a></li>
 					<li><a href="./chit"> 전표 입력</a></li>
 					<li><a href="./chitApproval">승인전표</a></li>
 					<li><a href="./chitNapproval">미승인전표</a></li>
@@ -226,13 +225,14 @@
 					<div id="eb_contents_box_div" >
 						<input type="hidden" name="curPage" value="1">
 						  	
-						  	<select name="kind">
+						  	<select name="kind" >
 						  		<option value="code">코드</option>
 						  		<option value="regdate">전표일자</option>
 						  		<option value="temp">부서</option>
 						  	</select>
 						  	
-						<input type="text" name="search">
+						   	<input type="text" name="search">
+					
 						
 						  <button class="btn btn-default">search</button>
 						

@@ -231,7 +231,7 @@
 			
 			<div class="fw_subsub collapse in"  id="sub2">
 				<ul>
-					<li> 지점 매출</li>
+					<li><a href="./storeSales">지점매출</a></li>
 					<li><a href="./chit">전표 입력</a></li>
 					<li><a href="./chitApproval">승인전표</a></li>
 					<li><a href="./chitNapproval">미승인전표</a></li>
@@ -267,7 +267,7 @@
 			<div id="eb_contents_wrap">
 				 
 				<div class="eb_contents_text">
-				 	<span class="glyphicon glyphicon-file" id="eb_contents_text_p">전표관리</span>
+				 	<span class="glyphicon glyphicon-file" id="eb_contents_text_p">전표입력</span>
 				</div>
 				
 			<form action="./chitInsert" id="chit_frm" method="post">	
