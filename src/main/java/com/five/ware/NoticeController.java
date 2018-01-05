@@ -1,4 +1,4 @@
-package com.five.ware;
+/*package com.five.ware;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -51,7 +51,7 @@ public class NoticeController {
 		return "notice/noticeWrite";
 	}
 	
-/*	@RequestMapping(value="noticeWrite", method = RequestMethod.POST)
+	@RequestMapping(value="noticeWrite", method = RequestMethod.POST)
 	public String insert(NoticeDTO noticeDTO, RedirectAttributes rd, HttpSession session) throws Exception	{
 		int result = 0;
 		
@@ -64,7 +64,7 @@ public class NoticeController {
 		rd.addFlashAttribute("message", message);
 		
 		return "redirect:noticeList";
-	}*/
+	}
 	
 	@RequestMapping(value="noticeUpdate", method=RequestMethod.GET)
 	public String update(int num, Model model) throws Exception{
@@ -101,3 +101,4 @@ public class NoticeController {
 		return "notice/meetingRoom";
 	}
 }
+*/

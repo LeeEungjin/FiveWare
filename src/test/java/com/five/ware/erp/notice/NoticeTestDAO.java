@@ -1,4 +1,4 @@
-package com.five.ware.erp.notice;
+/*package com.five.ware.erp.notice;
 
 import static org.junit.Assert.*;
 
@@ -40,3 +40,4 @@ public class NoticeTestDAO extends AbstractTest {
 		assertTrue(ar.size()>0);
 	}
 }
+*/

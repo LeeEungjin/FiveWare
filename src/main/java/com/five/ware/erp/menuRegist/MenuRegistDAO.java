@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.five.ware.file.FileDTO;
 import com.five.ware.util.RowNum;
 
 
@@ -17,6 +18,10 @@ public class MenuRegistDAO {
 	@Inject
 	private SqlSession sqlsession;
 	private static final String namespace="menuRegistMapper.";
+	
+	public int dragandrop(FileDTO fileDTO)throws Exception{
+		return sqlsession.insert(namespace+"dragandrop", fileDTO);
+	}
 	
 	public int memuRegistinsert(MenuRegistDTO menuRegistDTO)throws Exception{
 		return sqlsession.insert(namespace+"menuReigstInsert", menuRegistDTO);

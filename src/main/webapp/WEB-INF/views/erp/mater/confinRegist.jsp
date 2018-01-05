@@ -14,7 +14,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	$(function(){
-var message = '${message}';
+	var message = '${message}';
 		
 		if(message != ""){
 			alert(message);
@@ -29,12 +29,12 @@ var message = '${message}';
 					$("#materCode").val(data);
 					
 					$.ajax({
-						type:"GET",
-						url:"./materStorageList",
+						type : "GET",
+						url : "./materSupList",
 						success:function(data){
 							var i=0;
 							$(data).each(function(){
-								$("#storageName").append("<option value="+data[i]+">"+data[i]+"</option>");
+								$("#account").append("<option value="+data[i]+">"+data[i]+"</option>");
 								i++;
 							});
 						}
@@ -265,7 +265,8 @@ var message = '${message}';
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">거래처</span>
-							  <input id="account" name="account" type="text" class="form-control" placeholder="Additional Info">
+							  <select id="account" name="account">
+							  </select>
 							</div>
 							
 							<div class="input-group input-group_modal">

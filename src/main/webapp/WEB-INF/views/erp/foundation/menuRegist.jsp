@@ -112,18 +112,6 @@
 			});
 		});
 		
-		/* $("#checkDelete").click(function(){
-			alert("click");
-			
-			for(var i=0; i<$(".menucheck").length; i++){
-				if($(".menucheck").prop("checked")){
-					alert("?");
-					var checkCode=$(".menucheck").attr("title");
-				}
-			 
-			}
-		}); */
-		
 		$("#mr_checkDelete").click(function(){
 			var count=0;
 			var code="";
@@ -165,6 +153,63 @@
 				}
 			});
 		});
+		
+		var fileInput=$("#mr_fileInput");
+		var fileZone=$("#mr_img_div");
+		var submit=$("#mr_imgBtn");
+		var fileList=[];
+		
+		$fileInput.on("change", function(){
+			var file=$(this)[0].files;
+			
+			for(var i=0; i<img.length; i++){
+				 fileList.push(file[i]);
+				 fileZone.append("<p>file name : " + file[i].name + 
+                         " file size : " + file[i].size + "bytes</p>");
+			}
+		});
+		
+		$fileZone.on("dragover dragenter dragleave", function(event){
+            event.stopPropagation();
+            event.preventDefault();
+            return false;
+        }, false);
+		
+		$fileZone.on("drop", function(event){
+            event.stopPropagation();
+            event.preventDefault();
+            
+            $fileZone.css({border : "2px solid red"});
+            
+            var file = event.originalEvent.dataTransfer.files[0];
+            console.log("filename : " + file.name);
+            fileList.push(file);
+            $fileZone.append("<p>file name : " + file.name + 
+                             " file size : " + file.size + "bytes</p>");
+        });
+		
+		$submit.click(function(){
+			var formData=new FormData();
+			var code=$("#menuCode").val();
+			
+			for(var i=0; i<fileList.length; i++){
+				formDate.append("files", fileList[i]);
+			}
+			
+			$.ajax({
+				method : "POST",
+                url : "./dragandrop",
+                processData : false,
+                contentType : false,
+                data : {formData : formData,
+                		code : code,
+                		filename : file.name,
+                		oriname : file.name
+                },success : function(){
+                    alert("success");
+                }
+			});
+		});  
 		
 	});
 </script>
@@ -371,7 +416,7 @@
 				        <!-- modal header 끝-->
 				        
 				        <!-- modal contents -->
-				        <form action="./menuRegistWrite" method="post" id="mr_frm">
+				        <!-- <form action="./menuRegistWrite" method="post" id="mr_frm"> -->
 				        <div class="modal-body">
 				        	<div class="input-group input-group_modal">
 							  <span class="input-group-addon">메뉴번호*</span>
@@ -397,10 +442,15 @@
 							  <input id="price" type="text" class="form-control"  placeholder="Additional Info" name="price">
 							</div>
 							
+							<form enctype="multipart/form-data">
 							 <div class="input-group input-group_modal">
 							  <span class="input-group-addon">사진</span>
-							  <input type="text" name="imgNull">
+							  <div id="mr_img_div">
+							  </div>
+							  <input type="file" id="mr_fileInput" multiple="multiple">
+							  <button id="er_imgBtn">upload</button>
 							</div>
+							</form>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">레시피*</span>
@@ -421,7 +471,7 @@
 				          <input type="button" class="btn btn-default mr_btn"  value="등록">
 				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				        </div>
-				        </form>
+				       <!--  </form> -->
 				      	<!-- modal footer 끝-->
 				      </div>
 				    </div>
@@ -472,7 +522,7 @@
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">사진</span>
-							  <div id="mr_img_div"></div>
+							  <!-- <div id="mr_img_div"></div> -->
 							</div>
 							
 							<div class="input-group input-group_modal">

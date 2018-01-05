@@ -31,6 +31,12 @@ public class MaterService {
 		return ar;
 	}
 	
+	public List<String> materSupList()throws Exception{
+		List<String> ar=materDAO.materSupList();
+		
+		return ar;
+	}
+	
 	public List<String> materStorageList()throws Exception{
 		List<String> ar=materDAO.materStorageList();
 		

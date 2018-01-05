@@ -36,6 +36,31 @@
 								$("#storageName").append("<option value="+data[i]+">"+data[i]+"</option>");
 								i++;
 							});
+							
+							$.ajax({
+								type : "GET",
+								url : "./materSupList",
+								success:function(data){
+									var i=0;
+									$(data).each(function(){
+										$("#account").append("<option value="+data[i]+">"+data[i]+"</option>");
+										i++;
+									});
+									
+									/* $.ajax({
+										type : "GET",
+										url : "./materProductList",
+										success:function(data){
+											alert("제품 리스트");
+											var i=0;
+											$(data).each(function(){
+												i++;
+											});
+										}
+									}); */
+									
+								}
+							});
 						}
 					});
 				}
@@ -305,7 +330,8 @@
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">거래처</span>
-							  <input id="account" name="account" type="text" class="form-control" placeholder="Additional Info">
+							  <select id="account" name="account">
+							  </select>
 							</div>
 							
 							<div class="input-group input-group_modal">

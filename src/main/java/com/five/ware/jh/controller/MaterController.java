@@ -51,6 +51,20 @@ public class MaterController {
 		return mv;
 	}
 	
+	@RequestMapping(value="materSupList")
+	@ResponseBody
+	public List<String> materSupList(){
+		List<String> ar=null;
+		
+		try {
+			ar=materService.materSupList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return ar;
+	}
+	
 	@RequestMapping(value="materStorageList")
 	@ResponseBody
 	public List<String> materStorageList(){

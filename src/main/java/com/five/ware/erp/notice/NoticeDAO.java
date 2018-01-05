@@ -17,14 +17,14 @@ public class NoticeDAO {
 	@Inject
 	private SqlSession sqlSession;
 	private static final String namespace="noticeMapper.";
-	
+/*	
 	public int totalCount(RowNum rowNum) throws Exception	{
 		return sqlSession.selectOne(namespace+"totalCount", rowNum);
 	}
 	
 	public List<NoticeDTO> selectList(RowNum rowNum) throws Exception	{
 		return sqlSession.selectList(namespace+"selectList", rowNum);
-	}
+	}*/
 	
 	public NoticeDTO selectOne(int num) throws Exception	{
 		return sqlSession.selectOne(namespace+"selectOne", num);
@@ -51,9 +51,9 @@ public class NoticeDAO {
 		return sqlSession.delete(namespace+"delete", num);
 	}
 	
-	public List<NoticeDTO> part(RowNum rowNum) throws Exception	{
+/*	public List<NoticeDTO> part(RowNum rowNum) throws Exception	{
 		
 		return sqlSession.selectList(namespace+"selectPart", rowNum);
-	}
+	}*/
 
 }

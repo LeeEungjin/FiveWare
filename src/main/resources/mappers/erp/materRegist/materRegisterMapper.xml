@@ -23,7 +23,11 @@
   	select storagename from storage
   </select>
   
-  <select id="selectOne" resultType="com.five.ware.mater.MaterDTO">
+  <select id="materSupList" resultType="String">
+  	select name from supplier where use='true'
+  </select>
+  
+  <select id="selectOne" parameterType="String" resultType="com.five.ware.mater.MaterDTO">
   	select * from mater where matercode=#{materCode}
   </select>
   

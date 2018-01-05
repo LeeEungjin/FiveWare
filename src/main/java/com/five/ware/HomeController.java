@@ -71,7 +71,6 @@ public class HomeController {
 	public String codeName(HttpSession session) throws Exception{
 		String filePath = session.getServletContext().getRealPath("resources/code");
 		String fileName = "code.code";
-		
 		File f = new File(filePath, fileName);		
 		// 파일 읽을 준비
 			FileReader fr = new FileReader(f);

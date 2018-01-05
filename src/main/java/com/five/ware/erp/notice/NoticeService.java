@@ -12,15 +12,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.five.ware.util.ListData;
+import com.five.ware.util.Pager;
+import com.five.ware.util.RowNum;
+
 @Service
 public class NoticeService {
 
 	@Inject
 	private NoticeDAO noticeDAO;
 	
-	public ModelAndView selectList(ListData listData) throws Exception	{
+/*	public ModelAndView selectList(ListData listData) throws Exception	{
 		RowNum rowNum = listData.makeRow();
-		int totalCount = noticeDAO.totalCount(rowNum);
+		int totalCount = noticeDAO.totalCount(listData.makeRow());
 		Pager pager = listData.makePage(totalCount);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("pager", pager);
@@ -28,7 +32,7 @@ public class NoticeService {
 		mv.setViewName("notice/noticeList");
 		
 		return mv;
-	}
+	}*/
 	
 	public NoticeDTO selectOne(int num) throws Exception	{
 		noticeDAO.hitUpdate(num);
@@ -55,7 +59,7 @@ public class NoticeService {
 		return result;
 	}
 	
-	public ModelAndView part(ListData listData, String part) throws Exception	{
+/*	public ModelAndView part(ListData listData, String part) throws Exception	{
 		RowNum rowNum = listData.makeRow();
 		int totalCount = noticeDAO.totalCount(rowNum);
 		Pager pager = listData.makePage(totalCount);
@@ -65,5 +69,5 @@ public class NoticeService {
 		mv.setViewName("notice/noticeAjax");
 		
 		return mv;
-	}
+	}*/
 }

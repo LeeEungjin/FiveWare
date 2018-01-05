@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.five.ware.file.FileDTO;
 import com.five.ware.util.ListData;
 
 @Service
@@ -12,6 +13,12 @@ public class MenuRegistService {
 	
 	@Inject
 	private MenuRegistDAO menuRegistDAO;
+	
+	public int dragandrop(FileDTO fileDTO)throws Exception{
+		int result=menuRegistDAO.dragandrop(fileDTO);
+		
+		return result;
+	}
 	
 	public int menuRegistInsert(MenuRegistDTO menuRegistDTO)throws Exception{
 		int result=menuRegistDAO.memuRegistinsert(menuRegistDTO);
