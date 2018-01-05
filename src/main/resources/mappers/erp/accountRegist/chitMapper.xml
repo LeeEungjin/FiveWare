@@ -15,7 +15,43 @@
       </select>
   		
   	<insert id="insert">
-  	 insert into chit values(#{code},#{regdate},#{temp},#{account},#{memo},#{kind},#{debtor},#{creditor})
+  	 insert into chit values(#{code},#{regdate},#{temp},#{account},#{memo},#{debtor},#{creditor},#{approval})
   	</insert>	
+  	
+  	<select id="selectList_approval" parameterType="com.five.ware.util.RowNum" resultType="chitDTO">
+  		select * from
+		(select rownum R, S.*from
+		(select * from chit 
+			<if test="kind=='code'"> 
+				where code like '%'||#{search}||'%' 
+			</if>
+		
+			<if test="kind=='regdate'"> 
+				where regdate like '%'||#{search}||'%' 
+			</if>
+			
+			<if test="kind=='temp'"> 
+				where temp like '%'||#{search}||'%' 
+			</if>
+	 	order by code desc) S)
+		where approval=#{approval} and R between #{startRow} and #{lastRow}
+  	</select>
+
+  	
+  	<select id="totalCount" resultType="int">
+  		select nvl(count(code),0) from chit
+  	</select>
+  	
+  	<select id="approval_selectOne" resultType="chitDTO">
+  		select * from chit where code=#{code}
+  	</select>
+  	
+  	<update id="update">
+  	 update chit set approval='미승인' where code=#{code}
+  	</update>
+  	
+  	<delete id="delete">
+  	delete chit where code=#{code}
+  	</delete>
   </mapper>
  

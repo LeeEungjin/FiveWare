@@ -96,8 +96,9 @@
 
 	 });
 	 
-	 $("#eb_cancel").click(function(){
-		 if(confirm("승인을  취소 하시겠습니까 ?") == false){
+	 //승인
+	 $("#cancel").click(function(){
+		 if(confirm("승인하시겠습니까 ?") == false){
 		     alert("취소되었습니다.")   
 			 return false;
 		  }else{
@@ -105,7 +106,7 @@
 			  $.ajax({
 				 data : {"code" : code},
 				 type : "post",
-				 url : "./chitApprovalUpdate",
+				 url : "./chitapprovalUpdate",
 				 success : function(data){
 					 alert(data);
 					 location.reload();
@@ -118,6 +119,22 @@
 		 }
 	 });
 	 
+	 //delete
+	 $("#eb_delete").click(function(){
+		 var code=$(".eb_view").attr("title");
+		 alert(code);
+		 $.ajax({
+			 data : {"code" : code},
+			 url : "./chitDelete",
+			 type : "GET",
+			 success : function(data){
+				 alert(data);
+				 location.reload();
+			 },error : function(){
+				 alert("error");
+			 }
+		 });
+	 });
 
 	 
  });
@@ -174,11 +191,6 @@
 				</ul>
 			</div>
 			
-		
-		
-			
-			
-			
 			
 		<!-- submenu menu end -->
 	</div>
@@ -209,7 +221,7 @@
 			<div id="eb_contents_wrap">
 				 
 				<div class="eb_contents_text">
-				 	<span class="glyphicon glyphicon-file" id="eb_contents_text_p">승인전표</span>
+				 	<span class="glyphicon glyphicon-file" id="eb_contents_text_p">미승인전표</span>
 				</div>
 				
 				<div id="eb_contents_box">
@@ -221,7 +233,7 @@
 				   <input type="hidden" name="curPage" value="1">
 					
 					
-				<form name="frm" action="./chitApproval" method="get">
+				<form name="frm" action="./chitNapproval" method="get">
 					<div id="eb_contents_box_div" >
 						<input type="hidden" name="curPage" value="1">
 						  	
@@ -261,12 +273,12 @@
 						    
 						     <tbody>
 						   
-						    	<c:forEach items="${list}" var="dto">
+						    	 <c:forEach items="${list}" var="dto">
 							      <tr>
 							        <td><input type="checkbox" class="input_chk"></td>
 							      	<td>${dto.code}</td>
-							        <td>${dto.regdate}</td>	
-							        <td>${dto.temp}</td>				
+							        <td>${dto.regdate}</td>		
+							        <td>${dto.temp }</td>			
 							        <td>${dto.memo}</td>
 							        <td>${dto.debtor}</td>
 							        <td>${dto.approval}</td>		
@@ -289,7 +301,7 @@
                          <!--  Modal Header -->
                   <div class="modal-header">
                   
-                     <h4 class="modal-title"> | 승인 전표 </h4>
+                     <h4 class="modal-title"> | 미승인 전표 </h4>
                      
                       <button type="button"  class="close" data-dismiss="modal">&times;</button>
                          
@@ -332,7 +344,8 @@
              </div>
                               <!-- modal footer -->
             <div class="modal-footer">
-            	<input type="button" id="eb_cancel"  value="승인취소" data-dismiss="modal"> 
+            	<input type="button" id="eb_cancel"  value="승인" data-dismiss="modal"> 
+            	<input type="button" value="삭제" id="eb_delete" data-dismiss="modal"> 
             	<input type="button" value="확인" data-dismiss="modal"> 
           
        		 </div>
