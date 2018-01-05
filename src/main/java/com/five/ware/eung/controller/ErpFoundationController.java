@@ -1,5 +1,8 @@
 package com.five.ware.eung.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
@@ -12,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.five.ware.erp.supplier.SupplierDTO;
 import com.five.ware.erp.supplier.SupplierService;
+import com.five.ware.util.ListData;
 
 @Controller
 @RequestMapping(value="erp/foundation/**")
@@ -20,9 +24,38 @@ public class ErpFoundationController {
 	@Inject
 	private SupplierService supplierService;
 	
+	
 	@RequestMapping(value="supplierStop", method={RequestMethod.GET,RequestMethod.POST})
-	public void supplierStop(SupplierDTO supplierDTO) {
-		// this this this this !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	public String supplierStop(SupplierDTO supplierDTO, Model model) {
+		System.out.println(supplierDTO.getCode());
+		System.out.println(supplierDTO.getUse());
+		
+		
+		String use = supplierDTO.getUse();
+		
+		// true -> false // false -> true
+		if(use.equals("true")) { use = "false"; } 
+		else { use = "true"; }
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("code", supplierDTO.getCode());
+		map.put("use", use);
+		
+		try {
+			int result = supplierService.stop(map);
+			
+			if(result > 0) {
+				model.addAttribute("message", "Success");
+			} else {
+				model.addAttribute("message", "Fail");
+			}
+			model.addAttribute("addr", "../../erp/foundation/supplier");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "common/result";
 	}
 	
 	@RequestMapping(value="supplierDelete", method= {RequestMethod.GET,RequestMethod.POST})
@@ -81,11 +114,13 @@ public class ErpFoundationController {
 	}
 	
 	@RequestMapping(value="supplier", method=RequestMethod.GET)
-	public ModelAndView supplierList() {	
+	public ModelAndView supplierList(ListData listData) {	
 		ModelAndView mv = new ModelAndView();
 		
+		System.out.println("search: " + listData.getSearch());
+		
 		try {
-			mv = supplierService.selectList();
+			mv = supplierService.selectList(listData);
 			mv.setViewName("erp/foundation/supplier");
 			
 		} catch (Exception e) {
@@ -96,22 +131,22 @@ public class ErpFoundationController {
 	}
 	
 	@RequestMapping(value="supplier", method=RequestMethod.POST)
-	public String supplierWrite(SupplierDTO supplierDTO) {
-		String message = "";
-		
+	public String supplierWrite(SupplierDTO supplierDTO, Model model) {
+		int result = 0;
 		try {
-			int result = supplierService.insert(supplierDTO);
-			
-			if(result > 0) {
-				message = "redirect:./supplier";
-			} else {
-				// insert fail...
-			}
+			result = supplierService.insert(supplierDTO);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return message;
+		if(result > 0) {
+			model.addAttribute("message", "Success");
+		} else {
+			model.addAttribute("message", "Fail");
+		}
+		model.addAttribute("addr", "../../erp/foundation/supplier");
+		
+		return "common/result";
 	}
 }

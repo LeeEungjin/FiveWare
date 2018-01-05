@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="orderMapper">
+	
+	<insert id="insert" parameterType="com.five.ware.order.OrderDTO">
+		insert into orderregist values(#{orderCode},#{contractDate}, #{temp}, #{name}, #{account},
+		 #{delivery}, #{deadline}, #{storageName}, #{orderMemo})
+	</insert>  
+	
+	<select id="selectList" resultType="com.five.ware.order.OrderDTO">
+		select * from orderregist order by ordercode desc
+	</select>  
+	
+	<select id="selectOne" resultType="com.five.ware.order.OrderDTO" parameterType="String">
+		select * from orderregist where ordercode=#{orderCode}
+	</select>
+	
+	<delete id="delete" parameterType="String">
+		delete orderregist where ordercode=#{orderCode}	
+	</delete>  
+	
+  </mapper>

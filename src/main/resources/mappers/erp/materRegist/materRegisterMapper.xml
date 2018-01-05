@@ -14,7 +14,20 @@
   	select * from mater where materkind=#{materKind}
   </select>
   
-  <select id="selectOne">
+  
+  <select id="materDateList" parameterType="java.util.Map" resultType="com.five.ware.mater.MaterDTO">
+  	<![CDATA[select * from mater where materkind=#{materKind} and materdate>=#{smaterDate} and materdate<=#{ematerDate} ]]>
+  </select>
+  
+  <select id="materStorageList" resultType="String">
+  	select storagename from storage
+  </select>
+  
+  <select id="materSupList" resultType="String">
+  	select name from supplier where use='true'
+  </select>
+  
+  <select id="selectOne" parameterType="String" resultType="com.five.ware.mater.MaterDTO">
   	select * from mater where matercode=#{materCode}
   </select>
   

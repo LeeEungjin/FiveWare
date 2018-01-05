@@ -68,10 +68,7 @@
 		
 		$(".menuView").click(function() {
 			var code=$(this).attr("title");
-<<<<<<< HEAD
 			alert(code);
-=======
->>>>>>> eunbi2
 			$.ajax({
 				data : {"menuCode" : code},
 				url : "./menuRegistView",
@@ -99,10 +96,7 @@
 		});
 			
 		$(".menuDelete").click(function(){
-<<<<<<< HEAD
-=======
 			alert("click");
->>>>>>> eunbi2
 			var code=$(".viewCode").val();
 			alert(code);
 			$.ajax({
@@ -111,10 +105,7 @@
 				type : "get",
 				success : function(data){
 					alert("삭제 완료");
-<<<<<<< HEAD
 					location.reload();
-=======
->>>>>>> eunbi2
 				},
 				error : function(data){
 					alert("error");
@@ -122,7 +113,6 @@
 			});
 		});
 		
-<<<<<<< HEAD
 		/* $("#checkDelete").click(function(){
 			alert("click");
 			
@@ -165,15 +155,80 @@
 					}
 					});
 				}
-=======
 		$("#checkDelete").click(function(){
 			alert("click");
 			if($("#menucheck").prop("checked")){
 			
 			}
->>>>>>> eunbi2
 		});
 		
+		$("#mr_insert").click(function(){
+			$.ajax({
+				type:"GET",
+				url:"../../codeName",
+				success:function(data){
+					$("#menuCode").val(data);
+				}
+			});
+		});
+		
+		var fileInput=$("#mr_fileInput");
+		var fileZone=$("#mr_img_div");
+		var submit=$("#mr_imgBtn");
+		var fileList=[];
+		
+		$fileInput.on("change", function(){
+			var file=$(this)[0].files;
+			
+			for(var i=0; i<img.length; i++){
+				 fileList.push(file[i]);
+				 fileZone.append("<p>file name : " + file[i].name + 
+                         " file size : " + file[i].size + "bytes</p>");
+			}
+		});
+		
+		$fileZone.on("dragover dragenter dragleave", function(event){
+	            event.stopPropagation();
+	            event.preventDefault();
+	            return false;
+	        }, false);
+		});
+		
+		$fileZone.on("drop", function(event){
+            event.stopPropagation();
+            event.preventDefault();
+            
+            $fileZone.css({border : "2px solid red"});
+            
+            var file = event.originalEvent.dataTransfer.files[0];
+            console.log("filename : " + file.name);
+            fileList.push(file);
+            $fileZone.append("<p>file name : " + file.name + 
+                             " file size : " + file.size + "bytes</p>");
+        });
+		
+		$submit.click(function(){
+			var formData=new FormData();
+			var code=$("#menuCode").val();
+			
+			for(var i=0; i<fileList.length; i++){
+				formDate.append("files", fileList[i]);
+			}
+			
+			$.ajax({
+				method : "POST",
+                url : "./dragandrop",
+                processData : false,
+                contentType : false,
+                data : {formData : formData,
+                		code : code,
+                		filename : file.name,
+                		oriname : file.name
+                },success : function(){
+                    alert("success");
+                }
+			});
+		}); 
 	});
 </script>
 
@@ -360,12 +415,10 @@
 				
 				<!-- 등록 버튼 -->
 					<div id="erp_jh_contents_bottom">
-<<<<<<< HEAD
 						<button id="mr_checkDelete">선택삭제</button>
-=======
 						<button id="checkDelete">선택삭제</button>
->>>>>>> eunbi2
 						<button class="modal_btn" data-toggle="modal" data-target="#jh_mr_Modal">신규등록</button>
+						<button id="mr_insert" class="modal_btn" data-toggle="modal" data-target="#jh_mr_Modal">신규등록</button>
 					</div>
 				<!-- 등록 버튼 끝 -->
 				
@@ -383,7 +436,7 @@
 				        <!-- modal header 끝-->
 				        
 				        <!-- modal contents -->
-				        <form action="./menuRegistWrite" method="post" id="mr_frm">
+				        <!-- <form action="./menuRegistWrite" method="post" id="mr_frm"> -->
 				        <div class="modal-body">
 				        	<div class="input-group input-group_modal">
 							  <span class="input-group-addon">메뉴번호*</span>
@@ -409,10 +462,15 @@
 							  <input id="price" type="text" class="form-control"  placeholder="Additional Info" name="price">
 							</div>
 							
+							<form enctype="multipart/form-data">
 							 <div class="input-group input-group_modal">
 							  <span class="input-group-addon">사진</span>
-							  <input type="text" name="imgNull">
+							  <div id="mr_img_div">
+							  </div>
+							  <input type="file" id="mr_fileInput" multiple="multiple">
+							  <button id="er_imgBtn">upload</button>
 							</div>
+							</form>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">레시피*</span>
@@ -433,7 +491,7 @@
 				          <input type="button" class="btn btn-default mr_btn"  value="등록">
 				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				        </div>
-				        </form>
+				       <!--  </form> -->
 				      	<!-- modal footer 끝-->
 				      </div>
 				    </div>
@@ -484,7 +542,7 @@
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">사진</span>
-							  <div id="mr_img_div"></div>
+							  <!-- <div id="mr_img_div"></div> -->
 							</div>
 							
 							<div class="input-group input-group_modal">
