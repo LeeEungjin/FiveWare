@@ -19,6 +19,7 @@ public class NoticeDAO {
 	@Inject
 	private SqlSession sqlSession;
 	private static final String namespace="noticeMapper.";
+	private static final String namespace2="noticeFileMapper.";
 	
 	public int totalCount(RowNum rowNum, String part) throws Exception	{
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -44,11 +45,7 @@ public class NoticeDAO {
 		
 		return sqlSession.selectOne(namespace+"selectOne", num);
 	}
-	
-	/*public NoticeDTO fileView(int num) throws Exception	{
-		return sqlSession.selectOne(namespace+"selectFile", num);
-	}*/
-	
+		
 	public int hitUpdate(int num) throws Exception	{
 		return sqlSession.update(namespace+"hitUpdate", num);
 	}
@@ -65,21 +62,20 @@ public class NoticeDAO {
 	}
 	
 	public int update(NoticeDTO noticeDTO) throws Exception	{
-		return sqlSession.update(namespace+"update", noticeDTO);
+		int result = sqlSession.update(namespace+"update", noticeDTO);
+		
+		return result;
 	}
 	
 	public int delete(int num) throws Exception	{
 		return sqlSession.delete(namespace+"delete", num);
 	}
-	
-	/*public List<NoticeDTO> part(RowNum rowNum, String part) throws Exception	{
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("kind", rowNum.getKind());
-		map.put("search", rowNum.getSearch());
-		map.put("startRow", rowNum.getStartRow());
-		map.put("lastRow", rowNum.getLastRow());
-		map.put("part", part);
-		return sqlSession.selectList(namespace+"selectPart", map);
-	}*/
 
+	public int fileDelete(int fnum) throws Exception	{
+		return sqlSession.delete(namespace2+"delete", fnum);
+	}
+	
+	public int fileUpdate(NoticeFileDTO noticeFileDTO) throws Exception	{
+		return sqlSession.update(namespace2+"update", noticeFileDTO);
+	}
 }

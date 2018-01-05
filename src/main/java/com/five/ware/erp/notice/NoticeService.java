@@ -61,8 +61,20 @@ public class NoticeService {
 		return result;
 	}
 	
-	public int update(NoticeDTO noticeDTO) throws Exception	{
+	public int update(NoticeDTO noticeDTO, HttpSession session) throws Exception	{
+		
+		MultipartFile [] files = noticeDTO.getFiles();
+		
 		int result = noticeDAO.update(noticeDTO);
+		
+		for(MultipartFile multipartFile : files)	{
+			String name = fileSaver.fileSave(multipartFile, session, "upload");
+			noticeDTO.setNum(noticeDTO.getNum());
+			noticeDTO.setFnum(noticeDTO.getFnum());
+			noticeDTO.setFileName(name);
+			noticeDTO.setOriName(multipartFile.getOriginalFilename());
+			noticeFileDAO.insert(noticeDTO);
+		}
 		
 		return result;
 	}
@@ -72,14 +84,13 @@ public class NoticeService {
 		return result;
 	}
 	
-	/*public ModelAndView part(ListData listData, String part) throws Exception	{
-		RowNum rowNum = listData.makeRow();
-		int totalCount = noticeDAO.totalCount(rowNum);
-		Pager pager = listData.makePage(totalCount);
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("pager", pager);
-		mv.addObject("list", noticeDAO.part(rowNum, part));
-		mv.setViewName("notice/noticeList");
-		return mv;
-	}*/
+	public int fileDelete(int fnum) throws Exception	{
+		int result = noticeDAO.fileDelete(fnum);
+		return result;
+	}
+	
+	public int fileUpdate(NoticeFileDTO noticeFileDTO) throws Exception	{
+		int result = noticeDAO.fileUpdate(noticeFileDTO);
+		return result;
+	}
 }

@@ -16,14 +16,41 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../resources/SE2/js/HuskyEZCreator.js"></script>
 <link href="${url}/resources/css/notice/noticeWrite.css"
 	rel="stylesheet">
 <script type="text/javascript">
 	$(function(){
-		$("#writeBtn").click(function(){
-			$("#frm").submit();
-		});
-		
+		//SmartEditor start
+		//전역변수선언
+    var editor_object = [];
+     
+    nhn.husky.EZCreator.createInIFrame({
+        oAppRef: editor_object,
+        //textarea ID
+        elPlaceHolder: "contents",
+        sSkinURI: "../resources/SE2/SmartEditor2Skin.html", 
+        htParams : {
+            // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+            bUseToolbar : true,             
+            // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+            bUseVerticalResizer : true,     
+            // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+            bUseModeChanger : true, 
+        }
+    });
+     
+    //전송버튼 클릭이벤트
+    $("#writeBtn").click(function(){
+        //id가 smarteditor인 textarea에 에디터에서 대입
+        editor_object.getById["contents"].exec("UPDATE_CONTENTS_FIELD", []);
+         
+        // 이부분에 에디터 validation 검증
+         
+        //폼 submit
+        $("#frm").submit();
+    });
+
 		var index = 0;
 		var count = 0;
 		$("#add").click(function(){
@@ -86,9 +113,11 @@
 									
 								</tr>
 								<tr>
-									<td colspan="4">에디터가 들어갈 자리
+									<td id="textarea" colspan="4">
 										<div class="notice_jk_textarea">
-											<input type="text" name="contents" id="contents">
+											
+											<textarea id="contents" name="contents" draggable="false">${view.contents}</textarea>
+											<!-- 글 내용, contents -->
 										</div>
 									</td>
 								</tr>

@@ -11,6 +11,12 @@
   		insert into upload values(notice_seq.nextval, #{num}, #{fileName}, #{oriName})
   	</insert>
   	
-  
+  	<update id="update" parameterType="com.five.ware.erp.notice.NoticeFileDTO">
+  		update upload set  fnum=#{fnum}, fileName=#{fileName}, oriName=#{oriName} where num=#{num}
+  	</update>
+  	
+  	<delete id="delete" parameterType="int">
+  		delete upload where fnum=#{fnum}
+  	</delete>
   	
   </mapper>

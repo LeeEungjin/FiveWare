@@ -36,19 +36,14 @@ public class NoticeController {
 		
 		return mv;
 	}
-
-	/*@RequestMapping(value="noticeAjax", method=RequestMethod.GET)
-	@ResponseBody
-	public ModelAndView selectPart(ListData listData, String part, ModelAndView mv, RedirectAttributes rd) throws Exception	{
-		mv = noticeService.part(listData, part);
-		return mv;
-	}*/
 	
 	@RequestMapping(value="noticeView")
 	public ModelAndView noticeView(ModelAndView mv, @RequestParam(defaultValue="0", required=false)int num) throws Exception{
 		NoticeDTO noticeDTO = noticeService.selectOne(num);
+		
 		mv.addObject("view", noticeDTO);
 		mv.setViewName("notice/noticeView");
+		
 		return mv;
 	}
 	
@@ -58,50 +53,83 @@ public class NoticeController {
 		return "notice/noticeWrite";
 	}
 	
-/*	@RequestMapping(value="noticeWrite", method = RequestMethod.POST)
+	@RequestMapping(value="noticeWrite", method = RequestMethod.POST)
 	public String insert(NoticeDTO noticeDTO, RedirectAttributes rd, HttpSession session) throws Exception	{
 		int result = 0;
 		
 		result = noticeService.insert(noticeDTO, session);
 		
 		String message="FAIL";
+		
 		if(result>0)	{
 			message = "SUCCESS";
 		}
 		rd.addFlashAttribute("message", message);
 		
 		return "redirect:noticeList";
-	}*/
+	}
 	
 	@RequestMapping(value="noticeUpdate", method=RequestMethod.GET)
 	public String update(int num, Model model) throws Exception{
 		NoticeDTO noticeDTO = noticeService.selectOne(num);
+
 		model.addAttribute("view", noticeDTO);
+		
 		return "notice/noticeUpdate";
 	}
 	
 	@RequestMapping(value="noticeUpdate", method = RequestMethod.POST)
-	public String update(NoticeDTO noticeDTO, RedirectAttributes rd) throws Exception	{
-		int result = noticeService.update(noticeDTO);
+	public String update(NoticeDTO noticeDTO, RedirectAttributes rd, HttpSession session) throws Exception	{
+		int result = 0;
+		
+		try {
+			
+			result = noticeService.update(noticeDTO, session);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 		String message="FAIL";
+		
 		if(result>0)	{
 			message = "SUCCESS";
 		}
+		
 		rd.addFlashAttribute("message", message);
+		
 		return "redirect:noticeList";
 	}
 	
 	@RequestMapping(value="noticeDelete")
 	public String delete(int num, RedirectAttributes rd) throws Exception	{
 		int result = noticeService.delete(num);
+		
 		String message = "FAIL";
+		
 		if(result>0)	{
 			message="SUCCESS";
 		}
+		
 		rd.addFlashAttribute("message", message);
 		
 		return "redirect:noticeList";
 	}
+	
+	@RequestMapping(value="noticeFileDelete")
+	@ResponseBody
+	public String noticeFileDelete(int fnum) throws Exception	{
+		int result = noticeService.fileDelete(fnum);
+		
+		String message="FAIL";
+		
+		if(result>0)	{
+			message="SUCCESS";
+		}
+		
+		return message;
+	}
+	
 	
 	@RequestMapping(value="meetingRoom")
 	public String meetingRoom(){
