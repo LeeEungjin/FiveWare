@@ -22,8 +22,8 @@ public class ChitService {
 	
 	
 	//update
-	public int update(String code) throws Exception{
-		int result= chitDAO.update(code);
+	public int update(String code,String approval) throws Exception{
+		int result= chitDAO.update(code,approval);
 		return result;
 	}
 	

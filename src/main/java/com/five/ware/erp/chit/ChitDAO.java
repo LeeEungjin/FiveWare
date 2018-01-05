@@ -28,9 +28,12 @@ public class ChitDAO {
 		return sqlSession.delete(namespace+"delete", code);
 	}
 	//update
-	public int update(String code) throws Exception{
+	public int update(String code,String approval) throws Exception{
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("code", code);
+		map.put("approval", approval);
 		
-		return sqlSession.update(namespace+"update", code);
+		return sqlSession.update(namespace+"update", map);
 	}
 	
 	//chutApprovalSelectOne

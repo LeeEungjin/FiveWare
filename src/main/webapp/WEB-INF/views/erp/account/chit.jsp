@@ -232,7 +232,7 @@
 			<div class="fw_subsub collapse in"  id="sub2">
 				<ul>
 					<li> 지점 매출</li>
-					<li id="eb_makeCode"> <a href="./chit">전표 입력</a></li>
+					<li><a href="./chit">전표 입력</a></li>
 					<li><a href="./chitApproval">승인전표</a></li>
 					<li><a href="./chitNapproval">미승인전표</a></li>
 				</ul>

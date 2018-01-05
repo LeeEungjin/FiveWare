@@ -97,16 +97,17 @@
 	 });
 	 
 	 //승인
-	 $("#cancel").click(function(){
+	 $("#eb_cancel").click(function(){
 		 if(confirm("승인하시겠습니까 ?") == false){
 		     alert("취소되었습니다.")   
 			 return false;
 		  }else{
+			  var approval='미승인';
 			  var code=$(".eb_view").attr("title");
 			  $.ajax({
-				 data : {"code" : code},
+				 data : {"code" : code ,"approval" : approval},
 				 type : "post",
-				 url : "./chitapprovalUpdate",
+				 url : "./chitApprovalUpdate",
 				 success : function(data){
 					 alert(data);
 					 location.reload();
@@ -122,18 +123,17 @@
 	 //delete
 	 $("#eb_delete").click(function(){
 		 var code=$(".eb_view").attr("title");
-		 alert(code);
 		 $.ajax({
-			 data : {"code" : code},
-			 url : "./chitDelete",
-			 type : "GET",
-			 success : function(data){
-				 alert(data);
-				 location.reload();
-			 },error : function(){
-				 alert("error");
-			 }
-		 });
+				data : {"code" : code },
+				url : "./chitDelete",
+				type : "get",
+				success : function(data){
+					alert(data);
+					location.reload();
+				},error : function(){
+					alert("error")
+				}
+			 });
 	 });
 
 	 
@@ -170,7 +170,7 @@
 				<ul>
 					<li><a href="./storeRegist"> 지점 등록</a></li>
 					<li><a href="./accountRegist">예금 계좌 등록</a></li>
-					<li><a href="#">부서 등록</a></li>
+					<li><a href="./tempRegist">부서 등록</a></li>
 				</ul>
 			</div>
 			
@@ -185,7 +185,7 @@
 			<div class="fw_subsub collapse"  id="sub2">
 				<ul>
 					<li> 지점 매출</li>
-					<li><a href="./chit"> 전표 관리</a></li>
+					<li><a href="./chit"> 전표 입력</a></li>
 					<li><a href="./chitApproval">승인전표</a></li>
 					<li><a href="./chitNapproval">미승인전표</a></li>
 				</ul>

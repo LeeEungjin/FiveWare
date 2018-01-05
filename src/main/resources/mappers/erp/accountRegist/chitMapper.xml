@@ -47,7 +47,7 @@
   	</select>
   	
   	<update id="update">
-  	 update chit set approval='미승인' where code=#{code}
+  	 update chit set approval=#{approval} where code=#{code}
   	</update>
   	
   	<delete id="delete">

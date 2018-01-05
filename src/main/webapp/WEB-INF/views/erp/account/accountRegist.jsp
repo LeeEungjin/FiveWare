@@ -196,7 +196,7 @@
 			<div class="fw_subselected collapse in" id="sub1">
 				<ul>
 					<li><a href="./storeRegist"> 지점 등록</a></li>
-					<li><a href="#">예금 계좌 등록</a></li>
+					<li><a href="./accountRegist">예금 계좌 등록</a></li>
 					<li><a href="./tempRegist">부서 등록</a></li>
 				</ul>
 			</div>

@@ -27,13 +27,17 @@ public class ChitController {
 	
 	//chitDelete
 	@RequestMapping(value="chitDelete")
+	@ResponseBody
 	public String delete(String code)throws Exception{
+		System.out.println("code : "+code);
+		
 		int result=chitService.delete(code);
 		String message="fail";
 		if(result>0){
 			message="success";
 		}
-		
+		System.out.println("result : "+result);
+		System.out.println("여기까지");
 		return message;
 	}
 	
@@ -50,9 +54,16 @@ public class ChitController {
 	//chitApprovalUpdate
 	@RequestMapping(value="chitApprovalUpdate",method=RequestMethod.POST)
 	@ResponseBody
-	public String update(String code)throws Exception{
+	public String update(String code,String approval)throws Exception{
+
 		
-		int result=chitService.update(code);
+		if(approval.equals("승인")){
+			approval="미승인";
+		}else{
+			approval="승인";
+		}
+		
+		int result=chitService.update(code,approval);
 		String message="fail";
 		if(result>0){
 			message="success";
