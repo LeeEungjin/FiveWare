@@ -25,6 +25,18 @@ public class ErpFoundationController {
 	private SupplierService supplierService;
 	
 	
+	/* Product Start */
+	
+	@RequestMapping(value="product", method=RequestMethod.GET)
+	public void productList() {
+		
+	}
+	
+	/* Product End */
+	
+
+	/* Supplier Start */
+	
 	@RequestMapping(value="supplierStop", method={RequestMethod.GET,RequestMethod.POST})
 	public String supplierStop(SupplierDTO supplierDTO, Model model) {
 		System.out.println(supplierDTO.getCode());
@@ -149,4 +161,6 @@ public class ErpFoundationController {
 		
 		return "common/result";
 	}
+	
+	/* Supplier End */
 }

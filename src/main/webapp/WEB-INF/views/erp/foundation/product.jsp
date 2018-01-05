@@ -31,13 +31,14 @@
 			modal.style.display = "block";
 		});
 		
+		// update - selectOne
 		$(".ej_modalOne_btn").click(function() {
 			modalOne.style.display = "block";
 			
 			var code = $(this).text();
 			$.ajax({
 	            data : {"code" : code},
-	            url : "./supplierOne",
+	            url : "//////////////////////////////",
 	            type : "get",
 	            success : function(data){
 	            	$("#code_update").val(data.code);
@@ -73,21 +74,20 @@
 			modalOne.style.display = "none";
 		});
 		
-		////////////////////////////////////////////////////////////////////
+		/////////////////////////////delete / use Stop////////////////////////////////////
 		$("#ej_modal_delete").click(function() {
 			var del = confirm("Are you sure you want to delete it?")
 			
 			if(del) {
-				$("#ej_modalModify_frm").attr("action", "./supplierDelete")
+				$("#ej_modalModify_frm").attr("action", "//////////////////////")
 				$("#ej_modalModify_frm").submit();
 			}
 		});
 		
 		$("#ej_modal_stop").click(function() {
-			$("#ej_modalModify_frm").attr("action", "./supplierStop")
+			$("#ej_modalModify_frm").attr("action", "////////////////////////")
 			$("#ej_modalModify_frm").submit();
 		});
-		
 		///////////////////////////////////////////////////////////////////////
 		
 		/* 페이저 */
@@ -99,19 +99,9 @@
 			document.ej_frm.submit();
 		});
 		
-		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!/////
-		$("#ej_erp_totalCheckBox").click(function() {
-			
-		});
 		
 	});
 	
-	function checkAll() {
-		if($(this).prop("checked") == 'true') {
-			$("input[type=checkbox]").prop("checked", "true");
-		}
-	}
-
 </script>
 
 
@@ -230,35 +220,20 @@
 			<div id="fw_main_contents">
 				<div id="erp_jh_contents_title">
 					<div id="mr_icon">icon</div>
-					<p id="mr_title">거래처 등록</p>
+					<p id="mr_title">제품 등록</p>
 				</div>
 				
 				<!-- 검색 기능 -->
 				<div id="erp_jh_contents_search">
-					<form name="ej_frm" action="./supplier" method="get">
-						<input type="hidden" name="curPage" value="1">
-						<div class="erp_ej_search">
-							<div class="erp_ej_inputBox">
-								<label for="">거래처 분류</label>
-								<select class="erp_ej_select" name="search">
-									<option value="">전체</option>
-									<option value="매출서">매출서</option>
-									<option value="매입서">매입서</option>
-									<option value="매출 및 매입">매출 및 매입</option>
-									<option value="일반 거래처">일반 거래처</option>
-								</select>
-							</div>
-							
-							<div class="erp_ej_inputBox">
-								<label for="">거래처명</label>
-								<input type="text" class="ej_inputText" name="search">
-							</div>
-							
-							<div class="erp_ej_inputBox">
-								<input class="ej_search_btn btn" type="submit" value="검색">
-							</div>
-							
+					<form name="ej_frm" action="######################" method="get">
+						<div class="erp_ej_inputBox">
+							<select class="" name="kind">
+								<option value="name">품목명</option>
+								<option value="code">품목코드</option>
+								<option value="standard">규격</option>
+							</select>
 						</div>
+						<input class="" type="text" name="search">
 					</form>					
 				</div>
 				<!-- 검색 기능 끝 -->
@@ -327,106 +302,20 @@
 
 
 <!-- Modal Start -->
-<form id="ej-modal-form" action="./supplier" method="POST">
+<form id="ej-modal-form" action="###########################" method="POST">
 <div id="ej_modal" class="modal">
 
   <!-- Modal content -->
   <div id="modal-result" class="modal-content">
 	  <div class="modal-header">
 	    <span class="close">&times;</span>
-	    <h2>| 거래처 등록</h2>
+	    <h2>| 제품 등록</h2>
 	  </div>
 	  <div class="modal-body">
+	  
 	  	<!-- Modal Contents -->
 	  	<div class="erp_ej_container">
 	  	
-	 	<!-- 거래처 분류 Classification -->
-	 	<div class="erp_ej_row">
-		  <div class="erp_ej_col-25">
-		    <label class="erp_ej_label" for="classification">Classification</label>
-		  </div>
-		  <div class="erp_ej_col-75">
-		    <select id="classification" name="classification" class="erp_ej_inputText">
-		      <option value="매출서">매출서</option>
-		      <option value="매입서">매입서</option>
-		      <option value="매출 및 매입서">매출 및 매입서</option>
-		      <option value="일반 거래처">일반 거래처</option>
-		    </select>
-		  </div>
-		</div>
-	 
-	 	<!-- 거래처명 Name -->
-		<div class="erp_ej_row">
-		  <div class="erp_ej_col-25">
-		    <label for="name">Name</label>
-		  </div>
-		  <div class="erp_ej_col-75">
-		    <input type="text" id="name" name="name" class="erp_ej_inputText" placeholder="Supplier name..">
-		  </div>
-		</div>
-		
-		<!-- 사업자번호 Business Number -->
-		<div class="erp_ej_row">
-		  <div class="erp_ej_col-25">
-		    <label for="business_number">Business Number</label>
-		  </div>
-		  <div class="erp_ej_col-75">
-		    <input type="text" id="business_number" name="business_number" class="erp_ej_inputText" placeholder="Your business number..">
-		  </div>
-		</div>
-		
-		<!-- 대표자 Representative -->
-		<div class="erp_ej_row">
-		  <div class="erp_ej_col-25">
-		    <label for="representative">Representative</label>
-		  </div>
-		  <div class="erp_ej_col-75">
-		    <input type="text" id="representative" name="representative" class="erp_ej_inputText" placeholder="Representative name..">
-		  </div>
-		</div>
-		
-		 <!-- 담당자 division -->
-		<div class="erp_ej_row">
-		  <div class="erp_ej_col-25">
-		    <label for="division">Division</label>
-		  </div>
-		  <div class="erp_ej_col-75">
-		    <input type="text" id="division" name="division" class="erp_ej_inputText" placeholder="Division name..">
-		  </div>
-		</div>
-		
-		<!-- 담당자 메일 division_mail -->
-		<div class="erp_ej_row">
-		  <div class="erp_ej_col-25">
-		    <label for="division_mail">Division Mail</label>
-		  </div>
-		  <div class="erp_ej_col-75">
-		    <input type="text" id="division_mail" name="division_mail" class="erp_ej_inputText" placeholder="Division Mail..">
-		  </div>
-		</div>
-		
-		 <!-- 은행명 bank -->
-		<div class="erp_ej_row">
-		  <div class="erp_ej_col-25">
-		    <label for="bank">Bank</label>
-		  </div>
-		  <div class="erp_ej_col-75">
-		    <input type="text" id="bank" name="bank" class="erp_ej_inputText" placeholder="Bank name..">
-		  </div>
-		</div>
-		
-		 <!-- 계좌번호 account_number -->
-		<div class="erp_ej_row">
-		  <div class="erp_ej_col-25">
-		    <label for="account_number">Account Number</label>
-		  </div>
-		  <div class="erp_ej_col-75">
-		    <input type="text" id="account_number" name="account_number" class="erp_ej_inputText" placeholder="Account number..">
-		  </div>
-		</div>
-		
-		<input type="hidden" value="true">
-		
 	  
 		</div>
 	  	<!-- Modal Contents End -->
@@ -443,9 +332,7 @@
 
 
 <!-- Modal update/delete Start -->
-<form id="ej_modalModify_frm" action="./supplierUpdate" method="POST">
-<input type="hidden" id="code_update" name="code">
-<input type="hidden" id="use_update" name="use">
+<form id="ej_modalModify_frm" action="###################################" method="POST">
 
 <div id="ej_modalOne" class="modal">
 
@@ -456,96 +343,10 @@
 	    <h2>거래처 정보</h2>
 	  </div>
 	  <div class="modal-body">
+	  
 	  	<!-- Modal Contents -->
 	  	<div class="erp_ej_container">
 	  	
-	 	<!-- 거래처 분류 Classification -->
-	 	<div class="erp_ej_row">
-		  <div class="erp_ej_col-25">
-		    <label class="erp_ej_label" for="classification_update">Classification</label>
-		  </div>
-		  <div class="erp_ej_col-75">
-		    <select id="classification_update" name="classification" class="erp_ej_inputText">
-		      <option value="매출서">매출서</option>
-		      <option value="매입서">매입서</option>
-		      <option value="매출 및 매입서">매출 및 매입서</option>
-		      <option value="일반 거래처">일반 거래처</option>
-		    </select>
-		  </div>
-		</div>
-	 
-	 	<!-- 거래처명 Name -->
-		<div class="erp_ej_row">
-		  <div class="erp_ej_col-25">
-		    <label for="name_update">Name</label>
-		  </div>
-		  <div class="erp_ej_col-75">
-		    <input type="text" id="name_update" name="name" class="erp_ej_inputText" placeholder="Supplier name..">
-		  </div>
-		</div>
-		
-		<!-- 사업자번호 Business Number -->
-		<div class="erp_ej_row">
-		  <div class="erp_ej_col-25">
-		    <label for="business_number_update">Business Number</label>
-		  </div>
-		  <div class="erp_ej_col-75">
-		    <input type="text" id="business_number_update" name="business_number" class="erp_ej_inputText" placeholder="Your business number..">
-		  </div>
-		</div>
-		
-		<!-- 대표자 Representative -->
-		<div class="erp_ej_row">
-		  <div class="erp_ej_col-25">
-		    <label for="representative_update">Representative</label>
-		  </div>
-		  <div class="erp_ej_col-75">
-		    <input type="text" id="representative_update" name="representative" class="erp_ej_inputText" placeholder="Representative name..">
-		  </div>
-		</div>
-		
-		 <!-- 담당자 division -->
-		<div class="erp_ej_row">
-		  <div class="erp_ej_col-25">
-		    <label for="division_update">Division</label>
-		  </div>
-		  <div class="erp_ej_col-75">
-		    <input type="text" id="division_update" name="division" class="erp_ej_inputText" placeholder="Division name..">
-		  </div>
-		</div>
-		
-		<!-- 담당자 메일 division_mail -->
-		<div class="erp_ej_row">
-		  <div class="erp_ej_col-25">
-		    <label for="division_mail_update">Division Mail</label>
-		  </div>
-		  <div class="erp_ej_col-75">
-		    <input type="text" id="division_mail_update" name="division_mail" class="erp_ej_inputText" placeholder="Division Mail..">
-		  </div>
-		</div>
-		
-		 <!-- 은행명 bank -->
-		<div class="erp_ej_row">
-		  <div class="erp_ej_col-25">
-		    <label for="bank_update">Bank</label>
-		  </div>
-		  <div class="erp_ej_col-75">
-		    <input type="text" id="bank_update" name="bank" class="erp_ej_inputText" placeholder="Bank name..">
-		  </div>
-		</div>
-		
-		 <!-- 계좌번호 account_number -->
-		<div class="erp_ej_row">
-		  <div class="erp_ej_col-25">
-		    <label for="account_number_update">Account Number</label>
-		  </div>
-		  <div class="erp_ej_col-75">
-		    <input type="text" id="account_number_update" name="account_number" class="erp_ej_inputText" placeholder="Account number..">
-		  </div>
-		</div>
-		
-		<input type="hidden" value="true">
-		
 	  
 		</div>
 	  	<!-- Modal Contents End -->
