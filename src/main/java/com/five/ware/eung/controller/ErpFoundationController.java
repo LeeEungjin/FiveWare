@@ -37,7 +37,7 @@ public class ErpFoundationController {
 			} else {
 				model.addAttribute("message", "Fail");
 			}
-			model.addAttribute("path", "../../erp/foundation/supplier");
+			model.addAttribute("addr", "../../erp/foundation/supplier");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -57,7 +57,7 @@ public class ErpFoundationController {
 			} else {
 				model.addAttribute("message", "Fail");
 			}
-			model.addAttribute("path", "../../erp/foundation/supplier");
+			model.addAttribute("addr", "../../erp/foundation/supplier");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
