@@ -22,6 +22,7 @@
 		
 		$("#or_insert").click(function(){
 			
+			
 			$.ajax({
 				type:"GET",
 				url:"../../codeName",
@@ -47,6 +48,15 @@
 										$("#account").append("<option value="+data[i]+">"+data[i]+"</option>");
 										i++;
 									});
+									
+									$.ajax({
+										type:"GET",
+										url : "./productList",
+										success:function(data){
+											$("#productList_tbody").html(data);
+										}
+									});
+									
 								}
 							});
 						}
@@ -58,6 +68,27 @@
 		$(".er_btn").click(function(){
 			$("#or_write_frm").submit();
 		});
+		
+		$("#or_modal_table").on("change", ".product_amount",function(){
+			
+			/* console.log($(".product_amount")[0].attributes[0].value); */
+			/*  console.log($(".product_amount")[0].id);  */
+			var price=$(".product_amount")[0].attributes[0].value
+			var amount=$(".product_amount")[0].value;
+			var total_input=$(".product_total")[0].id;
+			var code=$(".product_amount")[0].id;
+			var total=price*amount;
+			
+			alert("코드 :"+code)
+			alert("단가 :"+price);
+			alert("수량 : "+amount);
+			alert("합계 : "+total);   
+			
+			total_input.val(total);
+			
+			
+		});
+		
 		
 	});
 </script>
@@ -269,9 +300,10 @@
 							
 							
 							<div id="erp_jh_modal_table">
-								<table class="table">
+								<table id="or_modal_table" class="table">
 								    <thead>
 								      <tr>
+								      	<th><input type="checkbox"></th>
 								        <th>제품코드</th>
 								        <th>제품명</th>
 								        <th>규격</th>
@@ -281,20 +313,12 @@
 								      </tr>
 								    </thead>
 								    
-								    <tbody>
-								    <%-- <c:forEach items="${orderList}" var="orderList"> 
-								      <tr>
-								        <td class="materView" title="${enterList.materCode}" data-toggle="modal" data-target="#er_update_modal">${orderList.orderCode}</td>
-								        <td>${orderList.contractDate}</td>
-								        <td>${orderList.deadline}</td>
-								        <td>${orderList.account}</td>
-								        <td></td>
-								        <td></td>
-								      </tr>
-								    </c:forEach> --%>
+								    <tbody id="productList_tbody">
 								    </tbody>
 								 </table>
 							</div>
+							<input type="button" value="합계 계산">
+							<input type="number" readonly="readonly">
 							
 				        </div>
 				        <!-- modal contents 끝-->

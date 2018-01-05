@@ -14,7 +14,9 @@
 		select * from orderregist order by ordercode desc
 	</select>  
 	
-
+	<select id="productList" resultType="com.five.ware.product.ProductDTO">
+		select * from product where use='true'
+	</select>
 	
 	<select id="selectOne" resultType="com.five.ware.order.OrderDTO" parameterType="String">
 		select * from orderregist where ordercode=#{orderCode}

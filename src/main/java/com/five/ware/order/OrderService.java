@@ -6,6 +6,8 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.five.ware.product.ProductDTO;
+
 @Service
 public class OrderService {
 
@@ -20,6 +22,12 @@ public class OrderService {
 	
 	public List<OrderDTO> selectList()throws Exception{
 		List<OrderDTO> ar=orderDAO.selectList();
+		
+		return ar;
+	}
+	
+	public List<ProductDTO> productList()throws Exception{
+		List<ProductDTO> ar=orderDAO.productList();
 		
 		return ar;
 	}

@@ -7,6 +7,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.five.ware.product.ProductDTO;
+
 @Repository
 public class OrderDAO {
 	
@@ -20,6 +22,10 @@ public class OrderDAO {
 	
 	public List<OrderDTO> selectList()throws Exception{
 		return sqlSession.selectList(namespace+"selectList");
+	}
+	
+	public List<ProductDTO> productList()throws Exception{
+		return sqlSession.selectList(namespace+"productList");
 	}
 	
 	public OrderDTO selectOne(String orderCode)throws Exception{
