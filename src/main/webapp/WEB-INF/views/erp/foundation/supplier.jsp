@@ -48,6 +48,14 @@
 					$("#division_mail_update").val(data.division_mail);
 					$("#bank_update").val(data.bank);
 					$("#account_number_update").val(data.account_number);
+					$("#use_update").val(data.use);
+					
+					// if 'use' is true, 'stop'
+					if($("#use_update").val() == "true") {
+						$("#ej_modal_stop").val("사용중지")
+					} else {
+						$("#ej_modal_stop").val("사용")
+					}
 	            },
 	            error : function(data){
 	               alert("error");
@@ -75,15 +83,24 @@
 		});
 		
 		$("#ej_modal_stop").click(function() {
-			var del = confirm("Are you sure you want to Stop it?")
+			$("#ej_modalModify_frm").attr("action", "./supplierStop")
+			$("#ej_modalModify_frm").submit();
+		});
+		
+		///////////////////////////////////////////////////////////////////////
+		
+		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!/////
+		$("#ej_erp_totalCheckBox").click(function() {
 			
-			if(del) {
-				$("#ej_modalModify_frm").attr("action", "./supplierStop")
-				$("#ej_modalModify_frm").submit();
-			}
 		});
 		
 	});
+	
+	function checkAll() {
+		if($(this).prop("checked") == 'true') {
+			$("input[type=checkbox]").prop("checked", "true");
+		}
+	}
 
 </script>
 
@@ -106,11 +123,11 @@
 /* Modal Content */
 .modal-content {
     position: relative;
-    background-color: #fefefe;
+    background-color: #fff;
     margin: auto;
     padding: 0;
     border: 1px solid #888;
-    width: 80%;
+    width: 50%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
@@ -131,7 +148,7 @@
 
 /* The Close Button */
 .close {
-    color: white;
+    color: black;
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -146,16 +163,16 @@
 
 .modal-header {
     padding: 2px 16px;
-    background-color: #5cb85c;
-    color: white;
+    background-color: #fff;
+    color: black;
 }
 
 .modal-body {padding: 2px 16px;}
 
 .modal-footer {
     padding: 2px 16px;
-    background-color: #5cb85c;
-    color: white;
+    background-color: #fff;
+    color: black;
 }
 </style>
 
@@ -223,6 +240,17 @@
 	        width: 100%;
 	        margin-top: 0;
 	    }
+	}
+	
+	.ej_list {
+		cursor: pointer;
+		border: 1px solid #333;
+		padding: 3px 5px;
+	}
+	
+	.ej_list:hover {
+		color: #fff;
+		background-color: #333;
 	}
 
 </style>
@@ -344,29 +372,30 @@
 				<div id="erp_jh_contents_title">
 					<div id="mr_icon">icon</div>
 					<p id="mr_title">거래처 등록</p>
-				</div>
+				</div>S
 				
 				<!-- 검색 기능 -->
 				<div id="erp_jh_contents_search">
-					<form action="#" method="get">
+					<form action="./supplier" method="get">
 						<div class="erp_ej_search">
 							<div class="erp_ej_inputBox">
 								<label for="">거래처 분류</label>
-								<select class="erp_ej_account_select" name="///////">
+								<select class="erp_ej_account_select" name="search">
 									<option value="">전체</option>
-									<option value="">매출서</option>
-									<option value="">매입서</option>
-									<option value="">매출 및 매입</option>
+									<option value="매출서">매출서</option>
+									<option value="매입서">매입서</option>
+									<option value="매출 및 매입">매출 및 매입</option>
+									<option value="일반 거래처">일반 거래처</option>
 								</select>
 							</div>
 							
 							<div class="erp_ej_inputBox">
 								<label for="">거래처명</label>
-								<input type="text" class="ej_inputText" name="///////">
+								<input type="text" class="ej_inputText" name="search">
 							</div>
 							
 							<div class="erp_ej_inputBox">
-								<input class="ej_search_btn btn" type="button" value="검색">
+								<input class="ej_search_btn btn" type="submit" value="검색">
 							</div>
 							
 						</div>
@@ -380,7 +409,7 @@
 					<table class="table">
 					    <thead>
 					      <tr>
-					        <th><input type="checkbox"></th>
+					        <th><input type="checkbox" id="ej_erp_totalCheckBox"></th>
 					        <th>코드</th>
 					        <th>거래처명</th>
 					        <th>사업자번호</th>
@@ -391,7 +420,7 @@
 					    <tbody>
 						    <c:forEach items="${list}" var="dto">
 							    <tr>
-							      	<td><input type="checkbox"></td>
+							      	<td><input type="checkbox" class="ej_erp_checkBox"></td>
 							        <td><a class="ej_modalOne_btn">${dto.code}</a></td>
 							        <td>${dto.name}</td>
 							        <td>${dto.business_number}</td>
@@ -410,15 +439,17 @@
 					 </table>
 					 
 					 <!-- pager -->
-					 	<div id="mr_pager">
-					 		  <a href="#" class="pager_a">◀</a>
-							  <a href="#" class="pager_a">1</a>
-							  <a href="#" class="pager_a">2</a>
-							  <a href="#" class="pager_a">3</a>
-							  <a href="#" class="pager_a">4</a>
-							  <a href="#" class="pager_a">5</a>
-							  <a href="#" class="pager_a">▶</a>
-					 	</div>
+					 	<div id="mr_pager" style="margin-top: 20px;">
+							<c:if test="${pager.curBlock gt 1}">
+								<span class="ej_list" title="${pager.startNum-1}">◀</span>
+							</c:if>
+							<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+								<span class="ej_list" title="${i}">${i}</span>
+							</c:forEach>
+							<c:if test="${pager.curBlock lt pager.totalBlock}">
+								<span class="ej_list" title="${pager.lastNum+1}">▶</span>
+							</c:if>
+						</div>
 					 <!-- pager 끝 -->
 				</div>
 				<!-- table 끝 -->
@@ -443,7 +474,7 @@
   <div id="modal-result" class="modal-content">
 	  <div class="modal-header">
 	    <span class="close">&times;</span>
-	    <h2>등록</h2>
+	    <h2>| 거래처 등록</h2>
 	  </div>
 	  <div class="modal-body">
 	  	<!-- Modal Contents -->
@@ -554,6 +585,8 @@
 <!-- Modal update/delete Start -->
 <form id="ej_modalModify_frm" action="./supplierUpdate" method="POST">
 <input type="hidden" id="code_update" name="code">
+<input type="hidden" id="use_update" name="use">
+
 <div id="ej_modalOne" class="modal">
 
   <!-- Modal content -->

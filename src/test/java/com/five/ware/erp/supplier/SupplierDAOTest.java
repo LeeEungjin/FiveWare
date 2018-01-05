@@ -2,13 +2,16 @@ package com.five.ware.erp.supplier;
 
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.junit.Test;
 
 import com.five.ware.AbstractTest;
+import com.five.ware.util.RowNum;
 
 public class SupplierDAOTest extends AbstractTest {
 	
@@ -18,11 +21,21 @@ public class SupplierDAOTest extends AbstractTest {
 	@Test
 	public void test() {
 		try {
-			this.delete();
+			this.selectList();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	
+	public void stop() {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("use", "true");
+		map.put("code", "A002");
+		int result = supplierDAO.stop(map);
+		
+		assertTrue(result > 0);
 	}
 	
 	public void delete() {
@@ -79,12 +92,19 @@ public class SupplierDAOTest extends AbstractTest {
 	}
 	
 	public void selectList() throws Exception {
-		List<SupplierDTO> ar = supplierDAO.selectList();
+		RowNum rowNum = new RowNum();
+		rowNum.setKind("code");
+		rowNum.setStartRow(1);
+		rowNum.setLastRow(10);
+		rowNum.setSearch("∏≈¿‘º≠,");
+		
+		List<SupplierDTO> ar = supplierDAO.selectList(rowNum);
 		
 		assertTrue(ar.size() > 0);
 		
 		for (SupplierDTO supplierDTO : ar) {
 			System.out.println("CODE: "+ supplierDTO.getCode());
+			System.out.println("======================================");
 		}
 	}
 

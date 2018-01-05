@@ -2,6 +2,7 @@ package com.five.ware.erp.supplier;
 
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import org.junit.Test;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.five.ware.AbstractTest;
+import com.five.ware.util.ListData;
 
 public class SupplierServiceTest extends AbstractTest {
 
@@ -20,7 +22,22 @@ public class SupplierServiceTest extends AbstractTest {
 	@Test
 	public void test() {
 		try {
-			this.delete();
+			this.selectList();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void stop() {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("use", "false");
+		map.put("code", "A002");
+		
+		try {
+			int result = supplierService.stop(map);
+			
+			assertTrue(result > 0);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -92,7 +109,9 @@ public class SupplierServiceTest extends AbstractTest {
 	}
 	
 	public void selectList() throws Exception {
-		ModelAndView mv = supplierService.selectList();
+		ListData listData = new ListData();
+		listData.setSearch("");
+		ModelAndView mv = supplierService.selectList(listData);
 		
 		assertNotNull(mv);
 		
