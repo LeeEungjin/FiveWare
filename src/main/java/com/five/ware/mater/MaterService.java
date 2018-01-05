@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 @Service
 public class MaterService {
@@ -18,8 +19,27 @@ public class MaterService {
 		return result;
 	}
 	
+	public List<MaterDTO> materDateList(String materKind, String smaterDate, String ematerDate)throws Exception{
+		List<MaterDTO> ar=materDAO.materDateList(materKind, smaterDate, ematerDate);
+		
+		return ar;
+	}
+	
 	public List<MaterDTO> selectList(String materKind)throws Exception{
 		List<MaterDTO> ar=materDAO.selectList(materKind);
+		
+		return ar;
+	}
+	
+	public List<String> materSupList()throws Exception{
+		List<String> ar=materDAO.materSupList();
+		
+		return ar;
+	}
+	
+	public List<String> materStorageList()throws Exception{
+		List<String> ar=materDAO.materStorageList();
+		
 		return ar;
 	}
 	

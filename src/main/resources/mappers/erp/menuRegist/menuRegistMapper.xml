@@ -4,6 +4,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="menuRegistMapper">
+  
+  	<insert id="dragandrop" parameterType="com.five.ware.file.FileDTO">
+  		insert into fivefile value(file_seq.nextval(), #{code}, #{filename}, #{oriname})
+  	</insert>
+  
   	<insert id="menuReigstInsert" parameterType="com.five.ware.erp.menuRegist.MenuRegistDTO">
   		insert into menuregist values(#{menuCode}, #{menuKind}, #{menuName}, #{imgNull}, #{recipe}, #{menuOption}, #{price})
   	</insert>

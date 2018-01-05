@@ -1,7 +1,5 @@
 @CHARSET "UTF-8";
 
-
-
 .sales_title_menu{
 	width: 10%;
 	height: 30%;
@@ -29,14 +27,14 @@
 	overflow: hidden;
 }
 
-#cr_icon{
+#or_icon{
 	width: 6%;
 	height: 100%;
 	background-color: #ff84c1;
 	float: left;
 }
 
-#cr_title{
+#or_title{
 	font-size: 30px;
 	font-weight: bold;
 	margin-left: 5%;
@@ -50,7 +48,7 @@
     padding-top: 0.5%;
 }
 
-#cr_search{
+#or_search{
 	width: 70%;
     height: 70%;
     margin-left: 20%;
@@ -126,9 +124,14 @@
     height: 700px !important;
 }
 
-.input-group_modal{
-   	width: 80% !important;
-   	margin-bottom: 2%;
+.or_input-group_modal {
+    width: 45% !important;
+    margin-right: 5% !important;
+    margin-bottom: 2% !important;
+}
+
+.memo_modal {
+    width: 117% !important;
 }
 
 .input-group_area{

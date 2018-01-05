@@ -83,7 +83,18 @@
 			});
 		});
 		
+		$("#sr_insert").click(function(){
+			alert("code");
 		
+			$.ajax({
+				type:"GET",
+				url:"../../codeName",
+				data:{  },
+				success:function(data){
+					$("#storageCode").val(data);
+				}
+			});
+		});
 		
 	});
 </script>
@@ -165,11 +176,11 @@
 	
 	<div id="fw_mainwrap">
 			<div id="fw_main">
-				<div class="sales_title_menu">기초 정보</div>
+				<!-- <div class="sales_title_menu">기초 정보</div>
 				<div class="sales_title_menu">구매 관리</div>
 				<div class="sales_title_menu">자재 관리</div>
 				<div class="sales_title_menu">반품 관리</div>
-				<div class="sales_title_menu">조 회</div>
+				<div class="sales_title_menu">조 회</div> -->
 			</div>
 			
 			<div id="fw_main_contents">
@@ -244,7 +255,7 @@
 				
 				<!-- 등록 버튼 -->
 					<div id="erp_jh_contents_bottom">
-						<button class="modal_btn" data-toggle="modal" data-target="#jh_sr_Modal">신규등록</button>
+						<button id="sr_insert" class="modal_btn" data-toggle="modal" data-target="#jh_sr_Modal">신규등록</button>
 					</div>
 				<!-- 등록 버튼 끝 -->
 				
@@ -266,7 +277,7 @@
 				        <div class="modal-body">
 				        	<div class="input-group input-group_modal">
 							  <span class="input-group-addon">창고코드</span>
-							  <input name="storageCode" id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
+							  <input name="storageCode" id="storageCode" type="text" class="form-control" name="msg" placeholder="Additional Info">
 							</div>
 							
 							<div class="input-group input-group_modal">

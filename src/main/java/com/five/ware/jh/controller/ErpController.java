@@ -13,7 +13,9 @@ import com.five.ware.erp.menuRegist.MenuRegistDTO;
 import com.five.ware.erp.menuRegist.MenuRegistService;
 import com.five.ware.erp.storageRegist.StorageRegistDTO;
 import com.five.ware.erp.storageRegist.StorageRegistService;
+import com.five.ware.file.FileDTO;
 import com.five.ware.util.ListData;
+
 
 @Controller
 @RequestMapping(value="erp/foundation/**")
@@ -23,6 +25,26 @@ public class ErpController {
 	private MenuRegistService menuRegistService;
 	@Autowired
 	private StorageRegistService storageService;
+	
+	@RequestMapping(value="dragandrop")
+	public String dragandrop(RedirectAttributes rd, FileDTO fileDTO){
+		int result=0;
+		String message="Fail";
+		
+		try {
+			result=menuRegistService.dragandrop(fileDTO);
+			
+			if(result>0){
+				message="Success";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		rd.addFlashAttribute("message", message);
+		
+		return "redirect:./menuRegist";
+	}
 	
 	@RequestMapping(value="menuRegist")
 	public ModelAndView menuRegist(ListData listData, @RequestParam(defaultValue="no", required=false)String order, @RequestParam(defaultValue="no", required=false)String menukind){
@@ -92,6 +114,8 @@ public class ErpController {
 		
 		return "redirect:./menuRegist";
 	}
+	
+
 	
 /////////////////////////////////////////////////////////////////////////////////////////////
 	
