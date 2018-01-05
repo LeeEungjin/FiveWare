@@ -159,15 +159,20 @@
 			var creditor=$("#eb_creditor").val();
 			
 			if(code==""){
-				$.ajax({
+				 $.ajax({
 					type:"GET",
 					url:"../codeName",
 					data:{  },
 					success:function(data){
-						alert(data);
+						
 						$("#eb_chitCode").val(data);
 					}
-				});
+				}); 
+				
+				if(debtor!=creditor){
+					alert("차변, 대변 값이 같아야합니다.");
+				}
+				 
 			}else if(debtor==null){
 				alert("차변 값을 입력해주세요.");
 			}else if(creditor==""){
@@ -227,9 +232,9 @@
 			<div class="fw_subsub collapse in"  id="sub2">
 				<ul>
 					<li> 지점 매출</li>
-					<li id="eb_makeCode"> <a href="./chit">전표 입력</a></li>
-					<li>승인전표</li>
-					<li>미승인전표</li>
+					<li><a href="./chit">전표 입력</a></li>
+					<li><a href="./chitApproval">승인전표</a></li>
+					<li><a href="./chitNapproval">미승인전표</a></li>
 				</ul>
 			</div>
 
@@ -267,7 +272,8 @@
 				
 			<form action="./chitInsert" id="chit_frm" method="post">	
 				
-			  <input id="eb_chitCode" type="hidden" name="code" value="">	
+			  <input id="eb_chitCode" type="hidden" name="code" >
+			  <input type="hidden" name="approval" value="승인">	
 			 	
 				<div id="eb_contents_box_chit">
 				 <div class="eb_blank"></div>
@@ -277,7 +283,7 @@
 							<td><input type="date" name="regdate" class="eb_regdate"></td>
 							<td>차/대변</td>
 							<td>
-								<select name="kind" class="eb_kind">
+								<select  class="eb_kind">
 									<option value="차변">차변</option>
 									<option value="대변">대변</option>
 								</select>

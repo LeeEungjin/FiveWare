@@ -15,6 +15,7 @@ import com.five.ware.erp.accountRegist.AccountRegistDTO;
 import com.five.ware.erp.chit.ChitDTO;
 import com.five.ware.erp.chit.ChitService;
 import com.five.ware.erp.tempRegist.TempRegistDTO;
+import com.five.ware.util.ListData;
 
 @Controller
 @RequestMapping(value="/erp/**")
@@ -23,6 +24,74 @@ public class ChitController {
 	@Inject
 	private ChitService chitService;
 	
+	
+	//chitDelete
+	@RequestMapping(value="chitDelete")
+	@ResponseBody
+	public String delete(String code)throws Exception{
+		System.out.println("code : "+code);
+		
+		int result=chitService.delete(code);
+		String message="fail";
+		if(result>0){
+			message="success";
+		}
+		System.out.println("result : "+result);
+		System.out.println("여기까지");
+		return message;
+	}
+	
+	//chitNapproval
+	@RequestMapping(value="chitNapproval")
+	public ModelAndView chitNapproval(ListData listData) throws Exception{
+		String approval="미승인";
+		ModelAndView mv=null;
+		mv=chitService.chitApprovalList(listData,approval);
+		mv.setViewName("/erp/account/chitNapproval");
+		return mv;	
+	}
+	
+	//chitApprovalUpdate
+	@RequestMapping(value="chitApprovalUpdate",method=RequestMethod.POST)
+	@ResponseBody
+	public String update(String code,String approval)throws Exception{
+
+		
+		if(approval.equals("승인")){
+			approval="미승인";
+		}else{
+			approval="승인";
+		}
+		
+		int result=chitService.update(code,approval);
+		String message="fail";
+		if(result>0){
+			message="success";
+		}
+		
+		return message;
+	};
+	
+	//chitApprovalSelectOne
+	@RequestMapping(value="chitView")
+	@ResponseBody
+	public ChitDTO selectOne(String code) throws Exception{
+		ChitDTO chitDTO;
+		chitDTO=chitService.chitSelectOne(code);
+		
+		return chitDTO;
+	}
+	
+	
+	//list
+	@RequestMapping(value="chitApproval")
+	public ModelAndView selectList(ListData listData) throws Exception{
+		String approval="승인";
+		ModelAndView mv=null;
+		mv=chitService.chitApprovalList(listData,approval);
+		mv.setViewName("/erp/account/chitApproval");
+		return mv;
+	}
 	//insert
 	@RequestMapping(value="chitInsert",method=RequestMethod.POST)
 	public String insert(ChitDTO chitDTO, RedirectAttributes rd) throws Exception{

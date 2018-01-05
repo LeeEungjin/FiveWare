@@ -67,12 +67,17 @@
 		var code=$(this).attr("title"); 
 		$.ajax({
 			data : {"code" : code},
-			url : "./tempRegistView",
+			url : "./chitView",
 			type : "get",
 			success : function(data){
-				$(".eb_viewCode").val(data.code);
-				$(".eb_viewTemp").val(data.temp);
-				$(".eb_viewMemo").val(data.memo);
+				$(".eb_viewCode").text(data.code);
+				$(".eb_viewRegdate").text(data.regdate);
+				$(".eb_viewTemp").text(data.temp);
+				$(".eb_viewAccount").text(data.account);
+				$(".eb_viewMemo").text(data.memo);
+				$(".eb_viewDebtor").text(data.debtor);
+				$(".eb_viewCreditor").text(data.creditor);
+				$(".eb_viewApproval").text(data.approval);
 			},
 			error : function(){
 				alert("데이터를 불러 오지 못했습니다.");
@@ -80,24 +85,7 @@
 		});
 	 });
 	 
-	 
-	 //삭제
-	 $("#eb_tempDelete").click(function(){
-		
-		 var code=$(".eb_viewCode").val();
-		 
-		 $.ajax({
-			data : {"code" : code},
-			url : "./tempRegistDelete",
-			type : "get",
-			success : function(data){
-				alert(data);
-				location.reload();
-			},error : function(){
-				alert("error")
-			}
-		 });
-	 });
+
 	 
 	 //전체삭제
 	 $("#deleteBtn").click(function(){
@@ -108,19 +96,46 @@
 
 	 });
 	 
-	 /* 코드 */
-	  $("#eb_insertBtn").click(function(){
-			
-			$.ajax({
-				type:"GET",
-				url:"../codeName",
-				data:{  },
-				success:function(data){
+	 //승인
+	 $("#eb_cancel").click(function(){
+		 if(confirm("승인하시겠습니까 ?") == false){
+		     alert("취소되었습니다.")   
+			 return false;
+		  }else{
+			  var approval='미승인';
+			  var code=$(".eb_view").attr("title");
+			  $.ajax({
+				 data : {"code" : code ,"approval" : approval},
+				 type : "post",
+				 url : "./chitApprovalUpdate",
+				 success : function(data){
+					 alert(data);
+					 location.reload();
+				 },error : function(){
+					 alert("error")
+				 }
+			  });
+			  
+		  
+		 }
+	 });
+	 
+	 //delete
+	 $("#eb_delete").click(function(){
+		 var code=$(".eb_view").attr("title");
+		 $.ajax({
+				data : {"code" : code },
+				url : "./chitDelete",
+				type : "get",
+				success : function(data){
 					alert(data);
-					$("#eb_tempCode").val(data);
+					location.reload();
+				},error : function(){
+					alert("error")
 				}
-			});
-		}); 
+			 });
+	 });
+
 	 
  });
  
@@ -176,11 +191,6 @@
 				</ul>
 			</div>
 			
-		
-		
-			
-			
-			
 			
 		<!-- submenu menu end -->
 	</div>
@@ -211,7 +221,7 @@
 			<div id="eb_contents_wrap">
 				 
 				<div class="eb_contents_text">
-				 	<span class="glyphicon glyphicon-file" id="eb_contents_text_p">부서등록</span>
+				 	<span class="glyphicon glyphicon-file" id="eb_contents_text_p">미승인전표</span>
 				</div>
 				
 				<div id="eb_contents_box">
@@ -223,13 +233,14 @@
 				   <input type="hidden" name="curPage" value="1">
 					
 					
-				<form name="frm" action="./tempRegist" method="get">
+				<form name="frm" action="./chitNapproval" method="get">
 					<div id="eb_contents_box_div" >
 						<input type="hidden" name="curPage" value="1">
 						  	
 						  	<select name="kind">
 						  		<option value="code">코드</option>
-						  		<option value="temp">부서명</option>
+						  		<option value="regdate">전표일자</option>
+						  		<option value="temp">부서</option>
 						  	</select>
 						  	
 						<input type="text" name="search">
@@ -250,81 +261,99 @@
 						<thead id="eb_table_head">
 						    <tr>
 						     <th><input type="checkbox" class="input_all"></th>
-						     <th>부서 코드</th>
-						     <th>부서명</th>
-						     <th>비고</th>	
-						     <th></th>					   
+						     <th>전표 번호</th>
+						     <th>전표 일자</th>
+						     <th>부서</th>
+						     <th>적요</th>	
+						     <th>전표 금액</th>		
+						     <th>승인 여부</th>		
+						     <th></th>			   
 						    </tr>
 						 </thead>
 						    
-						    <tbody>
+						     <tbody>
 						   
-						    	<c:forEach items="${list}" var="dto">
+						    	 <c:forEach items="${list}" var="dto">
 							      <tr>
 							        <td><input type="checkbox" class="input_chk"></td>
 							      	<td>${dto.code}</td>
-							        <td>${dto.temp}</td>					
-							        <td>${dto.memo}</td>		
-							        <td><button class="eb_view" title="${dto.code}" data-toggle="modal" data-target="#eb_view_modal">수정</button></td>
+							        <td>${dto.regdate}</td>		
+							        <td>${dto.temp }</td>			
+							        <td>${dto.memo}</td>
+							        <td>${dto.debtor}</td>
+							        <td>${dto.approval}</td>		
+							        <td>
+							        	<input type="button" value="상세보기" title="${dto.code}" class="eb_view" data-toggle="modal" data-target="#eb_view_modal">
+							        </td>
 							     
 							     </c:forEach>
-						   </tbody>
+						   </tbody> 
 					 </table>
 					
-					<!-- view Modal -->
-					<form action="tempRegistUpdate" method="post">
+						<!--부서 search modal  -->
+			
                <div class="modal fade" id="eb_view_modal">
           
             <div class="modal-dialog">
             
-                <div class="modal-content">
+                <div class="modal-content" id="eb_modal-content">
                         
                          <!--  Modal Header -->
                   <div class="modal-header">
                   
-                     <h4 class="modal-title"> | 부서 정보</h4>
+                     <h4 class="modal-title"> | 미승인 전표 </h4>
                      
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <button type="button"  class="close" data-dismiss="modal">&times;</button>
                          
                           </div>
                           
                          <!--  Modal body -->
-             <div class="modal-body">
+             <div class="modal-body" id="eb_modal-content_chit">
              
-               <table id="eb_modal_table">
-                  <tr>
-                     <td>부서 코드</td>
-                     <td><input type="text" class="eb_viewCode" name="code" readonly="readonly"></td>
-                  </tr>
-                  <tr> 
-                     <td>부서명</td>
-                     <td><input type="text" class="eb_viewTemp" name="temp"></td>
-                  </tr>
-                  <tr>   
-                     <td>비고</td>
-                     <td><input type="text" class="eb_viewMemo" name="memo"></td>
-                  </tr>
-                  
-                  
-               
-                            
-               </table>
+              <table id="eb_table_chit" >
+              
+						   
+						
+						    <tr>
+						     <td>코드</td>
+						     <td><span class="eb_viewCode"></span></td>
+						     <td>날짜</td>	
+						     <td><span class="eb_viewRegdate"></span></td>
+						   </tr>
+						   <tr>  					
+						     <td>부서명</td>	
+						     <td><span class="eb_viewTemp"></span></td>
+						     <td>계좌</td>	
+						     <td><span class="eb_viewAccount"></span></td>
+						   </tr>
+						   <tr>  
+						     <td>차변</td>
+						     <td><span class="eb_viewDebtor"></span></td>
+						     <td>대변</td>	
+						     <td><span class="eb_viewCreditor"></span></td>
+						   </tr>
+						   <tr>  	
+						     <td>적요</td>	
+						     <td><span class="eb_viewMemo"></span></td>
+						     <td>승인여부</td>   
+						     <td><span class="eb_viewApproval"></span></td>
+						    </tr>
+	
+					 </table>
                
              </div>
-                          
-                          <!-- modal footer -->
+                              <!-- modal footer -->
             <div class="modal-footer">
-               <button id="eb_tempUpdate">수정</button>
-               
-               <input type="button" id="eb_tempDelete" data-dismiss="modal" value="삭제">
-               
-                  
-             </div>
+            	<input type="button" id="eb_cancel"  value="승인" data-dismiss="modal"> 
+            	<input type="button" value="삭제" id="eb_delete" data-dismiss="modal"> 
+            	<input type="button" value="확인" data-dismiss="modal"> 
+          
+       		 </div>
                           
                </div>
             </div>
          </div>
-            </form>   
+			  
 		 	 
 				
 				
@@ -348,66 +377,14 @@
 				<!-- page 처리 끝 -->		  
 				
 				
-						  <button class="btn btn-default" id="deleteBtn">선택삭제</button>
-						  
-					      <button class="btn btn-default" id="eb_insertBtn" data-toggle="modal" data-target="#myModal">신규등록</button>
+						
+						  <input type="button" value="승인취소">
+					  
 					      
 			 
 			 
 			 
-			 <!--지점등록 modal  -->
-			 
-		<form action="tempRegistWrite" method="post">	 
-			 <div class="modal fade" id="myModal">
-			 
-				<div class="modal-dialog">
-				
-					 <div class="modal-content" id="tModal">
-						      
-						        <!-- Modal Header -->
-						<div class="modal-header">
-						
-						   <h4 class="modal-title"> | 부서 등록</h4>
-						   
-						    <button type="button" class="close" data-dismiss="modal">&times;</button>
-						       
-						        </div>
-						        
-						        <!-- Modal body -->
-				 <div class="modal-body">
-				 
-					<table id="eb_modal_tableT">
-						<tr>
-						
-						   <td>부서 코드</td>
-						   <td><input type="text" name="code" id="eb_tempCode" readonly="readonly"></td>
-						</tr>
-						<tr>  
-							
-						   <td>부서명</td>
-						   <td><input type="text" name="temp"></td>
-						 </tr>
-						 <tr>  
-						
-						   <td>비고</td>
-						   <td><input type="text" name="memo"></td>
-						</tr>
-						
-						
-						          
-					</table>
-					
-				 </div>
-						        
-						        <!-- Modal footer -->
-				<div class="modal-footer">
-						<input type="submit" id="eb_btn" class="btn btn-default" value="등록">
-				 </div>
-						        
-					</div>
-				</div>
-			</div>
-		</form>
+			
 		</div>
 	</div>
    </div>

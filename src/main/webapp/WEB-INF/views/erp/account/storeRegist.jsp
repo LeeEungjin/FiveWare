@@ -267,9 +267,9 @@
 			<div class="fw_subsub collapse"  id="sub2">
 				<ul>
 					<li> 지점매출</li>
-					<li><a href="./chit">전표 관리</a></li>
-					<li>승인전표</li>
-					<li>미승인전표</li>
+					<li><a href="./chit">전표 입력</a></li>
+					<li><a href="./chitApproval">승인전표</a></li>
+					<li><a href="./chitNapproval">미승인전표</a></li>
 				</ul>
 			</div>
 			

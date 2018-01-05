@@ -196,7 +196,7 @@
 			<div class="fw_subselected collapse in" id="sub1">
 				<ul>
 					<li><a href="./storeRegist"> 지점 등록</a></li>
-					<li><a href="#">예금 계좌 등록</a></li>
+					<li><a href="./accountRegist">예금 계좌 등록</a></li>
 					<li><a href="./tempRegist">부서 등록</a></li>
 				</ul>
 			</div>
@@ -213,8 +213,8 @@
 				<ul>
 					<li> 지점매출</li>
 					<li><a href="./chit"> 전표 입력</a></li>
-					<li>승인전표</li>
-					<li>미승인전표</li>
+					<li><a href="./chitApproval">승인전표</a></li>
+					<li><a href="./chitNapproval">미승인전표</a></li>
 				</ul>
 			</div>
 			

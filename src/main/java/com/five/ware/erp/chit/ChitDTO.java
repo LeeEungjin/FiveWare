@@ -6,7 +6,7 @@ private String regdate;
 private String temp;
 private String account;
 private String memo;
-private String kind;
+private String approval;
 private int debtor;
 private int creditor;
 public String getCode() {
@@ -39,11 +39,11 @@ public String getMemo() {
 public void setMemo(String memo) {
 	this.memo = memo;
 }
-public String getKind() {
-	return kind;
+public String getApproval() {
+	return approval;
 }
-public void setKind(String kind) {
-	this.kind = kind;
+public void setApproval(String approval) {
+	this.approval = approval;
 }
 public int getDebtor() {
 	return debtor;
