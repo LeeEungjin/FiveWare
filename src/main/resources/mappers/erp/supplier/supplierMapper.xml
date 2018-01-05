@@ -36,7 +36,7 @@
   		insert into supplier values(
   			#{code}, #{classification}, #{name}, #{business_number},
   			#{representative}, #{division}, #{division_mail},
-  			#{bank}, #{account_number}, 'false'
+  			#{bank}, #{account_number}, 'true'
   		)
   	</insert>
   	<!-- insert End -->

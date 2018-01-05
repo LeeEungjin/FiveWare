@@ -131,22 +131,22 @@ public class ErpFoundationController {
 	}
 	
 	@RequestMapping(value="supplier", method=RequestMethod.POST)
-	public String supplierWrite(SupplierDTO supplierDTO) {
-		String message = "";
-		
+	public String supplierWrite(SupplierDTO supplierDTO, Model model) {
+		int result = 0;
 		try {
-			int result = supplierService.insert(supplierDTO);
-			
-			if(result > 0) {
-				message = "redirect:./supplier";
-			} else {
-				// insert fail...
-			}
+			result = supplierService.insert(supplierDTO);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return message;
+		if(result > 0) {
+			model.addAttribute("message", "Success");
+		} else {
+			model.addAttribute("message", "Fail");
+		}
+		model.addAttribute("addr", "../../erp/foundation/supplier");
+		
+		return "common/result";
 	}
 }

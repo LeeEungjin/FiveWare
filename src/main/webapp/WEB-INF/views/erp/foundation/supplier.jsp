@@ -89,6 +89,15 @@
 		
 		///////////////////////////////////////////////////////////////////////
 		
+		/* 페이저 */
+		$(".ej_list").click(function() {
+			var cur = $(this).attr("title");
+			var s = '${pager.search}';
+			var t = '${pager.kind}';
+			document.ej_frm.curPage.value=cur;
+			document.ej_frm.submit();
+		});
+		
 		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!/////
 		$("#ej_erp_totalCheckBox").click(function() {
 			
@@ -376,7 +385,8 @@
 				
 				<!-- 검색 기능 -->
 				<div id="erp_jh_contents_search">
-					<form action="./supplier" method="get">
+					<form name="ej_frm" action="./supplier" method="get">
+						<input type="hidden" name="curPage" value="1">
 						<div class="erp_ej_search">
 							<div class="erp_ej_inputBox">
 								<label for="">거래처 분류</label>
