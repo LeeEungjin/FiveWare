@@ -5,6 +5,12 @@
   
   <mapper namespace="supplierMapper">
   
+  	<!-- use stop Start -->
+  	<update id="supplierStop" parameterType="java.util.Map">
+  		update supplier set use=#{use} where code=#{code}
+  	</update>
+  	<!-- use stop End -->
+  
   	<!-- delete Start -->
   	<delete id="supplierDelete" parameterType="java.lang.String">
   		delete from supplier where code=#{code}
@@ -20,13 +26,7 @@
   	</update>
   	<!-- update End -->
   
-  	<!-- selectList Start -->
-  	<select id="supplierList" resultType="SupplierDTO">
-  		select * from supplier order by code desc
-  	</select>
-  	<!-- selectList End -->
-  	
-  	
+  
   	<!-- insert Start -->
 	<select id="makeCode" resultType="java.lang.String">
 		select CHR(65) || LPAD(SUPPLIER_CODE.NEXTVAL,3,0) from dual
@@ -36,15 +36,36 @@
   		insert into supplier values(
   			#{code}, #{classification}, #{name}, #{business_number},
   			#{representative}, #{division}, #{division_mail},
-  			#{bank}, #{account_number}, 'false'
+  			#{bank}, #{account_number}, 'true'
   		)
   	</insert>
   	<!-- insert End -->
+  	
   	
   	<!-- selectOne Start-->
   	<select id="supplierOne" parameterType="java.lang.String" resultType="SupplierDTO">
   		select * from supplier where code=#{code}
   	</select>
   	<!-- selectOne End -->
+  	
+  	
+  	<!-- totalCount Start -->
+  	<select id="totalCount" resultType="int">
+		select nvl(count(code), 0) from supplier
+		where classification like '%'||#{search1}||'%' and name like '%'||#{search2}||'%'
+  	</select>
+  	<!-- totalCount End -->
+  	
+  	
+  	<!-- selectList Start -->
+  	<select id="supplierList" parameterType="java.util.Map" resultType="SupplierDTO">
+  		select * from
+  		(select rownum R, S.* from
+  		(select * from supplier
+  		where classification like '%'||#{search1}||'%' AND name like '%'||#{search2}||'%'
+  		order by code desc) S)
+  		where R between #{startRow} and #{lastRow}
+  	</select>
+  	<!-- selectList End -->
   	
   </mapper>
