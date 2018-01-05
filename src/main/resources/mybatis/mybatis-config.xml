@@ -13,5 +13,6 @@
   		<typeAlias type="com.five.ware.erp.human.basis.PositionDTO" alias="PositionDTO"/>
   		<typeAlias type="com.five.ware.erp.human.basis.SalDTO" alias="SalDTO"/>
   		<typeAlias type="com.five.ware.erp.human.member.MemberDTO" alias="MemberDTO"/>
+  		<typeAlias type="com.five.ware.file.FileDTO" alias="FileDTO"/>
   	</typeAliases>
   </configuration>

@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.five.ware.erp.notice.NoticeDTO;
 import com.five.ware.erp.notice.NoticeFileDTO;
+import com.five.ware.file.FileDTO;
 
 
 @Controller
@@ -30,4 +31,6 @@ public class FileController {
 		
 		return mv;
 	}
+	
+	
 }

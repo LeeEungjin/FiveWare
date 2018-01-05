@@ -23,4 +23,28 @@ public class MemberService {
 		
 		return rank;
 	}
+	
+	public List<MemberDTO> memberList(String search) throws Exception{
+		List<MemberDTO> ar = memberDAO.memberList(search);
+		
+		return ar;
+	}
+	
+	public MemberDTO memberOne(String code) throws Exception{
+		MemberDTO memberDTO = memberDAO.memberOne(code);
+		
+		return memberDTO;
+	}
+	
+	public int memberUpdate(MemberDTO memberDTO) throws Exception{
+		int result = memberDAO.memberUpdate(memberDTO);
+		
+		return result;
+	}
+	
+	public int memberDelete(String code) throws Exception{
+		int result = memberDAO.memberDelete(code);
+		
+		return result;
+	}
 }

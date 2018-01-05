@@ -4,7 +4,7 @@ public class MemberDTO {
 
 	private int num;
 	private String kind;
-	private String id;
+	private String code;
 	private String pw;
 	private String name;
 	private String birth;
@@ -32,11 +32,12 @@ public class MemberDTO {
 	public void setKind(String kind) {
 		this.kind = kind;
 	}
-	public String getId() {
-		return id;
+
+	public String getCode() {
+		return code;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setCode(String code) {
+		this.code = code;
 	}
 	public String getPw() {
 		return pw;

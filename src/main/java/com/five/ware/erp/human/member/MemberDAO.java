@@ -1,6 +1,9 @@
 package com.five.ware.erp.human.member;
 
+import java.lang.management.MemoryManagerMXBean;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -24,5 +27,33 @@ public class MemberDAO {
 		List<String> rank = sqlSession.selectList(NAMESPACE+"rankList");
 		
 		return rank;
+	}
+	
+	public List<MemberDTO> memberList(String search) throws Exception{
+		Map<String, String> map = new HashMap<String, String>();
+		
+		map.put("search", search);
+		
+		List<MemberDTO> ar = sqlSession.selectList(NAMESPACE+"memberList", map);
+		
+		return ar;
+	}
+	
+	public MemberDTO memberOne(String code) throws Exception{
+		MemberDTO memberDTO = sqlSession.selectOne(NAMESPACE+"memberOne", code);
+		
+		return memberDTO;
+	}
+	
+	public int memberUpdate(MemberDTO memberDTO) throws Exception{
+		int result = sqlSession.update(NAMESPACE+"memberUpdate", memberDTO);
+		
+		return result;
+	}
+	
+	public int memberDelete(String code) throws Exception{
+		int result =sqlSession.update(NAMESPACE+"memberDelete", code);
+		
+		return result;
 	}
 }
