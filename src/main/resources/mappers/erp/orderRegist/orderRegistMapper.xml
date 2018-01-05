@@ -7,11 +7,11 @@
 	
 	<insert id="insert" parameterType="com.five.ware.order.OrderDTO">
 		insert into orderregist values(#{orderCode},#{contractDate}, #{temp}, #{name}, #{account},
-		 #{division}, #{delivery}, #{condition}, #{deadline}, #{storageName}, #{orderMemo})
+		 #{delivery}, #{deadline}, #{storageName}, #{orderMemo})
 	</insert>  
 	
 	<select id="selectList" resultType="com.five.ware.order.OrderDTO">
-		select * from orderregist
+		select * from orderregist order by ordercode desc
 	</select>  
 	
 	<select id="selectOne" resultType="com.five.ware.order.OrderDTO" parameterType="String">
