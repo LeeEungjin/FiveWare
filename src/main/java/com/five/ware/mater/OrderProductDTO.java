@@ -1,16 +1,16 @@
 package com.five.ware.mater;
 
-public class MaterProductDTO {
+public class OrderProductDTO {
 	
-	private String materCode;
+	private String orderCode;
 	private String productCode;
 	private int amount;
 	
-	public String getMaterCode() {
-		return materCode;
+	public String getOrderCode() {
+		return orderCode;
 	}
-	public void setMaterCode(String materCode) {
-		this.materCode = materCode;
+	public void setOrderCode(String orderCode) {
+		this.orderCode = orderCode;
 	}
 	public String getProductCode() {
 		return productCode;

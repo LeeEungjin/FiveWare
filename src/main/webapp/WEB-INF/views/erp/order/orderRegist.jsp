@@ -27,9 +27,38 @@
 				url:"../../codeName",
 				success:function(data){
 					$("#orderCode").val(data);
+					
+					$.ajax({
+						type:"GET",
+						url:"../mater/materStorageList",
+						success:function(data){
+							var i=0;
+							$(data).each(function(){
+								$("#storageName").append("<option value="+data[i]+">"+data[i]+"</option>");
+								i++;
+							});
+							
+							$.ajax({
+								type : "GET",
+								url : "../mater/materSupList",
+								success:function(data){
+									var i=0;
+									$(data).each(function(){
+										$("#account").append("<option value="+data[i]+">"+data[i]+"</option>");
+										i++;
+									});
+								}
+							});
+						}
+					});
 				}
 			});
 		});
+		
+		$(".er_btn").click(function(){
+			$("#or_write_frm").submit();
+		});
+		
 	});
 </script>
 
@@ -145,7 +174,6 @@
 						    <thead>
 						      <tr>
 						        <th>주문코드</th>
-						        <th>구분</th>
 						        <th>계약일</th>
 						        <th>납기일</th>
 						        <th>거래처</th>
@@ -155,15 +183,16 @@
 						    </thead>
 						    
 						    <tbody>
-						    <%-- <c:forEach items="${enterList}" var="enterList"> 
+						    <c:forEach items="${orderList}" var="orderList"> 
 						      <tr>
-						        <td class="materView" title="${enterList.materCode}" data-toggle="modal" data-target="#er_update_modal">${enterList.materCode}</td>
-						        <td>${enterList.materDate}</td>
-						        <td>${enterList.storageName}</td>
+						        <td class="materView" title="${enterList.materCode}" data-toggle="modal" data-target="#er_update_modal">${orderList.orderCode}</td>
+						        <td>${orderList.contractDate}</td>
+						        <td>${orderList.deadline}</td>
+						        <td>${orderList.account}</td>
 						        <td></td>
 						        <td></td>
 						      </tr>
-						    </c:forEach> --%>
+						    </c:forEach>
 						    </tbody>
 						 </table>
 					</div>
@@ -189,7 +218,7 @@
 				        <!-- modal header 끝-->
 				        
 				        <!-- modal contents -->
-				       <form action="" method="post" id="or_write_frm">
+				       <form action="./orderWrite" method="post" id="or_write_frm">
 				        <div class="modal-body">
 				        	<div class="input-group input-group_modal or_input-group_modal">
 							  <span class="input-group-addon">주문코드</span>
@@ -213,22 +242,13 @@
 							
 							<div class="input-group input-group_modal or_input-group_modal">
 							  <span class="input-group-addon">거래처</span>
-							  <input id="account" name="account" type="text" class="form-control">
-							</div>
-							
-							<div class="input-group input-group_modal or_input-group_modal">
-							  <span class="input-group-addon">거래처 담당자</span>
-							  <input id="division" name="division" type="text" class="form-control">
+							  <select id="account" name="account">
+							  </select>
 							</div>
 							
 							<div class="input-group input-group_modal or_input-group_modal">
 							  <span class="input-group-addon">납품장소</span>
 							  <input id="delivery" name="delivery" type="text" class="form-control">
-							</div>
-							
-							<div class="input-group input-group_modal or_input-group_modal">
-							  <span class="input-group-addon">결제조건</span>
-							  <input id="condition" name="condition" type="text" class="form-control">
 							</div>
 							
 							<div class="input-group input-group_modal or_input-group_modal">
@@ -238,12 +258,42 @@
 							
 							<div class="input-group input-group_modal or_input-group_modal">
 							  <span class="input-group-addon">출하창고</span>
-							  <input id="storageName" name="storageName" type="text" class="form-control">
+							  <select id="storageName" name="storageName">
+							  </select>
 							</div>
 							
 							<div class="input-group input-group_modal memo_modal">
 							  <span class="input-group-addon">메모</span>
 							   <textarea name="orderMemo" class="form-control form-control_area" rows="5" id="comment"></textarea>
+							</div>
+							
+							
+							<div id="erp_jh_modal_table">
+								<table class="table">
+								    <thead>
+								      <tr>
+								        <th>제품코드</th>
+								        <th>제품명</th>
+								        <th>규격</th>
+								        <th>단가</th>
+								        <th>수량</th>
+								        <th>금액</th>
+								      </tr>
+								    </thead>
+								    
+								    <tbody>
+								    <%-- <c:forEach items="${orderList}" var="orderList"> 
+								      <tr>
+								        <td class="materView" title="${enterList.materCode}" data-toggle="modal" data-target="#er_update_modal">${orderList.orderCode}</td>
+								        <td>${orderList.contractDate}</td>
+								        <td>${orderList.deadline}</td>
+								        <td>${orderList.account}</td>
+								        <td></td>
+								        <td></td>
+								      </tr>
+								    </c:forEach> --%>
+								    </tbody>
+								 </table>
 							</div>
 							
 				        </div>
