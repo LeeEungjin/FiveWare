@@ -5,4 +5,13 @@
   
   <mapper namespace="fileMapper">
   	
+  
+   <insert id="fileInsert" parameterType="FileDTO">
+  	insert into fivefile values(file_seq.nextval, #{code}, #{oriname}, #{filename})
+  </insert>
+  
+  <select id="fileOne" parameterType="String" resultType="FileDTO">
+  	select * from fivefile where code=#{code}
+  </select>
+  
   </mapper>

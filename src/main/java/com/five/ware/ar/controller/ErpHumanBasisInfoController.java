@@ -63,11 +63,6 @@ public class ErpHumanBasisInfoController {
 	
 	@RequestMapping(value="positionUpdate", method=RequestMethod.POST)
 	public String positionUpdate(PositionDTO positionDTO, Model model) throws Exception{
-		System.out.println(positionDTO.getCode());
-		System.out.println(positionDTO.getRank());
-		System.out.println(positionDTO.getRanking());
-		System.out.println(positionDTO.getUse());
-		
 		int result = positionService.positionUpdate(positionDTO);
 		
 		String message = "수정 실패";

@@ -149,6 +149,7 @@
   		<collection property="fileNames" column="num" ofType="com.five.ware.erp.notice.NoticeDTO" select="selectFile"></collection>
   	</resultMap>
   	
+<<<<<<< HEAD
   	<!-- <select id="selectFile" parameterType="int" resultType="com.five.ware.erp.notice.NoticeFileDTO">
   		select * from upload where num=#{num}
   	</select> -->
@@ -161,5 +162,13 @@
   	</select>
 
 
+=======
+  <!-- 	<select id="selectFile" parameterType="int" resultType="com.five.ware.erp.notice.NoticeFileDTO">
+  		select * from upload where num=#{num}
+  	</select> -->
+  <!-- 	<select id="selectFile" parameterType="int" resultType="com.five.ware.erp.notice.NoticeFileDTO">
+  		select * from upload where num=#{num}
+  	</select> -->
+>>>>>>> arin
   	
   </mapper>

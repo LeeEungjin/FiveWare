@@ -51,6 +51,7 @@
 	height: 50%;
 	background-color: #f0f779;
 	margin-bottom: 2%;
+	overflow: scroll;
 }
 
 .ar_titleDiv{
@@ -83,7 +84,7 @@
 }
 
 .ar_memberNum{
-	width: 10%;
+	width: 15%;
 	height: 50%;
 }
 
@@ -93,7 +94,7 @@
 }
 
 .ar_memberDepa{
-	width: 10%;
+	width: 12%;
 	height: 50%;
 }
 
@@ -104,16 +105,21 @@
 }
 
 .ar_memberBirth{
-	width: 18%;
+	width: 12%;
 	height: 50%;
 }
 
 .ar_memberDate{
-	width: 18%;
+	width: 16%;
 	height: 50%;
 }
 
 .ar_memberDiff{
+	width: 6%;
+	height: 50%;
+}
+
+.ar_memberKind{
 	width: 6%;
 	height: 50%;
 }
@@ -247,6 +253,11 @@
     margin-left: 7%;
 }
 
+#f2{
+	 margin-top: 1%;
+    margin-left: 7%;
+}
+
 .ar_photoInsert{
 	display: inline-block;
 	width: 27%;
@@ -299,11 +310,15 @@
     margin: 0 auto;
 }
 
-#ar_memberOther{
+
+
+.ar_memberOthertext{
 	width: 82%;
     height: 143px;
     margin-left: 0.5%;
 }
+
+
 
 .ar_positionInsert11{
 	margin-left: 4%;
@@ -333,4 +348,14 @@
 #ar_photo{
 	width: 100%;
 	height: 100%;
+}
+
+#ar_uphoto{
+	width: 100%;
+	height: 100%;
+}
+
+.ar_memberCode{
+	font-weight: bold;
+	text-decoration: underline;
 }

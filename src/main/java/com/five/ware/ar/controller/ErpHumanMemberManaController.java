@@ -1,6 +1,9 @@
 package com.five.ware.ar.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,6 +24,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.HttpSessionMutexListener;
 import com.five.ware.erp.human.member.MemberDTO;
 import com.five.ware.erp.human.member.MemberService;
+import com.five.ware.file.FileDTO;
+import com.five.ware.file.FileService;
 
 @Controller
 @RequestMapping(value="human/memberMana/**")
@@ -28,13 +33,22 @@ public class ErpHumanMemberManaController {
 
 	@Inject
 	MemberService memberService;
+	@Inject
+	FileService fileService;
 	
-	@RequestMapping(value="memberPlus")
-	public void memberPlus() throws Exception{
+	@RequestMapping(value="memberPlus", method=RequestMethod.GET)
+	public ModelAndView memberPlus(String search) throws Exception{
+		List<MemberDTO> ar = memberService.memberList(search);
 		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("memberList", ar);
+		mv.setViewName("human/memberMana/memberPlus");
+		
+		return mv;
 	}
 	
-	@RequestMapping("ajax")
+	@RequestMapping("file/ajax")
 	@ResponseBody
 	   public String ajaxUp(MultipartFile f, HttpSession session) throws Exception {
 	      String filePath=session.getServletContext().getRealPath("resources/member");
@@ -61,14 +75,45 @@ public class ErpHumanMemberManaController {
 	     return fileName;
 	   }
 	
+	@RequestMapping("file/ajax2")
+	@ResponseBody
+	   public String ajaxUp2(MultipartFile f2, HttpSession session) throws Exception {
+	      String filePath=session.getServletContext().getRealPath("resources/member");
+	      
+	      File file = new File(filePath);
+	      
+	      if(!file.exists()){
+	    	  file.mkdirs();
+	      }
+	      
+	     String fileName=f2.getOriginalFilename();
+	     fileName=fileName.substring(fileName.lastIndexOf("."));
+	     
+	     String name=UUID.randomUUID().toString();
+	     fileName=name+fileName;
+	     
+	     file = new File(filePath, fileName);
+	     System.out.println(filePath);
+	 
+	     f2.transferTo(file);
+	     
+	   
+	     
+	     return fileName;
+	   }
+	
 	@RequestMapping(value="memberInsertact", method=RequestMethod.POST)
-	public String memberInsert(Model model, MemberDTO memberDTO) throws Exception{
+	public String memberInsert(Model model, MemberDTO memberDTO, FileDTO fileDTO) throws Exception{
 		int result = memberService.memberInsert(memberDTO);
 		
 		String message="등록 실패";
 		
 		if(result > 0){
-			message="등록되었습니다.";
+			int result2 = fileService.fileInsert(fileDTO);
+			
+			if(result2>0){
+				message="등록되었습니다.";
+			}
 		}
 		
 		model.addAttribute("message", message);
@@ -82,11 +127,60 @@ public class ErpHumanMemberManaController {
 	public List<String> rankList() throws Exception{
 		List<String> rank = memberService.rankList();
 		
-		for(String ar : rank){
-			System.out.println(ar);
-		}
-		
-		
 		return rank ;
 	}
+	
+	@RequestMapping(value="memberUpdate", method=RequestMethod.GET)
+	@ResponseBody
+	public List<Object> memberOne(String code) throws Exception{
+		MemberDTO memberDTO = memberService.memberOne(code);
+		FileDTO fileDTO = fileService.fileOne(code);
+		List<String> rank = memberService.rankList();
+		
+		List<Object> ar = new ArrayList<Object>();
+		
+		ar.add(memberDTO);
+		ar.add(fileDTO);
+		ar.add(rank);
+		
+		return ar;
+	}
+	
+	@RequestMapping(value="memberUpdate", method=RequestMethod.POST)
+	public String memberUpdate(MemberDTO memberDTO, Model model) throws Exception{
+		int result = memberService.memberUpdate(memberDTO);
+		
+		String message = "수정 실패";
+		
+		if(result>0){
+			message="수정되었습니다.";
+		}
+		
+		model.addAttribute("message", message);
+		model.addAttribute("addr", "memberPlus");
+		
+		return "common/result";
+		
+	}
+	
+	@RequestMapping(value="memberDelete", method={RequestMethod.POST,RequestMethod.GET})
+	@ResponseBody
+	public int memberDelete(String code) throws Exception{
+		System.out.println(code);
+		int result = memberService.memberDelete(code);
+	/*	String message = "퇴직실패";
+		
+		if(result>0){
+			message="퇴직 처리되었습니다.";	
+		}
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("message", message);
+		mv.addObject("addr", "memberPlus");
+		mv.setViewName("common/result");*/
+		
+		return result;
+	}
+	
 }
