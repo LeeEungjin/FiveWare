@@ -25,7 +25,7 @@ public class ChitController {
 	
 	//insert
 	@RequestMapping(value="chitInsert",method=RequestMethod.POST)
-	public String insert(ChitDTO chitDTO, RedirectAttributes rd ) throws Exception{
+	public String insert(ChitDTO chitDTO, RedirectAttributes rd) throws Exception{
 		System.out.println("code : "+chitDTO.getCode());
 		int result=0;
 		
@@ -53,11 +53,12 @@ public class ChitController {
 	//tempList
 	@RequestMapping(value="chitTempList")
 	@ResponseBody
-	public List<String> chitTempList()throws Exception{
-
-		List<String> ar=chitService.chitTempList();
+	public 	ModelAndView chitTempList()throws Exception{
+		ModelAndView mv=null;
 		
-		return ar;
+		mv=chitService.chitTempList();
+		mv.setViewName("/erp/account/chitTempResult");
+		return mv;
 			
 	}
 	

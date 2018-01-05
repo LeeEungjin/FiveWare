@@ -19,7 +19,7 @@ public class ChitDAO {
 	private static final String namespace="chitMapper.";
 	
 	//chitTempList
-	public List<String> chitTempList() throws Exception{
+	public List<TempRegistDTO> chitTempList() throws Exception{
 		
 		return sqlSession.selectList(namespace+"selectList_temp");
 	}

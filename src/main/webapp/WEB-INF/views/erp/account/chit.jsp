@@ -57,13 +57,8 @@
 				data : {},
 				success:function(data){
 					
-					var i=0;
-					$(data).each(function(){
-						 $("#eb_tr").append("<tr class='eb_table'>");
-						 $("#eb_tr").append(" <input type='radio'  value="+data[i]+" name='temp'>"+ data[i]);	
-						 $("#eb_tr").append("</tr>");
-						 i++;
-					}); 
+				$("#eb_tr").html(data);
+				
 				},error : function(){
 					alert(error);
 				}
@@ -223,7 +218,7 @@
 			
 			<!-- ----------2---------- -->
 				<div class="fw_menu fw_selected" data-toggle="collapse" data-target="#sub2" title="sub2" >
-					전표 입력
+					전표 관리
 				<div class="fw_arrow sub2">
 					∨
 				</div>
@@ -232,7 +227,9 @@
 			<div class="fw_subsub collapse in"  id="sub2">
 				<ul>
 					<li> 지점 매출</li>
-					<li id="eb_makeCode"> <a href="./chit">전표 관리</a></li>
+					<li id="eb_makeCode"> <a href="./chit">전표 입력</a></li>
+					<li>승인전표</li>
+					<li>미승인전표</li>
 				</ul>
 			</div>
 
@@ -270,7 +267,7 @@
 				
 			<form action="./chitInsert" id="chit_frm" method="post">	
 				
-			  <input id="eb_chitCode" type="hidden" name="code" >	
+			  <input id="eb_chitCode" type="hidden" name="code" value="">	
 			 	
 				<div id="eb_contents_box_chit">
 				 <div class="eb_blank"></div>
@@ -369,7 +366,8 @@
               
 						   
 						<thead>
-						    <tr>					
+						    <tr>
+						     <th>코드</th>						
 						     <th>부서명</th>					   
 						    </tr>
 						 </thead>

@@ -17,7 +17,8 @@
               
 						   
 						<thead>
-						    <tr>					
+						    <tr>
+						    	<th>코드</th>					
 						     	<th>계좌명</th>		
 						     	<th>은행</th>
 						     	<th>계좌번호</th>			   
@@ -29,8 +30,9 @@
 						 <c:forEach items="${list}" var="dto">
 						 	<tr>
 						 		<td>
-						 			<input type='radio' value="${dto.memo}" name="memo">${dto.memo}
+						 			<input type='radio' value="${dto.memo}" name="memo">${dto.code}
 						 		</td>
+						 		<td>${dto.memo}</td>
 						 		<td>${dto.bank}</td>
 						 		<td>${dto.account}</td>
 							</tr>

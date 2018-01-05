@@ -38,10 +38,12 @@ public class ChitService {
 	}
 	
 	//tempList
-	public List<String> chitTempList() throws Exception{
-		List<String> ar=new ArrayList<String>();
+	public ModelAndView chitTempList() throws Exception{
+		List<TempRegistDTO> ar=new ArrayList<TempRegistDTO>();
 		ar=chitDAO.chitTempList();
-			
-		return ar;
+		ModelAndView mv=new ModelAndView();
+		mv.addObject("list", ar);
+		
+		return mv;
 	}
 }

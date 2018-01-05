@@ -6,8 +6,8 @@
   <mapper namespace="chitMapper">
 	  
   
-  	  <select id="selectList_temp" resultType="String">
-		select temp from tempregist 
+  	  <select id="selectList_temp" resultType="tempRegistDTO">
+		select * from tempregist 
   	  </select>
   
   	  <select id="selectList_account" resultType="accountRegistDTO">

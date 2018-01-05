@@ -203,7 +203,7 @@
 			
 			<!-- ----------2---------- -->
 				<div class="fw_menu" data-toggle="collapse" data-target="#sub2" title="sub2" >
-					전표 입력
+					전표 
 				<div class="fw_arrow sub2">
 					∨
 				</div>
@@ -212,7 +212,9 @@
 			<div class="fw_subsub collapse"  id="sub2">
 				<ul>
 					<li> 지점매출</li>
-					<li><a href="./chit"> 전표 관리</a></li>
+					<li><a href="./chit"> 전표 입력</a></li>
+					<li>승인전표</li>
+					<li>미승인전표</li>
 				</ul>
 			</div>
 			
