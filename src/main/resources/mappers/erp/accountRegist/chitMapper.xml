@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="chitMapper">
+	  
+  
+  	  <select id="selectList_temp" resultType="tempRegistDTO">
+		select * from tempregist 
+  	  </select>
+  
+  	  <select id="selectList_account" resultType="accountRegistDTO">
+  		select * from accountregist 
+      </select>
+  		
+	  <insert id="insert">
+	  	insert into chit values(#{code},#{regdate},#{temp},#{account},#{memo},#{kind},#{debtor},#{creditor})
+	  </insert>	
+  </mapper>
+ 
