@@ -16,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.five.ware.erp.human.basis.PositionDTO;
 import com.five.ware.erp.human.basis.PositionService;
+import com.five.ware.erp.human.basis.SalDTO;
+import com.five.ware.erp.human.basis.SalService;
 
 @Controller
 @RequestMapping(value="human/basisInfo/**")
@@ -23,6 +25,8 @@ public class ErpHumanBasisInfoController {
 	
 	@Inject
 	PositionService positionService;
+	@Inject
+	SalService salService;
 	
 	@RequestMapping(value="positionPlus", method=RequestMethod.GET)
 	public ModelAndView positionPlus(ModelAndView mv,String search) throws Exception{ 
@@ -81,8 +85,6 @@ public class ErpHumanBasisInfoController {
 	@RequestMapping(value="positionDelete")
 	@ResponseBody
 	public String positionDelete(String code, Model model) throws Exception{
-		System.out.println("들어오니");
-		
 		String ar[] = code.split(",");
 		
 		for(String cod : ar){
@@ -108,8 +110,66 @@ public class ErpHumanBasisInfoController {
 	}
 	
 	@RequestMapping(value="salPlus")
-	public void salPluse(){	}
+	public ModelAndView salPluse(String search, ModelAndView mv) throws Exception{	
+		mv.addObject("salList", salService.salList(search));
+		mv.setViewName("human/basisInfo/salPlus");
+		
+		return mv;
+	}
 	
+	@RequestMapping(value="salInsert", method=RequestMethod.POST)
+	public ModelAndView salInsert(SalDTO salDTO) throws Exception{
+		int result = salService.salInsert(salDTO);
+		
+		String message = "등록 실패";
+		
+		if(result>0){
+			message = "등록되었습니다.";
+		}
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("message", message);
+		mv.addObject("addr", "salPlus");
+		mv.setViewName("common/result");
+		
+		return mv;
+	}
 	
+	@RequestMapping(value="salUpdate", method=RequestMethod.GET)
+	@ResponseBody
+	public SalDTO selOne(String code) throws Exception{
+		SalDTO salDTO = salService.salOne(code);
+		
+		return salDTO;
+	}
+	
+	@RequestMapping(value="salUpdate", method=RequestMethod.POST)
+	public String salUpdte(SalDTO salDTO, Model model) throws Exception{
+		int result = salService.salUpdate(salDTO);
+		
+		String message = "수정 실패";
+		
+		if(result>0){
+			message="수정되었습니다.";
+		}
+		
+		model.addAttribute("message", message);
+		model.addAttribute("addr", "salPlus");
+		
+		return "common/result";
+	}
+	
+	@RequestMapping(value="salDelete", method=RequestMethod.POST)
+	@ResponseBody
+	public void salDelete(String code) throws Exception{
+		String ar[] = code.split(",");
+		
+		for(String cod : ar){
+			int result = salService.salDelete(cod);
+			
+			}
+		}
+		
+	}
 
-}

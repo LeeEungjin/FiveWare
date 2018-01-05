@@ -1,0 +1,336 @@
+@CHARSET "UTF-8";
+
+.ar_plusTitle{
+	width: 100%;
+	height: 5%;
+	background-color: #ff6666;
+	margin-bottom: 1%;
+	
+}
+
+#ar_plustext{
+	font-size: 18px;
+	font-weight: bold;
+	padding-top: 1.5%;
+	margin-left: 2%;
+}
+
+.ar_plusSearchWrap{
+	width: 100%;
+	height: 7%;
+	background-color: #fbc87b;
+	margin-bottom:2%;
+}
+
+.ar_plusSearch{
+	width: 50%;
+	height: 50%;
+	background-color: #c46200;
+	margin-left: 2%;
+}
+
+#ar_ssearch{
+	 width: 20%;
+    height: 77%;
+    margin-left: 2%;
+    margin-top: 1%;
+}
+
+#ar_ssearchBtn{
+	width: 12%;
+    height: 75%;
+	background-color: #ffff80;
+	margin-left: 2%;
+	border: 0px;
+	font-size: 12px;
+	margin-bottom: 0.5%;
+}
+
+.ar_plusDivWrap{
+	width: 100%;
+	height: 50%;
+	background-color: #f0f779;
+	margin-bottom: 2%;
+}
+
+.ar_titleDiv{
+	background-color: #b68db3;
+	width: 100%;
+	height: 10%;
+	text-align: center;
+	font-weight: bold;
+}
+
+.ar_titleDiv1 {
+ 	display: inline-block;	
+ 
+ 	float:left;
+ 	margin-top: 1%;
+}
+
+.ar_listDiv1 {
+ 	display: inline-block;	
+ 	float: left;
+}
+
+.ar_listDiv{
+	background-color: #ffb3ff;
+	width: 100%;
+	height: 8%;
+	text-align: center;
+	border-bottom: 1px lightgray solid;
+	
+}
+
+.ar_memberNum{
+	width: 10%;
+	height: 50%;
+}
+
+.ar_memberName{
+	width: 12%;
+	height: 50%;
+}
+
+.ar_memberDepa{
+	width: 10%;
+	height: 50%;
+}
+
+.ar_memberRank{
+	width: 7%;
+	height: 50%;
+	
+}
+
+.ar_memberBirth{
+	width: 18%;
+	height: 50%;
+}
+
+.ar_memberDate{
+	width: 18%;
+	height: 50%;
+}
+
+.ar_memberDiff{
+	width: 6%;
+	height: 50%;
+}
+
+.ar_memberOther{
+	width: 18%;
+	height: 50%;
+}
+
+
+
+.ar_plusButtonWrap{
+	width: 100%;
+	height: 8%;
+	background-color: #c1ffc1;
+}
+
+#ar_deleteBtn{
+	width: 10%;
+	height: 40%;
+	background-color: white;
+	border: 1px lightgray solid;
+}
+
+#ar_insertBtn{
+	width: 10%;
+	height: 40%;
+	background-color: gray;
+	border: 1px black solid;
+	float: right;
+}
+
+.ar_positiontext{
+	font-weight: bold;
+	margin-right: 3%;
+	float:left;
+}
+.ar_positiontext1{
+	font-weight: bold;
+	margin-left: 3%;
+}
+
+.arin_pcodeInput3{
+	width: 61%;
+	margin-left: 1.6%;
+}
+
+.ar_positionInsert2{
+	display: inline-block;
+	 margin-bottom: 3%;
+	 width: 100%;
+}
+
+.arin_pcodeInput{
+	width: 60%;
+}
+
+.arin_pcodeInput2{
+	width: 80%;
+}
+.ar_blank {
+	width: 100%;
+	height: 25%;
+}
+
+.ar_salInsert{
+	margin-top: 3%;
+	margin-left: 3%;
+}
+
+.ar_salInsert1{
+	margin-top: 3%;
+	margin-left: 3%;
+	display: inline-block;
+	width: 46%;
+}
+
+.modal-footer{
+	margin-top: 10%;
+}
+
+.ar_membertext1{
+	margin-left: 2%;
+}
+
+.ar_membertext11{
+	margin-left: 15%;
+}
+
+#pcode_btn{
+	border-bottom-color: #c0bbc6;
+	height: 5%;
+	border: 1px solid #c0bbc6;
+	
+}
+
+.ar_sselect{
+	margin-left: 1%;
+}
+
+#sal_other{
+	margin: 0px;
+    width: 83%;
+    height: 220px;;
+    margin-left: 2%;
+}
+
+#sal_sother{
+	margin: 0px;
+    width: 83%;
+    height: 220px;;
+    margin-left: 2%;
+}
+
+.modal-content{
+    width: 150%;
+    height: 822px;	
+}
+
+#ar_memberPhoto {
+       width: 72%;
+    height: 177px;
+    border: 1px solid black;
+    display: inline-block;
+    margin-top: 5%;
+    margin-left: 7%;
+}
+
+#f{
+	 margin-top: 1%;
+    margin-left: 7%;
+}
+
+.ar_photoInsert{
+	display: inline-block;
+	width: 27%;
+	float:left;
+}
+
+.ar_positionInsert{
+	display: inline-block;
+	 margin-bottom: 3%;
+}
+
+.ar_memberInfo{
+	display: inline-block;
+	 height: 188px;
+	 width: 70%;
+	 float:left;
+	 margin-top: 2%;
+}
+
+.modal-body {
+    border-bottom: 1px solid #e5e5e5;
+    height: 259px;
+    width: 96%;
+    margin: 0 auto;
+}
+
+.modal-body1{
+	border-bottom: 1px solid #e5e5e5;
+    height: 166px;
+    width: 96%;
+    margin: 0 auto;
+}
+
+.ar_employee{
+	width: 40%;
+	height:150px;
+	display: inline-block;
+	margin-left: 4%;
+    margin-top: 3%;
+    float: left;
+}
+
+.ar_employeeInput{
+	width: 75%;
+}
+
+.modal-body2{
+    height: 166px;
+    width: 96%;
+    margin: 0 auto;
+}
+
+#ar_memberOther{
+	width: 82%;
+    height: 143px;
+    margin-left: 0.5%;
+}
+
+.ar_positionInsert11{
+	margin-left: 4%;
+	margin-top: 2%;
+}
+
+.ar_positionInsert1{
+	margin-left: 4%;
+	margin-top: 2%;
+	display: inline-block;
+	font-weight: bold;
+	margin-right: 1%;
+}
+
+#memberBank{
+	display: inline-block;
+	float:left;
+	width: 54%;
+}
+
+#memberRank{
+	display: inline-block;
+	float:left;
+	width: 55%;
+}
+
+#ar_photo{
+	width: 100%;
+	height: 100%;
+}

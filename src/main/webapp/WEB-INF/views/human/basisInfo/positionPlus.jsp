@@ -138,7 +138,7 @@
 			
 			<div class="fw_subsub collapse"  id="sub2">
 				<ul>
-					<li> 사원 등록 </li>
+					<li><a href="../../human/memberMana/memberPlus"> 사원 등록</a> </li>
 					<li> 급여 등록 </li>
 					<li> 퇴직자 </li>
 				</ul>

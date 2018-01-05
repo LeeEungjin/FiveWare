@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="humanMemberMapper">
+  
+  <insert id="humanInsert"></insert>
+  <insert id="memberInsert" parameterType="MemberDTO">
+  	insert into member values(member_seq.nextval, 'member', #{id}, #{id}, #{name}, #{birth}, #{phone}, #{addr}, #{email}, #{hiredate}, #{temp}, #{rank}, #{sal}, #{bank}, #{banknum}, #{vacation}, #{month}, #{other} )
+  </insert>
+  
+  <select id="rankList" resultType="String">
+  		select distinct rank from rankregist 
+  </select>
+  </mapper>

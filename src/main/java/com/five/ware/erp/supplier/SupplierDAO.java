@@ -14,8 +14,35 @@ public class SupplierDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "supplierMapper.";
 	
+	
+	public int delete(String code) {
+		return sqlSession.delete(NAMESPACE+"supplierDelete", code);
+	}
+	
+	public int update(SupplierDTO supplierDTO) {
+		return sqlSession.update(NAMESPACE+"supplierUpdate", supplierDTO);
+	}
+	
 	public List<SupplierDTO> selectList() {
+		return sqlSession.selectList(NAMESPACE+"supplierList");
+	}
+	
+	public int insert(SupplierDTO supplierDTO) {
+		int result = 0;
+
+		String code = sqlSession.selectOne(NAMESPACE+"makeCode");
+		supplierDTO.setCode(code);
 		
-		return sqlSession.selectList(NAMESPACE+"selectList");
+		if(!supplierDTO.getCode().equals("")) {
+			result = sqlSession.insert(NAMESPACE+"supplierWrite", supplierDTO);
+		} else {
+			result = 0;
+		}
+		
+		return result;
+	}
+	
+	public SupplierDTO selectOne(String code) {
+		return sqlSession.selectOne(NAMESPACE+"supplierOne", code);
 	}
 }

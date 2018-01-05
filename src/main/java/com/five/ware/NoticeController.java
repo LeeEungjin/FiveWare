@@ -1,4 +1,7 @@
-package com.five.ware;
+/*package com.five.ware;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -9,12 +12,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.five.ware.erp.notice.ListData;
+
 import com.five.ware.erp.notice.NoticeDTO;
+import com.five.ware.erp.notice.NoticeFileDTO;
 import com.five.ware.erp.notice.NoticeService;
+import com.five.ware.util.ListData;
 
 @Controller
 @RequestMapping(value="/notice/*")
@@ -26,23 +32,24 @@ public class NoticeController {
 	//selectList
 	@RequestMapping(value="noticeList")
 	public ModelAndView selectList(ListData listData, ModelAndView mv, String part) throws Exception{
-		mv = noticeService.selectList(listData);
+		mv = noticeService.selectList(listData, part);
 		
 		return mv;
 	}
 
-	@RequestMapping(value="noticeAjax", method=RequestMethod.POST)
-	public ModelAndView selectPart(ListData listData, ModelAndView mv, String part) throws Exception	{
+	@RequestMapping(value="noticeAjax", method=RequestMethod.GET)
+	@ResponseBody
+	public ModelAndView selectPart(ListData listData, String part, ModelAndView mv, RedirectAttributes rd) throws Exception	{
 		mv = noticeService.part(listData, part);
-		
 		return mv;
 	}
 	
 	@RequestMapping(value="noticeView")
-	public String noticeView(Model model, @RequestParam(defaultValue="0", required=false)int num) throws Exception{
+	public ModelAndView noticeView(ModelAndView mv, @RequestParam(defaultValue="0", required=false)int num) throws Exception{
 		NoticeDTO noticeDTO = noticeService.selectOne(num);
-		model.addAttribute("view", noticeDTO);
-		return "notice/noticeView";
+		mv.addObject("view", noticeDTO);
+		mv.setViewName("notice/noticeView");
+		return mv;
 	}
 	
 	@RequestMapping(value="noticeWrite", method = RequestMethod.GET)
@@ -101,3 +108,4 @@ public class NoticeController {
 		return "notice/meetingRoom";
 	}
 }
+*/

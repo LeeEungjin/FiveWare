@@ -33,23 +33,28 @@
 			document.frm.kind.value = t;
 			document.frm.submit();
 		});
-		var part = $(".acc").attr("title");
-		$(".acc").click(function() {
+		/* $(".acc").click(function() {
+		var part = $(this).attr("title");
+		
 			$.ajax({
 				url : "noticeAjax",
-				type : "post",
+				type : "get",
 				data : {
 					part : part
 				},
 				success : function(data) {
-
-					$(".notice_jk_listBox").load(data);
+					
+						$(".notice_jk_listBox").html(data);
+					$(".notice_jk_listBox").css("display", "block");
+					$(".aa").css("display", "none"); 
 				},
 				error : function(data) {
 					alert("요청하신 자료가 없습니다.");
 				}
 			});
-		});
+		}); */
+		
+		
 	});
 </script>
 <style type="text/css">
@@ -78,11 +83,12 @@
 				<div id="login_after_middle">
 					<div id="menu_wrap">
 						<!-- 부서별 링크 -->
-						<div class="notice_jk_partBox">
-							<a href="noticeAjax" title="회계부" class="acc">회계부</a> <a
-								href="noticeAjax" title="총무부" class="acc">총무부</a> <a
-								href="noticeAjax" title="인사부" class="acc">인사부</a> <a
-								href="noticeAjax" title="영업/구매부" class="acc">영업/구매부</a>
+						<div class="notice_jk_partBox" >
+							<a href="./noticeList?part=회계부" title="회계부" class="acc">회계부</a> 
+							<a href="./noticeList?part=총무부" title="총무부" class="acc">총무부</a> 
+							<a href="./noticeList?part=인사부" title="인사부" class="acc" >인사부</a> 
+							<a href="./noticeList?part=영업/구매부" title="영업/구매부" class="acc">영업/구매부</a>
+							<a href="./noticeList?part=마케팅부" title="마케팅부" class="acc">마케팅부</a>
 						</div>
 
 						<!-- 검색창 -->
@@ -103,7 +109,6 @@
 										<td>번호</td>
 										<td>부서</td>
 										<td>제목</td>
-										<td>내용</td>
 										<td>작성자</td>
 										<td>작성일</td>
 										<td>조회</td>
@@ -114,7 +119,6 @@
 										<td>${dto.num}</td>
 										<td>${dto.part}</td>
 										<td><a href="./noticeView?num=${dto.num}">${dto.title}</a></td>
-										<td>${dto.contents}</td>
 										<td>${dto.writer}</td>
 										<td>${dto.reg_date}</td>
 										<td>${dto.hit}</td>
@@ -135,6 +139,8 @@
 							</div>
 							<a href="noticeWrite" class="btn btn-default" id="writeBtn">신규
 								등록</a>
+							
+							<div class="aa"></div>
 						</div>
 					</div>
 
