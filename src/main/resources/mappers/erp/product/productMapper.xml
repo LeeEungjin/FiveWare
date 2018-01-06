@@ -5,4 +5,38 @@
   
   <mapper namespace="productMapper">
   
+  	<!-- TotalCount Start -->
+  	<select id="totalCount" parameterType="java.util.Map" resultType="int">
+  		select nvl(count(code),0) from product
+  		<if test="kind == 'code'">
+  			where code like '%'||#{search}||'%'
+  		</if>
+  		<if test="kind == 'name'">
+  			where name like '%'||#{search}||'%'
+  		</if>
+  		<if test="kind == 'standard'">
+  			where standard like '%'||#{search}||'%'
+  		</if>
+  	</select>
+  	<!-- TotalCount End -->
+  	
+  	<!-- SelectList Start -->
+  	<select id="productList" parameterType="java.util.Map" resultType="ProductDTO">
+  		select * from
+  		(select rownum R, P.* from
+  		(select * from product 
+  		<if test="kind == 'code'">
+  			where code like '%'||#{search}||'%'
+  		</if>
+  		<if test="kind == 'name'">
+  			where name like '%'||#{search}||'%'
+  		</if>
+  		<if test="kind == 'standard'">
+  			where standard like '%'||#{search}||'%'
+  		</if>
+  		order by code desc) P)
+  		where R between #{startRow} and #{lastRow} 
+  	</select>
+  	<!-- SelectList End -->
+  	
   </mapper>

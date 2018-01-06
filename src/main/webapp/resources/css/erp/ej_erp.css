@@ -82,6 +82,7 @@
 .erp_ej_search .erp_ej_inputBox {
 	float: left;
 	margin-left: 10px;
+	display: inline-block;
 }
 
 .erp_ej_inputBox input[type="text"] {

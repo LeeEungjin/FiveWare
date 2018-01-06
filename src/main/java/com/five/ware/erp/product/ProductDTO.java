@@ -1,4 +1,4 @@
-package com.five.ware.product;
+package com.five.ware.erp.product;
 
 public class ProductDTO {
 	private String code;

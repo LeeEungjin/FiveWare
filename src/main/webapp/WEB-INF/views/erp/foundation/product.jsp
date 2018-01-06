@@ -9,7 +9,7 @@
 <c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 <c:import url="${url}/resources/temp/ref.jsp"></c:import> 
 
-<link href="${url}/resources/css/erp/supplier.css" rel="stylesheet">
+<link href="${url}/resources/css/erp/ej_erp.css" rel="stylesheet">
 <link href="${url}/resources/css/common/modal.css" rel="stylesheet">
 
 <title>Insert title here</title>
@@ -225,55 +225,54 @@
 				
 				<!-- 검색 기능 -->
 				<div id="erp_jh_contents_search">
-					<form name="ej_frm" action="######################" method="get">
-						<div class="erp_ej_inputBox">
-							<select class="" name="kind">
-								<option value="name">품목명</option>
-								<option value="code">품목코드</option>
-								<option value="standard">규격</option>
-							</select>
+					<form name="ej_frm" action="./product" method="get">
+						<div class="erp_ej_search" style="max-width: 420px;">
+							<div class="erp_ej_inputBox">
+								<select name="kind">
+									<option value="code">품목코드</option>
+									<option value="name">품목명</option>
+									<option value="standard">규격</option>
+								</select>
+							</div>
+							<div class="erp_ej_inputBox">
+								<input type="text" name="search">
+							</div>
+							<div class="erp_ej_inputBox">
+								<input class="ej_search_btn btn" type="submit" value="검색">
+							</div>
 						</div>
-						<input class="" type="text" name="search">
 					</form>					
 				</div>
 				<!-- 검색 기능 끝 -->
 				
 				
-				<!-- table -->
+				<!-- table Start -->
 				<div id="erp_jh_contents_table">
 					<table class="table">
 					    <thead>
 					      <tr>
-					        <th><input type="checkbox" id="ej_erp_totalCheckBox"></th>
-					        <th>코드</th>
-					        <th>거래처명</th>
-					        <th>사업자번호</th>
-					        <th>대표자</th>
-					        <th>사용구분</th>
+					        <th>품목코드</th>
+					        <th>품목명</th>
+					        <th>규격</th>
+					        <th>가격</th>
+					        <th>이미지</th>
+					        <!-- 사용구분은 취소선이나 색깔로 표시 -->
 					      </tr>
 					    </thead>
 					    <tbody>
 						    <c:forEach items="${list}" var="dto">
-							    <tr>
-							      	<td><input type="checkbox" class="ej_erp_checkBox"></td>
-							        <td><a class="ej_modalOne_btn">${dto.code}</a></td>
-							        <td>${dto.name}</td>
-							        <td>${dto.business_number}</td>
-							        <td>${dto.representative}</td>
-							        <td>
-							        	<c:if test="${dto.use eq true}">
-							        		사용
-							        	</c:if>
-							        	<c:if test="${dto.use ne true}">
-							        		미사용
-							        	</c:if>
-							        </td>
-							      </tr>
+						    	<tr>
+						    		<td>${dto.code}</td>
+						    		<td>${dto.name}</td>
+						    		<td>${dto.standard}</td>
+						    		<td>${dto.price}</td>
+						    		<td>준비중</td>
+						    	</tr>
 						    </c:forEach>
 					    </tbody>
 					 </table>
 					 
-					 <!-- pager -->
+					 <!-- pager Start -->
 					 	<div id="mr_pager" style="margin-top: 20px;">
 							<c:if test="${pager.curBlock gt 1}">
 								<span class="ej_list" title="${pager.startNum-1}">◀</span>

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.five.ware.erp.product.ProductService;
 import com.five.ware.erp.supplier.SupplierDTO;
 import com.five.ware.erp.supplier.SupplierService;
 import com.five.ware.util.ListData;
@@ -23,13 +24,29 @@ public class ErpFoundationController {
 	
 	@Inject
 	private SupplierService supplierService;
+	@Inject
+	private ProductService productService;
 	
 	
 	/* Product Start */
 	
 	@RequestMapping(value="product", method=RequestMethod.GET)
-	public void productList() {
+	public ModelAndView productList(ListData listData) {
+		ModelAndView mv = new ModelAndView();
 		
+		System.out.println("KIND: "+ listData.getKind());
+		System.out.println("SEARCH: "+ listData.getSearch());
+		
+		try {
+			mv = productService.selectList(listData);
+			mv.setViewName("erp/foundation/product");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return mv;
 	}
 	
 	/* Product End */

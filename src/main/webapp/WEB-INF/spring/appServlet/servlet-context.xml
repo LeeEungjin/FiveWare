@@ -28,7 +28,6 @@
 		<beans:property name="order" value="1"></beans:property>
 	</beans:bean>
 	
-	<context:component-scan base-package="com.five.ware.product" />
 	<context:component-scan base-package="com.five.ware" />
 	<context:component-scan base-package="com.five.ware.file" />
 	<context:component-scan base-package="com.five.human" />
@@ -37,7 +36,5 @@
 	<context:component-scan base-package="com.five.ware.eb.controller"/>
 	<context:component-scan base-package="com.five.ware.ar.controller"/>
 
-		
-	
 	
 </beans:beans>

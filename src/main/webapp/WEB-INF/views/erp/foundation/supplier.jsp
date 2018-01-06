@@ -9,7 +9,7 @@
 <c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 <c:import url="${url}/resources/temp/ref.jsp"></c:import> 
 
-<link href="${url}/resources/css/erp/supplier.css" rel="stylesheet">
+<link href="${url}/resources/css/erp/ej_erp.css" rel="stylesheet">
 <link href="${url}/resources/css/common/modal.css" rel="stylesheet">
 
 <title>Insert title here</title>
