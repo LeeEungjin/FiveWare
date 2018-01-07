@@ -35,6 +35,7 @@
 	<context:component-scan base-package="com.five.ware.jh.controller"/>
 	<context:component-scan base-package="com.five.ware.eb.controller"/>
 	<context:component-scan base-package="com.five.ware.ar.controller"/>
+	<context:component-scan base-package="com.five.ware.erp.notice"/>
 
 		
 	

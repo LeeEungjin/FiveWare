@@ -82,6 +82,7 @@
 			});
 		});
 		
+		
 	});
 
 </script>
@@ -149,7 +150,9 @@
 								</tr>
 							</table>
 							
-								<a href="./noticeList" id="list" class="btn btn-default">목록으로</a>
+								<div class="button">
+									<a href="./noticeList" class="btn btn-default" id="enroBtn">목록으로</a>
+								</div>
 								<input type="reset" value="취소" class="btn btn-default"
 									id="deleteBtn"><!-- 버튼을 누르면 썼던 내용이 다 사라지게 -->
 								<button type="submit" class="btn btn-default"

@@ -48,7 +48,7 @@ public class NoticeService {
 		MultipartFile [] files = noticeDTO.getFiles();
 		
 		int result = noticeDAO.insert(noticeDTO);
-		
+		if(files != null)	{
 		for(MultipartFile multipartFile : files)	{
 			String name = fileSaver.fileSave(multipartFile, session, "upload");
 			noticeDTO.setNum(noticeDTO.getNum());
@@ -56,10 +56,10 @@ public class NoticeService {
 			noticeDTO.setOriName(multipartFile.getOriginalFilename());
 			noticeFileDAO.insert(noticeDTO);
 		}
-		
+		}
 		
 		return result;
-	}
+		}
 	
 	public int update(NoticeDTO noticeDTO, HttpSession session) throws Exception	{
 		

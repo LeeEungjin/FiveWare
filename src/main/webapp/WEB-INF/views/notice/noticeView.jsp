@@ -17,6 +17,19 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link href="${url}/resources/css/notice/noticeView.css" rel="stylesheet">
+<script type="text/javascript">
+$("#delete").click(function(){
+	var num= $(this).attr("name");
+	$.ajax({
+		url: "noticeFileDelete",
+		type: "POST",
+		data: {num: num},
+		success: function(data){
+			location.reload();
+		}
+	});
+});
+</script>
 </head>
 <body>
 
@@ -41,10 +54,18 @@
 							<table class="table table-hover" id="notice_jk_table">
 								<thead>
 									<tr>
-										<td class="notice_jk_td">${view.part}<!-- 부서이름 나오게, part --></td>
-										<td class="notice_jk_td">${view.title}<!-- 제목이 나오게, title --></td>
-										<td class="notice_jk_td">${view.writer}<!-- 작성자 나오게, writer --></td>
-										<td class="notice_jk_td">${view.reg_date}<!-- 날짜 나오게, reg_date --></td>
+										<td class="notice_jk_td">
+											부서 : <input type="text" name="part" id="part" value="${view.part}" readonly="readonly">
+										</td>
+										<td class="notice_jk_td">
+											제목 : <input type="text" name="title" id="title" value="${view.title}" readonly="readonly">
+										</td>
+										<td class="notice_jk_td"> 
+											작성자 : <input type="text" name="writer" id="writer" value="${view.writer}" readonly="readonly">
+										</td>
+										<td class="notice_jk_td">
+											작성일 : <input type="text" name="reg_date" id="reg_date" value="${view.reg_date}" readonly="readonly">
+											</td>
 									</tr>
 								</thead>
 								<tr>
@@ -52,25 +73,22 @@
 										<div class="notice_jk_textarea">${view.contents}<!-- 글 내용, contents --></div>
 									</td>
 								</tr>
-								
 							</table>
+							<div class="attat">
+								첨부파일 : <c:forEach items="${view.fileNames}" var="file">
+									<a href="../file/fileDown?fileName=${file.fileName}&oriName=${file.oriName}">${file.oriName}</a>
+								</c:forEach>
+							</div>							
 							
-							<c:forEach items="${view.fileNames}" var="file">
-								<a href="../file/fileDown?fileName=${file.fileName}&oriName=${file.oriName}">${file.oriName}</a>
-							</c:forEach>
 							
 							<div class="button">
-								<input type="button" value="목록으로" class="btn btn-default"
-									id="enroBtn">
+								<a href="./noticeList" class="btn btn-default" id="enroBtn">목록으로</a>
 								
 							</div>
-							<!-- <input type="button" value="수정" class="btn btn-default"
-								id="update"> -->
-								<a href="./noticeUpdate?num=${view.num}" class="btn btn-default">수정</a>
+							
+								<a id="delete" class="btn btn-default" name="${view.num}" href="./noticeDelete?num=${view.num}">삭제</a>
+								<a href="./noticeUpdate?num=${view.num}" id="update" class="btn btn-default">수정</a>
 								
-								<!-- <input type="button" value="삭제" class="btn btn-default"
-								id="delete"> -->
-								<a od="delete" class="btn btn-default" href="./noticeDelete?num=${view.num}">삭제</a>
 						</div>
 					</div>
 

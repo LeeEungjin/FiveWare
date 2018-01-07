@@ -16,6 +16,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link href="${url}/resources/css/notice/notice.css" rel="stylesheet">
 <script type="text/javascript">
 	$(function() {
@@ -24,7 +25,7 @@
 			alert(message);
 		}
 
-		$(".list").click(function() {
+		$(".w3-button").click(function() {
 			var cur = $(this).attr("title");
 			var s = '${pager.search}';
 			var t = '${pager.kind}';
@@ -125,17 +126,20 @@
 									</tr>
 								</c:forEach>
 							</table>
-							<div class="pagination">
+							
+							<div class="w3-bar">
+								
 								<c:if test="${pager.curBlock gt 1}">
-									<span class="list" title="${pager.startNum-1}">[이전]</span>
+									<a class="w3-button" title="${pager.startNum-1}">[이전]</a>
 								</c:if>
 								<c:forEach begin="${pager.startNum}" end="${pager.lastNum}"
 									var="i">
-									<span class="list" title="${i}">${i}</span>
+									<a class="w3-button" title="${i}">${i}</a>
 								</c:forEach>
 								<c:if test="${pager.curBlock lt pager.totalBlock}">
-									<span class="list" title="${pager.lastNum+1}">[다음]</span>
+									<a class="w3-button" title="${pager.lastNum+1}">[다음]</a>
 								</c:if>
+								
 							</div>
 							<a href="noticeWrite" class="btn btn-default" id="writeBtn">신규
 								등록</a>

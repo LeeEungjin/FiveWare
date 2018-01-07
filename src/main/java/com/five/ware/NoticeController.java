@@ -56,7 +56,6 @@ public class NoticeController {
 	@RequestMapping(value="noticeWrite", method = RequestMethod.POST)
 	public String insert(NoticeDTO noticeDTO, RedirectAttributes rd, HttpSession session) throws Exception	{
 		int result = 0;
-		
 		result = noticeService.insert(noticeDTO, session);
 		
 		String message="FAIL";

@@ -78,3 +78,15 @@
 #list	{
 	text-align: center;
 }
+
+div.button {
+	margin-top: 5%;
+	margin: auto;
+	width: 6%;
+}
+
+div.button input {
+	padding: 5px;
+	width: 100%;
+	font-size: 18px;
+}

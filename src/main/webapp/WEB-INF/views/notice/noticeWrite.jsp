@@ -70,6 +70,8 @@
 			$("#"+id).remove();
 			index--;
 		});
+		
+		
 	});
 </script>
 </head>
@@ -122,7 +124,8 @@
 									</td>
 								</tr>
 								<tr>
-									<td>참조파일</td>
+									
+									<td>첨부파일</td>
 									<td colspan="3">
 										<input type="button" value="file Add" id="add">
 										<div  id="files"></div>
