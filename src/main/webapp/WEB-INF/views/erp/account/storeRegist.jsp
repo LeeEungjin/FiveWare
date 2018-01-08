@@ -42,9 +42,9 @@
 		/*전체선택  */
 	 $("input[class=input_all]").click(function(){
 			if($("input[class=input_all]").prop("checked")){
-				$("input[class=input_chk]").prop("checked",true);
+				$("input[class=eb_input_chk]").prop("checked",true);
 			}else{
-				$("input[class=input_chk]").prop("checked",false);
+				$("input[class=eb_input_chk]").prop("checked",false);
 			}
 		});
 	 
@@ -110,6 +110,39 @@
 		}); 
 	 });
 	 
+	  //전체삭제
+		 $("#deleteBtn").click(function(){
+		 if(confirm("정말 삭제하시겠습니까 ?") == false){
+			     alert("삭제가 취소되었습니다.")   
+				 return false;
+			    }else{
+			    	var count=0;
+			    	var code="";
+			    	var cod=[];
+			    	$(".eb_input_chk").each(function(d){
+			    		if(this.checked){
+			    			code=$(this).attr("id");
+			    			count++;
+			    			cod.push(code);
+			    		}
+			    	});
+			    
+			 
+			    	 $.ajax({
+						data : {"code" : cod.toString()},
+						url : "./storeRegistDelete",
+						type : "get",
+						success : function(data){
+							alert(data);
+							location.reload();
+						},error : function(){
+							alert("error");
+						}
+					});
+			    	
+			    }
+		
+		 });
 	 
 	 /*page 처리  */
 	  $(".eb_list").click(function(){
@@ -157,7 +190,7 @@
 	 
 	 
 		 /* 코드 */
-/* 	  $("#eb_insertBtn").click(function(){
+/*  	  $("#eb_insertBtn").click(function(){
 			
 			$.ajax({
 				type:"GET",
@@ -168,16 +201,9 @@
 					$("#eb_code").val(data);
 				}
 			});
-		}); */ 
+		});  */ 
 		 
-	  //전체삭제
-		 $("#deleteBtn").click(function(){
-		 if(confirm("정말 삭제하시겠습니까 ?") == false){
-			     alert("삭제가 취소되었습니다.")   
-				 return false;
-			    }
-		
-		 });
+	
  });
  
  
@@ -358,14 +384,14 @@
 						    
 						    	<c:forEach items="${list}" var="dto">
 							      <tr>
-							        <td><input type="checkbox" class="input_chk"></td>
+							        <td><input type="checkbox" class="eb_input_chk" id="${dto.code}"></td>
 							      	<td>${dto.code}</td>
 							        <td>${dto.store}</td>					
 							        <td>${dto.name}</td>
 							        <td>${dto.tel}</td>		
-							        <td><button class="eb_view" title="${dto.code}" data-toggle="modal" data-target="#eb_view_modal">상세보기</button></td>						      						      			   
+							        <td><button class="eb_view w3-button w3-black" title="${dto.code}" data-toggle="modal" data-target="#eb_view_modal">상세보기</button></td>						      						      			   
 							     </tr>
-							     
+							  
 							     </c:forEach>
 						   </tbody>
 					 </table>
@@ -411,9 +437,7 @@
 						          	
 						<tr>
 						   <td>주소</td>
-						   <td>
-						   	  <textarea name="addr" class="eb_viewAddr" rows="5" ></textarea>
-						   </td>
+						   <td> <textarea name="addr" class="eb_viewAddr" rows="4" ></textarea></td>
 						   <td>영업시간</td>
 						   <td><input type="text" class="eb_viewTime" name="time"></td>
 						 
@@ -480,9 +504,9 @@
 				<!-- page 처리 끝 -->		  
 				
 				
-						  <button class="btn btn-default" id="deleteBtn">선택삭제</button>
+						  <button class="w3-button w3-black" id="deleteBtn">선택삭제</button>
 						  
-					      <button class="btn btn-default" data-toggle="modal" id="eb_insertBtn" data-target="#myModal">신규등록</button>
+					      <button class="w3-button w3-black" data-toggle="modal" id="eb_insertBtn" data-target="#myModal">신규등록</button>
 					      
 			 
 			 
@@ -507,7 +531,7 @@
 						        
 						        <!-- Modal body -->
 				 <div class="modal-body">
-				 
+		
 					<table id="eb_modal_table">
 						<tr>
 						   <td>지점명 코드</td>
@@ -567,8 +591,9 @@
 						   </td>
 						 </tr>
 						          
-					</table>
-					
+					</table> 
+
+				
 				 </div>
 						        
 						        <!-- Modal footer -->

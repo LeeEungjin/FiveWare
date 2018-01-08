@@ -86,15 +86,7 @@
 	 });
 	 
 
-	 
-	 //전체삭제
-	 $("#deleteBtn").click(function(){
-		 if(confirm("정말 삭제하시겠습니까 ?") == false){
-		     alert("삭제가 취소되었습니다.")   
-			 return false;
-		    }
 
-	 });
 	 
 	 //승인
 	 $("#eb_cancel").click(function(){
@@ -159,14 +151,14 @@
 		<!-- submenu banner end -->
 		
 		<!-- submenu menu -->
-			<div class="fw_menu fw_selected" data-toggle="collapse" data-target=".fw_subselected" title="sub1">
+			<div class="fw_menu " data-toggle="collapse" data-target=".fw_subselected" title="sub1">
 				기초정보
 				<div class="fw_arrow sub1">
 					∧
 				</div>
 			</div>
 			
-			<div class="fw_subselected collapse in" id="sub1">
+			<div class="fw_subselected collapse" id="sub1">
 				<ul>
 					<li><a href="./storeRegist"> 지점 등록</a></li>
 					<li><a href="./accountRegist">예금 계좌 등록</a></li>
@@ -175,14 +167,14 @@
 			</div>
 			
 			<!-- ----------2---------- -->
-				<div class="fw_menu" data-toggle="collapse" data-target="#sub2" title="sub2" >
+				<div class="fw_menu fw_selected" data-toggle="collapse" data-target="#sub2" title="sub2" >
 					전표 
 				<div class="fw_arrow sub2">
 					∨
 				</div>
 			</div>
 			
-			<div class="fw_subsub collapse"  id="sub2">
+			<div class="fw_subsub collapse in"  id="sub2">
 				<ul>
 					<li><a href="./storeSales">지점매출</a></li>
 					<li><a href="./chit"> 전표 입력</a></li>
@@ -260,7 +252,6 @@
 						   
 						<thead id="eb_table_head">
 						    <tr>
-						     <th><input type="checkbox" class="input_all"></th>
 						     <th>전표 번호</th>
 						     <th>전표 일자</th>
 						     <th>부서</th>
@@ -275,7 +266,6 @@
 						   
 						    	 <c:forEach items="${list}" var="dto">
 							      <tr>
-							        <td><input type="checkbox" class="input_chk"></td>
 							      	<td>${dto.code}</td>
 							        <td>${dto.regdate}</td>		
 							        <td>${dto.temp }</td>			

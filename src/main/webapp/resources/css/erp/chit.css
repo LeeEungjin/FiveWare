@@ -8,19 +8,20 @@
 #fw_container{
 	width: 100%;
 	height: 100%;
-	background-color: lightblue;
+	 background-color: white; 
 	transition: width 0.3s;	
 }
 
 #fw_subcontainer{
-	background-color: pink;
+	background-color: #EAEAEA;
 	float:left;
 	width: 15%;
 	height: 100%;
 } 
 
 #fw_subbanner{
-		background-color: red;
+		background-color: black;
+		color : white;
 		height: 8.5%;
 		width: 100%;
 		font-size : 30px;
@@ -33,7 +34,7 @@
 	width: 100%;
 	height: 5%;
 	float:left;
-	background-color: yellow;
+	background-color: #EAEAEA;
 	font-weight: bold;
     font-size: 16px;
     line-height: 324%;
@@ -51,24 +52,26 @@
 	width:15%;
 	float:right;
 	height: 100%;
-	background-color: purple;
+	background-color: #EAEAEA;
 	size:20px; 
 }
 
 .fw_subselected{
 	width: 70%;
-	background-color: #d1eaf1;
+	background-color: #EAEAEA;
 	margin: 0 auto;
 	padding-top:1%;
 }
 
 .fw_subsub{
 	width: 70%;
-	background-color: #d1eaf1;
+	background-color: #EAEAEA;
 	margin: 0 auto;
 	padding-top:1%;
 }
-
+li{
+	list-style: none;
+}
 #fw_main{
 	background-color: green;
 	height: 8.5%;
@@ -87,13 +90,13 @@
 #eb_fw_main_1{
 	width: 100%;
 	height: 50%;
-	background-color: red;
+	background-color: black;
 }
 
 #eb_fw_main_2{
 	width: 100%;
 	height: 50%;
-	background-color: #E1B848;
+	background-color: black;
 	text-align: center;
 	font-size: 20px;
 }
@@ -111,7 +114,7 @@ td.eb_row{
 	
 }
 td.eb_row:hover {
-	background-color: #997000; 
+	background-color: #353535; 
 } 
 
 
@@ -172,9 +175,9 @@ td.eb_row:hover {
 
 #eb_contents_table{
 	width:80%;
-	height:45%;
+	height:350px;
 	margin-top : 20px;
-	background-color: #FFFFDA;
+	background-color: #EAEAEA;
 }
 
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
@@ -184,7 +187,7 @@ td.eb_row:hover {
     border-top: 1px solid #ddd;
 }
 #eb_table_head{
-	background-color: #4E2800;
+	background-color: black;
 	color:white;
 }
 
@@ -209,7 +212,7 @@ td.eb_row:hover {
 .eb_total{
 	width: 80%;
 	height: 26px;
-	background-color: #4E2800;
+	background-color: black;
 }
 .eb_totalKind{
 	margin-left: 30px;

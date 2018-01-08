@@ -74,14 +74,27 @@ public class StoreRegistController {
 	//delete
 	@RequestMapping(value="storeRegistDelete")
 	@ResponseBody
-	public String delete(String code) throws Exception{
-		
-		int result=storeRegistService.delete(code);
+	public String delete(String code){
+		String ar []=code.split(",");
 		
 		String message="fail";
-		if(result>0){
-			message="success";
+		
+		for(int i=0; i<ar.length; i++){
+		
+			int result;
+			
+			try {
+				result = storeRegistService.delete(ar[i]);
+			
+				if(result>0){
+					message="success";
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+
 		
 		return message;
 	}

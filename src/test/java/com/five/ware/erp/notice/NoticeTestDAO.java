@@ -39,6 +39,6 @@ public class NoticeTestDAO extends AbstractTest {
 			System.out.println(noticeDTO.getTitle());
 		}
 		assertTrue(ar.size()>0);*/
-	}
+/*	}
 }
 */

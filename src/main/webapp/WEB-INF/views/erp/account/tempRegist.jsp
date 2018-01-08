@@ -104,12 +104,38 @@
 		 if(confirm("정말 삭제하시겠습니까 ?") == false){
 		     alert("삭제가 취소되었습니다.")   
 			 return false;
+		    }else{
+		    	var count=0;
+		    	var code="";
+		    	var cod=[];
+		    	$(".eb_input_chk").each(function(d){
+		    		if(this.checked){
+		    			code=$(this).attr("id");
+		    			count++;
+		    			cod.push(code);
+		    		}
+		    	});
+
+		    	
+		    	 $.ajax({
+		 			data : {"code" : cod.toString()},
+		 			url : "./tempRegistDelete",
+		 			type : "get",
+		 			success : function(data){
+		 				alert(data);
+		 				location.reload();
+		 			},error : function(){
+		 				alert("error")
+		 			}
+		 		 });
+		    	
+		    	
 		    }
 
 	 });
 	 
 	 /* 코드 */
-	  $("#eb_insertBtn").click(function(){
+	/*   $("#eb_insertBtn").click(function(){
 			
 			$.ajax({
 				type:"GET",
@@ -121,7 +147,7 @@
 				}
 			});
 		}); 
-	 
+	  */
  });
  
  
@@ -261,11 +287,11 @@
 						   
 						    	<c:forEach items="${list}" var="dto">
 							      <tr>
-							        <td><input type="checkbox" class="input_chk"></td>
+							        <td><input type="checkbox" class="eb_input_chk" id="${dto.code}"></td>
 							      	<td>${dto.code}</td>
 							        <td>${dto.temp}</td>					
 							        <td>${dto.memo}</td>		
-							        <td><button class="eb_view" title="${dto.code}" data-toggle="modal" data-target="#eb_view_modal">수정</button></td>
+							        <td><button class="eb_view w3-button w3-black" title="${dto.code}" data-toggle="modal" data-target="#eb_view_modal">수정</button></td>
 							     
 							     </c:forEach>
 						   </tbody>
@@ -348,9 +374,9 @@
 				<!-- page 처리 끝 -->		  
 				
 				
-						  <button class="btn btn-default" id="deleteBtn">선택삭제</button>
+						  <button class="w3-button w3-black" id="deleteBtn">선택삭제</button>
 						  
-					      <button class="btn btn-default" id="eb_insertBtn" data-toggle="modal" data-target="#myModal">신규등록</button>
+					      <button class="w3-button w3-black" id="eb_insertBtn" data-toggle="modal" data-target="#myModal">신규등록</button>
 					      
 			 
 			 
@@ -374,13 +400,13 @@
 						        </div>
 						        
 						        <!-- Modal body -->
-				 <div class="modal-body">
-				 
-					<table id="eb_modal_tableT">
+				 <div class="modal-body ">
+	
+				<table id="eb_modal_tableT">
 						<tr>
 						
 						   <td>부서 코드</td>
-						   <td><input type="text" name="code" id="eb_tempCode" readonly="readonly"></td>
+						   <td><input type="text"  name="code" id="eb_tempCode"></td>
 						</tr>
 						<tr>  
 							
@@ -392,10 +418,9 @@
 						   <td>비고</td>
 						   <td><input type="text" name="memo"></td>
 						</tr>
-						
-						
+					
 						          
-					</table>
+					</table> 
 					
 				 </div>
 						        

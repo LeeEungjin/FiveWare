@@ -38,11 +38,11 @@
 		});
 	 
 		/*전체선택  */
-	 $("input[class=input_all]").click(function(){
-			if($("input[class=input_all]").prop("checked")){
-				$("input[class=input_chk]").prop("checked",true);
+	 $("input[class=eb_input_all]").click(function(){
+			if($("input[class=eb_input_all]").prop("checked")){
+				$("input[class=eb_input_chk]").prop("checked",true);
 			}else{
-				$("input[class=input_chk]").prop("checked",false);
+				$("input[class=eb_input_chk]").prop("checked",false);
 			}
 		});
 	 
@@ -101,7 +101,7 @@
 	 });
 	 
 	 //전체삭제
-	 $("#deleteBtn").click(function(){
+	 $("#eb_deleteBtn").click(function(){
 		 var count=0;
 		 var code="";
 		 
@@ -109,13 +109,36 @@
 		 if(confirm("정말 삭제하시겠습니까 ?") == false){
 		     alert("삭제가 취소되었습니다.")   
 			 return false;
+		    }else{
+		    	var count=0;
+		    	var code="";
+		    	var cod=[];
+		    	$(".eb_input_chk").each(function(d){
+		    		if(this.checked){
+		    			code=$(this).attr("id");
+		    			count++;
+		    			cod.push(code);
+		    		}
+		    	});
+	
+		    	$.ajax({
+					data : {"code" : cod.toString()},
+					url : "./accountRegistDelete",
+					type : "get",
+					success : function(data){
+						alert(data);
+						location.reload();
+					},error : function(){
+						alert("error")
+					}
+				 });
+		    	
+		    	
 		    }
-		 $(".input_chk").each(function(d){
-			 count++;
-			 alert(count);
-		 });
+		 
+		}); 
+	 
 
-	 });
 	 
 	 /* 코드 */
  	  $("#eb_insertBtn").click(function(){
@@ -166,7 +189,7 @@
 	
  });
  
- 
+
  
  
 </script>
@@ -292,7 +315,7 @@
 						   
 						<thead id="eb_table_head">
 						    <tr>
-						     <th><input type="checkbox" class="input_all"></th>
+						     <th><input type="checkbox" class="eb_input_all"></th>
 						     <th>계좌 코드</th>
 						     <th>계좌명</th>
 						     <th>은행</th>	
@@ -305,12 +328,12 @@
 						   
 						    	 <c:forEach items="${list}" var="dto">
 							      <tr>
-							        <td><input type="checkbox" class="input_chk"></td>
+							        <td><input type="checkbox" class="eb_input_chk" id="${dto.code}"></td>
 							      	<td>${dto.code}</td>
 							      	<td>${dto.memo}</td>
 							        <td>${dto.bank}</td>					
 							        <td>${dto.account}</td>		
-							        <td><button class="eb_view" title="${dto.code}" data-toggle="modal" data-target="#eb_view_modal">수정</button></td>
+							        <td><button class="eb_view w3-button w3-black" title="${dto.code}" data-toggle="modal" data-target="#eb_view_modal">수정</button></td>
 							     
 							     </c:forEach> 
 						   </tbody>
@@ -405,9 +428,9 @@
 				<!-- page 처리 끝 -->		  
 				
 				
-						  <button class="btn btn-default" id="deleteBtn">선택삭제</button>
+						  <button class="w3-button w3-black" id="eb_deleteBtn">선택삭제</button>
 						  
-					      <button class="btn btn-default" id="eb_insertBtn" data-toggle="modal" data-target="#myModal">신규등록</button>
+					      <button class="w3-button w3-black" id="eb_insertBtn" data-toggle="modal" data-target="#myModal">신규등록</button>
 					      
 			 
 			 

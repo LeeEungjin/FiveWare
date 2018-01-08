@@ -35,7 +35,7 @@
   	    select * from accountregist where code=#{code}
   	 </select> 
   	 
-  	 <delete id="delete">
+  	 <delete id="delete" parameterType="String">
   	   delete accountregist where code=#{code}
   	 </delete>
   	 

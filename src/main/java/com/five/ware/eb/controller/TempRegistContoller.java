@@ -25,13 +25,27 @@ public class TempRegistContoller {
 	@RequestMapping(value="tempRegistDelete")
 	@ResponseBody
 	public String delete(String code) throws Exception{
-		
-		int result=tempRegistService.delete(code);
+		String ar []= code.split(",");
 		
 		String message="fail";
-		if(result>0){
-			message="success";
-		}		
+		for(int i=0; i<ar.length; i++){
+	
+			int result;
+			
+			try {
+				result = tempRegistService.delete(ar[i]);
+
+				if(result>0){
+					message="success";
+				}
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
 		return message;
 	}
 	//update

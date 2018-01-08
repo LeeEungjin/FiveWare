@@ -109,7 +109,7 @@
 			$(".eb_chitTable").append("<tr>");
 			$(".eb_chitTable").append(table);
 				if(kind=='차변'){
-					$(".eb_chitTable").append("<td><input type='number' value="+price+" id=eb_table_input"+count+"></td><td><input type='text'></td>");
+					$(".eb_chitTable").append("<td><input type='number'  value="+price+" id=eb_table_input"+count+"></td><td><input type='text'></td>");
 					var total="";
 					
 					if(count==1){
@@ -223,7 +223,7 @@
 			
 			<!-- ----------2---------- -->
 				<div class="fw_menu fw_selected" data-toggle="collapse" data-target="#sub2" title="sub2" >
-					전표 관리
+					전표 
 				<div class="fw_arrow sub2">
 					∨
 				</div>
