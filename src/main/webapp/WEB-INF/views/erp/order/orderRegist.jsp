@@ -21,8 +21,6 @@
 		}
 		
 		$("#or_insert").click(function(){
-			
-			
 			$.ajax({
 				type:"GET",
 				url:"../../codeName",
@@ -65,30 +63,91 @@
 			});
 		});
 		
-		$(".er_btn").click(function(){
-			$("#or_write_frm").submit();
+		$("#productList_all_ch").click(function() {
+			if($("#productList_all_ch").prop("checked")){
+				$(".productList_ch").prop("checked", true);
+			}else{
+				$(".productList_ch").prop("checked", false);
+			}
 		});
+		
+		$("#or_modal_table").on("click", ".productList_ch", function(){
+			var amount_input=$(this).attr("title");
+			var ch=amount_input+"code";
+			
+			if($("#"+ch).prop("checked")){
+				$("#"+amount_input).prop("disabled", false);
+				$("#name_code"+amount_input).attr("name", "code");
+				$("#"+amount_input).attr("name", "amount");
+				$("#product_total"+amount_input).attr("name", "price"); 
+			}else{
+				$("#"+amount_input).val(null);
+				$("#product_total"+amount_input).val(null);
+				$("#"+amount_input).prop("disabled", true);
+			}
+		});
+		
 		
 		$("#or_modal_table").on("change", ".product_amount",function(){
 			
-			/* console.log($(".product_amount")[0].attributes[0].value); */
-			/*  console.log($(".product_amount")[0].id);  */
-			var price=$(".product_amount")[0].attributes[0].value
-			var amount=$(".product_amount")[0].value;
-			var total_input=$(".product_total")[0].id;
-			var code=$(".product_amount")[0].id;
+			var price=$(this).attr("title");
+			var amount=$(this).val();
+			var total_input="product_total"+$(this).attr("id");
+			var code=$(this).attr("id");
 			var total=price*amount;
 			
-			alert("코드 :"+code)
-			alert("단가 :"+price);
-			alert("수량 : "+amount);
-			alert("합계 : "+total);   
-			
-			total_input.val(total);
-			
-			
+			if(amount<0){
+				alert("0이하 수량은 입력되지 않습니다.");
+				$(this).val(null);
+			}else{
+				$("#"+total_input).val(total);
+			}			
 		});
 		
+		$("#or_total_btn").click(function(){
+			var all_total=0;
+			
+			$(".product_total").each(function(){
+				all_total=all_total*1+($(this).val())*1;
+			});
+			
+			$("#all_total_input").val(all_total);
+		});
+		
+		$(".or_btn").click(function(){
+			var all_total_input=$("#all_total_input").val();
+
+			if(all_total_input==""){
+				alert("주문 할 제품을 등록해주세요.")
+			}else{
+				$("#or_write_frm").submit();
+			}
+		});
+		
+		$(".orderView").click(function() {
+			var orderCode=$(this).attr("title");
+			$.ajax({
+				data : {"orderCode" : orderCode},
+				url : "./orderView",
+				type : "get",
+				success : function(data){
+					$("#or_update_modal").html(data);
+					/* $(".viewCode").val(data.orderDTO.orderCode);
+					$(".viewContractDate").val(data.orderDTO.contractDate);
+					$(".viewTemp").val(data.orderDTO.temp);
+					$(".viewName").val(data.orderDTO.name);
+					$(".viewDelivery").val(data.orderDTO.delivery);
+					$(".viewDeadline").val(data.orderDTO.deadline);
+					$(".viewMemo").html(data.orderDTO.orderMemo)
+					
+					var viewAccount=data.orderDTO.account;
+					var viewStoragename=data.orderDTO.storageName */
+				},
+				error : function(){
+					alert("error");
+				}
+			});
+		});
 		
 	});
 </script>
@@ -132,7 +191,6 @@
                ∨
             </div>
          </div>
-         
          <div class="fw_subsub collapse"  id="sub2">
             <ul>
                <li><a href="../../erp/order/orderRegist">주문 입력</a></li>
@@ -216,7 +274,7 @@
 						    <tbody>
 						    <c:forEach items="${orderList}" var="orderList"> 
 						      <tr>
-						        <td class="materView" title="${enterList.materCode}" data-toggle="modal" data-target="#er_update_modal">${orderList.orderCode}</td>
+						        <td class="orderView" title="${orderList.orderCode}" data-toggle="modal" data-target="#or_update_modal">${orderList.orderCode}</td>
 						        <td>${orderList.contractDate}</td>
 						        <td>${orderList.deadline}</td>
 						        <td>${orderList.account}</td>
@@ -303,7 +361,7 @@
 								<table id="or_modal_table" class="table">
 								    <thead>
 								      <tr>
-								      	<th><input type="checkbox"></th>
+								      	<th><input id="productList_all_ch" type="checkbox"></th>
 								        <th>제품코드</th>
 								        <th>제품명</th>
 								        <th>규격</th>
@@ -317,15 +375,15 @@
 								    </tbody>
 								 </table>
 							</div>
-							<input type="button" value="합계 계산">
-							<input type="number" readonly="readonly">
+							<input id="or_total_btn" type="button" value="합계 계산">
+							<input id="all_total_input" type="number" readonly="readonly">
 							
 				        </div>
 				        <!-- modal contents 끝-->
 				        
 				        <!-- modal footer -->
 				        <div class="modal-footer">
-				          <button type="button" class="btn btn-default er_btn">등록</button>
+				          <button type="button" class="btn btn-default or_btn">등록</button>
 				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				        </div>
 				      </form>
@@ -337,7 +395,9 @@
 				
 				
 				<!-- 수정 Modal -->
-				
+				<div class="modal fade" id="or_update_modal" role="dialog">
+				    
+				</div>
 				
 				<!-- 수정 Modal 끝 -->
 				

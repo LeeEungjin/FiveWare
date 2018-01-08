@@ -20,16 +20,24 @@ public class OrderDAO {
 		return sqlSession.insert(namespace+"insert", orderDTO);
 	}
 	
+	public int insert(OrderProductDTO orderProductDTO)throws Exception{
+		return sqlSession.insert(namespace+"productinsert", orderProductDTO);
+	}
+	
 	public List<OrderDTO> selectList()throws Exception{
 		return sqlSession.selectList(namespace+"selectList");
 	}
-	
+
 	public List<ProductDTO> productList()throws Exception{
 		return sqlSession.selectList(namespace+"productList");
 	}
 	
 	public OrderDTO selectOne(String orderCode)throws Exception{
 		return sqlSession.selectOne(namespace+"selectOne", orderCode);
+	}
+	
+	public List<OrderProductDTO> orderProductList(String orderCode)throws Exception{
+		return sqlSession.selectList(namespace+"orderProductList", orderCode);
 	}
 	
 	public int delete(String orderCode)throws Exception{

@@ -5,12 +5,12 @@
    
 <c:forEach items="${productList}" var="productList"> 
 	<tr>
-		<td><input type="checkbox"></td>
-		<td>${productList.code}</td>
+		<td><input title="${productList.code}" id="${productList.code}code" class="productList_ch" type="checkbox"></td>
+		<td><input type="hidden" id="name_code${productList.code}" value="${productList.code}">${productList.code}</td>
 		<td>${productList.name}</td>
 		<td>${productList.standard}</td>
 		<td>${productList.price}</td>
-		<td><input id="${productList.code}" title="${productList.price}" class="product_amount" type="number"></td>
-		<td><input type="number" readonly="readonly" id="product_total${productList.code}" class="product_total"></td>
+		<td><input id="${productList.code}" disabled="disabled" title="${productList.price}" class="product_amount" type="number"></td>
+		<td><input readonly="readonly" type="number" id="product_total${productList.code}" class="product_total"></td>
 	</tr>
 </c:forEach>

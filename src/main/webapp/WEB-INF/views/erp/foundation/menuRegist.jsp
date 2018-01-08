@@ -172,7 +172,7 @@
 			});
 		});
 		
-		var fileInput=$("#mr_fileInput");
+		/* var fileInput=$("#mr_fileInput");
 		var fileZone=$("#mr_img_div");
 		var submit=$("#mr_imgBtn");
 		var fileList=[];
@@ -228,7 +228,7 @@
                     alert("success");
                 }
 			});
-		}); 
+		});  */
 	});
 </script>
 
