@@ -102,4 +102,9 @@ public class ErpHumanDiliManaController {
 		}
 		
 	}
+	
+	@RequestMapping(value="diliInput")
+	public void diliInput() throws Exception{
+		
+	}
 }
