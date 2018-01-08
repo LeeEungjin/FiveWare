@@ -3,7 +3,10 @@ package com.five.ware.ar.controller;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -104,6 +107,7 @@ public class ErpHumanMemberManaController {
 	
 	@RequestMapping(value="memberInsertact", method=RequestMethod.POST)
 	public String memberInsert(Model model, MemberDTO memberDTO, FileDTO fileDTO) throws Exception{
+		System.out.println(memberDTO.getName());
 		int result = memberService.memberInsert(memberDTO);
 		
 		String message="등록 실패";
@@ -165,20 +169,28 @@ public class ErpHumanMemberManaController {
 	
 	@RequestMapping(value="memberDelete", method={RequestMethod.POST,RequestMethod.GET})
 	@ResponseBody
-	public int memberDelete(String code) throws Exception{
-		System.out.println(code);
-		int result = memberService.memberDelete(code);
-	/*	String message = "퇴직실패";
+	public int memberDelete(MemberDTO memberDTO) throws Exception{
+		int result = memberService.memberDelete(memberDTO);
 		
-		if(result>0){
-			message="퇴직 처리되었습니다.";	
-		}
+		return result;
+	}
+	
+	@RequestMapping(value="retireeMana")
+	public ModelAndView retireeMana(String search) throws Exception{
+		List<MemberDTO> ar = memberService.retireeList(search);
 		
 		ModelAndView mv = new ModelAndView();
 		
-		mv.addObject("message", message);
-		mv.addObject("addr", "memberPlus");
-		mv.setViewName("common/result");*/
+		mv.addObject("retireeList", ar);
+		mv.setViewName("human/memberMana/retireeMana");
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="retireeDelete")
+	@ResponseBody
+	public int retireeDelete(MemberDTO memberDTO) throws Exception{
+		int result = memberService.retireeDelete(memberDTO);
 		
 		return result;
 	}

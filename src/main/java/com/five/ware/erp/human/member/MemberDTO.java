@@ -20,6 +20,23 @@ public class MemberDTO {
 	private int vacation;
 	private int month;
 	private String other;
+	private String retiredate;
+	private String term;
+	
+	
+	
+	public String getTerm() {
+		return term;
+	}
+	public void setTerm(String term) {
+		this.term = term;
+	}
+	public String getRetiredate() {
+		return retiredate;
+	}
+	public void setRetiredate(String retiredate) {
+		this.retiredate = retiredate;
+	}
 	public int getNum() {
 		return num;
 	}
