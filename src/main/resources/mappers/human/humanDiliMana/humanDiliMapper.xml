@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="humanDiliMapper">
+  
+  <insert id="diliInsert" parameterType="DiliDTO">
+  		insert into workregist values(dili_seq.nextval, #{code}, #{workname}, #{vacation}, #{sal}, #{other})
+  </insert>
+  
+  <select id="diliList" parameterType="java.util.Map" resultType="DiliDTO">
+  	select * from workregist 
+  	<if test="search != null">
+  		where workname like '%'||#{search}||'%'
+  	</if>
+  	order by num desc
+  </select>
+  
+  <select id="diliOne" parameterType="String"  resultType="DiliDTO">
+  	select * from workregist where code=#{code}
+  </select>
+  
+  <update id="diliUpdate" parameterType="DiliDTO">
+  	update workregist set vacation=#{vacation}, sal=#{sal}, other=#{other} where code=#{code}
+  </update>
+  
+  <delete id="diliDelete" parameterType="String">
+  	delete workregist where code=#{code}
+  </delete>
+  </mapper>

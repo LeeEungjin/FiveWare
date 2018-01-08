@@ -89,7 +89,7 @@
 }
 
 .ar_memberName{
-	width: 12%;
+	width: 8%;
 	height: 50%;
 }
 
@@ -119,13 +119,13 @@
 	height: 50%;
 }
 
-.ar_memberKind{
-	width: 6%;
+.ar_memberDate2{
+width: 16%;
 	height: 50%;
 }
 
 .ar_memberOther{
-	width: 18%;
+	width: 5%;
 	height: 50%;
 }
 
@@ -358,8 +358,4 @@
 .ar_memberCode{
 	font-weight: bold;
 	text-decoration: underline;
-}
-
-#retiredate{
-	display: none;
 }

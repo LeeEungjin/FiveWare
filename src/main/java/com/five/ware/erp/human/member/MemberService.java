@@ -23,4 +23,51 @@ public class MemberService {
 		
 		return rank;
 	}
+	
+	public List<MemberDTO> memberList(String search) throws Exception{
+		List<MemberDTO> ar = memberDAO.memberList(search);
+		
+		return ar;
+	}
+	
+	public MemberDTO memberOne(String code) throws Exception{
+		MemberDTO memberDTO = memberDAO.memberOne(code);
+		
+		return memberDTO;
+	}
+	
+	public int memberUpdate(MemberDTO memberDTO) throws Exception{
+		int result = memberDAO.memberUpdate(memberDTO);
+		
+		return result;
+	}
+	
+	public int memberDelete(MemberDTO memberDTO) throws Exception{
+		int result = memberDAO.memberDelete(memberDTO);
+		
+		
+		return result;
+	}
+	
+	public List<MemberDTO> retireeList(String search) throws Exception{
+		List<MemberDTO> ar = memberDAO.retireeList(search);
+		
+	//	System.out.println("달른걸로 " + memberDTO.getTerm().indexOf("."));
+		
+		for(MemberDTO memberDTO : ar ){
+			
+		if(memberDTO.getTerm() != null &&memberDTO.getTerm().indexOf(".")==0){
+			System.out.println("이것은 " + memberDTO.getTerm().indexOf("."));
+			memberDTO.setTerm(0+memberDTO.getTerm());
+		}
+		}
+		
+		return ar;
+	}
+	
+	public int retireeDelete(MemberDTO memberDTO) throws Exception{
+		int result = memberDAO.retireeDelete(memberDTO);
+		
+		return result;
+	}
 }
