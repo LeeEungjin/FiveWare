@@ -200,7 +200,7 @@
 					<div class="ar_OtherTitle ar_titleDiv1"> 비고 </div>
 				</div>
 				
-				<c:forEach items="${diliList }" var="list">
+			<c:forEach items="${diliList }" var="list">
 					<div class="ar_listDiv">
 						<div class="ar_CheckTitle" ><input type="checkbox"  class="ar_diliselect"id="${list.code}">	</div>
 						<div class="ar_CodeTitle ar_Code"  data-toggle="modal" data-target="#ar_diliUpdate" id="ar_dilicode" > ${list.code} </div>
@@ -209,7 +209,7 @@
 						<div class="ar_BierTitle"> ${list.sal} </div>					
 						<div class="ar_OtherTitle"> ${list.other} </div>						
 					</div>
-				</c:forEach>
+				</c:forEach> 
 			</div>
 			
 			<div class="ar_plusButtonWrap">

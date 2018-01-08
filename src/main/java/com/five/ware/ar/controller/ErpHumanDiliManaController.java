@@ -21,6 +21,19 @@ public class ErpHumanDiliManaController {
 	@Inject
 	DiliService diliService;
 
+	
+	@RequestMapping(value="diliSearch")
+	public ModelAndView eb_diliList(String search) throws Exception{
+	
+		
+		ModelAndView mv = new ModelAndView();
+		
+		
+		mv.setViewName("human/diliMana/diliSearch");
+		
+		return mv;
+	}
+	
 	@RequestMapping(value="diliPlus")
 	public ModelAndView diliList(String search) throws Exception{
 		List<DiliDTO> ar = diliService.diliList(search);
