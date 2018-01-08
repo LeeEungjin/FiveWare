@@ -28,6 +28,15 @@
 					$("#materCode").val(data);
 					
 					$.ajax({
+						type : "GET",
+						url : "./materOrder",
+						success:function(data){
+							console.log(data);
+							$("#erp_jh_modal_table").html(data);
+						}
+					}); 
+					
+					/* $.ajax({
 						type:"GET",
 						url:"./materStorageList",
 						success:function(data){
@@ -47,36 +56,30 @@
 										i++;
 									});
 									
-									/* $.ajax({
+									$.ajax({
 										type : "GET",
-										url : "./materProductList",
+										url : "./materOrder",
 										success:function(data){
-											alert("제품 리스트");
-											var i=0;
-											$(data).each(function(){
-												i++;
-											});
+											console.log(data);
+											$("#erp_jh_modal_table").html(data);
 										}
-									}); */
+									}); 
 									
 								}
 							});
 						}
-					});
+					}); */
 				}
 			});
 		});
 		
 		$(".er_btn").click(function(){
  			var materDate=$("#materDate").val();
- 			var account=$("#account").val();
  			var temp=$("#temp").val();
  			var name=$("#name").val();
  			
 			if(materDate==""){
 				alert("입고날을 입력해주세요.");
-			}else if(account==""){
-				alert("거래처를 입력해주세요.");
 			}else if(temp=""){
 				alert("부서를 입력해주세요.");
 			}else if(name=""){
@@ -139,7 +142,6 @@
 							$(".materCode").val(data.materCode);
 							$(".materDate").val(data.materDate);
 							$(".materMemo").html(data.materMemo);
-							$(".account").val(data.account);
 							$(".temp").val(data.temp);
 							$(".name").val(data.name);
 							
@@ -158,6 +160,14 @@
 			/* ===================================== */
 		});
 		/* ===================================== */
+		
+		$("#erp_jh_modal_table").on("click", "#allCheck", function(){
+			if($("#allCheck").prop("checked")){
+				$(".materCheck").prop("checked",true);
+			}else{
+				$(".materCheck").prop("checked",false);
+			}
+		});
 		
 	});
 </script>
@@ -275,9 +285,9 @@
 						      <tr>
 						        <th>입고코드</th>
 						        <th>입고일</th>
-						        <th>입고창고</th>
-						        <th>품목</th>
-						        <th>수량</th>
+						        <th>부서</th>
+						        <th>담당자</th>
+						        <th>비고</th>
 						      </tr>
 						    </thead>
 						    
@@ -286,9 +296,9 @@
 						      <tr>
 						        <td class="materView" title="${enterList.materCode}" data-toggle="modal" data-target="#er_update_modal">${enterList.materCode}</td>
 						        <td>${enterList.materDate}</td>
-						        <td>${enterList.storageName}</td>
-						        <td></td>
-						        <td></td>
+						        <td>${enterList.temp}</td>
+						        <td>${enterList.name}</td>
+						        <td>${enterList.materMemo}</td>
 						      </tr>
 						    </c:forEach>
 						    </tbody>
@@ -328,11 +338,11 @@
 							  <input id="materDate" name="materDate" type="date" class="form-control">
 							</div>
 							
-							<div class="input-group input-group_modal">
+							<!-- <div class="input-group input-group_modal">
 							  <span class="input-group-addon">거래처</span>
 							  <select id="account" name="account">
 							  </select>
-							</div>
+							</div> -->
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">부서</span>
@@ -344,11 +354,11 @@
 							  <input id="name" name="name" type="text" class="form-control" placeholder="Additional Info">
 							</div>
 							
-							<div class="input-group input-group_modal">
+							<!-- <div class="input-group input-group_modal">
 							  <span class="input-group-addon">창고명</span>
 							  <select id="storageName" name="storageName">
 							  </select>
-							</div>
+							</div> -->
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">비고</span>
@@ -356,6 +366,10 @@
 							</div>
 							
 							<input type="hidden" name="materKind" value="enter">
+							
+							<div id="erp_jh_modal_table">
+							
+							</div>
 				        </div>
 				        <!-- modal contents 끝-->
 				        

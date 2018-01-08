@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.five.ware.mater.MaterDTO;
 import com.five.ware.product.ProductDTO;
 
 @Transactional
@@ -56,8 +57,15 @@ public class OrderService {
 	
 	public int delete(String orderCode)throws Exception{
 		int result=orderDAO.delete(orderCode);
+			result=orderDAO.productDelete(orderCode);
 		
 		return result;
+	}
+	
+	public List<OrderDTO> orderDateList(String smaterDate, String ematerDate)throws Exception{
+		List<OrderDTO> ar=orderDAO.orderDateList(smaterDate, ematerDate);
+		
+		return ar;
 	}
 	
 }

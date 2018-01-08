@@ -96,9 +96,8 @@
 		});
 			
 		$(".menuDelete").click(function(){
-			alert("click");
 			var code=$(".viewCode").val();
-			alert(code);
+
 			$.ajax({
 				data : {"menuCode" : code},
 				url : "./menuRegistDelete",
@@ -155,6 +154,7 @@
 					}
 					});
 				}
+		});
 		$("#checkDelete").click(function(){
 			alert("click");
 			if($("#menucheck").prop("checked")){
@@ -416,8 +416,6 @@
 				<!-- 등록 버튼 -->
 					<div id="erp_jh_contents_bottom">
 						<button id="mr_checkDelete">선택삭제</button>
-						<button id="checkDelete">선택삭제</button>
-						<button class="modal_btn" data-toggle="modal" data-target="#jh_mr_Modal">신규등록</button>
 						<button id="mr_insert" class="modal_btn" data-toggle="modal" data-target="#jh_mr_Modal">신규등록</button>
 					</div>
 				<!-- 등록 버튼 끝 -->

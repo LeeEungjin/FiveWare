@@ -35,4 +35,12 @@
 		delete orderregist where ordercode=#{orderCode}	
 	</delete>  
 	
+	<delete id="productDelete" parameterType="String">
+		delete orderproduct where ordercode=#{orderCode}
+	</delete>
+	
+	<select id="orderDateList" parameterType="java.util.Map" resultType="com.five.ware.order.OrderDTO">
+  	<![CDATA[select * from orderregist where contractdate>=#{smaterDate} and contractdate<=#{ematerDate} ]]>
+  	</select>
+	
   </mapper>

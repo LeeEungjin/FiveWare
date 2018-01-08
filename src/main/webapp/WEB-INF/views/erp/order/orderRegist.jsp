@@ -51,7 +51,7 @@
 										type:"GET",
 										url : "./productList",
 										success:function(data){
-											$("#productList_tbody").html(data);
+											$("#erp_jh_modal_table").html(data);
 										}
 									});
 									
@@ -63,7 +63,7 @@
 			});
 		});
 		
-		$("#productList_all_ch").click(function() {
+		$("#erp_jh_modal_table").on("click", "#productList_all_ch", function() {
 			if($("#productList_all_ch").prop("checked")){
 				$(".productList_ch").prop("checked", true);
 			}else{
@@ -71,7 +71,7 @@
 			}
 		});
 		
-		$("#or_modal_table").on("click", ".productList_ch", function(){
+		$("#erp_jh_modal_table").on("click", ".productList_ch", function(){
 			var amount_input=$(this).attr("title");
 			var ch=amount_input+"code";
 			
@@ -88,7 +88,7 @@
 		});
 		
 		
-		$("#or_modal_table").on("change", ".product_amount",function(){
+		$("#erp_jh_modal_table").on("change", ".product_amount",function(){
 			
 			var price=$(this).attr("title");
 			var amount=$(this).val();
@@ -132,21 +132,65 @@
 				type : "get",
 				success : function(data){
 					$("#or_update_modal").html(data);
-					/* $(".viewCode").val(data.orderDTO.orderCode);
-					$(".viewContractDate").val(data.orderDTO.contractDate);
-					$(".viewTemp").val(data.orderDTO.temp);
-					$(".viewName").val(data.orderDTO.name);
-					$(".viewDelivery").val(data.orderDTO.delivery);
-					$(".viewDeadline").val(data.orderDTO.deadline);
-					$(".viewMemo").html(data.orderDTO.orderMemo)
-					
-					var viewAccount=data.orderDTO.account;
-					var viewStoragename=data.orderDTO.storageName */
 				},
 				error : function(){
 					alert("error");
 				}
 			});
+		});
+		
+		$("#or_update_modal").on("click", ".or_update_btn", function(){
+			$.ajax({
+				type:"GET",
+				url : "./productList",
+				success:function(data){
+					$("#erp_jh_modal_update_table").html(data);
+				}
+			});
+		});
+		
+		$("#or_update_modal").on("click", ".or_delete", function(){
+			var orderCode=$(this).attr("title");
+			
+			$.ajax({
+				type:"GET",
+				url : "./orderDelete",
+				data : {orderCode:orderCode},
+				success:function(){
+					alert("삭제완료");
+					location.reload();
+				},
+				error : function(){
+					alert("error");
+				}
+			});
+		});
+		
+		$("#search_btn").click(function(){
+			
+			var smaterDate=$("#smaterDate").val();
+			var ematerDate=$("#ematerDate").val(); 
+			
+		 	if(smaterDate=="" || ematerDate==""){
+				alert("기간을 입력해주세요.");
+			}else{ 
+				
+				$.ajax({
+					type : "GET",
+					url : "./orderDateList",
+					data : {
+						smaterDate : smaterDate,
+						ematerDate : ematerDate
+					},
+					success:function(data){
+						$("#erp_jh_contents_table").html(data);
+					}
+				});
+			}
+		});
+		
+		$("#dateListReset").click(function(){
+			location.reload();
 		});
 		
 	});
@@ -245,13 +289,13 @@
 						<!-- 검색 기능 -->
 							<div class="input-group search_group">
 								<form id="or_search_frm" method="get">
-									<input type="hidden" name="materKind" value="enter">
-									기간 선택 <input id="smaterDate" name="smaterDate" type="date"> ~ <input id="ematerDate" name="ematerDate" type="date">		
+								<input type="hidden" name="materKind" value="back">
+									계약 기간 선택 <input id="smaterDate" name="smaterDate" type="date"> ~ <input id="ematerDate" name="ematerDate" type="date">					
 							      <div class="input-group-btn">
 							        <button type="button" id="search_btn" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
 							      </div>
 							      <input id="dateListReset" class="btn btn-default" type="button" value="초기화">
-							    </form>	
+							    </form>
 						    </div>	
 						<!-- 검색 기능 끝 -->
 					</div>
@@ -266,8 +310,6 @@
 						        <th>계약일</th>
 						        <th>납기일</th>
 						        <th>거래처</th>
-						        <th>품목</th>
-						        <th>금액</th>
 						      </tr>
 						    </thead>
 						    
@@ -278,8 +320,6 @@
 						        <td>${orderList.contractDate}</td>
 						        <td>${orderList.deadline}</td>
 						        <td>${orderList.account}</td>
-						        <td></td>
-						        <td></td>
 						      </tr>
 						    </c:forEach>
 						    </tbody>
@@ -358,7 +398,7 @@
 							
 							
 							<div id="erp_jh_modal_table">
-								<table id="or_modal_table" class="table">
+								<!-- <table id="or_modal_table" class="table">
 								    <thead>
 								      <tr>
 								      	<th><input id="productList_all_ch" type="checkbox"></th>
@@ -373,7 +413,7 @@
 								    
 								    <tbody id="productList_tbody">
 								    </tbody>
-								 </table>
+								 </table> -->
 							</div>
 							<input id="or_total_btn" type="button" value="합계 계산">
 							<input id="all_total_input" type="number" readonly="readonly">

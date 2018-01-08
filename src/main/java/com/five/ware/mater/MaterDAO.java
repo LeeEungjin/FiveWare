@@ -34,6 +34,10 @@ public class MaterDAO {
 		return sqlSession.selectList(namespace+"materDateList", map);
 	}
 	
+	public List<MaterOrderDTO> materOrder()throws Exception{
+		return sqlSession.selectList(namespace+"materOrder");
+	}
+	
 	public List<String> materSupList()throws Exception{
 		return sqlSession.selectList(namespace+"materSupList");
 	}

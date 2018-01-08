@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.five.ware.mater.MaterDTO;
+import com.five.ware.mater.MaterOrderDTO;
 import com.five.ware.mater.MaterService;
 
 @Controller
@@ -47,6 +48,24 @@ public class MaterController {
 		}
 		
 		mv.setViewName("erp/mater/materDateList");
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="materOrder")
+	public ModelAndView materOrder(){
+		ModelAndView mv=new ModelAndView();
+/*		List<MaterOrderDTO> ar=null;
+*/		
+		try {
+			mv.addObject("ar", materService.materOrder());
+			/*ar=materService.materOrder();
+			System.out.println("?"+ar.size());*/
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mv.setViewName("erp/mater/materOrder");
 		
 		return mv;
 	}

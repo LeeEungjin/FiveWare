@@ -27,6 +27,25 @@ public class OrderController {
 	@Autowired
 	private OrderService orderService;
 	
+	@RequestMapping(value="orderDelete")
+	public String delete(RedirectAttributes rd, String orderCode){
+		String message="Fail";
+		int result=0;
+		
+		try {
+			result=orderService.delete(orderCode);
+			if(result>0){
+				message="Success";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		rd.addFlashAttribute("message", message);
+		
+		return "redirect:./orderRegist";
+	}
+	
 	@RequestMapping(value="orderRegist")
 	public ModelAndView orderRegist(){
 		ModelAndView mv=new ModelAndView();
@@ -107,6 +126,20 @@ public class OrderController {
 		rd.addFlashAttribute("message",message);
 		
 		return "redirect:./orderRegist";
+	}
+	
+	@RequestMapping(value="orderDateList")
+	public ModelAndView materDateSerach(ModelAndView mv, String smaterDate, String ematerDate){
+
+		try {
+			mv.addObject("dateList", orderService.orderDateList(smaterDate, ematerDate));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mv.setViewName("erp/order/orderDateList");
+		
+		return mv;
 	}
 	
 

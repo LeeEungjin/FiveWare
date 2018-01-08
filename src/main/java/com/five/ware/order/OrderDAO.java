@@ -1,12 +1,15 @@
 package com.five.ware.order;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.five.ware.mater.MaterDTO;
 import com.five.ware.product.ProductDTO;
 
 @Repository
@@ -43,4 +46,18 @@ public class OrderDAO {
 	public int delete(String orderCode)throws Exception{
 		return sqlSession.delete(namespace+"delete", orderCode);
 	}
+	
+	public int productDelete(String orderCode)throws Exception{
+		return sqlSession.delete(namespace+"productDelete", orderCode);
+	}
+
+	public List<OrderDTO> orderDateList(String smaterDate, String ematerDate) {
+		Map<String, Object> map=new HashMap<String, Object>();
+		
+		map.put("smaterDate", smaterDate);
+		map.put("ematerDate", ematerDate);
+		
+		return sqlSession.selectList(namespace+"orderDateList", map);
+	}
+	
 }

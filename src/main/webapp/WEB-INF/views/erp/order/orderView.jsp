@@ -14,7 +14,7 @@
 	<!-- modal header 끝-->
 				        
 	<!-- modal contents -->
-	<form action="./orderWrite" method="post" id="or_write_frm">
+	<form action="./orderUpdate" method="post" id="or_write_frm">
 	    <div class="modal-body">
 	       	<div class="input-group input-group_modal or_input-group_modal">
 			  	<span class="input-group-addon">주문코드</span>
@@ -38,8 +38,7 @@
 							
 			<div class="input-group input-group_modal or_input-group_modal">
 				<span class="input-group-addon">거래처</span>
-				<select id="account" name="account" class="viewAccount">
-				</select>
+				<input type="text" value="${orderDTO.account}" class="form-control">
 			</div>
 							
 			<div class="input-group input-group_modal or_input-group_modal">
@@ -49,13 +48,12 @@
 							
 			<div class="input-group input-group_modal or_input-group_modal">
 				<span class="input-group-addon">납기일</span>
-				<input value=${orderDTO.deadline}" id="deadline" name="deadline" type="date" class="form-control viewDeadline">
+				<input value="${orderDTO.deadline}" id="deadline" name="deadline" type="date" class="form-control viewDeadline">
 			</div>
 							
 			<div class="input-group input-group_modal or_input-group_modal">
 				<span class="input-group-addon">출하창고</span>
-				<select id="storageName" name="storageName" class="viewStoragename">
-				</select>
+				<input type="text" value="${orderDTO.storageName}" class="form-control">
 			</div>
 							
 			<div class="input-group input-group_modal memo_modal">
@@ -64,23 +62,23 @@
 			</div>
 							
 							
-			<div id="erp_jh_modal_table">
+			<div id="erp_jh_modal_update_table">
 				<table id="or_modal_table" class="table">
 					<thead>
 						<tr>
-							<th><input type="checkbox"></th>
 							<th>제품코드</th>
+							<th>수량</th>
 							<th>단가</th>
-							<th>주문 금액</th>
+							<th>총 주문 금액</th>
 						</tr>
 					</thead>
 								    
-					<tbody id="productList_tbody">
+					<tbody id="productList_update_tbody">
 						<c:forEach items="${productList}" var="productList"> 
 							<tr>
-								<td><input type="checkbox"></td>
 								<td>${productList.code}</td>
 								<td>${productList.amount}</td>
+								<td>${productList.price / productList.amount}</td>
 								<td>${productList.price}</td>
 							</tr>
 						</c:forEach>
@@ -88,15 +86,13 @@
 				</table>
 			</div>
 				
-				<input id="or_total_btn" type="button" value="합계 계산">
-				<input id="all_total_input" type="number" readonly="readonly">
-							
 		 </div>
 		<!-- modal contents 끝-->
 				        
 		<!-- modal footer -->
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default or_btn">등록</button>
+				<!-- <button type="button" class="btn btn-default or_update_btn">수정 하기</button> -->
+				<button title="${orderDTO.orderCode}" type="button" data-dismiss="modal" class="btn btn-default or_delete">삭제</button>
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			</div>
 		</form>

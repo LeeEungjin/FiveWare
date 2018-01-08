@@ -7,7 +7,7 @@
   
   <!-- insert -->
   <insert id="insert" parameterType="com.five.ware.mater.MaterDTO">
-  	insert into mater values(#{materCode}, #{materDate},#{account}, #{temp}, #{name}, #{storageName}, #{materMemo}, #{materKind})
+  	insert into mater values(#{materCode}, #{materDate}, #{temp}, #{name}, #{materMemo}, #{materKind})
   </insert>
  
   <select id="selectList" parameterType="String" resultType="com.five.ware.mater.MaterDTO">
@@ -34,8 +34,6 @@
   <update id="update" parameterType="com.five.ware.mater.MaterDTO">
   	update mater set
   	materdate=#{materDate},
-  	account=#{account},
-  	storagename=#{storageName},
   	matermemo=#{materMemo}
   	where matercode={materMemo}
   </update>
@@ -43,5 +41,33 @@
   <delete id="delete" parameterType="String">
   	delete mater where matercode=#{materCode}
   </delete>
+  
+  <resultMap type="com.five.ware.mater.MaterOrderDTO" id="materOrderResult">
+  	<result property="orderCode" column="orderCode"/>
+  	<result property="contractDate" column="contractDate"/>
+  	<result property="temp" column="temp"/>
+  	<result property="name" column="name"/>
+  	<result property="account" column="account"/>
+  	<result property="division" column="division"/>
+  	<result property="delivery" column="delivery"/>
+  	<result property="condition" column="condition"/>
+  	<result property="deadline" column="deadline"/>
+  	<result property="storageName" column="storageName"/>
+  	<result property="orderMemo" column="orderMemo"/>
+  	
+  	<collection property="orderProductDTO" javaType="com.five.ware.order.OrderProductDTO">
+  		<result property="orderCode" column="orderCode_1"/>
+  		<result property="code" column="code"/>
+  		<result property="amount" column="amount"/>
+  		<result property="price" column="price"/>
+  	</collection>
+  	
+  </resultMap>
+  
+  <select id="materOrder" resultMap="materOrderResult">
+  	select *
+	from orderproduct P, orderregist R
+	where P.ordercode = R.ordercode
+  </select>
   
   </mapper>
