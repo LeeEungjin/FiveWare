@@ -9,7 +9,7 @@
 <c:import url="${url}/resources/temp/ref.jsp"></c:import> 
  <script type="text/javascript" src="${url}/resources/js/jquery.form.min.js"></script>
  
- <link href="${url}/resources/css/human/memberMana/memberPlus.css" rel="stylesheet">
+ <link href="${url}/resources/css/human/memberMana/retireeMana.css" rel="stylesheet">
 
 <title>Insert title here</title>
 
@@ -60,7 +60,7 @@
 			var vacation=$("#memberVacation").val();
 			var month=$("#memberMonth").val();
 			var other=$("#ar_memberOther").val();
-			var photo=$("#ar_photo").attr("src");
+			var photo=$("#ar_photo").val();
 			alert(photo);
 			
 			alert("등록");
@@ -124,30 +124,12 @@
 		  $(".ar_memberCode").click(function(){
 			  var code = $(this).attr("title");
 			  
-	 			var retiredate=new Date();
-	 			var year=retiredate.getYear()+1900;
-	 			var month = retiredate.getMonth()+1;
-	 			var day = retiredate.getDate();	 		 	
-	 			
-	 			 if(month<10){
-	 				month="0"+month;
-	 			}
-	 			 
-	 			 if(day<10){
-	 				day="0"+day;
-	 			}
-	 			 
-	 			var today=year+"-" + month + "-" + day;
-			
-	 			alert(today);
 			  $.ajax({
 				 type:"GET",
 				 url:"./memberUpdate",
 				 data:{
 					 "code":code
 				 },success:function(data){
-					 
-					$("#ar_retiredate").val(today);
 					 
 				     $("#u_memberId").val(data[0].code);
 				     $("#u_memberName").val(data[0].name);
@@ -255,12 +237,11 @@
 			 	alert(code);
 			 	$.ajax({
 			 		type:"POST",
-			 		url:"./memberDelete",
+			 		url:"./retireeDelete",
 			 		data:{
-			 			"code":$("#u_memberId").val(),
-			 			"retiredate":$("#ar_retiredate").val()
+			 			"code":$("#u_memberId").val()
 			 		}, success:function(data){
-				 			alert("퇴직처리 되었습니다.");
+				 			alert("퇴직취소 되었습니다.");
 			 			location.reload();
 			 		}, error:function() {
 			 			alert("error");
@@ -313,7 +294,7 @@
 			<div class="fw_subsub collapse in"  id="sub2">
 				<ul>
 					<li><a href="memberPlus"> 사원 등록</a> </li>
-					<li> 급여 등록 </li>
+					<li><a href="retireePlus">  급여 등록</a> </li>
 					<li> 퇴직자 </li>
 				</ul>
 			</div>
@@ -367,13 +348,13 @@
 			</div>
 			
 			<div class="ar_plusTitle">
-				<p id="ar_plustext">사원 등록</p>
+				<p id="ar_plustext">퇴직자</p>
 			</div>
 			
 			<div class="ar_plusSearchWrap">
 				<div class="ar_blank"></div>
 				
-			<form action="memberPlus" method="GET">
+			<form action="retireeMana" method="GET">
 				<div class="ar_plusSearch">
 					사원명  <input type="text" name="search" id="ar_psearch">
 					<input type="submit" value="검색" id="ar_psearchBtn">
@@ -389,11 +370,11 @@
 					<div class="ar_memberRank ar_titleDiv1"> 직급 </div>
 					<div class="ar_memberBirth ar_titleDiv1"> 생년월일 </div>		
 					<div class="ar_memberDate ar_titleDiv1"> 입사일 </div>
-					<div class="ar_memberKind ar_titleDiv1"> 상태 </div>	
-					<div class="ar_memberOther ar_titleDiv1"> 비고</div>
+					<div class="ar_memberDate2 ar_titleDiv1"> 퇴사일 </div>	
+					<div class="ar_memberOther ar_titleDiv1"> 기간</div>
 				</div>
 				
-				<c:forEach items="${memberList }" var="list">
+				<c:forEach items="${retireeList }" var="list">
 					<div class="ar_listDiv">
 						<div class="ar_memberNum ar_titleDiv1 ar_memberCode" data-toggle="modal" data-target="#ar_memberUpdate"  title="${list.code}"> ${list.code}	</div>
 						<div class="ar_memberName ar_titleDiv1"> ${list.name} </div>
@@ -401,162 +382,12 @@
 						<div class="ar_memberRank ar_titleDiv1"> ${list.rank} </div>
 						<div class="ar_memberBirth ar_titleDiv1"> ${list.birth} </div>		
 						<div class="ar_memberDate ar_titleDiv1"> ${list.hiredate} </div>	
-						<div class="ar_memberKind ar_titleDiv1"> ${list.kind} </div>	
-						<div class="ar_memberOther ar_titleDiv1"> ${list.other}</div>
+						<div class="ar_memberDate2 ar_titleDiv1"> ${list.retiredate} </div>	
+						<div class="ar_memberOther ar_titleDiv1"> ${list.term}</div>
 					</div>
 				</c:forEach>
 			</div>
 			
-			<div class="ar_plusButtonWrap">
-				<input type="button" id="ar_insertBtn" data-toggle="modal" data-target="#ar_memberInsert" value="신규 등록">
-			</div>
-			
-			<!-- Modal -->
-				
-				<div class="modal fade" id="ar_memberInsert" role="dialog">
-					 <form action="./memberInsertact" method="POST"  name="memberInsertFrm">
-					    <div class="modal-dialog modal-m">
-					      <div class="modal-content">
-					      
-					      	<!-- modal header -->
-					        <div class="modal-header">
-					          <button type="button" class="close" data-dismiss="modal">&times;</button>
-					          <h4 class="modal-title">사원 등록</h4>
-					        </div>
-					        <!-- modal header 끝-->
-					        
-					       
-					        <!-- modal contents -->
-					        <div class="modal-body">
-					        
-						        <div class="ar_photoInsert" >
-						        	<div id="ar_memberPhoto"><img alt="" src="" id="ar_photo"> </div>
-						        	<form id="frm">
-						        		<input type="file" id="f" name="oriname">
-						        	</form>
-						        	<input type="hidden" id="ar_filename" name="filename">
-						        </div>
-						        
-					         <div class="ar_memberInfo">
-					        	<div class="ar_positionInsert" >
-					        		<span class="ar_positiontext">사원코드</span>
-					        		<input type="text" name="code" class="arin_pcodeInput" id="memberId">
-					        	</div>
-					        	
-					       
-					        	<div class="ar_positionInsert" >
-					        		<span class="ar_positiontext">휴대전화</span>
-					        		<input type="text" name="phone" class="arin_pcodeInput" id="memberPhone">
-					        	</div>
-					        	
-					        	<div class="ar_positionInsert" >
-					        		<span class="ar_positiontext">사 원 명</span>
-					        		<input type="text" name="name" class="arin_pcodeInput3" id="memberName">
-					        	</div>
-					        	
-					        	<div class="ar_positionInsert" >
-					        		<span class="ar_positiontext1">이 메 일</span>
-					        		<input type="text" name="email" class="arin_pcodeInput3" id="memberEmail">
-					        	</div>
-					        	
-					        	<div class="ar_positionInsert" >
-					        		<span class="ar_positiontext">생년월일</span>
-					        		<input type="text" name="birth" class="arin_pcodeInput" id="memberBirth">
-					        	</div>
-					        	
-					        	<div class="ar_memberaddr" >
-					        		<span class="ar_positiontext">주&nbsp&nbsp&nbsp&nbsp&nbsp소</span>
-					        		<input type="text" name="addr" class="arin_pcodeInput2" id="memberAddr">
-					        	</div>
-					        </div>		
-					        
-							
-					        </div>
-					          <div class="modal-body1">
-					          		<div class="ar_employee">
-					          			
-					          	<div class="ar_positionInsert" >
-					        		<span class="ar_positiontext">입사일</span>
-					        		<input type="date" name="hiredate" class="ar_employeeInput" id="memberHiredate">
-					        	</div>
-					        	
-					        	<div class="ar_positionInsert" >
-					        		<span class="ar_positiontext">부&nbsp&nbsp&nbsp서</span>
-					        		<input type="text" name="temp" class="ar_employeeInput" id="memberTemp">
-					        	</div>
-					        	
-					        	<div class="ar_positionInsert2" >
-					        		<span class="ar_positiontext">직&nbsp&nbsp&nbsp급</span>
-					        		<!-- <input type="text" name="rank" class="ar_employeeInput" id="memberRank">  -->
-					        		<select id="memberRank" name="rank">
-					        			
-					        		</select>
-					        	</div>
-					          			
-					          		</div>
-					          		
-					          <div class="ar_employee">
-					          	
-					          	<div class="ar_positionInsert2" >
-					        		<span class="ar_positiontext">은행명</span>
-					        		<!-- <input type="text" name="bank" class="ar_employeeInput" id="memberBank"> -->
-					        		<select id="memberBank" name="bank">
-					        				<option value="신한">신한</option>
-					        				<option value="국민"> 국민</option>
-					        				<option value="농협">농협</option>
-					        		</select>
-					        	</div>
-					        	
-					        	<div class="ar_positionInsert" >
-					        		<span class="ar_positiontext">계&nbsp&nbsp&nbsp좌</span>
-					        		<input type="text" name="banknum" class="ar_employeeInput" id="memberBankNum">
-					        	</div>
-					        	
-					        	<div class="ar_positionInsert" >
-					        		<span class="ar_positiontext">월&nbsp&nbsp&nbsp급</span>
-					        		<input type="text" name="sal" class="ar_employeeInput" id="memberSal">
-					        	</div>
-					          		
-					        </div>
-					          </div>
-					          
-					           <div class="modal-body2">
-					           			<div class="ar_positionInsert1" >
-					        		<span class="ar_positiontext">휴가일수</span>
-					        		<input type="number" name="vacation" class="arin_pcodeInput" id="memberVacation">
-					        	</div>
-					        	
-					       
-					        	<div class="ar_positionInsert1" >
-					        		<span class="ar_membertext11">월차일수</span>
-					        		<input type="number" name="month" class="arin_pcodeInput" id="memberMonth">
-					        	</div>
-					        	
-					        	<div class="ar_positionInsert11" >
-					        		<span class="ar_positiontext">비&nbsp&nbsp&nbsp&nbsp고</span>
-					        		<textarea rows="" cols="" class="ar_memberOthertext" name="other"  id="ar_memberOther"></textarea>
-					        	</div>
-					           
-					           </div>
-					           
-					          
-					        <!-- modal contents 끝-->
-					        
-					        <!-- modal footer -->
-					        <div class="modal-footer">
-					          <button type="button" class="btn btn-default"  id="memInsertBtn">등록</button>
-					          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					        </div>
-					        
-					      	<!-- modal footer 끝-->
-					      	
-					      	
-					      </div>
-					    </div>
-					    </form>
-				  </div>
-				<!-- Modal 끝 -->
-				
 			<!-- Modal -->
 				
 				<div class="modal fade" id="ar_memberUpdate" role="dialog">
@@ -570,10 +401,6 @@
 					          <h4 class="modal-title">사원 정보 수정</h4>
 					        </div>
 					        <!-- modal header 끝-->
-					        
-					    <div id="retiredate">					        
-					        	<input type="date" id="ar_retiredate" name="retiredate">
-					        </div> 
 					        
 					       
 					        <!-- modal contents -->
@@ -590,18 +417,18 @@
 					         <div class="ar_memberInfo">
 					        	<div class="ar_positionInsert" >
 					        		<span class="ar_positiontext">사원코드</span>
-					        		<input type="text" name="code" class="arin_pcodeInput" id="u_memberId">
+					        		<input type="text" name="code" class="arin_pcodeInput" id="u_memberId" readonly="readonly">
 					        	</div>
 					        	
 					       
 					        	<div class="ar_positionInsert" >
 					        		<span class="ar_positiontext">휴대전화</span>
-					        		<input type="text" name="phone" class="arin_pcodeInput" id="u_memberPhone">
+					        		<input type="text" name="phone" class="arin_pcodeInput" id="u_memberPhone" >
 					        	</div>
 					        	
 					        	<div class="ar_positionInsert" >
 					        		<span class="ar_positiontext">사 원 명</span>
-					        		<input type="text" name="name" class="arin_pcodeInput3" id="u_memberName">
+					        		<input type="text" name="name" class="arin_pcodeInput3" id="u_memberName" readonly="readonly">
 					        	</div>
 					        	
 					        	<div class="ar_positionInsert" >
@@ -611,7 +438,7 @@
 					        	
 					        	<div class="ar_positionInsert" >
 					        		<span class="ar_positiontext">생년월일</span>
-					        		<input type="text" name="birth" class="arin_pcodeInput" id="u_memberBirth">
+					        		<input type="text" name="birth" class="arin_pcodeInput" id="u_memberBirth" readonly="readonly">
 					        	</div>
 					        	
 					        	<div class="ar_memberaddr" >
@@ -627,7 +454,7 @@
 					          			
 					          	<div class="ar_positionInsert" >
 					        		<span class="ar_positiontext">입사일</span>
-					        		<input type="date" name="hiredate" class="ar_employeeInput" id="u_memberHiredate">
+					        		<input type="date" name="hiredate" class="ar_employeeInput" id="u_memberHiredate" readonly="readonly">
 					        	</div>
 					        	
 					        	<div class="ar_positionInsert" >
@@ -638,7 +465,7 @@
 					        	<div class="ar_positionInsert2" >
 					        		<span class="ar_positiontext">직&nbsp&nbsp&nbsp급</span>
 					        		<!-- <input type="text" name="rank" class="ar_employeeInput" id="memberRank">  -->
-					        		<select id="u_memberRank" name="rank">
+					        		<select id="u_memberRank" name="rank" readonly="readonly">
 					        			
 					        		</select>
 					        	</div>
@@ -695,8 +522,7 @@
 					        <!-- modal footer -->
 					        <div class="modal-footer">
 					        	
-						          <button type="button" class="btn btn-default"  id="memUpdateBtn">수정</button>
-						          <button type="button" class="btn btn-default"  id="memDeleteBtn">퇴직</button>
+						          <button type="button" class="btn btn-default"  id="memDeleteBtn">퇴직취소</button>
 						          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					        </div>
 					        

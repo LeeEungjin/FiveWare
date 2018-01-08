@@ -95,11 +95,6 @@ public class ErpHumanBasisInfoController {
 			
 		}
 		
-		/*model.addAttribute("message", message);
-		model.addAttribute("addr", "positionPlus");*/
-		
-		/*return "common/result.jsp?message=delete&addr=positionPlus";*/
-		
 		return "redirect:./human/basisInfo/positionPlus";
 		
 	}

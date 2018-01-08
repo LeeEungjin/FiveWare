@@ -51,8 +51,28 @@ public class MemberDAO {
 		return result;
 	}
 	
-	public int memberDelete(String code) throws Exception{
-		int result =sqlSession.update(NAMESPACE+"memberDelete", code);
+	public int memberDelete(MemberDTO memberDTO) throws Exception{
+		int result =sqlSession.update(NAMESPACE+"memberDelete", memberDTO);
+		
+		return result;
+	}
+	
+	public List<MemberDTO> retireeList(String search) throws Exception{
+		Map<String, String> map = new HashMap<String, String>();
+		
+		map.put("search", search);
+		map.put("kind", "퇴직"	);
+		
+		System.out.println("dd");
+		List<MemberDTO> ar = sqlSession.selectList(NAMESPACE+"retireeList", map);
+		System.out.println(ar.size());
+		return ar;
+	}
+	
+	
+	public int retireeDelete(MemberDTO memberDTO) throws Exception{
+		
+		int result = sqlSession.update(NAMESPACE+"retireeDelete", memberDTO);
 		
 		return result;
 	}

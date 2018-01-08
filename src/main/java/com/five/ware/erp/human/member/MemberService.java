@@ -42,8 +42,31 @@ public class MemberService {
 		return result;
 	}
 	
-	public int memberDelete(String code) throws Exception{
-		int result = memberDAO.memberDelete(code);
+	public int memberDelete(MemberDTO memberDTO) throws Exception{
+		int result = memberDAO.memberDelete(memberDTO);
+		
+		
+		return result;
+	}
+	
+	public List<MemberDTO> retireeList(String search) throws Exception{
+		List<MemberDTO> ar = memberDAO.retireeList(search);
+		
+	//	System.out.println("달른걸로 " + memberDTO.getTerm().indexOf("."));
+		
+		for(MemberDTO memberDTO : ar ){
+			
+		if(memberDTO.getTerm() != null &&memberDTO.getTerm().indexOf(".")==0){
+			System.out.println("이것은 " + memberDTO.getTerm().indexOf("."));
+			memberDTO.setTerm(0+memberDTO.getTerm());
+		}
+		}
+		
+		return ar;
+	}
+	
+	public int retireeDelete(MemberDTO memberDTO) throws Exception{
+		int result = memberDAO.retireeDelete(memberDTO);
 		
 		return result;
 	}
