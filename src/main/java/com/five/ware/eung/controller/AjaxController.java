@@ -24,30 +24,36 @@ public class AjaxController {
 	private FileDAO fileDAO;
 	@Inject
 	private FileSaver fileSaver;
+	
+	
+	@RequestMapping(value="fileDelete")
+	public String delete(String code) {
+		fileDAO.delete(code);
+		
+		return "redirect:../erp/foundation/product";
+	}
 
 	@RequestMapping(value="drapAndDrop", method={RequestMethod.POST,RequestMethod.GET})
 	@ResponseBody
-	public List<String> dragAndDrop(MultipartFile[] file, HttpSession session) {
+	public List<String> dragAndDrop(MultipartFile[] file, HttpSession session, String code) {
 		String fileName = "";
 		
-		System.out.println("ajax controller");
-
 		for (MultipartFile multipartFile : file) {
 			System.out.println(multipartFile.getOriginalFilename());
 		}
 		
-		//MultipartFile[] multi = productDTO.getFiles();
+		System.out.println(code);
 		
 		List<String> ar = new ArrayList<String>();
 		
 		for (MultipartFile multipartFile : file) {
 			try {
 				fileName = fileSaver.fileSave(multipartFile, session, "product");
-				/*FileDTO fileDTO = new FileDTO();
-				fileDTO.setCode("1");
+				FileDTO fileDTO = new FileDTO();
+				fileDTO.setCode(code);
 				fileDTO.setFilename(fileName);
 				fileDTO.setOriname(multipartFile.getOriginalFilename());
-				fileDAO.insert(fileDTO);*/
+				fileDAO.insert(fileDTO);
 				ar.add(fileName);
 				
 			} catch (Exception e) {

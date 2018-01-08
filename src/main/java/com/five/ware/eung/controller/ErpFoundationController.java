@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -31,8 +32,13 @@ public class ErpFoundationController {
 	
 	/* Product Start */
 	
+	@RequestMapping(value="productOne", method=RequestMethod.GET)
+	public void productOne() {
+		
+	}
+	
 	@RequestMapping(value="productWrite", method=RequestMethod.POST)
-	public void productWrite(ProductDTO productDTO) {
+	public String productWrite(ProductDTO productDTO, Model model) {
 		System.out.println(productDTO.getCode());
 		System.out.println(productDTO.getMemo());
 		System.out.println(productDTO.getName());
@@ -40,6 +46,20 @@ public class ErpFoundationController {
 		System.out.println(productDTO.getStandard());
 		System.out.println(productDTO.getUse());
 		
+		try {
+			int result = productService.insert(productDTO);
+			
+			if(result > 0) {
+				model.addAttribute("message", "Success");
+			} else {
+				model.addAttribute("message", "Fail");
+			}
+			model.addAttribute("addr", "../../erp/foundation/product");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "common/result";
 	}
 	
 	@RequestMapping(value="product", method=RequestMethod.GET)

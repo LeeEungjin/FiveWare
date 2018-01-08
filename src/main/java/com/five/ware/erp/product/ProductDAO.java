@@ -18,6 +18,13 @@ public class ProductDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "productMapper.";
 	
+	public void selectOne() {
+		//////////////////////////
+	}
+	
+	public int insert(ProductDTO productDTO) {
+		return sqlSession.insert(NAMESPACE+"productInsert", productDTO);
+	}
 	
 	public int totalCount(RowNum rowNum) {
 		Map<String, Object> map = new HashMap<String, Object>();

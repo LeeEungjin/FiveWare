@@ -20,7 +20,15 @@ public class FileDAOTest extends AbstractTest {
 	
 	@Test
 	public void file() {
-		insert();
+		delete();
+	}
+	
+	public void delete() {
+		String code = "A049";
+		
+		int result = fileDAO.delete(code);
+		
+		assertTrue(result > 0);
 	}
 	
 	public void insert() {

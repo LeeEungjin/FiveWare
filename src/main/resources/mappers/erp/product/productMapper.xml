@@ -5,6 +5,15 @@
   
   <mapper namespace="productMapper">
   
+  	<select id="productOne" parameterType="java.lang.String" resultType="ProductDTO">
+  		select * from product where code=#{code}
+  	</select>
+  
+  	<insert id="productInsert" parameterType="ProductDTO">
+		insert into product values(
+			#{code}, #{name}, #{standard}, #{memo}, #{price}, #{use})  	
+  	</insert>
+  
   	<!-- TotalCount Start -->
   	<select id="totalCount" parameterType="java.util.Map" resultType="int">
   		select nvl(count(code),0) from product

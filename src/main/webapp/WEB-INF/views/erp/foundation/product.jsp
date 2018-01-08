@@ -11,11 +11,36 @@
 
 <link href="${url}/resources/css/erp/ej_erp.css" rel="stylesheet">
 <link href="${url}/resources/css/common/modal_boot.css" rel="stylesheet">
+<link>
 
 <title>Insert title here</title>
 
 <script type="text/javascript">
 	$(function() {
+		//Get the modal
+		var modal = document.getElementById('ej_modal');
+		var modalOne = document.getElementById('ej_modalOne');
+		
+		// Get the button that opens the modal
+		var btn = document.getElementById("ej_write_btn");
+		
+		// Get the <span> element that closes the modal
+		var close = document.getElementsByClassName("close");
+		
+		// When the user clicks the button, open the modal 
+		btn.addEventListener('click', function() {
+			modal.style.display = "block";
+		});
+		
+		// When the user clicks on <span> (x), close the modal
+		close[0].addEventListener('click', function() {
+			modal.style.display = "none";
+		});
+		
+		close[1].addEventListener('click', function() {
+			modalOne.style.display = "none";
+		});
+		
 		// write - code
 		$("#ej_write_btn").click(function() {
 			$.ajax({
@@ -34,7 +59,7 @@
 			var code = $(this).text();
 			$.ajax({
 	            data : {"code" : code},
-	            url : "//////////////////////////////",
+	            url : "./productOne",
 	            type : "get",
 	            success : function(data){
 	            	$("#code_update").val(data.code);
@@ -61,15 +86,6 @@
          	}); 
 		});
 		
-		// When the user clicks on <span> (x), close the modal
-		close[0].addEventListener('click', function() {
-			modal.style.display = "none";
-		});
-		
-		close[1].addEventListener('click', function() {
-			modalOne.style.display = "none";
-		});
-		
 		/////////////////////////////delete / use Stop////////////////////////////////////
 		$("#ej_modal_delete").click(function() {
 			var del = confirm("Are you sure you want to delete it?")
@@ -84,6 +100,15 @@
 			$("#ej_modalModify_frm").attr("action", "////////////////////////")
 			$("#ej_modalModify_frm").submit();
 		});
+		
+		
+		///////////////////////File Cancel/////////////////////////////////////
+		$(".ej_file_cancel").click(function() {
+			alert("test");
+			$("#ej_write_frm").attr("action", "../../ajax/fileDelete");
+			$("#ej_write_frm").submit();
+		});
+		
 		////////////////////////////////////Pager//////////////////////////////////
 		
 		$(".ej_list").click(function() {
@@ -94,7 +119,7 @@
 			document.ej_frm.submit();
 		});
 		
-		////////////////////////////////Drag And Drop//////////////////////////////////////
+		//////////////////////////File Upload//////////////////////////////////
 		var obj = $("#dropzone");
 
 	     obj.on('dragenter', function (e) {
@@ -114,10 +139,9 @@
 	          e.preventDefault();
 	     });
 
-	     obj.on('drop', '#dropzone', function (e) {
-	    	/*   e.stopPropagation();
+	     obj.on('drop', function (e) {
 	          e.preventDefault();
- */	          $(this).css('border', '2px dotted #8296C2');
+	          $(this).css('border', '2px dotted #8296C2');
 
 	          var files = e.originalEvent.dataTransfer.files;
 	          
@@ -125,25 +149,29 @@
 	          
 	          if(files.length < 1)
 	               return;
-
-	          F_FileMultiUpload(files, obj);
+	          
+	          var code = document.getElementById('code').value;
+	          
+	          F_FileMultiUpload(files, code);
 	     });
 	     
 	}); // Window Onload End
 	
-	function F_FileMultiUpload(files, obj) {
-	     if(confirm(files.length + "개의 파일을 업로드 하시겠습니까?") ) {
+	function F_FileMultiUpload(files, code) {
+		/*************** 이미지만 올릴 수 있도로고 처리!!!!!!! ******************/
+		if( files.length < 5 ) {
 	         var data = new FormData();
 	         for (var i = 0; i < files.length; i++) {
 	            data.append('file', files[i]);
 	         }
-
+	         
+	         data.append('code', code)
+	    
 	         var url = "../../ajax/drapAndDrop";
 	         $.ajax({
 	            url: url,
 	            method: 'post',
 	            data: data,
-	            //dataType: 'json',
 	            processData: false,
 	            contentType: false,
 	            success: function(data) {
@@ -156,7 +184,10 @@
 	            	alert("error");
 	            }
 	         });
-	     }
+		} else {
+			alert("4개까지 이미지를 업로드할 수 있습니다.");
+		}
+	    
 	}
 
 	// 파일 멀티 업로드 Callback
@@ -165,9 +196,10 @@
 	    alert(result);
 		for(var i=0; i < files.length; i++){
 		    var img = document.createElement('img');
-		    img.setAttribute("src", "${url}/resources/product/"+files[i]);
-		    img.setAttribute("width", "200px");
-		    img.setAttribute("height", "200px");
+		    img.setAttribute("src", "${pageContext.request.contextPath}/resources/product/"+files[i]);
+		    img.setAttribute("width", "20%");
+		    img.setAttribute("height", "150px");
+		    img.className = "img_margin";
 		    result.appendChild(img);
 		}
 	}
@@ -179,12 +211,20 @@
     {
         border:2px dotted #3292A2;
         width:100%;
-        height:200px;
+        height:50px;
         color:#92AAB0;
         text-align:center;
         font-size:24px;
-        padding:12px;
-        z-index: 999;
+        padding:10px;
+    }
+    #result {
+    	width: 100%;
+    	height: 150px;
+    }
+    
+    .img_margin {
+    	margin-left: 2.5%;
+    	margin-right: 2.5%;
     }
 </style>
 
@@ -346,7 +386,7 @@
 					    <tbody>
 						    <c:forEach items="${list}" var="dto">
 						    	<tr>
-						    		<td>${dto.code}</td>
+						    		<td><a class="ej_modalOne_btn">${dto.code}</a></td>
 						    		<td>${dto.name}</td>
 						    		<td>${dto.standard}</td>
 						    		<td>${dto.price}</td>
@@ -374,7 +414,7 @@
 					
 				<!-- 등록 버튼 -->
 				<div id="erp_jh_contents_bottom">
-					<button class="ej_right_btn btn" id="ej_write_btn" data-toggle="modal" data-target="#or_modal" data-backdrop="static" data-keyboard="false">신규등록</button>
+					<button class="ej_right_btn btn" id="ej_write_btn">신규등록</button>
 				</div>
 				<!-- 등록 버튼 끝 -->
 				
@@ -384,20 +424,21 @@
 </div>
 
 
+
 <!-- Modal -->
-<div class="modal fade" id="or_modal" role="dialog">
+<div id="ej_modal" class="modal">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
       
       	<!-- modal header -->
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <button type="button" class="close ej_file_cancel">&times;</button>
           <h4 class="modal-title">|제품 등록</h4>
         </div>
         <!-- modal header 끝-->
         
         <!-- modal contents -->
-       <form action="./productWrite" method="post" id="ej_write_frm">
+       <form action="./productWrite" method="post" id="ej_write_frm" enctype="multipart/form-data">
        <input type="hidden" name="use" value="true">
         <div class="modal-body">
         	<div class="input-group input-group_modal or_input-group_modal">
@@ -425,10 +466,14 @@
 			  <input id="memo" name="memo" type="text" class="form-control">
 			</div>
 			
-			<div class="input-group input-group_modal or_input-group_modal">
-			  <div id="dropzone">Drag And Drop Files Here</div> 
+			<div class="input-group input-group_modal or_input-group_modal_2">
+			  <div id="dropzone">Drag & Drop Files Here</div> 
+			</div>
+			
+			<div class="input-group input-group_modal or_input-group_modal_2">
 			  <div id="result"></div>
 			</div>
+			
 			
         </div>
         <!-- modal contents 끝-->
@@ -436,7 +481,7 @@
         <!-- modal footer -->
         <div class="modal-footer">
           <button type="submit" class="btn btn-default">등록</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default ej_file_cancel" data-dismiss="modal">Close</button>
         </div>
       </form>
       	<!-- modal footer 끝-->
@@ -462,7 +507,7 @@
 	  	<!-- Modal Contents -->
 	  	<div class="erp_ej_container">
 	  	
-	  
+	  	
 		</div>
 	  	<!-- Modal Contents End -->
 		  

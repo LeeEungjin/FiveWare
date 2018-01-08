@@ -31,6 +31,15 @@
 			modal.style.display = "block";
 		});
 		
+		// When the user clicks on <span> (x), close the modal
+		close[0].addEventListener('click', function() {
+			modal.style.display = "none";
+		});
+		
+		close[1].addEventListener('click', function() {
+			modalOne.style.display = "none";
+		});
+		
 		$(".ej_modalOne_btn").click(function() {
 			modalOne.style.display = "block";
 			
@@ -62,15 +71,6 @@
 	               alert("error");
 	            }
          	}); 
-		});
-		
-		// When the user clicks on <span> (x), close the modal
-		close[0].addEventListener('click', function() {
-			modal.style.display = "none";
-		});
-		
-		close[1].addEventListener('click', function() {
-			modalOne.style.display = "none";
 		});
 		
 		////////////////////////////////////////////////////////////////////

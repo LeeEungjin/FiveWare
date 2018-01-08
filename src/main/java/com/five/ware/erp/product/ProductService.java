@@ -18,6 +18,10 @@ public class ProductService {
 	private ProductDAO productDAO;
 
 	
+	public int insert(ProductDTO productDTO) throws Exception {
+		return productDAO.insert(productDTO);
+	}
+	
 	public ModelAndView selectList(ListData listData) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		

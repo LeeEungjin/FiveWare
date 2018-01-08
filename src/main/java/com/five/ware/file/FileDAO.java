@@ -13,6 +13,10 @@ public class FileDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE="fileMapper.";
 	
+	public int delete(String code) {
+		return sqlSession.delete(NAMESPACE+"fileDelete", code);
+	}
+	
 	public int insert(FileDTO fileDTO) {
 		return sqlSession.insert(NAMESPACE+"fileInsert", fileDTO);
 	}

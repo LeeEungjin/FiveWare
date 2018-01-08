@@ -18,9 +18,23 @@ public class ProductDAOTest extends AbstractTest {
 
 	@Test
 	public void test() {
-		totalCount();
+		insert();
 	}
 
+	
+	public void insert() {
+		ProductDTO productDTO = new ProductDTO();
+		productDTO.setCode("1");
+		productDTO.setMemo("memo");
+		productDTO.setName("name");
+		productDTO.setPrice("price");
+		productDTO.setStandard("standard");
+		productDTO.setUse("true");
+		
+		int result = productDAO.insert(productDTO);
+		
+		assertTrue(result > 0);
+	}
 	
 	public void totalCount() {
 		RowNum rowNum = new RowNum();
