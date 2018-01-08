@@ -10,25 +10,21 @@
 <c:import url="${url}/resources/temp/ref.jsp"></c:import> 
 
 <link href="${url}/resources/css/erp/ej_erp.css" rel="stylesheet">
-<link href="${url}/resources/css/common/modal.css" rel="stylesheet">
+<link href="${url}/resources/css/common/modal_boot.css" rel="stylesheet">
 
 <title>Insert title here</title>
 
 <script type="text/javascript">
 	$(function() {
-		//Get the modal
-		var modal = document.getElementById('ej_modal');
-		var modalOne = document.getElementById('ej_modalOne');
-		
-		// Get the button that opens the modal
-		var btn = document.getElementById("ej_write_btn");
-		
-		// Get the <span> element that closes the modal
-		var close = document.getElementsByClassName("close");
-		
-		// When the user clicks the button, open the modal 
-		btn.addEventListener('click', function() {
-			modal.style.display = "block";
+		// write - code
+		$("#ej_write_btn").click(function() {
+			$.ajax({
+				type:"GET",
+				url:"../../codeName",
+				success:function(data){
+					$("#code").val(data);
+				}
+			});
 		});
 		
 		// update - selectOne
@@ -88,9 +84,8 @@
 			$("#ej_modalModify_frm").attr("action", "////////////////////////")
 			$("#ej_modalModify_frm").submit();
 		});
-		///////////////////////////////////////////////////////////////////////
+		////////////////////////////////////Pager//////////////////////////////////
 		
-		/* 페이저 */
 		$(".ej_list").click(function() {
 			var cur = $(this).attr("title");
 			var s = '${pager.search}';
@@ -99,10 +94,99 @@
 			document.ej_frm.submit();
 		});
 		
-		
-	});
+		////////////////////////////////Drag And Drop//////////////////////////////////////
+		var obj = $("#dropzone");
+
+	     obj.on('dragenter', function (e) {
+	          e.stopPropagation();
+	          e.preventDefault();
+	          $(this).css('border', '2px solid #5272A0');
+	     });
+
+	     obj.on('dragleave', function (e) {
+	          e.stopPropagation();
+	          e.preventDefault();
+	          $(this).css('border', '2px dotted #8296C2');
+	     });
+
+	     obj.on('dragover', function (e) {
+	          e.stopPropagation();
+	          e.preventDefault();
+	     });
+
+	     obj.on('drop', '#dropzone', function (e) {
+	    	/*   e.stopPropagation();
+	          e.preventDefault();
+ */	          $(this).css('border', '2px dotted #8296C2');
+
+	          var files = e.originalEvent.dataTransfer.files;
+	          
+	          console.log(files);
+	          
+	          if(files.length < 1)
+	               return;
+
+	          F_FileMultiUpload(files, obj);
+	     });
+	     
+	}); // Window Onload End
+	
+	function F_FileMultiUpload(files, obj) {
+	     if(confirm(files.length + "개의 파일을 업로드 하시겠습니까?") ) {
+	         var data = new FormData();
+	         for (var i = 0; i < files.length; i++) {
+	            data.append('file', files[i]);
+	         }
+
+	         var url = "../../ajax/drapAndDrop";
+	         $.ajax({
+	            url: url,
+	            method: 'post',
+	            data: data,
+	            //dataType: 'json',
+	            processData: false,
+	            contentType: false,
+	            success: function(data) {
+	            	alert("success!!");
+	            	console.log(data);
+	            	F_FileMultiUpload_Callback(data);
+	            	
+	            },
+	            error: function() {
+	            	alert("error");
+	            }
+	         });
+	     }
+	}
+
+	// 파일 멀티 업로드 Callback
+	function F_FileMultiUpload_Callback(files) {
+	    var result = document.getElementById('result');
+	    alert(result);
+		for(var i=0; i < files.length; i++){
+		    var img = document.createElement('img');
+		    img.setAttribute("src", "${url}/resources/product/"+files[i]);
+		    img.setAttribute("width", "200px");
+		    img.setAttribute("height", "200px");
+		    result.appendChild(img);
+		}
+	}
 	
 </script>
+
+<style>
+    #dropzone
+    {
+        border:2px dotted #3292A2;
+        width:100%;
+        height:200px;
+        color:#92AAB0;
+        text-align:center;
+        font-size:24px;
+        padding:12px;
+        z-index: 999;
+    }
+</style>
 
 
 </head>
@@ -290,7 +374,7 @@
 					
 				<!-- 등록 버튼 -->
 				<div id="erp_jh_contents_bottom">
-					<button class="ej_right_btn btn" id="ej_write_btn">신규등록</button>
+					<button class="ej_right_btn btn" id="ej_write_btn" data-toggle="modal" data-target="#or_modal" data-backdrop="static" data-keyboard="false">신규등록</button>
 				</div>
 				<!-- 등록 버튼 끝 -->
 				
@@ -300,34 +384,66 @@
 </div>
 
 
-<!-- Modal Start -->
-<form id="ej-modal-form" action="###########################" method="POST">
-<div id="ej_modal" class="modal">
-
-  <!-- Modal content -->
-  <div id="modal-result" class="modal-content">
-	  <div class="modal-header">
-	    <span class="close">&times;</span>
-	    <h2>| 제품 등록</h2>
-	  </div>
-	  <div class="modal-body">
-	  
-	  	<!-- Modal Contents -->
-	  	<div class="erp_ej_container">
-	  	
-	  
-		</div>
-	  	<!-- Modal Contents End -->
-		  
-	  </div>
-	  <div class="modal-footer">
-	    <input type="submit" id="ej_modal_wirte" class="btn" value="등록">
-	  </div>
+<!-- Modal -->
+<div class="modal fade" id="or_modal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      
+      	<!-- modal header -->
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">|제품 등록</h4>
+        </div>
+        <!-- modal header 끝-->
+        
+        <!-- modal contents -->
+       <form action="./productWrite" method="post" id="ej_write_frm">
+       <input type="hidden" name="use" value="true">
+        <div class="modal-body">
+        	<div class="input-group input-group_modal or_input-group_modal">
+			  <span class="input-group-addon">품목코드</span>
+			  <input id="code" name="code" type="text" class="form-control" readonly="readonly">
+			</div>
+			
+			<div class="input-group input-group_modal or_input-group_modal">
+			  <span class="input-group-addon">품목명</span>
+			  <input id="name" name="name" type="text" class="form-control">
+			</div>
+			
+			<div class="input-group input-group_modal or_input-group_modal">
+			  <span class="input-group-addon">규격</span>
+			  <input id="standard" name="standard" type="text" class="form-control">
+			</div>
+			
+			<div class="input-group input-group_modal or_input-group_modal">
+			  <span class="input-group-addon">가격</span>
+			  <input id="price" name="price" type="text" class="form-control">
+			</div>
+			
+			<div class="input-group input-group_modal or_input-group_modal_2">
+			  <span class="input-group-addon">개요</span>
+			  <input id="memo" name="memo" type="text" class="form-control">
+			</div>
+			
+			<div class="input-group input-group_modal or_input-group_modal">
+			  <div id="dropzone">Drag And Drop Files Here</div> 
+			  <div id="result"></div>
+			</div>
+			
+        </div>
+        <!-- modal contents 끝-->
+        
+        <!-- modal footer -->
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-default">등록</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+      	<!-- modal footer 끝-->
+      </div>
+    </div>
   </div>
-
-</div>
-</form>
-<!-- Modal End -->
+<!-- Modal 끝 -->
 
 
 <!-- Modal update/delete Start -->

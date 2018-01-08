@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.five.ware.erp.product.ProductDTO;
 import com.five.ware.erp.product.ProductService;
 import com.five.ware.erp.supplier.SupplierDTO;
 import com.five.ware.erp.supplier.SupplierService;
@@ -29,6 +30,17 @@ public class ErpFoundationController {
 	
 	
 	/* Product Start */
+	
+	@RequestMapping(value="productWrite", method=RequestMethod.POST)
+	public void productWrite(ProductDTO productDTO) {
+		System.out.println(productDTO.getCode());
+		System.out.println(productDTO.getMemo());
+		System.out.println(productDTO.getName());
+		System.out.println(productDTO.getPrice());
+		System.out.println(productDTO.getStandard());
+		System.out.println(productDTO.getUse());
+		
+	}
 	
 	@RequestMapping(value="product", method=RequestMethod.GET)
 	public ModelAndView productList(ListData listData) {
