@@ -50,7 +50,7 @@
   	
   	
   	<!-- totalCount Start -->
-  	<select id="totalCount" resultType="int">
+  	<select id="totalCount" parameterType="java.util.Map" resultType="int">
 		select nvl(count(code), 0) from supplier
 		where classification like '%'||#{search1}||'%' and name like '%'||#{search2}||'%'
   	</select>

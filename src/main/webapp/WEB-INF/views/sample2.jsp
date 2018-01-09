@@ -15,7 +15,6 @@
 <body>
 <c:import url="${url}/resources/temp/headerExample.jsp"></c:import> 
 
-
 <div id="fw_container">
 	<!-- submenu -->
 	<div id="fw_subcontainer">

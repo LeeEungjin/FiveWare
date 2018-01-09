@@ -1,4 +1,11 @@
-package com.five.ware.product;
+package com.five.ware.erp.product;
+
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import com.five.ware.file.FileDTO;
+
 
 public class ProductDTO {
 	private String code;
