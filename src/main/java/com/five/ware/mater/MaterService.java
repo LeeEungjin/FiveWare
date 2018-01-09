@@ -5,8 +5,10 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
 
+@Transactional
 @Service
 public class MaterService {
 	
@@ -15,6 +17,12 @@ public class MaterService {
 	
 	public int insert(MaterDTO materDTO)throws Exception{
 		int result=materDAO.insert(materDTO);
+		
+		return result;
+	}
+	
+	public int insert(MaterOrderReigstDTO materOrderReigstDTO)throws Exception{
+		int result=materDAO.insert(materOrderReigstDTO);
 		
 		return result;
 	}
@@ -55,6 +63,12 @@ public class MaterService {
 		return materDTO;
 	}
 	
+	public List<MaterOrderReigstDTO> orderView(String materCode)throws Exception{
+		List<MaterOrderReigstDTO> ar=materDAO.orderView(materCode);
+
+		return ar;
+	}
+	
 	public int update(MaterDTO materDTO)throws Exception{
 		int result=materDAO.update(materDTO);
 		
@@ -63,7 +77,7 @@ public class MaterService {
 	
 	public int delete(String materCode)throws Exception{
 		int result=materDAO.delete(materCode);
-		
+			result=materDAO.orderProductDelete(materCode);
 		return result;
 	}
 

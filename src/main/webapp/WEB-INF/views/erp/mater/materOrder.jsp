@@ -17,13 +17,13 @@
 	</thead>
 								    
 	<tbody>
-		<c:forEach items="${ar}" var="ar"> 
+		<c:forEach items="${materOrderList}" var="ar" varStatus="i"> 
 			<tr>
-				<td><input class="materCheck" type="checkbox"></td>
-				<td>${ar.orderCode}</td>
-				<td>${ar.orderProductDTO.code}</td>
-				<td>${ar.orderProductDTO.amount}</td>
-				<td>${ar.orderProductDTO.price}</td>
+				<td><input id="${i.index}" title="${i.index}" class="materCheck" type="checkbox"></td>
+				<td><input id="order${i.index}" class="disable" type="hidden" value="${ar.orderCode}" name="orderCode" disabled="disabled">${ar.orderCode}</td>
+				<td><input id="code${i.index}" class="disable" type="hidden" value="${ar.code}" name="code" disabled="disabled">${ar.code}</td>
+				<td>${ar.amount}</td>
+				<td>${ar.price}</td>
 				<td>${ar.contractDate}</td>
 				<td>${ar.account}</td>
 				<td>${ar.storageName}</td>

@@ -9,9 +9,13 @@
   <insert id="insert" parameterType="com.five.ware.mater.MaterDTO">
   	insert into mater values(#{materCode}, #{materDate}, #{temp}, #{name}, #{materMemo}, #{materKind})
   </insert>
- 
+  
+  <insert id="materOrderInsert" parameterType="com.five.ware.mater.MaterOrderReigstDTO">
+  	insert into materorderregist values(#{materCode}, #{orderCode}, #{code})
+  </insert> 
+  
   <select id="selectList" parameterType="String" resultType="com.five.ware.mater.MaterDTO">
-  	select * from mater where materkind=#{materKind}
+  	select * from mater where materkind=#{materKind} order by materCode desc
   </select>
   
   
@@ -31,6 +35,10 @@
   	select * from mater where matercode=#{materCode}
   </select>
   
+  <select id="orderView" parameterType="String" resultType="com.five.ware.mater.MaterOrderReigstDTO">
+  	select * from materorderregist where matercode=#{materCode}
+  </select>
+  
   <update id="update" parameterType="com.five.ware.mater.MaterDTO">
   	update mater set
   	materdate=#{materDate},
@@ -41,6 +49,10 @@
   <delete id="delete" parameterType="String">
   	delete mater where matercode=#{materCode}
   </delete>
+  
+  <delete id="orderProductDelete" parameterType="String">
+  	delete materorderregist where matercode=#{materCode}
+  </delete>  
   
   <resultMap type="com.five.ware.mater.MaterOrderDTO" id="materOrderResult">
   	<result property="orderCode" column="orderCode"/>
@@ -64,8 +76,8 @@
   	
   </resultMap>
   
-  <select id="materOrder" resultMap="materOrderResult">
-  	select *
+  <select id="materOrder" resultType="com.five.ware.mater.MaterOrderDTO">
+  	select P.ordercode, P.code, P.amount, P.price, R.CONTRACTDATE, R.account, R.storagename
 	from orderproduct P, orderregist R
 	where P.ordercode = R.ordercode
   </select>

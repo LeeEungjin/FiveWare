@@ -5,8 +5,7 @@ import java.util.List;
 import com.five.ware.order.OrderProductDTO;
 
 
-public class MaterOrderDTO{
-	private String orderCode;
+public class MaterOrderDTO extends OrderProductDTO{
 	private String contractDate;
 	private String temp;
 	private String name;
@@ -17,18 +16,6 @@ public class MaterOrderDTO{
 	private String deadline;
 	private String storageName;
 	private String orderMemo;
-
-	private OrderProductDTO orderProductDTO;
-	
-	
-
-	public String getOrderCode() {
-		return orderCode;
-	}
-
-	public void setOrderCode(String orderCode) {
-		this.orderCode = orderCode;
-	}
 
 	public String getContractDate() {
 		return contractDate;
@@ -110,13 +97,6 @@ public class MaterOrderDTO{
 		this.orderMemo = orderMemo;
 	}
 
-	public OrderProductDTO getOrderProductDTO() {
-		return orderProductDTO;
-	}
-
-	public void setOrderProductDTO(OrderProductDTO orderProductDTO) {
-		this.orderProductDTO = orderProductDTO;
-	}
 	
 	
 }

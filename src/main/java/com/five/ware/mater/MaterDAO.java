@@ -20,6 +20,10 @@ public class MaterDAO {
 		return sqlSession.insert(namespace+"insert", materDTO);
 	}
 	
+	public int insert(MaterOrderReigstDTO materOrderReigstDTO)throws Exception{
+		return sqlSession.insert(namespace+"materOrderInsert", materOrderReigstDTO);
+	}
+	
 	public List<MaterDTO> selectList(String materKind)throws Exception{
 		return sqlSession.selectList(namespace+"selectList", materKind);
 	}
@@ -50,11 +54,19 @@ public class MaterDAO {
 		return sqlSession.selectOne(namespace+"selectOne", materCode);
 	}
 	
+	public List<MaterOrderReigstDTO> orderView(String materCode)throws Exception{
+		return sqlSession.selectList(namespace+"orderView", materCode);
+	}
+	
 	public int update(MaterDTO materDTO)throws Exception{
 		return sqlSession.update(namespace+"update", materDTO);
 	}
 	
 	public int delete(String materCode)throws Exception{
 		return sqlSession.delete(namespace+"delete", materCode);
+	}
+	
+	public int orderProductDelete(String materCode)throws Exception{
+		return sqlSession.delete(namespace+"orderProductDelete", materCode);
 	}
 }
