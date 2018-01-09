@@ -376,6 +376,7 @@
 					<div id="erp_jh_contents_bottom">
 						<button id="mr_checkDelete">선택삭제</button>
 						<button id="mr_insert" class="modal_btn" data-toggle="modal" data-target="#jh_mr_Modal">신규등록</button>
+						
 					</div>
 				<!-- 등록 버튼 끝 -->
 				
