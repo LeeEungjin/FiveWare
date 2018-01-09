@@ -109,7 +109,7 @@
 					</div>
 
 					<div id="notice_icon">
-						<i class="fa fa-bullhorn" style="font-size:48px;color:red"></i>
+						<i class="fa fa-bullhorn" style="font-size:48px;color:#CE3636"></i>
 					</div>
 					
 					<div id="notice_text">
