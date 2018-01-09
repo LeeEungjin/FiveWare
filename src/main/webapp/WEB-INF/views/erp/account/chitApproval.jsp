@@ -260,7 +260,7 @@
 							        <td>${dto.debtor}</td>
 							        <td>${dto.approval}</td>		
 							        <td>
-							        	<input type="button" value="상세보기" title="${dto.code}" class="eb_view" data-toggle="modal" data-target="#eb_view_modal">
+							        	<input type="button" value="상세보기" title="${dto.code}" class="eb_view w3-button w3-black" data-toggle="modal" data-target="#eb_view_modal">
 							        </td>
 							     
 							     </c:forEach>
@@ -351,16 +351,7 @@
 						  
 						  
 				<!-- page 처리 끝 -->		  
-				
-				
-						
-						  <input type="button" value="승인취소">
-					  
-					      
-			 
-			 
-			 
-			
+		
 		</div>
 	</div>
    </div>

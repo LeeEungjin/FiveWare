@@ -12,14 +12,18 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-
+<script type="text/javascript">
+	$(function(){
+		$('[data-toggle="tooltip"]').tooltip();   
+	})
+</script>
 <body>
 
 	<div id="login_after_wrap">
 		<div id="lofin_after_header">
 			 <div id="lang_wrap">
 				<div id="lang_icon">
-					<i class="fa fa-globe" style="font-size:48px"></i>
+					<i class="fa fa-globe" style="font-size:35px"></i>
 				</div>
 				<div id="lang_eng" class=" w3-round-xxlarge ">
 					<p id="lang_p">English</p>
@@ -29,7 +33,7 @@
 				</div>    
 			</div> 
 			
-			 <div id="menu_wrap">
+			 <!-- <div id="menu_wrap">
 				 <nav class="navbar navbar-default">
 				  <div class="container-fluid">
 				    <div class="navbar-header">
@@ -37,13 +41,13 @@
 				    </div>
 				    <ul class="nav navbar-nav">
 				      <li id="erp_menu"><a href="#">ERP</a></li>
-				      <li><a href="#">GroupWare</a></li>
-				      <li><a href="#">SRM</a></li>
+				      <li id="groupware_menu"><a href="#">GroupWare</a></li>
+				      <li id="srm_menu"><a href="#">SRM</a></li>
 				    </ul>
 				  </div>
 				</nav> 
 			</div> 
-			
+			 -->
 			<div id="search_wrap">
 				<button id="logout_btn" type="button" class="btn btn-default btn-l">
 		          <span class="glyphicon glyphicon-log-out"></span> Log out
@@ -57,8 +61,10 @@
 			<div id="info_wrap">
 				<div id="pro_info">
 					<div id="pro_info_1">
-						<div id="pro_img"></div>
-						<p id="name_p">Member</p>
+						<div id="pro_img">
+							<img src="${pageContext.request.contextPath}/resources/images/sidebar/avatar82.png" class="eb_default_img">
+						<p id="name_p">이응진 님</p>
+						</div>
 					</div>
 					<div id="pro_info_2">
 						<i class="fa fa-bell-o" style="font-size:36px">new</i>
@@ -68,16 +74,33 @@
 				<div id="sche_info">
 					<i class="fa fa-calendar" style="font-size:36px">Calendar</i>
 				</div>
+				
+			<div class="eb_line"></div>
+				
 				<div id="sche_add">
-					<i class="fa fa-calendar-plus-o" style="font-size:36px">Today Scheduler</i>
+					<i class="fa fa-calendar-plus-o" style="font-size:36px; padding-top:10px;"></i>
+					<p id="sche_p">오늘의 일정을 등록해보세요.</p>
 				</div>
 				<div id="quick_menu">
-					<i class="fa fa-star" style="font-size:36px">Direct Menu</i>
-					<i class="fa fa-cog" style="font-size:24px"></i>
+					<p id="quick_p">바로가기
+					<a href="#" data-toggle="tooltip" title="바로가기 설정">
+					<i class="fa fa-cog" style="font-size:20px; color : gray;"></i>
+					</a>
+						</p>
+					
+				
+					
+					<div id="quick_menu_box"></div>
 				</div>
+				
+				
 				<div id="often_call">
-					<i class="fa fa-address-book-o" style="font-size:36px">Call</i>
-					<i class="fa fa-cog" style="font-size:24px"></i>
+					<p id="quick_p">자주 연락하는 사람들
+						<a href="#" data-toggle="tooltip" title="목록 설정">
+						<i class="fa fa-cog" style="font-size:20px; 
+						color : gray;"></i>
+						</a>
+					</p>
 				</div>				
 			</div>
 			
@@ -88,23 +111,23 @@
 					</div>
 
 					<div id="notice_icon">
-						<i class="fa fa-bullhorn" style="font-size:48px;color:red"></i>
+						<i class="fa fa-bullhorn" style="font-size:48px;color: #CE3636"></i>
 					</div>
 					
 					<div id="notice_text">
-						<p id="notice_text_p">Notice Random slidShow</p>
+						<p id="notice_text_p">Notice Random slidShow~~~</p>
 					</div>
 					
 					<div id="weather_div">
-						<i class="fa fa-cloud" style="font-size:36px">Weather</i>
+						<i class="fa fa-cloud weather_div_p" style="font-size:36px">Weather</i>
 					</div>
 					
 					<div id="skin_icon">
-						<i class="fa fa-desktop" style="font-size:36px"></i>
+						<i class="fa fa-desktop weather_div_p" style="font-size:36px"></i>
 					</div>
 					
 					<div id="edit_icon">
-						<i class="fa fa-cog" style="font-size:36px;"></i>
+						<i class="fa fa-cog weather_div_p" style="font-size:36px;"></i>
 					</div>
 				</div>
 				
@@ -120,22 +143,20 @@
 	                     
 	                     <a href="./erp/storeRegist">
 	                        <span class="erp_jk_smalldiv">
-	                           <span class="erp_jk_writing">기초정보</span>
+	                           <span class="erp_jk_writing">기초 정보</span>
+	                       
 	                        </span>
 	                     </a> 
 	                     
-	                     <a href="#">
+	                     <a href="./erp/chit">
 	                        <span class="erp_jk_smalldiv">
-	                           <span class="erp_jk_writing">전표입력</span>
+	                           <span class="erp_jk_writing">전표 관리</span>
+	                           
 	                        </span>
 	                     </a> 
-	                     
-	                     <a href="#">
-	                        <span class="erp_jk_smalldiv">
-	                           <span class="erp_jk_writing">결산</span>
-	                        </span>
-	                     </a>
+	                   
 	                  </div>
+	                  
 	                  <div class="erp_jk_erp">
 	                     
 	                     <a href="#">
@@ -147,6 +168,8 @@
 	                     <a href="#">
 	                        <span class="erp_jk_smalldiv">
 	                           <span class="erp_jk_writing">기초정보</span>
+	                         
+	                           
 	                        </span>
 	                     </a> 
 	                     
@@ -185,6 +208,7 @@
 	                     <a href="#">
 	                        <span class="erp_jk_smalldiv">
 	                           <span class="erp_jk_writing">기초정보</span>
+	                    
 	                        </span>
 	                     </a> 
 	                     

@@ -8,40 +8,38 @@
 #login_after_wrap{
 	width: 100%;
 	height: 100%;
-	background-color: pink;
 }
 
 #lofin_after_header{
 	width: 100%;
 	height: 5%;
-	background-color: gray;
+	background-color: #282828;
 }
 
 #lang_wrap{
 	width: 15%;
 	height: 100%;
-	background-color: yellow;
 	float: left;
 }
 
 #lang_icon{
 	width: 20%;
 	height: 100%;
-	background-color: pink;
 	float: left;
+	color:white;
 }
 
 #lang_eng{
 	width: 35%;
     height: 100%;
-    background-color: green;
+ 	color : white;
     float: left;
 }
 
 #lang_kor{
 	width: 35%;
     height: 100%;
-    background-color: green;
+	color : white;
     float: left;
 }
 
@@ -61,158 +59,186 @@
 #search_wrap{
 	width: 15%;
 	height: 100%;
-	background-color: blue;
 	float: right;
+}
+#logout_btn{
+	height: 100%;
+	width: 40%;
+	margin-left: 55%;
 }
 
 #login_after_middle{
 	width: 100%;
 	height: 90%;
-	background-color: beige;
 }
 
 #info_wrap{
 	width: 20%;
 	height: 100%;
-	background-color: #e0e092;
 	float: left;
 }
 
 #pro_info{
 	width: 100%;
 	height: 15%;
-	background-color: #8000ff;
 }
 
 #pro_info_1{
 	width: 50%;
 	height: 100%;
-	background-color: #ff80c0;
 	float: left;
 }
 
 #pro_img{
 	width: 60%;
-	height: 70%;
-	background-color: #c0c0c0;
+	height: 60%;
 	border-radius: 50%;
 	float: left;
 	margin-left: 20%;
 	margin-top: 4%;
 }
+.eb_default_img{
+	width: 60px;
+	height: 60px;
+}
 
 #name_p{
-	font-size: 25px;
-	    margin-left: 26%;
+	font-size: 13px;
+	
+}
+
+#sche_p{
+	margin-left: 20%;
+	color : gray;
+}
+
+#quick_p{
+	color : #CE3636;
+	font-size: 15px;
+	font-weight: bold;
+	padding-left: 5px;
+}
+
+#quick_menu_box{
+	width: 80%;
+	height: 40%;
+	background-color: #E6E6E6;
+	margin: 0 auto;
+}
+.eb_line{
+	width: 95%;
+	margin : 0 auto;
+	border-bottom: 1px solid #D5D5D5;
 }
 
 #pro_info_2{
 	width: 50%;
 	float: right;
-	background-color: #ff80ff;
 	height: 100%;
 }
 
 #alert_menu{
 	width: 100%;
 	height: 68%;
-	background-color: #80ffff;
 }
 
 #sche_info{
 	width: 100%;
 	height: 25%;
-	background-color: #800080;
+	background-color: #F6F6F6;
 }
 
 #sche_add{
 	width: 100%;
 	height: 15%;
-	background-color: #8080ff;
+	background-color: #F6F6F6;
 }
 
 #quick_menu{
 	width: 100%;
 	height: 20%;
-	background-color: #0080ff;
+	background-color: #F6F6F6;
 }
 
 #often_call{
 	width: 100%;
 	height: 25%;
-	background-color: #8080c0;
+	background-color: #F6F6F6;
 }
+
+
 
 #contents_wrap{
 	width: 80%;
     height: 100%;
-    background-color: #c8c83e;
+    background-color: #F6F6F6;
     float: right;
 }
 
 #notice_wrap{
 	width: 100%;
 	height: 10%;
-	background-color: red;
 }
 
 #notice_title{
-	width: 10%;
+	width: 8%;
 	height: 100%;
-	background-color: #804040;
 	float: left;
 }
 
 #notice_title_p{
+	margin-top : 5px;
 	font-size: 40px;
+	color:#CE3636;
 }
 
 #notice_icon{
 	width: 5%;
 	height: 100%;
-	background-color: #e0c0c0;
 	float: left;
 }
 
 #notice_text{
 	width: 55%;
 	height: 100%;
-	background-color: #b9b9ff;
+	margin-top: 15px;
+	font-size:20px;
 	float: left;
 }
 
 #weather_div{
 	width: 20%;
 	height: 100%;
-	background-color: #408080;
 	float: left;
+}
+.weather_div_p{
+	padding-top: 15px;
 }
 
 #skin_icon{
 	width: 5%;
 	height: 100%;
-	background-color: #ffdb97;
 	float: left;
 }
 
 #edit_icon{
 	width: 5%;
 	height: 100%;
-	background-color: #f29d00;
 	float: left;
-}
-
-#submenu_wrap{
-	width: 100%;
-	height: 90%;
-	background-color: orange;
 }
 
 #login_after_footer{
 	width: 100%;
 	height: 5%;
-	background-color: gray;
+	background-color: #282828;
 }
+
+#submenu_wrap{
+	width: 100%;
+	height: 90%;
+	background-color: #E6E6E6;
+}
+
 
 .fa{
 	margin-left: 3% !important;
@@ -228,21 +254,25 @@
 .srm_jk_srm {
    width: 18%;
    height: 90%;
-   background-color: green;
+   background-color: #F6F6F6;
    float: left;
    margin-right: 2%;
+    border-radius : 15px;
 }
 
 .srm_jk_inerp {
+   border-top-left-radius : 15px;
+   border-top-right-radius : 15px;		
    width: 100%;
-   height: 38%;
-   background-color: blue;
+   height: 22%;
+   background-color: #282828;
 }
 
 .srm_jk_bigdiv {
-   font-size: 50px;
+   font-size: 25px;
    text-align: center;
-   padding-top: 40%;
+   padding-top: 45px;
+   color : white;
 }
 
 .srm_jk_store {
@@ -251,11 +281,11 @@
 
 .srm_jk_smalldiv {
    width: 42%;
-   height: 15%;
-   background-color: red;
+   height: 23%;
+   background-color: white;
    float: left;
-   margin-left: 5%;
-   margin-top: 10%;
+   margin-left: 10px;
+   margin-top: 15px;
 }
 
 .srm_jk_writing {
