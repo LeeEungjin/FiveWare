@@ -171,64 +171,6 @@
 				}
 			});
 		});
-		
-		/* var fileInput=$("#mr_fileInput");
-		var fileZone=$("#mr_img_div");
-		var submit=$("#mr_imgBtn");
-		var fileList=[];
-		
-		$fileInput.on("change", function(){
-			var file=$(this)[0].files;
-			
-			for(var i=0; i<img.length; i++){
-				 fileList.push(file[i]);
-				 fileZone.append("<p>file name : " + file[i].name + 
-                         " file size : " + file[i].size + "bytes</p>");
-			}
-		});
-		
-		$fileZone.on("dragover dragenter dragleave", function(event){
-	            event.stopPropagation();
-	            event.preventDefault();
-	            return false;
-	        }, false);
-		});
-		
-		$fileZone.on("drop", function(event){
-            event.stopPropagation();
-            event.preventDefault();
-            
-            $fileZone.css({border : "2px solid red"});
-            
-            var file = event.originalEvent.dataTransfer.files[0];
-            console.log("filename : " + file.name);
-            fileList.push(file);
-            $fileZone.append("<p>file name : " + file.name + 
-                             " file size : " + file.size + "bytes</p>");
-        });
-		
-		$submit.click(function(){
-			var formData=new FormData();
-			var code=$("#menuCode").val();
-			
-			for(var i=0; i<fileList.length; i++){
-				formDate.append("files", fileList[i]);
-			}
-			
-			$.ajax({
-				method : "POST",
-                url : "./dragandrop",
-                processData : false,
-                contentType : false,
-                data : {formData : formData,
-                		code : code,
-                		filename : file.name,
-                		oriname : file.name
-                },success : function(){
-                    alert("success");
-                }
-			});
-		});  */
 	});
 </script>
 
@@ -297,8 +239,25 @@
          </div>
          
          <!-- ----------4---------- -->
-         <div class="fw_menu"  >
+         <div class="fw_menu" data-toggle="collapse" data-target="#sub4" title="sub4" >
                	조회
+            <div class="fw_arrow sub4">
+               	∨
+            </div>
+         </div>
+         
+         <div class="fw_subsub collapse"  id="sub4">
+            <ul>
+               <li>거래처 조회</li>
+               <li>제품 조회</li>
+               <li>메뉴 조회</li>
+               <li>창고 조회</li>
+               <li>주문 조회</li>
+               <li>입고 조회</li>
+               <li>출고 조회</li>
+               <li>반품 조회</li>
+               <li>불출 조회</li>
+            </ul>
          </div>
          
       <!-- submenu menu end -->
