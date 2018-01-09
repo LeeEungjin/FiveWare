@@ -79,7 +79,7 @@ public class AjaxController {
 			try {
 				fileName = fileSaver.fileSave(multipartFile, session, "product");
 				FileDTO fileDTO = new FileDTO();
-				//fileDTO.setFnum() get fnum
+				fileDTO.setFnum(fileDAO.getFnum());
 				fileDTO.setCode(code);
 				fileDTO.setFilename(fileName);
 				fileDTO.setOriname(multipartFile.getOriginalFilename());

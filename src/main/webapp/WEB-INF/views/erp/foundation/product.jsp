@@ -215,18 +215,20 @@
 		    alert(files[i].fnum);
 		    img.className = "img_margin ej_img_btn";
 		    img.onclick = function() {
-		    	var temp = this;
-		    	console.log(temp);
-				var fnum = this.getAttribute('title');
-				
-				$.ajax({
-					url: '../../ajax/fileDeleteOne',
-					data: {'fnum': fnum},
-					success:function(result) {
-						alert("삭제되었습니다.");
-						temp.remove();
-					}
-				});
+		    	if(confirm("삭제하시겠습니까?") == true) {
+			    	var temp = this;
+			    	console.log(temp);
+					var fnum = this.getAttribute('title');
+					
+					$.ajax({
+						url: '../../ajax/fileDeleteOne',
+						data: {'fnum': fnum},
+						success:function(result) {
+							alert("삭제되었습니다.");
+							temp.remove();
+						}
+					});
+		    	}
 		    };
 		    result.appendChild(img);
 		    

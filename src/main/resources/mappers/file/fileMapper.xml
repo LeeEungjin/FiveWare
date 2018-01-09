@@ -5,6 +5,9 @@
   
   <mapper namespace="fileMapper">
   
+  	<select id="getFnum" resultType="int">
+  		select file_seq.nextval from dual
+  	</select>
   
   	<delete id="fileDeleteOne" parameterType="int">
   		delete from fivefile where fnum=#{fnum}
@@ -19,9 +22,6 @@
   	</delete>
   
   	<insert id="fileInsert" parameterType="FileDTO">
-  		<selectKey keyProperty="fnum" resultType="int" order="BEFORE">
-  			select file_seq.nextval from dual
-  		</selectKey>
   		insert into fivefile values(#{fnum}, #{code}, #{filename}, #{oriname})
   	</insert>
   	

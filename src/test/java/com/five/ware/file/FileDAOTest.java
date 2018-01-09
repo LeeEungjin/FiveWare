@@ -23,11 +23,16 @@ public class FileDAOTest extends AbstractTest {
 	@Test
 	public void file() {
 		try {
-			deleteOne();
+			getFnum();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void getFnum() throws Exception {
+		int result = fileDAO.getFnum();
+		System.out.println(result);
 	}
 	
 	public void deleteOne() throws Exception {

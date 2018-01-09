@@ -16,6 +16,10 @@ public class FileDAO {
 	private final String NAMESPACE="fileMapper.";
 	
 	
+	public int getFnum() throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getFnum");
+	}
+	
 	public int deleteOne(int fnum) throws Exception {
 		return sqlSession.delete(NAMESPACE+"fileDeleteOne", fnum);
 	}
