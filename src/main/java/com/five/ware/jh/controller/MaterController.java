@@ -15,6 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.five.ware.mater.MaterDTO;
+import com.five.ware.mater.MaterOrderDTO;
+import com.five.ware.mater.MaterOrderReigstDTO;
 import com.five.ware.mater.MaterService;
 
 @Controller
@@ -51,6 +53,22 @@ public class MaterController {
 		return mv;
 	}
 	
+	@RequestMapping(value="materOrder")
+	public ModelAndView materOrder(){
+		ModelAndView mv=new ModelAndView();
+
+		try {
+			mv.addObject("materOrderList", materService.materOrder());
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mv.setViewName("erp/mater/materOrder");
+		
+		return mv;
+	}
+	
 	@RequestMapping(value="materSupList")
 	@ResponseBody
 	public List<String> materSupList(){
@@ -79,36 +97,50 @@ public class MaterController {
 		return ar;
 	}
 	
-	@RequestMapping(value="materWrite", method=RequestMethod.POST)
-	public String materRegist(MaterDTO materDTO, RedirectAttributes rd){
+	@RequestMapping(value="materWrite", method=RequestMethod.GET)
+	public String materRegist(MaterDTO materDTO, String [] orderCode, String [] code, RedirectAttributes rd){
 		int result=0;
 		String message="Fail";
+		String materCode=materDTO.getMaterCode();
+		MaterOrderReigstDTO materOrderReigstDTO=new MaterOrderReigstDTO();
 		
 		try {
 			result=materService.insert(materDTO);
 			if(result>0){
 				message="Success";
 			}
+		
+		for(int i=0; i<orderCode.length; i++){
+			materOrderReigstDTO.setMaterCode(materCode);
+			materOrderReigstDTO.setOrderCode(orderCode[i]);
+			materOrderReigstDTO.setCode(code[i]);
+
+			result=materService.insert(materOrderReigstDTO);
+		}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		rd.addFlashAttribute("message", message);
 		
 		return "redirect:./materRegist?materKind="+materDTO.getMaterKind();
 	}
 	
 	@RequestMapping(value="materView", method=RequestMethod.GET)
-	@ResponseBody
-	public MaterDTO selectOne(Model model, String materCode){
-		MaterDTO materDTO=null;
+	public ModelAndView selectOne(Model model, String materCode){
+		ModelAndView mv=new ModelAndView();
 		
 		try {
-			materDTO = materService.selectOne(materCode);
+			mv.addObject("materDTO", materService.selectOne(materCode));
+			mv.addObject("orderView", materService.orderView(materCode));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return materDTO;
+		mv.setViewName("erp/mater/materView");
+		
+		return mv;
 	}
 	
 	@RequestMapping(value="materUpdate", method=RequestMethod.POST)
@@ -133,10 +165,10 @@ public class MaterController {
 	
 	
 	@RequestMapping(value="materDelete")
-	public String delete(String materCode, RedirectAttributes rd){
+	public String delete(String materCode, String materKind, RedirectAttributes rd){
 		String message="Fail";
 		int result=0;
-		
+
 		try {
 			result=materService.delete(materCode);
 			
@@ -149,7 +181,7 @@ public class MaterController {
 		
 		rd.addFlashAttribute("message", message);
 		
-		return "redirect:./materRegist";
+		return "redirect:./materRegist?materKind="+materKind;
 	}
 	
 }

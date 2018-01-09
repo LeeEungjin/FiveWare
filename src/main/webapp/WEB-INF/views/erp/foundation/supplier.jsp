@@ -9,7 +9,8 @@
 <c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 <c:import url="${url}/resources/temp/ref.jsp"></c:import> 
 
-<link href="${url}/resources/css/erp/supplier.css" rel="stylesheet">
+<link href="${url}/resources/css/erp/ej_erp.css" rel="stylesheet">
+<link href="${url}/resources/css/common/modal.css" rel="stylesheet">
 
 <title>Insert title here</title>
 
@@ -28,6 +29,15 @@
 		// When the user clicks the button, open the modal 
 		btn.addEventListener('click', function() {
 			modal.style.display = "block";
+		});
+		
+		// When the user clicks on <span> (x), close the modal
+		close[0].addEventListener('click', function() {
+			modal.style.display = "none";
+		});
+		
+		close[1].addEventListener('click', function() {
+			modalOne.style.display = "none";
 		});
 		
 		$(".ej_modalOne_btn").click(function() {
@@ -61,15 +71,6 @@
 	               alert("error");
 	            }
          	}); 
-		});
-		
-		// When the user clicks on <span> (x), close the modal
-		close[0].addEventListener('click', function() {
-			modal.style.display = "none";
-		});
-		
-		close[1].addEventListener('click', function() {
-			modalOne.style.display = "none";
 		});
 		
 		////////////////////////////////////////////////////////////////////
@@ -112,157 +113,6 @@
 	}
 
 </script>
-
-<style type="text/css">
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content */
-.modal-content {
-    position: relative;
-    background-color: #fff;
-    margin: auto;
-    padding: 0;
-    border: 1px solid #888;
-    width: 50%;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
-    animation-name: animatetop;
-    animation-duration: 0.4s
-}
-
-/* Add Animation */
-@-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0} 
-    to {top:0; opacity:1}
-}
-
-@keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
-}
-
-/* The Close Button */
-.close {
-    color: black;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.modal-header {
-    padding: 2px 16px;
-    background-color: #fff;
-    color: black;
-}
-
-.modal-body {padding: 2px 16px;}
-
-.modal-footer {
-    padding: 2px 16px;
-    background-color: #fff;
-    color: black;
-}
-</style>
-
-<style type="text/css">
-	* {
-	    box-sizing: border-box;
-	}
-	
-	.erp_ej_inputText{
-	    width: 100%;
-	    padding: 12px;
-	    border: 1px solid #ccc;
-	    border-radius: 4px;
-	    box-sizing: border-box;
-	    resize: vertical;
-	}
-	
-	.erp_ej_label {
-	    padding: 12px 12px 12px 0;
-	    display: inline-block;
-	}
-	
-	.erp_ej_btn {
-	    background-color: #4CAF50;
-	    color: white;
-	    padding: 12px 20px;
-	    border: none;
-	    border-radius: 4px;
-	    cursor: pointer;
-	    float: right;
-	}
-	
-	.erp_ej_btn:hover {
-	    background-color: #45a049;
-	}
-	
-	.erp_ej_container {
-	    border-radius: 5px;
-	    background-color: #f2f2f2;
-	    padding: 20px;
-	}
-	
-	.erp_ej_col-25 {
-	    float: left;
-	    width: 25%;
-	    margin-top: 6px;
-	}
-	
-	.erp_ej_col-75 {
-	    float: left;
-	    width: 75%;
-	    margin-top: 6px;
-	}
-	
-	/* Clear floats after the columns */
-	.erp_ej_row:after {
-	    content: "";
-	    display: table;
-	    clear: both;
-	}
-	
-	/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-	@media (max-width: 600px) {
-	    .erp_ej_col-25, .erp_ej_col-75, input[type=submit] {
-	        width: 100%;
-	        margin-top: 0;
-	    }
-	}
-	
-	.ej_list {
-		cursor: pointer;
-		border: 1px solid #333;
-		padding: 3px 5px;
-	}
-	
-	.ej_list:hover {
-		color: #fff;
-		background-color: #333;
-	}
-
-</style>
 
 
 </head>
@@ -381,7 +231,7 @@
 				<div id="erp_jh_contents_title">
 					<div id="mr_icon">icon</div>
 					<p id="mr_title">거래처 등록</p>
-				</div>S
+				</div>
 				
 				<!-- 검색 기능 -->
 				<div id="erp_jh_contents_search">
@@ -390,7 +240,7 @@
 						<div class="erp_ej_search">
 							<div class="erp_ej_inputBox">
 								<label for="">거래처 분류</label>
-								<select class="erp_ej_account_select" name="search">
+								<select class="erp_ej_select" name="search">
 									<option value="">전체</option>
 									<option value="매출서">매출서</option>
 									<option value="매입서">매입서</option>
