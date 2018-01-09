@@ -293,11 +293,11 @@
 						<tr>
 							<td>부서명</td>
 							<td><input type="text" name="temp" id="eb_tempText" class="eb_temp" readonly="readonly">
-								<input type="button" data-toggle="modal" data-target="#eb_view_modal_temp" id="eb_tempSearch" value="search">
+								<input type="button" class="btn btn-default" data-toggle="modal" data-target="#eb_view_modal_temp" id="eb_tempSearch" value="search">
 							</td>
 							<td>계좌명</td>
 							<td><input type="text" name="account" id="eb_memoText" class="eb_account" readonly="readonly">
-								<input type="button" data-toggle="modal" data-target="#eb_view_modal_account" id="eb_accountSearch" value="search">
+								<input type="button" class="btn btn-default" data-toggle="modal" data-target="#eb_view_modal_account" id="eb_accountSearch" value="search">
 							</td>
 						</tr>
 						
