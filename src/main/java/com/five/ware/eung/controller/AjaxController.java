@@ -26,16 +26,45 @@ public class AjaxController {
 	private FileSaver fileSaver;
 	
 	
+	@RequestMapping(value="fileList", method=RequestMethod.GET)
+	@ResponseBody
+	public List<FileDTO> selectList(String code) {
+		List<FileDTO> ar = new ArrayList<FileDTO>();
+		
+		try {
+			ar = fileDAO.selectList(code);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return ar;
+	}
+	
+	@RequestMapping(value="fileDeleteOne")
+	public String deleteOne(int fnum) {
+		try {
+			fileDAO.deleteOne(fnum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:../erp/foundation/product";
+	}
+	
 	@RequestMapping(value="fileDelete")
 	public String delete(String code) {
-		fileDAO.delete(code);
+		try {
+			fileDAO.delete(code);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		return "redirect:../erp/foundation/product";
 	}
 
 	@RequestMapping(value="drapAndDrop", method={RequestMethod.POST,RequestMethod.GET})
 	@ResponseBody
-	public List<String> dragAndDrop(MultipartFile[] file, HttpSession session, String code) {
+	public List<FileDTO> dragAndDrop(MultipartFile[] file, HttpSession session, String code) {
 		String fileName = "";
 		
 		for (MultipartFile multipartFile : file) {
@@ -44,17 +73,19 @@ public class AjaxController {
 		
 		System.out.println(code);
 		
-		List<String> ar = new ArrayList<String>();
+		List<FileDTO> ar = new ArrayList<FileDTO>();
 		
 		for (MultipartFile multipartFile : file) {
 			try {
 				fileName = fileSaver.fileSave(multipartFile, session, "product");
 				FileDTO fileDTO = new FileDTO();
+				//fileDTO.setFnum() get fnum
 				fileDTO.setCode(code);
 				fileDTO.setFilename(fileName);
 				fileDTO.setOriname(multipartFile.getOriginalFilename());
 				fileDAO.insert(fileDTO);
-				ar.add(fileName);
+				ar.add(fileDTO);
+				
 				
 			} catch (Exception e) {
 				e.printStackTrace();

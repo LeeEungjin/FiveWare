@@ -18,9 +18,41 @@ public class ProductDAOTest extends AbstractTest {
 
 	@Test
 	public void test() {
-		insert();
+		delete();
+	}
+	
+	
+	public void delete() {
+		String code = "A042";
+		int reuslt = productDAO.delete(code);
+		
+		assertTrue(reuslt > 0);
+	}
+	
+	public void update() {
+		ProductDTO productDTO = new ProductDTO();
+		
+		productDTO.setCode("A028");
+		productDTO.setMemo("memo");
+		productDTO.setName("name");
+		productDTO.setPrice("777");
+		productDTO.setStandard("standard");
+		
+		int result = productDAO.update(productDTO);
+		
+		assertTrue(result > 0);
 	}
 
+	
+	public void selectOne() {
+		String code = "A027";
+		ProductDTO productDTO = productDAO.selectOne(code);
+		
+		assertNotNull(productDTO);
+		
+		System.out.println(productDTO.getCode());
+		System.out.println(productDTO.getName());
+	}
 	
 	public void insert() {
 		ProductDTO productDTO = new ProductDTO();

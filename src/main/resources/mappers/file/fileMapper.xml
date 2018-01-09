@@ -5,11 +5,24 @@
   
   <mapper namespace="fileMapper">
   
+  
+  	<delete id="fileDeleteOne" parameterType="int">
+  		delete from fivefile where fnum=#{fnum}
+  	</delete>
+  
+  	<select id="fileList" parameterType="java.lang.String" resultType="FileDTO">
+  		select * from fivefile where code=#{code}
+  	</select>
+  
   	<delete id="fileDelete" parameterType="java.lang.String">
 		delete from fivefile where code=#{code}  		
   	</delete>
   
   	<insert id="fileInsert" parameterType="FileDTO">
-  		 insert into fivefile values(file_seq.nextval, #{code}, #{filename}, #{oriname})
+  		<selectKey keyProperty="fnum" resultType="int" order="BEFORE">
+  			select file_seq.nextval from dual
+  		</selectKey>
+  		insert into fivefile values(#{fnum}, #{code}, #{filename}, #{oriname})
   	</insert>
+  	
   </mapper>

@@ -62,23 +62,22 @@
 	            url : "./productOne",
 	            type : "get",
 	            success : function(data){
-	            	$("#code_update").val(data.code);
-					$("#classification_update").val(data.classification);
-					$("#name_update").val(data.name);
-					$("#business_number_update").val(data.business_number);
-					$("#representative_update").val(data.representative);
-					$("#division_update").val(data.division);
-					$("#division_mail_update").val(data.division_mail);
-					$("#bank_update").val(data.bank);
-					$("#account_number_update").val(data.account_number);
-					$("#use_update").val(data.use);
+	            	$("#code_one").val(data.product.code);
+					$("#name_one").val(data.product.name);
+					$("#standard_one").val(data.product.standard);
+					$("#memo_one").val(data.product.memo);
+					$("#price_one").val(data.product.price);
+					$("#use_one").val(data.product.use);
 					
 					// if 'use' is true, 'stop'
-					if($("#use_update").val() == "true") {
+					if($("#use_one").val() == "true") {
 						$("#ej_modal_stop").val("사용중지")
 					} else {
 						$("#ej_modal_stop").val("사용")
 					}
+					
+					console.log(data.files);
+					F_FileMultiUpload_Callback(data.files, 'result_one');
 	            },
 	            error : function(data){
 	               alert("error");
@@ -91,7 +90,7 @@
 			var del = confirm("Are you sure you want to delete it?")
 			
 			if(del) {
-				$("#ej_modalModify_frm").attr("action", "//////////////////////")
+				$("#ej_modalModify_frm").attr("action", "./productDelete")
 				$("#ej_modalModify_frm").submit();
 			}
 		});
@@ -110,7 +109,6 @@
 		});
 		
 		////////////////////////////////////Pager//////////////////////////////////
-		
 		$(".ej_list").click(function() {
 			var cur = $(this).attr("title");
 			var s = '${pager.search}';
@@ -119,8 +117,9 @@
 			document.ej_frm.submit();
 		});
 		
+		
 		//////////////////////////File Upload//////////////////////////////////
-		var obj = $("#dropzone");
+		var obj = $(".dropzone");
 
 	     obj.on('dragenter', function (e) {
 	          e.stopPropagation();
@@ -150,18 +149,35 @@
 	          if(files.length < 1)
 	               return;
 	          
+	          var mode = 'result';
 	          var code = document.getElementById('code').value;
+	          if(code == '') {
+	        	  code = document.getElementById('code_one').value;
+	        	  mode = 'result_one';
+	          }
 	          
-	          F_FileMultiUpload(files, code);
+	          F_FileMultiUpload(files, code, mode);
 	     });
 	     
 	}); // Window Onload End
 	
-	function F_FileMultiUpload(files, code) {
+	function F_FileMultiUpload(files, code, mode) {
 		/*************** 이미지만 올릴 수 있도로고 처리!!!!!!! ******************/
-		if( files.length < 5 ) {
+		var len = 0;
+		
+		$.ajax({
+			url: '../../ajax/fileList',
+			data: {'code': code},
+			async: false,
+			success:function(result) {
+				len = result.length;
+			}
+		});
+		
+		if( (files.length+len) < 5 ) {
 	         var data = new FormData();
 	         for (var i = 0; i < files.length; i++) {
+	        	console.log(files[i]);
 	            data.append('file', files[i]);
 	         }
 	         
@@ -176,8 +192,7 @@
 	            contentType: false,
 	            success: function(data) {
 	            	alert("success!!");
-	            	console.log(data);
-	            	F_FileMultiUpload_Callback(data);
+	            	F_FileMultiUpload_Callback(data, mode);
 	            	
 	            },
 	            error: function() {
@@ -191,23 +206,38 @@
 	}
 
 	// 파일 멀티 업로드 Callback
-	function F_FileMultiUpload_Callback(files) {
-	    var result = document.getElementById('result');
-	    alert(result);
+	function F_FileMultiUpload_Callback(files, result) {
+	    var result = document.getElementById(result);
 		for(var i=0; i < files.length; i++){
 		    var img = document.createElement('img');
-		    img.setAttribute("src", "${pageContext.request.contextPath}/resources/product/"+files[i]);
-		    img.setAttribute("width", "20%");
-		    img.setAttribute("height", "150px");
-		    img.className = "img_margin";
+		    img.setAttribute("src", "${pageContext.request.contextPath}/resources/product/"+files[i].filename);
+		    img.setAttribute("title", files[i].fnum)
+		    alert(files[i].fnum);
+		    img.className = "img_margin ej_img_btn";
+		    img.onclick = function() {
+		    	var temp = this;
+		    	console.log(temp);
+				var fnum = this.getAttribute('title');
+				
+				$.ajax({
+					url: '../../ajax/fileDeleteOne',
+					data: {'fnum': fnum},
+					success:function(result) {
+						alert("삭제되었습니다.");
+						temp.remove();
+					}
+				});
+		    };
 		    result.appendChild(img);
+		    
 		}
+		
 	}
 	
 </script>
 
 <style>
-    #dropzone
+    .dropzone
     {
         border:2px dotted #3292A2;
         width:100%;
@@ -217,15 +247,18 @@
         font-size:24px;
         padding:10px;
     }
-    #result {
+    #result, #result_one {
     	width: 100%;
     	height: 150px;
     }
     
     .img_margin {
+   		width: 20%;
+    	height: 150px;
     	margin-left: 2.5%;
     	margin-right: 2.5%;
     }
+    
 </style>
 
 
@@ -467,7 +500,7 @@
 			</div>
 			
 			<div class="input-group input-group_modal or_input-group_modal_2">
-			  <div id="dropzone">Drag & Drop Files Here</div> 
+			  <div class="dropzone">Drag & Drop Files Here</div> 
 			</div>
 			
 			<div class="input-group input-group_modal or_input-group_modal_2">
@@ -490,39 +523,72 @@
   </div>
 <!-- Modal 끝 -->
 
-
-<!-- Modal update/delete Start -->
-<form id="ej_modalModify_frm" action="###################################" method="POST">
-
+<!-- Modal Update / Delete 시작 -->
 <div id="ej_modalOne" class="modal">
-
-  <!-- Modal content -->
-  <div id="modal-result" class="modal-content">
-	  <div class="modal-header">
-	    <span class="close">&times;</span>
-	    <h2>거래처 정보</h2>
-	  </div>
-	  <div class="modal-body">
-	  
-	  	<!-- Modal Contents -->
-	  	<div class="erp_ej_container">
-	  	
-	  	
-		</div>
-	  	<!-- Modal Contents End -->
-		  
-	  </div>
-	  <div class="modal-footer">
-	    <input type="submit" id="ej_modal_update" class="btn" value="수정">
-	    <input type="button" id="ej_modal_stop" class="btn" value="사용중지">
-	    <input type="button" id="ej_modal_delete" class="btn" value="삭제">
-	  </div>
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      
+      	<!-- modal header -->
+        <div class="modal-header">
+          <button type="button" class="close ej_file_cancel">&times;</button>
+          <h4 class="modal-title">|제품 등록</h4>
+        </div>
+        <!-- modal header 끝-->
+        
+        <!-- modal contents -->
+       <form action="./productUpdate" method="post" id="ej_modalModify_frm" enctype="multipart/form-data">
+       <input type="hidden" name="use" id="use_one">
+        <div class="modal-body">
+        	<div class="input-group input-group_modal or_input-group_modal">
+			  <span class="input-group-addon">품목코드</span>
+			  <input id="code_one" name="code" type="text" class="form-control" readonly="readonly">
+			</div>
+			
+			<div class="input-group input-group_modal or_input-group_modal">
+			  <span class="input-group-addon">품목명</span>
+			  <input id="name_one" name="name" type="text" class="form-control">
+			</div>
+			
+			<div class="input-group input-group_modal or_input-group_modal">
+			  <span class="input-group-addon">규격</span>
+			  <input id="standard_one" name="standard" type="text" class="form-control">
+			</div>
+			
+			<div class="input-group input-group_modal or_input-group_modal">
+			  <span class="input-group-addon">가격</span>
+			  <input id="price_one" name="price" type="text" class="form-control">
+			</div>
+			
+			<div class="input-group input-group_modal or_input-group_modal_2">
+			  <span class="input-group-addon">개요</span>
+			  <input id="memo_one" name="memo" type="text" class="form-control">
+			</div>
+			
+			<div class="input-group input-group_modal or_input-group_modal_2">
+			  <div class="dropzone">Drag & Drop Files Here</div> 
+			</div>
+			
+			<div class="input-group input-group_modal or_input-group_modal_2">
+			  <div id="result_one"></div>
+			</div>
+			
+			
+        </div>
+        <!-- modal contents 끝-->
+        
+        <!-- modal footer -->
+        <div class="modal-footer">
+			<input type="submit" id="ej_modal_update" class="btn" value="수정">
+			<input type="button" id="ej_modal_stop" class="btn" value="사용중지">
+			<input type="button" id="ej_modal_delete" class="btn" value="삭제">
+			<button type="button" class="btn btn-default ej_file_cancel" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+      	<!-- modal footer 끝-->
+      </div>
+    </div>
   </div>
-
-</div>
-</form>
-<!-- Modal update/delete End -->
-
+<!-- Modal Update / Delete 끝 -->
 
 </body>
 </html>

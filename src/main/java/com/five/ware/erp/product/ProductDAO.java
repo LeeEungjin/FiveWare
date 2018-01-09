@@ -18,8 +18,17 @@ public class ProductDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "productMapper.";
 	
-	public void selectOne() {
-		//////////////////////////
+	
+	public int delete(String code) {
+		return sqlSession.delete(NAMESPACE+"productDelete", code);
+	}
+	
+	public int update(ProductDTO productDTO) {
+		return sqlSession.update(NAMESPACE+"productUpdate", productDTO);
+	}
+	
+	public ProductDTO selectOne(String code) {
+		return sqlSession.selectOne(NAMESPACE+"productOne", code);
 	}
 	
 	public int insert(ProductDTO productDTO) {

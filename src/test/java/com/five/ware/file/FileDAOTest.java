@@ -2,6 +2,8 @@ package com.five.ware.file;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.junit.Test;
@@ -20,10 +22,39 @@ public class FileDAOTest extends AbstractTest {
 	
 	@Test
 	public void file() {
-		delete();
+		try {
+			deleteOne();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
-	public void delete() {
+	public void deleteOne() throws Exception {
+		int fnum = 117;
+		int result = fileDAO.deleteOne(fnum);
+		
+		assertTrue(result > 0);
+	}
+	
+	public void selectOne() throws Exception {
+		String code = "A031";
+		
+		List<FileDTO> ar = fileDAO.selectList(code);
+		
+		assertTrue(ar.size() > 0);
+		
+		for (FileDTO fileDTO : ar) {
+			System.out.println(fileDTO.getFnum());
+			System.out.println(fileDTO.getCode());
+			System.out.println(fileDTO.getFilename());
+			System.out.println(fileDTO.getOriname());
+			System.out.println("-----------------------------------");
+		}
+		
+	}
+	
+	public void delete() throws Exception {
 		String code = "A049";
 		
 		int result = fileDAO.delete(code);
@@ -31,7 +62,7 @@ public class FileDAOTest extends AbstractTest {
 		assertTrue(result > 0);
 	}
 	
-	public void insert() {
+	public void insert() throws Exception {
 		FileDTO fileDTO = new FileDTO();
 		fileDTO.setCode("1");
 		fileDTO.setFilename("filename");

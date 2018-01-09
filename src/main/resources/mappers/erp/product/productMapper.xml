@@ -5,6 +5,17 @@
   
   <mapper namespace="productMapper">
   
+  
+  	<delete id="productDelete" parameterType="java.lang.String">
+  		delete from product where code=#{code}
+  	</delete>
+  
+  	<update id="productUpdate" parameterType="ProductDTO">
+  		update product set
+  			name=#{name}, standard=#{standard}, memo=#{memo}, price=#{price}
+  		where code=#{code} 
+  	</update>
+  
   	<select id="productOne" parameterType="java.lang.String" resultType="ProductDTO">
   		select * from product where code=#{code}
   	</select>
