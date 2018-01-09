@@ -24,7 +24,7 @@ public class MemberDTO {
 	private String term;
 	
 	
-	
+
 	public String getTerm() {
 		return term;
 	}

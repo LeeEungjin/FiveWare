@@ -17,22 +17,112 @@
 			
 			$.ajax({
 				type:"GET",
-				url:"../../codeName",
+				url:"./diliNameList",
 				success:function(data){
-					$("#ar_dcode").val(data);
+					var i=0;
+					$(data).each(function(d){
+						$("#ar_workName").append("<option value="+data[i]+">"+data[i]+"</option>");		
+						i++;
+					});
+					
 				}
 			});
 		});
 		
-		$("#ar_dInsertBtn").click(function(){
-			var workname=$("#ar_dname").val();
+		$(".ar_dateWrap").change(function(){
+			var startdate = Date.parse($("#ar_date1").val());
+			var enddate = Date.parse($("#ar_date2").val());
+			var datenum =0;	
+		
+			if(startdate != "" && enddate !=""){
+				if(enddate>startdate){
+					datenum = (enddate-startdate)/(1000*60*60*24);
+				}else{
+					datenum=(startdate-enddate)/(1000*60*60*24);
+				}
+				$("#ar_datenum").val(datenum);		
+			}else{
+				$("#ar_datenum").val("");		
+			}
+		});
+		
+		$("#ar_memsearchBtn").click(function(){
+			var count =0;
+			$.ajax({
+				type:"GET",
+				url:"./memList",
+				success:function(data){
+					$(".ar_memList").html("");
+					$(".ar_mmmem_plus").html("");
+					$("#ar_mmmem_other").html("");
+					
+					var i=0;
+					$(data[0]).each(function(){
+						$(".ar_memList").append("<div class=ar_memListCheck><input type=checkbox class=ar_memCodeCheck title=" + data[0][i].code+"> </div>");
+						
+						$(".ar_memList").append("<div id="+data[0][i].code+" class=ar_memmem></div>");
+						$("#"+data[0][i].code).append("<div class='ar_memListNum1 ar_mem'><input type=text name=code value="+data[0][i].code+" class=ar_inputWrap readonly=readonly></div>");
+						$("#"+data[0][i].code).append("<div class='ar_memListName1 ar_mem'><input type=text name=name value="+data[0][i].name+" class=ar_inputWrap readonly=readonly></div>");
+						$("#"+data[0][i].code).append("<div class='ar_memListTemp1 ar_mem'><input type=text name=temp value="+data[0][i].temp+" class=ar_inputWrap readonly=readonly></div>");
+						
+						i++;
+					});
+					
+					var j=0;
+					$(data[1]).each(function(){
+						$(".ar_tempSelect").append("<option value="+data[1][j]+">"+data[1][j]+"</option>");
+						j++;
+					});
+					
+				}
+			});
+		});
+		
+		$("#ar_selectBtn").click(function(){
+			var code = "";
+			var cod = [];
+			
+			$(".ar_memCodeCheck").each(function(){
+				if(this.checked){
+					code = $(this).attr("title");
+					var c=$("#"+code).html();
+					var d = "<input type='text' class='ar_mmmem_inputBox' name='other'>"
+		        	
+					$(".ar_mmmem_plus").append(c);
+					$("#ar_mmmem_other").append(d);
+				}
+			});
+			
+			$(this).attr("data-dismiss", "modal");
+		
+		});
+		
+	 	$(".ar_selectWrap").change(function(){
+			var workname=$("#ar_workName").val();
+			
+			 $.ajax({
+				 type:"GET",
+				 url:"./workCode",
+				 data:{
+					 "workname":workname
+				 }, success:function(data){
+					  $("#ar_memWorkCode").val(data); 
+				 }
+			 });
+		}); 
+		
+		
+		$("#ar_memdiliInsertBtn").click(function(){
+			var workname=$("#ar_workName").val();
+			var datenum = $("#ar_datenum").val();
 			
 			if(workname==""){
-				alert("근태명칭을 입력하세요.");
+				alert("근태항목을 선택하십시오.");
+			}else if(datenum==""){
+				alert("날짜를 선택하여주십시오.");
 			}else{
-				$(this).attr("data-dismiss", "modal");
-				dili_insert_Frm.submit();
-			} 
+				ar_memdiliInsertFrm.submit();
+			}
 		});
 		
 		$("#ar_dilicode").click(function(){
@@ -182,11 +272,14 @@
 			<div class="ar_plusSearchWrap">
 				<div class="ar_blank"></div>
 				
-				<form action="diliPlus" method="GET">
+				<form action="memdiliInsert" method="POST" name="ar_memdiliInsert">
 					<div class="ar_plusSearch">
 						근태명  
 						<select class="diliselected">
-							<option>전체</option>
+							<option value="">전체</option>
+							<c:forEach items="${diliNameList}" var="nameList">
+								<option value="${nameList }">${nameList }</option>
+							</c:forEach>
 						</select>
 						
 						<span class="ar_blanktext">기간</span>
@@ -249,24 +342,27 @@
 				        <!-- modal contents -->
 				        <div class="modal-body">
 				        
-				        <form name="dili_insert_Frm" method="POST" action="diliInsert">
+				        <form name="ar_memdiliInsertFrm" method="POST" action="memdiliInsert">
 				        
 				        <div class="modal_topWrap">
 					        	<div class="ar_salInsert" >
 					        		<span class="ar_positiontext">근태항목</span>
-									<select  class="ar_selectWrap">
-										
-									</select>				        		
+									<select  class="ar_selectWrap"id="ar_workName" name="workname">
+										<option value="">----선택----</option>
+									</select>				 
+									
+									<input type="hidden" id="ar_memWorkCode" name="workcode">        		
 					        	</div>
 					        	
 					        	<div class="ar_salInsert2" >
+					        	
 					        		<span class="ar_positiontext">기간</span>
-					        		<input type="date">~<input type="date">
+					        		<input type="date" class="ar_dateWrap" id="ar_date1" name="startdate">~<input type="date" class="ar_dateWrap" id="ar_date2" name="enddate">
 					        	</div>
 					        	
 					        	<div class="ar_salInsert3" >
 					        		<span class="ar_positiontext">일수</span>
-					        		<input type="text" readonly="readonly">
+					        		<input type="text" readonly="readonly" name="datenum" id="ar_datenum">
 					        	</div>
 					   </div>
 				        	
@@ -291,13 +387,24 @@
 						        		<p>메모</p>
 						        	</div>
 				        	</div>
+				        	
+				        	<div class="ar_mmmem">
+				        			<div class="ar_mmmem_plus">
+				        			
+				        			</div>
+						        	
+						        	<div id="ar_mmmem_other">
+						        	
+						        	</div>
+						        	
+				        	</div>
 				</form>		
 		</div>
 				        <!-- modal contents 끝-->
 				        
 				        <!-- modal footer -->
 				        <div class="modal-footer">
-				          <input type="button" class="btn btn-default" id="ar_dInsertBtn" data-dismiss="" value="등록">
+				          <input type="button" class="btn btn-default" id="ar_memdiliInsertBtn" data-dismiss="" value="등록">
 				          <input type="button" class="btn btn-default" data-dismiss="modal" value="Close">
 				        </div>
 				      	<!-- modal footer 끝-->
@@ -327,8 +434,7 @@
 				        	<div class="ar_TempSearch" >
 				        		<span class="ar_positiontext">부서명</span>
 								<select class="ar_tempSelect">
-									<option></option>
-									
+										<option value="">전체</option>
 								</select>				        		
 								<input type="button" value="검색" id="ar_tempSearchBtn">
 				        	</div>
@@ -342,11 +448,8 @@
 				        	</div>		
 				        	
 				        	
-				        		<div>
-				        			<div class="ar_memListCheck"><input type="checkbox"> </div>
-					        		<div class="ar_memListNum">사번</div>
-					        		<div class="ar_memListName">직원명</div>
-					        		<div class="ar_memListTemp">부서</div>
+				        		<div class="ar_memList">
+				        			
 				        		</div>	        
 				        </div>
 				        
@@ -357,7 +460,7 @@
 				        
 				        <!-- modal footer -->
 				        <div class="modal-footer footer2">
-				          <input type="button" class="btn btn-default" id="ar_diliUpdateBtn" data-dismiss="" value="선택">
+				          <input type="button" class="btn btn-default" id="ar_selectBtn" data-dismiss="" value="선택">
 				          <input type="button" class="btn btn-default" data-dismiss="modal" value="Close">
 				        </div>
 				      	<!-- modal footer 끝-->
