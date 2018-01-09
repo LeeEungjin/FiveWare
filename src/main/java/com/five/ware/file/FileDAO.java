@@ -44,7 +44,7 @@ public class FileDAO {
 	}
 	
 	public int insert(FileDTO fileDTO) throws Exception {
-		return sqlSession.insert(NAMESPACE+"fileInsert", fileDTO);
+		return sqlSession.insert(NAMESPACE+"fileInsert_eung", fileDTO);
 	}
 
 }

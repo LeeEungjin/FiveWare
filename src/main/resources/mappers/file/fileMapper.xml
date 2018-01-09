@@ -21,7 +21,7 @@
 		delete from fivefile where code=#{code}  		
   	</delete>
   
-  	<insert id="fileInsert" parameterType="FileDTO">
+  	<insert id="fileInsert_eung" parameterType="FileDTO">
   		insert into fivefile values(#{fnum}, #{code}, #{filename}, #{oriname})
   	</insert>
   	

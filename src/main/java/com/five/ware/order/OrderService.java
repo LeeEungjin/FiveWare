@@ -10,7 +10,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.five.ware.mater.MaterDTO;
-import com.five.ware.product.ProductDTO;
+import com.five.ware.erp.product.ProductDTO;
 
 @Transactional
 @Service

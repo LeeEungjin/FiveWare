@@ -18,7 +18,7 @@
 		select * from orderregist order by ordercode desc
 	</select>  
 	
-	<select id="productList" resultType="com.five.ware.product.ProductDTO">
+	<select id="productList" resultType="com.five.ware.erp.product.ProductDTO">
 		select * from product where use='true'
 	</select>
 	
