@@ -15,6 +15,7 @@
   		<typeAlias type="com.five.ware.erp.human.member.MemberDTO" alias="MemberDTO"/>
   		<typeAlias type="com.five.ware.file.FileDTO" alias="FileDTO"/>
   		<typeAlias type="com.five.ware.erp.human.dili.DiliDTO" alias="DiliDTO"/>
+  		<typeAlias type="com.five.ware.erp.human.dili.MemberWorkDTO" alias="MemberWorkDTO"/>
   		
   	</typeAliases>
   </configuration>
