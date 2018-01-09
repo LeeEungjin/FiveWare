@@ -29,28 +29,12 @@
 					$("#materCode").val(data);
 					
 					$.ajax({
-						type:"GET",
-						url:"./materStorageList",
+						type : "GET",
+						url : "./materOrder",
 						success:function(data){
-							var i=0;
-							$(data).each(function(){
-								$("#storageName").append("<option value="+data[i]+">"+data[i]+"</option>");
-								i++;
-							});
-							
-							$.ajax({
-								type : "GET",
-								url : "./materSupList",
-								success:function(data){
-									var i=0;
-									$(data).each(function(){
-										$("#account").append("<option value="+data[i]+">"+data[i]+"</option>");
-										i++;
-									});
-								}
-							});
+							$("#erp_jh_modal_table").html(data);
 						}
-					});
+					}); 
 				}
 			});
 		});
@@ -63,8 +47,6 @@
  			
 			if(materDate==""){
 				alert("출고날을 입력해주세요.");
-			}else if(account==""){
-				alert("거래처를 입력해주세요.");
 			}else if(temp=""){
 				alert("부서를 입력해주세요.");
 			}else if(name=""){
@@ -102,6 +84,69 @@
 		
 		$("#dateListReset").click(function(){
 			location.reload();
+		});
+		
+		$(".materView").click(function(){
+			var materCode=$(this).attr("title");
+			
+			$.ajax({
+				data : {"materCode" : materCode},
+				url : "./materView",
+				type : "get",
+				success : function(data){
+					$("#rr_update_modal").html(data);
+				},
+				error : function(){
+					alert("error");
+				}
+			});
+		});
+		
+		$("#erp_jh_modal_table").on("click", "#allCheck", function(){
+			var id=$(this).attr("id");
+			var title=$(this).attr("title");
+			
+			if($("#allCheck").prop("checked")){
+				$(".materCheck").prop("checked",true);
+				$("#order"+id).prop("disabled", false);
+				$("#code"+title).prop("disabled", false);
+			}else{
+				$(".materCheck").prop("checked",false);
+				$("#order"+id).prop("disabled", true);
+				$("#code"+title).prop("disabled", true);
+			}
+		});
+		
+		$("#erp_jh_modal_table").on("click", ".materCheck", function(){
+			var id=$(this).attr("id");
+			var title=$(this).attr("title");
+			
+			if($("#"+id).prop("checked")){
+				$("#order"+id).prop("disabled", false);
+				$("#code"+title).prop("disabled", false);
+			}else{
+				$("#order"+id).prop("disabled", true);
+				$("#code"+title).prop("disabled", true);
+			}
+		});
+		
+		$("#rr_update_modal").on("click", ".mater_delete", function(){
+			var materCode=$(this).attr("title");
+			var materKind="rele";
+
+			$.ajax({
+				data : {"materCode" : materCode,
+						"materKind" : materKind},
+				url : "./materDelete",
+				type : "get",
+				success : function(data){
+					alert("삭제 완료");
+					location.reload();
+				},
+				error : function(){
+					alert("error");
+				}
+			});
 		});
 		
 	});
@@ -182,7 +227,7 @@
 	
 	<!-- --------------------------------------------------------------------------------------------------------------- -->
 	
-	<input type="hidden" name="materKind" value="enter">
+	<input type="hidden" name="materKind" value="rele">
 	
 	<div id="fw_mainwrap">
 			<div id="fw_main">
@@ -222,20 +267,20 @@
 						      <tr>
 						        <th>출고코드</th>
 						        <th>출고일</th>
-						        <th>출고창고</th>
-						        <th>품목</th>
-						        <th>수량</th>
+						        <th>부서</th>
+						        <th>담당자</th>
+						        <th>비고</th>
 						      </tr>
 						    </thead>
 						    
 						    <tbody>
 						   <c:forEach items="${releList}" var="releList">
 						      <tr>
-						        <td data-toggle="modal" data-target="#rr_update_modal">${releList.materCode}</td>
+						        <td class="materView" title="${releList.materCode}" data-toggle="modal" data-target="#rr_update_modal">${releList.materCode}</td>
 						        <td>${releList.materDate}</td>
-						        <td>${releList.storageName}</td>
-						        <td></td>
-						        <td></td>
+						        <td>${releList.temp}</td>
+						        <td>${releList.name}</td>
+						        <td>${releList.materMemo}</td>
 						      </tr>
 						    </c:forEach>
 						    </tbody>
@@ -263,7 +308,7 @@
 				        <!-- modal header 끝-->
 				        
 				        <!-- modal contents -->
-				         <form action="./materWrite" method="post" id="rr_write_frm">
+				         <form action="./materWrite" method="get" id="rr_write_frm">
 				        <div class="modal-body">
 				        	<div class="input-group input-group_modal">
 							  <span class="input-group-addon">출고코드</span>
@@ -273,12 +318,6 @@
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">출고일</span>
 							  <input  id="materDate" name="materDate" type="date" class="form-control">
-							</div>
-							
-							<div class="input-group input-group_modal">
-							  <span class="input-group-addon">거래처</span>
-							  <select id="account" name="account">
-							  </select>
 							</div>
 							
 							<div class="input-group input-group_modal">
@@ -292,17 +331,15 @@
 							</div>
 							
 							<div class="input-group input-group_modal">
-							  <span class="input-group-addon">창고명</span>
-							  <select id="storageName" name="storageName">
-							  </select>
-							</div>
-							
-							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">비고</span>
 							   <textarea name="materMemo" class="form-control form-control_area" rows="5" id="comment"></textarea>
 							</div>
 							
 							<input type="hidden" name="materKind" value="rele">
+				       		
+				       		<div id="erp_jh_modal_table">
+							
+							</div>
 				        </div>
 				        <!-- modal contents 끝-->
 				        
@@ -322,65 +359,7 @@
 				<!-- 수정 Modal -->
 				
 				<div class="modal fade" id="rr_update_modal" role="dialog">
-				    <div class="modal-dialog modal-m">
-				      <div class="modal-content">
-				      
-				      	<!-- modal header -->
-				        <div class="modal-header">
-				          <button type="button" class="close" data-dismiss="modal">&times;</button>
-				          <h4 class="modal-title">|출고 등록</h4>
-				        </div>
-				        <!-- modal header 끝-->
-				        
-				        <!-- modal contents -->
-				         <form action="" method="post" id="">
-				        <div class="modal-body">
-				        	<div class="input-group input-group_modal">
-							  <span class="input-group-addon">출고코드</span>
-							  <input type="text" class="form-control" placeholder="Additional Info">
-							</div>
-							
-							<div class="input-group input-group_modal">
-							  <span class="input-group-addon">출고일</span>
-							  <input type="date" class="form-control">
-							</div>
-							
-							<div class="input-group input-group_modal">
-							  <span class="input-group-addon">거래처</span>
-							  <input type="text" class="form-control" placeholder="Additional Info">
-							</div>
-							
-							<div class="input-group input-group_modal">
-							  <span class="input-group-addon">부서</span>
-							  <input type="text" class="form-control" placeholder="Additional Info">
-							</div>
-							
-							<div class="input-group input-group_modal">
-							  <span class="input-group-addon">담당자</span>
-							  <input type="text" class="form-control" placeholder="Additional Info">
-							</div>
-							
-							<div class="input-group input-group_modal">
-							  <span class="input-group-addon">창고명</span>
-							  <input type="text" class="form-control" placeholder="Additional Info">
-							</div>
-							
-							<div class="input-group input-group_modal">
-							  <span class="input-group-addon">비고</span>
-							   <textarea class="form-control form-control_area" rows="5" id="comment"></textarea>
-							</div>
-				        </div>
-				        <!-- modal contents 끝-->
-				        
-				        <!-- modal footer -->
-				        <div class="modal-footer">
-				          <button type="button" class="btn btn-default rr_btn">등록</button>
-				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				        </div>
-				        </form>
-				      	<!-- modal footer 끝-->
-				      </div>
-				    </div>
+				  
 				  </div>
 				<!-- 수정 Modal 끝 -->
 				

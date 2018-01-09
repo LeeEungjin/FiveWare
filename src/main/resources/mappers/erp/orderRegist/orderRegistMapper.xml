@@ -10,18 +10,37 @@
 		 #{delivery}, #{deadline}, #{storageName}, #{orderMemo})
 	</insert>  
 	
+	<insert id="productinsert" parameterType="com.five.ware.order.OrderProductDTO">
+		insert into orderproduct values(#{orderCode}, #{code}, #{amount}, #{price})
+	</insert>
+	
 	<select id="selectList" resultType="com.five.ware.order.OrderDTO">
 		select * from orderregist order by ordercode desc
 	</select>  
 	
-
+	<select id="productList" resultType="com.five.ware.product.ProductDTO">
+		select * from product where use='true'
+	</select>
 	
+
 	<select id="selectOne" resultType="com.five.ware.order.OrderDTO" parameterType="String">
 		select * from orderregist where ordercode=#{orderCode}
+	</select>
+	
+	<select id="orderProductList" resultType="com.five.ware.order.OrderProductDTO">
+		select * from orderproduct where ordercode=#{orderCode}
 	</select>
 	
 	<delete id="delete" parameterType="String">
 		delete orderregist where ordercode=#{orderCode}	
 	</delete>  
+	
+	<delete id="productDelete" parameterType="String">
+		delete orderproduct where ordercode=#{orderCode}
+	</delete>
+	
+	<select id="orderDateList" parameterType="java.util.Map" resultType="com.five.ware.order.OrderDTO">
+  	<![CDATA[select * from orderregist where contractdate>=#{smaterDate} and contractdate<=#{ematerDate} ]]>
+  	</select>
 	
   </mapper>

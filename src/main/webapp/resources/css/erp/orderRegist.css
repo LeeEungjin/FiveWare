@@ -1,5 +1,12 @@
 @CHARSET "UTF-8";
 
+#erp_jh_modal_table {
+    width: 100%;
+    overflow: scroll;
+    height: 40%;
+    margin-bottom: 2%;
+}
+
 .sales_title_menu{
 	width: 10%;
 	height: 30%;

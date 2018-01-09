@@ -28,60 +28,30 @@
 					$("#materCode").val(data);
 					
 					$.ajax({
-						type:"GET",
-						url:"./materStorageList",
+						type : "GET",
+						url : "./materOrder",
 						success:function(data){
-							var i=0;
-							$(data).each(function(){
-								$("#storageName").append("<option value="+data[i]+">"+data[i]+"</option>");
-								i++;
-							});
-							
-							$.ajax({
-								type : "GET",
-								url : "./materSupList",
-								success:function(data){
-									var i=0;
-									$(data).each(function(){
-										$("#account").append("<option value="+data[i]+">"+data[i]+"</option>");
-										i++;
-									});
-									
-									/* $.ajax({
-										type : "GET",
-										url : "./materProductList",
-										success:function(data){
-											alert("제품 리스트");
-											var i=0;
-											$(data).each(function(){
-												i++;
-											});
-										}
-									}); */
-									
-								}
-							});
+							$("#erp_jh_modal_table").html(data);
 						}
-					});
+					}); 
 				}
 			});
 		});
 		
 		$(".er_btn").click(function(){
  			var materDate=$("#materDate").val();
- 			var account=$("#account").val();
  			var temp=$("#temp").val();
  			var name=$("#name").val();
  			
 			if(materDate==""){
 				alert("입고날을 입력해주세요.");
-			}else if(account==""){
-				alert("거래처를 입력해주세요.");
 			}else if(temp=""){
 				alert("부서를 입력해주세요.");
 			}else if(name=""){
 				alert("담당자 입력해주세요.");
-			}else{
+			}/* else if($(".materCheck").prop("checked", false)){
+				alert("입고할 주문 목록을 체크해주세요.")
+			}  */else{
 				$("#er_write_frm").submit();
 				$(".er_btn").attr("data-dismiss", "modal");
 			}
@@ -117,47 +87,68 @@
 		});
 		
 		$(".materView").click(function(){
-			var code=$(this).attr("title");
-			var i=0;
-			var storage="";
+			var materCode=$(this).attr("title");
 			
 			$.ajax({
-				type:"GET",
-				url:"./materStorageList",
-				success:function(data){
-					
-					$(data).each(function(){
-						$(".storageName").append("<option value="+data[i]+">"+data[i]+"</option>");
-						i++;
-					});
-					
-					$.ajax({
-						data : {"materCode" : code},
-						url : "./materView",
-						type : "get",
-						success : function(data){
-							$(".materCode").val(data.materCode);
-							$(".materDate").val(data.materDate);
-							$(".materMemo").html(data.materMemo);
-							$(".account").val(data.account);
-							$(".temp").val(data.temp);
-							$(".name").val(data.name);
-							
-							storage=data.storageName;
-							
-						},
-						error : function(data){
-							alert("error");
-						}
-					});
-					
-					/* ===================================== */
+				data : {"materCode" : materCode},
+				url : "./materView",
+				type : "get",
+				success : function(data){
+					$("#er_update_modal").html(data);
+				},
+				error : function(){
+					alert("error");
 				}
-				/* ===================================== */
 			});
-			/* ===================================== */
 		});
 		/* ===================================== */
+		
+		$("#erp_jh_modal_table").on("click", "#allCheck", function(){
+			var id=$(this).attr("id");
+			var title=$(this).attr("title");
+			
+			if($("#allCheck").prop("checked")){
+				$(".materCheck").prop("checked",true);
+				$("#order"+id).prop("disabled", false);
+				$("#code"+title).prop("disabled", false);
+			}else{
+				$(".materCheck").prop("checked",false);
+				$("#order"+id).prop("disabled", true);
+				$("#code"+title).prop("disabled", true);
+			}
+		});
+		
+		$("#erp_jh_modal_table").on("click", ".materCheck", function(){
+			var id=$(this).attr("id");
+			var title=$(this).attr("title");
+			
+			if($("#"+id).prop("checked")){
+				$("#order"+id).prop("disabled", false);
+				$("#code"+title).prop("disabled", false);
+			}else{
+				$("#order"+id).prop("disabled", true);
+				$("#code"+title).prop("disabled", true);
+			}
+		});
+		
+		$("#er_update_modal").on("click", ".mater_delete", function(){
+			var materCode=$(this).attr("title");
+			var materKind="enter";
+			
+			$.ajax({
+				data : {"materCode" : materCode,
+						"materKind" : materKind},
+				url : "./materDelete",
+				type : "get",
+				success : function(data){
+					alert("삭제 완료");
+					location.reload();
+				},
+				error : function(){
+					alert("error");
+				}
+			});
+		});
 		
 	});
 </script>
@@ -275,9 +266,9 @@
 						      <tr>
 						        <th>입고코드</th>
 						        <th>입고일</th>
-						        <th>입고창고</th>
-						        <th>품목</th>
-						        <th>수량</th>
+						        <th>부서</th>
+						        <th>담당자</th>
+						        <th>비고</th>
 						      </tr>
 						    </thead>
 						    
@@ -286,9 +277,9 @@
 						      <tr>
 						        <td class="materView" title="${enterList.materCode}" data-toggle="modal" data-target="#er_update_modal">${enterList.materCode}</td>
 						        <td>${enterList.materDate}</td>
-						        <td>${enterList.storageName}</td>
-						        <td></td>
-						        <td></td>
+						        <td>${enterList.temp}</td>
+						        <td>${enterList.name}</td>
+						        <td>${enterList.materMemo}</td>
 						      </tr>
 						    </c:forEach>
 						    </tbody>
@@ -316,7 +307,7 @@
 				        <!-- modal header 끝-->
 				        
 				        <!-- modal contents -->
-				         <form action="./materWrite" method="post" id="er_write_frm">
+				         <form action="./materWrite" method="get" id="er_write_frm">
 				        <div class="modal-body">
 				        	<div class="input-group input-group_modal">
 							  <span class="input-group-addon">입고코드</span>
@@ -328,11 +319,11 @@
 							  <input id="materDate" name="materDate" type="date" class="form-control">
 							</div>
 							
-							<div class="input-group input-group_modal">
+							<!-- <div class="input-group input-group_modal">
 							  <span class="input-group-addon">거래처</span>
 							  <select id="account" name="account">
 							  </select>
-							</div>
+							</div> -->
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">부서</span>
@@ -344,11 +335,11 @@
 							  <input id="name" name="name" type="text" class="form-control" placeholder="Additional Info">
 							</div>
 							
-							<div class="input-group input-group_modal">
+							<!-- <div class="input-group input-group_modal">
 							  <span class="input-group-addon">창고명</span>
 							  <select id="storageName" name="storageName">
 							  </select>
-							</div>
+							</div> -->
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">비고</span>
@@ -356,6 +347,10 @@
 							</div>
 							
 							<input type="hidden" name="materKind" value="enter">
+							
+							<div id="erp_jh_modal_table">
+							
+							</div>
 				        </div>
 				        <!-- modal contents 끝-->
 				        
@@ -375,70 +370,7 @@
 				<!-- 수정 Modal -->
 				
 				<div class="modal fade" id="er_update_modal" role="dialog">
-				    <div class="modal-dialog modal-m">
-				      <div class="modal-content">
-				      
-				      	<!-- modal header -->
-				        <div class="modal-header">
-				          <button type="button" class="close" data-dismiss="modal">&times;</button>
-				          <h4 class="modal-title">|입고 등록</h4>
-				        </div>
-				        <!-- modal header 끝-->
-				        
-				        <!-- modal contents -->
-				         <form action="" method="post" id="">
-				        <div class="modal-body">
-				        	<div class="input-group input-group_modal">
-							  <span class="input-group-addon">입고코드</span>
-							  <input name="materCode" type="text" class="materCode form-control" readonly="readonly">
-							</div>
-							
-							<div class="input-group input-group_modal">
-							  <span class="input-group-addon">입고일</span>
-							  <input name="materDate" type="date" class="materDate form-control">
-							</div>
-							
-							<div class="input-group input-group_modal">
-							  <span class="input-group-addon">거래처</span>
-							  <input name="account" type="text" class="account form-control" placeholder="Additional Info">
-							</div>
-							
-							<div class="input-group input-group_modal">
-							  <span class="input-group-addon">부서</span>
-							  <input name="temp" type="text" class="temp form-control" placeholder="Additional Info">
-							</div>
-							
-							<div class="input-group input-group_modal">
-							  <span class="input-group-addon">담당자</span>
-							  <input name="name" type="text" class="name form-control" placeholder="Additional Info">
-							</div>
-							
-							<div class="input-group input-group_modal">
-							  <span class="input-group-addon">창고명</span>
-							  <select class="storageName" name="storageName">
-							  </select>
-							</div>
-							
-							<div class="input-group input-group_modal">
-							  <span class="input-group-addon">비고</span>
-							   <textarea name="materMemo" class="materMemo form-control form-control_area" rows="5" id="comment"></textarea>
-							</div>
-							
-							<input type="hidden" name="materKind" value="enter">
-				        </div>
-				        <!-- modal contents 끝-->
-				        
-				        <!-- modal footer -->
-				        <div class="modal-footer">
-				          <button type="button" class="btn btn-default" data-dismiss="modal">등록</button>
-				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				        </div>
-				        </form>
-				      	<!-- modal footer 끝-->
-				      </div>
-				    </div>
-				  </div>
-				<!-- 수정 Modal 끝 -->
+				</div>
 				
 				
 			</div>

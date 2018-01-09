@@ -1,10 +1,12 @@
-package com.five.ware.mater;
+package com.five.ware.order;
 
 public class OrderProductDTO {
 	
 	private String orderCode;
-	private String productCode;
+	private String code;
 	private int amount;
+	private int price;
+	
 	
 	public String getOrderCode() {
 		return orderCode;
@@ -12,16 +14,22 @@ public class OrderProductDTO {
 	public void setOrderCode(String orderCode) {
 		this.orderCode = orderCode;
 	}
-	public String getProductCode() {
-		return productCode;
+	public String getCode() {
+		return code;
 	}
-	public void setProductCode(String productCode) {
-		this.productCode = productCode;
+	public void setCode(String code) {
+		this.code = code;
 	}
 	public int getAmount() {
 		return amount;
 	}
 	public void setAmount(int amount) {
 		this.amount = amount;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
 	}
 }

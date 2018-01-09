@@ -21,7 +21,6 @@
 		}
 		
 		$("#or_insert").click(function(){
-			
 			$.ajax({
 				type:"GET",
 				url:"../../codeName",
@@ -47,6 +46,15 @@
 										$("#account").append("<option value="+data[i]+">"+data[i]+"</option>");
 										i++;
 									});
+									
+									$.ajax({
+										type:"GET",
+										url : "./productList",
+										success:function(data){
+											$("#erp_jh_modal_table").html(data);
+										}
+									});
+									
 								}
 							});
 						}
@@ -55,8 +63,134 @@
 			});
 		});
 		
-		$(".er_btn").click(function(){
-			$("#or_write_frm").submit();
+		$("#erp_jh_modal_table").on("click", "#productList_all_ch", function() {
+			if($("#productList_all_ch").prop("checked")){
+				$(".productList_ch").prop("checked", true);
+			}else{
+				$(".productList_ch").prop("checked", false);
+			}
+		});
+		
+		$("#erp_jh_modal_table").on("click", ".productList_ch", function(){
+			var amount_input=$(this).attr("title");
+			var ch=amount_input+"code";
+			
+			if($("#"+ch).prop("checked")){
+				$("#"+amount_input).prop("disabled", false);
+				$("#name_code"+amount_input).attr("name", "code");
+				$("#"+amount_input).attr("name", "amount");
+				$("#product_total"+amount_input).attr("name", "price"); 
+			}else{
+				$("#"+amount_input).val(null);
+				$("#product_total"+amount_input).val(null);
+				$("#"+amount_input).prop("disabled", true);
+			}
+		});
+		
+		
+		$("#erp_jh_modal_table").on("change", ".product_amount",function(){
+			
+			var price=$(this).attr("title");
+			var amount=$(this).val();
+			var total_input="product_total"+$(this).attr("id");
+			var code=$(this).attr("id");
+			var total=price*amount;
+			
+			if(amount<0){
+				alert("0이하 수량은 입력되지 않습니다.");
+				$(this).val(null);
+			}else{
+				$("#"+total_input).val(total);
+			}			
+		});
+		
+		$("#or_total_btn").click(function(){
+			var all_total=0;
+			
+			$(".product_total").each(function(){
+				all_total=all_total*1+($(this).val())*1;
+			});
+			
+			$("#all_total_input").val(all_total);
+		});
+		
+		$(".or_btn").click(function(){
+			var all_total_input=$("#all_total_input").val();
+
+			if(all_total_input==""){
+				alert("주문 할 제품을 등록해주세요.")
+			}else{
+				$("#or_write_frm").submit();
+			}
+		});
+		
+		$(".orderView").click(function() {
+			var orderCode=$(this).attr("title");
+			$.ajax({
+				data : {"orderCode" : orderCode},
+				url : "./orderView",
+				type : "get",
+				success : function(data){
+					$("#or_update_modal").html(data);
+				},
+				error : function(){
+					alert("error");
+				}
+			});
+		});
+		
+		$("#or_update_modal").on("click", ".or_update_btn", function(){
+			$.ajax({
+				type:"GET",
+				url : "./productList",
+				success:function(data){
+					$("#erp_jh_modal_update_table").html(data);
+				}
+			});
+		});
+		
+		$("#or_update_modal").on("click", ".or_delete", function(){
+			var orderCode=$(this).attr("title");
+			
+			$.ajax({
+				type:"GET",
+				url : "./orderDelete",
+				data : {orderCode:orderCode},
+				success:function(){
+					alert("삭제완료");
+					location.reload();
+				},
+				error : function(){
+					alert("error");
+				}
+			});
+		});
+		
+		$("#search_btn").click(function(){
+			
+			var smaterDate=$("#smaterDate").val();
+			var ematerDate=$("#ematerDate").val(); 
+			
+		 	if(smaterDate=="" || ematerDate==""){
+				alert("기간을 입력해주세요.");
+			}else{ 
+				
+				$.ajax({
+					type : "GET",
+					url : "./orderDateList",
+					data : {
+						smaterDate : smaterDate,
+						ematerDate : ematerDate
+					},
+					success:function(data){
+						$("#erp_jh_contents_table").html(data);
+					}
+				});
+			}
+		});
+		
+		$("#dateListReset").click(function(){
+			location.reload();
 		});
 		
 	});
@@ -101,7 +235,6 @@
                ∨
             </div>
          </div>
-         
          <div class="fw_subsub collapse"  id="sub2">
             <ul>
                <li><a href="../../erp/order/orderRegist">주문 입력</a></li>
@@ -156,13 +289,13 @@
 						<!-- 검색 기능 -->
 							<div class="input-group search_group">
 								<form id="or_search_frm" method="get">
-									<input type="hidden" name="materKind" value="enter">
-									기간 선택 <input id="smaterDate" name="smaterDate" type="date"> ~ <input id="ematerDate" name="ematerDate" type="date">		
+								<input type="hidden" name="materKind" value="back">
+									계약 기간 선택 <input id="smaterDate" name="smaterDate" type="date"> ~ <input id="ematerDate" name="ematerDate" type="date">					
 							      <div class="input-group-btn">
 							        <button type="button" id="search_btn" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
 							      </div>
 							      <input id="dateListReset" class="btn btn-default" type="button" value="초기화">
-							    </form>	
+							    </form>
 						    </div>	
 						<!-- 검색 기능 끝 -->
 					</div>
@@ -177,20 +310,16 @@
 						        <th>계약일</th>
 						        <th>납기일</th>
 						        <th>거래처</th>
-						        <th>품목</th>
-						        <th>금액</th>
 						      </tr>
 						    </thead>
 						    
 						    <tbody>
 						    <c:forEach items="${orderList}" var="orderList"> 
 						      <tr>
-						        <td class="materView" title="${enterList.materCode}" data-toggle="modal" data-target="#er_update_modal">${orderList.orderCode}</td>
+						        <td class="orderView" title="${orderList.orderCode}" data-toggle="modal" data-target="#or_update_modal">${orderList.orderCode}</td>
 						        <td>${orderList.contractDate}</td>
 						        <td>${orderList.deadline}</td>
 						        <td>${orderList.account}</td>
-						        <td></td>
-						        <td></td>
 						      </tr>
 						    </c:forEach>
 						    </tbody>
@@ -269,9 +398,10 @@
 							
 							
 							<div id="erp_jh_modal_table">
-								<table class="table">
+								<!-- <table id="or_modal_table" class="table">
 								    <thead>
 								      <tr>
+								      	<th><input id="productList_all_ch" type="checkbox"></th>
 								        <th>제품코드</th>
 								        <th>제품명</th>
 								        <th>규격</th>
@@ -281,27 +411,19 @@
 								      </tr>
 								    </thead>
 								    
-								    <tbody>
-								    <%-- <c:forEach items="${orderList}" var="orderList"> 
-								      <tr>
-								        <td class="materView" title="${enterList.materCode}" data-toggle="modal" data-target="#er_update_modal">${orderList.orderCode}</td>
-								        <td>${orderList.contractDate}</td>
-								        <td>${orderList.deadline}</td>
-								        <td>${orderList.account}</td>
-								        <td></td>
-								        <td></td>
-								      </tr>
-								    </c:forEach> --%>
+								    <tbody id="productList_tbody">
 								    </tbody>
-								 </table>
+								 </table> -->
 							</div>
+							<input id="or_total_btn" type="button" value="합계 계산">
+							<input id="all_total_input" type="number" readonly="readonly">
 							
 				        </div>
 				        <!-- modal contents 끝-->
 				        
 				        <!-- modal footer -->
 				        <div class="modal-footer">
-				          <button type="button" class="btn btn-default er_btn">등록</button>
+				          <button type="button" class="btn btn-default or_btn">등록</button>
 				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				        </div>
 				      </form>
@@ -313,7 +435,9 @@
 				
 				
 				<!-- 수정 Modal -->
-				
+				<div class="modal fade" id="or_update_modal" role="dialog">
+				    
+				</div>
 				
 				<!-- 수정 Modal 끝 -->
 				
