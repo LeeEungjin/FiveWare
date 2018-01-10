@@ -16,7 +16,6 @@ import com.five.ware.erp.menuRegist.MenuRegistDTO;
 import com.five.ware.erp.menuRegist.MenuRegistService;
 import com.five.ware.erp.storageRegist.StorageRegistDTO;
 import com.five.ware.erp.storageRegist.StorageRegistService;
-import com.five.ware.file.FileDTO;
 import com.five.ware.util.ListData;
 
 
@@ -28,26 +27,7 @@ public class ErpController {
 	private MenuRegistService menuRegistService;
 	@Autowired
 	private StorageRegistService storageService;
-	
-	@RequestMapping(value="dragandrop")
-	public String dragandrop(RedirectAttributes rd, FileDTO fileDTO){
-		int result=0;
-		String message="Fail";
-		
-		try {
-			result=menuRegistService.dragandrop(fileDTO);
-			
-			if(result>0){
-				message="Success";
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		rd.addFlashAttribute("message", message);
-		
-		return "redirect:./menuRegist";
-	}
+
 	
 	@RequestMapping(value="menuRegist")
 	public ModelAndView menuRegist(ListData listData, @RequestParam(defaultValue="no", required=false)String order, @RequestParam(defaultValue="no", required=false)String menukind){
@@ -67,7 +47,7 @@ public class ErpController {
 	public String menuRegist(MenuRegistDTO menuRegistDTO, RedirectAttributes rd){
 		int result=0;
 		String message="fail";
-
+		
 		try {
 			result=menuRegistService.menuRegistInsert(menuRegistDTO);
 			if(result>0){
@@ -83,11 +63,16 @@ public class ErpController {
 	
 	@RequestMapping(value="menuRegistView", method=RequestMethod.GET)
 	@ResponseBody
-	public MenuRegistDTO selectOne(Model model, String menuCode)throws Exception{
-		MenuRegistDTO menuRegistDTO=menuRegistService.selectOne(menuCode);
-
-		
-		return menuRegistDTO;
+	public Map<String, Object> selectOne(String menuCode)throws Exception{
+		 Map<String, Object> map=new HashMap<String, Object>();
+		 
+		 try {
+			 map=menuRegistService.selectOne(menuCode);
+		 } catch (Exception e) {
+				e.printStackTrace();
+		}
+		 
+		return map;
 	}
 	
 	@RequestMapping(value="menuRegistUpdate", method=RequestMethod.POST)
