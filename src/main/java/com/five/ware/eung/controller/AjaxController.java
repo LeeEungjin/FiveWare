@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -52,14 +53,14 @@ public class AjaxController {
 	}
 	
 	@RequestMapping(value="fileDelete")
-	public String delete(String code) {
+	public String delete(String code, @RequestParam(defaultValue="supplier", required=true)String path) {
 		try {
 			fileDAO.delete(code);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return "redirect:../erp/foundation/product";
+		return "redirect:../erp/foundation/"+path;
 	}
 
 	@RequestMapping(value="drapAndDrop", method={RequestMethod.POST,RequestMethod.GET})

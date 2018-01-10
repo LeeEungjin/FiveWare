@@ -68,18 +68,18 @@
 		
 		$(".menuView").click(function() {
 			var code=$(this).attr("title");
-			alert(code);
+			
 			$.ajax({
 				data : {"menuCode" : code},
 				url : "./menuRegistView",
 				type : "get",
 				success : function(data){
-					$(".viewCode").val(data.menuCode);
-					$(".viewName").val(data.menuName);
-					$(".viewPrice").val(data.price);
-					$(".viewRecipe").val(data.recipe);
-					$(".menuOption").html(data.menuOption)
-					var viewKind=data.menuKind;
+					$(".viewCode").val(data.menuView.menuCode);
+					$(".viewName").val(data.menuView.menuName);
+					$(".viewPrice").val(data.menuView.price);
+					$(".viewRecipe").val(data.menuView.recipe);
+					$(".menuOption").html(data.menuView.menuOption)
+					var viewKind=data.menuView.menuKind;
 					/* var sel2=$("#sel2").val(); */
 					if(viewKind=='coffee'){
 						$("#coffee").attr("selected", "selected");
@@ -88,6 +88,9 @@
 					}else if(viewKind=='desert'){
 						$("#desert").attr("selected", "selected");
 					}
+					
+					F_FileMultiUpload_Callback(data.files, 'result_one');
+					
 				},
 				error : function(data){
 					alert("error");
@@ -112,17 +115,7 @@
 			});
 		});
 		
-		/* $("#checkDelete").click(function(){
-			alert("click");
-			
-			for(var i=0; i<$(".menucheck").length; i++){
-				if($(".menucheck").prop("checked")){
-					alert("?");
-					var checkCode=$(".menucheck").attr("title");
-				}
-			 
-			}
-		}); */
+
 		
 		$("#mr_checkDelete").click(function(){
 			var count=0;
@@ -141,8 +134,6 @@
 					alert("삭제할 메뉴를 선택해주세요.");
 				}else{
 			
-				alert("code Ar : "+codeAr.toString());
-				
 				$.ajax({
 					type : "POST",
 					url : "./menuRegistDelete",
@@ -171,8 +162,170 @@
 				}
 			});
 		});
+		
+///////////////////////File Cancel/////////////////////////////////////
+		$(".jh_file_cancel").click(function() {
+			
+			var code=$("#menuCode").val();
+			
+			$.ajax({
+				type : "POST",
+				url : "../../ajax/fileDelete",
+				data : { code : code },
+				success:function(){
+				}
+			});
+
+		});
+		
+//////////////////////////File Upload//////////////////////////////////
+		var obj = $(".dropzone");
+
+	     obj.on('dragenter', function (e) {
+	          e.stopPropagation();
+	          e.preventDefault();
+	          $(this).css('border', '2px solid #5272A0');
+	     });
+
+	     obj.on('dragleave', function (e) {
+	          e.stopPropagation();
+	          e.preventDefault();
+	          $(this).css('border', '2px dotted #8296C2');
+	     });
+
+	     obj.on('dragover', function (e) {
+	          e.stopPropagation();
+	          e.preventDefault();
+	     });
+
+	     obj.on('drop', function (e) {
+	          e.preventDefault();
+	          $(this).css('border', '2px dotted #8296C2');
+
+	          var files = e.originalEvent.dataTransfer.files;
+	          
+	          console.log(files);
+	          
+	          if(files.length < 1)
+	               return;
+	          
+	          var mode = 'result';
+	          var code = document.getElementById('menuCode').value;
+	          if(code == '') {
+	        	  code = document.getElementById('mr_update_code').value;
+	        	  mode = 'result_one';
+	          }
+	          
+	          F_FileMultiUpload(files, code, mode);
+	     });
+	 	 // Window Onload End
+		
 	});
+	
+	
+	function F_FileMultiUpload(files, code, mode) {
+		/*************** 이미지만 올릴 수 있도로고 처리!!!!!!! ******************/
+		var len = 0;
+		
+		$.ajax({
+			url: '../../ajax/fileList',
+			data: {'code': code},
+			async: false,
+			success:function(result) {
+				len = result.length;
+			}
+		});
+		
+		if( (files.length+len) < 5 ) {
+	         var data = new FormData();
+	         for (var i = 0; i < files.length; i++) {
+	        	console.log(files[i]);
+	            data.append('file', files[i]);
+	         }
+	         
+	         data.append('code', code)
+	    
+	         var url = "../../ajax/drapAndDrop";
+	         $.ajax({
+	            url: url,
+	            method: 'post',
+	            data: data,
+	            processData: false,
+	            contentType: false,
+	            success: function(data) {
+	            	alert("success!!");
+	            	F_FileMultiUpload_Callback(data, mode);
+	            	
+	            },
+	            error: function() {
+	            	alert("error");
+	            }
+	         });
+		} else {
+			alert("4개까지 이미지를 업로드할 수 있습니다.");
+		}
+	    
+	}
+
+	// 파일 멀티 업로드 Callback
+	function F_FileMultiUpload_Callback(files, result) {
+	    var result = document.getElementById(result);
+	    
+		for(var i=0; i < files.length; i++){
+		    var img = document.createElement('img');
+		    
+		    img.setAttribute("src", "${pageContext.request.contextPath}/resources/product/"+files[i].filename);
+		    img.setAttribute("title", files[i].fnum)
+		    img.className = "img_margin ej_img_btn";
+		    img.onclick = function() {
+		    	if(confirm("삭제하시겠습니까?") == true) {
+			    	var temp = this;
+			    	console.log(temp);
+					var fnum = this.getAttribute('title');
+					
+					$.ajax({
+						url: '../../ajax/fileDeleteOne',
+						data: {'fnum': fnum},
+						success:function(result) {
+							alert("삭제되었습니다.");
+							temp.remove();
+						}
+					});
+		    	}
+		    };
+		    result.appendChild(img);
+		    
+		}
+		
+	}
+	
+	
 </script>
+
+<style>
+    .dropzone
+    {
+        border:2px dotted #3292A2;
+        width:100%;
+        height:50px;
+        color:#92AAB0;
+        text-align:center;
+        font-size:24px;
+        padding:10px;
+    }
+    #result, #result_one {
+    	width: 100%;
+    	height: 150px;
+    }
+    
+    .img_margin {
+   		width: 20%;
+    	height: 150px;
+    	margin-left: 2.5%;
+    	margin-right: 2.5%;
+    }
+    
+</style>
 
 </head>
 <body>
@@ -338,7 +491,7 @@
 						        <th>구분</th>
 						        <th>이름</th>
 						        <th>가격</th>
-						        <th>사진</th>
+						        <th>첨부파일</th>
 						      </tr>
 						    </thead>
 						    
@@ -350,7 +503,15 @@
 							        <td>${mr_list.menuKind }</td>
 							        <td  class="menuView" title="${mr_list.menuCode}" data-toggle="modal" data-target="#jh_mr_update_Modal">${mr_list.menuName }</td>
 							        <td>${mr_list.price }</td>
-							        <td>${mr_list.imgNull }</td>
+							        
+							        <c:if test="${mr_list.imgNull eq 'true'}">
+							        	<td><img src="${pageContext.request.contextPath}/resources/images/common/icon_file.gif"></td>
+							        </c:if>
+							        
+							        <c:if test="${mr_list.imgNull eq 'false'}">
+							        	<td>-</td>
+							        </c:if>
+							        
 							      </tr>
 						      </c:forEach>
 						    </tbody>
@@ -388,13 +549,16 @@
 				      
 				      	<!-- modal header -->
 				        <div class="modal-header">
-				          <button type="button" class="close" data-dismiss="modal">&times;</button>
+				          <button type="button" class="close jh_file_cancel" data-dismiss="modal">&times;</button>
 				          <h4 class="modal-title">|메뉴 등록</h4>
 				        </div>
 				        <!-- modal header 끝-->
 				        
 				        <!-- modal contents -->
-				        <!-- <form action="./menuRegistWrite" method="post" id="mr_frm"> -->
+				        <form action="./menuRegistWrite" method="post" id="mr_frm" enctype="multipart/form-data">
+				        
+				        <input type="hidden" name="path" value="menuRegist">
+				        
 				        <div class="modal-body">
 				        	<div class="input-group input-group_modal">
 							  <span class="input-group-addon">메뉴번호*</span>
@@ -420,16 +584,6 @@
 							  <input id="price" type="text" class="form-control"  placeholder="Additional Info" name="price">
 							</div>
 							
-							<form enctype="multipart/form-data">
-							 <div class="input-group input-group_modal">
-							  <span class="input-group-addon">사진</span>
-							  <div id="mr_img_div">
-							  </div>
-							  <input type="file" id="mr_fileInput" multiple="multiple">
-							  <button id="er_imgBtn">upload</button>
-							</div>
-							</form>
-							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">레시피*</span>
 							  <input id="recipe" type="text" class="form-control"  placeholder="Additional Info" name="recipe">
@@ -440,16 +594,25 @@
 						      <div id="area_text"><label class="jh_label" for="comment">메뉴의 설명을 작성해주세요.</label></div> 
 						      <textarea class="form-control form-control_area" rows="5" id="comment" name="menuOption"></textarea>
 						    </div>
+						    
+						    <div class="input-group input-group_modal or_input-group_modal_2">
+							  <div class="dropzone">Drag & Drop Files Here</div> 
+							</div>
 							
+							<div class="input-group input-group_modal or_input-group_modal_2">
+							  <div id="result"></div>
+							</div>
+							
+							<input type="hidden" name="imgNull" value="false">
 				        </div>
 				        <!-- modal contents 끝-->
 				        
 				        <!-- modal footer -->
 				        <div class="modal-footer">
 				          <input type="button" class="btn btn-default mr_btn"  value="등록">
-				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				          <button type="button" class="btn btn-default jh_file_cancel" data-dismiss="modal">Close</button>
 				        </div>
-				       <!--  </form> -->
+				       </form>
 				      	<!-- modal footer 끝-->
 				      </div>
 				    </div>
@@ -466,7 +629,7 @@
 				      <div class="modal-content">
 				      	<!-- modal header -->
 				        <div class="modal-header">
-				          <button type="button" class="close" data-dismiss="modal">&times;</button>
+				          <button type="button" class="close jh_file_cancel" data-dismiss="modal">&times;</button>
 				          <h4 class="modal-title">|메뉴 등록</h4>
 				        </div>
 				        <!-- modal header 끝-->
@@ -476,7 +639,7 @@
 				        <div class="modal-body">
 				        	<div class="input-group input-group_modal">
 							  <span class="input-group-addon">메뉴번호</span>
-							  <input name="menuCode" id="msg" type="text" class="form-control viewCode"  placeholder="Additional Info" readonly="readonly">
+							  <input name="menuCode" id="mr_update_code" type="text" class="form-control viewCode"  placeholder="Additional Info" readonly="readonly">
 							</div>
 							
 							<div class="input-group input-group_modal">
@@ -490,12 +653,12 @@
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">메뉴명</span>
-							  <input name="menuName" id="msg" type="text" class="form-control viewName"placeholder="Additional Info" >
+							  <input name="menuName" type="text" class="form-control viewName"placeholder="Additional Info" >
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">가격</span>
-							  <input name="price" id="msg" type="text" class="form-control viewPrice" placeholder="Additional Info" >
+							  <input name="price" type="text" class="form-control viewPrice" placeholder="Additional Info" >
 							</div>
 							
 							<div class="input-group input-group_modal">
@@ -505,7 +668,7 @@
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">레시피</span>
-							  <input name="recipe" id="msg" type="text" class="form-control viewRecipe" placeholder="Additional Info">
+							  <input name="recipe"  type="text" class="form-control viewRecipe" placeholder="Additional Info">
 							</div>
 							
 							<div class="form-group">
@@ -513,6 +676,14 @@
 						      <div id="area_text"><label class="jh_label" for="comment">메뉴의 설명을 작성해주세요.</label></div> 
 						      <textarea name="menuOption" class="form-control form-control_area menuOption" rows="5" id="comment"></textarea>
 						    </div>
+						    
+						    <div class="input-group input-group_modal or_input-group_modal_2">
+							  <div class="dropzone">Drag & Drop Files Here</div> 
+							</div>
+							
+							<div class="input-group input-group_modal or_input-group_modal_2">
+							  <div id="result_one"></div>
+							</div>
 							
 				        </div>
 				        <!-- modal contents 끝-->
@@ -521,7 +692,7 @@
 				        <div class="modal-footer">
 				          <button type="button" class="btn btn-default menuUpdate" data-dismiss="modal">수정</button>
 						  <button type="button" class="btn btn-default menuDelete" data-dismiss="modal">삭제</button>				        
-				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				          <button type="button" class="btn btn-default jh_file_cancel" data-dismiss="modal">Close</button>
 				        </div>
 				        </form>
 				      	<!-- modal footer 끝-->

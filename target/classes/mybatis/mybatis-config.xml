@@ -15,12 +15,9 @@
   		<typeAlias type="com.five.ware.erp.human.member.MemberDTO" alias="MemberDTO"/>
   		<typeAlias type="com.five.ware.file.FileDTO" alias="FileDTO"/>
   		<typeAlias type="com.five.ware.erp.human.dili.DiliDTO" alias="DiliDTO"/>
-<<<<<<< HEAD
   		<typeAlias type="com.five.ware.erp.product.ProductDTO" alias="ProductDTO"/>
   		<typeAlias type="com.five.ware.file.FileDTO" alias="FileDTO"/>
-=======
   		<typeAlias type="com.five.ware.erp.human.dili.MemberWorkDTO" alias="MemberWorkDTO"/>
   		
->>>>>>> arin
   	</typeAliases>
   </configuration>
