@@ -8,13 +8,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.five.ware.erp.product.ProductDTO;
 import com.five.ware.excel.ExcelRoom;
 import com.five.ware.excel.ExcelView2003;
 
 @Controller
+@RequestMapping(value="/excel/**")
 public class ExcelController {
 	
-	@RequestMapping(value="/exportExcel2003", method=RequestMethod.GET)
+	@RequestMapping(value="exportExcel2003", method=RequestMethod.GET)
 	public ModelAndView downloadExcel2003(HttpServletResponse response){
 		
 		response.setHeader("Content-disposition", "attachment; filename=" + "excel_2003" + ".xls");
@@ -28,7 +30,7 @@ public class ExcelController {
 		return new ModelAndView("excelView2003", "listRooms", listRooms);
 	}
 	
-	@RequestMapping(value="/exportExcel2007", method=RequestMethod.GET)
+	@RequestMapping(value="exportExcel2007", method=RequestMethod.GET)
 	public ModelAndView downloadExcel2007(HttpServletResponse response){
 		response.setHeader("Content-disposition", "attachment; filename=" + "excel_2007" + ".xls");
 		
@@ -37,6 +39,18 @@ public class ExcelController {
 		listRooms.add(new ExcelRoom(1, "Room1", 10));
 		listRooms.add(new ExcelRoom(2, "Room2", 20));
 		listRooms.add(new ExcelRoom(3, "Room3", 30));
+		
+		return new ModelAndView("excelView2007", "listRooms", listRooms);
+	}
+	
+	@RequestMapping(value="excelProduct", method=RequestMethod.GET)
+	public ModelAndView excelProduct(HttpServletResponse response){
+		response.setHeader("Content-disposition", "attachment; filename=" + "excelProduct" + ".xls");
+		
+		List<ProductDTO> listRooms=new ArrayList<ProductDTO>();
+		
+		
+		
 		
 		return new ModelAndView("excelView2007", "listRooms", listRooms);
 	}
