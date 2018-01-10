@@ -1,5 +1,8 @@
 package com.five.ware.jh.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -150,10 +153,12 @@ public class ErpController {
 	
 	@RequestMapping(value="storageView", method=RequestMethod.GET)
 	@ResponseBody
-	public StorageRegistDTO selectOneStorage(Model model, String storageCode)throws Exception{
-		StorageRegistDTO storageRegistDTO=storageService.selectOne(storageCode);
+	public Map<String, Object> selectOneStorage(Model model, String storageCode)throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map=storageService.selectOne(storageCode);
 
-		return storageRegistDTO;
+		return map;
 	}
 	
 	@RequestMapping(value="storageUpdate", method=RequestMethod.POST)

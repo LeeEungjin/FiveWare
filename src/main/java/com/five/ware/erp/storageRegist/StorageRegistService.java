@@ -1,10 +1,16 @@
 package com.five.ware.erp.storageRegist;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.five.ware.file.FileDAO;
+import com.five.ware.file.FileDTO;
 import com.five.ware.util.ListData;
 
 @Service
@@ -12,8 +18,16 @@ public class StorageRegistService {
 	
 	@Inject
 	private StorageRegistDAO storageRegistDAO;
+	@Inject
+	private FileDAO fileDAO;
 	
 	public int insert(StorageRegistDTO storageRegistDTO)throws Exception{
+		
+		List<FileDTO> ar = fileDAO.selectList(storageRegistDTO.getStorageCode());
+		if(ar.size() > 0) {
+			storageRegistDTO.setImgNull("true");
+		}
+		
 		int result=storageRegistDAO.insert(storageRegistDTO);
 		
 		return result;
@@ -30,10 +44,16 @@ public class StorageRegistService {
 		return mv;
 	}
 	
-	public StorageRegistDTO selectOne(String storageCode)throws Exception{
-		StorageRegistDTO storageRegistDTO=storageRegistDAO.selectOne(storageCode);
+	public Map<String, Object> selectOne(String storageCode)throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
 		
-		return storageRegistDTO;
+		StorageRegistDTO storageRegistDTO=storageRegistDAO.selectOne(storageCode);
+		List<FileDTO> ar = fileDAO.selectList(storageCode);
+		
+		map.put("storageRegistDTO", storageRegistDTO);
+		map.put("files", ar);
+		
+		return map;
 	}
 	
 	public int update(StorageRegistDTO storageRegistDTO)throws Exception{

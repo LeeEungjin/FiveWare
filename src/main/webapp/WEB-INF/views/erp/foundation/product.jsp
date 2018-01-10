@@ -103,7 +103,6 @@
 		
 		///////////////////////File Cancel/////////////////////////////////////
 		$(".ej_file_cancel").click(function() {
-			alert("test");
 			$("#ej_write_frm").attr("action", "../../ajax/fileDelete");
 			$("#ej_write_frm").submit();
 		});
@@ -200,7 +199,7 @@
 	            }
 	         });
 		} else {
-			alert("4개까지 이미지를 업로드할 수 있습니다.");
+			alert("이미지는 4개까지 업로드할 수 있습니다.");
 		}
 	    
 	}
@@ -212,7 +211,6 @@
 		    var img = document.createElement('img');
 		    img.setAttribute("src", "${pageContext.request.contextPath}/resources/product/"+files[i].filename);
 		    img.setAttribute("title", files[i].fnum)
-		    alert(files[i].fnum);
 		    img.className = "img_margin ej_img_btn";
 		    img.onclick = function() {
 		    	if(confirm("삭제하시겠습니까?") == true) {
@@ -231,9 +229,7 @@
 		    	}
 		    };
 		    result.appendChild(img);
-		    
 		}
-		
 	}
 	
 </script>
