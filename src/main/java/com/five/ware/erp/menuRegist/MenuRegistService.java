@@ -3,17 +3,16 @@ package com.five.ware.erp.menuRegist;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.inject.Inject;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.five.ware.file.FileDAO;
 import com.five.ware.file.FileDTO;
 import com.five.ware.util.ListData;
 
+@Transactional
 @Service
 public class MenuRegistService {
 	
@@ -78,7 +77,10 @@ public class MenuRegistService {
 	}
 	
 	public int delete(String menuCode)throws Exception{
-		return menuRegistDAO.delete(menuCode);
+		int result=menuRegistDAO.delete(menuCode);
+			result=fileDAO.delete(menuCode);
+			
+		return result;
 	}
 	
 

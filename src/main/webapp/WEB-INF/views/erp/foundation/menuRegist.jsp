@@ -69,6 +69,8 @@
 		$(".menuView").click(function() {
 			var code=$(this).attr("title");
 			
+			document.getElementById('result_one').innerHTML = "";
+			
 			$.ajax({
 				data : {"menuCode" : code},
 				url : "./menuRegistView",
@@ -80,7 +82,7 @@
 					$(".viewRecipe").val(data.menuView.recipe);
 					$(".menuOption").html(data.menuView.menuOption)
 					var viewKind=data.menuView.menuKind;
-					/* var sel2=$("#sel2").val(); */
+
 					if(viewKind=='coffee'){
 						$("#coffee").attr("selected", "selected");
 					}else if(viewKind=='juice'){
@@ -167,11 +169,14 @@
 		$(".jh_file_cancel").click(function() {
 			
 			var code=$("#menuCode").val();
+			var path=$("#mr_path").val();
 			
 			$.ajax({
 				type : "POST",
 				url : "../../ajax/fileDelete",
-				data : { code : code },
+				data : { code : code ,
+						 path : path
+				},
 				success:function(){
 				}
 			});
@@ -557,7 +562,7 @@
 				        <!-- modal contents -->
 				        <form action="./menuRegistWrite" method="post" id="mr_frm" enctype="multipart/form-data">
 				        
-				        <input type="hidden" name="path" value="menuRegist">
+				        <input type="hidden" id="mr_path" name="path" value="menuRegist">
 				        
 				        <div class="modal-body">
 				        	<div class="input-group input-group_modal">
