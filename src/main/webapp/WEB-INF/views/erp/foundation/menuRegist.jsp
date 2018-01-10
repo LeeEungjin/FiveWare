@@ -408,15 +408,7 @@
          
          <div class="fw_subsub collapse"  id="sub4">
             <ul>
-               <li>거래처 조회</li>
-               <li>제품 조회</li>
-               <li>메뉴 조회</li>
-               <li>창고 조회</li>
-               <li>주문 조회</li>
-               <li>입고 조회</li>
-               <li>출고 조회</li>
-               <li>반품 조회</li>
-               <li>불출 조회</li>
+               <li><a href="../../erp/into/intoList">조회 및 엑셀 다운</a></li>
             </ul>
          </div>
          
@@ -426,11 +418,7 @@
 	
 	<div id="fw_mainwrap">
 			<div id="fw_main">
-				<!-- <div class="sales_title_menu">기초 정보</div>
-				<div class="sales_title_menu">구매 관리</div>
-				<div class="sales_title_menu">자재 관리</div>
-				<div class="sales_title_menu">반품 관리</div>
-				<div class="sales_title_menu">조 회</div> -->
+
 			</div>
 			
 			<div id="fw_main_contents">
@@ -564,11 +552,7 @@
 				        <!-- modal contents -->
 				        <form action="./menuRegistWrite" method="post" id="mr_frm" enctype="multipart/form-data">
 				        
-<<<<<<< HEAD
-				        <input type="hidden" name="path" value="menuRegist">
-=======
 				        <input type="hidden" id="mr_path" name="path" value="menuRegist">
->>>>>>> jihyun10
 				        
 				        <div class="modal-body">
 				        	<div class="input-group input-group_modal">

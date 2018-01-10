@@ -1,6 +1,8 @@
 package com.five.ware.erp.supplier;
 
-public class SupplierDTO {
+import com.five.ware.erp.into.IntoDTO;
+
+public class SupplierDTO{
 	private String code;			// 嫄곕옒泥� 肄붾뱶
 	private String classification;	// 嫄곕옒泥� 遺꾨쪟
 	private String name;			// 嫄곕옒泥섎챸
