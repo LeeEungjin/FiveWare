@@ -69,18 +69,22 @@
 		$(".menuView").click(function() {
 			var code=$(this).attr("title");
 			
+			
 			$.ajax({
 				data : {"menuCode" : code},
 				url : "./menuRegistView",
 				type : "get",
 				success : function(data){
+		
+					document.getElementById('result_one').innerHTML = "";
+					
 					$(".viewCode").val(data.menuView.menuCode);
 					$(".viewName").val(data.menuView.menuName);
 					$(".viewPrice").val(data.menuView.price);
 					$(".viewRecipe").val(data.menuView.recipe);
 					$(".menuOption").html(data.menuView.menuOption)
 					var viewKind=data.menuView.menuKind;
-					/* var sel2=$("#sel2").val(); */
+
 					if(viewKind=='coffee'){
 						$("#coffee").attr("selected", "selected");
 					}else if(viewKind=='juice'){
@@ -167,11 +171,14 @@
 		$(".jh_file_cancel").click(function() {
 			
 			var code=$("#menuCode").val();
+			var path=$("#mr_path").val();
 			
 			$.ajax({
 				type : "POST",
 				url : "../../ajax/fileDelete",
-				data : { code : code },
+				data : { code : code ,
+						 path : path
+				},
 				success:function(){
 				}
 			});
@@ -557,7 +564,11 @@
 				        <!-- modal contents -->
 				        <form action="./menuRegistWrite" method="post" id="mr_frm" enctype="multipart/form-data">
 				        
+<<<<<<< HEAD
 				        <input type="hidden" name="path" value="menuRegist">
+=======
+				        <input type="hidden" id="mr_path" name="path" value="menuRegist">
+>>>>>>> jihyun10
 				        
 				        <div class="modal-body">
 				        	<div class="input-group input-group_modal">
