@@ -7,13 +7,14 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.five.ware.file.FileDAO;
 import com.five.ware.file.FileDTO;
 import com.five.ware.util.ListData;
 
-@Service
+@Service @Transactional
 public class StorageRegistService {
 	
 	@Inject
@@ -61,6 +62,8 @@ public class StorageRegistService {
 	}
 	
 	public int delete(String storageCode)throws Exception{
-		return storageRegistDAO.delete(storageCode);
+		int result = fileDAO.delete(storageCode);
+		result = storageRegistDAO.delete(storageCode);
+		return result;
 	}
 }

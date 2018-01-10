@@ -96,11 +96,15 @@
 		///////////////////////File Cancel/////////////////////////////////////
 		$(".sr_file_cancel").click(function() {
 			var code=$("#storageCode").val();
+			var path=$("#path").val();
 			
 			$.ajax({
 				url: "../../ajax/fileDelete",
 				type: "POST",
-				data: {"code" : code},
+				data: {
+					"code" : code,
+					"path" : path
+				},
 				success: function() { }
 			});
 			
@@ -452,7 +456,7 @@
 				        
 				        <!-- modal contents -->
 				         <form action="./storagetWrite" method="post" id="sr_frm">
-				         <input type="hidden" name="path" value="storageRegist">
+				         <input type="hidden" id="path" name="path" value="storageRegist">
 				         <input type="hidden" name="imgNull" value="false">
 				        <div class="modal-body">
 				        	<div class="input-group input-group_modal">

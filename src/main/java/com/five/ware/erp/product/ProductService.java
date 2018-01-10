@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.five.ware.file.FileDAO;
@@ -16,7 +17,7 @@ import com.five.ware.util.ListData;
 import com.five.ware.util.Pager;
 import com.five.ware.util.RowNum;
 
-@Service
+@Service @Transactional
 public class ProductService {
 	
 	@Inject
@@ -27,7 +28,9 @@ public class ProductService {
 
 	
 	public int delete(String code) throws Exception {
-		return productDAO.delete(code);
+		int result = fileDAO.delete(code);
+		result = productDAO.delete(code);
+		return result;
 	}
 	
 	public int update(ProductDTO productDTO) throws Exception {
