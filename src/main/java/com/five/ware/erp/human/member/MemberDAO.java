@@ -17,6 +17,22 @@ public class MemberDAO {
 	SqlSession sqlSession;
 	private final String NAMESPACE="humanMemberMapper.";
 	
+	//myPage
+	public int myPageUpdate(MemberDTO memberDTO)throws Exception{
+		
+		int result=sqlSession.update(NAMESPACE+"myPageUpdate", memberDTO);
+		
+		return result;
+		
+	}	
+	//login
+	public MemberDTO login(MemberDTO memberDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"login", memberDTO);
+	}
+	
+	
+	
+	
 	public int memberInsert(MemberDTO memberDTO) throws Exception{
 		int result = sqlSession.insert(NAMESPACE+"memberInsert", memberDTO);
 		

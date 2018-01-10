@@ -12,6 +12,18 @@ public class MemberService {
 	@Inject
 	MemberDAO memberDAO;
 	
+	//myPage
+	public int myPageUpdate(MemberDTO memberDTO) throws Exception{
+		int result=memberDAO.myPageUpdate(memberDTO);
+		
+		return result;
+	}
+	//login
+	public MemberDTO login(MemberDTO memberDTO) throws Exception{
+		return memberDAO.login(memberDTO);
+	}
+	
+	
 	public int memberInsert(MemberDTO memberDTO) throws Exception{
 		int result = memberDAO.memberInsert(memberDTO);
 		

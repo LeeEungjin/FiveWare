@@ -45,9 +45,10 @@
 			</div>  -->
 			
 			<div id="search_wrap">
+				<a href="./member/memberLogout">
 				<button id="logout_btn" type="button" class="btn btn-default btn-l">
-		          <span class="glyphicon glyphicon-log-out"></span> Log out
-		        </button>
+		         <span class="glyphicon glyphicon-log-out" id="logout"></span>Logout
+		        </button></a>
 			</div>
 			
 		</div>
@@ -59,7 +60,7 @@
 					<div id="pro_info_1">
 						<div id="pro_img">
 							<img src="${pageContext.request.contextPath}/resources/images/sidebar/avatar82.png" class="eb_default_img">
-						<p id="name_p">이응진 님</p>
+						<p id="name_p"> 님</p>
 						</div>
 					</div>
 					<div id="pro_info_2">

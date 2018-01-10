@@ -49,9 +49,10 @@
 			</div>  -->
 			
 			<div id="search_wrap">
+				<a href="./member/memberLogout">
 				<button id="logout_btn" type="button" class="btn btn-default btn-l">
-		          <span class="glyphicon glyphicon-log-out"></span> Log out
-		        </button>
+		         <span class="glyphicon glyphicon-log-out" id="logout"></span>Logout
+		        </button></a>
 			</div>
 			
 		</div>
