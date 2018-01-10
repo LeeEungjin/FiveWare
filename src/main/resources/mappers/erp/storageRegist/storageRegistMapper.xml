@@ -29,7 +29,7 @@
   		where R between #{startRow} and #{lastRow}
   	</select>
   	
-  	<select id="totalCount" resultType="int">
+  	<select id="totalCount" parameterType="com.five.ware.util.RowNum" resultType="int">
   		select nvl(count(storagecode),0) from storage
   		<if test="kind == 'storagename'">
   			where storagename like '%'||#{search}||'%'

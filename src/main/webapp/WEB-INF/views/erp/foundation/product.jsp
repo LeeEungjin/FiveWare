@@ -62,6 +62,8 @@
 	            url : "./productOne",
 	            type : "get",
 	            success : function(data){
+	            	document.getElementById('result_one').innerHTML = "";
+	            	
 	            	$("#code_one").val(data.product.code);
 					$("#name_one").val(data.product.name);
 					$("#standard_one").val(data.product.standard);
@@ -76,7 +78,6 @@
 						$("#ej_modal_stop").val("사용")
 					}
 					
-					console.log(data.files);
 					F_FileMultiUpload_Callback(data.files, 'result_one');
 	            },
 	            error : function(data){
@@ -103,9 +104,18 @@
 		
 		///////////////////////File Cancel/////////////////////////////////////
 		$(".ej_file_cancel").click(function() {
-			alert("test");
-			$("#ej_write_frm").attr("action", "../../ajax/fileDelete");
-			$("#ej_write_frm").submit();
+			var code=$("#code").val();
+			var path=$("#path").val();
+			
+			$.ajax({
+				url: "../../ajax/fileDelete",
+				type: "POST",
+				data: {
+					"code" : code,
+					"path" : path
+				},
+				success: function() { }
+			});
 		});
 		
 		////////////////////////////////////Pager//////////////////////////////////
@@ -158,8 +168,8 @@
 	          
 	          F_FileMultiUpload(files, code, mode);
 	     });
-	     
-	}); // Window Onload End
+	 	 // Window Onload End
+	}); 
 	
 	function F_FileMultiUpload(files, code, mode) {
 		/*************** 이미지만 올릴 수 있도로고 처리!!!!!!! ******************/
@@ -200,7 +210,7 @@
 	            }
 	         });
 		} else {
-			alert("4개까지 이미지를 업로드할 수 있습니다.");
+			alert("이미지는 4개까지 업로드할 수 있습니다.");
 		}
 	    
 	}
@@ -212,7 +222,6 @@
 		    var img = document.createElement('img');
 		    img.setAttribute("src", "${pageContext.request.contextPath}/resources/product/"+files[i].filename);
 		    img.setAttribute("title", files[i].fnum)
-		    alert(files[i].fnum);
 		    img.className = "img_margin ej_img_btn";
 		    img.onclick = function() {
 		    	if(confirm("삭제하시겠습니까?") == true) {
@@ -231,9 +240,7 @@
 		    	}
 		    };
 		    result.appendChild(img);
-		    
 		}
-		
 	}
 	
 </script>
@@ -474,6 +481,7 @@
         
         <!-- modal contents -->
        <form action="./productWrite" method="post" id="ej_write_frm" enctype="multipart/form-data">
+       <input type="hidden" id="path" name="path" value="product">
        <input type="hidden" name="use" value="true">
         <div class="modal-body">
         	<div class="input-group input-group_modal or_input-group_modal">

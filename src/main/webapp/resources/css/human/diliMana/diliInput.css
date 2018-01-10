@@ -302,7 +302,7 @@
 }
 
 .ar_memOther{
-	width: 43%;
+	width: 44%;
 	display: inline-block;
 	height: 10%;
 	text-align: center;
@@ -327,6 +327,12 @@
     background-color: lightgray;
     margin: 0 auto;
     margin-top: 5%;
+    overflow: scroll;
+}
+
+.ar_memmem{
+	display: inline-block;	
+	width: 90%;
 }
 
 .ar_memListTop{
@@ -357,10 +363,68 @@
 	width: 35%;
 }
 
+.ar_memListNum1{
+	display: inline-block;
+	width: 30%;
+	text-align:center;
+}
+.ar_memListName1{
+	display: inline-block;
+	width: 31%;
+	text-align:center;
+}
+.ar_memListTemp1{
+	display: inline-block;
+	text-align:center;
+	width: 35%;
+}
+
+
 .ar_selectWrap{
 	width: 50%;
 }
 
 .footer2{
 	margin-top: 5% !important;	
+}
+
+.ar_inputWrap{
+	border: 0px;
+	text-align: center;
+	    width: 100%;
+}
+
+.ar_mem input[type='text'] {
+	height: 33px;
+}
+
+.ar_mmmem_inputBox {
+	height: 30px;
+	margin-top: 1%;
+	    width: 100%;
+}
+
+.ar_mmmem_plus{
+    background-color: gray;
+    width: 56%;
+    display: inline-block;
+    float: left;
+}
+
+#ar_mmmem_other{
+	background-color: lightgray;
+    width: 40%;
+    display: inline-block;
+    float: left;
+}
+
+#ar_1memOther{
+	display: inline-block;
+	width: 100%;
+}
+
+.ar_SecTitle1 {
+    width: 9.78%;
+    height: 100%;
+    display: inline-block;
 }

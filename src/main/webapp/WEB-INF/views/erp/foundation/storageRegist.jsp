@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 	<link href="${url}/resources/css/erp/storageRegist.css" rel="stylesheet">
+	<link href="${url}/resources/css/common/modal_boot.css" rel="stylesheet">
 	<c:import url="${url}/resources/temp/ref.jsp"></c:import> 
 
 <title>Insert title here</title>
@@ -30,7 +31,6 @@
 			var cur = $(this).attr("title");
 			var s = '${pager.search}';
 			var t = '${pager.kind}';
-			alert(cur);
 			document.sr_search_frm.curPage.value=cur;
 			document.sr_search_frm.search.value=s;
 			document.sr_search_frm.kind.value=t;
@@ -38,23 +38,23 @@
 		});
 		
 		$(".sr_btn").click(function(){
-			alert("click");
 			$("#sr_frm").submit();
 		});
 		
 		$(".storageView").click(function() {
 			var code=$(this).attr("title");
-			alert(code);
 			$.ajax({
 				data : {"storageCode" : code},
 				url : "./storageView",
 				type : "get",
 				success : function(data){
-					$(".viewCode").val(data.storageCode);
-					$(".viewName").val(data.storageName);
-					$(".viewAddr").val(data.storageAddr);
-					$(".viewOp").html(data.storageOp);
-					$(".viewImg").val(data.imgNull);
+					$(".viewCode").val(data.storageRegistDTO.storageCode);
+					$(".viewName").val(data.storageRegistDTO.storageName);
+					$(".viewAddr").val(data.storageRegistDTO.storageAddr);
+					$(".viewOp").html(data.storageRegistDTO.storageOp);
+					$(".viewImg").val(data.storageRegistDTO.imgNull);
+					
+					F_FileMultiUpload_Callback(data.files, 'result_one');
 				},
 				error : function(data){
 					alert("error");
@@ -68,7 +68,6 @@
 		
 		$(".srDelete").click(function(){
 			var code=$(".viewCode").val();
-			alert(code);
 			$.ajax({
 				data : {"storageCode" : code},
 				url : "./storageDelete",
@@ -84,8 +83,6 @@
 		});
 		
 		$("#sr_insert").click(function(){
-			alert("code");
-		
 			$.ajax({
 				type:"GET",
 				url:"../../codeName",
@@ -96,8 +93,167 @@
 			});
 		});
 		
+		///////////////////////File Cancel/////////////////////////////////////
+		$(".sr_file_cancel").click(function() {
+			var code=$("#storageCode").val();
+			var path=$("#path").val();
+			
+			$.ajax({
+				url: "../../ajax/fileDelete",
+				type: "POST",
+				data: {
+					"code" : code,
+					"path" : path
+				},
+				success: function() { }
+			});
+			
+			
+			/* $("#sr_frm").attr("action", "../../ajax/fileDelete");
+			$("#sr_frm").submit(); */
+		});
+		
+		//////////////////////////File Upload//////////////////////////////////
+		var obj = $(".dropzone");
+
+	     obj.on('dragenter', function (e) {
+	          e.stopPropagation();
+	          e.preventDefault();
+	          $(this).css('border', '2px solid #5272A0');
+	     });
+
+	     obj.on('dragleave', function (e) {
+	          e.stopPropagation();
+	          e.preventDefault();
+	          $(this).css('border', '2px dotted #8296C2');
+	     });
+
+	     obj.on('dragover', function (e) {
+	          e.stopPropagation();
+	          e.preventDefault();
+	     });
+
+	     obj.on('drop', function (e) {
+	          e.preventDefault();
+	          $(this).css('border', '2px dotted #8296C2');
+
+	          var files = e.originalEvent.dataTransfer.files;
+	          
+	          console.log(files);
+	          
+	          if(files.length < 1)
+	               return;
+	          
+	          var mode = 'result';
+	          var code = document.getElementById('storageCode').value;
+	          if(code == '') {
+	        	  code = document.getElementById('sr_update_code').value;
+	        	  mode = 'result_one';
+	          }
+	          
+	          F_FileMultiUpload(files, code, mode);
+	     });
+		
 	});
+	
+	
+	function F_FileMultiUpload(files, code, mode) {
+		/*************** 이미지만 올릴 수 있도로고 처리!!!!!!! ******************/
+		var len = 0;
+		
+		$.ajax({
+			url: '../../ajax/fileList',
+			data: {'code': code},
+			async: false,
+			success:function(result) {
+				len = result.length;
+			}
+		});
+		
+		if( (files.length+len) < 5 ) {
+	         var data = new FormData();
+	         for (var i = 0; i < files.length; i++) {
+	        	console.log(files[i]);
+	            data.append('file', files[i]);
+	         }
+	         
+	         data.append('code', code)
+	    
+	         var url = "../../ajax/drapAndDrop";
+	         $.ajax({
+	            url: url,
+	            method: 'post',
+	            data: data,
+	            processData: false,
+	            contentType: false,
+	            success: function(data) {
+	            	alert("success!!");
+	            	F_FileMultiUpload_Callback(data, mode);
+	            	
+	            },
+	            error: function() {
+	            	alert("error");
+	            }
+	         });
+		} else {
+			alert("4개까지 이미지를 업로드할 수 있습니다.");
+		}
+	    
+	}
+
+	// 파일 멀티 업로드 Callback
+	function F_FileMultiUpload_Callback(files, result) {
+	    var result = document.getElementById(result);
+		for(var i=0; i < files.length; i++){
+		    var img = document.createElement('img');
+		    img.setAttribute("src", "${pageContext.request.contextPath}/resources/product/"+files[i].filename);
+		    img.setAttribute("title", files[i].fnum)
+		    img.className = "img_margin ej_img_btn";
+		    img.onclick = function() {
+		    	if(confirm("삭제하시겠습니까?") == true) {
+			    	var temp = this;
+			    	console.log(temp);
+					var fnum = this.getAttribute('title');
+					
+					$.ajax({
+						url: '../../ajax/fileDeleteOne',
+						data: {'fnum': fnum},
+						success:function(result) {
+							alert("삭제되었습니다.");
+							temp.remove();
+						}
+					});
+		    	}
+		    };
+		    result.appendChild(img);
+		}
+	}
 </script>
+
+<style>
+    .dropzone
+    {
+        border:2px dotted #3292A2;
+        width:100%;
+        height:50px;
+        color:#92AAB0;
+        text-align:center;
+        font-size:24px;
+        padding:10px;
+    }
+    #result, #result_one {
+    	width: 100%;
+    	height: 150px;
+    }
+    
+    .img_margin {
+   		width: 20%;
+    	height: 150px;
+    	margin-left: 2.5%;
+    	margin-right: 2.5%;
+    }
+    
+</style>
 
 </head>
 <body>
@@ -164,8 +320,25 @@
          </div>
          
          <!-- ----------4---------- -->
-         <div class="fw_menu"  >
+         <div class="fw_menu" data-toggle="collapse" data-target="#sub4" title="sub4" >
                	조회
+            <div class="fw_arrow sub4">
+               	∨
+            </div>
+         </div>
+         
+         <div class="fw_subsub collapse"  id="sub4">
+            <ul>
+               <li>거래처 조회</li>
+               <li>제품 조회</li>
+               <li>메뉴 조회</li>
+               <li>창고 조회</li>
+               <li>주문 조회</li>
+               <li>입고 조회</li>
+               <li>출고 조회</li>
+               <li>반품 조회</li>
+               <li>불출 조회</li>
+            </ul>
          </div>
          
       <!-- submenu menu end -->
@@ -222,6 +395,7 @@
 						        <th>창고명</th>
 						        <th>개요</th>
 						        <th>주소</th>
+						        <th>첨부파일</th>
 						      </tr>
 						    </thead>
 						    
@@ -232,6 +406,14 @@
 						        <td  class="storageView"  title="${sr_list.storageCode}" id="jh_bold_text" data-toggle="modal" data-target="#jh_sr_update_Modal">${sr_list.storageName }</td>
 						        <td>${sr_list.storageOp }</td>
 						        <td>${sr_list.storageAddr }</td>
+						        <td>
+						        	<c:if test="${sr_list.imgNull eq 'true'}">
+						        		<img src="${pageContext.request.contextPath}/resources/images/common/icon_file.gif">
+						        	</c:if>
+						        	<c:if test="${sr_list.imgNull ne 'true'}">
+						        		-
+						        	</c:if>
+						        </td>
 						      </tr>
 						    </c:forEach>
 						    </tbody>
@@ -267,22 +449,24 @@
 				      
 				      	<!-- modal header -->
 				        <div class="modal-header">
-				          <button type="button" class="close" data-dismiss="modal">&times;</button>
+				          <button type="button" class="close sr_file_cancel" data-dismiss="modal">&times;</button>
 				          <h4 class="modal-title">|창고 등록</h4>
 				        </div>
 				        <!-- modal header 끝-->
 				        
 				        <!-- modal contents -->
 				         <form action="./storagetWrite" method="post" id="sr_frm">
+				         <input type="hidden" id="path" name="path" value="storageRegist">
+				         <input type="hidden" name="imgNull" value="false">
 				        <div class="modal-body">
 				        	<div class="input-group input-group_modal">
 							  <span class="input-group-addon">창고코드</span>
-							  <input name="storageCode" id="storageCode" type="text" class="form-control" name="msg" placeholder="Additional Info">
+							  <input name="storageCode" id="storageCode" type="text" class="form-control" placeholder="Additional Info">
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">창고명</span>
-							  <input name="storageName" id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
+							  <input name="storageName" id="msg" type="text" class="form-control" placeholder="Additional Info">
 							</div>
 							
 							<div class="input-group input-group_modal">
@@ -292,14 +476,15 @@
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">주소</span>
-							  <input name="storageAddr" id="msg" type="text" class="form-control" name="msg" placeholder="Additional Info">
+							  <input name="storageAddr" id="msg" type="text" class="form-control" placeholder="Additional Info">
 							</div>
 							
-							<div class="input-group input-group_modal">
-							  <span class="input-group-addon">사진</span>
-							  <div id="sr_img_div">
-							  	<input type="text" name="imgNull">
-							  </div>
+							<div class="input-group input-group_modal or_input-group_modal_2">
+							  <div class="dropzone">Drag & Drop Files Here</div> 
+							</div>
+							
+							<div class="input-group input-group_modal or_input-group_modal_2">
+							  <div id="result"></div>
 							</div>
 							
 				        </div>
@@ -308,7 +493,7 @@
 				        <!-- modal footer -->
 				        <div class="modal-footer">
 				          <button type="button" class="btn btn-default sr_btn" data-dismiss="modal">등록</button>
-				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				          <button type="button" class="btn btn-default sr_file_cancel" data-dismiss="modal">Close</button>
 				        </div>
 				        </form>
 				      	<!-- modal footer 끝-->
@@ -326,7 +511,7 @@
 				      
 				      	<!-- modal header -->
 				        <div class="modal-header">
-				          <button type="button" class="close" data-dismiss="modal">&times;</button>
+				          <button type="button" class="close sr_file_cancel" data-dismiss="modal">&times;</button>
 				          <h4 class="modal-title">|창고 등록</h4>
 				        </div>
 				        <!-- modal header 끝-->
@@ -336,12 +521,12 @@
 				        <div class="modal-body">
 				        	<div class="input-group input-group_modal">
 							  <span class="input-group-addon">창고코드</span>
-							  <input readonly="readonly" name="storageCode" id="msg" type="text" class="form-control viewCode"  placeholder="Additional Info">
+							  <input readonly="readonly" name="storageCode" id="sr_update_code" type="text" class="form-control viewCode"  placeholder="Additional Info">
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">창고명</span>
-							  <input name="storageName" id="msg" type="text" class="form-control viewName"placeholder="Additional Info">
+							  <input name="storageName" type="text" class="form-control viewName"placeholder="Additional Info">
 							</div>
 							
 							<div class="input-group input-group_modal">
@@ -351,12 +536,15 @@
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">주소</span>
-							  <input id="msg" type="text" class="form-control viewAddr" name="storageAddr" placeholder="Additional Info">
+							  <input type="text" class="form-control viewAddr" name="storageAddr" placeholder="Additional Info">
 							</div>
 							
-							<div class="input-group input-group_modal">
-							  <span class="input-group-addon">사진</span>
-							  <div id="sr_img_div"><input type="text" class="viewImg" name="imgNull"></div>
+							<div class="input-group input-group_modal or_input-group_modal_2">
+							  <div class="dropzone">Drag & Drop Files Here</div> 
+							</div>
+							
+							<div class="input-group input-group_modal or_input-group_modal_2">
+							  <div id="result_one"></div>
 							</div>
 							
 				        </div>
@@ -366,7 +554,7 @@
 				        <div class="modal-footer">
 				          <button type="button" class="btn btn-default srUpdate" data-dismiss="modal">수정</button>
 				          <button type="button" class="btn btn-default srDelete" data-dismiss="modal">삭제</button>
-				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				          <button type="button" class="btn btn-default sr_file_cancel" data-dismiss="modal">Close</button>
 				        </div>
 				        </form>
 				      	<!-- modal footer 끝-->

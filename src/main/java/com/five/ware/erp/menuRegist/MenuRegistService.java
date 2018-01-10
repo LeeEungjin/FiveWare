@@ -1,26 +1,35 @@
 package com.five.ware.erp.menuRegist;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.inject.Inject;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
-
+import com.five.ware.file.FileDAO;
 import com.five.ware.file.FileDTO;
 import com.five.ware.util.ListData;
 
+@Transactional
 @Service
 public class MenuRegistService {
 	
 	@Inject
 	private MenuRegistDAO menuRegistDAO;
 	
-	public int dragandrop(FileDTO fileDTO)throws Exception{
-		int result=menuRegistDAO.dragandrop(fileDTO);
-		
-		return result;
-	}
+	@Autowired
+	private FileDAO fileDAO;
 	
+
 	public int menuRegistInsert(MenuRegistDTO menuRegistDTO)throws Exception{
+		List<FileDTO> ar=fileDAO.selectList(menuRegistDTO.getMenuCode());
+
+		if(ar.size()>0){
+			menuRegistDTO.setImgNull("true");
+		}
+		
 		int result=menuRegistDAO.memuRegistinsert(menuRegistDTO);
 		
 		return result;
@@ -51,9 +60,16 @@ public class MenuRegistService {
 		return mv;
 	}*/
 	
-	public MenuRegistDTO selectOne(String menuCode)throws Exception{
+	public Map<String, Object> selectOne(String menuCode)throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		List<FileDTO> ar = fileDAO.selectList(menuCode);
 		MenuRegistDTO menuRegistDTO=menuRegistDAO.selectOne(menuCode);
-		return menuRegistDTO;
+		
+		map.put("menuView", menuRegistDTO);
+		map.put("files", ar);
+		
+		return map;
 	}
 	
 	public int update(MenuRegistDTO menuRegistDTO)throws Exception{
@@ -61,7 +77,10 @@ public class MenuRegistService {
 	}
 	
 	public int delete(String menuCode)throws Exception{
-		return menuRegistDAO.delete(menuCode);
+		int result=menuRegistDAO.delete(menuCode);
+			result=fileDAO.delete(menuCode);
+			
+		return result;
 	}
 	
 

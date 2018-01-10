@@ -16,17 +16,26 @@
 	<resources mapping="/resources/**" location="/resources/" />
 
 	<beans:bean class="com.five.ware.util.FileDownload" id="fileDown"></beans:bean>
+	
+	<!-- Excel -->
+	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<beans:property name="order" value="0" />
+	</beans:bean>
+	<beans:bean id="excelView2003" class="com.five.ware.excel.ExcelView2003" />
+	<beans:bean id="excelView2007" class="com.five.ware.excel.ExcelView2007" />
 
 	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
-		<beans:property name="order" value="0"></beans:property>
+		<beans:property name="order" value="1"></beans:property>
 	</beans:bean>
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
-		<beans:property name="order" value="1"></beans:property>
+		<beans:property name="order" value="2"></beans:property>
 	</beans:bean>
+	
+
 	
 	<context:component-scan base-package="com.five.ware" />
 	<context:component-scan base-package="com.five.ware.eung.controller"/>

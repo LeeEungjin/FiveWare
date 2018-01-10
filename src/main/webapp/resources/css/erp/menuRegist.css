@@ -139,7 +139,7 @@
 /*------------- modal -----------------*/
 
 .modal-body {
-    height: 550px !important;
+    height: 600px !important;
 }
 
 .input-group_modal{
@@ -161,7 +161,6 @@
 #area_text{
 	width: 100%;
     height: 5%;
-    margin-top: 60%;
 }
 
 .jh_label {

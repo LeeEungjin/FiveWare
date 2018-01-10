@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="humanDiliInputMapper">
+  
+  <select id="diliNameList" resultType="String">
+  	select workname from workregist
+  </select>
+  
+  <select id="memList" resultType="MemberDTO">
+  	select * from member where kind='재직'
+  </select>
+  
+  <select id="tempList" resultType="String">
+  	select temp from tempregist 
+  </select>  
+  
+  <insert id="memdiliInsert" parameterType="MemberWorkDTO">
+  	insert into memberwork values(memberwork_seq.nextval, #{code},  #{name}, #{temp}, #{workcode}, #{workname}, #{startdate}, #{enddate}, #{other}, #{datenum})
+  </insert>
+  
+  <select id="workCodeSearch" parameterType="String" resultType="String">
+  	select code from workregist where workname=#{workname}
+  </select>
+  
+  <select id="memberWorkList" parameterType="java.util.Map" resultType="MemberWorkDTO">
+  	
+  	select * from memberwork 
+  	<if test="search != null ">
+  	<![CDATA[
+  		where workname like '%'||#{search}||'%' and startdate>=#{startdate} and enddate<=#{enddate}
+  		]]>
+  	</if>
+  	<if test="search ==null">
+  	<![CDATA[
+  		where startdate>=#{startdate} and enddate<=#{enddate}
+  		]]>
+  	</if>
+  	order by num desc
+  	
+  </select>
+  
+  <select id="mworkOne" parameterType="int" resultType="MemberWorkDTO">
+  		select * from memberwork where num=#{num}
+  </select>
+  
+  <update id="mworkUpdate" parameterType="MemberWorkDTO">
+  	update memberwork set workname=#{workname}, startdate=#{startdate}, enddate=#{enddate}, workcode=#{workcode} ,datenum=#{datenum}, other=#{other} where num=#{num}
+  </update>
+  
+  <delete id="mworkDelete" parameterType="int">
+  	delete memberwork where num=#{num}
+  </delete>
+  </mapper>

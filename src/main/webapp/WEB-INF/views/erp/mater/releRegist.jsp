@@ -194,8 +194,7 @@
          
          <div class="fw_subsub collapse"  id="sub2">
             <ul>
-               <li> 주문 입력</li>
-               <li> 주문 현황 보기</li>
+              <li><a href="../../erp/order/orderRegist">주문 입력</a></li>
             </ul>
          </div>
          
@@ -217,8 +216,25 @@
          </div>
          
          <!-- ----------4---------- -->
-         <div class="fw_menu"  >
+         <div class="fw_menu" data-toggle="collapse" data-target="#sub4" title="sub4" >
                	조회
+            <div class="fw_arrow sub4">
+               	∨
+            </div>
+         </div>
+         
+         <div class="fw_subsub collapse"  id="sub4">
+            <ul>
+               <li>거래처 조회</li>
+               <li>제품 조회</li>
+               <li>메뉴 조회</li>
+               <li>창고 조회</li>
+               <li>주문 조회</li>
+               <li>입고 조회</li>
+               <li>출고 조회</li>
+               <li>반품 조회</li>
+               <li>불출 조회</li>
+            </ul>
          </div>
          
       <!-- submenu menu end -->
@@ -231,11 +247,7 @@
 	
 	<div id="fw_mainwrap">
 			<div id="fw_main">
-				<!-- <div class="sales_title_menu">기초 정보</div>
-				<div class="sales_title_menu">구매 관리</div>
-				<div class="sales_title_menu">자재 관리</div>
-				<div class="sales_title_menu">반품 관리</div>
-				<div class="sales_title_menu">조 회</div> -->
+
 			</div>
 			
 			<div id="fw_main_contents">
