@@ -15,10 +15,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.five.ware.erp.product.ProductDTO;
 import com.five.ware.order.OrderDTO;
 import com.five.ware.order.OrderProductDTO;
 import com.five.ware.order.OrderService;
-import com.five.ware.product.ProductDTO;
 
 @Controller
 @RequestMapping(value="erp/order/**")
