@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+
 <html>
 <head>
 	<title>ERP</title>
@@ -15,7 +15,11 @@
 <script type="text/javascript">
 	$(function(){
 		$('[data-toggle="tooltip"]').tooltip();   
-	})
+	
+		$("#logout").click(function(){
+			alert("로그아웃 되었습니다.");
+		});
+	});
 </script>
 <body>
 
@@ -49,9 +53,10 @@
 			</div> 
 			 -->
 			<div id="search_wrap">
+				<a href="./member/memberLogout">
 				<button id="logout_btn" type="button" class="btn btn-default btn-l">
-		          <span class="glyphicon glyphicon-log-out"></span> Log out
-		        </button>
+		         <span class="glyphicon glyphicon-log-out" id="logout"></span>Logout
+		        </button></a>
 			</div>
 			
 		</div>
@@ -63,7 +68,20 @@
 					<div id="pro_info_1">
 						<div id="pro_img">
 							<img src="${pageContext.request.contextPath}/resources/images/sidebar/avatar82.png" class="eb_default_img">
-						<p id="name_p">이응진 님</p>
+						
+						<!-- 로그인하면 이름!!  -->
+				
+						<div class="dropdown">
+						
+					    <p id="name_p">${member.name}님 </p>
+					     <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown"><span class="caret"></span></button>
+					    <ul class="dropdown-menu">
+					      <li><a id="eb_myPage" href="./member/memberMyPage">My Page</a></li>
+					      <li><a href="#">출근/퇴근</a></li>
+					    </ul>
+					  </div>
+						
+						
 						</div>
 					</div>
 					<div id="pro_info_2">

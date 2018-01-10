@@ -5,6 +5,19 @@
   
   <mapper namespace="humanMemberMapper">
   
+  <!-- login -->
+  <select id="login" resultType="MemberDTO" parameterType="MemberDTO">
+  	select * from member where code=#{code} and pw=#{pw}
+  </select>
+
+ <!--My Page  -->
+ <update id="myPageUpdate" parameterType="MemberDTO">
+ 	update member set phone=#{phone}, email=#{email}, addr=#{addr},bank=#{bank}, banknum=#{banknum} where code=#{code}
+ </update>
+  
+  
+  
+  
   <insert id="humanInsert"></insert>
   <insert id="memberInsert" parameterType="MemberDTO">
   	insert into member values(member_seq.nextval, '재직', #{code}, #{code}, #{name}, #{birth}, #{phone}, #{addr}, #{email}, #{hiredate}, #{temp}, #{rank}, #{sal}, #{bank}, #{banknum}, #{vacation}, #{month}, #{other}, '-', '0' )
@@ -30,6 +43,9 @@
  <update id="memberUpdate" parameterType="MemberDTO">
  	update member set phone=#{phone}, name=#{name}, email=#{email}, addr=#{addr}, temp=#{temp}, rank=#{rank}, bank=#{bank}, banknum=#{banknum}, sal=#{sal}, vacation=#{vacation}, month=#{month}, other=#{other} where code=#{code}
  </update>
+ 
+ 
+ 
  
  <update id="memberDelete" parameterType="MemberDTO">
  	update member set kind='퇴직', retiredate=#{retiredate}, term=round(months_between(#{retiredate},

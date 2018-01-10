@@ -25,4 +25,32 @@
   	select code from workregist where workname=#{workname}
   </select>
   
+  <select id="memberWorkList" parameterType="java.util.Map" resultType="MemberWorkDTO">
+  	
+  	select * from memberwork 
+  	<if test="search != null ">
+  	<![CDATA[
+  		where workname like '%'||#{search}||'%' and startdate>=#{startdate} and enddate<=#{enddate}
+  		]]>
+  	</if>
+  	<if test="search ==null">
+  	<![CDATA[
+  		where startdate>=#{startdate} and enddate<=#{enddate}
+  		]]>
+  	</if>
+  	order by num desc
+  	
+  </select>
+  
+  <select id="mworkOne" parameterType="int" resultType="MemberWorkDTO">
+  		select * from memberwork where num=#{num}
+  </select>
+  
+  <update id="mworkUpdate" parameterType="MemberWorkDTO">
+  	update memberwork set workname=#{workname}, startdate=#{startdate}, enddate=#{enddate}, workcode=#{workcode} ,datenum=#{datenum}, other=#{other} where num=#{num}
+  </update>
+  
+  <delete id="mworkDelete" parameterType="int">
+  	delete memberwork where num=#{num}
+  </delete>
   </mapper>

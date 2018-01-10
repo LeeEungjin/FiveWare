@@ -4,6 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="storageRegistMapper">
+  
+ 
+  
+  
   	<insert id="insert" parameterType="com.five.ware.erp.storageRegist.StorageRegistDTO">
 		insert into storage values(#{storageCode}, #{storageName}, #{storageOp}, #{storageAddr}, #{imgNull})
   	</insert>

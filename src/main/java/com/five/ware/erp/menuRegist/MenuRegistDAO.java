@@ -36,7 +36,6 @@ public class MenuRegistDAO {
 		map.put("order", order);
 		map.put("menukind", menukind);
 		
-		
 		return sqlsession.selectList(namespace+"selectList",map);
 	}
 	

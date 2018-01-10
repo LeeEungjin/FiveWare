@@ -401,7 +401,7 @@
 .ar_mmmem_inputBox {
 	height: 30px;
 	margin-top: 1%;
-	    width: 109%;
+	    width: 100%;
 }
 
 .ar_mmmem_plus{
@@ -421,4 +421,10 @@
 #ar_1memOther{
 	display: inline-block;
 	width: 100%;
+}
+
+.ar_SecTitle1 {
+    width: 9.78%;
+    height: 100%;
+    display: inline-block;
 }

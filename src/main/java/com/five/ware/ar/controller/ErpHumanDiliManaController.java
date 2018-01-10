@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -112,12 +113,21 @@ public class ErpHumanDiliManaController {
 	}
 	
 	@RequestMapping(value="diliInput")
-	public ModelAndView diliInput() throws Exception{
+	public ModelAndView diliInput(String search, @RequestParam(defaultValue="2018-01-01", required=false) String startdate, @RequestParam(defaultValue="2018-12-31", required=false)String enddate) throws Exception{
 		List<String> ar = memberWorkService.diliNameList();
+		List<MemberWorkDTO> ar2 = memberWorkService.memberWorkList(search, startdate, enddate);
 		
 		ModelAndView mv = new ModelAndView();
 		
+		if(search==null){
+			search="";
+		}
+		
 		mv.addObject("diliNameList", ar);
+		mv.addObject("memberWorkList", ar2);
+		mv.addObject("startdate", startdate);
+		mv.addObject("enddate", enddate);
+		mv.addObject("search", search);
 		mv.setViewName("human/diliMana/diliInput");
 		
 		return mv;
@@ -182,4 +192,46 @@ public class ErpHumanDiliManaController {
 		
 		return workcode;
 	}
+	
+	@RequestMapping(value="memberWorkUpdate")
+	@ResponseBody
+	public List<Object> mworkOne(int num) throws Exception{
+		MemberWorkDTO memberWorkDTO = memberWorkService.mworkOne(num);
+		List<String> dilNameList = memberWorkService.diliNameList();
+		
+		List<Object> ar = new ArrayList<Object>();
+		
+		ar.add(memberWorkDTO);
+		ar.add(dilNameList);
+		
+		return ar;
+	}
+	
+	@RequestMapping(value="memdiliUpdate", method=RequestMethod.POST)
+	public ModelAndView mworkUpdate(MemberWorkDTO memberWorkDTO) throws Exception{
+		int result = memberWorkService.mworkUpdate(memberWorkDTO);
+		
+		String message= "수정 실패";
+		
+		if(result>0){
+			message="수정되었습니다.";
+		}
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("message", message);
+		mv.addObject("addr", "diliInput");
+		mv.setViewName("common/result");
+		 
+		return mv;
+	}
+	
+	@RequestMapping(value="memdiliDelete", method=RequestMethod.POST)
+	@ResponseBody
+	public int mworkDelete(int num) throws Exception{
+		int result = memberWorkService.mworkDelete(num);
+		
+		return result;
+	}
+	
 }

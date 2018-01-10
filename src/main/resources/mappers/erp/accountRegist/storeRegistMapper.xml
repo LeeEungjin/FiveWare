@@ -5,8 +5,19 @@
   
   <mapper namespace="storeRegistMapper">
   
+   <!-- login -->
+  <select id="login" resultType="storeRegistDTO" parameterType="storeRegistDTO">
+  	select * from storeregist where code=#{code} and pw=#{pw}
+  </select> 
+  
+   <!--My Page  -->
+ <update id="myPageUpdate" parameterType="storeRegistDTO">
+ 	update storeregist set name=#{name}, tel=#{tel}, email=#{email}, bank=#{bank},account=#{account} where code=#{code}
+ </update>
+  
+  
   <insert id="insert" parameterType="storeRegistDTO">
-  	insert into storeRegist values(#{code},#{store},#{storeNum},#{name},#{addr},#{tel},#{email},#{bank},#{account},#{time})
+  	insert into storeRegist values(#{code},#{store},#{storeNum},#{name},#{addr},#{tel},#{email},#{bank},#{account},#{time},#{pw})
   </insert>
   
   <select id="selectList" parameterType="com.five.ware.util.RowNum" resultType="storeRegistDTO">
