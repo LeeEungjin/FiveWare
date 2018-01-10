@@ -63,27 +63,30 @@
        <div class="login_wrap">
     
 
-       <!--    <div class="logini_pic">
+       <div class="logini_pic">
             	 로그인 아이콘
-          </div> -->
+          </div>
           
           <!-- id, pw -->
-         
-        
-          <form action="./member/memberLogin" method="get">
           <div class="login">
-          	<div class="eb_blank"></div>
-          
-            <div class="eb_login_input">
-            	<p><input type="text" class="eb_input" placeholder="ID" name="code"></p>
-            
-            	<p><input type="text" class="eb_input" placeholder="PASSWORD" name="pw"></p>
-            </div>
+             <input type="text" placeholder="  　id" class="loginid  wrap" name="id">
+             <input type="text" placeholder=" 　 password" class="loginpw wrap" name="pw">
              
-             <div id="eb_box_1"></div>
-             <div id="eb_box_2"></div>
+           	  아이디저장
+             <div class="idsave wrap">
+                <input type="checkbox" >  <!-- 아이디 저장 -->
+             </div>
+             
+            <!--  보안문자 -->
+             <div class="security wrap">
+                
+             </div>
+             
+          <!--    로그인버튼   -->           
+                <input type="button"  class="wrap loginbtn" value="로그인">
+   
+             
           </div>
-          </form>
           </div>
        
           </c:if>
