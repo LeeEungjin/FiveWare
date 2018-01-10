@@ -12,7 +12,7 @@
 
  <!--My Page  -->
  <update id="myPageUpdate" parameterType="MemberDTO">
- 	update member set phone=#{phone}, name=#{name}, email=#{email}, addr=#{addr},bank=#{bank}, banknum=#{banknum} where code=#{code}
+ 	update member set phone=#{phone}, email=#{email}, addr=#{addr},bank=#{bank}, banknum=#{banknum} where code=#{code}
  </update>
   
   

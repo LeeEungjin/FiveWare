@@ -12,7 +12,14 @@ public class StoreRegistDTO {
 	private String bank;
 	private String account;
 	private String time;
+	private String pw;
 	
+	public String getPw() {
+		return pw;
+	}
+	public void setPw(String pw) {
+		this.pw = pw;
+	}
 	public String getCode() {
 		return code;
 	}

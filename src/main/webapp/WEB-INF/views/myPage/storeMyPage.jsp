@@ -169,28 +169,28 @@
 					
 					<table class="table">
 						<tr>
-							<td class="eb_td">사원번호</td>
+							<td class="eb_td">지점코드</td>
 							<td>${member.code}</td>
 						</tr>
 						
 						<tr>
-							<td class="eb_td">이름</td>
-							<td>${member.name }</td>
+							<td class="eb_td">지점명</td>
+							<td>${member.store }</td>
 						</tr>
 						
 						<tr>
-							<td class="eb_td">부서</td>
-							<td>${member.temp }</td>
+							<td class="eb_td">사업자번호</td>
+							<td>${member.storeNum }</td>
 						</tr>
 						
 						<tr>
-							<td class="eb_td">직급</td>
-							<td>${member.rank }</td>
+							<td class="eb_td">주소</td>
+							<td>${member.addr }</td>
 						</tr>
 					
 						<tr>
-							<td class="eb_td">입사일</td>
-							<td>${member.hiredate }</td>
+							<td class="eb_td">영업시간</td>
+							<td>${member.time }</td>
 						</tr>
 						
 						</table>
@@ -202,19 +202,21 @@
 				<div class="eb_table_1">	
 					<table class="table ">	
 						<tr>
-							<td class="eb_td">전화번호</td>
-							<td>${member.phone}</td>
+							<td class="eb_td">대표자명</td>
+							<td>${member.name}</td>
 						</tr>
 						
-						<tr>
-							<td class="eb_td">거주지</td>
-							<td>${member.addr}</td>
-						</tr>
-						
+					
 						<tr>
 							<td class="eb_td">E-mail</td>
 							<td>${member.email}</td>
 						</tr>
+						
+						<tr>
+							<td class="eb_td">전화번호</td>
+							<td>${member.tel}</td>
+						</tr>
+					
 						
 						<tr>
 							<td class="eb_td">은행</td>
@@ -223,7 +225,7 @@
 						
 						<tr>
 							<td class="eb_td">계좌번호</td>
-							<td>${member.banknum}</td>
+							<td>${member.account}</td>
 						</tr>
 					</table>
 					<input type="button" value="수정하기" id="eb_update">
@@ -235,33 +237,33 @@
 			<!-- 수정 -->
 			
 		 <div class="eb_table_2">	
-		 <form action="memberUpdate" method="post">
+		 <form action="storeUpdate" method="post">
 		 <input type="hidden" value="${member.code}" name="code">
 			<table class="table ">	
+			
 						<tr>
-							<td class="eb_td">전화번호</td>
-							<td><input type="text" value="${member.phone}" name="phone"></td>
+							<td class="eb_td">대표자명</td>
+							<td><input type="text" value="${member.name}" name="name"></td>
 						</tr>
-						
-						<tr>
-							<td class="eb_td">거주지</td>
-							<td><input type="text" value="${member.addr}" name="addr"></td>
-						</tr>
-						
 						<tr>
 							<td class="eb_td">E-mail</td>
 							<td><input type="text" value="${member.email}" name="email"></td>
 						</tr>
+						<tr>
+							<td class="eb_td">전화번호</td>
+							<td><input type="text" value="${member.tel}" name="tel"></td>
+						</tr>
 						
+			
 						<tr>
 							<td class="eb_td">은행</td>
 							<td><input type="text" value="${member.bank}" name="bank"></td>
 						</tr>
 						
-						<tr>
+						 <tr>
 							<td class="eb_td">계좌번호</td>
-							<td><input type="text" value="${member.banknum}" name="banknum"></td>
-						</tr>
+							<td><input type="text" value="${member.account}" name="account"></td>
+						</tr> 
 					</table>
 						<input type="submit" value="수정하기" >
 					</form>

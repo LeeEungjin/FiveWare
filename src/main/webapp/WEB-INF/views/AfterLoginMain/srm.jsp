@@ -60,7 +60,19 @@
 					<div id="pro_info_1">
 						<div id="pro_img">
 							<img src="${pageContext.request.contextPath}/resources/images/sidebar/avatar82.png" class="eb_default_img">
-						<p id="name_p"> 님</p>
+						
+						
+						<div class="dropdown">
+						
+						<p id="name_p">${member.name}님</p>
+					
+						<button class="btn  dropdown-toggle" type="button" data-toggle="dropdown"><span class="caret"></span></button>
+					    <ul class="dropdown-menu">
+					      <li><a id="eb_myPage" href="./member/storeMyPage">My Page</a></li>
+					      <li><a href="#">출근/퇴근</a></li>
+					    </ul>
+					  </div>
+					  
 						</div>
 					</div>
 					<div id="pro_info_2">

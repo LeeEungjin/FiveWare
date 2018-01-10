@@ -51,7 +51,7 @@ html{width: 100%; }
 /* 로그인 전  */
 
 .login_wrap{
-   background-color: yellow; 
+   background-color: yellow;
    width: 60%;
    height: 50%;
    border-radius: 15px;
@@ -71,9 +71,10 @@ html{width: 100%; }
 
 
 .login{
-   background-color: gray;
-   width: 457px;
-   height: 285px;
+  	background-color: gray;
+   width: 55%;
+   height: 100%;
+   float: left;
 }
 
 

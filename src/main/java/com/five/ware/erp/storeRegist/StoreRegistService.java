@@ -18,6 +18,23 @@ public class StoreRegistService {
 	@Inject
 	private StoreRegistDAO storeRegistDAO;
 	
+	
+	
+	//myPage
+	public int myPageUpdate(StoreRegistDTO storeRegistDTO) throws Exception{
+		int result=storeRegistDAO.myPageUpdate(storeRegistDTO);
+		
+		return result;
+	}
+	
+	//login
+	public StoreRegistDTO login(StoreRegistDTO storeRegistDTO) throws Exception{
+		
+		return storeRegistDAO.login(storeRegistDTO);
+	}
+	
+	
+	
 	//insert
 	public int insert(StoreRegistDTO storeRegistDTO) throws Exception{
 		

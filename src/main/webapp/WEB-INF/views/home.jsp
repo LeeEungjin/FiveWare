@@ -19,19 +19,55 @@
       $(".total_wrap").css("height", window.innerHeight);
       
       
+      $("#eb_cbtn").click(function(){
+    	 $("#eb_frm").prop("action","./member/memberLogin");
+    	
+    	 $("#eb_frm").submit();
+      });
+      
+      $("#eb_sbtn").click(function(){
+    	 $("#eb_frm").prop("action","./member/storeLogin");
+    	
+    	 $("#eb_frm").submit();
+      });
+      
+      
       //로그인 후 이용
- /*      $(".eb_login").click(function(){
+/*        $(".eb_login").click(function(){
+    	  
    			var member=$("#eb_code").val();
+   			var kind='${kind}';
+
    			
     	if(member==""){
     		alert("로그인 후 이용해주세요.");
     	}else{
+    	
+    		if(kind=="member"){
     		$("#eb_href_1").attr("href","erp");
     		$("#eb_href_2").attr("href","groupware");
-    		$("#eb_href_3").attr("href","srm");
+    		
+    		$("#eb_href_3").click(function(){
+    			alert("지점사람들만 이용가능합니다.");
+    	    });    		
+    			
+    		}else{
+    			$("#eb_href_2").attr("href","groupware");
+        		$("#eb_href_3").attr("href","srm");
+        		
+        		$("#eb_href_1").click(function(){
+        			alert("본사사람들만 이용가능합니다.");
+        	    }); 
+    			
+    		}
     	}
-    	  
-      }); */
+	  
+      });  */
+       
+      
+ 
+      
+   
    });
 </script>
 </head>
@@ -44,17 +80,17 @@
   <div class="main_wrap">
  <!-- 메뉴 -->
        <div class="menu_wrap">
-       
+      
              <div class="menu">
-                <a href="erp" class="eb_login" id="eb_href_1">ERP</a>
+                <a href="" class="eb_login" id="eb_href_1">ERP</a>
              </div>
              
                 <div class="menu">
-                <a href="groupware" class="eb_login" id="eb_href_2">GroupWare</a>
+                <a href="" class="eb_login" id="eb_href_2">GroupWare</a>
              </div>
              
                 <div class="menu">
-                <a href="srm" class="eb_login" id="eb_href_3">SRM</a>
+                <a href="" class="eb_login" id="eb_href_3">SRM</a>
              </div>
        </div>
        
@@ -68,9 +104,10 @@
           </div>
           
           <!-- id, pw -->
-          <div class="login">
-             <input type="text" placeholder="  　id" class="loginid  wrap" name="id">
-             <input type="text" placeholder=" 　 password" class="loginpw wrap" name="pw">
+         <form action="" id="eb_frm"> 
+          <div class="login" >
+              <input type="text" placeholder=" id" class="loginid wrap" name="code" id="eb_code">
+             <input type="text" placeholder="password" class="loginpw wrap" name="pw">
              
            	  아이디저장
              <div class="idsave wrap">
@@ -83,10 +120,13 @@
              </div>
              
           <!--    로그인버튼   -->           
-                <input type="button"  class="wrap loginbtn" value="로그인">
+                <input type="button"  class="wrap loginbtn" id="eb_cbtn" value="본사 로그인">
+   				
+   				<input type="button"  class="wrap loginbtn" id="eb_sbtn" value="지점 로그인">
    
              
           </div>
+       </form>
           </div>
        
           </c:if>
@@ -104,6 +144,7 @@
                    사진
                 </div>
                 
+               <c:if test="${kind eq 'member'}"> 
                  <div class="member_info">
                    <div class="info">사원명  : <input type="text" readonly="readonly" value="${member.name }" id="eb_name"></div>
                    <div class="info">부서      : <input type="text" readonly="readonly" value="${member.temp }"></div>
@@ -111,6 +152,17 @@
                    ------------------------------------------------<br>
                    알림?
                 </div> 
+                </c:if>
+                
+                 <c:if test="${kind eq 'store'}"> 
+                      <div class="member_info">
+                   <div class="info">지점명  : <input type="text" readonly="readonly" value="${member.store }" id="eb_name"></div>
+               
+                   ------------------------------------------------<br>
+                   알림?
+                </div> 
+                </c:if>
+                
              </div> 
              
             <!--  인사말? -->

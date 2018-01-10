@@ -12,6 +12,8 @@ public class MemberService {
 	@Inject
 	MemberDAO memberDAO;
 	
+	
+	
 	//myPage
 	public int myPageUpdate(MemberDTO memberDTO) throws Exception{
 		int result=memberDAO.myPageUpdate(memberDTO);

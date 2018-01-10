@@ -21,12 +21,6 @@
 		
 		
 		$('[data-toggle="tooltip"]').tooltip();   
-		
-		$("#eb_update").click(function(){
-           alert("수정");
-			$(".eb_table_1").css("display","none");
-			$(".eb_table_2").css("display","block");
-		})
 	})
 </script>
 <body>
@@ -195,11 +189,9 @@
 						
 						</table>
 					
-					 
-	
+					
+				<form action="memberMyPage" method="get">	
 					<h3>수정할수있는정보</h3>
-					<!--원글  -->
-				<div class="eb_table_1">	
 					<table class="table ">	
 						<tr>
 							<td class="eb_td">전화번호</td>
@@ -226,46 +218,12 @@
 							<td>${member.banknum}</td>
 						</tr>
 					</table>
-					<input type="button" value="수정하기" id="eb_update">
-				</div>
+					
+					<input type="submit" value="수정하기">
 			
-			
-			
-			
-			<!-- 수정 -->
-			
-		 <div class="eb_table_2">	
-		 <form action="memberUpdate" method="post">
-		 <input type="hidden" value="${member.code}" name="code">
-			<table class="table ">	
-						<tr>
-							<td class="eb_td">전화번호</td>
-							<td><input type="text" value="${member.phone}" name="phone"></td>
-						</tr>
-						
-						<tr>
-							<td class="eb_td">거주지</td>
-							<td><input type="text" value="${member.addr}" name="addr"></td>
-						</tr>
-						
-						<tr>
-							<td class="eb_td">E-mail</td>
-							<td><input type="text" value="${member.email}" name="email"></td>
-						</tr>
-						
-						<tr>
-							<td class="eb_td">은행</td>
-							<td><input type="text" value="${member.bank}" name="bank"></td>
-						</tr>
-						
-						<tr>
-							<td class="eb_td">계좌번호</td>
-							<td><input type="text" value="${member.banknum}" name="banknum"></td>
-						</tr>
-					</table>
-						<input type="submit" value="수정하기" >
 					</form>
-					</div>
+					
+					
 				</div>
 			
 			</div>

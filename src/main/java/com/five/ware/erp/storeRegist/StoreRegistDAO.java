@@ -19,6 +19,17 @@ private SqlSession sqlsession;
 private static final String namespace="storeRegistMapper.";
 
 
+   //myPageUpdate
+	public int myPageUpdate(StoreRegistDTO storeRegistDTO) throws Exception{
+		int result=sqlsession.update(namespace+"myPageUpdate" ,storeRegistDTO);
+		return result;
+	}
+
+    //login
+	public StoreRegistDTO login(StoreRegistDTO storeRegistDTO)throws Exception{
+		return sqlsession.selectOne(namespace+"login", storeRegistDTO);
+	}
+
     //insert
 	public int insert(StoreRegistDTO storeRegistDTO) throws Exception{
 		

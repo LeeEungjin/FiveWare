@@ -246,59 +246,30 @@
 /*---------------------*/
 .eb_blank{
 	width: 50%;
-	height: 10%;
+	height: 5%;
 }
 
 #submenu_table{
-	width: 65%;
-	height: 85%;
+	width: 50%;
+	height: 95%;
 	margin: 0 auto;
 	background-color: white;
 	
 }
 
-/* 
-.eb_table{
-	width: 100%;
-	height: 10%;
-}
- */
-
-#eb_photo{
-	width: 15%;
-	height: 30%;
-	border : 1px solid gray;
+.eb_table_text{
 	margin-top: 20px;
-	margin-left: 20px;
-	float: left;
+	margin-bottom: 10px;
+}
+ 
+.eb_table_2{
+	display: none;
 }
 
-#eb_contents_1{
-	width: 38%;
-	height: 30%;
-	margin-top: 20px;
-	margin-left: 20px;
-	float: left;
-	background-color: red;
-	
-}
 
-#eb_contents_1_1{
-	width: 38%;
-	height: 30%;
-	margin-top: 20px;
-	margin-left: 20px;
-	float: left;
-	background-color: blue;
-	
-}
-
-#eb_contents_2{
-	width: 96%;
-	height: 60%;
-	background-color: red;
-	margin-top: 25%;
-	margin-left: 20px;
+.eb_td{
+	background-color: #E6E6E6;
+	width: 150px;	
 }
 
 .eb_name{
