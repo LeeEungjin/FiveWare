@@ -82,15 +82,15 @@
        <div class="menu_wrap">
       
              <div class="menu">
-                <a href="" class="eb_login" id="eb_href_1">ERP</a>
+                <a href="erp" class="eb_login" id="eb_href_1">ERP</a>
              </div>
              
                 <div class="menu">
-                <a href="" class="eb_login" id="eb_href_2">GroupWare</a>
+                <a href="groupWare" class="eb_login" id="eb_href_2">GroupWare</a>
              </div>
              
                 <div class="menu">
-                <a href="" class="eb_login" id="eb_href_3">SRM</a>
+                <a href="srm" class="eb_login" id="eb_href_3">SRM</a>
              </div>
        </div>
        
