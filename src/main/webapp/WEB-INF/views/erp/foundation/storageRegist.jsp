@@ -164,8 +164,25 @@
          </div>
          
          <!-- ----------4---------- -->
-         <div class="fw_menu"  >
+         <div class="fw_menu" data-toggle="collapse" data-target="#sub4" title="sub4" >
                	조회
+            <div class="fw_arrow sub4">
+               	∨
+            </div>
+         </div>
+         
+         <div class="fw_subsub collapse"  id="sub4">
+            <ul>
+               <li>거래처 조회</li>
+               <li>제품 조회</li>
+               <li>메뉴 조회</li>
+               <li>창고 조회</li>
+               <li>주문 조회</li>
+               <li>입고 조회</li>
+               <li>출고 조회</li>
+               <li>반품 조회</li>
+               <li>불출 조회</li>
+            </ul>
          </div>
          
       <!-- submenu menu end -->
