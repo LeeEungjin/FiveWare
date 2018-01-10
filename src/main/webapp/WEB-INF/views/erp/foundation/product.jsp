@@ -168,8 +168,8 @@
 	          
 	          F_FileMultiUpload(files, code, mode);
 	     });
-	     
-	}); // Window Onload End
+	 	 // Window Onload End
+	}); 
 	
 	function F_FileMultiUpload(files, code, mode) {
 		/*************** 이미지만 올릴 수 있도로고 처리!!!!!!! ******************/
