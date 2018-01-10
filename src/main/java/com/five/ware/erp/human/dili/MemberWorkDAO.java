@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.five.ware.erp.human.member.MemberDTO;
 
@@ -48,7 +49,7 @@ public class MemberWorkDAO {
 		return workcode;
 	}
 	
-	public List<MemberWorkDTO> memberWorkList(String search, String startdate, String enddate) throws Exception{
+	public List<MemberWorkDTO> memberWorkList(String search, @RequestParam(defaultValue="2018-01-01", required=false) String startdate, @RequestParam(defaultValue="2018-12-31", required=false)String enddate) throws Exception{
 		Map<String, String> map = new HashMap<String, String>();
 		
 		map.put("search", search);
