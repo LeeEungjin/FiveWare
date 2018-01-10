@@ -1,6 +1,8 @@
 package com.five.ware.erp.human.dili;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -44,5 +46,36 @@ public class MemberWorkDAO {
 		String workcode=sqlSession.selectOne(NAMESPACE+"workCodeSearch", workname);
 		
 		return workcode;
+	}
+	
+	public List<MemberWorkDTO> memberWorkList(String search, String startdate, String enddate) throws Exception{
+		Map<String, String> map = new HashMap<String, String>();
+		
+		map.put("search", search);
+		map.put("startdate", startdate);
+		map.put("enddate", enddate);
+		
+		
+		List<MemberWorkDTO> ar= sqlSession.selectList(NAMESPACE+"memberWorkList", map );
+		
+		return ar;
+	}
+	
+	public MemberWorkDTO mworkOne(int num) throws Exception{
+		MemberWorkDTO memberWorkDTO = sqlSession.selectOne(NAMESPACE+"mworkOne", num);
+		
+		return memberWorkDTO;
+	}
+	
+	public int mworkUpdate(MemberWorkDTO memberWorkDTO) throws Exception{
+		int result = sqlSession.update(NAMESPACE+"mworkUpdate", memberWorkDTO);
+		
+		return result;
+	}
+	
+	public int mworkDelete(int num) throws Exception{
+		int result = sqlSession.delete(NAMESPACE+"mworkDelete", num);
+		
+		return result;
 	}
 }

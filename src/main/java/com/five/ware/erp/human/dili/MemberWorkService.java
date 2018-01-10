@@ -43,4 +43,28 @@ public class MemberWorkService {
 		
 		return workcode;
 	}
+	
+	public List<MemberWorkDTO> memberWorkList(String search, String startdate, String enddate) throws Exception{
+		List<MemberWorkDTO> ar = memberWorkDAO.memberWorkList(search, startdate, enddate);
+		
+		return ar;
+	}
+	
+	public MemberWorkDTO mworkOne(int num) throws Exception{
+		MemberWorkDTO memberWorkDTO = memberWorkDAO.mworkOne(num);
+		
+		return memberWorkDTO;
+	}
+	
+	public int mworkUpdate(MemberWorkDTO memberWorkDTO) throws Exception{
+		int result = memberWorkDAO.mworkUpdate(memberWorkDTO);
+		
+		return result;
+	}
+	
+	public int mworkDelete(int num) throws Exception{
+		int result = memberWorkDAO.mworkDelete(num);
+		
+		return result;
+	}
 }
