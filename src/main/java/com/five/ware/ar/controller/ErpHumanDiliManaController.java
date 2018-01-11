@@ -32,12 +32,17 @@ public class ErpHumanDiliManaController {
 
 	
 	@RequestMapping(value="diliSearch")
-	public ModelAndView eb_diliList(String search) throws Exception{
-	
+	public ModelAndView eb_diliList(String search, @RequestParam(defaultValue="2018-01-01", required=false) String startdate, @RequestParam(defaultValue="2018-12-31", required=false)String enddate) throws Exception{
+		List<String> ar = memberWorkService.diliNameList();
+		List<MemberWorkDTO> ar2=memberWorkService.memberWorkList(search, startdate, enddate);
 		
 		ModelAndView mv = new ModelAndView();
 		
-		
+		mv.addObject("diliList", ar);	
+		mv.addObject("memberList", ar2);
+		mv.addObject("startdate", startdate);
+		mv.addObject("enddate",enddate);
+		mv.addObject("search", search);
 		mv.setViewName("human/diliMana/diliSearch");
 		
 		return mv;

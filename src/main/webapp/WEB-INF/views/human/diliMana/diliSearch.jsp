@@ -8,7 +8,7 @@
 <c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 <c:import url="${url}/resources/temp/ref.jsp"></c:import> 
  
- <link href="${url}/resources/css/human/diliMana/diliPlus.css" rel="stylesheet">
+ <link href="${url}/resources/css/human/diliMana/diliSearch.css" rel="stylesheet">
 
 <script type="text/javascript">
 	$(function(){
@@ -36,7 +36,7 @@
 			<div class="fw_menu" data-toggle="collapse" data-target=".fw_subselected" title="sub1">
 				기초정보
 				<div class="fw_arrow sub1">
-					∧
+					∨
 				</div>
 			</div>
 			
@@ -70,14 +70,13 @@
 				<div class="fw_menu  fw_selected" data-toggle="collapse" data-target="#sub4" title="sub4" >
 					근태 관리
 				<div class="fw_arrow sub4">
-					∨
+					∧
 				</div>
 			</div>
 			
 			<div class="fw_subsub collapse in"  id="sub4">
 				<ul>
 					<li> 근태항목 등록 </li>
-					<li> 휴가일수 등록 </li>
 					<li> 근태 입력 </li>
 					<li> 근태 조회 </li>
 				</ul>
@@ -108,7 +107,7 @@
 				
 				<form action="diliPlus" method="GET">
 					<div class="ar_plusSearch">
-						조회 기간 <input type="date" name="search" id="ar_ssearch"> ~<input type="date" name="search" id="ar_ssearch">
+						조회 기간 <input type="date" name="startdate" id="ar_ssearch" value="${startdate }"> ~<input type="date" name="enddate" id="ar_ssearch" value="${enddate }">
 						직원명<input type="text">
 						<input type="submit"  value="검색" id="ar_ssearchBtn">
 					</div>
@@ -119,26 +118,33 @@
 				
 			</div>
 			
-			<div class="ar_plusDivWrap">
+		<div class="ar_plusDivWrap">
+			<div class="ar_wrapWrap">
 				<div class="ar_titleDiv">
-					<div class="ar_CheckTitle ar_titleDiv1" ><input type="checkbox">	</div>
 					<div class="ar_CodeTitle ar_titleDiv1"> 사번 </div>
 					<div class="ar_NameTitle ar_titleDiv1"> 성명 </div>
-					<div class="ar_OtherTitle ar_titleDiv1"> 비고 </div>
+					<div class="ar_TempTitle ar_titleDiv1"> 부서명 </div>
 				</div>
 				
-				<%-- <c:forEach items="${diliList }" var="list">
-					<div class="ar_listDiv">
-						<div class="ar_CheckTitle" ><input type="checkbox"  class="ar_diliselect"id="${list.code}">	</div>
-						<div class="ar_CodeTitle ar_Code"  data-toggle="modal" data-target="#ar_diliUpdate" id="ar_dilicode" > ${list.code} </div>
-						<div class="ar_NameTitle"> ${list.workname} </div>
-						<div class="ar_TaxTitle"> ${list.vacation} </div>
-						<div class="ar_BierTitle"> ${list.sal} </div>					
-						<div class="ar_OtherTitle"> ${list.other} </div>						
+				<c:forEach items="${diliList }" var="list">
+					<div class="ar_titleDiv2">
+						<div class="ar_OtherTitle ar_titleDiv1"> ${list } </div>
 					</div>
-				</c:forEach> --%>
+				</c:forEach>
 			</div>
-			
+				
+					 <c:forEach items="${memberList }" var="list">
+						<div class="ar_wrapWrap">
+							<div class="ar_titleDiv">
+								<div class="ar_listDiv">
+									<div class="ar_CodeTitle "  id="ar_dilicode" > ${list.code} </div>
+									<div class="ar_NameTitle"> ${list.name} </div>
+									<div class="ar_TempTitle"> ${list.temp} </div>
+								</div>
+							</div>
+						</div>
+					</c:forEach> 
+			</div>
 			<div class="ar_plusButtonWrap">
 				<input type="button"  value="Excel">
 			</div>

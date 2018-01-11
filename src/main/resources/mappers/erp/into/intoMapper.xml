@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="intoMapper">
+  
+	<select id="intoSupplier" resultType="com.five.ware.erp.supplier.SupplierDTO">
+		select * from supplier
+	</select>
+	
+	<select id="intoProduct" resultType="com.five.ware.erp.product.ProductDTO">
+		select * from product
+	</select>
+	
+	<select id="intoMenu" resultType="com.five.ware.erp.menuRegist.MenuRegistDTO">
+		select * from menuregist
+	</select>
+	
+	<select id="intoOrder" resultType="com.five.ware.order.OrderDTO">
+		select * from orderregist
+	</select>
+	
+	<select id="intoStorage" resultType="com.five.ware.erp.storageRegist.StorageRegistDTO">
+		select * from storage
+	</select>
+	
+	<select id="intoMater" parameterType="String" resultType="com.five.ware.mater.MaterDTO">
+		select * from mater
+		where materkind=#{kind}
+	</select>
+  
+  </mapper>

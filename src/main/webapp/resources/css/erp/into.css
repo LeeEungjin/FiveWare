@@ -1,0 +1,61 @@
+@CHARSET "UTF-8";
+
+
+
+
+#fw_main_contents{
+	width: 100%;
+	height: 91%;
+	background-color: white;
+	overflow: hidden;
+}
+
+#erp_jh_contents_title{
+	width: 100%;
+	height: 10%;
+	background-color: #ffe1e7;
+	overflow: hidden;
+}
+
+#into_icon{
+	width: 6%;
+	height: 100%;
+	background-color: #ff84c1;
+	float: left;
+}
+
+#into_title{
+	font-size: 30px;
+	font-weight: bold;
+	margin-left: 5%;
+	margin-top: 1.5%;
+}
+
+#erp_jh_contents_search{
+	width: 100%;
+    height: 14.5%;
+    background-color: #e7ceff;
+    padding-top: 0.5%;
+}
+
+
+
+#erp_jh_contents_table{
+	width: 99%;
+	height: 65%;
+	background-color: #ffffce;
+}
+
+
+.table {
+    width: 85% !important;
+    margin-left: 7% !important;
+}
+
+
+#erp_jh_contents_bottom{
+	width: 100%;
+	height: 10.5%;
+	background-color: #cee7ff;
+}
+
