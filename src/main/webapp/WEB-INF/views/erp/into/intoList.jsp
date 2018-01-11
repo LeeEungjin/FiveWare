@@ -26,16 +26,28 @@
 		
 		$(".into").click(function(){
 			var tableName=$(this).attr("title");
-			var op=$(this).val();
+			var kind=$(this).val();
 			
-			$.ajax({
-				url : "./into"+tableName,
-				type : "post",
-				data : { tableName : tableName },
-				success : function(result){
-					$("#erp_jh_contents_table").html(result);
-				}
-			});
+			if(kind.equels("no")){
+				$.ajax({
+					url : "./into"+tableName,
+					type : "post",
+					data : { tableName : tableName },
+					success : function(result){
+						$("#erp_jh_contents_table").html(result);
+					}
+				});
+			}else{
+				$.ajax({
+					url : "./into"+tableName,
+					type : "post",
+					data : { tableName : tableName,
+							kind : kind},
+					success : function(result){
+						$("#erp_jh_contents_table").html(result);
+					}
+				});
+			}
 			
 		});
 		
@@ -127,7 +139,7 @@
 	
 	<div id="fw_mainwrap">
 			<div id="fw_main">
-				
+				<h1>${table}</h1>
 			</div>
 			
 			<div id="fw_main_contents">
@@ -137,15 +149,15 @@
 				</div>
 				
 				<div id="erp_jh_contents_search">
-					<button class="into" title="Supplier" value="no">거래처</button>
-					<button class="into" title="Product" value="no">제품</button>
-					<button class="into" title="MenuRegist" value="no">메뉴</button>
-					<button class="into" title="Storage" value="no">창고</button>
-					<button class="into" title="OrderRegist" value="no">주문</button>
-					<button class="into" title="Mater" value="enter">입고</button>
-					<button class="into" title="Mater" value="rele">출고</button>
-					<button class="into" title="Mater" value="back">반품</button>
-					<button class="into" title="Mater" value="confin">불출</button>
+					<button class="into" title="supplier">거래처</button>
+					<button class="into" title="product">제품</button>
+					<button class="into" title="menuRegist">메뉴</button>
+					<button class="into" title="storage">창고</button>
+					<button class="into" title="order">주문</button>
+					<button class="into" title="mater" value="enter">입고</button>
+					<button class="into" title="mater" value="rele">출고</button>
+					<button class="into" title="mater" value="back">반품</button>
+					<button class="into" title="mater" value="confin">불출</button>
 				</div>
 				
 				<!-- table -->
