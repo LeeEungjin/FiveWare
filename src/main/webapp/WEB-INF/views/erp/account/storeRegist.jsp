@@ -190,25 +190,21 @@
 	 
 	 
 		 /* 코드 */
-/*  	  $("#eb_insertBtn").click(function(){
+  	  $("#eb_insertBtn").click(function(){
 			
 			$.ajax({
 				type:"GET",
-				url:"../codeName",
+				url:"../storeNum",
 				data:{  },
 				success:function(data){
 					alert(data);
-					$("#eb_code").val(data);
+					$(".eb_code").val(data);
 				}
 			});
-		});  */ 
+		});  
 		
 		
-		$("#eb_btn").click(function(){
-			if($("#eb_store")){
-				
-			}
-		});
+	
 		 
 	
  });
@@ -324,9 +320,9 @@
 				<table id="eb_fw_main_2_table">
 					<tr >
 						<td class="eb_row">회계</td>
-						<td class="eb_row">예산</td>
 						<td class="eb_row">영업/구매</td>
 						<td class="eb_row">인사</td>
+						<td class="eb_row">일정</td>
 					</tr>
 				</table>
 			</div>
@@ -520,7 +516,8 @@
 			 
 			 <!--지점등록 modal  -->
 			 
-		<form action="storeRegistWrite" method="post">	 
+		<form action="storeRegistWrite" method="post">	
+		<input type="hidden" name="pw" class="eb_code"> 
 			 <div class="modal fade" id="myModal">
 			 
 				<div class="modal-dialog">
@@ -542,7 +539,7 @@
 					<table id="eb_modal_table">
 						<tr>
 						   <td>지점명 코드</td>
-						   <td><input type="text" name="code" id="eb_code" ></td>
+						   <td><input type="text" name="code" class="eb_code" ></td>
 						   <td>지점명</td>
 						   <td><input type="text" name="store" id="eb_store"></td>
 						   

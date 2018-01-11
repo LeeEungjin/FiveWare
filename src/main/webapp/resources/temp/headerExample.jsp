@@ -5,7 +5,7 @@
 	<div id="ej_sidebar" style="float: left;">
 		<div class="ej_sidebar_contents">
 			<p>
-				<a href="#" title="home">
+				<a href="${pageContext.request.contextPath}/" title="home">
 					<span class="ej_home"></span>
 				</a>
 			</p>	
@@ -24,11 +24,11 @@
             </div>
             
             <div class="ej_user_name">
-            	NAME<!-- ${session.name} -->
+            	 NAME <%-- ${member.name} --%>
             </div>
             <div class="ej_user_sub_info">
             	<a href="#" class="ej_my_info">내정보</a>
-            	<a href="#" class="ej_logout">로그아웃</a>
+            	<a href="${pageContext.request.contextPath}/member/memberLogout" class="ej_logout">로그아웃</a>
             </div>
         </div>
 		
@@ -38,15 +38,15 @@
 			<ul id="ej_menuList">
 				<!-- ERP, GroupWare, SRM -->
 				<li class="productMenu" title="ERP">
-					<a href="#">
+					<a href="${pageContext.request.contextPath}/erp">
 						<span class="ej_sidebar_menu ej_menu_color ej_erp">ERP</span>
 					</a>
 				</li><li class="productMenu menuTooltip" title="GroupWare">
-					<a href="#">
+					<a href="${pageContext.request.contextPath}/groupware">
 						<span class="ej_sidebar_menu  ej_menu_color ej_groupware">GroupWare</span>
 					</a>
 				</li><li class="productMenu menuTooltip" title="SRM">
-					<a href="#">
+					<a href="${pageContext.request.contextPath}/srm">
 						<span class="ej_sidebar_menu ej_menu_color ej_srm">SRM</span>
 					</a>
 				</li>

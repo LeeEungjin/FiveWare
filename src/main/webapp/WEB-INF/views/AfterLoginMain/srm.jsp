@@ -12,7 +12,18 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+<script type="text/javascript">
+	$(function(){
+		$("#logout_btn_1").click(function(){
+			var kind='${kind}';
+		
+			alert("kind : "+kind);
+				
+			
+		});
+	});
 
+</script>
 <body>
 
 	<div id="login_after_wrap">
@@ -29,25 +40,26 @@
 				</div>    
 			</div> 
 			
-			<!--  <div id="menu_wrap">
-				 <nav class="navbar navbar-default">
-				  <div class="container-fluid">
-				    <div class="navbar-header">
-				      <a class="navbar-brand" href="#">FiveWare</a>
-				    </div>
-				    <ul class="nav navbar-nav">
-				      <li id="erp_menu"><a href="#">ERP</a></li>
-				      <li><a href="#">GroupWare</a></li>
-				      <li><a href="#">SRM</a></li>
-				    </ul>
-				  </div>
-				</nav> 
-			</div>  -->
+			  <div id="menu_wrap">
+				 <table id="eb_fw_main_2_table">
+					<tr >
+						<td class="eb_row"><a href="${pageContext.request.contextPath}/">HOME</a></td>
+						<td class="eb_row"><a href="${pageContext.request.contextPath}/erp">ERP</a></td>
+						<td class="eb_row"><a href="${pageContext.request.contextPath}/groupware">Group Ware</a></td>
+						<td class="eb_row"><a href="${pageContext.request.contextPath}/srm">SRM</a></td>
+					</tr>
+				</table>
+			</div>  
 			
-			<div id="search_wrap">
-				<a href="./member/memberLogout">
-				<button id="logout_btn" type="button" class="btn btn-default btn-l">
-		         <span class="glyphicon glyphicon-log-out" id="logout"></span>Logout
+		<div id="search_wrap">
+				<a href="./member/storeMyPage">
+					<button id="logout_btn_1" type="button" class="btn btn-default btn-l">
+		        	 <span class="glyphicon glyphicon-log-out" id="logout"></span>My Page
+		        </button></a>
+		        
+		        <a href="./member/memberLogout">
+					<button id="logout_btn_2" type="button" class="btn btn-default btn-l">
+		         	<span class="glyphicon glyphicon-log-out" id="logout"></span>Logout
 		        </button></a>
 			</div>
 			
@@ -62,16 +74,11 @@
 							<img src="${pageContext.request.contextPath}/resources/images/sidebar/avatar82.png" class="eb_default_img">
 						
 						
-						<div class="dropdown">
+						
 						
 						<p id="name_p">${member.name}님</p>
 					
-						<button class="btn  dropdown-toggle" type="button" data-toggle="dropdown"><span class="caret"></span></button>
-					    <ul class="dropdown-menu">
-					      <li><a id="eb_myPage" href="./member/storeMyPage">My Page</a></li>
-					      <li><a href="#">출근/퇴근</a></li>
-					    </ul>
-					  </div>
+		
 					  
 						</div>
 					</div>

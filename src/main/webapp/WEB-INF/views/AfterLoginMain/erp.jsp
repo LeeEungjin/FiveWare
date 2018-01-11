@@ -16,9 +16,144 @@
 	$(function(){
 		$('[data-toggle="tooltip"]').tooltip();   
 	
-		$("#logout").click(function(){
-			alert("로그아웃 되었습니다.");
+		
+		
+		$("#logout_btn_1").click(function(){
+			var kind='${kind}';
+		
+			alert("kind : "+kind);
+				
+			
 		});
+		
+		
+		
+		/* 출퇴근~~~~ */
+		var myVar = setInterval(myTimer, 1000);
+
+		function myTimer() {
+		    var d = new Date();
+		    document.getElementById("demo_1").innerHTML = d.toDateString();
+		   document.getElementById("demo_2").innerHTML = d.toLocaleTimeString(); 
+		}
+		
+		var canvas = document.getElementById("canvas");
+		var ctx = canvas.getContext("2d");
+		var radius = canvas.height / 2;
+		ctx.translate(radius, radius);
+		radius = radius * 0.90
+		setInterval(drawClock, 1000);
+
+		function drawClock() {
+		  drawFace(ctx, radius);
+		  drawNumbers(ctx, radius);
+		  drawTime(ctx, radius);
+		}
+
+		function drawFace(ctx, radius) {
+		  var grad;
+		  ctx.beginPath();
+		  ctx.arc(0, 0, radius, 0, 2*Math.PI);
+		  ctx.fillStyle = 'white';
+		  ctx.fill();
+		  grad = ctx.createRadialGradient(0,0,radius*0.95, 0,0,radius*1.05);
+		  grad.addColorStop(0, '#333');
+		  grad.addColorStop(0.5, 'white');
+		  grad.addColorStop(1, '#333');
+		  ctx.strokeStyle = grad;
+		  ctx.lineWidth = radius*0.1;
+		  ctx.stroke();
+		  ctx.beginPath();
+		  ctx.arc(0, 0, radius*0.1, 0, 2*Math.PI);
+		  ctx.fillStyle = '#333';
+		  ctx.fill();
+		}
+
+		function drawNumbers(ctx, radius) {
+		  var ang;
+		  var num;
+		  ctx.font = radius*0.15 + "px arial";
+		  ctx.textBaseline="middle";
+		  ctx.textAlign="center";
+		  for(num = 1; num < 13; num++){
+		    ang = num * Math.PI / 6;
+		    ctx.rotate(ang);
+		    ctx.translate(0, -radius*0.85);
+		    ctx.rotate(-ang);
+		    ctx.fillText(num.toString(), 0, 0);
+		    ctx.rotate(ang);
+		    ctx.translate(0, radius*0.85);
+		    ctx.rotate(-ang);
+		  }
+		}
+
+		function drawTime(ctx, radius){
+		    var now = new Date();
+		    var hour = now.getHours();
+		    var minute = now.getMinutes();
+		    var second = now.getSeconds();
+		    //hour
+		    hour=hour%12;
+		    hour=(hour*Math.PI/6)+
+		    (minute*Math.PI/(6*60))+
+		    (second*Math.PI/(360*60));
+		    drawHand(ctx, hour, radius*0.5, radius*0.07);
+		    //minute
+		    minute=(minute*Math.PI/30)+(second*Math.PI/(30*60));
+		    drawHand(ctx, minute, radius*0.8, radius*0.07);
+		    // second
+		    second=(second*Math.PI/30);
+		    drawHand(ctx, second, radius*0.9, radius*0.02);
+		}
+
+		function drawHand(ctx, pos, length, width) {
+		    ctx.beginPath();
+		    ctx.lineWidth = width;
+		    ctx.lineCap = "round";
+		    ctx.moveTo(0,0);
+		    ctx.rotate(pos);
+		    ctx.lineTo(0, -length);
+		    ctx.stroke();
+		    ctx.rotate(-pos);
+		}
+		
+	 $("#start").click(function(){
+			var time=$("#demo_2").text();
+			var date=$("#demo_1").text();
+			alert("출근 : "+date+time)
+			
+		
+		 if(confirm("출근처리 하시겠습니까 ?") == false){
+		     alert("출근처리가 취소되었습니다.")   
+			 return false;
+		    }else{
+		    	
+			$("#start").val(time);
+
+		    }
+
+		}); 
+	 
+	 
+	 $("#last").click(function(){
+		 var time=$("#demo_2").text();
+		 var date=$("#demo_1").text();
+
+			alert("퇴근 : "+date+time)
+			
+
+			if(confirm("퇴근처리 하시겠습니까?")==false){
+				alert("퇴근처리가 취소되었습니다.")
+			}else{
+			$("#last").val(time);
+			}
+	
+			
+	 });
+		
+	 /* 출퇴근 끝~~~ */
+	 
+	 
 	});
 </script>
 <body>
@@ -37,22 +172,19 @@
 				</div>    
 			</div> 
 			
-			 <!-- <div id="menu_wrap">
-				 <nav class="navbar navbar-default">
-				  <div class="container-fluid">
-				    <div class="navbar-header">
-				      <a class="navbar-brand" href="#">FiveWare</a>
-				    </div>
-				    <ul class="nav navbar-nav">
-				      <li id="erp_menu"><a href="#">ERP</a></li>
-				      <li id="groupware_menu"><a href="#">GroupWare</a></li>
-				      <li id="srm_menu"><a href="#">SRM</a></li>
-				    </ul>
-				  </div>
-				</nav> 
+			 <div id="menu_wrap">
+					<table id="eb_fw_main_2_table">
+					<tr >
+						<td class="eb_row"><a href="${pageContext.request.contextPath}/">HOME</a></td>
+						<td class="eb_row"><a href="${pageContext.request.contextPath}/erp">ERP</a></td>
+						<td class="eb_row"><a href="${pageContext.request.contextPath}/groupware">Group Ware</a></td>
+						<td class="eb_row"><a href="${pageContext.request.contextPath}/srm">SRM</a></td>
+					</tr>
+				</table> 
 			</div> 
-			 -->
+			
 			<div id="search_wrap">
+			
 				<a href="./member/memberMyPage">
 					<button id="logout_btn_1" type="button" class="btn btn-default btn-l">
 		        	 <span class="glyphicon glyphicon-log-out" id="logout"></span>My Page
@@ -76,10 +208,60 @@
 						
 						<!-- 로그인하면 이름!!  -->
 				
-					    <p id="name_p">${member.name}님 </p>
+					    <p id="name_p">${member.name}님 
+					    <i class="glyphicon glyphicon-time" style="font-size: 20px;" data-toggle="modal" data-target="#myModal"></i> </p>
+					
+					
+			<!--  출퇴근 modal-->
+					<div class="modal fade" id="myModal" role="dialog">
+					    <div class="modal-dialog">
+					    
+					      <!-- Modal content-->
+					      <div class="modal-content">
+					        <div class="modal-header">
+					          <button type="button" class="close" data-dismiss="modal">&times;</button>
+					          <h4 class="modal-title">출/퇴근 입력</h4>
+					        </div>
+					        <div class="modal-body">
+					          <div class="eb_all">
+								<div class="eb_clock_1">
+									<canvas id="canvas">
+									</canvas>
+								</div>
+									<div class="eb_blank"></div>
+								<div class="eb_clock_2 w3-display-container"> 
+									
+									<p id="demo_1" ></p>
+									 <img src="${pageContext.request.contextPath}/resources/images/common/label.png" class="eb_img"> 
+									<p id="demo_2" class="w3-display-middle w3-large"></p>
+								</div>
+								
+								
+								<div class="eb_click">
+									<p>
+										<input type="button" class="w3-btn w3-red eb_btn" value="출근" id="start">
+										<input type="button" class="w3-btn w3-red eb_btn" value="퇴근" id="last">
+									</p>
+							   </div>
+					</div>
+					          <button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
+					        </div>
+					      
+					  
+					      </div>
+					      
+					    </div>
+ 				 </div>
+  
+           <!--출퇴근 MODAL 끝  -->
+					
+					
 					
 						</div>
 					</div>
+					
+					
+					
 					<div id="pro_info_2">
 						<i class="fa fa-bell-o" style="font-size:36px">new</i>
 						<div id="alert_menu"></div>
@@ -95,17 +277,48 @@
 					<i class="fa fa-calendar-plus-o" style="font-size:36px; padding-top:10px;"></i>
 					<p id="sche_p">오늘의 일정을 등록해보세요.</p>
 				</div>
-				<div id="quick_menu">
+				
+				
+				
+				<div id="quick_menu" class="dropdown">
 					<p id="quick_p">바로가기
 					<a href="#" data-toggle="tooltip" title="바로가기 설정">
 					<i class="fa fa-cog" style="font-size:20px; color : gray;"></i>
 					</a>
+	
 						</p>
+
+
+
+
+					<div id="quick_menu_box">
+					<div class="quick_menu_box_1">
+						<i class="glyphicon glyphicon-time" id="eb_check" ></i>
 					
-				
+					</div>
 					
-					<div id="quick_menu_box"></div>
+					<div class="quick_menu_box_1">
+						
+					
+					</div>
+					
+					<div class="quick_menu_box_1">
+						
+					
+					</div>
+					
+					<div class="quick_menu_box_1">
+						
+					
+					</div>
+					
+					</div>
 				</div>
+				
+				
+				
+				
+				
 				
 				
 				<div id="often_call">

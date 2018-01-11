@@ -14,7 +14,15 @@
 </head>
 <script type="text/javascript">
 	$(function(){
-		$('[data-toggle="tooltip"]').tooltip();   
+		$('[data-toggle="tooltip"]').tooltip();  
+		
+		$("#logout_btn_1").click(function(){
+			var kind='${kind}';
+		
+			alert("kind : "+kind);
+				
+			
+		});
 	})
 </script>
 <body>
@@ -33,25 +41,26 @@
 				</div>    
 			</div> 
 			
-		<!-- 	 <div id="menu_wrap">
-				 <nav class="navbar navbar-default">
-				  <div class="container-fluid">
-				    <div class="navbar-header">
-				      <a class="navbar-brand" href="#">FiveWare</a>
-				    </div>
-				    <ul class="nav navbar-nav">
-				      <li id="erp_menu"><a href="#">ERP</a></li>
-				      <li id="groupware_menu"><a href="#">GroupWare</a></li>
-				      <li id="srm_menu"><a href="#">SRM</a></li>
-				    </ul>
-				  </div>
-				</nav> 
-			</div>  -->
+		 	 <div id="menu_wrap">
+				 <table id="eb_fw_main_2_table">
+					<tr >
+						<td class="eb_row"><a href="${pageContext.request.contextPath}/">HOME</a></td>
+						<td class="eb_row"><a href="${pageContext.request.contextPath}/erp">ERP</a></td>
+						<td class="eb_row"><a href="${pageContext.request.contextPath}/groupware">Group Ware</a></td>
+						<td class="eb_row"><a href="${pageContext.request.contextPath}/srm">SRM</a></td>
+					</tr>
+				</table> 
+			</div> 
 			
 			<div id="search_wrap">
-				<a href="./member/memberLogout">
-				<button id="logout_btn" type="button" class="btn btn-default btn-l">
-		         <span class="glyphicon glyphicon-log-out" id="logout"></span>Logout
+				<a href="./member/memberMyPage">
+					<button id="logout_btn_1" type="button" class="btn btn-default btn-l">
+		        	 <span class="glyphicon glyphicon-log-out" id="logout"></span>My Page
+		        </button></a>
+		        
+		        <a href="./member/memberLogout">
+					<button id="logout_btn_2" type="button" class="btn btn-default btn-l">
+		         	<span class="glyphicon glyphicon-log-out" id="logout"></span>Logout
 		        </button></a>
 			</div>
 			
@@ -64,7 +73,7 @@
 					<div id="pro_info_1">
 						<div id="pro_img">
 							<img src="${pageContext.request.contextPath}/resources/images/sidebar/avatar82.png" class="eb_default_img">
-						<p id="name_p">이응진 님</p>
+						<p id="name_p">${member.name } 님</p>
 						</div>
 					</div>
 					<div id="pro_info_2">
@@ -219,7 +228,14 @@
                         </span>
                      </a> 
                      
-                     <a href="#"> 
+                     
+                          <a href="#">
+                        <span class="groupWare_jk_smalldiv"> 
+                           <span class="groupWare_jk_writing">내 정보</span>
+                        </span>
+                     </a> 
+                     
+                     <a href="#">
                         <span class="groupWare_jk_smalldiv"> 
                            <span class="groupWare_jk_writing">스케쥴</span>
                         </span>
