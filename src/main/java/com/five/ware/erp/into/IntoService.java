@@ -31,7 +31,7 @@ public class IntoService {
 		return intoDAO.intoMenuregist();
 	}
 	
-	public List<OrderDTO> orderRegist() throws Exception {
+	public List<OrderDTO> intoOrder() throws Exception {
 		return intoDAO.orderRegist();
 	}
 
