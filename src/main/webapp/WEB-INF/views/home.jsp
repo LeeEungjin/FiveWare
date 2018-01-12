@@ -88,11 +88,7 @@
              </div>
              
                 <div class="menu">
-<<<<<<< HEAD
                 <a href="groupware" class="eb_login" id="eb_href_2">GroupWare</a>
-=======
-                <a href="groupWare" class="eb_login" id="eb_href_2">GroupWare</a>
->>>>>>> master
              </div>
              
                 <div class="menu">
