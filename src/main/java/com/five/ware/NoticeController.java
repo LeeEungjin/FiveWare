@@ -1,4 +1,4 @@
-/*package com.five.ware;
+package com.five.ware;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,24 +31,29 @@ public class NoticeController {
 
 	//selectList
 	@RequestMapping(value="noticeList")
-	public ModelAndView selectList(ListData listData, ModelAndView mv, String part) throws Exception{
-		mv = noticeService.selectList(listData, part);
-		
+	public ModelAndView selectList(ListData listData, ModelAndView mv, String temp) throws Exception{
+		mv = noticeService.selectList(listData, temp);
+
 		return mv;
 	}
 
 	@RequestMapping(value="noticeAjax", method=RequestMethod.GET)
 	@ResponseBody
-	public ModelAndView selectPart(ListData listData, String part, ModelAndView mv, RedirectAttributes rd) throws Exception	{
-		mv = noticeService.part(listData, part);
+	public ModelAndView selectPart(ListData listData, String temp, ModelAndView mv, RedirectAttributes rd) throws Exception	{
+		mv = noticeService.part(listData, temp);
 		return mv;
 	}
 	
+	
+	//view
 	@RequestMapping(value="noticeView")
 	public ModelAndView noticeView(ModelAndView mv, @RequestParam(defaultValue="0", required=false)int num) throws Exception{
+		
 		NoticeDTO noticeDTO = noticeService.selectOne(num);
+		
 		mv.addObject("view", noticeDTO);
 		mv.setViewName("notice/noticeView");
+		
 		return mv;
 	}
 	
@@ -103,9 +108,23 @@ public class NoticeController {
 		return "redirect:noticeList";
 	}
 	
+	@RequestMapping(value="noticeFileDelete")
+	public String fileDelete(int fnum, RedirectAttributes rd)throws Exception{
+		int result=noticeService.fileDelete(fnum);
+		String message="사진 삭제 실패";
+		
+		
+		if(result>0){
+			message="사진 삭제 성공";
+		}
+		
+		rd.addFlashAttribute("message", message);
+		
+		return "redirect:./noticeUpdate";
+	}
+	
 	@RequestMapping(value="meetingRoom")
 	public String meetingRoom(){
 		return "notice/meetingRoom";
 	}
 }
-*/

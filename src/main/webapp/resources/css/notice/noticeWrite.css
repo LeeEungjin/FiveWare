@@ -41,36 +41,77 @@
 }
 
 .notice_jk_tableBox	{
-	width: 80%;	
+	width: 100%;
+    margin-top: 3%;
+    background-color: wheat;
+    /* margin-left: 5%; */
 }
 
-.notice_jk_matters	{
-	font-size: 18px;
-	margin-left: 28%;
-	margin-top: 3.7%;
-}
 
 .table	{
 	max-width: 100%;
 }
 
 #notice_jk_table	{
-	width: 70%;
-	margin-left: 27.5%;
-	margin-top: 2.8%;
+	width: 45%;
+    margin-left: 16.5%;
+    margin-top: 2.8%
 }
+
+#smart_editor2{
+	width: 1100px;
+}
+
 
 .notice_jk_textarea	{
 	width: 100%;
-	height: 300px;
+    height: 400px;
 }
+
+/* #smart_editor2{
+    width: 1150px !important;
+    height: 450px !important;
+} */
+
+#smart_editor2_content{
+	width: 1150px !important;
+}
+
+/* element.style {
+    width: 1200px !important;
+    height: 400px !important;
+} */
 
 #writeBtn	{
 	float: right;
 	margin-right: 1%;
+	margin-top: 2%
 }
 
 #deleteBtn	{
 	float: right;
 	margin-right: 3%;
+	margin-top: 2%
+}
+
+#noticeWrite_text{
+	width: 30%;
+    height: 10%;
+    margin-left: 40%;
+    border-top: 3px solid;
+    border-bottom: 3px solid;
+	margin-top: 2%;
+}
+
+.file_div{
+	float: left;
+}
+
+.file_input {
+    float: left;
+    width: 70% !important;
+}
+
+.del{
+	color: red;
 }

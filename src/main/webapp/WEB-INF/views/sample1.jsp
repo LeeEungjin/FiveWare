@@ -15,7 +15,7 @@
 <c:import url="${url}/resources/temp/headerExample.jsp"></c:import> 
 
 <div id="fw_container">
-	don't remove
+
 </div>
 
 </body>

@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class NoticeDTO extends NoticeFileDTO{
 
 	private int num;
-	private String part;
+	private String temp;
 	private String writer;
 	private String title;
 	private String contents;
@@ -27,11 +27,11 @@ public class NoticeDTO extends NoticeFileDTO{
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public String getPart() {
-		return part;
+	public String getTemp() {
+		return temp;
 	}
-	public void setPart(String part) {
-		this.part = part;
+	public void setTemp(String temp) {
+		this.temp = temp;
 	}
 	public String getWriter() {
 		return writer;

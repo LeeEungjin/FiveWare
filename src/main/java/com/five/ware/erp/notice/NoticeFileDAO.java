@@ -23,5 +23,9 @@ public class NoticeFileDAO {
 		return sqlSession.insert(NAMESPACE+"insert", noticeFileDTO);
 	}
 	
+	public int delete(int fnum)throws Exception{
+		return sqlSession.delete(NAMESPACE+"delete", fnum);
+	}
+	
 	
 }
