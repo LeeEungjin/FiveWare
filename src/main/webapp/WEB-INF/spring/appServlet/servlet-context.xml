@@ -23,6 +23,7 @@
 	</beans:bean>
 	<beans:bean id="excelView2003" class="com.five.ware.excel.ExcelView2003" />
 	<beans:bean id="excelView2007" class="com.five.ware.excel.ExcelView2007" />
+	<beans:bean id="excelDiliSearch2007" class="com.five.ware.excel.ExcelDiliSearch2007" />
 
 	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<beans:property name="order" value="1"></beans:property>
