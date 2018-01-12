@@ -3,11 +3,20 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="humanDiliSearch">
+  <mapper namespace="humanDiliSearchMapper">
   
-<!--   <select id="memberWorkSum" parameterMap="String" resultType="int">
-
-  </select> -->
+<select id="mWorkList" parameterType="java.util.Map" resultType="MemberWorkDTO">
+	select DISTINCT code, name, temp from memberwork   
+	<if test="search != null">
+		where name like '%'||#{search}||'%'
+	</if>
+  </select>
   
-  
+  <select id="mSumList" parameterType="java.util.Map" resultType="int">
+  	select 
+		(select nvl(sum(datenum),0) from memberwork
+		where workname=#{workname} and code=#{code})
+	from memberwork where  code=#{code}
+	group by code
+	</select>
   </mapper>

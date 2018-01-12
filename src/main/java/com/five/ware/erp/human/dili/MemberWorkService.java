@@ -1,10 +1,13 @@
 package com.five.ware.erp.human.dili;
 
+import java.lang.reflect.Member;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.five.ware.erp.human.member.MemberDTO;
 
@@ -66,5 +69,27 @@ public class MemberWorkService {
 		int result = memberWorkDAO.mworkDelete(num);
 		
 		return result;
+	}
+	
+	public void mWorkList(String search, ModelAndView mv ) throws Exception{
+		List<MemberWorkDTO> ar = memberWorkDAO.mWorkList(search);// 사원
+		List<String> ar2 = memberWorkDAO.diliNameList(); // 근태목록
+		List<Integer> sumList = null;
+		List<List<Integer>> result = new ArrayList<List<Integer>>();
+		
+		for(MemberWorkDTO member : ar){
+			sumList=new ArrayList<Integer>();
+			for(String dili : ar2){
+				int sum = memberWorkDAO.mSumList(member.getCode(), dili);
+				
+				sumList.add(sum);
+			}
+			
+			result.add(sumList);
+		}
+		
+		mv.addObject("memberList", ar);
+		mv.addObject("sumList", result);
+		mv.addObject("diliList", ar2);
 	}
 }
