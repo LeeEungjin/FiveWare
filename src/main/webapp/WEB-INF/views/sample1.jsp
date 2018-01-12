@@ -17,6 +17,6 @@
 <div id="fw_container">
 	don't remove
 </div>
-g
+
 </body>
 </html>
