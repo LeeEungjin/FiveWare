@@ -159,7 +159,6 @@ public class MemberContoller {
 		 if(memberDTO !=null){
 			 session.setAttribute("member", memberDTO);
 			 session.setAttribute("kind", "member");
-			 message=memberDTO.getName()+"님 환영합니다";
 		 }else{
 			 message="아이디와 비밀번호를 확인해주세요.";
 		 }

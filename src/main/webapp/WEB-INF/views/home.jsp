@@ -88,11 +88,9 @@
              </div>
              
                 <div class="menu">
-<<<<<<< HEAD
+
                 <a href="groupware" class="eb_login" id="eb_href_2">GroupWare</a>
-=======
-                <a href="groupWare" class="eb_login" id="eb_href_2">GroupWare</a>
->>>>>>> master
+
              </div>
              
                 <div class="menu">
@@ -112,7 +110,7 @@
           <!-- id, pw -->
          <form action="" id="eb_frm"> 
           <div class="login" >
-              <input type="text" placeholder=" id" class="loginid wrap" name="code" id="eb_code">
+              <input type="text" placeholder="id" class="loginid wrap" name="code" id="eb_code">
              <input type="text" placeholder="password" class="loginpw wrap" name="pw">
              
            	  아이디저장
