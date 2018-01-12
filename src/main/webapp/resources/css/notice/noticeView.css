@@ -77,9 +77,16 @@ div.button input {
 
 #update	{
 	float:right;
-	margin-right: 8.5%;
+	margin-right: 1%;
 }
 
 #delete	{
 	float:right;
+	margin-right: 8.5%;
+	
+}
+
+.attat	{
+	width: 80%;
+	margin-left: 23%;
 }

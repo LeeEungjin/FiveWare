@@ -1,6 +1,8 @@
 package com.five.ware.mater;
 
-public class MaterDTO {
+import com.five.ware.erp.into.IntoDTO;
+
+public class MaterDTO extends IntoDTO {
 	
 	private String materCode;
 	private String materDate;

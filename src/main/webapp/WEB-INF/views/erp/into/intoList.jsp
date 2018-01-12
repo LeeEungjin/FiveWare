@@ -15,18 +15,19 @@
 
 <script type="text/javascript">
 	$(function(){
-		
+		/////////////////////////load//////////////////////////
 		$.ajax({
 			url : "./intoSupplier",
 			type : "post",
+			data : { tableName : 'Supplier'},
 			success : function(result){
 				$("#erp_jh_contents_table").html(result);
 			}
 		});
 		
+		///////////////////////TAB BUTTON//////////////////////
 		$(".into").click(function(){
 			var tableName=$(this).attr("title");
-			var op=$(this).val();
 			
 			$.ajax({
 				url : "./into"+tableName,
@@ -34,12 +35,41 @@
 				data : { tableName : tableName },
 				success : function(result){
 					$("#erp_jh_contents_table").html(result);
+					$("#ej_excel_path").val(tableName);
+				}
+			});
+		});
+		
+		$(".mater").click(function() {
+			var kind=$(this).attr('title');
+			
+			$.ajax({
+				url : "./intoMaterOne",
+				type : "post",
+				data : { tableName : "mater",
+						 kind : kind	
+					},
+				success : function(result){
+					$("#erp_jh_contents_table").html(result);
+					$("#ej_excel_path").val('mater');
+					$("#ej_excel_path").attr('title', kind);
 				}
 			});
 			
 		});
 		
-		
+		////////////////EXCEL DOWNLOAD/////////////////////////////
+		$("#ej_excel_path").click(function() {
+			var tableName = $(this).val();
+			var kind = $(this).attr("title");
+			
+			if(kind == null) {
+				location.href='../../excel/'+tableName+'/excel2007';
+			} else {
+				location.href='../../excel/mater/excel2007';
+			}
+		});
+
 	});
 </script>
 
@@ -59,14 +89,14 @@
       <!-- submenu banner end -->
       
       <!-- submenu menu -->
-         <div class="fw_menu fw_selected" data-toggle="collapse" data-target="#sub1" title="sub1">
+         <div class="fw_menu fw_selected sub1" data-toggle="collapse" data-target="#sub1" title="sub1">
             기초정보
             <div class="fw_arrow sub1">
                ∧
             </div>
          </div>
          
-         <div class="fw_subselected collapse in" id="sub1">
+         <div class="fw_subselected collapse" id="sub1">
             <ul>
                <li> 거래처 등록</li>
                <li> 제품 등록</li>
@@ -127,7 +157,7 @@
 	
 	<div id="fw_mainwrap">
 			<div id="fw_main">
-				
+				<h1>${table}</h1>
 			</div>
 			
 			<div id="fw_main_contents">
@@ -137,15 +167,21 @@
 				</div>
 				
 				<div id="erp_jh_contents_search">
-					<button class="into" title="Supplier" value="no">거래처</button>
-					<button class="into" title="Product" value="no">제품</button>
-					<button class="into" title="MenuRegist" value="no">메뉴</button>
-					<button class="into" title="Storage" value="no">창고</button>
-					<button class="into" title="OrderRegist" value="no">주문</button>
-					<button class="into" title="Mater" value="enter">입고</button>
-					<button class="into" title="Mater" value="rele">출고</button>
-					<button class="into" title="Mater" value="back">반품</button>
-					<button class="into" title="Mater" value="confin">불출</button>
+					<button class="into" title="Supplier">거래처</button>
+					<button class="into" title="Product">제품</button>
+					<button class="into" title="Menu">메뉴</button>
+					<button class="into" title="Storage">창고</button>
+					<button class="into" title="Order">주문</button>
+					<div class="dropdown" style="display: inline;">
+						<button data-toggle="dropdown">재료</button>
+						<ul class="dropdown-menu">
+						  <li><a href="#" class="into" title="Mater">전체</a></li>
+					      <li><a href="#" class="mater" title="enter">입고</a></li>
+					      <li><a href="#" class="mater" title="rele">출고</a></li>
+					      <li><a href="#" class="mater" title="back">반품</a></li>
+					      <li><a href="#" class="mater" title="confin">불출</a></li>
+					    </ul>
+					</div>
 				</div>
 				
 				<!-- table -->
@@ -154,7 +190,7 @@
 				
 				<!-- 등록 버튼 -->
 					<div id="erp_jh_contents_bottom">
-						<button type="button" class="btn">엑셀 다운로드</button>
+						<button id="ej_excel_path" value="Supplier" type="button" class="btn">엑셀 다운로드</button>
 					</div>
 				<!-- 등록 버튼 끝 -->
 				

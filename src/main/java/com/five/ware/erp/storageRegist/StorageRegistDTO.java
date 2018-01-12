@@ -1,6 +1,8 @@
 package com.five.ware.erp.storageRegist;
 
-public class StorageRegistDTO {
+import com.five.ware.erp.into.IntoDTO;
+
+public class StorageRegistDTO extends IntoDTO {
 	
 	private String storageCode;
 	private String storageName;

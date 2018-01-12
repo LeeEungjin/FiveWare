@@ -15,10 +15,10 @@
 	<tbody>
 		<c:forEach items="${list}" var="dto">
 			<tr>
-				<td>${dto.materCode }</td>
-				<td>${dto.materDate }</td>
-				<td>${dto.temp }</td>
-				<td>${dto.name }</td>
+				<td>${dto.materCode}</td>
+				<td>${dto.materDate}</td>
+				<td>${dto.temp}</td>
+				<td>${dto.name}</td>
 				<td>${dto.materMemo }</td>
 			</tr>
 		</c:forEach>

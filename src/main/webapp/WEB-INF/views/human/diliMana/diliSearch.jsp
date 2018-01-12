@@ -12,7 +12,9 @@
 
 <script type="text/javascript">
 	$(function(){
-		
+		$("#ar_excelView").click(function(){
+			location.href="../../excel/diliSearchExcel";
+		});
 		
 	});
 </script>
@@ -105,10 +107,10 @@
 				
 				<!-- ID 수정해!!!! -->
 				
-				<form action="diliPlus" method="GET">
+				<form action="diliSearch" method="GET">
 					<div class="ar_plusSearch">
-						조회 기간 <input type="date" name="startdate" id="ar_ssearch" value="${startdate }"> ~<input type="date" name="enddate" id="ar_ssearch" value="${enddate }">
-						직원명<input type="text">
+						<%-- 조회 기간 <input type="date" name="startdate" id="ar_ssearch" value="${startdate }"> ~<input type="date" name="enddate" id="ar_ssearch" value="${enddate }"> --%>
+						직원명<input type="text" name="search" value=${param.search }>
 						<input type="submit"  value="검색" id="ar_ssearchBtn">
 					</div>
 					
@@ -133,7 +135,7 @@
 				</c:forEach>
 			</div>
 				
-					 <c:forEach items="${memberList }" var="list">
+					 <c:forEach items="${memberList }" var="list" varStatus="i">
 						<div class="ar_wrapWrap">
 							<div class="ar_titleDiv">
 								<div class="ar_listDiv">
@@ -142,11 +144,17 @@
 									<div class="ar_TempTitle"> ${list.temp} </div>
 								</div>
 							</div>
+							
+							<c:forEach items="${sumList[i.index] }" var="list1">
+								<div class="ar_titleDiv2">
+									<div class="ar_OtherTitle "> ${list1 } </div>
+								</div>
+							</c:forEach>
 						</div>
 					</c:forEach> 
 			</div>
 			<div class="ar_plusButtonWrap">
-				<input type="button"  value="Excel">
+				<input type="button"  id="ar_excelView" value="Excel">
 			</div>
 			
 	</div>

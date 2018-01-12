@@ -13,7 +13,6 @@ import com.five.ware.erp.menuRegist.MenuRegistDTO;
 import com.five.ware.erp.product.ProductDTO;
 import com.five.ware.erp.storageRegist.StorageRegistDTO;
 import com.five.ware.erp.supplier.SupplierDTO;
-import com.five.ware.jh.menuRegist;
 import com.five.ware.mater.MaterDTO;
 import com.five.ware.order.OrderDTO;
 
@@ -23,28 +22,32 @@ public class IntoDAO {
 	@Inject SqlSession sqlSession;
 	private final String NAMESPACE="intoMapper.";
 	
-	public List<SupplierDTO> intoSupplier() throws Exception {
+	public List<IntoDTO> intoSupplier() throws Exception {
 		return sqlSession.selectList(NAMESPACE+"intoSupplier");
 	}
 	
-	public List<ProductDTO> intoProduct() throws Exception {
+	public List<IntoDTO> intoProduct() throws Exception {
 		return sqlSession.selectList(NAMESPACE+"intoProduct");
 	}
 	
-	public List<MenuRegistDTO> intoMenuregist() throws Exception {
-		return sqlSession.selectList(NAMESPACE+"intoMenuregist");
+	public List<IntoDTO> intoMenuregist() throws Exception {
+		return sqlSession.selectList(NAMESPACE+"intoMenu");
 	}
 	
-	public List<OrderDTO> orderRegist() throws Exception {
-		return sqlSession.selectList(NAMESPACE+"orderRegist");
+	public List<IntoDTO> orderRegist() throws Exception {
+		return sqlSession.selectList(NAMESPACE+"intoOrder");
 	}
 
-	public List<StorageRegistDTO> intoStorage() throws Exception {
+	public List<IntoDTO> intoStorage() throws Exception {
 		return sqlSession.selectList(NAMESPACE+"intoStorage");
 	}
 	
-	public List<MaterDTO> intoMater(String kind) throws Exception {
-		return sqlSession.selectList(NAMESPACE+"intoMater", kind);
+	public List<IntoDTO> intoMater(String kind) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"intoMater2", kind);
+	}
+	
+	public List<IntoDTO> intoMater() throws Exception {
+		return sqlSession.selectList(NAMESPACE+"intoMater1");
 	}
 
 

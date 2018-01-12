@@ -49,8 +49,9 @@
 
 .notice_jk_partBox	{
 	padding-top: 1%;
-	margin-left: 23%;
-	
+    margin-left: 23%;
+    background-color: #f9a2a2;
+    height: 60px;
 }
 
 .notice_jk_partBox a	{
@@ -64,12 +65,17 @@
 }
 
 #kind	{
-	width: 4%;
-	height: 4%;
+	width: 10%;
+    height: 4%;
+    float: left;
+    margin-right: 2%;
 }
 
 #search	{
-	height: 4%;
+	height: 5%;
+    width: 30%;
+    float: left;
+    margin-right: 2%;
 }
 
 .notice_jk_btn	{
@@ -103,4 +109,8 @@
 
 #writeBtn	{
 	float: right;
+}
+
+.w3-bar	{
+	text-align: center;
 }
