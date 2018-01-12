@@ -3,7 +3,10 @@ package com.five.ware;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+<<<<<<< HEAD
 import java.util.Map;
+=======
+>>>>>>> arin
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
@@ -13,8 +16,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+<<<<<<< HEAD
 import com.five.ware.erp.into.IntoDTO;
 import com.five.ware.erp.into.IntoService;
+=======
+import com.five.ware.erp.human.dili.MemberWorkDAO;
+import com.five.ware.erp.human.dili.MemberWorkDTO;
+import com.five.ware.erp.human.dili.MemberWorkService;
+import com.five.ware.erp.product.ProductDTO;
+>>>>>>> arin
 import com.five.ware.excel.ExcelRoom;
 
 @Controller
@@ -22,7 +32,13 @@ import com.five.ware.excel.ExcelRoom;
 public class ExcelController {
 	
 	@Inject
+<<<<<<< HEAD
 	private IntoService intoService;
+=======
+	private MemberWorkDAO memberWorkDAO;
+	@Inject
+	private MemberWorkService memberWorkService;
+>>>>>>> arin
 	
 	@RequestMapping(value="exportExcel2003", method=RequestMethod.GET)
 	public ModelAndView downloadExcel2003(HttpServletResponse response){
@@ -82,4 +98,26 @@ public class ExcelController {
 		return new ModelAndView("excelMultiView2007", "list", map);
 	}
 	
+<<<<<<< HEAD
+=======
+	@RequestMapping(value="diliSearchExcel", method=RequestMethod.GET)
+	public ModelAndView diliSearchExcel(HttpServletResponse response, String search) throws Exception{
+		
+		response.setHeader("Content-disposition", "attachment; filename=" + "diliSearchExcel" + ".xls");
+		
+		ModelAndView mv = new ModelAndView();
+		
+		memberWorkService.mWorkList(search, mv);
+		
+		mv.setViewName("excelDiliSearch2007");
+		
+		
+		return mv;
+	}
+	
+	
+	
+	
+	
+>>>>>>> arin
 }

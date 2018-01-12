@@ -12,7 +12,9 @@
 
 <script type="text/javascript">
 	$(function(){
-		
+		$("#ar_excelView").click(function(){
+			location.href="../../excel/diliSearchExcel";
+		});
 		
 	});
 </script>
@@ -152,7 +154,7 @@
 					</c:forEach> 
 			</div>
 			<div class="ar_plusButtonWrap">
-				<input type="button"  value="Excel">
+				<input type="button"  id="ar_excelView" value="Excel">
 			</div>
 			
 	</div>
