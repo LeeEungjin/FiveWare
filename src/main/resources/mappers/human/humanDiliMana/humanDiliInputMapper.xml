@@ -27,7 +27,7 @@
   
   <select id="memberWorkList" parameterType="java.util.Map" resultType="MemberWorkDTO">
   	
-  	select DISTICT * from memberwork 
+  	select * from memberwork 
   	<if test="search != null ">
   	<![CDATA[
   		where workname like '%'||#{search}||'%' and startdate>=#{startdate} and enddate<=#{enddate}

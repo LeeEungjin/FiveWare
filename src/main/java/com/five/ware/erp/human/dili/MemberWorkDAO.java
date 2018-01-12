@@ -18,6 +18,7 @@ public class MemberWorkDAO {
 	@Inject
 	SqlSession sqlSession;
 	private final String NAMESPACE="humanDiliInputMapper.";
+	private final String NAMESPACE2="humanDiliSearchMapper.";
 	
 	public List<String> diliNameList() throws Exception{
 		List<String> ar = sqlSession.selectList(NAMESPACE+"diliNameList");
@@ -78,5 +79,26 @@ public class MemberWorkDAO {
 		int result = sqlSession.delete(NAMESPACE+"mworkDelete", num);
 		
 		return result;
+	}
+	
+	public List<MemberWorkDTO> mWorkList(String search) throws Exception{
+		Map<String, String> map = new HashMap<String, String>();
+		
+		map.put("search", search);
+		
+		List<MemberWorkDTO> ar = sqlSession.selectList(NAMESPACE2+"mWorkList", map);
+		
+		return ar;
+	}
+	
+	public int mSumList(String code, String workname) throws Exception{
+		Map<String, String>map = new HashMap<String, String>();
+		
+		map.put("code", code);
+		map.put("workname", workname);
+		
+		return sqlSession.selectOne(NAMESPACE2+"mSumList", map);
+		
+		
 	}
 }
