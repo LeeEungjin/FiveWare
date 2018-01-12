@@ -47,10 +47,8 @@
 		$("#ej_excel_path").click(function() {
 			var tableName = $(this).val();
 			
-			
-			
 		});
-		
+
 	});
 </script>
 
@@ -70,14 +68,14 @@
       <!-- submenu banner end -->
       
       <!-- submenu menu -->
-         <div class="fw_menu fw_selected" data-toggle="collapse" data-target="#sub1" title="sub1">
+         <div class="fw_menu fw_selected sub1" data-toggle="collapse" data-target="#sub1" title="sub1">
             기초정보
             <div class="fw_arrow sub1">
                ∧
             </div>
          </div>
          
-         <div class="fw_subselected collapse in" id="sub1">
+         <div class="fw_subselected collapse" id="sub1">
             <ul>
                <li> 거래처 등록</li>
                <li> 제품 등록</li>
