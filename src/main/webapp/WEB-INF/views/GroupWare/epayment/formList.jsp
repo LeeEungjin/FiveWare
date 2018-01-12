@@ -88,7 +88,7 @@
 			</div>
 			
 			<div id="ar_mainDivWrap">
-				<div id="ar_inhabitWrap">
+		<!-- 		<div id="ar_inhabitWrap">
 					<div id="ar_inhabitDiv">
 						
 					
@@ -97,20 +97,18 @@
 					<div id="ar_latestInhabit">
 					
 					</div>
-				</div>
+				</div> -->
 				
 				<div id="ar_inhabitTableWrap">
 					<div id="ar_tableTop">
 						<select id="ar_tablenumber">
 							<option value="10">10</option>
-							<option value="10">20</option>
-							<option value="10">30</option>
-							<option value="10">40</option>
-							<option value="10">50</option>
+							<option value="15">15</option>
+							<option value="20">20</option>
 							
 						</select>
 						
-						<div id="ar_totalNum">전체 숫자</div>
+						<div id="ar_totalNum">전체 : ${listnum }</div>
 						
 						<input type="button" id="ar_searchBtn" value="검색">
 						
@@ -118,7 +116,6 @@
 						
 							<select id="ar_searchTitle">
 								<option>양식명</option>
-								<option>서식명</option>
 							</select>
 							
 					</div>
@@ -126,23 +123,19 @@
 					<div id="ar_tableWrap">
 						<div class="ar_titleDiv">
 							<div class="ar_tableNum ar_titleDiv1"> No </div>
-							<div class="ar_tableSystem ar_titleDiv1"> 시스템 </div>
-							<div class="ar_tableFormName ar_titleDiv1"> 서식함 </div>
-							<div class="ar_tableLove ar_titleDiv1"> 즐겨찾기 </div>
 							<div class="ar_tableName ar_titleDiv1"> 양식명 </div>
+							<div class="ar_tableOther ar_titleDiv1"> 비고 </div>
 						</div>
+				
+			 	<c:forEach items="${formList}" var="list"> 
+					<div class="ar_titleDiv">
+							<div class="ar_tableNum ar_titleDiv1"> ${list.num} </div>
+							<div class="ar_tableName ar_titleDiv1"><a href="explanatory" > ${list.formname}</a> </div>
+							<div class="ar_tableOther ar_titleDiv1">  ${list.forminfo} </div>
+						</div> 
+			 	</c:forEach> 
 					</div>
 				</div>
-				
-			<%-- 	<c:forEach> --%>
-					<div class="ar_titleDiv">
-							<div class="ar_tableNum ar_titleDiv1"> No </div>
-							<div class="ar_tableSystem ar_titleDiv1"> 시스템 </div>
-							<div class="ar_tableFormName ar_titleDiv1"> 서식함 </div>
-							<div class="ar_tableLove ar_titleDiv1"> 즐겨찾기 </div>
-							<div class="ar_tableName ar_titleDiv1"> 양식명 </div>
-						</div>
-			<%-- 	</c:forEach> --%>
 			</div>
 			
 			
