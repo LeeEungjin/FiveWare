@@ -32,11 +32,11 @@ public class IntoDAO {
 	}
 	
 	public List<MenuRegistDTO> intoMenuregist() throws Exception {
-		return sqlSession.selectList(NAMESPACE+"intoMenuregist");
+		return sqlSession.selectList(NAMESPACE+"intoMenu");
 	}
 	
 	public List<OrderDTO> orderRegist() throws Exception {
-		return sqlSession.selectList(NAMESPACE+"orderRegist");
+		return sqlSession.selectList(NAMESPACE+"intoOrder");
 	}
 
 	public List<StorageRegistDTO> intoStorage() throws Exception {

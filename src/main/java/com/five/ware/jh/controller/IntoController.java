@@ -57,7 +57,6 @@ public class IntoController {
 			e.printStackTrace();
 		}
 		
-		mv.addObject("table", tableName);
 		mv.addObject("list", ar);
 		mv.setViewName("erp/into/"+tableName.toLowerCase()+"Table");
 		
@@ -76,7 +75,6 @@ public class IntoController {
 			e.printStackTrace();
 		}
 		
-		mv.addObject("table", tableName);
 		mv.addObject("list", ar);
 		mv.setViewName("erp/into/"+tableName.toLowerCase()+"Table");
 		
@@ -95,7 +93,6 @@ public class IntoController {
 			e.printStackTrace();
 		}
 		
-		mv.addObject("table", tableName);
 		mv.addObject("list", ar);
 		mv.setViewName("erp/into/"+tableName.toLowerCase()+"Table");
 		
@@ -114,14 +111,13 @@ public class IntoController {
 			e.printStackTrace();
 		}
 		
-		mv.addObject("table", tableName);
 		mv.addObject("list", ar);
 		mv.setViewName("erp/into/"+tableName.toLowerCase()+"Table");
 		
 		return mv;
 	}
 	
-	@RequestMapping(value="intoSupplier", method=RequestMethod.POST)
+	@RequestMapping(value="intoOrder", method=RequestMethod.POST)
 	public ModelAndView orderList(String tableName){
 		ModelAndView mv = new ModelAndView();
 		List<OrderDTO> ar = new ArrayList<OrderDTO>();
