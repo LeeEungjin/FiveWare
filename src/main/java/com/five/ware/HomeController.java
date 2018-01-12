@@ -177,4 +177,61 @@ public class HomeController {
 		return code;
 	}
 	
+	@RequestMapping(value="/storeNum")
+	@ResponseBody
+	public String storeNum(HttpSession session) throws Exception{
+		String filePath = session.getServletContext().getRealPath("resources/code");
+		String fileName = "storeCode";
+		File f = new File(filePath, fileName);		
+		// 파일 읽을 준비
+			FileReader fr = new FileReader(f);
+			// 파일 읽기
+			BufferedReader br = new BufferedReader(fr);
+			// 한 줄을 읽어와라
+			fileName=br.readLine();
+		
+		String code=fileName;
+		char codeChar= code.charAt(0);
+		
+		// String [] cod=code.split("");
+		
+		code=code.substring(1);
+		int num=Integer.parseInt(code);
+		
+		num++;
+		
+		if(num>999){
+			num=0;
+		}
+		
+		code=String.valueOf(num);
+		String codeNum="";
+		
+		for(int i=0; i<3-code.length(); i++){
+			codeNum="0"+codeNum;
+		}
+		
+		code=codeNum+code;
+		
+		if(code.equals("000")){
+			num=codeChar;
+			num++;
+			codeChar=(char)num;
+		}
+		
+		code = codeChar + code;
+
+		FileWriter fw = new FileWriter(f);
+		
+		fw.write(code);
+		
+		fw.flush();
+		
+		fw.close();
+		br.close();
+		fr.close();
+		
+		return code;
+	}
+	
 }

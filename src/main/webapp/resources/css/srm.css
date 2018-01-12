@@ -48,23 +48,44 @@
 }
 
 #menu_wrap{
-	width: 34%;
+	width: 40%;
     height: 100%;
     float: left;
-    background-color: orange;
     margin-left: 5%;
     font-size: 30px;
 }
+#eb_fw_main_2_table{
+	width: 90%;
+	height: 100%;
+	color:white;
+}
+td.eb_row{
+	width: 25%;
+	height: 100%;
+	font-size: 20px;
+	text-align: center;
+}
+
+td.eb_row:hover {
+	background-color: #5D5D5D; 
+} 
+
 
 #search_wrap{
-	width: 15%;
+	width: 20%;
 	height: 100%;
 	float: right;
 }
-#logout_btn{
+#logout_btn_1{
 	height: 100%;
-	width: 40%;
-	margin-left: 55%;
+	width: 30%;
+	margin-left: 100px;
+}
+
+#logout_btn_2{
+	height: 100%;
+	width: 30%;
+
 }
 
 #login_after_middle{

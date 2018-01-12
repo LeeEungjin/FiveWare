@@ -61,12 +61,16 @@
 			</div> 
 			 -->
 			<div id="search_wrap">
-				<a href="./member/memberLogout">
-				<button id="logout_btn" type="button" class="btn btn-default btn-l">
-		         <span class="glyphicon glyphicon-log-out" id="logout"></span>Log out
+				<a href="./member/storeMyPage">
+					<button id="logout_btn_1" type="button" class="btn btn-default btn-l">
+		        	 <span class="glyphicon glyphicon-log-out" id="logout"></span>My Page
+		        </button></a>
+		        
+		        <a href="./member/memberLogout">
+					<button id="logout_btn_2" type="button" class="btn btn-default btn-l">
+		         	<span class="glyphicon glyphicon-log-out" id="logout"></span>Logout
 		        </button></a>
 			</div>
-			
 		</div>
 		
 		<div id="login_after_middle">
@@ -82,11 +86,7 @@
 						<div class="dropdown">
 						
 					    <p id="name_p">${member.name}님 </p>
-					     <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown"><span class="caret"></span></button>
-					    <ul class="dropdown-menu">
-					      <li><a href="./member/memberMyPage">My Page</a></li>
-					      <li><a href="#">출근/퇴근</a></li>
-					    </ul>
+					    
 					  </div>
 						
 						

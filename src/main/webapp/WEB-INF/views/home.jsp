@@ -32,6 +32,8 @@
       });
       
       
+      
+      
       //로그인 후 이용
 /*        $(".eb_login").click(function(){
     	  
@@ -86,7 +88,7 @@
              </div>
              
                 <div class="menu">
-                <a href="groupWare" class="eb_login" id="eb_href_2">GroupWare</a>
+                <a href="groupware" class="eb_login" id="eb_href_2">GroupWare</a>
              </div>
              
                 <div class="menu">
