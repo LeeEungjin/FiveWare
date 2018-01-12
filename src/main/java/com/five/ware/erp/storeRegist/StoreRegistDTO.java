@@ -1,6 +1,8 @@
 package com.five.ware.erp.storeRegist;
 
-public class StoreRegistDTO {
+import com.five.ware.erp.into.IntoDTO;
+
+public class StoreRegistDTO extends IntoDTO{
 	
 	private String code;
 	private String store;

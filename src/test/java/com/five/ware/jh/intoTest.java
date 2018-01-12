@@ -1,4 +1,4 @@
-package com.five.ware.jh;
+/*package com.five.ware.jh;
 
 import static org.junit.Assert.*;
 
@@ -55,3 +55,4 @@ public class intoTest extends AbstractTest {
 	}
 
 }
+*/

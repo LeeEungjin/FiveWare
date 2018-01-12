@@ -1,6 +1,8 @@
 package com.five.ware.order;
 
-public class OrderDTO {
+import com.five.ware.erp.into.IntoDTO;
+
+public class OrderDTO extends IntoDTO {
 	private String orderCode;
 	private String contractDate;
 	private String temp;
