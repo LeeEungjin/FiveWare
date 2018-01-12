@@ -17,17 +17,6 @@
 		$('[data-toggle="tooltip"]').tooltip();   
 	
 		
-		
-		$("#logout_btn_1").click(function(){
-			var kind='${kind}';
-		
-			alert("kind : "+kind);
-				
-			
-		});
-		
-		
-		
 		/* 출퇴근~~~~ */
 		var myVar = setInterval(myTimer, 1000);
 
@@ -117,19 +106,63 @@
 		    ctx.rotate(-pos);
 		}
 		
+		
+	$("#eb_timeBtn").click(function(){
+		var code='${member.code}';
+		var d = new Date();
+		var date=d.toDateString();
+		
+		$.ajax({
+			type : "GET",
+			url : "./time/timeSelectOne",
+			data : {
+				"memberCode" : code,
+				"regdate" : date
+			},success : function(data){
+			  
+			  var lastTime=data.lastTime;
+				if(data==""){
+					$("#start").val("출근");
+					$("#last").val("퇴근");
+				}else{
+				$("#start").val(data.startTime);
+				$("#last").val(data.lastTime);
+				}
+			},error : function(){
+				alert("error");
+			}
+		});
+		
+	});
+		
+		
+		
 	 $("#start").click(function(){
 			var time=$("#demo_2").text();
 			var date=$("#demo_1").text();
-			alert("출근 : "+date+time)
-			
-		
+	
 		 if(confirm("출근처리 하시겠습니까 ?") == false){
 		     alert("출근처리가 취소되었습니다.")   
 			 return false;
 		    }else{
-		    	
+		    	var code='${member.code}';
+		    	$.ajax({
+		    		type : "POST",
+		    		url : "./time/timeInsert",
+		    		data : {
+		    			"memberCode" : code,
+		    			"regdate" : date,
+		    			"startTime" : time,
+		    			"lastTime" : null
+		    		},success : function(data){
+		    			alert(data)
+		    		},error : function(){
+		    			alert("ERROR")
+		    		}
+		    		
+		    	});
 			$("#start").val(time);
-
+		
 		    }
 
 		}); 
@@ -139,12 +172,25 @@
 		 var time=$("#demo_2").text();
 		 var date=$("#demo_1").text();
 
-			alert("퇴근 : "+date+time)
-			
-
 			if(confirm("퇴근처리 하시겠습니까?")==false){
 				alert("퇴근처리가 취소되었습니다.")
 			}else{
+				var code='${member.code}';
+				
+				$.ajax({
+					type : "post",
+					url : "./time/timeUpdate",
+					data : { 
+					   "memberCode" : code,
+					   "regdate" : date,
+					   "lastTime" :time,
+					   },success : function(data){
+						   alert(data);
+					   },error : function(){
+						   alert(error);
+					   }
+					
+				});
 			$("#last").val(time);
 			}
 	
@@ -185,15 +231,11 @@
 			
 			<div id="search_wrap">
 			
-				<a href="./member/memberMyPage">
-					<button id="logout_btn_1" type="button" class="btn btn-default btn-l">
-		        	 <span class="glyphicon glyphicon-log-out" id="logout"></span>My Page
-		        </button></a>
 		        
 		        <a href="./member/memberLogout">
-					<button id="logout_btn_2" type="button" class="btn btn-default btn-l">
-		         	<span class="glyphicon glyphicon-log-out" id="logout"></span>Logout
-		        </button></a>
+					
+		         	<span class="glyphicon glyphicon-log-out" id="eb_logoutBtn">Logout</span>
+		       </a>
 			</div>
 			
 		</div>
@@ -209,10 +251,11 @@
 						<!-- 로그인하면 이름!!  -->
 				
 					    <p id="name_p">${member.name}님 
-					    <i class="glyphicon glyphicon-time" style="font-size: 20px;" data-toggle="modal" data-target="#myModal"></i> </p>
+					    <i class="glyphicon glyphicon-time" style="font-size: 20px;" data-toggle="modal" data-target="#myModal" id="eb_timeBtn"></i> </p>
 					
 					
 			<!--  출퇴근 modal-->
+		
 					<div class="modal fade" id="myModal" role="dialog">
 					    <div class="modal-dialog">
 					    
@@ -232,6 +275,7 @@
 								<div class="eb_clock_2 w3-display-container"> 
 									
 									<p id="demo_1" ></p>
+									
 									 <img src="${pageContext.request.contextPath}/resources/images/common/label.png" class="eb_img"> 
 									<p id="demo_2" class="w3-display-middle w3-large"></p>
 								</div>
@@ -252,7 +296,7 @@
 					      
 					    </div>
  				 </div>
-  
+  	
            <!--출퇴근 MODAL 끝  -->
 					
 					

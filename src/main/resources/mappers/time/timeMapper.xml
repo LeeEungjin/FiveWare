@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="timeMapper">
+  
+  <select id="selectOne" resultType="timeDTO">
+  	select * from time where memberCode=#{memberCode} and regdate=#{regdate}
+  </select>
+  
+  <update id="update">
+  	update time set lastTime=#{lastTime} where memberCode=#{memberCode} and regdate=#{regdate}
+  </update>
+  
+  <insert id="insert" parameterType="timeDTO">
+  	insert into time values(#{memberCode},#{regdate},#{startTime},#{lastTime})
+  </insert>
+  
+  </mapper>
+ 

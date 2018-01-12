@@ -1,168 +1,118 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<!DOCTYPE html>
 <html>
 <head>
-	<title>My Page</title>
-<link href="${pageContext.request.contextPath}/resources/css/myPage/myPage.css" rel="stylesheet">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
+<c:import url="${url}/resources/temp/ref.jsp"></c:import> 
+<link href="${url }/resources/css/myPage/myPage.css" rel="stylesheet">
+
+<title>Insert title here</title>
 <script type="text/javascript">
-	$(function(){
+
+		 
+ $(function(){
+	 
 		 var message = '${message}';
 	     if(message != ""){
 	        alert(message);
 	     }
-		
-		
-		$('[data-toggle="tooltip"]').tooltip();   
-		
+	 
+		$(".fw_menu").click(function(){
+			var sub = $(this).attr("title");
+			
+			if($("."+sub).html().trim()=="∧"){
+				$("."+sub).html("∨");
+			}else{
+				$("."+sub).html("∧");
+			}
+			
+		});
+	 
 		$("#eb_update").click(function(){
-           alert("수정");
 			$(".eb_table_1").css("display","none");
 			$(".eb_table_2").css("display","block");
 		})
-	})
+	 
+	 
+ });
+ 
+ 
+ 
+ 
 </script>
+</head>
 <body>
+<c:import url="${url}/resources/temp/headerExample_srm.jsp"></c:import> 
 
-	<div id="login_after_wrap">
-		<div id="lofin_after_header">
-			 <div id="lang_wrap">
-				<div id="lang_icon">
-					<i class="fa fa-globe" style="font-size:35px"></i>
-				</div>
-				<div id="lang_eng" class=" w3-round-xxlarge ">
-					<p id="lang_p">English</p>
-				</div>
-				<div id="lang_kor" class=" w3-round-xxlarge ">
-				 	<p id="lang_p">Korean</p>
-				</div>    
-			</div> 
-			
-			 <!-- <div id="menu_wrap">
-				 <nav class="navbar navbar-default">
-				  <div class="container-fluid">
-				    <div class="navbar-header">
-				      <a class="navbar-brand" href="#">FiveWare</a>
-				    </div>
-				    <ul class="nav navbar-nav">
-				      <li id="erp_menu"><a href="#">ERP</a></li>
-				      <li id="groupware_menu"><a href="#">GroupWare</a></li>
-				      <li id="srm_menu"><a href="#">SRM</a></li>
-				    </ul>
-				  </div>
-				</nav> 
-			</div> 
-			 -->
-			<div id="search_wrap">
-				<a href="./member/storeMyPage">
-					<button id="logout_btn_1" type="button" class="btn btn-default btn-l">
-		        	 <span class="glyphicon glyphicon-log-out" id="logout"></span>My Page
-		        </button></a>
-		        
-		        <a href="./member/memberLogout">
-					<button id="logout_btn_2" type="button" class="btn btn-default btn-l">
-		         	<span class="glyphicon glyphicon-log-out" id="logout"></span>Logout
-		        </button></a>
-			</div>
+
+<div id="fw_container">
+	<!-- submenu -->
+	<div id="fw_subcontainer">
+	
+		<!-- submenu banner -->
+		<div id="fw_subbanner">
+			우리 매장 관리
 		</div>
+		<!-- submenu banner end -->
 		
-		<div id="login_after_middle">
-			
-			<div id="info_wrap">
-				<div id="pro_info">
-					<div id="pro_info_1">
-						<div id="pro_img">
-							<img src="${pageContext.request.contextPath}/resources/images/sidebar/avatar82.png" class="eb_default_img">
-						
-						<!-- 로그인하면 이름!!  -->
-				
-						<div class="dropdown">
-						
-					    <p id="name_p">${member.name}님 </p>
-					    
-					  </div>
-						
-						
-						</div>
-					</div>
-					<div id="pro_info_2">
-						<i class="fa fa-bell-o" style="font-size:36px">new</i>
-						<div id="alert_menu"></div>
-					</div>
+		<!-- submenu menu -->
+			<div class="fw_menu fw_selected" data-toggle="collapse" data-target=".fw_subselected" title="sub1">
+				우리 매장 관리
+				<div class="fw_arrow sub1">
+					∧
 				</div>
-				<div id="sche_info">
-					<i class="fa fa-calendar" style="font-size:36px">Calendar</i>
-				</div>
-				
-			<div class="eb_line"></div>
-				
-				<div id="sche_add">
-					<i class="fa fa-calendar-plus-o" style="font-size:36px; padding-top:10px;"></i>
-					<p id="sche_p">오늘의 일정을 등록해보세요.</p>
-				</div>
-				<div id="quick_menu">
-					<p id="quick_p">바로가기
-					<a href="#" data-toggle="tooltip" title="바로가기 설정">
-					<i class="fa fa-cog" style="font-size:20px; color : gray;"></i>
-					</a>
-						</p>
-					
-				
-					
-					<div id="quick_menu_box"></div>
-				</div>
-				
-				
-				<div id="often_call">
-					<p id="quick_p">자주 연락하는 사람들
-						<a href="#" data-toggle="tooltip" title="목록 설정">
-						<i class="fa fa-cog" style="font-size:20px; 
-						color : gray;"></i>
-						</a>
-					</p>
-				</div>				
 			</div>
 			
-			<div id="contents_wrap">
-				<div id="myPage_wrap">
-					<div id="myPage_title">
-						<p id="myPage_title_p">My Page
-						<i class="fa fa-address-card-o" style="font-size:48px;color: #CE3636"></i></p>
-					</div>
+			<div class="fw_subselected collapse in" id="sub1">
+				<ul>
+					<li><a href="${pageContext.request.contextPath}/member/storeMyPage">매장 정보</a></li>
+					<li><a href="${pageContext.request.contextPath}/srm/staff">직원 관리</a></li>
+					<li><a href="#">직원 출/퇴근 조회</a></li>
+			
+				</ul>
+			</div>
+			
+	
+
+		<!-- submenu menu end -->
+	</div>
+	<!-- submenu end -->
+	
+	<div id="fw_mainwrap">
+		
+		<div id="fw_main">
+			
+			<div id="eb_fw_main_1"></div>
+			
+			<div id="eb_fw_main_2">
+				<table id="eb_fw_main_2_table">
+					<tr >
+						<td class="eb_row">전체 지점 정보</td>
+						<td class="eb_row">우리 매장 관리</td>
+						<td class="eb_row">이벤트</td>
+						<td class="eb_row">공지사항</td>
+					</tr>
+				</table>
+			</div>
 				
 				
-					<div id="myPage_text"></div>			
-					<div id="weather_div">
-						<i class="fa fa-cloud weather_div_p" style="font-size:36px">Weather</i>
-					</div>
-					
-					<div id="skin_icon">
-						<i class="fa fa-desktop weather_div_p" style="font-size:36px"></i>
-					</div>
-					
-					<div id="edit_icon">
-						<i class="fa fa-cog weather_div_p" style="font-size:36px;"></i>
-					</div>
+		</div>
+			
+			
+			<!--contents 시작  -->
+			<div id="eb_contents_wrap">
+				 
+				<div class="eb_contents_text">
+				 	<span class="glyphicon glyphicon-file" id="eb_contents_text_p">매장정보</span>
 				</div>
-				
-				<div id="submenu_wrap" >
-					
-					<div class="eb_blank"></div>
-					
-					
-					<!-- contents -->
+		<!-- contents -->
 					
 		
-					<div id="submenu_table" class="w3-panel w3-card-4">
-					
-						<div class="eb_table_text">
+				<div id="submenu_table_1" class="w3-panel w3-card-4">
+					<div class="eb_table_text">
 						
 							<h3>기본 정보</h3>
 						</div>
@@ -194,10 +144,11 @@
 						</tr>
 						
 						</table>
-					
-					 
-	
-					<h3>수정할수있는정보</h3>
+						
+				</div>
+				
+					<div id="submenu_table_2" class="w3-panel w3-card-4">
+						<h3>수정할수있는정보</h3>
 					<!--원글  -->
 				<div class="eb_table_1">	
 					<table class="table ">	
@@ -228,7 +179,7 @@
 							<td>${member.account}</td>
 						</tr>
 					</table>
-					<input type="button" value="수정하기" id="eb_update">
+					<input type="button" class="w3-button w3-black" value="수정하기" id="eb_update">
 				</div>
 			
 			
@@ -265,19 +216,22 @@
 							<td><input type="text" value="${member.account}" name="account"></td>
 						</tr> 
 					</table>
-						<input type="submit" value="수정하기" >
+						<input type="submit" class="w3-button w3-black" value="수정하기" >
 					</form>
 					</div>
+						
 				</div>
 			
 			</div>
 			
 		</div>
+				
+		  
+		  
+		  
+	
 		
 	</div>
-		<div id="login_after_footer">
-		
-		</div>
 
 </body>
 </html>
