@@ -28,14 +28,11 @@
 		///////////////////////TAB BUTTON//////////////////////
 		$(".into").click(function(){
 			var tableName=$(this).attr("title");
-			var kind=$(this).val();
 			
 			$.ajax({
 				url : "./into"+tableName,
 				type : "post",
-				data : { tableName : tableName,
-						 kind : kind
-					},
+				data : { tableName : tableName },
 				success : function(result){
 					$("#erp_jh_contents_table").html(result);
 					$("#ej_excel_path").val(tableName);
@@ -43,12 +40,34 @@
 			});
 		});
 		
+		$(".mater").click(function() {
+			var kind=$(this).attr('title');
+			
+			$.ajax({
+				url : "./intoMaterOne",
+				type : "post",
+				data : { tableName : "mater",
+						 kind : kind	
+					},
+				success : function(result){
+					$("#erp_jh_contents_table").html(result);
+					$("#ej_excel_path").val('mater');
+					$("#ej_excel_path").attr('title', kind);
+				}
+			});
+			
+		});
+		
 		////////////////EXCEL DOWNLOAD/////////////////////////////
 		$("#ej_excel_path").click(function() {
 			var tableName = $(this).val();
+			var kind = $(this).attr("title");
 			
-			
-			
+			if(kind == null) {
+				location.href='../../excel/'+tableName+'/excel2007';
+			} else {
+				location.href='../../excel/mater/excel2007';
+			}
 		});
 		
 	});
@@ -153,10 +172,16 @@
 					<button class="into" title="Menu">메뉴</button>
 					<button class="into" title="Storage">창고</button>
 					<button class="into" title="Order">주문</button>
-					<button class="into" title="Mater" value="enter">입고</button>
-					<button class="into" title="Mater" value="rele">출고</button>
-					<button class="into" title="Mater" value="back">반품</button>
-					<button class="into" title="Mater" value="confin">불출</button>
+					<div class="dropdown" style="display: inline;">
+						<button data-toggle="dropdown">재료</button>
+						<ul class="dropdown-menu">
+						  <li><a href="#" class="into" title="Mater">전체</a></li>
+					      <li><a href="#" class="mater" title="enter">입고</a></li>
+					      <li><a href="#" class="mater" title="rele">출고</a></li>
+					      <li><a href="#" class="mater" title="back">반품</a></li>
+					      <li><a href="#" class="mater" title="confin">불출</a></li>
+					    </ul>
+					</div>
 				</div>
 				
 				<!-- table -->

@@ -11,7 +11,6 @@
 			<th>거래처</th>
 			<th>담당자</th>
 			<th>납부처</th>
-			<th>condition</th>
 			<th>납부일</th>
 			<th>창고명</th>
 			<th>비고</th>

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.five.ware.erp.into.IntoDTO;
 import com.five.ware.erp.into.IntoService;
 import com.five.ware.erp.menuRegist.MenuRegistDTO;
 import com.five.ware.erp.product.ProductDTO;
@@ -25,10 +26,10 @@ public class IntoController {
 	@Autowired
 	private IntoService intoService;
 	
-	@RequestMapping(value="intoMater", method=RequestMethod.POST)
-	public ModelAndView storageList(String tableName, String kind) {
+	@RequestMapping(value="intoMaterOne", method=RequestMethod.POST)
+	public ModelAndView materOne(String kind) {
 		ModelAndView mv = new ModelAndView();
-		List<MaterDTO> ar = null;
+		List<IntoDTO> ar = null;
 		
 		try {
 			ar = intoService.intoMater(kind);
@@ -38,7 +39,24 @@ public class IntoController {
 		}
 		
 		mv.addObject("list", ar);
-		mv.addObject("kind", kind);
+		mv.setViewName("erp/into/materTable");
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="intoMater", method=RequestMethod.POST)
+	public ModelAndView materList(String tableName) {
+		ModelAndView mv = new ModelAndView();
+		List<IntoDTO> ar = null;
+		
+		try {
+			ar = intoService.intoMater();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mv.addObject("list", ar);
 		mv.setViewName("erp/into/"+tableName.toLowerCase()+"Table");
 		
 		return mv;
@@ -48,7 +66,7 @@ public class IntoController {
 	@RequestMapping(value="intoStorage", method=RequestMethod.POST)
 	public ModelAndView storageList(String tableName) {
 		ModelAndView mv = new ModelAndView();
-		List<StorageRegistDTO> ar = null;
+		List<IntoDTO> ar = null;
 		
 		try {
 			ar = intoService.intoStorage();
@@ -66,7 +84,7 @@ public class IntoController {
 	@RequestMapping(value="intoMenu", method=RequestMethod.POST)
 	public ModelAndView menuList(String tableName) {
 		ModelAndView mv = new ModelAndView();
-		List<MenuRegistDTO> ar = null;
+		List<IntoDTO> ar = null;
 		
 		try {
 			ar = intoService.intoMenuregist();
@@ -84,7 +102,7 @@ public class IntoController {
 	@RequestMapping(value="intoProduct", method=RequestMethod.POST)
 	public ModelAndView productList(String tableName) {
 		ModelAndView mv = new ModelAndView();
-		List<ProductDTO> ar = null;
+		List<IntoDTO> ar = null;
 		
 		try {
 			ar = intoService.intoProduct();
@@ -102,7 +120,7 @@ public class IntoController {
 	@RequestMapping(value="intoSupplier", method=RequestMethod.POST)
 	public ModelAndView supplierList(String tableName){
 		ModelAndView mv = new ModelAndView();
-		List<SupplierDTO> ar = new ArrayList<SupplierDTO>();
+		List<IntoDTO> ar = new ArrayList<IntoDTO>();
 		
 		try {
 			ar = intoService.intoSupplier();
@@ -120,7 +138,7 @@ public class IntoController {
 	@RequestMapping(value="intoOrder", method=RequestMethod.POST)
 	public ModelAndView orderList(String tableName){
 		ModelAndView mv = new ModelAndView();
-		List<OrderDTO> ar = new ArrayList<OrderDTO>();
+		List<IntoDTO> ar = new ArrayList<IntoDTO>();
 		
 		try {
 			ar = intoService.intoOrder();
