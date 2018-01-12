@@ -13,11 +13,11 @@ import com.five.ware.groupware.epayment.FormListService;
 
 @Controller
 @RequestMapping(value="GroupWare/epayment/**")
-public class GroupWareEpaymentFormListController {
-	
+public class GroupWareEpaymentContoller {
+
 	@Inject
 	FormListService formListService;
-
+	
 	@RequestMapping(value="formList")
 	public ModelAndView formList(String search) throws Exception{
 		List<FormListDTO> ar = formListService.formList(search);
