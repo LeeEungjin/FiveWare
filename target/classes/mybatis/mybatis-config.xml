@@ -17,6 +17,7 @@
   		<typeAlias type="com.five.ware.erp.human.dili.DiliDTO" alias="DiliDTO"/>
   		<typeAlias type="com.five.ware.erp.product.ProductDTO" alias="ProductDTO"/>
   		<typeAlias type="com.five.ware.erp.human.dili.MemberWorkDTO" alias="MemberWorkDTO"/>
+  		<typeAlias type="com.five.ware.groupware.epayment.FormListDTO" alias="FormListDTO"/>
   		
   	</typeAliases>
   </configuration>
