@@ -64,8 +64,6 @@ public class NoticeService {
 			}
 		}
 		
-		
-		
 		return result;
 	}
 	
@@ -77,6 +75,12 @@ public class NoticeService {
 	
 	public int delete(int num) throws Exception	{
 		int result = noticeDAO.delete(num);
+		return result;
+	}
+	
+	public int fileDelete(int fnum)throws Exception{
+		int result=noticeFileDAO.delete(fnum);
+		
 		return result;
 	}
 	

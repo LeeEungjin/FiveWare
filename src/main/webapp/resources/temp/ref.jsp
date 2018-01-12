@@ -18,11 +18,21 @@
 
 <script type="text/javascript">
 	$(function() {
-		$("#ej_sidebar").css("height", window.innerHeight);
+		/* $("#ej_sidebar").css("height", window.innerHeight);
 		$("#fw_container").css("height", window.innerHeight);
+		$("#fw_container").css("width", (window.innerWidth)-(230+'px'));
 		$("#fw_mainwrap").css("width", "70%");
 		$("#fw_mainwrap").css("margin-left", "1%");
-		$("#fw_subcontainer").css("height", "100%");
+		$("#fw_subcontainer").css("height", "100%"); */
+		$("#ej_sidebar").css("height", window.innerHeight);
+		$("#fw_container").css("height", window.innerHeight);
+		$("#ej_sidebar").css("width", "195px");
+		$("#fw_container").css("width", (window.innerWidth - 195)+'px');
+		$("#fw_mainwrap").css("width", "82%");
+		$("#fw_container").css("margin-left", "195px");
+		$("#fw_subcontainer").css("width", "17%");
+		$(".ej_default_img").css("margin-left", "10px");
+		$("#ej_icon_contents").show();
 		
 		var menu = true;
 		$("#ej_menu").click(function(){

@@ -108,6 +108,21 @@ public class NoticeController {
 		return "redirect:noticeList";
 	}
 	
+	@RequestMapping(value="noticeFileDelete")
+	public String fileDelete(int fnum, RedirectAttributes rd)throws Exception{
+		int result=noticeService.fileDelete(fnum);
+		String message="사진 삭제 실패";
+		
+		
+		if(result>0){
+			message="사진 삭제 성공";
+		}
+		
+		rd.addFlashAttribute("message", message);
+		
+		return "redirect:./noticeUpdate";
+	}
+	
 	@RequestMapping(value="meetingRoom")
 	public String meetingRoom(){
 		return "notice/meetingRoom";

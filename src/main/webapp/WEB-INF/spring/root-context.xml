@@ -13,6 +13,7 @@
 		<context:component-scan base-package="com.five.ware.file" />
 		<context:component-scan base-package="com.five.human" />
 		<context:component-scan base-package="com.five.ware.erp.into" />
+		<context:component-scan base-package="com.five.ware.community" />
 		
 		<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
 			<property name="defaultEncoding" value="UTF-8"></property>

@@ -34,7 +34,7 @@ if (ServletFileUpload.isMultipartContent(request)){
             if(item.getSize() > 0) {
                 String ext = item.getName().substring(item.getName().lastIndexOf(".")+1);
                 //파일 기본경로
-                String defaultPath = request.getServletContext().getRealPath("/");
+                String defaultPath = request.getSession().getServletContext().getRealPath("/");
                 System.out.println(defaultPath);
                 //파일 기본경로 _ 상세경로
                 String path = defaultPath + "upload" + File.separator;

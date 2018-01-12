@@ -49,11 +49,13 @@
          
         //폼 submit
         $("#frm").submit();
-    })
+    });
 		
-		var index = $("#noticeFileDelete").length;
+		var index = 
 		var count = 0;
 		$("#add").click(function(){
+			alert("?");
+			alert("index : "+index);
 			if(index < 5)	{
 				var s = '<div id="d'+count+'">';
 				s = s+'<input type="file" name="files"><span class="del" title="d'+count+'">X</span></div>';
@@ -63,6 +65,7 @@
 			}else	{
 				alert("더 이상 생성할 수 없습니다.");
 			}
+			
 		});
 			
 		$(".noticeFileDelete").click(function(){
@@ -148,10 +151,8 @@
 								<div class="button">
 									<a href="./noticeList" class="btn btn-default" id="enroBtn">목록으로</a>
 								</div>
-								<input type="reset" value="취소" class="btn btn-default"
-									id="deleteBtn"><!-- 버튼을 누르면 썼던 내용이 다 사라지게 -->
-								<input type="submit" class="btn btn-default" value="등록"
-									id="updateBtn">
+								<input type="reset" value="취소" class="btn btn-default" id="deleteBtn"><!-- 버튼을 누르면 썼던 내용이 다 사라지게 -->
+								<input type="submit" class="btn btn-default" value="등록" id="updateBtn">
 								
 						</div>
 					</div>

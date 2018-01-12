@@ -11,6 +11,8 @@
   		insert into noticefile values(notice_seq.nextval, #{num}, #{fileName}, #{oriName})
   	</insert>
   	
-  
+  	<delete id="delete" parameterType="int">
+  		delete from noticefile where fnum=#{fnum}
+  	</delete>  
   	
   </mapper>
