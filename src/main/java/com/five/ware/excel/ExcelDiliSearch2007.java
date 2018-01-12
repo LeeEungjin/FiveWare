@@ -28,7 +28,7 @@ public class ExcelDiliSearch2007 extends ExcelMyAbstractView {
 	@Override
 	protected void buildExcelDocument(Map<String, Object> model, Workbook workbook, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-			
+		
 		List<MemberWorkDTO> ar = (List<MemberWorkDTO>) model.get("memberList");
 		List<String> ar2= (List<String>) model.get("diliList");
 		List<List<Integer>> ar3 =(List<List<Integer>>) model.get("sumList");
@@ -86,5 +86,7 @@ public class ExcelDiliSearch2007 extends ExcelMyAbstractView {
 			sheet.autoSizeColumn(i, true);
  
 	}
+
+	
 
 }

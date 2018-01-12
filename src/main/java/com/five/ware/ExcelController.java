@@ -69,23 +69,6 @@ public class ExcelController {
 	public ModelAndView diliSearchExcel(HttpServletResponse response, String search) throws Exception{
 		
 		response.setHeader("Content-disposition", "attachment; filename=" + "diliSearchExcel" + ".xls");
-	/*	
-		List<MemberWorkDTO> ar = memberWorkDAO.mWorkList(search);// 사원
-		List<String> ar2 = memberWorkDAO.diliNameList(); // 근태목록
-		List<Integer> sumList = null;
-		List<List<Integer>> result = new ArrayList<List<Integer>>();
-		
-		for(MemberWorkDTO member : ar){
-			sumList=new ArrayList<Integer>();
-			for(String dili : ar2){
-				int sum = memberWorkDAO.mSumList(member.getCode(), dili);
-				
-				sumList.add(sum);
-			}
-			
-			result.add(sumList);
-		}
-		*/
 		
 		ModelAndView mv = new ModelAndView();
 		
