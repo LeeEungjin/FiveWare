@@ -15,7 +15,7 @@
 
 <script type="text/javascript">
 	$(function(){
-		
+		/////////////////////////load//////////////////////////
 		$.ajax({
 			url : "./intoSupplier",
 			type : "post",
@@ -24,6 +24,7 @@
 			}
 		});
 		
+		///////////////////////TAB BUTTON//////////////////////
 		$(".into").click(function(){
 			var tableName=$(this).attr("title");
 			var op=$(this).val();
@@ -34,11 +35,17 @@
 				data : { tableName : tableName },
 				success : function(result){
 					$("#erp_jh_contents_table").html(result);
+					$("#ej_excel_path").val(tableName);
 				}
 			});
 			
 		});
 		
+		////////////////EXCEL DOWNLOAD/////////////////////////////
+		$("#ej_excel_path").click(function() {
+			var tableName = $(this).val();
+			alert(tableName);
+		});
 		
 	});
 </script>
@@ -154,7 +161,7 @@
 				
 				<!-- 등록 버튼 -->
 					<div id="erp_jh_contents_bottom">
-						<button type="button" class="btn">엑셀 다운로드</button>
+						<button id="ej_excel_path" value="Supplier" type="button" class="btn">엑셀 다운로드</button>
 					</div>
 				<!-- 등록 버튼 끝 -->
 				
