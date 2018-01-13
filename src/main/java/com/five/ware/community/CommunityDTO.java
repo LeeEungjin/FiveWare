@@ -9,6 +9,8 @@ public class CommunityDTO extends CommunityFileDTO{
 	private String contents;
 	private String reg_date;
 	private String hit;
+	
+	
 	public int getNum() {
 		return num;
 	}

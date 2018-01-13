@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="blackListMapper">
+  
+  <insert id="blackListInsert" parameterType="com.five.ware.community.BlackListDTO">
+	insert into blackList values(#{num}, #{writer}, #{report}, #{names})
+  </insert>
+  
+  <update id="blackListUpdate" parameterType="int">
+  	update blacklist set report=report+1 where num=#{num}
+  </update>
+  
+  <select id="reportCount" resultType="int" parameterType="int">
+  	select report from blacklist where num=#{num}
+  </select>
+  
+</mapper>
