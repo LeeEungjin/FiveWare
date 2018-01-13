@@ -1,13 +1,11 @@
 package com.five.ware.groupware.epayment;
 
-<<<<<<< HEAD
-import java.util.List;
-=======
+
+import java.util.List; 
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
->>>>>>> bf565986323e9cb2d1415f4d265e0010bea9ec32
-
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -37,12 +35,14 @@ public class EpaymentDAO {
 		return result;
 	}
 	
-<<<<<<< HEAD
+
 	public List<String> tempList() throws Exception{
+		
 		List<String> temps=sqlSession.selectList(NAMESPACE+"tempList");
 		
 		return temps;
-=======
+	}
+
 	//list
 	public List<EpaymentDTO> epaymentList(RowNum rowNum, ListData listData) throws Exception{
 		Map<String, Object> map=new HashMap<String, Object>();
@@ -58,6 +58,6 @@ public class EpaymentDAO {
 	//totalCount
 	public int totalCount(RowNum rowNum) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"totalCount", rowNum);
->>>>>>> bf565986323e9cb2d1415f4d265e0010bea9ec32
+
 	}
 }

@@ -1,9 +1,6 @@
 package com.five.ware.groupware.epayment;
 
-<<<<<<< HEAD
-=======
-import java.util.ArrayList;
->>>>>>> bf565986323e9cb2d1415f4d265e0010bea9ec32
+import java.util.ArrayList; 
 import java.util.List;
 
 import javax.inject.Inject;
@@ -36,12 +33,13 @@ public class EpaymentService {
 		return result;
 	}
 	
-<<<<<<< HEAD
+
 	public List<String> tempList() throws Exception{
 		List<String> temps=epaymentDAO.tempList();
 		
 		return temps;
-=======
+	}
+	
 	//epayment List
 	public ModelAndView epaymentList(ListData listData) throws Exception{
 		RowNum rowNum=listData.makeRow();
@@ -60,6 +58,6 @@ public class EpaymentService {
 		
 		return mv;
 		
->>>>>>> bf565986323e9cb2d1415f4d265e0010bea9ec32
+
 	}
 }
