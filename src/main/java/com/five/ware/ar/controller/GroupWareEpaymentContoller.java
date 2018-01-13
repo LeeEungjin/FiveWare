@@ -18,6 +18,27 @@ public class GroupWareEpaymentContoller {
 	@Inject
 	FormListService formListService;
 	
+	
+	//pendency 미결함
+	@RequestMapping(value="epaymentPendency")
+	public void epaymentPendency(){
+		
+	}
+	
+	//determine 기결함
+	@RequestMapping(value="epaymentDetermine")
+	public void epaymentDetermine(){
+		
+	}
+	
+	//return 반려함
+	@RequestMapping(value="epaymentReturn")
+	public void epaymentReturn(){
+		
+	}
+	
+	
+	
 	@RequestMapping(value="formList")
 	public ModelAndView formList(String search) throws Exception{
 		List<FormListDTO> ar = formListService.formList(search);

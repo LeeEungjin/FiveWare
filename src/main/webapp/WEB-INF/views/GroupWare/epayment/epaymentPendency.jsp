@@ -8,7 +8,7 @@
 <c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 <c:import url="${url}/resources/temp/ref.jsp"></c:import> 
  
- <link href="${url}/resources/css/GroupWare/epayment/formList.css" rel="stylesheet">
+ <link href="${url}/resources/css/GroupWare/epayment/epaymentPendency.css" rel="stylesheet">
 
 <title>Insert title here</title>
 </head>
@@ -73,7 +73,7 @@
 			</div>
 			
 			<div class="ar_plusTitle">
-				<p id="ar_plustext">양식목록</p>
+				<p id="ar_plustext">미결함</p>
 			</div>
 			
 			<div class="ar_plusSearchWrap">
@@ -81,23 +81,13 @@
 				
 			<form action="positionPlus" method="GET">
 				<div class="ar_plusSearch">
-					 시스템 항목이 '문서결재'인 양식은 전자결재 내에서 결재문서가 작성되어 결재가 처리됩니다. '문서결재' 외 양식은 해당 시스템에서 결재문서 관련 사항을 입력하여 결재요청하면 전자결재와 연계하여 결재가 처리됩니다.
-					<br> 어쩌구저쩌구 설명
+					결재가 완료 되지 않은 문서
 					</div>
 			</form>
 			</div>
 			
 			<div id="ar_mainDivWrap">
-		<!-- 		<div id="ar_inhabitWrap">
-					<div id="ar_inhabitDiv">
-						
-					
-					</div>
-					
-					<div id="ar_latestInhabit">
-					
-					</div>
-				</div> -->
+	
 				
 				<div id="ar_inhabitTableWrap">
 					<div id="ar_tableTop">
@@ -108,32 +98,48 @@
 							
 						</select>
 						
-						<div id="ar_totalNum">전체 : ${listnum }</div>
+						<div id="ar_totalNum">전체 </div>
 						
 						<input type="button" id="ar_searchBtn" value="검색">
 						
 						<input type="text" id="ar_searchInput">
 						
 							<select id="ar_searchTitle">
-								<option>양식명</option>
+								<option>문서 종류</option>
+								<option>날짜</option>
+								<option>부서</option>
+								<option>기안자</option>
 							</select>
 							
 					</div>
 					
 					<div id="ar_tableWrap">
-						<div class="ar_titleDiv">
-							<div class="ar_tableNum ar_titleDiv1"> No </div>
-							<div class="ar_tableName ar_titleDiv1"> 양식명 </div>
-							<div class="ar_tableOther ar_titleDiv1"> 비고 </div>
-						</div>
-				
-			 	<c:forEach items="${formList}" var="list"> 
-					<div class="ar_titleDiv">
-							<div class="ar_tableNum ar_titleDiv1"> ${list.num} </div>
-							<div class="ar_tableName ar_titleDiv1"><a href="explanatory" > ${list.formname}</a> </div>
-							<div class="ar_tableOther ar_titleDiv1">  ${list.forminfo} </div>
-						</div> 
-			 	</c:forEach> 
+						<table class="table" id="eb_table">
+							<thead>
+								<tr>
+									<th> No </th>
+									<th> 문서 제목 </th>
+									<th> 기안자 </th>
+									<th> 기안 부서 </th>
+									<th> 승인 부서 </th>
+									<th> 기안 날짜 </th>
+									<th> 첨부 </th>
+								</tr>
+							</thead>
+							
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>2</td>
+									<td>3</td>
+									<td>4</td>
+									<td>5</td>
+								</tr>
+							
+							</tbody>
+						
+						</table>
+			 
 					</div>
 				</div>
 			</div>

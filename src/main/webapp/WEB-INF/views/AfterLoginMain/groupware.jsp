@@ -143,7 +143,7 @@
                         </span>
                      </a> 
                      
-                     <a href="#"> 
+                    <a href="${pageContext.request.contextPath}/GroupWare/epayment/formList">
                         <span class="groupWare_jk_smalldiv"> 
                            <span class="groupWare_jk_writing">서식함</span>
                         </span>
