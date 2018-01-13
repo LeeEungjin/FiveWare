@@ -1,5 +1,7 @@
 package com.five.ware.groupware.epayment;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -14,5 +16,11 @@ public class EpaymentService {
 		int result = epaymentDAO.epaymentInsert(epaymentDTO);
 		
 		return result;
+	}
+	
+	public List<String> tempList() throws Exception{
+		List<String> temps=epaymentDAO.tempList();
+		
+		return temps;
 	}
 }

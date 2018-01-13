@@ -1,6 +1,7 @@
 package com.five.ware.ar.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.five.ware.groupware.epayment.EpaymentDTO;
@@ -71,5 +73,22 @@ public class GroupWareEpaymentContoller {
 		mv.setViewName("common/result");
 		
 		return mv;
+	}
+	
+	@RequestMapping(value="explanatory_modal")
+	public void epaymentModal() throws Exception{
+		System.out.println("들어오냐?");
+	}
+	
+	@RequestMapping(value="signData")
+	@ResponseBody
+	public List<Object> signData() throws Exception{
+		List<String> temps = epaymentService.tempList();
+		
+		List<Object> ar = new ArrayList<Object>();
+		
+		ar.add(temps);
+		
+		return ar;
 	}
 }

@@ -1,0 +1,161 @@
+@CHARSET "UTF-8";
+
+.modal-dialog {
+    width: 57%;
+    margin: 0 auto;
+    margin-top: 9%;
+    margin-left: 31%;
+    height: 300px;
+}
+
+.modal.in .modal-dialog {
+    height: 800px;
+}
+
+#ar_signBigWrap{
+	width: 100%;
+	height: 500px;
+	background-color: #ffffb9;
+	padding-top:2%;
+	display: inline-block;
+	float:left;
+}
+
+#ar_groupChartWrap{
+	width: 40%;
+	height: 95%;
+	margin-left:3%;
+	display: inline-block;
+    float: left;
+	background-color: #c0c0c0;
+}
+
+#ar_signBtnWrap{
+	width: 10%;
+	height: 95%;
+	background-color: #dbdbff;
+	display: inline-block;
+	float:left;
+	margin-left: 2%;
+}
+
+#ar_signBtn{
+	width: 100%;
+	height: 30%;
+	margin-top: 170%;
+	background-color: #c993ff;
+}
+
+#ar_signResult{
+	width: 40%;
+	height: 95%;
+	background-color: #ff80c0;
+	display: inline-block;
+	float:left;
+	margin-left: 2%;
+}
+
+#ar_grouptChartTitle{
+	width: 100%;
+	height: 10%;
+	background-color: #dfbfff;
+	
+}
+
+
+.ar_signBtns{
+	width: 47%;
+    height: 30%;
+    border-radius: 10%;
+    background-color: #ffd1bb;
+    margin: 0 auto;
+    margin-top: 8%;
+    text-align: center;
+    padding-top: 11%;
+}
+
+#ar_groupResultTable{
+	width: 100%;
+	height: 90%;
+	background-color: #dbdbdb;
+	padding-left:2%;
+	border: 1px solid gray;
+}
+
+#ar_resultTable{
+	margin-top:3%;
+	border: 1px solid black;
+	width: 100%;
+}
+
+#ar_tableBlank{
+	width: 10%;
+	text-align: center;
+}
+#ar_tabletd2{
+	width: 20%;
+	text-align: center;
+}
+#ar_tabletd3{
+	width: 70%;
+	text-align: left;
+	padding-left: 2%;
+}
+
+.ar_tabletds{
+	border: 1px solid black;
+	font-size: 14px;
+    height: 33px;
+    
+}
+
+.ar_ChartText{
+	margin-left: 1%;
+    font-size: 16px;
+    line-height: 48px;
+}
+
+#ar_groupChart{
+	width: 100%;
+	height: 90%;
+	margin-top: 1%;
+	border: 1px solid black;
+	background-color: #c1ffff;
+	padding-left: 1%;
+	padding-top: 1%;
+	font-size: 15px;
+	
+}
+
+.ar_diffImg{
+	width: 18px;
+	height: 18px;
+	background-image: url("../../../images/d.png");
+	background-position: -72px 0;
+	display: inline-block;
+	float:left;
+}
+
+.ar_plusImg{
+	width: 18px;
+	height: 18px;
+	background-image: url("../../../images/d.png");
+	background-position: -54px 0;
+	display: inline-block;
+	float:left;
+}
+
+.ar_conpany{
+	font-size: 12px;
+	display: inline-block;
+	float:left;
+	margin-top: 1%;
+}
+
+.ar_tempWrap{
+	width: 80%;
+	height: 100px;
+	background-color: #ffcaff;
+	margin-top: 20px;
+    margin-left: 5%;
+}
