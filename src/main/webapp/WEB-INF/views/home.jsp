@@ -114,8 +114,13 @@
           <!-- id, pw -->
          <form action="" id="eb_frm"> 
           <div class="login" >
+<<<<<<< HEAD
               <input type="text" placeholder="id" class="loginid wrap" name="code" id="eb_code">
              <input type="text" placeholder="password" class="loginpw wrap" name="pw">
+=======
+              <input type="text" placeholder=" id" class="loginid wrap" name="code" id="eb_code" value="180107-005">
+             <input type="text" placeholder="password" class="loginpw wrap" name="pw" value="180107-005">
+>>>>>>> arin
              
            	  아이디저장
              <div class="idsave wrap">
