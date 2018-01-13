@@ -194,13 +194,18 @@
 
 #ar_tableWrap{
 	width: 100%;
-	height: 80%;
+	height: 75%;
 	background-color: #D5D5D5;
+}
+#eb_page{
+	margin: 0 auto;
+	width: 50%;
+	margin-top: 10px;
+	text-align: center;
 }
 
 #eb_table{
 	width: 100%;
-	height: 90%;
 }
 
 .ar_titleDiv1{
@@ -237,10 +242,6 @@
 	margin-top: 2%;
 }
 
-#ar_totalNum{
-	float:left;
-	margin-top: 2%;
-}
 
 #ar_searchTitle{
 	float:right;
@@ -255,4 +256,29 @@
 #ar_searchBtn{
 	float:right;
 	margin-top: 2%;
+}
+
+
+
+#eb_modal{
+	height: 500px;
+	width: 600px;
+}
+#eb_modal_table{
+	widows: 700px;
+	height: 40%;
+	border-bottom: 1px solid gray;
+
+}
+.eb_modal_table_td{
+	width: 200px;
+}
+.eb_modal_table_td_1{
+	width:100px;
+	text-align : center;
+	background-color: black;
+	color:white;
+}
+.eb_modal_tr{
+	border-top: 1px solid gray;
 }

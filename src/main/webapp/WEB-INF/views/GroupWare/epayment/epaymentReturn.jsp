@@ -12,6 +12,46 @@
 
 <title>Insert title here</title>
 </head>
+<script type="text/javascript">
+$(function(){
+	
+	 /*page 처리  */
+	  $(".eb_list").click(function(){
+			
+			var cur=$(this).attr("title");
+			var s = '${pager.search}';
+			var t = '${pager.kind}';
+			document.frm.curPage.value=cur;
+			document.frm.search.value=s;
+			document.frm.kind.value=t;
+			document.frm.submit();
+		});
+	 
+	 /*view  */
+	  $(".eb_viewBtn").click(function(){
+		 var num=$(this).attr("title");
+		 
+		 $.ajax({
+			type : "get",
+			url : "./epaymentView",
+			data : {"num" : num},
+			success : function(data){
+				$("#eb_viewNum").text(data.num);
+				$("#eb_viewDraftdate").text(data.draftdate);
+				$("#eb_viewDraftname").text(data.draftname);
+				$("#eb_viewDrafttemp").text(data.drafttemp);
+				$("#eb_viewTitle").text(data.title);
+				$("#eb_viewContents").text(data.contents);
+				$("#eb_viewApproval").text(data.approval);
+				$("eb_viewApprovaltemp").text(data.approvaltemp);
+			},error : function(){
+				alert("error");
+			}
+		 });
+	 }); 
+});
+
+</script>
 <body>
 <c:import url="${url}/resources/temp/headerExample.jsp"></c:import> 
 
@@ -91,25 +131,22 @@
 				
 				<div id="ar_inhabitTableWrap">
 					<div id="ar_tableTop">
-						<select id="ar_tablenumber">
-							<option value="10">10</option>
-							<option value="15">15</option>
-							<option value="20">20</option>
-							
-						</select>
+				
 						
-						<div id="ar_totalNum">전체 </div>
+						<form action="./epaymentReturn" action="get">
 						
-						<input type="button" id="ar_searchBtn" value="검색">
+						<input type="submit" id="ar_searchBtn" value="검색">
 						
-						<input type="text" id="ar_searchInput">
+						<input type="text" id="ar_searchInput" name="search">
 						
-							<select id="ar_searchTitle">
-								<option>문서 종류</option>
-								<option>날짜</option>
-								<option>부서</option>
-								<option>기안자</option>
+							<select id="ar_searchTitle" name="kind">
+								<option value="title">문서 제목</option>
+								<option value="draftdate">기안 날짜</option>
+								<option value="drafttemp">기안 부서</option>
+								<option value="draftname">기안자</option>
 							</select>
+				
+						</form>	
 							
 					</div>
 					
@@ -128,19 +165,105 @@
 							</thead>
 							
 							<tbody>
+							<c:forEach items="${epaymentList }" var="dto">
 								<tr>
-									<td>1</td>
-									<td>2</td>
-									<td>3</td>
-									<td>4</td>
-									<td>5</td>
+									<td>${dto.num }</td>
+									<td>${dto.title }</td>
+									<td>${dto.draftname }</td>
+									<td>${dto.drafttemp }</td>
+									<td>${dto.approvaltemp }</td>
+									<td>${dto.draftdate }</td>
+									<td>${dto.result }</td>
+									<td></td>
+									<td><input type="button" value="상세보기" class="eb_viewBtn" title="${dto.num}"  data-toggle="modal" data-target="#myModal"></td>
 								</tr>
-							
+						</c:forEach>		
 							</tbody>
 						
 						</table>
 			 
 					</div>
+					
+					
+					<!-- view Modal -->
+						<div class="modal fade" id="myModal" role="dialog">
+						    <div class="modal-dialog">
+						    
+						      <!-- Modal content-->
+						      <div class="modal-content">
+						        <div class="modal-header">
+						          <button type="button" class="close" data-dismiss="modal">&times;</button>
+						          <h4 class="modal-title">미결함</h4>
+						        </div>
+						        <div class="modal-body"  id="eb_modal" >
+						         
+						         <table  id="eb_modal_table">
+						         	<tr class="eb_modal_tr">
+						         		<td class="eb_modal_table_td_1">문서 번호</td>
+						         		<td class="eb_modal_table_td"><span id="eb_viewNum"></span></td>
+						         		<td class="eb_modal_table_td_1">기안 날짜</td>
+						         		<td class="eb_modal_table_td"><span id="eb_viewDraftdate"></span></td>
+						         	</tr>
+						         	<tr class="eb_modal_tr">
+						         		<td class="eb_modal_table_td_1">기안 부서</td>
+						         		<td><span id="eb_viewDrafttemp"></span></td>
+						         		<td class="eb_modal_table_td_1">기안자</td>
+						         		<td><span id="eb_viewDraftname"></span></td>
+						         	</tr>
+						         	
+						         	<tr class="eb_modal_tr">
+						         		<td class="eb_modal_table_td_1">승인 부서</td>
+						         		<td><span id="eb_viewApprovalTemp"></span></td>
+						         		<td class="eb_modal_table_td_1">승인자</td>
+						         		<td><span id="eb_viewApproval"></span></td>
+						         	</tr>
+						         	
+						         	<tr class="eb_modal_tr">
+						         		<td class="eb_modal_table_td_1">제목</td>
+						         		<td colspan="3"><span id="eb_viewTitle"></span></td>
+						         	</tr>
+						         
+						         	<tr class="eb_modal_tr">
+						         		<td class="eb_modal_table_td_1">내용</td>
+						         		<td colspan="3"><span id="eb_viewContents"></span></td>
+						         	</tr>
+						         
+						         </table>
+						        </div>
+						        <div class="modal-footer">
+						          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						        </div>
+						      </div>
+						      
+						    </div>
+						  </div>
+							
+					
+					
+					
+					
+					
+							<!-- page 처리 -->
+			 	
+			 	<div id="eb_page">
+					<c:if test="${pager.curBlock gt 1}">
+						<span class="eb_list" title="${pager.startNum-1}">[이전]</span>
+					</c:if>
+					
+					<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+						<span class="eb_list" title="${i}">${i}</span>
+					</c:forEach>
+					
+					<c:if test="${pager.curBlock lt pager.totalBlock}">
+						<span class="eb_list" title="${pager.lastNum+1}">[다음]</span>
+					</c:if>
+				</div>  
+					
+		 		  
+			  
+						  
+				<!-- page 처리 끝 -->		  
+				
 				</div>
 			</div>
 			
@@ -148,6 +271,7 @@
 			
 	</div>
 </div>
+
 
 </body>
 </html>
