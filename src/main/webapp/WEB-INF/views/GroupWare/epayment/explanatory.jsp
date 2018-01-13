@@ -33,16 +33,26 @@
 		});
 
 		//전송버튼 클릭이벤트
-		$("#savebutton").click(
+		$("#ar_signAsk").click(
 				function() {
 					//id가 smarteditor인 textarea에 에디터에서 대입
-					editor_object.getById["contents"].exec(
+					editor_object.getById["ar_tableTextArea"].exec(
 							"UPDATE_CONTENTS_FIELD", []);
 
 					// 이부분에 에디터 validation 검증
 
 					//폼 submit
-					$("#frm").submit();
+					if($("#ar_tableKindSelectBtn").val()==""){
+						alert("유형을 선택하세요.");
+					}else if($("#ar_docuTitle").val()==""){
+						alert("제목을 입력하세요.");
+					}else if($("#ar_tableTextArea").val()==""){
+						alert("사유내용을 입력하세요.");
+					}else{
+						$("#frm").submit();
+						
+					}
+					
 				})
 
 		//SmartEditorend
@@ -123,6 +133,7 @@
 		사유서
 	</div>
 	
+<form id="frm" action="./epaymentInsert" method="POST">
 	<div id="ar_signBoxWrap">
 		<div id="ar_signBoxDiv">
 				<div id="ar_signText">
@@ -130,10 +141,11 @@
 				</div>
 				<div id="ar_signBoxBasis">
 					<div id="ar_signTemp"> 기 안</div>
+					<div id="ar_singMember">${member.name }</div>
 				</div>
 				<!-- for문 돌리기(결재선) -->
-				<input type="hidden" name="approval">
-				<input type="hidden" name="approvaltemp">
+				<input type="hidden" name="approval" value="test">
+				<input type="hidden" name="approvaltemp" value="test">
 		</div>
 	</div>
 	
@@ -143,20 +155,20 @@
 				<td class="ar_tableTitle">문서번호</td>
 				<td class="ar_tableInput">자동채번</td>
 				<td class="ar_tableTitle">기안일자</td>
-				<td class="ar_tableInput" ><input tyep="text"  name="draftdate" class="ar_draftInput" readonly="readonly" value="오늘날짜"></td>
+				<td class="ar_tableInput" ><input type ="text"  name="draftdate" class="ar_draftInput" readonly="readonly" value="${sysdate }"></td>
 			</tr>
 			
 			<tr>
 				<td class="ar_tableTitle">기안자</td>
-				<td class="ar_tableInput"><input tyep="text"  name="draftname" class="ar_draftInput" readonly="readonly" value="session 이름"></td>
+				<td class="ar_tableInput"><input type="text"  name="draftname" class="ar_draftInput" readonly="readonly" value="${member.name }"></td>
 				<td class="ar_tableTitle">기안부서</td>
-				<td class="ar_tableInput"> <input tyep="text"  name="drafttemp" class="ar_draftInput" readonly="readonly" value="session 부서"></td>
+				<td class="ar_tableInput"> <input type="text"  name="drafttemp" class="ar_draftInput" readonly="readonly" value="${member.temp }"></td>
 			</tr>
 			
 			<tr>
 				<td class="ar_tableTitle">유형</td>
 				<td colspan="3" class="ar_tableInput">
-				<select name="kind">
+				<select name="kind" id="ar_tableKindSelectBtn">
 					<option value=""></option>
 					<option value="지각">지각</option>
 					<option value="조퇴">조퇴</option>
@@ -171,7 +183,7 @@
 			</tr>
 			
 			<tr>
-				<td colspan="4" class="ar_tableInput" ><textarea rows="" cols="" id="ar_tableTextArea" name="contents"></textarea> </td>
+				<td colspan="4" class="ar_tableInput" ><textarea rows="" cols="" id="ar_tableTextArea" name="contents" placeholder="육하원칙으로 작성하세요."></textarea> </td>
 			</tr>
 			
 			
@@ -181,12 +193,13 @@
 	<div id="ar_explantBtnWrap">
 		<div id="ar_explantBtn">
 			<input type="button" value="결재선" class="ar_btnStyle" id="ar_signLine">
-			<input type="button" value="결재요청" class="ar_btnStyle" id="ar_signLine">
+			<input type="button" value="결재요청" class="ar_btnStyle" id="ar_signAsk">
 			<input type="button" value="임시저장" class="ar_btnStyle1" id="ar_signLine">
 			<input type="button" value="취소" class="ar_btnStyle1" id="ar_signLine">
 		</div>
 	</div>
 	
+	</form>
 	
 </div>
 	
