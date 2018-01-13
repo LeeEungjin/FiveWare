@@ -88,13 +88,11 @@
              </div>
              
                 <div class="menu">
-<<<<<<< HEAD
+
 
                 <a href="groupware" class="eb_login" id="eb_href_2">GroupWare</a>
 
-=======
-                <a href="groupware" class="eb_login" id="eb_href_2">GroupWare</a>
->>>>>>> master
+
              </div>
              
                 <div class="menu">
@@ -117,8 +115,12 @@
 
               <input type="text" placeholder="id" class="loginid wrap" name="code" id="eb_code">
              <input type="text" placeholder="password" class="loginpw wrap" name="pw">
+<<<<<<< HEAD
 
              
+=======
+         
+>>>>>>> eunbi2
            	  아이디저장
              <div class="idsave wrap">
                 <input type="checkbox" >  <!-- 아이디 저장 -->
