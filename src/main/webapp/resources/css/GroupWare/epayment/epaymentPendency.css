@@ -267,7 +267,7 @@
 #eb_modal_table{
 	widows: 700px;
 	height: 40%;
-	border-bottom: 1px solid gray;
+	border-bottom: 1px solid #D5D5D5;
 
 }
 .eb_modal_table_td{
@@ -280,5 +280,5 @@
 	color:white;
 }
 .eb_modal_tr{
-	border-top: 1px solid gray;
+	border-top: 1px solid #D5D5D5;
 }
