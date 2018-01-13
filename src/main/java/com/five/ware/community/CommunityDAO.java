@@ -16,7 +16,7 @@ public class CommunityDAO {
 	private SqlSession sqlSession;
 	private static final String namespace="communityMapper.";
 	
-	public int totalCounr(RowNum rowNum)throws Exception{
+	public int totalCount(RowNum rowNum)throws Exception{
 		return sqlSession.selectOne(namespace+"totalCount", rowNum);
 	}
 	

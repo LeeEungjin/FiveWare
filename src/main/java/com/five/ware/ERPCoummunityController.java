@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.five.ware.community.BlackListDTO;
 import com.five.ware.community.CommunityDTO;
 import com.five.ware.community.CommunityService;
 import com.five.ware.util.ListData;
@@ -35,10 +36,10 @@ public class ERPCoummunityController {
 	//selectOne
 	@RequestMapping(value="communityOne")
 	public String selectOne(Model model, int num)throws Exception{
-		CommunityDTO communityDTO=communityService.selectOne(num);
 		
-		model.addAttribute("view", communityDTO);
+		model.addAttribute("view", communityService.selectOne(num));
 		model.addAttribute("community", "ERP");
+		model.addAttribute("report", communityService.reportCount(num));
 		
 		return "community/communityView";
 	}
@@ -48,20 +49,20 @@ public class ERPCoummunityController {
 	public String insert(Model model)throws Exception{
 		model.addAttribute("community", "ERP");
 		
-		return "community/communityWrtie";
+		return "community/communityWrite";
 	}
 	
 	//insert->DB
 	@RequestMapping(value="communityWrite", method={RequestMethod.POST})
-	public String insert(RedirectAttributes rd, CommunityDTO communityDTO, HttpSession session)throws Exception{
+	public String insert(RedirectAttributes rd, CommunityDTO communityDTO, BlackListDTO blackListDTO, HttpSession session)throws Exception{
 		int result=0;
 		
-		result=communityService.insert(communityDTO, session);
+		result=communityService.insert(communityDTO, blackListDTO, session);
 		
-		String message="글쓰기 성공";
+		String message="글쓰기 실패";
 		
 		if(result>0){
-			message="글쓰기 실패;";
+			message="글쓰기 성공;";
 		}
 		
 		rd.addFlashAttribute("message", message);
@@ -74,20 +75,50 @@ public class ERPCoummunityController {
 	public String update(int num, Model model)throws Exception{
 		CommunityDTO communityDTO=communityService.selectOne(num);
 		
-		model.addAttribute("view", communityDTO);
+		model.addAttribute("update", communityDTO);
 		model.addAttribute("community", "ERP");
 		
 		return "community/communityUpdate";
 	}
 	
 	//update->DB
-	@RequestMapping(value="cimmunityUpdate", method={RequestMethod.POST})
-	public String update(CommunityDTO communityDTO, RedirectAttributes rd)throws Exception{
+	@RequestMapping(value="communityUpdate", method={RequestMethod.POST})
+	public String update(CommunityDTO communityDTO, HttpSession session,RedirectAttributes rd)throws Exception{
 		String message="수정 실패";
-		int result=communityService.update(communityDTO);
-			
+		int result=communityService.update(communityDTO,session);
+		
 		if(result>0){
 			message="수정 성공";
+		}
+		
+		rd.addFlashAttribute("message", message);
+		
+		return "redirect:./communityList";
+	}
+	
+	@RequestMapping(value="fileDelete")
+	public int filedelete(int fnum, RedirectAttributes rd)throws Exception{
+		String message="file delete fail";
+		
+		int result=communityService.fileDelete(fnum);
+		
+		if(result>0){
+			message="file delete Success";
+		}
+		
+		rd.addFlashAttribute("message", message);
+		
+		return result;
+	}
+	
+	@RequestMapping(value="communityDelete")
+	public String delete(int num, RedirectAttributes rd)throws Exception{
+		String message="삭제 실패";
+		
+		int result=communityService.delete(num);
+		
+		if(result>0){
+			message="삭제 성공";
 		}
 		
 		rd.addFlashAttribute("message", message);

@@ -24,26 +24,73 @@ public class CommunityService {
 	private FileSaver fileSaver;
 	@Autowired
 	private UploadDAO uploadDAO;
+	@Autowired
+	private BladkListDAO bladkListDAO;
 	
 	public ModelAndView selectList(ListData listData)throws Exception{
 		ModelAndView mv=new ModelAndView();
-		int totalCount=communityDAO.totalCounr(listData.makeRow());
+		int totalCount=communityDAO.totalCount(listData.makeRow());
 		
 		mv.addObject("pager", listData.makePage(totalCount));
-		mv.addObject("list", communityDAO.selectList(listData.makeRow()));
+		mv.addObject("comList", communityDAO.selectList(listData.makeRow()));
 		mv.setViewName("community/communityList");
 		
 		return mv;
 	}
 	
 	public CommunityDTO selectOne(int num)throws Exception{
+		ModelAndView mv=new ModelAndView();
+		
 		communityDAO.hitUpdate(num);
 		CommunityDTO communityDTO=communityDAO.selectOne(num);
+		communityDTO.setFileNames(uploadDAO.selectList(num));
+		
 		
 		return communityDTO;
 	}
 	
-	public int insert(CommunityDTO communityDTO, HttpSession session)throws Exception{
+	public int reportCount(int num)throws Exception{
+		int report=bladkListDAO.reportCount(num);
+		
+		return report;
+	}
+	
+	public int insert(CommunityDTO communityDTO, BlackListDTO blackListDTO, HttpSession session)throws Exception{
+		MultipartFile [] files=communityDTO.getFiles();
+		
+		int result=communityDAO.insert(communityDTO);
+
+		blackListDTO=new BlackListDTO();
+		
+		blackListDTO.setNum(communityDTO.getNum());
+		blackListDTO.setWriter(communityDTO.getWriter());
+		blackListDTO.setReport(0);
+		blackListDTO.setNames("");
+					
+				
+		result=bladkListDAO.insert(blackListDTO);
+			
+		if(files!=null){
+			for(MultipartFile multipartFile :files){
+				if(multipartFile.getOriginalFilename()==""){
+					continue;
+				}else{
+					String name=fileSaver.fileSave(multipartFile, session, "upload");
+					
+					UploadDTO uploadDTO=new UploadDTO();
+					uploadDTO.setNum(communityDTO.getNum());
+					uploadDTO.setFileName(name);
+					uploadDTO.setOriName(multipartFile.getOriginalFilename());
+					
+					uploadDAO.insert(uploadDTO);
+				}
+			}
+		}
+		
+		return result;
+	}
+	
+	public int update(CommunityDTO communityDTO, HttpSession session)throws Exception{
 		MultipartFile [] files=communityDTO.getFiles();
 		
 		int result=communityDAO.insert(communityDTO);
@@ -68,14 +115,16 @@ public class CommunityService {
 		return result;
 	}
 	
-	public int update(CommunityDTO communityDTO)throws Exception{
-		return communityDAO.update(communityDTO);
-	}
-	
 	public int delete(int num)throws Exception{
 		int result=communityDAO.delete(num);
 			result=communityDAO.fileDelete(num);
 			
+		return result;
+	}
+	
+	public int fileDelete(int fnum)throws Exception{
+		int result=uploadDAO.delete(fnum);
+		
 		return result;
 	}
 	
