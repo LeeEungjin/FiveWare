@@ -5,7 +5,14 @@ public class RowNum {
 	private int lastRow;
 	private String kind;
 	private String search;
+	private String result;
 	
+	public String getResult() {
+		return result;
+	}
+	public void setResult(String result) {
+		this.result = result;
+	}
 	public int getStartRow() {
 		return startRow;
 	}

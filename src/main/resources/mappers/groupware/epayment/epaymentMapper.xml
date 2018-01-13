@@ -5,11 +5,48 @@
   
   <mapper namespace="epaymentMapper">
   
+  <select id="selectOne" resultType="EpaymentDTO">
+  	select * from epayment where num=#{num}
+  </select>
+  
+  
   <insert id="epaymentInsert" parameterType="EpaymentDTO">
   	insert into epayment values(epayment_seq.nextval, #{draftdate}, #{draftname}, #{drafttemp}, #{kind}, #{title},#{contents}, '결재요청중', #{approval}, #{approvaltemp})
   </insert>
   
+<<<<<<< HEAD
   <select id="tempList" resultType="String">
   	select temp from tempregist
   </select>
+=======
+  
+  <select id="selectList" parameterType="com.five.ware.util.RowNum" resultType="EpaymentDTO">
+  	select * from
+	(select rownum R, E.*from
+	(select * from epayment
+		<if test="kind=='title'"> 
+				where title like '%'||#{search}||'%' 
+			</if>
+		
+			<if test="kind=='draftdate'"> 
+				where draftdate like '%'||#{search}||'%' 
+			</if>
+			
+			<if test="kind=='draftname'"> 
+				where draftname like '%'||#{search}||'%' 
+			</if>
+			
+			<if test="kind=='drafttemp'"> 
+				where drafttemp like '%'||#{search}||'%' 
+			</if>
+	
+	order by num desc) E)
+	where R between #{startRow} and #{lastRow} and result=#{result}
+  </select>
+  
+  <select id="totalCount" resultType="int">
+  	select nvl(count(num),0) from epayment
+  </select>
+  
+>>>>>>> bf565986323e9cb2d1415f4d265e0010bea9ec32
   </mapper>

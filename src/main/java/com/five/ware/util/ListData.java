@@ -5,6 +5,7 @@ public class ListData {
 	private String kind;
 	private String search;
 	private int perPage; //가변적으로 사용할지 말지를 정해서 컨트롤러에서 받아올 지 말지 결정
+	private String result;
 	
 	public ListData() {
 		// TODO Auto-generated constructor stub
@@ -12,8 +13,10 @@ public class ListData {
 		this.kind = "code";
 		this.search = "";
 		this.perPage = 10;
+		this.result="";
 	}
 	
+
 	//row
 	public RowNum makeRow(){
 		RowNum rowNum = new RowNum();
@@ -21,6 +24,7 @@ public class ListData {
 		rowNum.setLastRow(curPage*perPage);
 		rowNum.setKind(kind);
 		rowNum.setSearch(search);
+		rowNum.setResult(result);
 		
 		return rowNum;
 	}
@@ -89,6 +93,14 @@ public class ListData {
 	}
 	public void setSearch(String search) {
 			this.search = search;
+	}
+	
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
 	}
 
 }

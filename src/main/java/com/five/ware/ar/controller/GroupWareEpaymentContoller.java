@@ -1,7 +1,11 @@
 package com.five.ware.ar.controller;
 
+<<<<<<< HEAD
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+=======
+import java.text.SimpleDateFormat; 
+>>>>>>> bf565986323e9cb2d1415f4d265e0010bea9ec32
 import java.util.Calendar;
 import java.util.List;
 
@@ -17,6 +21,7 @@ import com.five.ware.groupware.epayment.EpaymentDTO;
 import com.five.ware.groupware.epayment.EpaymentService;
 import com.five.ware.groupware.epayment.FormListDTO;
 import com.five.ware.groupware.epayment.FormListService;
+import com.five.ware.util.ListData;
 
 @Controller
 @RequestMapping(value="GroupWare/epayment/**")
@@ -26,6 +31,82 @@ public class GroupWareEpaymentContoller {
 	FormListService formListService;
 	@Inject
 	EpaymentService epaymentService;
+	
+	
+	
+	//상세보기
+	@RequestMapping(value="epaymentView")
+	@ResponseBody
+	public EpaymentDTO epaymentView(String num){
+		System.out.println("view");
+		EpaymentDTO epaymentDTO = null;
+		try {
+			epaymentDTO = epaymentService.epaymentView(num);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return epaymentDTO;
+	}
+	
+	//pendency 미결함
+	@RequestMapping(value="epaymentPendency")
+	public ModelAndView epaymentPendency(ListData listData){
+
+		ModelAndView mv=null;
+		listData.setResult("미결");
+		
+		try {
+			mv=epaymentService.epaymentList(listData);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		mv.setViewName("GroupWare/epayment/epaymentPendency");
+		
+		return mv;
+		
+		
+	}
+	
+	//determine 기결함
+	@RequestMapping(value="epaymentDetermine")
+	public ModelAndView epaymentDetermine(ListData listData){
+		ModelAndView mv=null;
+		listData.setResult("기결");
+		
+		try {
+			mv=epaymentService.epaymentList(listData);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		mv.setViewName("GroupWare/epayment/epaymentDetermine");
+		
+		return mv;
+		
+	}
+	
+	//return 반려함
+	@RequestMapping(value="epaymentReturn")
+	public ModelAndView epaymentReturn(ListData listData){
+		ModelAndView mv=null;
+		listData.setResult("반려");
+		
+		try {
+			mv=epaymentService.epaymentList(listData);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		mv.setViewName("GroupWare/epayment/epaymentReturn");
+		
+		return mv;
+		
+	}
+	
+	
 	
 	@RequestMapping(value="formList")
 	public ModelAndView formList(String search) throws Exception{

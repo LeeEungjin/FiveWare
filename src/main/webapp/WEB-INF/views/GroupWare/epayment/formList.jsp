@@ -35,9 +35,9 @@
 			
 			<div class="fw_subselected collapse in" id="sub1">
 				<ul>
-					<li> 미결함 </li>
-					<li> 기결함 </li>
-					<li> 반려함 </li>
+					<li> <a href="./epaymentPendency">미결함</a> </li>
+					<li> <a href="./epaymentDetermine">기결함</a> </li>
+					<li> <a href="./epaymentReturn">반려함</a> </li>
 				</ul>
 			</div>
 			
