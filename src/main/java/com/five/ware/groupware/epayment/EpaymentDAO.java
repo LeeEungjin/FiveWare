@@ -1,5 +1,7 @@
 package com.five.ware.groupware.epayment;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -16,5 +18,11 @@ public class EpaymentDAO {
 		int result = sqlSession.insert(NAMESPACE+"epaymentInsert", epaymentDTO);
 		
 		return result;
+	}
+	
+	public List<String> tempList() throws Exception{
+		List<String> temps=sqlSession.selectList(NAMESPACE+"tempList");
+		
+		return temps;
 	}
 }

@@ -9,6 +9,7 @@
 <c:import url="${url}/resources/temp/ref.jsp"></c:import> 
  
  <link href="${url}/resources/css/GroupWare/epayment/explanatory.css" rel="stylesheet">
+  <link href="${url}/resources/css/GroupWare/epayment/explanatory_modal.css" rel="stylesheet">
  <script src="${url }/resources/SE2/js/HuskyEZCreator.js"></script>
 <title>Insert title here</title>
 <script type="text/javascript">
@@ -53,9 +54,41 @@
 						
 					}
 					
-				})
+				});
+		
+		$("#ar_signLine").click(function(){
+			
+			$.ajax({
+				type:"GET",
+				url:"./signData",
+				success:function(data){
+					var i=0;
+					$(data[0]).each(function(){
+						alert(data[0][i]);
+						$("#ar_tempWrap").append("<div id='ar_tempLine'>");
+						$("#ar_tempWrap").append("<div class='ar_diffImg' id='ar_tempDiv'></div>");
+						$("#ar_tempWrap").append("<div class='ar_conpany'>"+ data[0][i] +"</div>");
+						$("#ar_tempWrap").append("</div>");
+						
+						i++;
+					});
+				}
+			});
+		});
 
 		//SmartEditorend
+		var count1 =0;
+			$("#ar_tempDiv").click(function(){
+				count1++;
+				/* var position=$(this).css("background-position").trim();
+				alert(position); */
+				 $("#ar_tempWrap").slideToggle("slow");
+				if(count1%2==0){
+					 $(this).css("background-position", "-72px 0");					
+				}else{
+					 $(this).css("background-position", "-54px 0");
+				}
+		 });
 	});
 
 </script>
@@ -192,7 +225,7 @@
 	
 	<div id="ar_explantBtnWrap">
 		<div id="ar_explantBtn">
-			<input type="button" value="결재선" class="ar_btnStyle" id="ar_signLine">
+			<input type="button" value="결재선" class="ar_btnStyle" id="ar_signLine" data-toggle="modal" data-target="#ar_positionInsert" >
 			<input type="button" value="결재요청" class="ar_btnStyle" id="ar_signAsk">
 			<input type="button" value="임시저장" class="ar_btnStyle1" id="ar_signLine">
 			<input type="button" value="취소" class="ar_btnStyle1" id="ar_signLine">
@@ -202,7 +235,7 @@
 	</form>
 	
 </div>
-	
+	<c:import url="./explanatory_modal.jsp"></c:import>
 </div>
 
 </body>
