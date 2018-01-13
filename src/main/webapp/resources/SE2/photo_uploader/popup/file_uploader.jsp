@@ -16,12 +16,8 @@
 String return1="";
 String return2="";
 String return3="";
-<<<<<<< HEAD
 String name = "";//originalName
 
-=======
-String name = "";
->>>>>>> arin
 if (ServletFileUpload.isMultipartContent(request)){
     ServletFileUpload uploadHandler = new ServletFileUpload(new DiskFileItemFactory());
     //UTF-8 인코딩 설정
@@ -38,12 +34,8 @@ if (ServletFileUpload.isMultipartContent(request)){
             if(item.getSize() > 0) {
                 String ext = item.getName().substring(item.getName().lastIndexOf(".")+1);
                 //파일 기본경로
-<<<<<<< HEAD
                 String defaultPath = request.getSession().getServletContext().getRealPath("/");
                 System.out.println(defaultPath);
-=======
-                String defaultPath = request.getServletContext().getRealPath("/");
->>>>>>> arin
                 //파일 기본경로 _ 상세경로
                 String path = defaultPath + "upload" + File.separator;
                 System.out.println("파일상세경로 :"+path);
@@ -68,11 +60,7 @@ if (ServletFileUpload.isMultipartContent(request)){
                 os.flush();
                 os.close();
                 ///////////////// 서버에 파일쓰기 /////////////////
-<<<<<<< HEAD
                 return3 += "&bNewLine=true&sFileName="+name+"&sFileURL=/semiProject/upload/"+realname;
-=======
-                return3 += "&bNewLine=true&sFileName="+name+"&sFileURL=/smarteditorSample/upload/"+realname;
->>>>>>> arin
             }else {
                 return3 += "&errstr=error";
             }
