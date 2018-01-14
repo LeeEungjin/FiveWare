@@ -4,7 +4,7 @@ function calendarAddForm() {
 }
 // 캘린더 생성 처리
 function calendarAdd() {
-	var summary = $('#summary').val();
+	var summary = $('#title').val();
 	if(summary.trim() == '' || summary.trim().length == 0) {
 		swal('이름','입력해주세요');
 		return false;
@@ -36,7 +36,7 @@ function calendarRemove() {
 // 캘린더 수정 호출
 function calendarModifyForm() {
 	var chkVal = document.getElementsByName("chkVal");
-	var summarys = document.getElementsByName("summarys");
+	var summarys = document.getElementsByName("titles");
 	var n = 0;
 	var calendarId = '';
 	var summary = '';
@@ -48,7 +48,7 @@ function calendarModifyForm() {
 		}
 	}
 	if(n==1) {
-		$('#frmCalendarModify').find('#summaryModify').val(summary);
+		$('#frmCalendarModify').find('#titleModify').val(summary);
 		$('#frmCalendarModify').find('#calendarIdModify').val(calendarId);
 	}else if(n>1) {
 		swal("캘린더 수정", '1개만 선택해주세요');

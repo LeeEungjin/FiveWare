@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="calendarMapper">
+  
+  	<update id="calendarUpdate" parameterType="java.util.Map">
+  		update calendar set title=#{title}
+  		where calendarId=#{calendarId}
+  	</update>
+  
+  	<delete id="calendarDelete" parameterType="String">
+  		delete from calendar where calendarId=#{calendarId}
+  	</delete>
+  
+	<insert id="calendarInsert" parameterType="java.util.Map">
+		insert into calendar values(#{calendarId}, #{title})
+	</insert>  
+  
+  	<select id="calendarList" resultType="CalendarDTO">
+  		select * from calendar
+  	</select>
+  </mapper>

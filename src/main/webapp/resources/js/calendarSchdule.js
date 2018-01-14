@@ -278,6 +278,7 @@ function calendarEventList() {
 					console.log("calendarEventList- item: "+item);
 					data.title[i] = item.summary;
 					data.description[i] = item.description;
+					console.log(item.start.dateTime.value);
 					data.start[i] = new Date(item.start.dateTime.value);
 					data.end[i] = new Date(item.end.dateTime.value);
 					data.eventId[i] = item.id;

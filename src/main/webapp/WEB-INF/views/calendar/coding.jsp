@@ -25,11 +25,11 @@
             </tr>
             <c:forEach items="${items}" var="item">
                 <tr>
-                    <td><input type='checkbox' name='chkVal' value="${item.id}" /></td>
-                    <td><input type="hidden" name='summarys' value="${item.summary}" />
-                        <a href="./schdule?calendarId=${item.id}&title=${item.summary}">${item.summary}</a>
+                    <td><input type='checkbox' name='chkVal' value="${item.calendarId}" /></td>
+                    <td><input type="hidden" name='titles' value="${item.title}" />
+                        <a href="./schdule?calendarId=${item.calendarId}&title=${item.title}">${item.title}</a>
                     </td>
-                    <td>${item.id}</td>
+                    <td>${item.calendarId}</td>
                 </tr>
             </c:forEach>
         </table>
@@ -59,7 +59,7 @@
                     <form action="./calendarAdd" method='post' id='frmCalendarAdd'>
                         <div class='form-group'>
                             <label>캘린더이름</label>
-                            <input class='form-control' type="text" name='summary' id='summary' />
+                            <input class='form-control' type="text" name='title' id='title' />
                         </div>
                         <!-- modal Footer -->
                         <div class='modal-footer'>
@@ -83,20 +83,17 @@
                     <h4 class="modal-title">캘린더 수정</h4>
                 </div>
                 <div class="modal-body">
-                    <!-- 캘린더 생성처리 form -->
-                    <form action="./calendarModify" method='post'
-                        id='frmCalendarModify'>
+                    <!-- 캘린더 수정처리 form -->
+                    <form action="./calendarModify" method='post' id='frmCalendarModify'>
                         <div class='form-group'>
-                            <label>캘린더이름</label><input class='form-control' type="text"
-                                name='summary' id='summaryModify' />
+                            <label>캘린더이름</label>
+                            <input class='form-control' type="text" name='title' id='titleModify' />
                         </div>
                         <input type="hidden" name="calendarId" id='calendarIdModify' />
                         <div class='modal-footer'>
-                            <input type="button" class='btn btn-sm btn-warning' value="확인"
-                                onclick="calendarModify()" /> <input type="reset"
-                                class='btn btn-sm btn-warning' value="초기화" /> <input
-                                type='button' class='btn btn-sm btn-warning'
-                                data-dismiss='modal' value="취소" />
+                            <input type="button" class='btn btn-sm btn-warning' value="확인" onclick="calendarModify()" /> 
+                            <input type="reset" class='btn btn-sm btn-warning' value="초기화" /> 
+                            <input type='button' class='btn btn-sm btn-warning' data-dismiss='modal' value="취소" />
                         </div>
                     </form>
                 </div>

@@ -18,7 +18,7 @@ import com.google.api.services.calendar.Calendar;
 import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.EventDateTime;
 import com.google.api.services.calendar.model.Events;
-import com.five.ware.calendar.CalendarDTO;
+import com.five.ware.calendar.CalendarEventDTO;
 import com.five.ware.calendar.GoogleCalendarService;
 
 
@@ -30,7 +30,7 @@ private Logger logger = LoggerFactory.getLogger(CalendarAjaxController.class);
     // 일정 데이터 처리
 	@ResponseBody
     @RequestMapping(value="calendarEventList", method=RequestMethod.POST)
-    public List<Event> calendarEventList(CalendarDTO calDto) {
+    public List<Event> calendarEventList(CalendarEventDTO calDto) {
         logger.info("calendarEventList "+calDto.toString());
         System.out.println("CalendarId = "+calDto.getCalendarId());
         
@@ -50,7 +50,7 @@ private Logger logger = LoggerFactory.getLogger(CalendarAjaxController.class);
     
     // 일정 저장 처리
     @RequestMapping(value="calendarEventAdd", method=RequestMethod.POST)
-    public Map<String, Boolean> calendarEventAdd(CalendarDTO calDto) {
+    public Map<String, Boolean> calendarEventAdd(CalendarEventDTO calDto) {
         logger.info("calendarEventAdd "+calDto.toString());
         
         boolean isc = false;
@@ -77,7 +77,7 @@ private Logger logger = LoggerFactory.getLogger(CalendarAjaxController.class);
     
     // 일정 삭제
     @RequestMapping(value="calendarEventRemoveOne", method=RequestMethod.POST)
-    public Map<String, Boolean> calendarEventRemoveOne(CalendarDTO calDto) {
+    public Map<String, Boolean> calendarEventRemoveOne(CalendarEventDTO calDto) {
         logger.info("calendarEventRemoveOne "+calDto.toString());
         
         boolean isc = false;
@@ -95,7 +95,7 @@ private Logger logger = LoggerFactory.getLogger(CalendarAjaxController.class);
     
     // 일정 수정
     @RequestMapping(value="calendarEventModify", method=RequestMethod.POST)
-    public Map<String, Boolean> calendarEventModify(CalendarDTO calDto) {
+    public Map<String, Boolean> calendarEventModify(CalendarEventDTO calDto) {
         logger.info("calendarEventModify "+calDto.toString());
         
         boolean isc = false;

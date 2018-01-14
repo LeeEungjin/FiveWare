@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 <title>일정관리</title>
-<script src="${url}/resources/js/jquery_3_1_1.min.js"></script>
+<script src="${url}/resources/js/jquery-3.1.1.min.js"></script>
 <script src="${url}/resources/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="${url}/resources/css/common/bootstrap.min.css">
 <link rel="stylesheet" href="${url}/resources/css/common/bootstrap-theme.min.css">
