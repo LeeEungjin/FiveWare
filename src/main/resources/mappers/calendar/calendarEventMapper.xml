@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="calendarEventMapper">
+  
+  	<update id="eventUpdate" parameterType="CalendarEventDTO">
+  		update calendarevent set summary=#{summary}, description=#{description}
+  		where eventId=#{eventId} and calendarId=#{calendarId}
+  	</update>
+  
+  	<delete id="eventDelete" parameterType="String">
+  		delete from calendarevent where eventId=#{eventId}
+  	</delete>
+  
+  	<insert id="eventInsert" parameterType="java.util.Map">
+  		insert into calendarevent values
+  			( #{calendarId}, #{summary}, 
+  			  #{startDate}, #{startTime}, 
+  			  #{endDate}, #{endTime}, 
+  			  #{description}, EVENT_SEQ.NEXTVAL )
+  	</insert>
+  	
+  	<select id="eventList" resultType="CalendarEventDTO">
+  		select * from calendarevent order by starttime asc
+  	</select>
+  	
+  </mapper>
