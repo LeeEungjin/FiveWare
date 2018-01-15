@@ -1,4 +1,4 @@
-package com.five.ware;
+/*package com.five.ware;
 
 import java.io.File; 
 
@@ -37,7 +37,7 @@ public class FileController {
 	
 	@RequestMapping(value="photoUpload", method=RequestMethod.POST)
 	public String smartEditor(PhotoDTO photoDTO, HttpSession session){
-		// service 넘기는 코드
+		// service �꽆湲곕뒗 肄붾뱶
 		String filePath=session.getServletContext().getRealPath("/");
 		filePath=filePath+"resources"+File.separator+"upload";
 		File file = new File(filePath);		
@@ -58,10 +58,10 @@ public class FileController {
 			stringBuffer.append(photoDTO.getFiledata().getOriginalFilename());
 			stringBuffer.append("&sFileURL=");
 			stringBuffer.append(session.getServletContext().getContextPath());
-			/*stringBuffer.append(File.separator);*/
+			stringBuffer.append(File.separator);
 			stringBuffer.append("/resources/");
 			stringBuffer.append("upload");
-		/*	stringBuffer.append(File.separator);*/
+			stringBuffer.append(File.separator);
 			stringBuffer.append("/");
 			stringBuffer.append(fileName);
 		} catch (Exception e) {
@@ -76,3 +76,4 @@ public class FileController {
 	
 	
 }
+*/
