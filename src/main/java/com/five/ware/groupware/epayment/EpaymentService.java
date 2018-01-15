@@ -6,6 +6,8 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.five.ware.erp.human.member.MemberDTO;
+
 @Service
 public class EpaymentService {
 
@@ -24,9 +26,15 @@ public class EpaymentService {
 		return temps;
 	}
 	
-	public List<String> tempMember(String temp) throws Exception{
-		List<String> members=epaymentDAO.tempMember(temp);
+	public List<MemberDTO> tempMember(String temp) throws Exception{
+		List<MemberDTO> members=epaymentDAO.tempMember(temp);
 		
 		return members;
+	}
+	
+	public MemberDTO memberSelect(String code) throws Exception{
+		MemberDTO memberDTO = epaymentDAO.memberSelect(code);
+		
+		return memberDTO;
 	}
 }

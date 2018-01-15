@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.five.ware.erp.human.member.MemberDTO;
 import com.five.ware.groupware.epayment.EpaymentDTO;
 import com.five.ware.groupware.epayment.EpaymentService;
 import com.five.ware.groupware.epayment.FormListDTO;
@@ -93,9 +94,17 @@ public class GroupWareEpaymentContoller {
 	
 	@RequestMapping(value="tempMember")
 	@ResponseBody
-	public List<String> tempMember(String temp) throws Exception{
-		List<String> members=epaymentService.tempMember(temp);
+	public List<MemberDTO> tempMember(String temp) throws Exception{
+		List<MemberDTO> members=epaymentService.tempMember(temp);
 		
 		return members;
+	}
+	
+	@RequestMapping(value="memberSelect")
+	@ResponseBody
+	public MemberDTO memberSelect(String code) throws Exception{
+		MemberDTO memberDTO = epaymentService.memberSelect(code);
+		
+		return memberDTO;
 	}
 }

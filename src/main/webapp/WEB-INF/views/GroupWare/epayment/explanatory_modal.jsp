@@ -39,8 +39,8 @@
 					   		<div id="ar_signBtnWrap">
 					   			<div id="ar_signBtn">
 					   				<div id="ar_signok" class="ar_signBtns"> ></div>
-					   				<div id="ar_signno" class="ar_signBtns"> < </div>
-					   				<div id="ar_signfomat" class="ar_signBtns"><!-- 되돌아가기버튼 --> 버튼</div>
+					   				<div id="ar_signdelete" class="ar_signBtns"> < </div>
+					   				<div id="ar_signformat" class="ar_signBtns"><i class="ar_before"></i></div>
 					   			</div>
 					   		</div>
 					   		
@@ -51,11 +51,13 @@
 					   			
 					   			<div id="ar_groupResultTable">
 					   				<table id="ar_resultTable" >
-					   					<tr>
-					   						<td id="ar_tableBlank" class="ar_tabletds"></td>
-					   						<td id="ar_tabletd2" class="ar_tabletds">결재</td>
-					   						<td id="ar_tabletd3" class="ar_tabletds">${member.name } 기안 ${member.temp }</td>
-					   					</tr>
+					   					<tbody  id="ar_resultTableBody">
+						   					<tr >
+						   						<td id="ar_tableBlank" class="ar_tabletds"></td>
+						   						<td id="ar_tabletd2" class="ar_tabletds">결재</td>
+						   						<td id="ar_tabletd3" class="ar_tabletds">${member.name } 기안 ${member.temp }</td>
+						   					</tr>
+					   					</tbody>
 					   				</table>
 					   			</div>
 					   			

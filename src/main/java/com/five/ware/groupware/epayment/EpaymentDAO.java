@@ -7,6 +7,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.five.ware.erp.human.member.MemberDTO;
+
 @Repository
 public class EpaymentDAO {
 
@@ -26,9 +28,15 @@ public class EpaymentDAO {
 		return temps;
 	}
 	
-	public List<String> tempMember(String temp) throws Exception{
-		List<String> members=sqlSession.selectList(NAMESPACE+"tempMember", temp);
+	public List<MemberDTO> tempMember(String temp) throws Exception{
+		List<MemberDTO> members=sqlSession.selectList(NAMESPACE+"tempMember", temp);
 		
 		return members;
+	}
+	
+	public MemberDTO memberSelect(String code) throws Exception{
+		MemberDTO memberDTO = sqlSession.selectOne(NAMESPACE+"memberSelect", code);
+		
+		return memberDTO;
 	}
 }

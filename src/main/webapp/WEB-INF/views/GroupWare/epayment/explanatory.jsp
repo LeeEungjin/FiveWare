@@ -67,8 +67,8 @@
 						var tempLine="<div class='ar_tempLineDiv ar_click' id="+i+" title="+data[0][i]+" accesskey='1'>";
 						tempLine=tempLine+"<div class='ar_plusImg' id=ar_plusImg"+i+"></div>";
 						tempLine=tempLine+"<div class='ar_conpany'>"+ data[0][i] +"</div>";
-						tempLine=tempLine+"<div class='ar_tempMem' id='ar_tempMem"+i+"'></div>";
 						tempLine=tempLine+"</div>";
+						tempLine=tempLine+"<div class='ar_tempMem' id='ar_tempMem"+i+"'></div>";
 						
 						$("#ar_tempWrap").append(tempLine);
 						
@@ -103,9 +103,11 @@
 				data:{
 					"temp":temp
 				}, success:function(data){
+					
 					var i=0;
 					$(data).each(function(){
-						$("#ar_tempMem"+img).append(data[i]);
+						var tempMem = "<p class=memname id=mem"+i+" title="+data[i].code+">"+data[i].name+data[i].rank +"</p>";
+						$("#ar_tempMem"+img).append(tempMem);
 						i++;
 					})
 				}
@@ -113,7 +115,59 @@
 			
 			
 		});
+		
+		
+			
+		$("#ar_tempWrap").on("dblclick", ".memname", function(){
+			var code = $(this).attr("title");
+			
+			tableInsert(code);
+					
+		});
 
+		$("#ar_signformat").click(function(){
+			$(".tableLines").html("");
+		});
+		
+		
+		var code="";
+		
+		 $("#ar_tempWrap").on("click", ".memname", function(){
+			
+			$("#ar_tempWrap .memname").css("font-weight", "normal");
+			$(this).css("font-weight", "bold");
+			
+			code=$(this).attr("title");
+		}); 
+		 
+		 $("#ar_signok").click(function(){
+			 tableInsert(code);
+			 $("#ar_tempWrap .memname").css("font-weight", "normal");
+		 });
+		 
+		 var code1="";
+		 $("#ar_resultTable").on("click", ".tableLines", function(){
+			$("#ar_resultTable .tableLines").css("background-color", "");
+			$(this).css("background-color", "red"); 
+			
+			code1 = $(this).attr("id");
+			alert(code1);
+		 });
+		 
+		 $("#ar_signdelete").click(function(){
+			 alert("#"+code1);
+			 
+		    var num=	 $("#"+code1).attr("accesskey");
+		    
+			if($("#"+code1).html()=="최종"){
+				
+				$("#ar_tableBlank"+num-1).html("최종");
+			}
+		    
+			 
+			$("#"+code1).html("");
+		 });
+		
 		//SmartEditorend
 		var count1 =0;
 			$("#ar_tempDiv").click(function(){
@@ -127,7 +181,35 @@
 				}
 		 });
 	});
-
+	
+		var i =0;
+	function tableInsert(code){
+		$.ajax({
+			type:"GET",
+			url:"./memberSelect",
+			data:{
+				"code":code
+			}, success:function(data){
+				
+				if(data.code==$(".ar_resultA").attr("title")){
+					alert("이미 결재선에 등록되어있습니다.");
+				}else{
+					$("#ar_resultTable .ar_resultA").html("");
+					var tr = "<tr class='tableLines' id="+data.code+" accesskey="+i+">";
+					tr = tr + "<td id='ar_tableBlank"+i+"'title="+data.code+" class='ar_tabletds ar_resultA' accesskey="+i+" >최종</td>";
+					tr = tr + "<td id='ar_tabletd2' class='ar_tabletds'>결재</td>";
+					tr = tr + "<td id='ar_tabletd3' class='ar_tabletds'>"+data.name+ data.rank+"기안"+data.temp+"</td>"
+					tr = tr + "</tr>";
+					
+					$("#ar_resultTableBody").append(tr);
+					i++;					
+				}
+				
+		}
+		});
+	}
+	
+	
 
 </script>
 </head>
