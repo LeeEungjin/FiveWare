@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.five.ware.community.CommunityDTO;
 import com.five.ware.erp.notice.NoticeDTO;
 import com.five.ware.erp.notice.NoticeFileDTO;
 import com.five.ware.file.FileDTO;
@@ -21,15 +22,15 @@ import com.five.ware.util.FileSaver;
 public class FileController {
 
 	@RequestMapping(value="fileDown")
-	public ModelAndView fileDown(NoticeDTO noticeDTO, HttpSession session) throws Exception	{
+	public ModelAndView fileDown(CommunityDTO communityDTO, HttpSession session) throws Exception	{
 		String filePath = session.getServletContext().getRealPath("resources/upload");
 		System.out.println("filePath : " +filePath);
 		
-		File file = new File(filePath, noticeDTO.getFileName());
-		System.out.println("filename : "+noticeDTO.getFileName());
+		File file = new File(filePath, communityDTO.getFilename());
+		System.out.println("filename : "+communityDTO.getFilename());
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("down", file);
-		mv.addObject("oriname", noticeDTO.getOriName());
+		mv.addObject("oriname", communityDTO.getOriname());
 		mv.setViewName("fileDown");
 		
 		return mv;

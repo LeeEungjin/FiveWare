@@ -378,7 +378,7 @@
 			<div id="contents_wrap">
 				<div id="notice_wrap">
 					<div id="notice_title">
-						<p id="notice_title_p">Notice</p>
+						<p id="notice_title_p"><a href="../ware/community/communityList">Notice</a></p>
 					</div>
 
 					<div id="notice_icon">

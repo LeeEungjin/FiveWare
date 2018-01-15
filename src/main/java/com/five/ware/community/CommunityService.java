@@ -1,6 +1,8 @@
 package com.five.ware.community;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -25,14 +27,21 @@ public class CommunityService {
 	@Autowired
 	private UploadDAO uploadDAO;
 	@Autowired
-	private BladkListDAO bladkListDAO;
+	private BlackListDAO bladkListDAO;
 	
-	public ModelAndView selectList(ListData listData)throws Exception{
+	public ModelAndView selectList(ListData listData, String temp)throws Exception{
 		ModelAndView mv=new ModelAndView();
-		int totalCount=communityDAO.totalCount(listData.makeRow());
+		int totalCount=communityDAO.totalCount(listData.makeRow(), temp);
+		List<CommunityDTO> comlist = communityDAO.selectList(listData.makeRow(), temp);
+		List<Integer> reportList=new ArrayList<Integer>();
+		
+		for (CommunityDTO communityDTO : comlist) {
+			reportList.add(bladkListDAO.reportCount(communityDTO.getNum()));
+		}
 		
 		mv.addObject("pager", listData.makePage(totalCount));
-		mv.addObject("comList", communityDAO.selectList(listData.makeRow()));
+		mv.addObject("comList", comlist);
+		mv.addObject("reportList", reportList);
 		mv.setViewName("community/communityList");
 		
 		return mv;
@@ -65,7 +74,7 @@ public class CommunityService {
 		blackListDTO.setNum(communityDTO.getNum());
 		blackListDTO.setWriter(communityDTO.getWriter());
 		blackListDTO.setReport(0);
-		blackListDTO.setNames("");
+		blackListDTO.setNames(communityDTO.getWriter());
 					
 				
 		result=bladkListDAO.insert(blackListDTO);

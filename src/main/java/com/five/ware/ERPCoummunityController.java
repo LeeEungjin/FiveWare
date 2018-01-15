@@ -13,9 +13,12 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.five.ware.community.BlackListDTO;
+import com.five.ware.community.BlackListService;
 import com.five.ware.community.CommunityDTO;
 import com.five.ware.community.CommunityService;
 import com.five.ware.util.ListData;
+
+import oracle.net.aso.b;
 
 @Controller
 @RequestMapping(value="/community/*")
@@ -24,11 +27,15 @@ public class ERPCoummunityController {
 	@Autowired
 	private CommunityService communityService;
 	
+	@Autowired
+	private BlackListService blackListService;
+	
 	//selecctList
 	@RequestMapping(value="communityList")
-	public ModelAndView selectList(ListData listData)throws Exception{
+	public ModelAndView selectList(ListData listData, String temp)throws Exception{
 		ModelAndView modelAndView=null;
-		modelAndView=communityService.selectList(listData);
+		
+		modelAndView=communityService.selectList(listData, temp);
 		
 		return modelAndView;
 	}
@@ -56,6 +63,8 @@ public class ERPCoummunityController {
 	@RequestMapping(value="communityWrite", method={RequestMethod.POST})
 	public String insert(RedirectAttributes rd, CommunityDTO communityDTO, BlackListDTO blackListDTO, HttpSession session)throws Exception{
 		int result=0;
+		
+		blackListDTO.setNames(communityDTO.getWriter());
 		
 		result=communityService.insert(communityDTO, blackListDTO, session);
 		

@@ -46,7 +46,14 @@
 	</div>
 	
 	<div id="com_middle">
-		<div id="com_sub_title"></div>
+		<div id="com_sub_title">
+			<a href="./communityList">전체</a>
+			<a href="./communityList?temp=회계부">회계부</a>
+			<a href="./communityList?temp=총무부">총무부</a>
+			<a href="./communityList?temp=인사부">인사부</a>
+			<a href="./communityList?temp=영업/구매부">영업/구매부</a>
+			<a href="./communityList?temp=마케팅부">마케팅부</a>
+		</div>
 		
 		<div id="com_contents">
 			<form name="com_search_frm" action="./communityList" method="get">
@@ -80,10 +87,22 @@
 				    </thead>
 				    <tbody>
 				    
-				    <c:forEach items="${comList}" var="list">
+				    <c:forEach items="${comList}" var="list" varStatus="i">
 				      <tr>
 				      	<td>${list.num}</td>
-				        <td><a href="communityOne?num=${list.num}">${list.title}</a></td>
+				      	
+				      	<td>
+				      	<c:choose>
+				      		<c:when test="${reportList[i.index] gt 4}">
+				      			신고된 게시물입니다.
+				      		</c:when>
+				      		
+				      		<c:otherwise>
+				      			 <a href="communityOne?num=${list.num}">${list.title}</a>
+				      		</c:otherwise>
+				      	</c:choose>
+				      	</td>
+				      	
 				      	<td>${list.reg_date}</td>
 				      	<td>${list.temp}</td>
 				      	<td>${list.writer}</td>

@@ -1,6 +1,8 @@
 package com.five.ware.community;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -16,12 +18,26 @@ public class CommunityDAO {
 	private SqlSession sqlSession;
 	private static final String namespace="communityMapper.";
 	
-	public int totalCount(RowNum rowNum)throws Exception{
-		return sqlSession.selectOne(namespace+"totalCount", rowNum);
+	public int totalCount(RowNum rowNum, String temp)throws Exception{
+		Map<String, Object> map=new HashMap<String, Object>();
+		
+		map.put("kind", rowNum.getKind());
+		map.put("search", rowNum.getSearch());
+		map.put("temp", temp);
+		
+		return sqlSession.selectOne(namespace+"totalCount", map);
 	}
 	
-	public List<CommunityDTO> selectList(RowNum rowNum)throws Exception{
-		return sqlSession.selectList(namespace+"selectList", rowNum);
+	public List<CommunityDTO> selectList(RowNum rowNum, String temp)throws Exception{
+		Map<String, Object> map=new HashMap<String, Object>();
+		
+		map.put("kind", rowNum.getKind());
+		map.put("search", rowNum.getSearch());
+		map.put("startRow", rowNum.getStartRow());
+		map.put("lastRow", rowNum.getLastRow());
+		map.put("temp", temp);
+		
+		return sqlSession.selectList(namespace+"selectList", map);
 	}
 	
 	public CommunityDTO selectOne(int num)throws Exception{

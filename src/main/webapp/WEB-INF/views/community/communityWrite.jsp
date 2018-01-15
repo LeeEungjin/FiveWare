@@ -13,6 +13,7 @@
 <script src="../resources/SE2/js/HuskyEZCreator.js"></script>
 <script type="text/javascript">
 	$(function() {
+		
 		//SmartEditor start 
 		var editor_object = [];
 
@@ -97,7 +98,7 @@
 				        </th>
 				        
 				        <th>작성자</th>
-				        <th><input name="writer" type="text" class="form-control com_write_input"></th>
+				        <th><input value="${member.name}" readonly="readonly" name="writer" type="text" class="form-control com_write_input"></th>
 				        
 				      	<th>제목</th>
 				      	<th colspan="3">
