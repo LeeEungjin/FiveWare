@@ -13,6 +13,8 @@ public class CalendarEventDTO {
     private String description;
     private String eventId;
     private String calendarId;
+    public Date startDateTime;
+    public Date endDateTime;
     
     {
         description = "";

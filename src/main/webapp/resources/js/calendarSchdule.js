@@ -275,13 +275,17 @@ function calendarEventList() {
 				data.end = new Array();
 				data.eventId = new Array();
 				$.each(lists, function(i, item){
-					console.log("calendarEventList- item: "+item);
+					/*console.log("calendarEventList- item: "+item);
+					console.log(item.summary);
+					console.log(item.description);
+					console.log(item.startDateTime);
+					console.log(item.endDateTime);
+					console.log(item.eventId);*/
 					data.title[i] = item.summary;
 					data.description[i] = item.description;
-					console.log(item.start.dateTime.value);
-					data.start[i] = new Date(item.start.dateTime.value);
-					data.end[i] = new Date(item.end.dateTime.value);
-					data.eventId[i] = item.id;
+					data.start[i] = new Date(item.startDateTime);
+					data.end[i] = new Date(item.endDateTime);
+					data.eventId[i] = item.eventId;
 				});
 			}else {
 				data.chk = false;

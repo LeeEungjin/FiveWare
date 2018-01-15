@@ -30,7 +30,7 @@ public class CalendarController {
 	
 	private Logger logger = LoggerFactory.getLogger(CalendarController.class);
 
-	// 캘린더리스트
+	// 
     @RequestMapping(value="/coding", method=RequestMethod.GET)
     public void coding(Model model) {
         logger.info("calendarList");
@@ -52,7 +52,7 @@ public class CalendarController {
         
     }
     
-    // 캘린더 생성 처리
+    // calendarAdd
     @RequestMapping(value="/calendarAdd", method=RequestMethod.POST)
     public String calendarAdd(CalendarDTO calendarDTO) {
         logger.info("calendarAdd "+calendarDTO.toString());
@@ -78,7 +78,7 @@ public class CalendarController {
         return "redirect:./coding";
     }
     
-    // 캘린더 삭제 처리
+    // calendarRemove
     @RequestMapping(value="/calendarRemove", method=RequestMethod.POST)
     public String calendarRemove(HttpServletRequest req) {
         logger.info("calendarRemove");
@@ -107,7 +107,7 @@ public class CalendarController {
         return "redirect:./coding";
     }    
     
-    // 캘린더 수정 처리
+    // calendarModify
     @RequestMapping(value="/calendarModify", method=RequestMethod.POST)
     public String calendarModify(CalendarDTO calendarDTO) {
         logger.info("calendarModify "+calendarDTO.toString());
@@ -133,7 +133,7 @@ public class CalendarController {
         return "redirect:./coding";
     }    
     
-    // 캘린더 이동처리
+    // 罹섎┛�뜑 �씠�룞泥섎━
     @RequestMapping(value="/schdule", method=RequestMethod.GET)
     public String schdule(Model model, String calendarId, String title) {
         logger.info("schdule");

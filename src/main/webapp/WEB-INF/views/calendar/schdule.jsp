@@ -134,16 +134,15 @@ thead td {
                     <form class='form-margin40' role='form' action="#" method='post'
                         id='frmSchduleModify'>
                         <div class='form-group'>
-                            <label>제목</label> <input type='text' class='form-control'
-                                id='modifySummary' name='summary'>
+                            <label>제목</label> 
+                            <input type='text' class='form-control' id='modifySummary' name='summary'>
                         </div>
                         <div class='form-group'>
                             <label>내용</label>
-                            <textarea rows="7" class='form-control' id="modifyDescription"
-                                name='description'></textarea>
+                            <textarea rows="7" class='form-control' id="modifyDescription" name='description'></textarea>
                         </div>
-                        <input type="hidden" id="modifyEventId" name="eventId" /> <input
-                            type="hidden" name="calendarId" value="${calendarId}" />
+                        <input type="hidden" id="modifyEventId" name="eventId" /> 
+                        <input type="hidden" name="calendarId" value="${calendarId}" />
                         <div class='modal-footer'>
                             <input type="button" class='btn btn-sm btn-warning' value="확인"
                                 onclick="modifyEvent()" /> <input type="reset"

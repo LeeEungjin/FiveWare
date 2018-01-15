@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -19,97 +21,152 @@ import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.EventDateTime;
 import com.google.api.services.calendar.model.Events;
 import com.five.ware.calendar.CalendarEventDTO;
+import com.five.ware.calendar.CalendarEventService;
 import com.five.ware.calendar.GoogleCalendarService;
-
 
 @Controller
 @RequestMapping(value="calendar/**")
 public class CalendarAjaxController {
-private Logger logger = LoggerFactory.getLogger(CalendarAjaxController.class);
+	private Logger logger = LoggerFactory.getLogger(CalendarAjaxController.class);
     
-    // 일정 데이터 처리
+	@Inject
+	private CalendarEventService calendarEventService;
+	
+    //calendarEventList
 	@ResponseBody
     @RequestMapping(value="calendarEventList", method=RequestMethod.POST)
-    public List<Event> calendarEventList(CalendarEventDTO calDto) {
-        logger.info("calendarEventList "+calDto.toString());
-        System.out.println("CalendarId = "+calDto.getCalendarId());
+    public List<CalendarEventDTO> calendarEventList(CalendarEventDTO calendarEventDTO) {
+        logger.info("calendarEventList "+calendarEventDTO.toString());
+        System.out.println("CalendarId = "+calendarEventDTO.getCalendarId());
         
-        List<Event> items = new ArrayList<Event>();
+        /*List<Event> items = new ArrayList<Event>();
         try {
             com.google.api.services.calendar.Calendar service = GoogleCalendarService.getCalendarService();
             Events events = service.events().list(calDto.getCalendarId()).setOrderBy("startTime").setSingleEvents(true).execute();
             items = events.getItems();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
         
-        System.out.println("calendarEventList - size(): "+ items.size());
+        List<CalendarEventDTO> items = new ArrayList<CalendarEventDTO>();
+        
+        try {
+			items = calendarEventService.selectList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
         
         return items;
     }
     
-    // 일정 저장 처리
+    //calendarEventAdd
     @RequestMapping(value="calendarEventAdd", method=RequestMethod.POST)
-    public Map<String, Boolean> calendarEventAdd(CalendarEventDTO calDto) {
-        logger.info("calendarEventAdd "+calDto.toString());
+    public Map<String, Boolean> calendarEventAdd(CalendarEventDTO calendarEventDTO) {
+        logger.info("calendarEventAdd "+calendarEventDTO.toString());
         
-        boolean isc = false;
+        System.out.println(calendarEventDTO.getStartDate());
+        System.out.println(calendarEventDTO.getStartTime());
+        
+        /*boolean isc = false;
         try {
             Calendar service = GoogleCalendarService.getCalendarService();
-            Event event = new Event().setSummary(calDto.getSummary()).setDescription(calDto.getDescription());
-            //시작일
-            DateTime startDateTime = new DateTime(calDto.getStartDateTime());
+            Event event = new Event().setSummary(calendarEventDTO.getSummary()).setDescription(calendarEventDTO.getDescription());
+            //startDate
+            DateTime startDateTime = new DateTime(calendarEventDTO.getStartDateTime());
             EventDateTime start = new EventDateTime().setDateTime(startDateTime).setTimeZone("America/Los_Angeles");
             event.setStart(start);
-            //종료일
-            DateTime endDateTime = new DateTime(calDto.getEndDateTime());
+            //endDate
+            DateTime endDateTime = new DateTime(calendarEventDTO.getEndDateTime());
             EventDateTime end = new EventDateTime().setDateTime(endDateTime).setTimeZone("America/Los_Angeles");
             event.setEnd(end);
-            event = service.events().insert(calDto.getCalendarId(), event).execute();
+            event = service.events().insert(calendarEventDTO.getCalendarId(), event).execute();
             isc = true;
         } catch (Exception e) {
             e.printStackTrace();
         }
         Map<String, Boolean> map = new HashMap<String, Boolean>();
+        map.put("isc", isc);*/
+        
+        boolean isc = false;
+        try {
+        	int result = calendarEventService.insert(calendarEventDTO);
+        	if(result > 0) {
+        		isc = true;
+        	}
+        } catch (Exception e) {
+        	e.printStackTrace();
+        }
+        
+        Map<String, Boolean> map = new HashMap<String, Boolean>();
         map.put("isc", isc);
+        
         return map;
     }
     
-    // 일정 삭제
+    // �씪�젙 �궘�젣
     @RequestMapping(value="calendarEventRemoveOne", method=RequestMethod.POST)
-    public Map<String, Boolean> calendarEventRemoveOne(CalendarEventDTO calDto) {
-        logger.info("calendarEventRemoveOne "+calDto.toString());
+    public Map<String, Boolean> calendarEventRemoveOne(CalendarEventDTO calendarEventDTO) {
+        logger.info("calendarEventRemoveOne "+calendarEventDTO.toString());
         
-        boolean isc = false;
+        /*boolean isc = false;
         try {
             Calendar service = GoogleCalendarService.getCalendarService();
-            service.events().delete(calDto.getCalendarId(), calDto.getEventId()).execute();
+            service.events().delete(calendarEventDTO.getCalendarId(), calendarEventDTO.getEventId()).execute();
             isc = true;
         } catch (IOException e) {
             e.printStackTrace();
         }
         Map<String, Boolean> map = new HashMap<String, Boolean>();
+        map.put("isc", isc);*/
+        
+        boolean isc = false;
+        try {
+			int result = calendarEventService.delete(calendarEventDTO);
+			if(result > 0) {
+				isc = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        
+        Map<String, Boolean> map = new HashMap<String, Boolean>();
         map.put("isc", isc);
+        
         return map;
     }
     
-    // 일정 수정
+    // �씪�젙 �닔�젙
     @RequestMapping(value="calendarEventModify", method=RequestMethod.POST)
-    public Map<String, Boolean> calendarEventModify(CalendarEventDTO calDto) {
-        logger.info("calendarEventModify "+calDto.toString());
+    public Map<String, Boolean> calendarEventModify(CalendarEventDTO calendarEventDTO) {
+        logger.info("calendarEventModify "+calendarEventDTO.toString());
         
-        boolean isc = false;
+       /*boolean isc = false;
         try {
             Calendar service = GoogleCalendarService.getCalendarService();
-            Event event = service.events().get(calDto.getCalendarId(), calDto.getEventId()).execute();
-            event.setSummary(calDto.getSummary()).setDescription(calDto.getDescription());
-            service.events().update(calDto.getCalendarId(), event.getId(), event).execute();
+            Event event = service.events().get(calendarEventDTO.getCalendarId(), calendarEventDTO.getEventId()).execute();
+            event.setSummary(calendarEventDTO.getSummary()).setDescription(calendarEventDTO.getDescription());
+            service.events().update(calendarEventDTO.getCalendarId(), event.getId(), event).execute();
             isc = true;
         } catch (IOException e) {
             e.printStackTrace();
         }
         Map<String, Boolean> map = new HashMap<String, Boolean>();
+        map.put("isc", isc);*/
+        
+        boolean isc = false;
+        try {
+        	int result = calendarEventService.update(calendarEventDTO);
+        	
+        	if(result > 0) {
+        		isc = true;
+        	}
+        } catch (Exception e) {
+        	e.printStackTrace();
+        }
+        
+        Map<String, Boolean> map = new HashMap<String, Boolean>();
         map.put("isc", isc);
+        
         return map;
     }
 
