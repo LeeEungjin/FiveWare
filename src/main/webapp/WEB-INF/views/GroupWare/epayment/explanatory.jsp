@@ -57,32 +57,123 @@
 				});
 		
 		$("#ar_signLine").click(function(){
-			
+			 $("#ar_tempWrap").html(""); 
 			$.ajax({
 				type:"GET",
 				url:"./signData",
 				success:function(data){
 					var i=0;
 					$(data[0]).each(function(){
-						alert(data[0][i]);
-						$("#ar_tempWrap").append("<div id='ar_tempLine'>");
-						$("#ar_tempWrap").append("<div class='ar_diffImg' id='ar_tempDiv'></div>");
-						$("#ar_tempWrap").append("<div class='ar_conpany'>"+ data[0][i] +"</div>");
-						$("#ar_tempWrap").append("</div>");
+						var tempLine="<div class='ar_tempLineDiv ar_click' id="+i+" title="+data[0][i]+" accesskey='1'>";
+						tempLine=tempLine+"<div class='ar_plusImg' id=ar_plusImg"+i+"></div>";
+						tempLine=tempLine+"<div class='ar_conpany'>"+ data[0][i] +"</div>";
+						tempLine=tempLine+"</div>";
+						tempLine=tempLine+"<div class='ar_tempMem' id='ar_tempMem"+i+"'></div>";
+						
+						$("#ar_tempWrap").append(tempLine);
 						
 						i++;
 					});
 				}
 			});
 		});
+		
+		$("#ar_tempWrap").on("click", ".ar_click", function(){
+			var temp=$(this).attr("title");
+			var img=$(this).attr("id");			
+			var access= $(this).attr("accesskey");
+			
+			access=access*1*-1;
+			$("#ar_tempMem"+img).html("");
+			
+			if(access == -1){
+				$(this).attr("accesskey", access);
+				 $("#ar_plusImg"+img).css("background-position", "-72px 0")
+				  $("#ar_tempMem"+img).css("display", "block !important");
+				 $("#ar_tempMem"+img).slideToggle("slow");
+			}else {
+				$(this).attr("accesskey", access);
+				 $("#ar_plusImg"+img).css("background-position", "-54px 0");	
+				 $("#ar_tempMem"+img).slideToggle("slow");
+			}
+			
+			$.ajax({
+				type:"GET",
+				url:"./tempMember",
+				data:{
+					"temp":temp
+				}, success:function(data){
+					
+					var i=0;
+					$(data).each(function(){
+						var tempMem = "<p class=memname id=mem"+i+" title="+data[i].code+">"+data[i].name+data[i].rank +"</p>";
+						$("#ar_tempMem"+img).append(tempMem);
+						i++;
+					})
+				}
+			});
+			
+			
+		});
+		
+		
+			
+		$("#ar_tempWrap").on("dblclick", ".memname", function(){
+			var code = $(this).attr("title");
+			
+			tableInsert(code);
+					
+		});
 
+		$("#ar_signformat").click(function(){
+			$(".tableLines").html("");
+		});
+		
+		
+		var code="";
+		
+		 $("#ar_tempWrap").on("click", ".memname", function(){
+			
+			$("#ar_tempWrap .memname").css("font-weight", "normal");
+			$(this).css("font-weight", "bold");
+			
+			code=$(this).attr("title");
+		}); 
+		 
+		 $("#ar_signok").click(function(){
+			 tableInsert(code);
+			 $("#ar_tempWrap .memname").css("font-weight", "normal");
+		 });
+		 
+		 var code1="";
+		 $("#ar_resultTable").on("click", ".tableLines", function(){
+			$("#ar_resultTable .tableLines").css("background-color", "");
+			$(this).css("background-color", "red"); 
+			
+			code1 = $(this).attr("id");
+			alert(code1);
+		 });
+		 
+		 $("#ar_signdelete").click(function(){
+			 alert("#"+code1);
+			 
+		    var num=	 $("#"+code1).attr("accesskey");
+		    
+			if($("#"+code1).html()=="최종"){
+				
+				$("#ar_tableBlank"+num-1).html("최종");
+			}
+		    
+			 
+			$("#"+code1).html("");
+		 });
+		
 		//SmartEditorend
 		var count1 =0;
 			$("#ar_tempDiv").click(function(){
-				count1++;
-				/* var position=$(this).css("background-position").trim();
-				alert(position); */
+				count1++;				
 				 $("#ar_tempWrap").slideToggle("slow");
+				 
 				if(count1%2==0){
 					 $(this).css("background-position", "-72px 0");					
 				}else{
@@ -90,6 +181,35 @@
 				}
 		 });
 	});
+	
+		var i =0;
+	function tableInsert(code){
+		$.ajax({
+			type:"GET",
+			url:"./memberSelect",
+			data:{
+				"code":code
+			}, success:function(data){
+				
+				if(data.code==$(".ar_resultA").attr("title")){
+					alert("이미 결재선에 등록되어있습니다.");
+				}else{
+					$("#ar_resultTable .ar_resultA").html("");
+					var tr = "<tr class='tableLines' id="+data.code+" accesskey="+i+">";
+					tr = tr + "<td id='ar_tableBlank"+i+"'title="+data.code+" class='ar_tabletds ar_resultA' accesskey="+i+" >최종</td>";
+					tr = tr + "<td id='ar_tabletd2' class='ar_tabletds'>결재</td>";
+					tr = tr + "<td id='ar_tabletd3' class='ar_tabletds'>"+data.name+ data.rank+"기안"+data.temp+"</td>"
+					tr = tr + "</tr>";
+					
+					$("#ar_resultTableBody").append(tr);
+					i++;					
+				}
+				
+		}
+		});
+	}
+	
+	
 
 </script>
 </head>
@@ -155,10 +275,10 @@
 			
 	<div id="ar_explantBtnWrap">
 		<div id="ar_explantBtn">
-			<input type="button" value="결재선" class="ar_btnStyle" id="ar_signLine">
-			<input type="button" value="결재요청" class="ar_btnStyle" id="ar_signLine">
-			<input type="button" value="임시저장" class="ar_btnStyle1" id="ar_signLine">
-			<input type="button" value="취소" class="ar_btnStyle1" id="ar_signLine">
+			<input type="button" value="결재선" class="ar_btnStyle" id="ar_signLine1">
+			<input type="button" value="결재요청" class="ar_btnStyle" id="ar_signAsk">
+			<input type="button" value="임시저장" class="ar_btnStyle1" id="ar_signno">
+			<input type="button" value="취소" class="ar_btnStyle1" id="ar_signCen">
 		</div>
 	</div>
 	
@@ -227,8 +347,8 @@
 		<div id="ar_explantBtn">
 			<input type="button" value="결재선" class="ar_btnStyle" id="ar_signLine" data-toggle="modal" data-target="#ar_positionInsert" >
 			<input type="button" value="결재요청" class="ar_btnStyle" id="ar_signAsk">
-			<input type="button" value="임시저장" class="ar_btnStyle1" id="ar_signLine">
-			<input type="button" value="취소" class="ar_btnStyle1" id="ar_signLine">
+			<input type="button" value="임시저장" class="ar_btnStyle1" id="ar_sign">
+			<input type="button" value="취소" class="ar_btnStyle1" id="ar_sign2">
 		</div>
 	</div>
 	

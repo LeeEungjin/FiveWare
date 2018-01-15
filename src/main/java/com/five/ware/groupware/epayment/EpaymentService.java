@@ -12,6 +12,8 @@ import com.five.ware.util.ListData;
 import com.five.ware.util.Pager;
 import com.five.ware.util.RowNum;
 
+import com.five.ware.erp.human.member.MemberDTO;
+
 @Service
 public class EpaymentService {
 
@@ -40,6 +42,7 @@ public class EpaymentService {
 		return temps;
 	}
 	
+<<<<<<< HEAD
 	//epayment List
 	public ModelAndView epaymentList(ListData listData) throws Exception{
 		RowNum rowNum=listData.makeRow();
@@ -59,5 +62,17 @@ public class EpaymentService {
 		return mv;
 		
 
+=======
+	public List<MemberDTO> tempMember(String temp) throws Exception{
+		List<MemberDTO> members=epaymentDAO.tempMember(temp);
+		
+		return members;
+	}
+	
+	public MemberDTO memberSelect(String code) throws Exception{
+		MemberDTO memberDTO = epaymentDAO.memberSelect(code);
+		
+		return memberDTO;
+>>>>>>> arin
 	}
 }

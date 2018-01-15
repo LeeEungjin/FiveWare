@@ -26,20 +26,21 @@
 					   					<div class="ar_diffImg" id="ar_tempDiv"></div>
 					   					<div class="ar_conpany">(주)아린카페</div>
 					   					<!-- 부서 for문 돌리기 -->
-					   						<div class="ar_tempWrap" id="ar_tempWrap">
-					   							<div id="ar_tempLine">
+					   					 <div class="ar_tempWrap" id="ar_tempWrap">
+					   						<!-- 	<div class="ar_tempLineDiv ar_click">
 						   							<div class='ar_plusImg' id='ar_tempDiv'></div>
-						   							<div class='ar_conpany'>(주)아린카페</div>
-					   							</div>
-					   						</div>
+						   							<div class='ar_conpany'>d</div>
+						   							<div class="ar_tempMem"></div>
+					   							</div>  -->
+					   						</div> 
 					   				</div>
 					   			</div>
 					   			
 					   		<div id="ar_signBtnWrap">
 					   			<div id="ar_signBtn">
 					   				<div id="ar_signok" class="ar_signBtns"> ></div>
-					   				<div id="ar_signno" class="ar_signBtns"> < </div>
-					   				<div id="ar_signfomat" class="ar_signBtns"><!-- 되돌아가기버튼 --> 버튼</div>
+					   				<div id="ar_signdelete" class="ar_signBtns"> < </div>
+					   				<div id="ar_signformat" class="ar_signBtns"><i class="ar_before"></i></div>
 					   			</div>
 					   		</div>
 					   		
@@ -50,11 +51,13 @@
 					   			
 					   			<div id="ar_groupResultTable">
 					   				<table id="ar_resultTable" >
-					   					<tr>
-					   						<td id="ar_tableBlank" class="ar_tabletds"></td>
-					   						<td id="ar_tabletd2" class="ar_tabletds">결재</td>
-					   						<td id="ar_tabletd3" class="ar_tabletds">${member.name } 기안 ${member.temp }</td>
-					   					</tr>
+					   					<tbody  id="ar_resultTableBody">
+						   					<tr >
+						   						<td id="ar_tableBlank" class="ar_tabletds"></td>
+						   						<td id="ar_tabletd2" class="ar_tabletds">결재</td>
+						   						<td id="ar_tabletd3" class="ar_tabletds">${member.name } 기안 ${member.temp }</td>
+						   					</tr>
+					   					</tbody>
 					   				</table>
 					   			</div>
 					   			

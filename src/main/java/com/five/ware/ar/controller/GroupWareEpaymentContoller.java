@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.five.ware.erp.human.member.MemberDTO;
 import com.five.ware.groupware.epayment.EpaymentDTO;
 import com.five.ware.groupware.epayment.EpaymentService;
 import com.five.ware.groupware.epayment.FormListDTO;
@@ -163,11 +164,26 @@ public class GroupWareEpaymentContoller {
 	@ResponseBody
 	public List<Object> signData() throws Exception{
 		List<String> temps = epaymentService.tempList();
-		
 		List<Object> ar = new ArrayList<Object>();
 		
 		ar.add(temps);
 		
 		return ar;
+	}
+	
+	@RequestMapping(value="tempMember")
+	@ResponseBody
+	public List<MemberDTO> tempMember(String temp) throws Exception{
+		List<MemberDTO> members=epaymentService.tempMember(temp);
+		
+		return members;
+	}
+	
+	@RequestMapping(value="memberSelect")
+	@ResponseBody
+	public MemberDTO memberSelect(String code) throws Exception{
+		MemberDTO memberDTO = epaymentService.memberSelect(code);
+		
+		return memberDTO;
 	}
 }

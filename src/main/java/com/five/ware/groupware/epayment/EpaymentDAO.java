@@ -11,8 +11,12 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+<<<<<<< HEAD
 import com.five.ware.util.ListData;
 import com.five.ware.util.RowNum;
+=======
+import com.five.ware.erp.human.member.MemberDTO;
+>>>>>>> arin
 
 @Repository
 public class EpaymentDAO {
@@ -42,6 +46,7 @@ public class EpaymentDAO {
 		
 		return temps;
 	}
+<<<<<<< HEAD
 
 	//list
 	public List<EpaymentDTO> epaymentList(RowNum rowNum, ListData listData) throws Exception{
@@ -59,5 +64,18 @@ public class EpaymentDAO {
 	public int totalCount(RowNum rowNum) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"totalCount", rowNum);
 
+=======
+	
+	public List<MemberDTO> tempMember(String temp) throws Exception{
+		List<MemberDTO> members=sqlSession.selectList(NAMESPACE+"tempMember", temp);
+		
+		return members;
+	}
+	
+	public MemberDTO memberSelect(String code) throws Exception{
+		MemberDTO memberDTO = sqlSession.selectOne(NAMESPACE+"memberSelect", code);
+		
+		return memberDTO;
+>>>>>>> arin
 	}
 }
