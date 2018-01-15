@@ -14,11 +14,11 @@
   	insert into epayment values(epayment_seq.nextval, #{draftdate}, #{draftname}, #{drafttemp}, #{kind}, #{title},#{contents}, '결재요청중', #{approval}, #{approvaltemp})
   </insert>
   
-<<<<<<< HEAD
+
   <select id="tempList" resultType="String">
   	select temp from tempregist
   </select>
-=======
+
   
   <select id="selectList" parameterType="com.five.ware.util.RowNum" resultType="EpaymentDTO">
   	select * from
@@ -48,5 +48,5 @@
   	select nvl(count(num),0) from epayment
   </select>
   
->>>>>>> bf565986323e9cb2d1415f4d265e0010bea9ec32
+
   </mapper>
