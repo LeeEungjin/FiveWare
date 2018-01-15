@@ -84,11 +84,18 @@ public class GroupWareEpaymentContoller {
 	@ResponseBody
 	public List<Object> signData() throws Exception{
 		List<String> temps = epaymentService.tempList();
-		
 		List<Object> ar = new ArrayList<Object>();
 		
 		ar.add(temps);
 		
 		return ar;
+	}
+	
+	@RequestMapping(value="tempMember")
+	@ResponseBody
+	public List<String> tempMember(String temp) throws Exception{
+		List<String> members=epaymentService.tempMember(temp);
+		
+		return members;
 	}
 }

@@ -23,4 +23,10 @@ public class EpaymentService {
 		
 		return temps;
 	}
+	
+	public List<String> tempMember(String temp) throws Exception{
+		List<String> members=epaymentDAO.tempMember(temp);
+		
+		return members;
+	}
 }

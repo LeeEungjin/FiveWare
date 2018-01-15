@@ -57,32 +57,69 @@
 				});
 		
 		$("#ar_signLine").click(function(){
-			
+			 $("#ar_tempWrap").html(""); 
 			$.ajax({
 				type:"GET",
 				url:"./signData",
 				success:function(data){
 					var i=0;
 					$(data[0]).each(function(){
-						alert(data[0][i]);
-						$("#ar_tempWrap").append("<div id='ar_tempLine'>");
-						$("#ar_tempWrap").append("<div class='ar_diffImg' id='ar_tempDiv'></div>");
-						$("#ar_tempWrap").append("<div class='ar_conpany'>"+ data[0][i] +"</div>");
-						$("#ar_tempWrap").append("</div>");
+						var tempLine="<div class='ar_tempLineDiv ar_click' id="+i+" title="+data[0][i]+" accesskey='1'>";
+						tempLine=tempLine+"<div class='ar_plusImg' id=ar_plusImg"+i+"></div>";
+						tempLine=tempLine+"<div class='ar_conpany'>"+ data[0][i] +"</div>";
+						tempLine=tempLine+"<div class='ar_tempMem' id='ar_tempMem"+i+"'></div>";
+						tempLine=tempLine+"</div>";
+						
+						$("#ar_tempWrap").append(tempLine);
 						
 						i++;
 					});
 				}
 			});
 		});
+		
+		$("#ar_tempWrap").on("click", ".ar_click", function(){
+			var temp=$(this).attr("title");
+			var img=$(this).attr("id");			
+			var access= $(this).attr("accesskey");
+			
+			access=access*1*-1;
+			$("#ar_tempMem"+img).html("");
+			
+			if(access == -1){
+				$(this).attr("accesskey", access);
+				 $("#ar_plusImg"+img).css("background-position", "-72px 0")
+				  $("#ar_tempMem"+img).css("display", "block !important");
+				 $("#ar_tempMem"+img).slideToggle("slow");
+			}else {
+				$(this).attr("accesskey", access);
+				 $("#ar_plusImg"+img).css("background-position", "-54px 0");	
+				 $("#ar_tempMem"+img).slideToggle("slow");
+			}
+			
+			$.ajax({
+				type:"GET",
+				url:"./tempMember",
+				data:{
+					"temp":temp
+				}, success:function(data){
+					var i=0;
+					$(data).each(function(){
+						$("#ar_tempMem"+img).append(data[i]);
+						i++;
+					})
+				}
+			});
+			
+			
+		});
 
 		//SmartEditorend
 		var count1 =0;
 			$("#ar_tempDiv").click(function(){
-				count1++;
-				/* var position=$(this).css("background-position").trim();
-				alert(position); */
+				count1++;				
 				 $("#ar_tempWrap").slideToggle("slow");
+				 
 				if(count1%2==0){
 					 $(this).css("background-position", "-72px 0");					
 				}else{
@@ -90,6 +127,7 @@
 				}
 		 });
 	});
+
 
 </script>
 </head>
@@ -155,10 +193,10 @@
 			
 	<div id="ar_explantBtnWrap">
 		<div id="ar_explantBtn">
-			<input type="button" value="결재선" class="ar_btnStyle" id="ar_signLine">
-			<input type="button" value="결재요청" class="ar_btnStyle" id="ar_signLine">
-			<input type="button" value="임시저장" class="ar_btnStyle1" id="ar_signLine">
-			<input type="button" value="취소" class="ar_btnStyle1" id="ar_signLine">
+			<input type="button" value="결재선" class="ar_btnStyle" id="ar_signLine1">
+			<input type="button" value="결재요청" class="ar_btnStyle" id="ar_signAsk">
+			<input type="button" value="임시저장" class="ar_btnStyle1" id="ar_signno">
+			<input type="button" value="취소" class="ar_btnStyle1" id="ar_signCen">
 		</div>
 	</div>
 	
@@ -227,8 +265,8 @@
 		<div id="ar_explantBtn">
 			<input type="button" value="결재선" class="ar_btnStyle" id="ar_signLine" data-toggle="modal" data-target="#ar_positionInsert" >
 			<input type="button" value="결재요청" class="ar_btnStyle" id="ar_signAsk">
-			<input type="button" value="임시저장" class="ar_btnStyle1" id="ar_signLine">
-			<input type="button" value="취소" class="ar_btnStyle1" id="ar_signLine">
+			<input type="button" value="임시저장" class="ar_btnStyle1" id="ar_sign">
+			<input type="button" value="취소" class="ar_btnStyle1" id="ar_sign2">
 		</div>
 	</div>
 	

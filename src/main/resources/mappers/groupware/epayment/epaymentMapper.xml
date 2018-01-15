@@ -12,4 +12,8 @@
   <select id="tempList" resultType="String">
   	select temp from tempregist
   </select>
+  
+  <select id="tempMember" parameterType="String" resultType="String">
+  	select name from member where temp=#{temp}
+  </select>
   </mapper>

@@ -26,12 +26,13 @@
 					   					<div class="ar_diffImg" id="ar_tempDiv"></div>
 					   					<div class="ar_conpany">(주)아린카페</div>
 					   					<!-- 부서 for문 돌리기 -->
-					   						<div class="ar_tempWrap" id="ar_tempWrap">
-					   							<div id="ar_tempLine">
+					   					 <div class="ar_tempWrap" id="ar_tempWrap">
+					   						<!-- 	<div class="ar_tempLineDiv ar_click">
 						   							<div class='ar_plusImg' id='ar_tempDiv'></div>
-						   							<div class='ar_conpany'>(주)아린카페</div>
-					   							</div>
-					   						</div>
+						   							<div class='ar_conpany'>d</div>
+						   							<div class="ar_tempMem"></div>
+					   							</div>  -->
+					   						</div> 
 					   				</div>
 					   			</div>
 					   			

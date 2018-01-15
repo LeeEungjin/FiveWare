@@ -25,4 +25,10 @@ public class EpaymentDAO {
 		
 		return temps;
 	}
+	
+	public List<String> tempMember(String temp) throws Exception{
+		List<String> members=sqlSession.selectList(NAMESPACE+"tempMember", temp);
+		
+		return members;
+	}
 }
