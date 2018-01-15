@@ -23,6 +23,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Handles requests for the application home page.
@@ -55,8 +56,19 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/erp")
-	public String erp(){
-		return "AfterLoginMain/erp";
+	public ModelAndView erp(){
+Calendar ca = Calendar.getInstance();
+		
+		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+		
+		String sysdate = sd.format(ca.getTime());
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("sysdate", sysdate);
+		mv.setViewName("AfterLoginMain/erp");
+		
+		return mv;
 	}
 	
 	@RequestMapping(value="/groupware")

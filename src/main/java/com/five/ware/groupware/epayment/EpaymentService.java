@@ -1,12 +1,10 @@
 package com.five.ware.groupware.epayment;
 
-<<<<<<< HEAD
 
 
-import java.util.ArrayList;
-=======
+
 import java.util.ArrayList; 
->>>>>>> master
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -24,6 +22,11 @@ public class EpaymentService {
 	@Inject
 	EpaymentDAO epaymentDAO;
 	
+	//delete
+	public int epaymentDelete(String num)throws Exception{
+		int result=epaymentDAO.epaymentDelete(num);
+		return result;
+	}
 	
 	//epayment View
 	public EpaymentDTO epaymentView(String num)throws Exception{
@@ -63,10 +66,7 @@ public class EpaymentService {
 		mv.addObject("pager", pager);
 		
 		return mv;
-<<<<<<< HEAD
-=======
-		
->>>>>>> master
+
 
 	}
 }

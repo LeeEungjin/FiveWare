@@ -5,6 +5,11 @@
   
   <mapper namespace="epaymentMapper">
   
+  
+  <delete id="delete">
+   delete epayment where num=#{num}
+  </delete>
+  
   <select id="selectOne" resultType="EpaymentDTO">
   	select * from epayment where num=#{num}
   </select>
@@ -47,9 +52,6 @@
   <select id="totalCount" resultType="int">
   	select nvl(count(num),0) from epayment
   </select>
-<<<<<<< HEAD
-  
-=======
->>>>>>> master
+
 
   </mapper>

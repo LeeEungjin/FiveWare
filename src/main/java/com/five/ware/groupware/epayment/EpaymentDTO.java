@@ -12,7 +12,14 @@ public class EpaymentDTO {
 	private String result;
 	private String approval;
 	private String approvaltemp;
+	private String memberCode;
 	
+	public String getMemberCode() {
+		return memberCode;
+	}
+	public void setMemberCode(String memberCode) {
+		this.memberCode = memberCode;
+	}
 	public int getNum() {
 		return num;
 	}

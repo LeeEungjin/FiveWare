@@ -159,7 +159,7 @@
                         </span>
                      </a> 
                      
-                     <a href="./member/storeMyPage">
+                     <a href="./myPage/storeMyPage">
                         <span class="srm_jk_smalldiv">
                            <span class="srm_jk_writing">매장 정보</span>
                         </span>
@@ -172,7 +172,7 @@
                         </span>
                      </a> 
                      
-                     <a href="#">
+                     <a href="${pageContext.request.contextPath}/srm/staffTime">
                         <span class="srm_jk_smalldiv">
                            <span class="srm_jk_writing">출/퇴근 조회</span>
                         </span>
@@ -229,7 +229,7 @@
                         </span>
                      </a>
                      
-                       <a href="#">
+                       <a href="${pageContext.request.contextPath}/pos">
                         <span class="srm_jk_smalldiv">
                            <span class="srm_jk_writing">우리 매장 <br>포스기</span>
                         </span>

@@ -1,13 +1,11 @@
 package com.five.ware.ar.controller;
 
 
-<<<<<<< HEAD
+
 import java.text.SimpleDateFormat;
-=======
-import java.text.SimpleDateFormat; 
->>>>>>> master
+
 import java.util.ArrayList;
-import java.text.SimpleDateFormat; 
+
 import java.util.Calendar;
 import java.util.List;
 
@@ -35,12 +33,39 @@ public class GroupWareEpaymentContoller {
 	EpaymentService epaymentService;
 	
 	
+	//내가 올린 결재문서만 보기
+	@RequestMapping(value="epaymentDispatch")
+	public String epaymentDispatch(){
+		return "GroupWare/epayment/epaymentDispatch";
+	}
+	
+	
+	//반려함에서 삭제
+	@RequestMapping(value="epaymentDelete")
+	@ResponseBody
+	public String epaymentDelete(String num){
+		
+		int result=0;
+		try {
+			result=epaymentService.epaymentDelete(num);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String message="fail";
+		if(result>0){
+			message="success";
+		}
+		
+		return message;
+	}
 	
 	//상세보기
 	@RequestMapping(value="epaymentView")
 	@ResponseBody
 	public EpaymentDTO epaymentView(String num){
-		System.out.println("view");
+		
 		EpaymentDTO epaymentDTO = null;
 		try {
 			epaymentDTO = epaymentService.epaymentView(num);

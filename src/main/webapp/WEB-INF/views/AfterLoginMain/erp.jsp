@@ -22,7 +22,7 @@
 
 		function myTimer() {
 		    var d = new Date();
-		    document.getElementById("demo_1").innerHTML = d.toDateString();
+		    
 		   document.getElementById("demo_2").innerHTML = d.toLocaleTimeString(); 
 		}
 		
@@ -109,8 +109,7 @@
 		
 	$("#eb_timeBtn").click(function(){
 		var code='${member.code}';
-		var d = new Date();
-		var date=d.toDateString();
+		var date='${sysdate}';
 		
 		$.ajax({
 			type : "GET",
@@ -124,6 +123,12 @@
 				if(data==""){
 					$("#start").val("출근");
 					$("#last").val("퇴근");
+				}else if(data.startTime !==""){
+					
+						$("#start").val(data.startTime);
+						$("#last").val("퇴근");
+					
+					
 				}else{
 				$("#start").val(data.startTime);
 				$("#last").val(data.lastTime);
@@ -274,10 +279,11 @@
 									<div class="eb_blank"></div>
 								<div class="eb_clock_2 w3-display-container"> 
 									
-									<p id="demo_1" ></p>
+									<p id="demo_1" >${sysdate }</p>
 									
 									 <img src="${pageContext.request.contextPath}/resources/images/common/label.png" class="eb_img"> 
 									<p id="demo_2" class="w3-display-middle w3-large"></p>
+								
 								</div>
 								
 								

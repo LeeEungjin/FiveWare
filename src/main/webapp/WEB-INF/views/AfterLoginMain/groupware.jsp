@@ -152,7 +152,7 @@
                         </span>
                      </a> 
                      
-                     <a href="#"> 
+                     <a href="${pageContext.request.contextPath}/GroupWare/epayment/epaymentPendency"> 
                         <span class="groupWare_jk_smalldiv"> 
                            <span class="groupWare_jk_writing">결재함</span>
                         </span>
@@ -226,7 +226,7 @@
                      </a> 
                      
               
-                          <a href="./member/memberMyPage">
+                          <a href="./myPage/memberMyPage">
                         <span class="groupWare_jk_smalldiv"> 
                            <span class="groupWare_jk_writing">내 정보</span>
                         </span>
@@ -238,7 +238,7 @@
                         </span>
                      </a> 
                      
-                     <a href="#"> 
+                     <a href="./myPage/timeRecord"> 
                         <span class="groupWare_jk_smalldiv"> 
                            <span class="groupWare_jk_writing">출/퇴근 기록</span>
                         </span>

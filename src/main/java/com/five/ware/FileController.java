@@ -1,6 +1,6 @@
 package com.five.ware;
 
-import java.io.File; 
+import java.io.File;  
 
 import javax.servlet.http.HttpSession;
 
@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.five.ware.erp.notice.NoticeDTO;
-import com.five.ware.erp.notice.NoticeFileDTO;
 import com.five.ware.file.FileDTO;
 import com.five.ware.file.PhotoDTO;
 import com.five.ware.util.FileSaver;
@@ -20,7 +18,7 @@ import com.five.ware.util.FileSaver;
 @RequestMapping(value="/file/**")
 public class FileController {
 
-	@RequestMapping(value="fileDown")
+/*	@RequestMapping(value="fileDown")
 	public ModelAndView fileDown(NoticeDTO noticeDTO, HttpSession session) throws Exception	{
 		String filePath = session.getServletContext().getRealPath("resources/upload");
 		System.out.println("filePath : " +filePath);
@@ -33,7 +31,7 @@ public class FileController {
 		mv.setViewName("fileDown");
 		
 		return mv;
-	}
+	}*/
 	
 	@RequestMapping(value="photoUpload", method=RequestMethod.POST)
 	public String smartEditor(PhotoDTO photoDTO, HttpSession session){

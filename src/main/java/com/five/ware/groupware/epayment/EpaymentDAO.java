@@ -1,19 +1,12 @@
 package com.five.ware.groupware.epayment;
 
 
-<<<<<<< HEAD
-import java.util.List;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-=======
 import java.util.List; 
-
 import java.util.HashMap;
-import java.util.List;
+
 import java.util.Map;
->>>>>>> master
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -29,6 +22,11 @@ public class EpaymentDAO {
 	SqlSession sqlSession;
 	private final String NAMESPACE="epaymentMapper.";
 	
+	//delete
+	public int epaymentDelete(String num)throws Exception{
+		int result=sqlSession.delete(NAMESPACE+"delete", num);
+		return result;
+	}
 	
 	//selectOne
 	public EpaymentDTO epaymentView(String num) throws Exception{
@@ -42,10 +40,7 @@ public class EpaymentDAO {
 		
 		return result;
 	}
-<<<<<<< HEAD
-=======
-	
->>>>>>> master
+
 
 	public List<String> tempList() throws Exception{
 		
@@ -53,10 +48,8 @@ public class EpaymentDAO {
 		
 		return temps;
 	}
-<<<<<<< HEAD
-=======
 
->>>>>>> master
+
 	//list
 	public List<EpaymentDTO> epaymentList(RowNum rowNum, ListData listData) throws Exception{
 		Map<String, Object> map=new HashMap<String, Object>();
@@ -72,9 +65,6 @@ public class EpaymentDAO {
 	//totalCount
 	public int totalCount(RowNum rowNum) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"totalCount", rowNum);
-<<<<<<< HEAD
-=======
 
->>>>>>> master
 	}
 }

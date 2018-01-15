@@ -11,48 +11,64 @@
  <link href="${url}/resources/css/GroupWare/epayment/epaymentPendency.css" rel="stylesheet">
 
 <title>Insert title here</title>
-
+</head>
 <script type="text/javascript">
-	$(function(){
-		
-		 /*page 처리  */
-	 	  $(".eb_list").click(function(){
-				
-				var cur=$(this).attr("title");
-				var s = '${pager.search}';
-				var t = '${pager.kind}';
-				document.frm.curPage.value=cur;
-				document.frm.search.value=s;
-				document.frm.kind.value=t;
-				document.frm.submit();
-			});
+$(function(){
+	
+	 /*page 처리  */
+	  $(".eb_list").click(function(){
+			
+			var cur=$(this).attr("title");
+			var s = '${pager.search}';
+			var t = '${pager.kind}';
+			document.frm.curPage.value=cur;
+			document.frm.search.value=s;
+			document.frm.kind.value=t;
+			document.frm.submit();
+		});
+	 
+	 /*view  */
+	  $(".eb_viewBtn").click(function(){
+		 var num=$(this).attr("title");
 		 
-		 /*view  */
-		  $(".eb_viewBtn").click(function(){
-			 var num=$(this).attr("title");
-			 
-			 $.ajax({
-				type : "get",
-				url : "./epaymentView",
-				data : {"num" : num},
-				success : function(data){
-					$("#eb_viewNum").text(data.num);
-					$("#eb_viewDraftdate").text(data.draftdate);
-					$("#eb_viewDraftname").text(data.draftname);
-					$("#eb_viewDrafttemp").text(data.drafttemp);
-					$("#eb_viewTitle").text(data.title);
-					$("#eb_viewContents").text(data.contents);
-					$("#eb_viewApproval").text(data.approval);
-					$("eb_viewApprovaltemp").text(data.approvaltemp);
-				},error : function(){
-					alert("error");
-				}
-			 });
-		 }); 
-	});
+		 $.ajax({
+			type : "get",
+			url : "./epaymentView",
+			data : {"num" : num},
+			success : function(data){
+				$("#eb_viewNum").text(data.num);
+				$("#eb_viewDraftdate").text(data.draftdate);
+				$("#eb_viewDraftname").text(data.draftname);
+				$("#eb_viewDrafttemp").text(data.drafttemp);
+				$("#eb_viewTitle").text(data.title);
+				$("#eb_viewContents").text(data.contents);
+				$("#eb_viewApproval").text(data.approval);
+				$("eb_viewApprovaltemp").text(data.approvaltemp);
+			},error : function(){
+				alert("error");
+			}
+		 });
+	 }); 
+	 
+	 $("#eb_Delete").click(function(){
+		var num= $("#eb_viewNum").text();
+		alert(num);
+		
+		$.ajax({
+			type : "get",
+			url : "./epaymentDelete",
+			data : {"num" : num},
+			success : function(data){
+				alert(data)
+				location.reload();
+			},error : function(){
+				alert("error")
+			}
+		})
+	 });
+});
 
 </script>
-</head>
 <body>
 <c:import url="${url}/resources/temp/headerExample.jsp"></c:import> 
 
@@ -115,7 +131,7 @@
 			</div>
 			
 			<div class="ar_plusTitle">
-				<p id="ar_plustext">미결함</p>
+				<p id="ar_plustext">내 결제 보기</p>
 			</div>
 			
 			<div class="ar_plusSearchWrap">
@@ -123,7 +139,7 @@
 				
 			<form action="positionPlus" method="GET">
 				<div class="ar_plusSearch">
-					결재가 완료 되지 않은 문서
+					내가 올린 결재들만 보기
 					</div>
 			</form>
 			</div>
@@ -133,10 +149,9 @@
 				
 				<div id="ar_inhabitTableWrap">
 					<div id="ar_tableTop">
-					
+				
 						
-						<form action="./epaymentPendency" action="get">
-						 <input type="hidden" name="curPage" value="1">
+						<form action="./epaymentReturn" action="get">
 						
 						<input type="submit" id="ar_searchBtn" value="검색">
 						
@@ -150,6 +165,7 @@
 							</select>
 				
 						</form>	
+							
 					</div>
 					
 					<div id="ar_tableWrap">
@@ -164,24 +180,15 @@
 									<th> 기안 날짜 </th>
 									<th> 상태 </th>
 									<th> 첨부 </th>
-									<th></th>
 								</tr>
 							</thead>
 							
 							<tbody>
-						<c:forEach items="${epaymentList }" var="dto">
-								<tr>
-									<td>${dto.num }</td>
-									<td>${dto.title }</td>
-									<td>${dto.draftname }</td>
-									<td>${dto.drafttemp }</td>
-									<td>${dto.approvaltemp }</td>
-									<td>${dto.draftdate }</td>
-									<td>${dto.result }</td>
-									<td></td>
-									<td><input type="button" value="상세보기" class="eb_viewBtn" title="${dto.num}"  data-toggle="modal" data-target="#myModal"></td>
-								</tr>
-						</c:forEach>		
+							 <%-- 	 <c:if test="${member.code ne list.memberCode }"> 
+									<tr>
+										<td colspan="8" style="text-align: center;"><p>내 결재 목록이 없습니다.</p></td>
+									</tr>
+								 </c:if>  --%>
 							</tbody>
 						
 						</table>
@@ -197,7 +204,7 @@
 						      <div class="modal-content">
 						        <div class="modal-header">
 						          <button type="button" class="close" data-dismiss="modal">&times;</button>
-						          <h4 class="modal-title">미결함</h4>
+						          <h4 class="modal-title">반려함</h4>
 						        </div>
 						        <div class="modal-body"  id="eb_modal" >
 						         
@@ -222,19 +229,20 @@
 						         		<td><span id="eb_viewApproval"></span></td>
 						         	</tr>
 						         	
-						         	<tr class="eb_modal_tr" >
+						         	<tr class="eb_modal_tr">
 						         		<td class="eb_modal_table_td_1">제목</td>
 						         		<td colspan="3"><span id="eb_viewTitle"></span></td>
 						         	</tr>
 						         
-						         	<tr class="eb_modal_tr" id="eb_modal_tr_id">
-						         		<td class="eb_modal_table_td_1">내용</td>
+						         	<tr class="eb_modal_tr">
+						         		<td class="eb_modal_table_td_1" id="eb_modal_tr_id">내용</td>
 						         		<td colspan="3"><span id="eb_viewContents"></span></td>
 						         	</tr>
 						         
 						         </table>
 						        </div>
 						        <div class="modal-footer">
+						        	<input type="button" class="btn btn-default" id="eb_Delete" value="삭제" >
 						          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 						        </div>
 						      </div>
@@ -247,26 +255,7 @@
 					
 					
 					
-							<!-- page 처리 -->
-			 	
-			 	<div id="eb_page">
-					<c:if test="${pager.curBlock gt 1}">
-						<span class="eb_list" title="${pager.startNum-1}">[이전]</span>
-					</c:if>
-					
-					<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-						<span class="eb_list" title="${i}">${i}</span>
-					</c:forEach>
-					
-					<c:if test="${pager.curBlock lt pager.totalBlock}">
-						<span class="eb_list" title="${pager.lastNum+1}">[다음]</span>
-					</c:if>
-				</div>  
-					
-		 		  
-			  
-						  
-				<!-- page 처리 끝 -->		  
+		  
 				
 				</div>
 			</div>
