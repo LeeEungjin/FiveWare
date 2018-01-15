@@ -47,6 +47,9 @@
   <select id="totalCount" resultType="int">
   	select nvl(count(num),0) from epayment
   </select>
+<<<<<<< HEAD
   
+=======
+>>>>>>> master
 
   </mapper>

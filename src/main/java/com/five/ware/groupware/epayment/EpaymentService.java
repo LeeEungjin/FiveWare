@@ -1,8 +1,12 @@
 package com.five.ware.groupware.epayment;
 
+<<<<<<< HEAD
 
 
 import java.util.ArrayList;
+=======
+import java.util.ArrayList; 
+>>>>>>> master
 import java.util.List;
 
 import javax.inject.Inject;
@@ -59,6 +63,10 @@ public class EpaymentService {
 		mv.addObject("pager", pager);
 		
 		return mv;
+<<<<<<< HEAD
+=======
+		
+>>>>>>> master
 
 	}
 }

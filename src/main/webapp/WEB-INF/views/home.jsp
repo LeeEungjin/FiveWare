@@ -115,12 +115,7 @@
 
               <input type="text" placeholder="id" class="loginid wrap" name="code" id="eb_code">
              <input type="text" placeholder="password" class="loginpw wrap" name="pw">
-<<<<<<< HEAD
 
-             
-=======
-         
->>>>>>> eunbi2
            	  아이디저장
              <div class="idsave wrap">
                 <input type="checkbox" >  <!-- 아이디 저장 -->

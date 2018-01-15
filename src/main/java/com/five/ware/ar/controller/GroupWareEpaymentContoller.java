@@ -1,7 +1,11 @@
 package com.five.ware.ar.controller;
 
 
+<<<<<<< HEAD
 import java.text.SimpleDateFormat;
+=======
+import java.text.SimpleDateFormat; 
+>>>>>>> master
 import java.util.ArrayList;
 import java.text.SimpleDateFormat; 
 import java.util.Calendar;
