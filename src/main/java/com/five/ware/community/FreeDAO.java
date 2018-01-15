@@ -1,6 +1,8 @@
 package com.five.ware.community;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -16,12 +18,26 @@ public class FreeDAO {
 	SqlSession sqlSession;
 	private static final String namespace="freeMapper.";
 	
-	public int totalCount(RowNum rowNum)throws Exception{
-		return sqlSession.selectOne(namespace+"totalCount", rowNum);
+	public int totalCount(RowNum rowNum, String target)throws Exception{
+		Map<String, Object> map=new HashMap<String, Object>();
+		
+		map.put("kind", rowNum.getKind());
+		map.put("search", rowNum.getSearch());
+		map.put("target", target);
+		
+		return sqlSession.selectOne(namespace+"totalCount", map);
 	}
 	
-	public List<FreeDTO> selectList(RowNum rowNum)throws Exception{
-		return sqlSession.selectList(namespace+"selectList", rowNum);
+	public List<FreeDTO> selectList(RowNum rowNum, String target)throws Exception{
+		Map<String, Object> map=new HashMap<String, Object>();
+		
+		map.put("kind", rowNum.getKind());
+		map.put("search", rowNum.getSearch());
+		map.put("startRow", rowNum.getStartRow());
+		map.put("lastRow", rowNum.getLastRow());
+		map.put("target", target);
+		
+		return sqlSession.selectList(namespace+"selectList", map);
 	}
 	
 	public int freeInsert(FreeDTO freeDTO)throws Exception{

@@ -26,16 +26,16 @@ public class GroupWareFreeController {
 	
 	//list
 	@RequestMapping(value="freeList")
-	public ModelAndView selectList(ListData listData)throws Exception{
+	public ModelAndView selectList(ListData listData, String target)throws Exception{
 		ModelAndView mv=null;
 		
-		mv=freeService.selectList(listData);
+		mv=freeService.selectList(listData, target);
 		
 		return mv;
 	}
 	
 	//view
-	@RequestMapping(value="freeOne")
+	@RequestMapping(value="freeView")
 	public String selectOne(Model model, int num)throws Exception{
 		
 		model.addAttribute("view", freeService.selectOne(num));
@@ -68,14 +68,16 @@ public class GroupWareFreeController {
 	}
 	
 	//reply->form
-	@RequestMapping(value="replyWrite", method={RequestMethod.GET})
-	public String reply()throws Exception{
+	@RequestMapping(value="freeReply", method={RequestMethod.GET})
+	public String reply(Model model, int num)throws Exception{
+		
+		model.addAttribute("reply", freeService.selectOne(num));
 		
 		return "free/freeReply";
 	}
 	
 	//reply->database
-	@RequestMapping(value="replyWrite", method={RequestMethod.POST})
+	@RequestMapping(value="freeReply", method={RequestMethod.POST})
 	public String reply(RedirectAttributes rd, FreeDTO freeDTO, HttpSession session)throws Exception{
 		int result=0;
 		String message="답글 실패";
@@ -92,7 +94,7 @@ public class GroupWareFreeController {
 	}
 	
 	//update->form
-	@RequestMapping(value="update", method={RequestMethod.GET})
+	@RequestMapping(value="freeUpdate", method={RequestMethod.GET})
 	public String update(Model model, int num)throws Exception{
 		FreeDTO freeDTO=freeService.selectOne(num);
 		
@@ -102,7 +104,7 @@ public class GroupWareFreeController {
 	}
 	
 	//update->database
-	@RequestMapping(value="update", method={RequestMethod.POST})
+	@RequestMapping(value="freeUpdate", method={RequestMethod.POST})
 	public String update(RedirectAttributes rd, FreeDTO freeDTO, HttpSession session)throws Exception{
 		int result=0;
 		String message="수정 실패";

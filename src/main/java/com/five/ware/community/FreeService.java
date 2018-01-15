@@ -25,10 +25,10 @@ public class FreeService {
 	@Autowired
 	private UploadDAO uploadDAO;
 	
-	public ModelAndView selectList(ListData listData)throws Exception{
+	public ModelAndView selectList(ListData listData, String target)throws Exception{
 		ModelAndView mv=new ModelAndView();
-		int totalCount=freeDAO.totalCount(listData.makeRow());
-		List<FreeDTO> freeList=freeDAO.selectList(listData.makeRow());
+		int totalCount=freeDAO.totalCount(listData.makeRow(), target);
+		List<FreeDTO> freeList=freeDAO.selectList(listData.makeRow(), target);
 		
 		mv.addObject("pager", listData.makePage(totalCount));
 		mv.addObject("freeList", freeList);

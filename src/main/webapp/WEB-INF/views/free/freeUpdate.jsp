@@ -111,16 +111,35 @@
 				        <th>${update.writer}</th>
 				      </tr>
 				      <tr>
-				      	<th>부서</th>
-				        <th>
-				        	<select name="temp" class="form-control free_temp_select">
-						       <option value="회계부">회계부</option>
-						       <option value="총무부">총무부</option>
-						       <option value="인사부">인사부</option>
-						       <option value="영업/구매부">영업/구매부</option>
-						       <option value="마케팅부">마케팅부</option>
-						    </select>
-				        </th>
+				      	<th>target</th>
+				        <c:if test="${member.kind eq 'store'}">
+					        <th>
+					        	<select name="target" class="form-control free_temp_select">
+					        	   <option value="전체">전체공개</option>
+							       <option value="회계부">회계부</option>
+							       <option value="총무부">총무부</option>
+							       <option value="인사부">인사부</option>
+							       <option value="영업/구매부">영업/구매부</option>
+							       <option value="마케팅부">마케팅부</option>
+							    </select>
+							    <input value="${member.store}" name="temp" type="hidden">
+					        </th>
+				        </c:if>
+				        
+				        <!-- 나중에 전체 지점정보에서 리스트 가져와서 option값으로 뿌려주기 -->
+				        <c:if test="${member.kind eq 'member'}">
+					        <th>
+					        	<select name="target" class="form-control free_temp_select">
+					        	   <option value="전체">전체공개</option>
+							       <option value="강남점">강남점</option>
+							       <option value="영등포점">영등포점</option>
+							       <option value="신사점">신사점</option>
+							       <option value="용산점">용산점</option>
+							       <option value="신림점">신림점</option>
+							    </select>
+							    <input value="${member.temp}" name="temp" type="hidden">
+					        </th>
+				        </c:if>
 				      	<th>제목</th>
 				      	<th colspan="3">
 				      		<input name="title" type="text" class="form-control free_update_input" value="${update.title}">

@@ -75,6 +75,7 @@
 			
 			<a href="freeUpdate?num=${view.num}"><button type="button" class="btn btn-default free_update_btn">수정</button></a>
 			<a href="freeDelete?num=${view.num}"><button type="button" class="btn btn-default">삭제</button></a>
+			<a href="freeReply?num=${view.num}"><button type="button" class="btn btn-default">답글</button></a>
 			<a href="freeList"><button type="button" class="btn btn-default">목록</button></a>
 		</div>
 	

@@ -41,12 +41,17 @@
   		<if test="kind=='contents'">
   			where contents like '%'||#{search}||'%' 
   		</if>
+  		
+  		<if test="kind=='target'">
+  			where target=#{target}
+  		</if>
   	</select>
   	
-  	<select id="selectList"  parameterType="com.five.ware.util.RowNum" resultType="com.five.ware.community.FreeDTO">
+  	<select id="selectList"  parameterType="java.util.Map" resultType="com.five.ware.community.FreeDTO">
   		select * from 
   		(select rownum R, N.* from
   		(select * from free 
+  		
   		<if test="kind=='code'">
   			where title like '%'||#{search}||'%' 
   		</if>
@@ -59,6 +64,11 @@
   		<if test="kind=='contents'">
   			where contents like '%'||#{search}||'%' 
   		</if>
+  		
+  		<if test="kind=='target'">
+  			where target=#{target}
+  		</if>
+  		
   		order by num desc) N)
   		where R between #{startRow} and #{lastRow}
   	</select>
@@ -86,7 +96,7 @@
   	</delete>
   	
   	<update id="update" parameterType="com.five.ware.community.FreeDTO">
-  		update qna set title=#{title}, contents=#{contents} where num=#{num}
+  		update free set title=#{title}, contents=#{contents}, target=#{target} where num=#{num}
   	</update>
   	
   	<update id="hitUpdate" parameterType="java.lang.Integer">

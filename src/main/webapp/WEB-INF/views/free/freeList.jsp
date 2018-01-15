@@ -32,12 +32,47 @@
 			document.free_search_frm.kind.value=t;
 			document.free_search_frm.submit();
 		});
+		
+		$(".freeView").click(function(){
+			
+			var num=$(this).attr("title");
+			var target=$(this).attr("id");
+			var kind=$("#memberKind").val();
+			var memberName=$("#memberName").val();
+			var writer=$("#writer").val();
+			
+			
+			var secret=$("#secret").val();
+			
+			if(target==secret || target=='전체' || memberName==writer){
+				
+				location.href="./freeView?num="+num;
+				
+			}else{
+				
+				alert("해당 글은 "+target+"에게만 공개된 게시물입니다.")
+				
+			}
+		}); 
+		
 	});
 </script>
 	
 </head>
 <body>
 <c:import url="${url}/resources/temp/headerExample.jsp"></c:import> 
+
+<input type="hidden" id="writer" value="${list.writer}">
+<input type="hidden" id="memberName" value="${member.name}">
+<input type="hidden" id="memberKind" value="${kind}">
+
+<c:if test="${kind eq 'member'}">
+	<input type="hidden" id="secret" value="${member.temp}">
+</c:if>
+
+<c:if test="${kind eq 'store'}">
+	<input type="hidden" id="secret" value="${member.store}">
+</c:if>
 
 <div id="fw_container">
 
@@ -47,7 +82,18 @@
 	
 	<div id="free_middle">
 		<div id="free_sub_title">
-			비밀글 보기 체크?
+			<a href="./freeList?kind=target&target=전체">전체공개 보기</a>
+			
+			<c:if test="${kind eq 'member'}">
+				<a href="./freeList?kind=target&target=${member.temp}">우리 부서 공개 보기</a>
+			</c:if>
+			
+			<c:if test="${kind eq 'store'}">
+				<a href="./freeList?kind=target&target=${member.store}">우리 지점 공개 보기</a>
+			</c:if>
+			
+			<a href="./freeList">초기화</a>
+			
 		</div>
 		
 		<div id="free_contents">
@@ -73,6 +119,7 @@
 				    <thead>
 				      <tr>
 				        <th>No</th>
+				      	<th>공개 여부</th>
 				        <th>제목</th>
 				        <th>날짜</th>
 				        <th>부서</th>
@@ -85,7 +132,8 @@
 				    <c:forEach items="${freeList}" var="list" varStatus="i">
 				      <tr>
 				      	<td>${list.num}</td>
-				      	<td><a href="">${list.title}</a></td>
+				      	<td>[${list.target}공개]</td>
+				      	<td><p id="${list.target}" title="${list.num}" class="freeView">${list.title}</p></a></td>
 				      	<td>${list.reg_date}</td>
 				      	<td>${list.temp}</td>
 				      	<td>${list.writer}</td>
