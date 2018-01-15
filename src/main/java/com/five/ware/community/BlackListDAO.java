@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class BladkListDAO {
+public class BlackListDAO {
 	
 	@Inject
 	private SqlSession sqlSession;
@@ -16,12 +16,22 @@ public class BladkListDAO {
 		return sqlSession.insert(namespace+"blackListInsert", blackListDTO);
 	}
 	
-	public int update(int num)throws Exception{
-		return sqlSession.update(namespace+"blackListUpdate", num);
+	public int reportUpdate(int num)throws Exception{
+		return sqlSession.update(namespace+"reportUpdate", num);
+	}
+	
+	public int namesUpdate(BlackListDTO blackListDTO)throws Exception{
+		return sqlSession.update(namespace+"namesUpdate", blackListDTO);
 	}
 	
 	public int reportCount(int num)throws Exception{
 		return sqlSession.selectOne(namespace+"reportCount", num);
 	}
+	
+	public String codeCheck(int num)throws Exception{
+		return sqlSession.selectOne(namespace+"codeCheck", num);
+	}
+	
+	
 	
 }

@@ -1,6 +1,6 @@
 package com.five.ware.community;
 
-public class CommunityDTO extends CommunityFileDTO{
+public class CommunityDTO extends NumFileDTO{
 	
 	private int num;
 	private String temp;
@@ -9,8 +9,18 @@ public class CommunityDTO extends CommunityFileDTO{
 	private String contents;
 	private String reg_date;
 	private String hit;
+	private NumFileDTO numFileDTO;
 	
 	
+	
+	
+
+	public NumFileDTO getNumFileDTO() {
+		return numFileDTO;
+	}
+	public void setNumFileDTO(NumFileDTO numFileDTO) {
+		this.numFileDTO = numFileDTO;
+	}
 	public int getNum() {
 		return num;
 	}

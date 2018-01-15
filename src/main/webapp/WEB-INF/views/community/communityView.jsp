@@ -11,6 +11,42 @@
 <link href="${pageContext.request.contextPath}/resources/css/community/communityView.css" rel="stylesheet">
 <title>Insert title here</title>
 
+<script type="text/javascript">
+
+	$(function(){
+		
+		var message = '${message}';
+		if(message != ""){
+			alert(message);
+		}
+		
+		$("#report_btn").click(function(){
+			
+			var num='${view.num}';
+			var names=',${member.code}';
+			var writer='${view.writer}'
+			
+			$.ajax({
+				type : "GET",
+				url : "reportInsert",
+				data : { num : num,
+						names : names,
+						writer : writer},
+				success : function(data){
+					alert(data);
+					location.reload();
+				},error : function(){
+					alert("실패");
+					location.reload();
+				}
+			});
+		});
+		
+	});
+
+</script>
+
+
 </head>
 <body>
 <c:import url="${url}/resources/temp/headerExample.jsp"></c:import> 
@@ -56,12 +92,12 @@
 			
 		<div id="com_footer">
 			<c:forEach items="${view.fileNames}" var="file">
-			<a href="../file/fileDown?fileName=${file.fileName}&oriName=${file.oriName}">${file.oriName}</a> 
+			<a href="../file/fileDown?filename=${file.fileName}&oriname=${file.oriName}">${file.oriName}</a> 
 			</c:forEach>
 			
 			<a href="communityUpdate?num=${view.num}"><button type="button" class="btn btn-default com_update_btn">수정</button></a>
 			<a href="communityDelete?num=${view.num}"><button type="button" class="btn btn-default">삭제</button></a>
-			<a href=""><button type="button" class="btn btn-danger">신고(${report})</button></a>
+			<button id="report_btn" type="button" class="btn btn-danger">신고(${report})</button>
 			<a href="communityList"><button type="button" class="btn btn-default">목록</button></a>
 		</div>
 	
