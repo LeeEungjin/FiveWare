@@ -48,6 +48,10 @@ public class FreeDAO {
 		return sqlSession.delete(namespace+"delete", num);
 	}
 	
+	public int fileDelete(int num)throws Exception{
+		return sqlSession.delete(namespace+"delete", num);
+	}
+	
 	public int update(FreeDTO freeDTO)throws Exception{
 		return sqlSession.update(namespace+"update", freeDTO);
 	}

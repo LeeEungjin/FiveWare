@@ -10,7 +10,7 @@
   			select notice_seq.nextval from dual
   		</selectKey>
   		
-		insert into free values (#{num}, #{temp}, #{writer}, #{title}, #{contents}, sysdate, 0, 0, 0, #{num}, #{secret}, #{target})
+		insert into free values (#{num}, #{temp}, #{writer}, #{title}, #{contents}, sysdate, 0, 0, 0, #{num}, #{target})
 	</insert>
 	
 	<insert id="freeReply" parameterType="com.five.ware.community.FreeDTO">
@@ -18,7 +18,7 @@
   			select notice_seq.nextval from dual
   		</selectKey>
 	
-		insert into free values (#{num}, #{temp}, #{writer}, #{title}, #{contents}, sysdate, 0, #{step}+1, #{depth}+1, #{ref}, #{secret}, #{target})
+		insert into free values (#{num}, #{temp}, #{writer}, #{title}, #{contents}, sysdate, 0, #{step}+1, #{depth}+1, #{ref}, #{target})
 	</insert>
 	
 	<update id="stepUpdate" parameterType="com.five.ware.community.FreeDTO">
@@ -79,6 +79,10 @@
   	
   	<delete id="delete"  parameterType="java.lang.Integer">
   		delete from free where num=#{num}
+  	</delete>
+  	
+  	<delete id="fileDelete"  parameterType="java.lang.Integer">
+  		delete from upload where num=#{num}
   	</delete>
   	
   	<update id="update" parameterType="com.five.ware.community.FreeDTO">

@@ -5,7 +5,6 @@ public class FreeDTO extends CommunityDTO{
 	private int step;
 	private int depth;
 	private int ref;
-	private String secret;
 	private String target;
 	
 	
@@ -26,12 +25,6 @@ public class FreeDTO extends CommunityDTO{
 	}
 	public void setRef(int ref) {
 		this.ref = ref;
-	}
-	public String getSecret() {
-		return secret;
-	}
-	public void setSecret(String secret) {
-		this.secret = secret;
 	}
 	public String getTarget() {
 		return target;

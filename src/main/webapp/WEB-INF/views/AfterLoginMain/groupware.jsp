@@ -178,17 +178,17 @@
                         </span>
                      </a> 
                      
-                     <a href="#"> 
+                     <a href="../ware/free/freeList"> 
                         <span class="groupWare_jk_smalldiv"> 
                            <span class="groupWare_jk_writing">공지사항</span>
                         </span>
                      </a> 
                      
-                     <a href="#"> 
+<!--                      <a href="#"> 
                         <span class="groupWare_jk_smalldiv"> 
                            <span class="groupWare_jk_writing">자유게시판</span>
                         </span>
-                     </a>
+                     </a> -->
                   </div>
                   <div class="groupWare_jk_groupWare">
                      

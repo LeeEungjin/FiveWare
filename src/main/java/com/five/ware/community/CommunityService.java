@@ -48,7 +48,6 @@ public class CommunityService {
 	}
 	
 	public CommunityDTO selectOne(int num)throws Exception{
-		ModelAndView mv=new ModelAndView();
 		
 		communityDAO.hitUpdate(num);
 		CommunityDTO communityDTO=communityDAO.selectOne(num);
