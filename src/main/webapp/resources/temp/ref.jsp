@@ -8,9 +8,12 @@
 
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="${url}/resources/js/jquery-3.1.1.min.js"></script>
+	<script src="${url}/resources/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="${url}/resources/css/common/bootstrap.min.css">
+	<link rel="stylesheet" href="${url}/resources/css/common/bootstrap-theme.min.css">
+	<script type="text/javascript" src='${url}/resources/js/sweetalert.min.js?ver=1'></script>
+	<link rel="stylesheet" type="text/css" href='${url}/resources/css/common/sweetalert.css?ver=1.2'>
 
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link href="${url }/resources/css/header/header.css" rel="stylesheet">
