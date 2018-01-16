@@ -6,6 +6,7 @@ public class ListData {
 	private String search;
 	private int perPage; //가변적으로 사용할지 말지를 정해서 컨트롤러에서 받아올 지 말지 결정
 	private String result;
+	private String memberCode;
 	
 	public ListData() {
 		// TODO Auto-generated constructor stub
@@ -14,6 +15,7 @@ public class ListData {
 		this.search = "";
 		this.perPage = 10;
 		this.result="";
+		this.memberCode="";
 	}
 	
 
@@ -25,10 +27,14 @@ public class ListData {
 		rowNum.setKind(kind);
 		rowNum.setSearch(search);
 		rowNum.setResult(result);
+		rowNum.setMemberCode(memberCode);
+		
 		
 		return rowNum;
 	}
 	
+
+
 	//page
 	public Pager makePage(int totalCount){
 		Pager pager = new Pager();
@@ -103,4 +109,12 @@ public class ListData {
 		this.result = result;
 	}
 
+	public String getMemberCode() {
+		return memberCode;
+	}
+	
+	
+	public void setMemberCode(String memberCode) {
+		this.memberCode = memberCode;
+	}
 }

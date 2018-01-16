@@ -49,6 +49,30 @@ public class EpaymentService {
 		return temps;
 	}
 	
+	
+	//myEpaymentList
+	public ModelAndView myEpaymentList(ListData listData) throws Exception{
+		RowNum rowNum=listData.makeRow();
+		
+		int totalCount=epaymentDAO.totalCount(rowNum);
+		
+		Pager pager=listData.makePage(totalCount);
+		
+		List<EpaymentDTO> ar=new ArrayList<EpaymentDTO>();
+		ar=epaymentDAO.myEpaymentList(rowNum, listData);
+		
+		ModelAndView mv=new ModelAndView();
+		
+		mv.addObject("epaymentList", ar);
+		mv.addObject("pager", pager);
+		
+		
+		return mv;
+
+
+	}
+	
+	
 	//epayment List
 	public ModelAndView epaymentList(ListData listData) throws Exception{
 		RowNum rowNum=listData.makeRow();

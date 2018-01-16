@@ -48,7 +48,18 @@ public class EpaymentDAO {
 		
 		return temps;
 	}
-
+	
+	//myEpaymentList
+	public List<EpaymentDTO> myEpaymentList(RowNum rowNum, ListData listData) throws Exception{
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("startRow", rowNum.getStartRow());
+		map.put("lastRow", rowNum.getLastRow());
+		map.put("kind", listData.getKind());
+		map.put("search", listData.getSearch());
+		map.put("memberCode", rowNum.getMemberCode());
+		
+		return sqlSession.selectList(NAMESPACE+"myEpaymentLit", map);
+	}
 
 	//list
 	public List<EpaymentDTO> epaymentList(RowNum rowNum, ListData listData) throws Exception{

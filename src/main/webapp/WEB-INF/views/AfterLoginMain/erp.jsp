@@ -118,17 +118,13 @@
 				"memberCode" : code,
 				"regdate" : date
 			},success : function(data){
-			  
-			  var lastTime=data.lastTime;
+		  		alert(data.lastTime)
 				if(data==""){
 					$("#start").val("출근");
 					$("#last").val("퇴근");
-				}else if(data.startTime !==""){
-					
-						$("#start").val(data.startTime);
-						$("#last").val("퇴근");
-					
-					
+				}else if(data.startTime !=="" && data.lastTime ==""){
+					$("#start").val(data.startTime);
+					$("#last").val("퇴근");
 				}else{
 				$("#start").val(data.startTime);
 				$("#last").val(data.lastTime);
@@ -176,9 +172,14 @@
 	 $("#last").click(function(){
 		 var time=$("#demo_2").text();
 		 var date=$("#demo_1").text();
+		 var start=$("#start").val();
 
-			if(confirm("퇴근처리 하시겠습니까?")==false){
+			if(start =="출근"){
+				alert("출근처리 먼저 해주세요.")
+				return false;
+			}else if(confirm("퇴근처리 하시겠습니까?")==false){
 				alert("퇴근처리가 취소되었습니다.")
+				return false;
 			}else{
 				var code='${member.code}';
 				
@@ -196,6 +197,7 @@
 					   }
 					
 				});
+				
 			$("#last").val(time);
 			}
 	

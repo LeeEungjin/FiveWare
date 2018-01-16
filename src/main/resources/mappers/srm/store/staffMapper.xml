@@ -29,7 +29,7 @@
 	</select>
   
   <insert id="insert" parameterType="staffDTO">
-  	insert into staff values(staff_seq.nextval, #{name},#{birth},#{hiredate},0,0,0,#{bank},#{account},#{time})
+  	insert into staff values(staff_seq.nextval, #{name},#{birth},#{hiredate},0,0,0,#{bank},#{account},#{time},#{store})
   </insert>
   <update id="update" parameterType="staffDTO">
    update staff set name=#{name}, birth=#{birth}, hiredate=#{hiredate}, bank=#{bank}, account=#{account}, time=#{time} where num=#{num} 

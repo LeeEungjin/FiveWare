@@ -110,7 +110,7 @@ $(function(){
 				<ul>
 					<li> 기안 상신함</li>
 					<li> 임시보관함</li>
-					<li> <a href="./epaymentDispatch">내 결재 보기</a></li>
+					<li> <a href="./epaymentDispatch?memberCode=${member.code}">내 결재 보기</a></li>
 				</ul>
 			</div>
 			
@@ -153,6 +153,7 @@ $(function(){
 						
 						<form action="./epaymentReturn" action="get">
 						
+						<input type="hidden" name="curPage" value="1">
 						<input type="submit" id="ar_searchBtn" value="검색">
 						
 						<input type="text" id="ar_searchInput" name="search">
@@ -233,7 +234,7 @@ $(function(){
 						         	<tr class="eb_modal_tr">
 						         		<td class="eb_modal_table_td_1">승인 부서</td>
 						         		<td><span id="eb_viewApprovalTemp"></span></td>
-						         		<td class="eb_modal_table_td_1">승인자</td>
+						         		<td class="eb_modal_table_td_1">결재선</td>
 						         		<td><span id="eb_viewApproval"></span></td>
 						         	</tr>
 						         	

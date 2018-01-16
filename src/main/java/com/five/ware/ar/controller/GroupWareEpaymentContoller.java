@@ -35,8 +35,22 @@ public class GroupWareEpaymentContoller {
 	
 	//내가 올린 결재문서만 보기
 	@RequestMapping(value="epaymentDispatch")
-	public String epaymentDispatch(){
-		return "GroupWare/epayment/epaymentDispatch";
+	public ModelAndView epaymentDispatch(ListData listData){
+		
+		
+		ModelAndView mv=null;
+	
+		
+		try {
+			mv=epaymentService.myEpaymentList(listData);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		mv.setViewName("GroupWare/epayment/epaymentDispatch");
+		
+		return mv;
+
 	}
 	
 	
