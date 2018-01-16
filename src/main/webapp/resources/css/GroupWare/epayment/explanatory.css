@@ -135,7 +135,7 @@
 	background-color: #c0e0e0;
 	height: 100%;
 	float:right;
-	/* width: 30%; */
+	/* width: 11%;  */
 }
 
 #ar_signText{
@@ -203,4 +203,22 @@
 
 .ar_draftInput{
 	border: 0px;
+}
+
+#ar_singMember> input{
+	border: 0px;
+	text-align: center;
+	width: 100%;
+	background-color: rgba(0,0,0,0);
+}
+
+#ar_singMember{
+	margin-top: 13%;
+}
+
+#ar_signTemp> input{
+	border: 0px;
+	text-align: center;
+	width: 100%;
+	background-color: rgba(0,0,0,0);
 }

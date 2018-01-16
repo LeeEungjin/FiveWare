@@ -178,7 +178,29 @@
    font-size: 13px;
 }
 
-.ar_before:before{
-    content: "\f0e2";
-	
+.ar_dataname{
+	display: inline-block;
+/* 	float: left; */
+	width: 30%;
 }
+
+.ar_datarank{
+	display: inline-block;
+/* 	float: left; */
+	width: 20%;
+}
+
+.ar_datatemp{
+	display: inline-block;
+	/* float: left; */
+	width: 30%;
+}
+
+.fa-angle-right{
+	font-size: 20px;
+}
+
+.fa-angle-left{
+	font-size: 20px;
+}
+
