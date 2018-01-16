@@ -94,6 +94,7 @@ $(function(){
 				<ul>
 					<li> 기안 상신함</li>
 					<li> 임시보관함</li>
+					<li> <a href="./epaymentDispatch?memberCode=${member.code}">내 결재 보기</a></li>
 				</ul>
 			</div>
 			
@@ -136,6 +137,8 @@ $(function(){
 						
 						<form action="./epaymentDetermine" action="get">
 						
+						<input type="hidden" name="curPage" value="1">
+						
 						<input type="submit" id="ar_searchBtn" value="검색">
 						
 						<input type="text" id="ar_searchInput" name="search">
@@ -160,6 +163,7 @@ $(function(){
 									<th> 기안 부서 </th>
 									<th> 승인 부서 </th>
 									<th> 기안 날짜 </th>
+									<th> 상태 </th>
 									<th> 첨부 </th>
 								</tr>
 							</thead>
@@ -194,7 +198,7 @@ $(function(){
 						      <div class="modal-content">
 						        <div class="modal-header">
 						          <button type="button" class="close" data-dismiss="modal">&times;</button>
-						          <h4 class="modal-title">미결함</h4>
+						          <h4 class="modal-title">기결함</h4>
 						        </div>
 						        <div class="modal-body"  id="eb_modal" >
 						         
@@ -215,7 +219,7 @@ $(function(){
 						         	<tr class="eb_modal_tr">
 						         		<td class="eb_modal_table_td_1">승인 부서</td>
 						         		<td><span id="eb_viewApprovalTemp"></span></td>
-						         		<td class="eb_modal_table_td_1">승인자</td>
+						         		<td class="eb_modal_table_td_1">결재선</td>
 						         		<td><span id="eb_viewApproval"></span></td>
 						         	</tr>
 						         	
@@ -225,7 +229,7 @@ $(function(){
 						         	</tr>
 						         
 						         	<tr class="eb_modal_tr">
-						         		<td class="eb_modal_table_td_1">내용</td>
+						         		<td class="eb_modal_table_td_1" id="eb_modal_tr_id">내용</td>
 						         		<td colspan="3"><span id="eb_viewContents"></span></td>
 						         	</tr>
 						         

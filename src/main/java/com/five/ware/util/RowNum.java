@@ -6,7 +6,14 @@ public class RowNum {
 	private String kind;
 	private String search;
 	private String result;
+	private String memberCode;
 	
+	public String getMemberCode() {
+		return memberCode;
+	}
+	public void setMemberCode(String memberCode) {
+		this.memberCode = memberCode;
+	}
 	public String getResult() {
 		return result;
 	}

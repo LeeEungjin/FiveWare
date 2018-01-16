@@ -34,7 +34,7 @@
 		//view
 		$("#eb_selectOne").click(function(){
 			var num=$(this).attr("title");
-			alert(num)
+			
 			$.ajax({
 				type : "get",
 				url : "./staffView",
@@ -47,6 +47,7 @@
 					$("#eb_account").val(data.account);
 					$("#eb_time").val(data.time);
 					$("#eb_num").val(data.num);
+					$("#eb_store").text(data.store);
 				},error : function(){
 					alert("error");
 				}
@@ -56,7 +57,7 @@
 		//delete
 		$("#eb_Deletebtn").click(function(){
 			var num=$("#eb_num").val();
-			alert(num)
+			
 			$.ajax({
 				type : "get",
 				url : "./staffDelete",
@@ -103,9 +104,9 @@
 			
 			<div class="fw_subselected collapse in" id="sub1">
 				<ul>
-					<li><a href="${pageContext.request.contextPath}/member/storeMyPage">매장 정보</a></li>
-					<li><a href="#">직원 관리</a></li>
-					<li><a href="#">직원 출/퇴근 조회</a></li>
+					<li><a href="${pageContext.request.contextPath}/myPage/storeMyPage">매장 정보</a></li>
+					<li><a href="${pageContext.request.contextPath}/srm/staff">직원 관리</a></li>
+					<li><a href="${pageContext.request.contextPath}/srm/staffTime">직원 출/퇴근 조회</a></li>
 			
 				</ul>
 			</div>
@@ -237,6 +238,13 @@
 			        <div class="modal-body" >
 			         <table class="table" id="eb_modal_table">
 			         	<tr>
+			         		<td class="eb_td" colspan="1">지점명</td>
+			         		<td colspan="3"><input type="text" name="store" value="${member.store }" readonly="readonly"></td>			         	
+			         	</tr>
+			         
+			         
+			         
+			         	<tr>
 			         		<td class="eb_td">이름</td>
 			         		<td><input type="text" name="name"></td>
 			         		<td class="eb_td">생년월일</td>
@@ -294,6 +302,13 @@
 			        
 			        <div class="modal-body" >
 			         <table class="table" id="eb_modal_table">
+			         	<tr>
+			         		<td class="eb_td" colspan="1">지점명</td>
+			         		<td colspan="3">
+			         			<span id="eb_store"></span>
+			         		</td>
+			         	</tr>
+			         
 			         	<tr>
 			         		<td class="eb_td">이름</td>
 			         		<td><input type="text" name="name" id="eb_name"></td>

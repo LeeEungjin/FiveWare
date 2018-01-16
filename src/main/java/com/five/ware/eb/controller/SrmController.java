@@ -23,6 +23,12 @@ public class SrmController {
 	private StaffService staffService;
 	
 	
+	//출퇴근조회
+	@RequestMapping(value="staffTime")
+	public String staffTime(){
+		
+		return "/srm/store/staffTime";
+	}
 	
 	//storeNotice
 	@RequestMapping(value="storeNotice")
@@ -72,7 +78,7 @@ public class SrmController {
 	@RequestMapping(value="staffView" ,method=RequestMethod.GET)
 	@ResponseBody
 	public StaffDTO selectOne(String num) throws Exception{
-		System.out.println("staffview");
+		
 		StaffDTO staffDTO=staffService.selectOne(num);
 		
 		return staffDTO;

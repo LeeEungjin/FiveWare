@@ -29,7 +29,7 @@ $(function(){
 	 
 	 /*view  */
 	  $(".eb_viewBtn").click(function(){
-		 var num=$(this).attr("title");
+	 	 var num=$(this).attr("title");
 		 
 		 $.ajax({
 			type : "get",
@@ -43,29 +43,15 @@ $(function(){
 				$("#eb_viewTitle").text(data.title);
 				$("#eb_viewContents").text(data.contents);
 				$("#eb_viewApproval").text(data.approval);
-				$("eb_viewApprovaltemp").text(data.approvaltemp);
+				$("#eb_viewApprovaltemp").text(data.approvaltemp);
+				$("#eb_viewResult").text(data.result);
 			},error : function(){
 				alert("error");
 			}
-		 });
+		 }); 
 	 }); 
 	 
-	 $("#eb_Delete").click(function(){
-		var num= $("#eb_viewNum").text();
-		alert(num);
-		
-		$.ajax({
-			type : "get",
-			url : "./epaymentDelete",
-			data : {"num" : num},
-			success : function(data){
-				alert(data)
-				location.reload();
-			},error : function(){
-				alert("error")
-			}
-		})
-	 });
+
 });
 
 </script>
@@ -83,14 +69,14 @@ $(function(){
 		<!-- submenu banner end -->
 		
 		<!-- submenu menu -->
-			<div class="fw_menu fw_selected" data-toggle="collapse" data-target=".fw_subselected" title="sub1">
+			<div class="fw_menu " data-toggle="collapse" data-target=".fw_subselected" title="sub1">
 				결재함
 				<div class="fw_arrow sub1">
 					∧
 				</div>
 			</div>
 			
-			<div class="fw_subselected collapse in" id="sub1">
+			<div class="fw_subselected collapse" id="sub1">
 				<ul>
 					<li> <a href="./epaymentPendency">미결함</a> </li>
 					<li> <a href="./epaymentDetermine">기결함</a> </li>
@@ -99,18 +85,18 @@ $(function(){
 			</div>
 			
 			<!-- ----------2---------- -->
-				<div class="fw_menu" data-toggle="collapse" data-target="#sub2" title="sub2" >
+				<div class="fw_menu fw_selected" data-toggle="collapse" data-target="#sub2" title="sub2" >
 					발신함
 				<div class="fw_arrow sub2">
 					∨
 				</div>
 			</div>
 			
-			<div class="fw_subsub collapse"  id="sub2">
+			<div class="fw_subsub collapse in"  id="sub2">
 				<ul>
 					<li> 기안 상신함</li>
 					<li> 임시보관함</li>
-					<li> <a href="./epaymentDispatch?memberCode=${member.code}">내 결재 보기</a></li>
+					<li> <a href="./epaymentDispatch">내 결재 보기</a></li>
 				</ul>
 			</div>
 			
@@ -131,7 +117,7 @@ $(function(){
 			</div>
 			
 			<div class="ar_plusTitle">
-				<p id="ar_plustext">반려함</p>
+				<p id="ar_plustext">내 결제 보기</p>
 			</div>
 			
 			<div class="ar_plusSearchWrap">
@@ -139,7 +125,7 @@ $(function(){
 				
 			<form action="positionPlus" method="GET">
 				<div class="ar_plusSearch">
-					결재가 거절 당한 문서
+					내가 올린 결재들만 보기
 					</div>
 			</form>
 			</div>
@@ -151,9 +137,11 @@ $(function(){
 					<div id="ar_tableTop">
 				
 						
-						<form action="./epaymentReturn" action="get">
+						<form action="./epaymentDispatch" action="get">
+							
+							<input type="hidden" name="curPage" value="1">
+							<input type="hidden" name="memberCode" value="${member.code }">
 						
-						<input type="hidden" name="curPage" value="1">
 						<input type="submit" id="ar_searchBtn" value="검색">
 						
 						<input type="text" id="ar_searchInput" name="search">
@@ -161,8 +149,8 @@ $(function(){
 							<select id="ar_searchTitle" name="kind">
 								<option value="title">문서 제목</option>
 								<option value="draftdate">기안 날짜</option>
-								<option value="drafttemp">기안 부서</option>
-								<option value="draftname">기안자</option>
+								<option value="approvaltemp">승인 부서</option>
+								<option value="result">결과</option>
 							</select>
 				
 						</form>	
@@ -185,19 +173,27 @@ $(function(){
 							</thead>
 							
 							<tbody>
-							<c:forEach items="${epaymentList}" var="dto">
-								<tr>
+								 <c:if  test="${empty epaymentList}"> 
+									<tr>
+										<td colspan="8" style="text-align: center;"><p>결재 목록이 없습니다.</p></td>
+									</tr>
+								 </c:if> 
+								 
+								 <c:if test="${not empty epaymentList}">
+								 <c:forEach items="${epaymentList }" var="dto">
+								 	<tr>
 									<td>${dto.num }</td>
 									<td>${dto.title }</td>
 									<td>${dto.draftname }</td>
 									<td>${dto.drafttemp }</td>
 									<td>${dto.approvaltemp }</td>
 									<td>${dto.draftdate }</td>
-									<td>${dto.result }</td>
+									<td>${dto.result }</td> 
 									<td></td>
 									<td><input type="button" value="상세보기" class="eb_viewBtn" title="${dto.num}"  data-toggle="modal" data-target="#myModal"></td>
 								</tr>
-						</c:forEach>		
+								</c:forEach>
+								</c:if>
 							</tbody>
 						
 						</table>
@@ -213,11 +209,17 @@ $(function(){
 						      <div class="modal-content">
 						        <div class="modal-header">
 						          <button type="button" class="close" data-dismiss="modal">&times;</button>
-						          <h4 class="modal-title">반려함</h4>
+						          <h4 class="modal-title">내 결재 보기</h4>
 						        </div>
 						        <div class="modal-body"  id="eb_modal" >
 						         
 						         <table  id="eb_modal_table">
+						         	<tr class="eb_modal_tr">
+						         		<td class="eb_modal_table_td_1">상태</td>
+						         		<td class="eb_modal_table_td" colspan="3"><span id="eb_viewResult"></span></td>
+						         	
+						         	</tr>
+						         
 						         	<tr class="eb_modal_tr">
 						         		<td class="eb_modal_table_td_1">문서 번호</td>
 						         		<td class="eb_modal_table_td"><span id="eb_viewNum"></span></td>
@@ -264,26 +266,7 @@ $(function(){
 					
 					
 					
-							<!-- page 처리 -->
-			 	
-			 	<div id="eb_page">
-					<c:if test="${pager.curBlock gt 1}">
-						<span class="eb_list" title="${pager.startNum-1}">[이전]</span>
-					</c:if>
-					
-					<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-						<span class="eb_list" title="${i}">${i}</span>
-					</c:forEach>
-					
-					<c:if test="${pager.curBlock lt pager.totalBlock}">
-						<span class="eb_list" title="${pager.lastNum+1}">[다음]</span>
-					</c:if>
-				</div>  
-					
-		 		  
-			  
-						  
-				<!-- page 처리 끝 -->		  
+		  
 				
 				</div>
 			</div>
