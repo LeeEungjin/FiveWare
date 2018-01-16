@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+#com_header{
+	width: 100%;
+    background-color: #ffdfe4;
+    height: 13%;
+}
+
+#com_icon{
+	height: 100%;
+	width: 5%;
+	background-color: #ff8080;
+	float: left;
+}
+
+#com_title{
+	height: 100%;
+	width: 15%;
+	background-color: #ffc8b0;
+	float: left;
+}
+
+#com_middle{
+	width: 100%;
+    background-color: #ffffcc;
+    height: 75%;
+}
+
+.middle_contents {
+	width: 90%;
+	height: 100%;
+	margin: 0 auto;
+	padding-top: 30px;
+}
+
+.sunday {
+	color: red;
+}
+.saturday {
+	color: blue;
+}
