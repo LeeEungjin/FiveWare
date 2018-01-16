@@ -83,9 +83,5 @@
   <select id="memberSelect" parameterType="String" resultType="MemberDTO">
   	select * from member where code=#{code}
   </select>
-<<<<<<< HEAD
-  
-=======
 
->>>>>>> jihyun17
   </mapper>

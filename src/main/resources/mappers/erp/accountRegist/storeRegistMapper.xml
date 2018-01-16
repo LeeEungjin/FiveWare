@@ -39,6 +39,10 @@
 	where R between #{startRow} and #{lastRow}
   </select>
   
+  <select id="allStoreList" resultType="storeRegistDTO">
+  	select * from storeregist
+  </select>
+  
   <select id="totalCount" resultType="int">
   select nvl(count(code),0) from storeRegist 
   </select>

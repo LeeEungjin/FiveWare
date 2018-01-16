@@ -43,6 +43,18 @@ public class StoreRegistService {
 		return result;
 	}
 	
+	//allStoreList
+	public ModelAndView allStoreList()throws Exception{
+		ModelAndView mv=new ModelAndView();
+		List<StoreRegistDTO> allStoreList=new ArrayList<StoreRegistDTO>();
+		
+		allStoreList=storeRegistDAO.allStoreList();
+		
+		mv.addObject("allStoreList", allStoreList);
+		
+		return mv;
+	}
+	
 	
 	//list
 	public ModelAndView selectList(ListData listData) throws Exception{

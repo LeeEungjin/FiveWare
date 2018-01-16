@@ -91,7 +91,9 @@ a:visited, a:hover, a:active {
 		            <tr>
 		                <td colspan="7">
 		                	<div class="top-banner" style="float: left;">
-		                        <input class='btn btn-sm btn-info' type="button" value="회의실예약" onclick='reservMeeting()' /> 
+		                		<c:if test="${title ne 'GroupWare'}">
+		                        	<input class='btn btn-sm btn-info' type="button" value="회의실예약" onclick='reservMeeting()' /> 
+		                    	</c:if>
 		                    </div>
 		                    <button type='button' class='btn btn-sm btn-warning' id='moveFastPre' onclick="moveFastMonthPre()">«</button>
 		                    <button type='button' class='btn btn-sm btn-warning' id='movePre' onclick="moveMonthPre()">‹</button>    

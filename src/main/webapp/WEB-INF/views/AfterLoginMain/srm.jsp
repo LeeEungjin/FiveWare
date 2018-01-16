@@ -144,11 +144,24 @@
                   
                   <div class="srm_jk_srm">
                      
-                     <a href="#">
+                     <a href="./srm/store/allStoreInfo">
                         <span class="srm_jk_inerp"> 
                            <span class="srm_jk_bigdiv">전체 지점정보</span>
                         </span>
                      </a>
+                     
+                     <a href="./srm/store/allStoreList">
+                        <span class="srm_jk_smalldiv">
+                           <span class="srm_jk_writing">전체 지점정보</span>
+                        </span>
+                     </a>
+                     
+                     <a href="./srm/store/mapTest">
+                        <span class="srm_jk_smalldiv">
+                           <span class="srm_jk_writing">지도 테스트</span>
+                        </span>
+                     </a>
+                     
                   </div>
                   
                   <div class="srm_jk_srm">
