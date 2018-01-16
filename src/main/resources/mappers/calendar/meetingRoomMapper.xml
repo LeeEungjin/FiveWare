@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="meetingRoomMapper">
+  	<select id="meetingSearchList" parameterType="MeetingRoomDTO" resultType="MeetingRoomDTO">
+  		select * from meetingRoom
+  		where meetingName=#{meetingName} and reservDate=#{reservDate}
+  	</select>
+  	
+  	<select id="meetingRoomList">
+  	
+  	</select>
+  
+  </mapper>

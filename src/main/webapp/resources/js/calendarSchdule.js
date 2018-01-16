@@ -3,9 +3,15 @@ var locationMonth = 0; // 현재 달력위치
 var locationYear = 0; // 현재 년도위치
 var locationWeek = 0; // 현재 주차위치
 
+// 숫자 자리수
+function pad(n, width) {
+	  n = n + '';
+	  return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
+}
+
 // 회의실 찾기
 function meetingSearch() {
-	var meeting = document.getElementById('meetingRoom').value;
+	var meeting = document.getElementById('meetingName').value;
 	var reserv = document.getElementById('reservDate').value;
 	
 	if(meeting.trim() == '' || meeting.trim().length == 0) {
@@ -16,25 +22,30 @@ function meetingSearch() {
 		return false;
 	}
 	
-	////////////////////요기 할차례/////////////////////////////////////////
 	$.ajax({
 		url: './meetingSearch',
 		type: 'post',
 		async: false,
-		data : $('#frmSchdule').serialize(),
-		success: function(msg) {
-			if(msg.isc) {
-				swal('저장', '성공하였습니다');
-			}else {
-				swal('저장', '실패하였습니다');
+		data : {
+			meetingName : meeting,
+			reservDate : reserv
+		},
+		success: function(data) {
+			var time = [];
+			$(data).each(function(i,item) {
+				console.log(item[i]);
+			});
+			for (var i=0; i<=9; i++) {
+				$('#meetingResult').append("<div class='timeBox able'>"+pad((i+9), 2)+":00</div>");
 			}
+			
 		}
 	});
 }
 
 //회의실 선택 효과
 function meetingRoom(index) {
-	var meeting = document.getElementById('meetingRoom');
+	var meeting = document.getElementById('meetingName');
 	var rooms = document.getElementsByClassName('room');
 	for(var i=0; i<rooms.length;i++) {
 		if(index == i) {

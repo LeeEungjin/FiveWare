@@ -23,5 +23,6 @@
   		<typeAlias type="com.five.ware.groupware.epayment.EpaymentDTO" alias="EpaymentDTO"/>
   		<typeAlias type="com.five.ware.calendar.CalendarDTO" alias="CalendarDTO"/>
   		<typeAlias type="com.five.ware.calendar.CalendarEventDTO" alias="CalendarEventDTO"/>
+  		<typeAlias type="com.five.ware.meeting.MeetingRoomDTO" alias="MeetingRoomDTO"/>
   	</typeAliases>
   </configuration>

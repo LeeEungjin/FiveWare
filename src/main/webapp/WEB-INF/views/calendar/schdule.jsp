@@ -57,6 +57,19 @@ a:visited, a:hover, a:active {
 	color: #fff;
 	box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2);
 }
+
+#meetingResult {
+	max-height: 100px;
+	margin: 20px 0;
+}
+
+.timeBox {
+	display: inline-block;
+	border: 1px solid gray;
+	margin: 5px 2.5px;
+	padding: 5px 10px;
+	cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -203,11 +216,11 @@ a:visited, a:hover, a:active {
 		                
 		                <!-- modal Body -->
 		                <div class="modal-body">
-		                    <form class='form-margin40' role='form' action="#" method='post' id='frmSchdule'>
+		                    <form class='form-margin40' role='form' action="#" method='post' id='frmMeeting'>
 		                     	<div class='form-group'>
 		                            <label>예약날짜</label> 
 		                            <input type='date' class='form-control' id='reservDate' name='reservDate'>
-		                            <input type="hidden" id="meetingRoom" name="meetingRoom" value="">
+		                            <input type="hidden" id="meetingName" name="meetingName" value="">
 		                        </div>
 		                     	
 		                     	<table class="table table-bordered meetingTable">
@@ -225,7 +238,15 @@ a:visited, a:hover, a:active {
 		                            <input type="button" class='form-control' onclick="meetingSearch()" value="V">
 		                        </div>
 		                     	
-		                        <div id="meetingResult"></div>
+	                        	<input type="hidden" id="reservStartTime" name="reservStartTime" value="">
+	                        	<input type="hidden" id="reservEndTime" name="reservEndTime" value="">
+		                        <div id="meetingResult">
+		                        	<!-- <span class="timeBox">09:00</span>
+		                        	<span class="timeBox">10:00</span>
+		                        	<span class="timeBox">11:00</span>
+		                        	<span class="timeBox">12:00</span>
+		                        	<span class="timeBox">13:00</span> -->
+		                        </div>
 		                        
 		                        <!-- modal Footer -->
 		                        <div class='modal-footer'>
