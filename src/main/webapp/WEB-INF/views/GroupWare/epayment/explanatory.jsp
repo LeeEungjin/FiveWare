@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 <c:import url="${url}/resources/temp/ref.jsp"></c:import> 
- 
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
  <link href="${url}/resources/css/GroupWare/epayment/explanatory.css" rel="stylesheet">
   <link href="${url}/resources/css/GroupWare/epayment/explanatory_modal.css" rel="stylesheet">
  <script src="${url }/resources/SE2/js/HuskyEZCreator.js"></script>
@@ -58,6 +58,7 @@
 		
 		$("#ar_signLine").click(function(){
 			 $("#ar_tempWrap").html(""); 
+			 
 			$.ajax({
 				type:"GET",
 				url:"./signData",
@@ -154,18 +155,23 @@
 			alert(code1);
 		 });
 		 
+		 //////////////////////////////////////
+		 function test(){
+			 var tablel=document.getElementsByClassName("ar_resultA");
+			 for(var i=0; i<tablel.length; i++){
+				 tablel[i].innerHTML="";
+				 
+			 }
+			 
+			 tablel[tablel.length-1].innerHTML="최종";
+		 }
+		 ///////////////////////////////////
+		 
 		 $("#ar_signdelete").click(function(){
-			 alert("#"+code1);
 			 
-		    var num=	 $("#"+code1).attr("accesskey");
-		    
-			if($("#"+code1).html()=="최종"){
-				
-				$("#ar_tableBlank"+num-1).html("최종");
-			}
-		    
-			 
-			$("#"+code1).html("");
+			$("#"+code1).html(""); 
+			
+			test();
 		 });
 		
 		//SmartEditorend
@@ -180,6 +186,42 @@
 					 $(this).css("background-position", "-54px 0");
 				}
 		 });
+			
+			$("#ar_signInsertBtn").click(function(){
+				var num=document.getElementsByClassName("ar_resultA");
+				var mem = document.getElementsByClassName("ar_dataname");
+				var rank = document.getElementsByClassName("ar_datarank");
+				var temp = document.getElementsByClassName("ar_datatemp");
+				var code = document.getElementsByClassName("tableLines");
+				
+				$("#ar_signBoxBasis").html("");
+				
+				if(num.length==0){
+					alert("결재선을 선택하세요.");
+				}else{
+					
+					var sign="<div id='ar_signBoxBasis'>";
+					sign=sign + "<div id='ar_signTemp'> 기 안</div>";
+					sign = sign+"<div id='ar_singMember'><input type=text name=drafttemp readonly=readonly value='${member.temp}'><input type=text name=draftrank readonly=readonly value='${member.rank }'><input type=text name=draftname readonly=readonly value='${member.name }'></div>";
+					sign= sign+"<input type=hidden value='${member.code}' name='draftcode'>";
+					sign= sign+"</div>";
+					
+					$("#ar_signBoxDiv").append(sign);
+					
+					for(var i=0; i<num.length; i++){
+						sign= "<div id='ar_signBoxBasis'>";
+						
+						sign= sign+"<div id='ar_signTemp'><input type=text name=approvaltemp readonly=readonly value="+temp[i].value+"></div>";
+						sign= sign+"<div id='ar_singMember'><input type=text name=approvalrank readonly=readonly value="+rank[i].value+"><input type=text name=approval readonly=readonly value="+mem[i].value+"></div>";
+						sign= sign+"<input type=hidden value="+code[i].value+" name=approvalcode>";
+						sign= sign+"</div>";
+						
+						$("#ar_signBoxDiv").append(sign);
+					}					
+					
+				}
+				
+			});
 	});
 	
 		var i =0;
@@ -191,14 +233,21 @@
 				"code":code
 			}, success:function(data){
 				
-				if(data.code==$(".ar_resultA").attr("title")){
-					alert("이미 결재선에 등록되어있습니다.");
-				}else{
+					var boo = true;
+				$(".ar_resultA").each(function(){
+					
+					if(data.code==$(this).attr("title")){
+						alert("이미 결재선에 등록되어있습니다.");
+						boo=false;
+					}
+				});
+				
+				if(boo){
 					$("#ar_resultTable .ar_resultA").html("");
 					var tr = "<tr class='tableLines' id="+data.code+" accesskey="+i+">";
 					tr = tr + "<td id='ar_tableBlank"+i+"'title="+data.code+" class='ar_tabletds ar_resultA' accesskey="+i+" >최종</td>";
 					tr = tr + "<td id='ar_tabletd2' class='ar_tabletds'>결재</td>";
-					tr = tr + "<td id='ar_tabletd3' class='ar_tabletds'>"+data.name+ data.rank+"기안"+data.temp+"</td>"
+					tr = tr + "<td id='ar_tabletd3' class='ar_tabletds'>"+"<input type=text readonly=readonly class=ar_dataname value="+data.name+"> <input type=text  readonly=readonly class=ar_datarank value="+ data.rank+"> 기안 <input type=text readonly=readonly class=ar_datatemp value="+data.temp+"></td>"
 					tr = tr + "</tr>";
 					
 					$("#ar_resultTableBody").append(tr);
@@ -294,7 +343,8 @@
 				</div>
 				<div id="ar_signBoxBasis">
 					<div id="ar_signTemp"> 기 안</div>
-					<div id="ar_singMember">${member.name }</div>
+					<div id="ar_singMember"><input type=text name=approvaltemp readonly=readonly value='${member.temp}'><input type=text name=approvaltemp readonly=readonly value='${member.name }'></div>
+					<input type=hidden value="${member.code}" name="draftcode">
 				</div>
 				<!-- for문 돌리기(결재선) -->
 				<input type="hidden" name="approval" value="test">
