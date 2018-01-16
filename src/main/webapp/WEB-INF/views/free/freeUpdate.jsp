@@ -13,6 +13,18 @@
 <script src="../resources/SE2/js/HuskyEZCreator.js"></script>
 <script type="text/javascript">
 	$(function() {
+		$.ajax({
+			type : "GET",
+			url : "./storeList",
+			success:function(data){
+				var i=0;
+				$(data).each(function(){
+					$("#free_update_store_list").append("<option value="+data[i].store+">"+data[i]+"</option>");
+					i++;
+				});
+			}
+		});
+		
 		//SmartEditor start 
 		var editor_object = [];
 
@@ -112,22 +124,17 @@
 				      </tr>
 				      <tr>
 				      	<th>target</th>
-				        <c:if test="${member.kind eq 'store'}">
+				        <c:if test="${kind eq 'store'}">
 					        <th>
-					        	<select name="target" class="form-control free_temp_select">
-					        	   <option value="전체">전체공개</option>
-							       <option value="회계부">회계부</option>
-							       <option value="총무부">총무부</option>
-							       <option value="인사부">인사부</option>
-							       <option value="영업/구매부">영업/구매부</option>
-							       <option value="마케팅부">마케팅부</option>
+					        	<select id="free_update_store_list" name="target" class="form-control free_temp_select">
+					        	   
 							    </select>
 							    <input value="${member.store}" name="temp" type="hidden">
 					        </th>
 				        </c:if>
 				        
 				        <!-- 나중에 전체 지점정보에서 리스트 가져와서 option값으로 뿌려주기 -->
-				        <c:if test="${member.kind eq 'member'}">
+				        <c:if test="${kind eq 'member'}">
 					        <th>
 					        	<select name="target" class="form-control free_temp_select">
 					        	   <option value="전체">전체공개</option>
@@ -170,6 +177,7 @@
 				</c:forEach>
 			</div>
 			<button type="button" class="btn btn-default free_update_btn">수정</button>
+			<a href="freeList"><button type="button" class="btn btn-default">목록</button></a>
 		</div>
 		</form>
 	</div>

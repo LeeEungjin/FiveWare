@@ -81,6 +81,8 @@
 		
 		<form id="reply_frm" action="freeReply" method="post"  enctype="multipart/form-data">
 		
+		<input type="hidden" name="ref" value="${reply.num}">
+		
 		<div id="reply_middle">
 			<div id="reply_sub_title"></div>
 			<div id="reply_contents">
@@ -88,10 +90,22 @@
 				    <thead>
 				      <tr>
 				      	<th>target</th>
-				      	<th><input type="text" value="${reply.temp}" readonly="readonly" class="form-control reply_write_input"></th>
+				      	<th><input name="target" type="text" value="${reply.temp}" readonly="readonly" class="form-control reply_write_input"></th>
 				      
 				        <th>작성자</th>
 				        <th><input value="${member.name}" readonly="readonly" name="writer" type="text" class="form-control reply_write_input"></th>
+				        
+				        <c:if test="${kind eq 'member'}">
+				        	<th>부서</th>
+				        	<th><input value="${member.temp}" readonly="readonly" name="temp" type="text" class="form-control reply_write_input"></th>
+				        </c:if>
+				        
+				        <c:if test="${kind eq 'store'}">
+				        	<th>지점</th>
+				        	<th><input value="${member.store}" readonly="readonly" name="temp" type="text" class="form-control reply_write_input"></th>
+				        </c:if>
+				        
+				        
 				      </tr>
 				      
 				      <tr>

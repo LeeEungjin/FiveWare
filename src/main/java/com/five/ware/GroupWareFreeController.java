@@ -2,6 +2,8 @@ package com.five.ware;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.five.ware.community.FreeDTO;
 import com.five.ware.community.FreeService;
+import com.five.ware.erp.storeRegist.StoreRegistDTO;
 import com.five.ware.util.ListData;
 
 @Controller
@@ -23,6 +26,14 @@ public class GroupWareFreeController {
 	
 	@Autowired
 	private FreeService freeService;
+	
+	@RequestMapping(value="storeList")
+	@ResponseBody
+	public List<String> storeList()throws Exception{
+		List<String> storeList=freeService.storeList();
+		
+		return storeList;
+	}
 	
 	//list
 	@RequestMapping(value="freeList")
