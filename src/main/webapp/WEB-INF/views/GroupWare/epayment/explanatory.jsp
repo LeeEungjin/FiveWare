@@ -192,7 +192,7 @@
 				var mem = document.getElementsByClassName("ar_dataname");
 				var rank = document.getElementsByClassName("ar_datarank");
 				var temp = document.getElementsByClassName("ar_datatemp");
-				var code = document.getElementsByClassName("tableLines");
+				var code = document.getElementsByClassName("ar_tablecode1");
 				
 				$("#ar_signBoxBasis").html("");
 				
@@ -202,7 +202,7 @@
 					
 					var sign="<div id='ar_signBoxBasis'>";
 					sign=sign + "<div id='ar_signTemp'> 기 안</div>";
-					sign = sign+"<div id='ar_singMember'><input type=text name=drafttemp readonly=readonly value='${member.temp}'><input type=text name=draftrank readonly=readonly value='${member.rank }'><input type=text name=draftname readonly=readonly value='${member.name }'></div>";
+					sign = sign+"<div id='ar_singMember'><input type=text readonly=readonly value='${member.temp}'><input type=text name=draftrank readonly=readonly value='${member.rank }'><input type=text readonly=readonly value='${member.name }'></div>";
 					sign= sign+"<input type=hidden value='${member.code}' name='draftcode'>";
 					sign= sign+"</div>";
 					
@@ -212,7 +212,7 @@
 						sign= "<div id='ar_signBoxBasis'>";
 						
 						sign= sign+"<div id='ar_signTemp'><input type=text name=approvaltemp readonly=readonly value="+temp[i].value+"></div>";
-						sign= sign+"<div id='ar_singMember'><input type=text name=approvalrank readonly=readonly value="+rank[i].value+"><input type=text name=approval readonly=readonly value="+mem[i].value+"></div>";
+						sign= sign+"<div id='ar_singMember'><input type=text name=approvalrank readonly=readonly value="+rank[i].value+"><input type=text name=approvalname readonly=readonly value="+mem[i].value+"></div>";
 						sign= sign+"<input type=hidden value="+code[i].value+" name=approvalcode>";
 						sign= sign+"</div>";
 						
@@ -245,6 +245,7 @@
 				if(boo){
 					$("#ar_resultTable .ar_resultA").html("");
 					var tr = "<tr class='tableLines' id="+data.code+" accesskey="+i+">";
+					tr = tr +"<input type=hidden class=ar_tablecode1 value="+data.code+">";
 					tr = tr + "<td id='ar_tableBlank"+i+"'title="+data.code+" class='ar_tabletds ar_resultA' accesskey="+i+" >최종</td>";
 					tr = tr + "<td id='ar_tabletd2' class='ar_tabletds'>결재</td>";
 					tr = tr + "<td id='ar_tabletd3' class='ar_tabletds'>"+"<input type=text readonly=readonly class=ar_dataname value="+data.name+"> <input type=text  readonly=readonly class=ar_datarank value="+ data.rank+"> 기안 <input type=text readonly=readonly class=ar_datatemp value="+data.temp+"></td>"
@@ -343,12 +344,11 @@
 				</div>
 				<div id="ar_signBoxBasis">
 					<div id="ar_signTemp"> 기 안</div>
-					<div id="ar_singMember"><input type=text name=approvaltemp readonly=readonly value='${member.temp}'><input type=text name=approvaltemp readonly=readonly value='${member.name }'></div>
+					<div id="ar_singMember"><input type=text  readonly=readonly value='${member.temp}'><input type=text  readonly=readonly value='${member.name }'></div>
 					<input type=hidden value="${member.code}" name="draftcode">
 				</div>
 				<!-- for문 돌리기(결재선) -->
-				<input type="hidden" name="approval" value="test">
-				<input type="hidden" name="approvaltemp" value="test">
+				
 		</div>
 	</div>
 	
@@ -356,7 +356,7 @@
 		<table id="ar_signTable" border="1px">
 			<tr>
 				<td class="ar_tableTitle">문서번호</td>
-				<td class="ar_tableInput">자동채번</td>
+				<td class="ar_tableInput"><input type="text"  class="ar_draftInput" value="${docunum }" name="docunum" readonly="readonly" ></td>
 				<td class="ar_tableTitle">기안일자</td>
 				<td class="ar_tableInput" ><input type ="text"  name="draftdate" class="ar_draftInput" readonly="readonly" value="${sysdate }"></td>
 			</tr>

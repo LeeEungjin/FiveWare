@@ -3,45 +3,29 @@ package com.five.ware.groupware.epayment;
 public class EpaymentDTO {
 
 	private int num;
+	private String docunum;
 	private String draftdate;
+	private String draftcode;
 	private String draftname;
 	private String drafttemp;
+	private String draftrank;
 	private String kind;
 	private String title;
 	private String contents;
-	private String result;
-	private String approval;
-	private String approvaltemp;
-	private String draftcode;
-	private String approvalcode;
-	private String approvalrank;
-	private String draftrank;
+	private String state;
 	
 	
-	
-	public String getDraftcode() {
-		return draftcode;
-	}
-	public void setDraftcode(String draftcode) {
-		this.draftcode = draftcode;
-	}
-	public String getApprovalcode() {
-		return approvalcode;
-	}
-	public void setApprovalcode(String approvalcode) {
-		this.approvalcode = approvalcode;
-	}
-	public String getApprovalrank() {
-		return approvalrank;
-	}
-	public void setApprovalrank(String approvalrank) {
-		this.approvalrank = approvalrank;
-	}
 	public String getDraftrank() {
 		return draftrank;
 	}
 	public void setDraftrank(String draftrank) {
 		this.draftrank = draftrank;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
 	}
 	public int getNum() {
 		return num;
@@ -49,11 +33,23 @@ public class EpaymentDTO {
 	public void setNum(int num) {
 		this.num = num;
 	}
+	public String getDocunum() {
+		return docunum;
+	}
+	public void setDocunum(String docunum) {
+		this.docunum = docunum;
+	}
 	public String getDraftdate() {
 		return draftdate;
 	}
 	public void setDraftdate(String draftdate) {
 		this.draftdate = draftdate;
+	}
+	public String getDraftcode() {
+		return draftcode;
+	}
+	public void setDraftcode(String draftcode) {
+		this.draftcode = draftcode;
 	}
 	public String getDraftname() {
 		return draftname;
@@ -85,26 +81,7 @@ public class EpaymentDTO {
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
-	public String getResult() {
-		return result;
-	}
-	public void setResult(String result) {
-		this.result = result;
-	}
-	public String getApproval() {
-		return approval;
-	}
-	public void setApproval(String approval) {
-		this.approval = approval;
-	}
-	public String getApprovaltemp() {
-		return approvaltemp;
-	}
-	public void setApprovaltemp(String approvaltemp) {
-		this.approvaltemp = approvaltemp;
-	}
 	
 	
-	
-	
+
 }

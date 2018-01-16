@@ -19,6 +19,7 @@
   		<typeAlias type="com.five.ware.erp.human.dili.MemberWorkDTO" alias="MemberWorkDTO"/>
   		<typeAlias type="com.five.ware.groupware.epayment.FormListDTO" alias="FormListDTO"/>
   		<typeAlias type="com.five.ware.groupware.epayment.EpaymentDTO" alias="EpaymentDTO"/>
+  		<typeAlias type="com.five.ware.groupware.epayment.EpaymentLeaveDTO" alias="EpaymentLeaveDTO"/>
   		
   	</typeAliases>
   </configuration>
