@@ -14,6 +14,18 @@
 <script type="text/javascript">
 	$(function() {
 		
+		$.ajax({
+			type : "GET",
+			url : "./storeList",
+			success:function(data){
+				var i=0;
+				$(data).each(function(){
+					$("#free_store_list").append("<option value="+data[i]+">"+data[i]+"</option>");
+					i++;
+				});
+			}
+		});
+		
 		//SmartEditor start 
 		var editor_object = [];
 
@@ -66,6 +78,8 @@
 			$("#" + id).remove();
 			index--;
 		});
+		
+		
 	});
 </script>
 
@@ -89,7 +103,7 @@
 				      <tr>
 				      	<th>target</th>
 				      	
-				      	<c:if test="${member.kind eq 'store'}">
+				      	<c:if test="${kind eq 'store'}">
 					        <th>
 					        	<select name="target" class="form-control free_temp_select">
 					        	   <option value="전체">전체공개</option>
@@ -104,15 +118,10 @@
 				        </c:if>
 				        
 				        <!-- 나중에 전체 지점정보에서 리스트 가져와서 option값으로 뿌려주기 -->
-				        <c:if test="${member.kind eq 'member'}">
+				        <c:if test="${kind eq 'member'}">
 					        <th>
-					        	<select name="target" class="form-control free_temp_select">
-					        	   <option value="전체">전체공개</option>
-							       <option value="강남점">강남점</option>
-							       <option value="영등포점">영등포점</option>
-							       <option value="신사점">신사점</option>
-							       <option value="용산점">용산점</option>
-							       <option value="신림점">신림점</option>
+					        	<select id="free_store_list" name="target" class="form-control free_temp_select">
+							    	<option value="전체">전체공개</option>
 							    </select>
 							    <input value="${member.temp}" name="temp" type="hidden">
 					        </th>
@@ -144,6 +153,7 @@
 			<input type="button"  class="btn btn-default" value="file" id="free_file_add">
 			<div id="free_file_div"></div>
 			<button type="button" class="btn btn-default free_write_btn">등록</button>
+			<a href="freeList"><button type="button" class="btn btn-default">목록</button></a>
 		</div>
 		</form>
 		

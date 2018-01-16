@@ -5,6 +5,10 @@
   
 <mapper namespace="freeMapper">
 
+	<select id="storeList" resultType="String">
+		select store from storeregist
+	</select>
+
 	<insert id="freeInsert" parameterType="com.five.ware.community.FreeDTO">
 		<selectKey keyProperty="num" resultType="int" order="BEFORE">
   			select notice_seq.nextval from dual
@@ -69,7 +73,7 @@
   			where target=#{target}
   		</if>
   		
-  		order by num desc) N)
+  		order by ref desc, step asc) N)
   		where R between #{startRow} and #{lastRow}
   	</select>
   	
