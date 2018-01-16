@@ -6,7 +6,15 @@ public class MeetingRoomDTO {
 	private String reservDate;
 	private String reservStartTime;
 	private String reservEndTime;
+	private int eventId;
 	
+	
+	public int getEventId() {
+		return eventId;
+	}
+	public void setEventId(int eventId) {
+		this.eventId = eventId;
+	}
 	public String getMeetingId() {
 		return meetingId;
 	}

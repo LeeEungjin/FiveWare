@@ -247,7 +247,7 @@ a:visited, a:hover, a:active {
 		                     	</table>
 		                     	
 		                     	<div class='form-group'>
-		                            <input type="button" class='form-control' onclick="meetingSearch()" value="V">
+		                            <input type="button" class='form-control' onclick="meetingSearch()" value="예약 가능한 시간 찾기">
 		                        </div>
 		                     	
 	                        	<input type="hidden" id="reservStartTime" name="reservStartTime" value="">
@@ -259,11 +259,8 @@ a:visited, a:hover, a:active {
 		                        
 		                        <!-- modal Footer -->
 		                        <div class='modal-footer'>
-		                            <input type="button" class='btn btn-sm btn-warning' value="확인"
-		                                onclick="calendarSchduleAdd()" /> <input type="reset"
-		                                class='btn btn-sm btn-warning' value="초기화" /> <input
-		                                type='button' class='btn btn-sm btn-warning'
-		                                data-dismiss='modal' value="취소" />
+		                            <input type="button" class='btn btn-sm btn-warning' value="확인"onclick="meetingReserv()" /> 
+		                            <input type='button' class='btn btn-sm btn-warning' data-dismiss='modal' value="취소" />
 		                        </div>
 		                    </form>
 		                </div>

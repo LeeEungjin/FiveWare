@@ -49,6 +49,35 @@
 		        onclick="calendarModifyForm()" />
 		    <input type="button" class='btn btn-sm btn-warning' value="캘린더 삭제"
 		        onclick="calendarRemove()" />
+		        
+		    <!-- ************************회의실 생성/삭제****************************** -->
+		    
+		    <form action="./meetingRemove" method="post" id="frmMeetingRemove" style="margin-top: 50px;">
+		        <table class="table table-bordered">
+		            <tr>
+		                <th><input type='checkbox' onclick='checkAllDel(this.checked)' />전체</th>
+		                <th>회의실이름</th>
+		                <th>회의실코드</th>
+		            </tr>
+		            <c:forEach items="${meeting}" var="Mdto">
+		                <tr>
+		                    <td><input type='checkbox' name='chkVal' value="${Mdto.meetingId}" /></td>
+		                    <td><input type="hidden" name='titles' value="${Mdto.meetingName}" />
+		                        ${Mdto.meetingName}
+		                    </td>
+		                    <td>${Mdto.meetingId}</td>
+		                </tr>
+		            </c:forEach>
+		        </table>
+		    </form>
+		    
+		    <input type="button" class='btn btn-sm btn-warning' value="회의실 생성"
+		        onclick="calendarAddForm()" />
+		    <input type="button" class='btn btn-sm btn-warning' value="회의실 수정"
+		        onclick="calendarModifyForm()" />
+		    <input type="button" class='btn btn-sm btn-warning' value="회의실 삭제"
+		        onclick="calendarRemove()" />
+		    
 	    </div>
 	        
 	        

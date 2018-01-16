@@ -30,11 +30,34 @@ public class CalendarAjaxController {
 	private MeetingRoomService meetingRoomService;
 	
 	
+	@RequestMapping(value="meetingRoomInsert", method=RequestMethod.POST)
+	public Map<String, Boolean> meetingRoomInsert(MeetingRoomDTO meetingRoomDTO) {
+		/*System.out.println(meetingRoomDTO.getMeetingName());
+		System.out.println(meetingRoomDTO.getReservDate());
+		System.out.println(meetingRoomDTO.getReservEndTime());
+		System.out.println(meetingRoomDTO.getReservStartTime());*/
+		boolean isc = false;
+		int result = 0;
+		try {
+			result = meetingRoomService.insert(meetingRoomDTO);
+			if(result > 0) {
+				isc = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map<String, Boolean> map = new HashMap<String, Boolean>();
+		map.put("isc", isc);
+		
+		return map;
+		
+	}
 	
 	@RequestMapping(value="meetingSearch", method=RequestMethod.POST)
 	public List<MeetingRoomDTO> meetingSearch(MeetingRoomDTO meetingRoomDTO) {
 		
-		List<MeetingRoomDTO> ar = new ArrayList<MeetingRoomDTO>();
+		List<MeetingRoomDTO> ar = null;
 		try {
 			ar = meetingRoomService.searchList(meetingRoomDTO);
 		} catch (Exception e) {
@@ -55,7 +78,7 @@ public class CalendarAjaxController {
         List<CalendarEventDTO> items = new ArrayList<CalendarEventDTO>();
         
         try {
-			items = calendarEventService.selectList();
+			items = calendarEventService.selectList(calendarEventDTO.getCalendarId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

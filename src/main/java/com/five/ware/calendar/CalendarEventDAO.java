@@ -39,7 +39,7 @@ public class CalendarEventDAO {
 		return sqlSession.insert(NAMESPACE+"eventInsert", map);
 	}
 	
-	public List<CalendarEventDTO> selectList() throws Exception {
-		return sqlSession.selectList(NAMESPACE+"eventList");
+	public List<CalendarEventDTO> selectList(String calendarId) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"eventList", calendarId);
 	}
 }
