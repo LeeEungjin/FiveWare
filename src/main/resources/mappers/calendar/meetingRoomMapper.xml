@@ -7,6 +7,7 @@
   	<select id="meetingSearchList" parameterType="MeetingRoomDTO" resultType="MeetingRoomDTO">
   		select * from meetingRoom
   		where meetingName=#{meetingName} and reservDate=#{reservDate}
+  		order by reservStartTime asc
   	</select>
   	
   	<select id="meetingRoomList">

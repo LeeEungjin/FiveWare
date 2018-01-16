@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,10 +66,23 @@ a:visited, a:hover, a:active {
 
 .timeBox {
 	display: inline-block;
+	width: 70px;
+	height: 30px;
 	border: 1px solid gray;
 	margin: 5px 2.5px;
 	padding: 5px 10px;
-	cursor: pointer;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.able {
+	background-color: #fff !important;
+}
+
+.textContent {
+	color:red; 
+	font-size: 10px; 
+	padding: 2px 10px;
 }
 </style>
 </head>
@@ -160,11 +174,9 @@ a:visited, a:hover, a:active {
 		                        
 		                        <!-- modal Footer -->
 		                        <div class='modal-footer'>
-		                            <input type="button" class='btn btn-sm btn-warning' value="확인"
-		                                onclick="calendarSchduleAdd()" /> <input type="reset"
-		                                class='btn btn-sm btn-warning' value="초기화" /> <input
-		                                type='button' class='btn btn-sm btn-warning'
-		                                data-dismiss='modal' value="취소" />
+		                            <input type="button" class='btn btn-sm btn-warning' value="확인" onclick="calendarSchduleAdd()" /> 
+		                            <input type="reset"class='btn btn-sm btn-warning' value="초기화" /> 
+		                            <input type='button' class='btn btn-sm btn-warning' data-dismiss='modal' value="취소" />
 		                        </div>
 		                    </form>
 		                </div>
@@ -240,12 +252,9 @@ a:visited, a:hover, a:active {
 		                     	
 	                        	<input type="hidden" id="reservStartTime" name="reservStartTime" value="">
 	                        	<input type="hidden" id="reservEndTime" name="reservEndTime" value="">
-		                        <div id="meetingResult">
-		                        	<!-- <span class="timeBox">09:00</span>
-		                        	<span class="timeBox">10:00</span>
-		                        	<span class="timeBox">11:00</span>
-		                        	<span class="timeBox">12:00</span>
-		                        	<span class="timeBox">13:00</span> -->
+		                        
+		                        <div id="meetingResult" class='form-group'>
+		                        	<p class="textContent">*회의실 시간은 1시간을 기본으로 합니다</p>
 		                        </div>
 		                        
 		                        <!-- modal Footer -->

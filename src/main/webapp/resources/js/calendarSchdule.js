@@ -9,16 +9,32 @@ function pad(n, width) {
 	  return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
 }
 
+function timeSearch(time, n) {
+	var start = time+":00";
+	var end = (time+1)+":00";
+	$('#reservStartTime').val(start);
+	$('#reservEndTime').val(end);
+	
+	var len = document.getElementsByClassName('able').length;
+	for(var i=0; i<len; i++) {
+		if(i == n) {
+			$('#time'+i).css('border-color', 'red');
+		} else {
+			$('#time'+i).css('border-color', 'black');
+		}
+	}
+}
+
 // 회의실 찾기
 function meetingSearch() {
 	var meeting = document.getElementById('meetingName').value;
 	var reserv = document.getElementById('reservDate').value;
 	
-	if(meeting.trim() == '' || meeting.trim().length == 0) {
-		swal('회의실','선택해주세요');
-		return false;
-	} else if(reserv.trim() == '' || reserv.trim().length == 0) {
+	if(reserv.trim() == '' || reserv.trim().length == 0) {
 		swal('예약날짜','입력해주세요');
+		return false;
+	} else if(meeting.trim() == '' || meeting.trim().length == 0) {
+		swal('회의실','선택해주세요');
 		return false;
 	}
 	
@@ -31,14 +47,24 @@ function meetingSearch() {
 			reservDate : reserv
 		},
 		success: function(data) {
-			var time = [];
-			$(data).each(function(i,item) {
-				console.log(item[i]);
-			});
-			for (var i=0; i<=9; i++) {
-				$('#meetingResult').append("<div class='timeBox able'>"+pad((i+9), 2)+":00</div>");
-			}
+			$('#meetingResult').html("");
 			
+			var check = 0;
+			var index = 0;
+			for(var k=0; k<data.length; k++) {
+				for(var i=check; i<=9; i++) {
+					if(data[k].reservStartTime.split(':')[0] == pad((i+9),2)) {
+						$('#meetingResult').append("<input type='text' class='form-control timeBox' value='"+pad((i+9),2)+":00' disabled>");
+						if(k != data.length-1) {
+							check = i+1;
+							k++;
+						}
+					} else {
+						$('#meetingResult').append("<input type='text' id='time"+(index)+"' class='timeBox able' readonly='readonly' onclick='timeSearch("+pad((i+9),2)+", "+(index)+")' value='"+pad((i+9),2)+":00'>");
+						index++;
+					}
+				}
+			}
 		}
 	});
 }
