@@ -1,6 +1,6 @@
 package com.five.ware;
 
-import java.io.File ;  
+import java.io.File ;   
 
 import javax.servlet.http.HttpSession;
 
@@ -25,17 +25,21 @@ import com.five.ware.util.FileSaver;
 @RequestMapping(value="/file/**")
 public class FileController {
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> eunbi2
 
 		
 
 /*	@RequestMapping(value="fileDown")
 	public ModelAndView fileDown(NoticeDTO noticeDTO, HttpSession session) throws Exception	{
 
-=======
+
 	@RequestMapping(value="fileDown")
 	public ModelAndView fileDown(CommunityDTO communityDTO, HttpSession session) throws Exception	{
 		
->>>>>>> master
+
 		String filePath = session.getServletContext().getRealPath("resources/upload");
 		System.out.println("filePath : " +filePath);
 		
@@ -88,5 +92,5 @@ public class FileController {
 		return "redirect:./"+photoDTO.getCallback()+photoDTO.getCallback_func()+stringBuffer.toString();
 	}*/
 	
-	
+*/	
 }

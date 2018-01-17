@@ -99,12 +99,19 @@
 			</div>
 			
 			<!-- -------------------- -->
-				<div class="fw_menu" data-toggle="collapse" data-target="#sub3" title="sub3" >
-					수신함
-				<div class="fw_arrow sub3" >
+					<div class="fw_menu" data-toggle="collapse" data-target="#sub3" title="sub3" >
+						수신함
+					<div class="fw_arrow sub3">
+					∨
+					</div>
+					</div>
+			
+				<div class="fw_subsub collapse"  id="sub3">
+					<ul>
+						<li><a href="./epaymentReceive">수신함</a></li>
 					
+					</ul>
 				</div>
-			</div>
 			
 		
 </div>
@@ -144,6 +151,7 @@
 						
 							<select id="ar_searchTitle" name="kind">
 								<option value="title">문서 제목</option>
+								<option value="kind">문서 유형</option>
 								<option value="draftdate">기안 날짜</option>
 								<option value="draftname">기안자</option>
 							</select>

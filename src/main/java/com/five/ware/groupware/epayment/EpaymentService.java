@@ -71,6 +71,10 @@ public class EpaymentService {
 
 	}
 	
+<<<<<<< HEAD
+=======
+	
+>>>>>>> eunbi2
 
 	//epayment List
 	public ModelAndView epaymentList(ListData listData) throws Exception{

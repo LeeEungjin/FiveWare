@@ -2,7 +2,7 @@ package com.five.ware.groupware.epayment;
 
 
 
-import java.util.List ; 
+import java.util.List ;  
 import java.util.HashMap;
 
 import java.util.Map;
@@ -12,11 +12,20 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> eunbi2
 import com.five.ware.util.ListData;
 import com.five.ware.util.RowNum;
 
 import com.five.ware.util.ListData;
 import com.five.ware.util.RowNum;
+<<<<<<< HEAD
+=======
+
+>>>>>>> eunbi2
 import com.five.ware.erp.human.member.MemberDTO;
 
 @Repository
@@ -53,6 +62,10 @@ public class EpaymentDAO {
 		return temps;
 	}
 
+<<<<<<< HEAD
+=======
+	
+>>>>>>> eunbi2
 	//myEpaymentList
 	public List<EpaymentDTO> myEpaymentList(RowNum rowNum, ListData listData) throws Exception{
 		Map<String, Object> map=new HashMap<String, Object>();
