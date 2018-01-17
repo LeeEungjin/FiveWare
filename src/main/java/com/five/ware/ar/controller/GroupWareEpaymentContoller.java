@@ -108,6 +108,24 @@ public class GroupWareEpaymentContoller {
 		return mv;
 	}
 	
+/*	@RequestMapping(value="epaymentInsert", method=RequestMethod.POST)
+	public ModelAndView epaymentInsert(EpaymentDTO epaymentDTO, String [] approvalcode, String [] approvalname, String [] approvaltemp, String [] approvalrank) throws Exception{
+		
+		for(int i=0; i<approvalcode.length; i++){
+			System.out.println(approvalcode[i]);
+			System.out.println(approvalname[i]);
+			System.out.println(approvaltemp[i]);
+			System.out.println(approvalrank[i]);
+		}
+		ModelAndView mv = new ModelAndView();
+		
+		
+		mv.setViewName("common/result");
+		
+		return mv;
+	}*/
+	
+	
 	@RequestMapping(value="epaymentInsert", method=RequestMethod.POST)
 	public ModelAndView epaymentInsert(EpaymentDTO epaymentDTO, EpaymentLeaveDTO epaymentLeaveDTO) throws Exception{
 		int result = epaymentService.epaymentInsert(epaymentDTO);

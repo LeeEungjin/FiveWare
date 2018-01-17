@@ -16,11 +16,6 @@ public class EpaymentLeaveService {
 		String approvaltemp = epaymentLeaveDTO.getApprovaltemp();
 		String approvalrank = epaymentLeaveDTO.getApprovalrank();
 		
-		System.out.println(approvalcode);
-		System.out.println(approvalname);
-		System.out.println(approvaltemp);
-		System.out.println(approvalrank);
-		
 		String code[] = approvalcode.split(",");
 		String name[]=approvalname.split(",");
 		String temp[] = approvaltemp.split(",");
