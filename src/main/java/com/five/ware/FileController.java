@@ -25,10 +25,6 @@ import com.five.ware.util.FileSaver;
 @RequestMapping(value="/file/**")
 public class FileController {
 
-<<<<<<< HEAD
-=======
-
->>>>>>> eunbi2
 
 		
 
@@ -92,5 +88,5 @@ public class FileController {
 		return "redirect:./"+photoDTO.getCallback()+photoDTO.getCallback_func()+stringBuffer.toString();
 	}*/
 	
-*/	
+
 }
