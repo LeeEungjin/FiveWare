@@ -1,10 +1,10 @@
 package com.five.ware.ar.controller;
 
-<<<<<<< HEAD
+
 import java.io.BufferedReader;
-=======
+
 import java.io.BufferedReader; 
->>>>>>> eunbi2
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;

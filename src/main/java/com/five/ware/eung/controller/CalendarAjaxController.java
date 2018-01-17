@@ -1,12 +1,11 @@
 package com.five.ware.eung.controller;
 
 
-<<<<<<< HEAD
-import java.io.IOException; 
-=======
+
 import java.io.IOException;  
 
->>>>>>> eunbi2
+import java.io.IOException;  
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
