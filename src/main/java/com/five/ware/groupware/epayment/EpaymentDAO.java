@@ -2,7 +2,7 @@ package com.five.ware.groupware.epayment;
 
 
 
-import java.util.List; 
+import java.util.List ; 
 import java.util.HashMap;
 
 import java.util.Map;
@@ -12,12 +12,11 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-<<<<<<< HEAD
+
 import com.five.ware.util.ListData;
 import com.five.ware.util.RowNum;
-=======
+
 import com.five.ware.erp.human.member.MemberDTO;
->>>>>>> arin
 
 @Repository
 public class EpaymentDAO {
@@ -52,9 +51,7 @@ public class EpaymentDAO {
 		
 		return temps;
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+
 	
 	//myEpaymentList
 	public List<EpaymentDTO> myEpaymentList(RowNum rowNum, ListData listData) throws Exception{
@@ -67,7 +64,7 @@ public class EpaymentDAO {
 		
 		return sqlSession.selectList(NAMESPACE+"myEpaymentLit", map);
 	}
->>>>>>> eunbi2
+
 
 	//list
 	public List<EpaymentDTO> epaymentList(RowNum rowNum, ListData listData) throws Exception{
@@ -84,8 +81,7 @@ public class EpaymentDAO {
 	//totalCount
 	public int totalCount(RowNum rowNum) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"totalCount", rowNum);
-
-=======
+	}
 	
 	public List<MemberDTO> tempMember(String temp) throws Exception{
 		List<MemberDTO> members=sqlSession.selectList(NAMESPACE+"tempMember", temp);
@@ -97,6 +93,6 @@ public class EpaymentDAO {
 		MemberDTO memberDTO = sqlSession.selectOne(NAMESPACE+"memberSelect", code);
 		
 		return memberDTO;
->>>>>>> arin
+
 	}
 }

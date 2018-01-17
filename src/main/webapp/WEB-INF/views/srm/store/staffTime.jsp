@@ -66,7 +66,7 @@
 				<ul>
 					<li><a href="${pageContext.request.contextPath}/member/storeMyPage">매장 정보</a></li>
 					<li><a href="${pageContext.request.contextPath}/srm/staff">직원 관리</a></li>
-					<li><a href="${pageContext.request.contextPath}/srm/staffTime">직원 출/퇴근 조회</a></li>
+					<li><a href="${pageContext.request.contextPath}/srm/staffTime?store=${member.store}">직원 출/퇴근 조회</a></li>
 				</ul>
 			</div>
 			
@@ -109,12 +109,7 @@
 				<div id="eb_contents_box">
 				 <div class="eb_blank"></div>
 				 <div id="eb_selectBox">	
-						  	<select name="kind" >
-						  		<option >이름</option>
-						  		<option >날짜</option>
-						  	</select>
-						  	
-						   	<input type="text" name="search">
+						 <input type="date" name="search">~<input type="date" name="search">
 						  <button class="btn btn-default">search</button>
 					</div>
 				</div> 
@@ -135,7 +130,15 @@
 						 </thead>
 						    
 						    <tbody class="eb_chitTable">
-						    
+						    	<c:forEach items="${list }" var="dto">
+						    		<tr>
+						    			<td>${dto.num}</td>
+						    			<td>${dto.regdate}</td>
+						    			<td>${dto.startTime}</td>
+						    			<td>${dto.lastTime}</td>
+						    		</tr>
+						    	
+						    	</c:forEach>
 						   </tbody>
 					 </table>
 

@@ -26,18 +26,33 @@ public class StaffService {
  			return result;
  		}
  
+ 	
  		//update
  		public int update(StaffDTO staffDTO)throws Exception{
  			int result=staffDAO.update(staffDTO);
  			
  			return result;
  		}
- 
+ 		
+ 		//staffTimeUpdate
+ 		public int staffTimeUpdate(StaffTimeDTO staffTimeDTO)throws Exception{
+ 			int result=staffDAO.staffTimeUpdate(staffTimeDTO);
+ 			
+ 			return result;
+ 		}
+ 		
 		 //selectOne
 		 public StaffDTO selectOne(String num)throws Exception{
 			 StaffDTO staffDTO=staffDAO.selectOne(num);
 			 
 			 return staffDTO;
+		 }
+		 
+		 //staff time
+		 public int staffTime(StaffTimeDTO staffTimeDTO)throws Exception{
+			 int result=staffDAO.staffTime(staffTimeDTO);
+			 
+			 return result;
 		 }
 		 
 		 //insert
@@ -47,6 +62,25 @@ public class StaffService {
 			 return result;
 		 }
 		
+		 //직원 출퇴근 조회
+		 public ModelAndView staffTimeList(String store)throws Exception{
+			 List<StaffTimeDTO> ar=new ArrayList<StaffTimeDTO>();
+			 ModelAndView mv=new ModelAndView();
+			 ar=staffDAO.staffTimeList(store);
+			 mv.addObject("list", ar);
+			 
+			 return mv;
+		 }
+		 //pos staff List
+		 public ModelAndView posStaffList(String store)throws Exception{
+			 List<StaffDTO> ar= new ArrayList<StaffDTO>();
+			 ModelAndView mv=new ModelAndView();
+			 ar=staffDAO.posStaffList(store);
+			 mv.addObject("list", ar);
+		
+			 return mv;
+		 }
+		 
 		 //list
 		 public ModelAndView selectList(ListData listData) throws Exception{
 			 RowNum rowNum=listData.makeRow();

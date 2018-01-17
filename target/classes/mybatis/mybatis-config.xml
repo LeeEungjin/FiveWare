@@ -5,6 +5,7 @@
   
   <configuration>
   	<typeAliases>
+  		<typeAlias type="com.five.ware.srm.staff.StaffTimeDTO" alias="staffTimeDTO"/>
   		<typeAlias type="com.five.ware.srm.staff.StaffDTO" alias="staffDTO"/>
   		<typeAlias type="com.five.ware.time.TimeDTO" alias="timeDTO"/>
   		<typeAlias type="com.five.ware.erp.storeRegist.StoreRegistDTO" alias="storeRegistDTO"/>

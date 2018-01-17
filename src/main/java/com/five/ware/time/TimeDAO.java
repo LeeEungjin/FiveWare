@@ -12,6 +12,7 @@ public class TimeDAO {
 		private SqlSession sqlSession;
 		private static final String namespace="timeMapper.";
 		
+		
 		//selectOne
 		public TimeDTO selectOne(TimeDTO timeDTO)throws Exception{
 			return sqlSession.selectOne(namespace+"selectOne", timeDTO);
@@ -26,10 +27,13 @@ public class TimeDAO {
 			return result;
 		}
 		
+		
 		//insert
 		public int insert(TimeDTO timeDTO) throws Exception{
 			int result=sqlSession.insert(namespace+"insert", timeDTO);
 			
 			return result;
 		}
+		
+		
 }

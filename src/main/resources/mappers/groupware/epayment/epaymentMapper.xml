@@ -46,7 +46,6 @@
   <select id="tempList" resultType="String">
   	select temp from tempregist
   </select>
-<<<<<<< HEAD
 
   
   <select id="selectList" parameterType="com.five.ware.util.RowNum" resultType="EpaymentDTO">
@@ -77,8 +76,8 @@
   	select nvl(count(num),0) from epayment
   </select>
 
-<<<<<<< HEAD
-=======
+
+
   
   <select id="tempMember" parameterType="String" resultType="MemberDTO">
   	select * from member where temp=#{temp}
@@ -87,8 +86,5 @@
   <select id="memberSelect" parameterType="String" resultType="MemberDTO">
   	select * from member where code=#{code}
   </select>
->>>>>>> arin
-=======
 
->>>>>>> eunbi2
   </mapper>

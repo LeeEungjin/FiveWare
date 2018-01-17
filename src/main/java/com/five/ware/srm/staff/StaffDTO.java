@@ -6,9 +6,6 @@ public class StaffDTO {
 	private String name;
 	private String birth;
 	private String hiredate;
-	private String startTime;
-	private String lastTime;
-	private String regdate;
 	private String bank;
 	private String account;
 	private String time;
@@ -49,33 +46,18 @@ public class StaffDTO {
 	public void setHiredate(String hiredate) {
 		this.hiredate = hiredate;
 	}
-	public String getStartTime() {
-		return startTime;
-	}
-	public void setStartTime(String startTime) {
-		this.startTime = startTime;
-	}
-	public String getLastTime() {
-		return lastTime;
-	}
-	public void setLastTime(String lastTime) {
-		this.lastTime = lastTime;
-	}
-	public String getRegdate() {
-		return regdate;
-	}
-	public void setRegdate(String regdate) {
-		this.regdate = regdate;
-	}
+
 	public String getBank() {
 		return bank;
 	}
+	
 	public void setBank(String bank) {
 		this.bank = bank;
 	}
 	public String getAccount() {
 		return account;
 	}
+	
 	public void setAccount(String account) {
 		this.account = account;
 	}
