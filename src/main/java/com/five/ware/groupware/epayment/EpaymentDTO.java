@@ -12,33 +12,41 @@ public class EpaymentDTO {
 	private String kind;
 	private String title;
 	private String contents;
-<<<<<<< HEAD
 	private String result;
 	private String approval;
 	private String approvaltemp;
 	private String memberCode;
 	
+	
+	public String getResult() {
+		return result;
+	}
+	public void setResult(String result) {
+		this.result = result;
+	}
+	public String getApproval() {
+		return approval;
+	}
+	public void setApproval(String approval) {
+		this.approval = approval;
+	}
+	public String getApprovaltemp() {
+		return approvaltemp;
+	}
+	public void setApprovaltemp(String approvaltemp) {
+		this.approvaltemp = approvaltemp;
+	}
 	public String getMemberCode() {
 		return memberCode;
 	}
 	public void setMemberCode(String memberCode) {
 		this.memberCode = memberCode;
-=======
-	private String state;
-	
-	
+	}
 	public String getDraftrank() {
 		return draftrank;
 	}
 	public void setDraftrank(String draftrank) {
 		this.draftrank = draftrank;
-	}
-	public String getState() {
-		return state;
-	}
-	public void setState(String state) {
-		this.state = state;
->>>>>>> arin
 	}
 	public int getNum() {
 		return num;
