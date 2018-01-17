@@ -5,6 +5,22 @@
   
   <mapper namespace="staffMapper">
 
+
+	<update id="staffTimeUpdate" parameterType="staffTimeDTO">
+		update stafftime set lastTime=#{lastTime} where num=#{num}
+	</update>	
+	<insert id="staffTime" parameterType="staffTimeDTO">
+		insert into stafftime values(#{num},#{regdate},#{startTime},#{lastTime},#{store}) 
+	</insert>
+	
+	<select id="staffTimeList" parameterType="staffTimeDTO" resultType="staffTimeDTO">
+		select * from staffTime where store=#{store}
+	</select>
+	
+	<select id="posStaffList" resultType="staffDTO" parameterType="String">
+		select * from staff where store=#{store} order by time asc
+	</select>
+	
 	<select id="selectOne" resultType="staffDTO" parameterType="String">
 		select * from staff where num=#{num}
 	</select>
@@ -29,7 +45,7 @@
 	</select>
   
   <insert id="insert" parameterType="staffDTO">
-  	insert into staff values(staff_seq.nextval, #{name},#{birth},#{hiredate},0,0,0,#{bank},#{account},#{time},#{store})
+  	insert into staff values(staff_seq.nextval, #{name},#{birth},#{hiredate},#{bank},#{account},#{time},#{store})
   </insert>
   <update id="update" parameterType="staffDTO">
    update staff set name=#{name}, birth=#{birth}, hiredate=#{hiredate}, bank=#{bank}, account=#{account}, time=#{time} where num=#{num} 

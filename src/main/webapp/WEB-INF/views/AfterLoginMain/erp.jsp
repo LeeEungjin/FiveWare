@@ -118,14 +118,16 @@
 				"memberCode" : code,
 				"regdate" : date
 			},success : function(data){
-		  		alert(data.lastTime)
+			
 				if(data==""){
 					$("#start").val("출근");
 					$("#last").val("퇴근");
-				}else if(data.startTime !=="" && data.lastTime ==""){
+				}else if(data.startTime !="" && data.lastTime == null){
+					
 					$("#start").val(data.startTime);
 					$("#last").val("퇴근");
 				}else{
+			
 				$("#start").val(data.startTime);
 				$("#last").val(data.lastTime);
 				}

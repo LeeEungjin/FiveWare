@@ -2,7 +2,7 @@ package com.five.ware.groupware.epayment;
 
 
 
-import java.util.List; 
+import java.util.List  ;  
 import java.util.HashMap;
 
 import java.util.Map;
@@ -14,6 +14,10 @@ import org.springframework.stereotype.Repository;
 
 import com.five.ware.util.ListData;
 import com.five.ware.util.RowNum;
+
+import com.five.ware.util.ListData;
+import com.five.ware.util.RowNum;
+
 import com.five.ware.erp.human.member.MemberDTO;
 
 @Repository
@@ -49,7 +53,8 @@ public class EpaymentDAO {
 		
 		return temps;
 	}
-	
+
+
 	//myEpaymentList
 	public List<EpaymentDTO> myEpaymentList(RowNum rowNum, ListData listData) throws Exception{
 		Map<String, Object> map=new HashMap<String, Object>();
@@ -61,6 +66,7 @@ public class EpaymentDAO {
 		
 		return sqlSession.selectList(NAMESPACE+"myEpaymentLit", map);
 	}
+
 
 	//list
 	public List<EpaymentDTO> epaymentList(RowNum rowNum, ListData listData) throws Exception{
@@ -90,5 +96,6 @@ public class EpaymentDAO {
 		MemberDTO memberDTO = sqlSession.selectOne(NAMESPACE+"memberSelect", code);
 		
 		return memberDTO;
+
 	}
 }

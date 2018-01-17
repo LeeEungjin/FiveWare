@@ -1,6 +1,6 @@
 package com.five.ware;
 
-import java.io.File;  
+import java.io.File ;   
 
 import javax.servlet.http.HttpSession;
 
@@ -8,6 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+
+import com.five.ware.community.CommunityDTO;
+
+
+import com.five.ware.file.FileDTO;
+
+
 import com.five.ware.community.CommunityDTO;
 import com.five.ware.file.PhotoDTO;
 import com.five.ware.util.FileSaver;
@@ -17,9 +25,17 @@ import com.five.ware.util.FileSaver;
 @RequestMapping(value="/file/**")
 public class FileController {
 
+
+		
+
+/*	@RequestMapping(value="fileDown")
+	public ModelAndView fileDown(NoticeDTO noticeDTO, HttpSession session) throws Exception	{
+
+
 	@RequestMapping(value="fileDown")
 	public ModelAndView fileDown(CommunityDTO communityDTO, HttpSession session) throws Exception	{
 		
+
 		String filePath = session.getServletContext().getRealPath("resources/upload");
 		System.out.println("filePath : " +filePath);
 		
@@ -70,7 +86,7 @@ public class FileController {
 		System.out.println("redirect:./"+photoDTO.getCallback()+photoDTO.getCallback_func()+stringBuffer.toString());
 		
 		return "redirect:./"+photoDTO.getCallback()+photoDTO.getCallback_func()+stringBuffer.toString();
-	}
+	}*/
 	
 	
 }

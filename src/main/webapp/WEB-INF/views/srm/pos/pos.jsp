@@ -1,12 +1,106 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link href="./resources/css/pos.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/resources/css/srm/pos/pos.css" rel="stylesheet">
 <html>
+<script type="text/javascript">
+	$(function(){
+		var myVar = setInterval(myTimer, 1000);
+
+		function myTimer() {
+		    var d = new Date();
+		    $("#time").text(d.toLocaleTimeString());
+		
+		}
+		
+		$("#eb_staff_time").click(function(){
+			
+			var store='${member.store}';
+			$.ajax({
+				type : "get",
+				url : "staffList",
+				data : {"store" : store},
+				success : function(data){
+					
+					$("#eb_staffList").html(data);
+				
+					
+				},error : function(){
+					alert("error");
+				}
+			});
+			
+			
+			
+		});
+		
+					
+			 	$("#eb_staffList").on("click",".eb_startTime",function(){
+			 		
+					var num=$(this).attr("title");
+					var regdate='${sysdate}';
+					var time=$("#time").text();
+					var store='${member.store}';
+					
+					if(confirm("출근처리 하시겠습니까?")==false){
+						alert("출근처리가 취소되었습니다.");
+						return false;
+					}else{
+					
+			 		$.ajax({
+						type : "POST",
+						 url : "./staffTime",
+						data :{
+							"num" : num,
+							"regdate" : regdate,
+							"startTime" : time,
+							"lastTime" : '0',
+							"store" : store
+						},success : function(data){
+							alert(regdate+time+"출근처리 완료");
+						},error : function(){
+							alert("Error");
+						}
+						
+					});
+					}
+				}); 
+			 	
+			 	$("#eb_staffList").on("click",".eb_lastTime",function(){
+			
+					var num=$(this).attr("title");
+					var regdate='${sysdate}';
+					var time=$("#time").text();
+					
+					if(confirm("퇴근처리하시겠습니까?")==false){
+						alert("퇴근 처리가 취소되었습니다.")
+						return false;
+					}else{
+					
+			 		$.ajax({
+						type : "POST",
+						 url : "./staffTimeUpdate",
+						data :{
+							"num" : num,
+							"lastTime" : time
+						},success : function(data){
+							alert(regdate+time+"퇴근처리 완료");
+							alert(data);
+						},error : function(){
+							alert("Error");
+						}
+						
+					});
+					}
+				}); 
+			 	
+	});
+	
+</script>
 <head>
 	<title>Home</title>
 
@@ -18,14 +112,57 @@
 			<table id="logo_Table">
 				<tr> 
 					<td>logo</td> 
-					<td>지점 : 강남</td> 
-					<td>영업일자 : 2017-12-21 (목)</td> 
-					<td>지점장 : 신아린</td> 
-					<td>pm 15:50</td> 
+					<td>지점 : ${member.store }</td> 
+					<td>영업일자 : ${sysdate}</td> 
+					<td>지점장 : ${member.name }</td> 
+					<td><span id="time"></span></td> 
+					<td>
+						<input type="button" value="출/퇴근" class="btn btn-default" data-toggle="modal" data-target="#myModal" id="eb_staff_time">
+					</td>
 				</tr>
 				
 			</table>
 		</div>
+		
+		
+		
+		<!--직원 출퇴근 modal  -->
+		
+		<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content" id="eb_modal">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">출/퇴근 입력</h4>
+        </div>
+        <div class="modal-body" >
+          <table id="eb_modal_table">
+          	<thead class="eb_modal_thead">
+          		<tr>
+          			<th>지점</th>
+          			<th>이름</th>
+          			<th>근무 시간</th>
+          			<th>출근 </th>
+          			<th>퇴근 </th>
+          		</tr>
+          	</thead>
+          	
+          	<tbody id="eb_staffList" >
+          		
+          	
+          	</tbody>
+          	
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
 		
 		<div class="menuWrap1">
 		
@@ -59,14 +196,14 @@
 			
 			<div class="menu3">
 			
-			<div class="btn-group">
+			<div class="btn-group" id="eb_btn-group_1">
    			 	<button type="button" class="btn btn-primary b1">전체<br>취소</button>
    			 	<button type="button" class="btn btn-primary b1">선택<br>취소</button>
     			<button type="button" class="btn btn-primary b1">할인<br>처리</button>
     			<button type="button" class="btn btn-primary b1">수량<br>변경</button>
  			</div>
  			
- 			  <div class="btn-group">
+ 			  <div class="btn-group" id="eb_btn-group_2">
    			 	<button type="button" class="btn btn-primary b1">-</button>
    			 	<button type="button" class="btn btn-primary b1">+</button>
     			<button type="button" class="btn btn-primary b1">▲</button>

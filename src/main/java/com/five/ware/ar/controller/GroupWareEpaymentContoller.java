@@ -1,9 +1,20 @@
 package com.five.ware.ar.controller;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 import java.io.BufferedReader;
+
+import java.io.BufferedReader; 
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
@@ -40,6 +51,14 @@ public class GroupWareEpaymentContoller {
 	@Inject
 	EpaymentLeaveService epaymentLeaveService;
 	
+	
+	
+	//수신함
+	@RequestMapping(value="epaymentReceive")
+	public void epaymentReceive(){
+		
+		
+	}
 	
 	//내가 올린 결재문서만 보기
 	@RequestMapping(value="epaymentDispatch")

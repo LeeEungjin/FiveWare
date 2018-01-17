@@ -185,7 +185,8 @@
                         </span>
                      </a> 
                      
-                     <a href="${pageContext.request.contextPath}/srm/staffTime">
+                     <a href="${pageContext.request.contextPath}/srm/staffTime?store=${member.store}
+                     ">
                         <span class="srm_jk_smalldiv">
                            <span class="srm_jk_writing">출/퇴근 조회</span>
                         </span>
@@ -242,7 +243,7 @@
                         </span>
                      </a>
                      
-                       <a href="${pageContext.request.contextPath}/pos">
+                       <a href="./srm/pos/pos">
                         <span class="srm_jk_smalldiv">
                            <span class="srm_jk_writing">우리 매장 <br>포스기</span>
                         </span>

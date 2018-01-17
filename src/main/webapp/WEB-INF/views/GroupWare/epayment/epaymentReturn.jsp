@@ -115,11 +115,18 @@ $(function(){
 			</div>
 			
 			<!-- -------------------- -->
-				<div class="fw_menu" data-toggle="collapse" data-target="#sub3" title="sub3" >
-					수신함
-				<div class="fw_arrow sub3" >
-					
+					<div class="fw_menu" data-toggle="collapse" data-target="#sub3" title="sub3" >
+							수신함
+						<div class="fw_arrow sub3">
+							∨
+					</div>
 				</div>
+			
+			<div class="fw_subsub collapse"  id="sub3">
+				<ul>
+					<li> <a href="./epaymentReceive">수신함</a></li>
+				
+				</ul>
 			</div>
 			
 		
@@ -161,7 +168,7 @@ $(function(){
 							<select id="ar_searchTitle" name="kind">
 								<option value="title">문서 제목</option>
 								<option value="draftdate">기안 날짜</option>
-								<option value="drafttemp">기안 부서</option>
+								<option value="kind">문서 유형</option>
 								<option value="draftname">기안자</option>
 							</select>
 				
@@ -177,7 +184,7 @@ $(function(){
 									<th> 문서 제목 </th>
 									<th> 기안자 </th>
 									<th> 기안 부서 </th>
-									<th> 승인 부서 </th>
+									<th> 문서 유형 </th>
 									<th> 기안 날짜 </th>
 									<th> 상태 </th>
 									<th> 첨부 </th>
@@ -191,7 +198,7 @@ $(function(){
 									<td>${dto.title }</td>
 									<td>${dto.draftname }</td>
 									<td>${dto.drafttemp }</td>
-									<td>${dto.approvaltemp }</td>
+									<td>${dto.kind }</td>
 									<td>${dto.draftdate }</td>
 									<td>${dto.result }</td>
 									<td></td>

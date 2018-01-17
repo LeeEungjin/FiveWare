@@ -20,9 +20,18 @@ public class StaffDAO {
 	private static final String namespace="staffMapper.";
 	
 	
+	
+	
 	//delete
 	public int delete(String num)throws Exception{
 		int result=sqlSession.delete(namespace+"delete", num);
+		return result;
+	}
+	
+	
+	//staffTime update
+	public int staffTimeUpdate(StaffTimeDTO staffTimeDTO)throws Exception{
+		int result=sqlSession.update(namespace+"staffTimeUpdate", staffTimeDTO);
 		return result;
 	}
 	
@@ -39,11 +48,28 @@ public class StaffDAO {
 		return sqlSession.selectOne(namespace+"selectOne",num);
 	}
 	
+	//staff time
+	public int staffTime(StaffTimeDTO staffTimeDTO)throws Exception{
+		int result=sqlSession.insert(namespace+"staffTime",staffTimeDTO);
+		
+		return result;
+	}
+	
 	//insert
 	public int insert(StaffDTO staffDTO) throws Exception{
 		int result=sqlSession.insert(namespace+"insert", staffDTO);
 		
 		return result;
+	}
+	
+	//직원 출퇴근 조회
+	public List<StaffTimeDTO> staffTimeList(String store)throws Exception{
+		return sqlSession.selectList(namespace+"staffTimeList", store);
+	}
+	
+	//pos staff List
+	public List<StaffDTO> posStaffList(String store)throws Exception{
+		return sqlSession.selectList(namespace+"posStaffList", store);
 	}
 	
 	//list

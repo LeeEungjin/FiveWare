@@ -48,7 +48,7 @@ public class EpaymentService {
 		
 		return temps;
 	}
-	
+
 	//myEpaymentList
 	public ModelAndView myEpaymentList(ListData listData) throws Exception{
 		RowNum rowNum=listData.makeRow();
@@ -71,7 +71,8 @@ public class EpaymentService {
 
 	}
 	
-	
+
+
 	//epayment List
 	public ModelAndView epaymentList(ListData listData) throws Exception{
 		RowNum rowNum=listData.makeRow();
@@ -91,6 +92,7 @@ public class EpaymentService {
 		return mv;
 	}
 
+
 	public List<MemberDTO> tempMember(String temp) throws Exception{
 		List<MemberDTO> members=epaymentDAO.tempMember(temp);
 		
@@ -101,5 +103,6 @@ public class EpaymentService {
 		MemberDTO memberDTO = epaymentDAO.memberSelect(code);
 		
 		return memberDTO;
+
 	}
 }

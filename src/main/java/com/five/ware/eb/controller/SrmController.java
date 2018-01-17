@@ -25,9 +25,17 @@ public class SrmController {
 	
 	//출퇴근조회
 	@RequestMapping(value="staffTime")
-	public String staffTime(){
+	public ModelAndView staffTime(String store){
+		ModelAndView mv=new ModelAndView();
+		try {
+			mv=staffService.staffTimeList(store);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		return "/srm/store/staffTime";
+		mv.setViewName("/srm/store/staffTime");
+		return mv;
 	}
 	
 	//storeNotice

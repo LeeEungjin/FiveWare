@@ -18,6 +18,10 @@ public class EpaymentDTO {
 	private String memberCode;
 	
 	
+<<<<<<< HEAD
+=======
+	
+>>>>>>> master
 	public String getResult() {
 		return result;
 	}
@@ -42,12 +46,28 @@ public class EpaymentDTO {
 	public void setMemberCode(String memberCode) {
 		this.memberCode = memberCode;
 	}
+<<<<<<< HEAD
+=======
+	private String state;
+	
+	
+>>>>>>> master
 	public String getDraftrank() {
 		return draftrank;
 	}
 	public void setDraftrank(String draftrank) {
 		this.draftrank = draftrank;
 	}
+<<<<<<< HEAD
+=======
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+
+	}
+>>>>>>> master
 	public int getNum() {
 		return num;
 	}
