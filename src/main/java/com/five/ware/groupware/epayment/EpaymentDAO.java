@@ -12,15 +12,11 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-<<<<<<< HEAD
-
 import com.five.ware.util.ListData;
 import com.five.ware.util.RowNum;
 
-=======
 import com.five.ware.util.ListData;
 import com.five.ware.util.RowNum;
->>>>>>> master
 import com.five.ware.erp.human.member.MemberDTO;
 
 @Repository
@@ -56,11 +52,7 @@ public class EpaymentDAO {
 		
 		return temps;
 	}
-<<<<<<< HEAD
 
-=======
->>>>>>> master
-	
 	//myEpaymentList
 	public List<EpaymentDTO> myEpaymentList(RowNum rowNum, ListData listData) throws Exception{
 		Map<String, Object> map=new HashMap<String, Object>();
@@ -72,10 +64,7 @@ public class EpaymentDAO {
 		
 		return sqlSession.selectList(NAMESPACE+"myEpaymentLit", map);
 	}
-<<<<<<< HEAD
 
-=======
->>>>>>> master
 
 	//list
 	public List<EpaymentDTO> epaymentList(RowNum rowNum, ListData listData) throws Exception{
@@ -92,10 +81,7 @@ public class EpaymentDAO {
 	//totalCount
 	public int totalCount(RowNum rowNum) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"totalCount", rowNum);
-<<<<<<< HEAD
-=======
 
->>>>>>> master
 	}
 	
 	public List<MemberDTO> tempMember(String temp) throws Exception{
@@ -108,9 +94,6 @@ public class EpaymentDAO {
 		MemberDTO memberDTO = sqlSession.selectOne(NAMESPACE+"memberSelect", code);
 		
 		return memberDTO;
-<<<<<<< HEAD
 
-=======
->>>>>>> master
 	}
 }

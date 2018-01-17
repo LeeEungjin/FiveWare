@@ -1,9 +1,7 @@
 package com.five.ware.eung.controller;
 
-<<<<<<< HEAD
+
 import java.io.IOException; 
-=======
->>>>>>> master
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

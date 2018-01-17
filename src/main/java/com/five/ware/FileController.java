@@ -8,16 +8,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-<<<<<<< HEAD
+
 
 import com.five.ware.community.CommunityDTO;
 
 
 import com.five.ware.file.FileDTO;
 
-=======
+
 import com.five.ware.community.CommunityDTO;
->>>>>>> master
 import com.five.ware.file.PhotoDTO;
 import com.five.ware.util.FileSaver;
 
@@ -26,7 +25,6 @@ import com.five.ware.util.FileSaver;
 @RequestMapping(value="/file/**")
 public class FileController {
 
-<<<<<<< HEAD
 
 		
 
@@ -88,7 +86,7 @@ public class FileController {
 		System.out.println("redirect:./"+photoDTO.getCallback()+photoDTO.getCallback_func()+stringBuffer.toString());
 		
 		return "redirect:./"+photoDTO.getCallback()+photoDTO.getCallback_func()+stringBuffer.toString();
-	}
+	}*/
 	
 	
 }
