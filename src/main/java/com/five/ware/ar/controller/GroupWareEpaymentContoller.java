@@ -1,11 +1,18 @@
 package com.five.ware.ar.controller;
 
+<<<<<<< HEAD
+
+
+=======
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+>>>>>>> arin
 import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
+
 import java.util.Calendar;
 import java.util.List;
 
@@ -25,6 +32,7 @@ import com.five.ware.groupware.epayment.EpaymentLeaveService;
 import com.five.ware.groupware.epayment.EpaymentService;
 import com.five.ware.groupware.epayment.FormListDTO;
 import com.five.ware.groupware.epayment.FormListService;
+import com.five.ware.util.ListData;
 
 @Controller
 @RequestMapping(value="GroupWare/epayment/**")
@@ -36,6 +44,123 @@ public class GroupWareEpaymentContoller {
 	EpaymentService epaymentService;
 	@Inject
 	EpaymentLeaveService epaymentLeaveService;
+	
+	
+	//내가 올린 결재문서만 보기
+	@RequestMapping(value="epaymentDispatch")
+	public ModelAndView epaymentDispatch(ListData listData){
+		
+		
+		ModelAndView mv=null;
+	
+		
+		try {
+			mv=epaymentService.myEpaymentList(listData);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		mv.setViewName("GroupWare/epayment/epaymentDispatch");
+		
+		return mv;
+
+	}
+	
+	
+	//반려함에서 삭제
+	@RequestMapping(value="epaymentDelete")
+	@ResponseBody
+	public String epaymentDelete(String num){
+		
+		int result=0;
+		try {
+			result=epaymentService.epaymentDelete(num);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String message="fail";
+		if(result>0){
+			message="success";
+		}
+		
+		return message;
+	}
+	
+	//상세보기
+	@RequestMapping(value="epaymentView")
+	@ResponseBody
+	public EpaymentDTO epaymentView(String num){
+		
+		EpaymentDTO epaymentDTO = null;
+		try {
+			epaymentDTO = epaymentService.epaymentView(num);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return epaymentDTO;
+	}
+	
+	//pendency 미결함
+	@RequestMapping(value="epaymentPendency")
+	public ModelAndView epaymentPendency(ListData listData){
+
+		ModelAndView mv=null;
+		listData.setResult("미결");
+		
+		try {
+			mv=epaymentService.epaymentList(listData);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		mv.setViewName("GroupWare/epayment/epaymentPendency");
+		
+		return mv;
+		
+		
+	}
+	
+	//determine 기결함
+	@RequestMapping(value="epaymentDetermine")
+	public ModelAndView epaymentDetermine(ListData listData){
+		ModelAndView mv=null;
+		listData.setResult("기결");
+		
+		try {
+			mv=epaymentService.epaymentList(listData);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		mv.setViewName("GroupWare/epayment/epaymentDetermine");
+		
+		return mv;
+		
+	}
+	
+	//return 반려함
+	@RequestMapping(value="epaymentReturn")
+	public ModelAndView epaymentReturn(ListData listData){
+		ModelAndView mv=null;
+		listData.setResult("반려");
+		
+		try {
+			mv=epaymentService.epaymentList(listData);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		mv.setViewName("GroupWare/epayment/epaymentReturn");
+		
+		return mv;
+		
+	}
+	
+	
 	
 	@RequestMapping(value="formList")
 	public ModelAndView formList(String search) throws Exception{

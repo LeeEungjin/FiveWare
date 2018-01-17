@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <html>
 <head>
 	<title>GROUPWARE</title>
@@ -53,15 +52,10 @@
 			</div> 
 			
 			<div id="search_wrap">
-				<a href="./member/memberMyPage">
-					<button id="logout_btn_1" type="button" class="btn btn-default btn-l">
-		        	 <span class="glyphicon glyphicon-log-out" id="logout"></span>My Page
-		        </button></a>
-		        
+				
 		        <a href="./member/memberLogout">
-					<button id="logout_btn_2" type="button" class="btn btn-default btn-l">
-		         	<span class="glyphicon glyphicon-log-out" id="logout"></span>Logout
-		        </button></a>
+						<span class="glyphicon glyphicon-log-out" id="eb_logoutBtn">Logout</span>
+				</a>
 			</div>
 			
 		</div>
@@ -149,13 +143,16 @@
                         </span>
                      </a> 
                      
-                     <a href="${pageContext.request.contextPath}/GroupWare/epayment/formList">
+
+                    <a href="${pageContext.request.contextPath}/GroupWare/epayment/formList">
+
+
                         <span class="groupWare_jk_smalldiv"> 
                            <span class="groupWare_jk_writing">서식함</span>
                         </span>
                      </a> 
                      
-                     <a href="#"> 
+                     <a href="${pageContext.request.contextPath}/GroupWare/epayment/epaymentPendency"> 
                         <span class="groupWare_jk_smalldiv"> 
                            <span class="groupWare_jk_writing">결재함</span>
                         </span>
@@ -181,17 +178,17 @@
                         </span>
                      </a> 
                      
-                     <a href="#"> 
+                     <a href="../ware/free/freeList"> 
                         <span class="groupWare_jk_smalldiv"> 
                            <span class="groupWare_jk_writing">공지사항</span>
                         </span>
                      </a> 
                      
-                     <a href="#"> 
+<!--                      <a href="#"> 
                         <span class="groupWare_jk_smalldiv"> 
                            <span class="groupWare_jk_writing">자유게시판</span>
                         </span>
-                     </a>
+                     </a> -->
                   </div>
                   <div class="groupWare_jk_groupWare">
                      
@@ -201,7 +198,7 @@
                         </span>
                      </a> 
                      
-                     <a href="#"> 
+                     <a href="../ware/calendar/coding"> 
                         <span class="groupWare_jk_smalldiv"> 
                            <span class="groupWare_jk_writing">전체 스케쥴</span>
                         </span>
@@ -228,26 +225,20 @@
                         </span>
                      </a> 
                      
-                     
-                          <a href="#">
+              
+                          <a href="./myPage/memberMyPage">
                         <span class="groupWare_jk_smalldiv"> 
                            <span class="groupWare_jk_writing">내 정보</span>
                         </span>
                      </a> 
-                     
-                     <a href="#">
-                        <span class="groupWare_jk_smalldiv"> 
-                           <span class="groupWare_jk_writing">스케쥴</span>
-                        </span>
-                     </a> 
-                     
+                
                      <a href="#"> 
                         <span class="groupWare_jk_smalldiv"> 
                            <span class="groupWare_jk_writing" id="groupWare_jk_mr">년/월차<br>휴가조회</span>
                         </span>
                      </a> 
                      
-                     <a href="#"> 
+                     <a href="./myPage/timeRecord"> 
                         <span class="groupWare_jk_smalldiv"> 
                            <span class="groupWare_jk_writing">출/퇴근 기록</span>
                         </span>

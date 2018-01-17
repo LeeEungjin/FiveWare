@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="freeMapper">
+
+	<select id="storeList" resultType="String">
+		select store from storeregist
+	</select>
+
+	<insert id="freeInsert" parameterType="com.five.ware.community.FreeDTO">
+		<selectKey keyProperty="num" resultType="int" order="BEFORE">
+  			select notice_seq.nextval from dual
+  		</selectKey>
+  		
+		insert into free values (#{num}, #{temp}, #{writer}, #{title}, #{contents}, sysdate, 0, 0, 0, #{num}, #{target})
+	</insert>
+	
+	<insert id="freeReply" parameterType="com.five.ware.community.FreeDTO">
+		<selectKey keyProperty="num" resultType="int" order="BEFORE">
+  			select notice_seq.nextval from dual
+  		</selectKey>
+	
+		insert into free values (#{num}, #{temp}, #{writer}, #{title}, #{contents}, sysdate, 0, #{step}+1, #{depth}+1, #{ref}, #{target})
+	</insert>
+	
+	<update id="stepUpdate" parameterType="com.five.ware.community.FreeDTO">
+  		<![CDATA[
+  			update free set step=step+1 where ref=#{ref} and step>#{step}
+  		]]>
+  	</update>
+	
+	<select id="totalCount" resultType="int">
+  		select nvl(count(num), 0) from free
+  		<if test="kind=='code'">
+  			where title like '%'||#{search}||'%' 
+  		</if>
+  		<if test="kind=='title'">
+  			where title like '%'||#{search}||'%' 
+  		</if>
+  		<if test="kind=='writer'">
+  			where writer like '%'||#{search}||'%' 
+  		</if>
+  		<if test="kind=='contents'">
+  			where contents like '%'||#{search}||'%' 
+  		</if>
+  		
+  		<if test="kind=='target'">
+  			where target=#{target}
+  		</if>
+  	</select>
+  	
+  	<select id="selectList"  parameterType="java.util.Map" resultType="com.five.ware.community.FreeDTO">
+  		select * from 
+  		(select rownum R, N.* from
+  		(select * from free 
+  		
+  		<if test="kind=='code'">
+  			where title like '%'||#{search}||'%' 
+  		</if>
+  		<if test="kind=='title'">
+  			where title like '%'||#{search}||'%' 
+  		</if>
+  		<if test="kind=='writer'">
+  			where writer like '%'||#{search}||'%' 
+  		</if>
+  		<if test="kind=='contents'">
+  			where contents like '%'||#{search}||'%' 
+  		</if>
+  		
+  		<if test="kind=='target'">
+  			where target=#{target}
+  		</if>
+  		
+  		order by ref desc, step asc) N)
+  		where R between #{startRow} and #{lastRow}
+  	</select>
+  	
+  	<resultMap type="com.five.ware.community.FreeDTO"  id="freeResult">
+  		<id property="num" column="num"/>
+		<collection property="fileNames" column="num" ofType="com.five.ware.community.UploadDTO" select="selectFile">
+		</collection>
+  	</resultMap>
+  	
+  	<select id="selectOne" resultMap="freeResult" parameterType="int">
+  		select * from free where num=#{num}
+  	</select>
+  	
+  	<select id="selectFile" parameterType="int" resultType="com.five.ware.community.UploadDTO">
+  		select * from upload where num=#{num}
+  	</select>
+  	
+  	<delete id="delete"  parameterType="java.lang.Integer">
+  		delete from free where num=#{num}
+  	</delete>
+  	
+  	<delete id="fileDelete"  parameterType="java.lang.Integer">
+  		delete from upload where num=#{num}
+  	</delete>
+  	
+  	<update id="update" parameterType="com.five.ware.community.FreeDTO">
+  		update free set title=#{title}, contents=#{contents}, target=#{target} where num=#{num}
+  	</update>
+  	
+  	<update id="hitUpdate" parameterType="java.lang.Integer">
+  		update free set hit=hit+1 where num=#{num}
+  	</update>
+  	
+  	<select id="getNum"  resultType="int">
+  		select notice_seq.nextval from dual
+  	</select>
+
+</mapper>

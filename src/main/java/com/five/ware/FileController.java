@@ -1,6 +1,6 @@
 package com.five.ware;
 
-import java.io.File;
+import java.io.File;  
 
 import javax.servlet.http.HttpSession;
 
@@ -8,10 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.five.ware.erp.notice.NoticeDTO;
-import com.five.ware.erp.notice.NoticeFileDTO;
-import com.five.ware.file.FileDTO;
+import com.five.ware.community.CommunityDTO;
 import com.five.ware.file.PhotoDTO;
 import com.five.ware.util.FileSaver;
 
@@ -21,15 +18,16 @@ import com.five.ware.util.FileSaver;
 public class FileController {
 
 	@RequestMapping(value="fileDown")
-	public ModelAndView fileDown(NoticeDTO noticeDTO, HttpSession session) throws Exception	{
+	public ModelAndView fileDown(CommunityDTO communityDTO, HttpSession session) throws Exception	{
+		
 		String filePath = session.getServletContext().getRealPath("resources/upload");
 		System.out.println("filePath : " +filePath);
 		
-		File file = new File(filePath, noticeDTO.getFileName());
-		System.out.println("filename : "+noticeDTO.getFileName());
+		File file = new File(filePath, communityDTO.getFilename());
+		System.out.println("filename : "+communityDTO.getFilename());
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("down", file);
-		mv.addObject("oriname", noticeDTO.getOriName());
+		mv.addObject("oriname", communityDTO.getOriname());
 		mv.setViewName("fileDown");
 		
 		return mv;
@@ -37,7 +35,7 @@ public class FileController {
 	
 	@RequestMapping(value="photoUpload", method=RequestMethod.POST)
 	public String smartEditor(PhotoDTO photoDTO, HttpSession session){
-		// service 넘기는 코드
+		// service �꽆湲곕뒗 肄붾뱶
 		String filePath=session.getServletContext().getRealPath("/");
 		filePath=filePath+"resources"+File.separator+"upload";
 		File file = new File(filePath);		
@@ -58,10 +56,10 @@ public class FileController {
 			stringBuffer.append(photoDTO.getFiledata().getOriginalFilename());
 			stringBuffer.append("&sFileURL=");
 			stringBuffer.append(session.getServletContext().getContextPath());
-			/*stringBuffer.append(File.separator);*/
+			stringBuffer.append(File.separator);
 			stringBuffer.append("/resources/");
 			stringBuffer.append("upload");
-		/*	stringBuffer.append(File.separator);*/
+			stringBuffer.append(File.separator);
 			stringBuffer.append("/");
 			stringBuffer.append(fileName);
 		} catch (Exception e) {

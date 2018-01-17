@@ -13,7 +13,7 @@
 	<annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
-	<resources mapping="/resources/**" location="/resources/" />
+	<resources mapping="/resources/**" location="/resources/"/>
 
 	<beans:bean class="com.five.ware.util.FileDownload" id="fileDown"></beans:bean>
 	
@@ -23,6 +23,7 @@
 	</beans:bean>
 	<beans:bean id="excelView2003" class="com.five.ware.excel.ExcelView2003" />
 	<beans:bean id="excelView2007" class="com.five.ware.excel.ExcelView2007" />
+	<beans:bean id="excelMultiView2007" class="com.five.ware.excel.ExcelMultiView2007" />
 	<beans:bean id="excelDiliSearch2007" class="com.five.ware.excel.ExcelDiliSearch2007" />
 
 	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver">

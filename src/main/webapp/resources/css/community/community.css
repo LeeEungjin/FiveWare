@@ -1,0 +1,84 @@
+@CHARSET "UTF-8";
+
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+#fw_container{
+	width: 99%;
+	height: 100%;
+	background-color: lightblue;
+	transition: width 0.3s;	
+	margin-left: 1%;
+}
+
+#com_header{
+	width: 100%;
+    background-color: #ffdfe4;
+    height: 13%;
+}
+
+#com_icon{
+	height: 100%;
+	width: 5%;
+	background-color: #ff8080;
+	float: left;
+}
+
+#com_title{
+	height: 100%;
+	width: 15%;
+	background-color: #ffc8b0;
+	float: left;
+}
+
+#com_middle{
+	width: 100%;
+    background-color: #ffffcc;
+    height: 75%;
+}
+
+#com_sub_title{
+	width: 50%;
+	height: 10%;
+	margin-left: 25%;
+	background-color: #f8edd3;
+}
+
+#com_contents{
+	width: 80%;
+    height: 83%;
+    background-color: #c8ffe3;
+    margin-left: 10%;
+}
+
+#com_search{
+	width: 50%;
+    height: 10%;
+    background-color: #ffdbff;
+    margin-left: 25%;
+}
+
+.com_select{
+	width: 20%;
+	float: left;
+}
+
+.com_search_input{
+	width: 50%;
+	float: left;
+}
+
+#com_pager{
+	width: 30%;
+	height: 10%;
+	margin-left: 35%;
+	background-color: #eeeeee;
+}
+
+#com_footer{
+	width: 100%;
+    background-color: #cdcde7;
+    height: 12%;
+}

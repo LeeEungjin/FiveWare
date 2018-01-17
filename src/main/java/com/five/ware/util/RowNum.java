@@ -5,7 +5,21 @@ public class RowNum {
 	private int lastRow;
 	private String kind;
 	private String search;
+	private String result;
+	private String memberCode;
 	
+	public String getMemberCode() {
+		return memberCode;
+	}
+	public void setMemberCode(String memberCode) {
+		this.memberCode = memberCode;
+	}
+	public String getResult() {
+		return result;
+	}
+	public void setResult(String result) {
+		this.result = result;
+	}
 	public int getStartRow() {
 		return startRow;
 	}

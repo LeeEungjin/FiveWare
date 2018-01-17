@@ -4,10 +4,11 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.five.ware.erp.into.IntoDTO;
 import com.five.ware.file.FileDTO;
 
 
-public class ProductDTO {
+public class ProductDTO extends IntoDTO{
 	private String code;
 	private String name;
 	private String standard;

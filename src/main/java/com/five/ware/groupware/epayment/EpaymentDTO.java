@@ -12,6 +12,18 @@ public class EpaymentDTO {
 	private String kind;
 	private String title;
 	private String contents;
+<<<<<<< HEAD
+	private String result;
+	private String approval;
+	private String approvaltemp;
+	private String memberCode;
+	
+	public String getMemberCode() {
+		return memberCode;
+	}
+	public void setMemberCode(String memberCode) {
+		this.memberCode = memberCode;
+=======
 	private String state;
 	
 	
@@ -26,6 +38,7 @@ public class EpaymentDTO {
 	}
 	public void setState(String state) {
 		this.state = state;
+>>>>>>> arin
 	}
 	public int getNum() {
 		return num;

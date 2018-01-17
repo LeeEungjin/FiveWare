@@ -35,7 +35,7 @@
 
 	 
 	 /* 코드 */
-/*  	  $("#eb_makeCode").click(function(){
+  	  $("#eb_makeCode").click(function(){
 			
 			$.ajax({
 				type:"GET",
@@ -46,7 +46,7 @@
 					$("#eb_chitCode").val(data);
 				}
 			});
-		});   */
+		});   
 		
 		//부서 search
 		$("#eb_tempSearch").click(function(){
@@ -326,8 +326,8 @@
 						     <th>계좌명</th>
 						     <th>부서</th>
 						     <th>적요</th>
-						     <th>차변</th>	
-						     <th>대변</th>					   
+						     <th class="eb_table_th">차변</th>	
+						     <th class="eb_table_th">대변</th>					   
 						    </tr>
 						 </thead>
 						    

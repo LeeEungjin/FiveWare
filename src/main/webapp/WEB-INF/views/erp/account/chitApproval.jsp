@@ -222,9 +222,7 @@
 						  	</select>
 						  	
 						   	<input type="text" name="search">
-					
-						
-						  <button class="btn btn-default">search</button>
+						   	<button class="btn btn-default">search</button>
 						
 						</div>
 				</form>		

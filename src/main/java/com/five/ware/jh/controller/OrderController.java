@@ -62,7 +62,7 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value="productList")
-	public ModelAndView productList(Model model){
+	public ModelAndView productList(){
 		ModelAndView mv=new ModelAndView();
 		
 		try {
@@ -77,7 +77,7 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value="orderView", method=RequestMethod.GET)
-	public ModelAndView selectOne(Model model, String orderCode){
+	public ModelAndView selectOne(String orderCode){
 		ModelAndView mv=new ModelAndView();
 		try {
 			mv.addObject("orderDTO", orderService.selectOne(orderCode));

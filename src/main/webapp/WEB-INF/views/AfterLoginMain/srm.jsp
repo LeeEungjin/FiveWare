@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <html>
 <head>
 	<title>SRM</title>
@@ -52,14 +51,9 @@
 			</div>  
 			
 		<div id="search_wrap">
-				<a href="./member/storeMyPage">
-					<button id="logout_btn_1" type="button" class="btn btn-default btn-l">
-		        	 <span class="glyphicon glyphicon-log-out" id="logout"></span>My Page
-		        </button></a>
-		        
+		
 		        <a href="./member/memberLogout">
-					<button id="logout_btn_2" type="button" class="btn btn-default btn-l">
-		         	<span class="glyphicon glyphicon-log-out" id="logout"></span>Logout
+						<span class="glyphicon glyphicon-log-out" id="eb_logoutBtn">Logout</span>
 		        </button></a>
 			</div>
 			
@@ -76,7 +70,7 @@
 						
 						
 						
-						<p id="name_p">${member.name}님</p>
+						<p id="name_p">${member.name} 님</p>
 					
 		
 					  
@@ -150,11 +144,24 @@
                   
                   <div class="srm_jk_srm">
                      
-                     <a href="#">
+                     <a href="./srm/store/allStoreInfo">
                         <span class="srm_jk_inerp"> 
                            <span class="srm_jk_bigdiv">전체 지점정보</span>
                         </span>
                      </a>
+                     
+                     <a href="./srm/store/allStoreList">
+                        <span class="srm_jk_smalldiv">
+                           <span class="srm_jk_writing">전체 지점정보</span>
+                        </span>
+                     </a>
+                     
+                     <a href="./srm/store/mapTest">
+                        <span class="srm_jk_smalldiv">
+                           <span class="srm_jk_writing">지도 테스트</span>
+                        </span>
+                     </a>
+                     
                   </div>
                   
                   <div class="srm_jk_srm">
@@ -165,13 +172,20 @@
                         </span>
                      </a> 
                      
-                     <a href="#">
+                     <a href="./myPage/storeMyPage">
+                        <span class="srm_jk_smalldiv">
+                           <span class="srm_jk_writing">매장 정보</span>
+                        </span>
+                     </a>
+                     
+                     
+                     <a href="./srm/staff">
                         <span class="srm_jk_smalldiv">
                            <span class="srm_jk_writing">직원 관리</span>
                         </span>
                      </a> 
                      
-                     <a href="#">
+                     <a href="${pageContext.request.contextPath}/srm/staffTime">
                         <span class="srm_jk_smalldiv">
                            <span class="srm_jk_writing">출/퇴근 조회</span>
                         </span>
@@ -213,7 +227,7 @@
                         </span>
                      </a> 
                      
-                     <a href="#">
+                     <a href="./srm/storeNotice">
                         <span class="srm_jk_smalldiv">
                            <span class="srm_jk_writing">공지사항</span>
                         </span>
@@ -225,6 +239,12 @@
                      <a href="#">
                         <span class="srm_jk_inerp">
                            <span class="srm_jk_bigdiv">포스기</span>
+                        </span>
+                     </a>
+                     
+                       <a href="${pageContext.request.contextPath}/pos">
+                        <span class="srm_jk_smalldiv">
+                           <span class="srm_jk_writing">우리 매장 <br>포스기</span>
                         </span>
                      </a>
                   </div>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="communityMapper">
+	
+	<select id="getNum">
+		select notice_seq.nextval from dual
+	</select>
+
+	<update id="hitUpdate" parameterType="int">
+		update community set hit=hit+1 where num=#{num} 
+	</update>	
+	
+	<select id="totalCount" resultType="int"  parameterType="java.util.Map">
+  		select nvl(count(num),0) from community
+	  		<if test="kind == 'code'">
+	  		where title like '%'||#{search}||'%'
+	  		</if>
+	  		<if test="kind == 'title'">
+	  		where title like '%'||#{search}||'%'
+	  		</if>
+	  		<if test="kind == 'writer'">
+	  		where writer like '%'||#{search}||'%'
+	  		</if>
+	  		<if test="kind == 'contents'">
+	  		where contents like '%'||#{search}||'%' 
+	  		</if>
+	  		
+		  		<if test="temp=='회계부'">
+		  			and temp = '회계부'
+				</if>
+				<if test="temp=='총무부'">
+					and temp = '총무부'
+				</if>
+				<if test="temp=='인사부'">
+					and temp = '인사부'
+				</if>
+				<if test="temp=='영업/구매부'">
+					and temp = '영업/구매부'
+				</if>
+				<if test="temp=='마케팅부'">
+					and temp = '마케팅부'
+				</if>
+  	</select>
+  	
+  	<select id="selectList" parameterType="java.util.Map" resultType="com.five.ware.community.CommunityDTO">
+  		select * from 
+  		(select rownum R, N.* from
+  		(select * from community 
+  		<if test="kind == 'code'">
+	  		where title like '%'||#{search}||'%'
+	  	</if>
+  		<if test="kind == 'title'">
+  			where title like '%'||#{search}||'%'
+  		</if>
+  		<if test="kind == 'writer'">
+  			where writer like '%'||#{search}||'%'
+  		</if>
+  		<if test="kind == 'contents'">
+  			where contents like '%'||#{search}||'%'
+  		</if>
+  		
+  			<if test="temp=='회계부'">
+	  			and temp like '%'||'회계부'||'%'
+			</if>
+			<if test="temp=='총무부'">
+				and temp like '%'||'총무부'||'%'
+			</if>
+			<if test="temp=='인사부'">
+				and temp like '%'||'인사부'||'%'
+			</if>
+			<if test="temp=='영업/구매부'">
+				and temp like '%'||'영업/구매부'||'%'
+			</if>
+			<if test="temp=='마케팅부'">
+				and temp like '%'||'마케팅부'||'%'
+			</if>
+  		
+  		 order by num desc) N) 
+  		where R between #{startRow} and #{lastRow}
+  	</select>
+  	
+  	<resultMap type="com.five.ware.community.CommunityDTO" id="communityResult">
+  		<id property="num" column="num"/>
+  		<collection property="fileNames" column="num" ofType="com.five.ware.community.UploadDTO" select="selectFile"/>
+  	</resultMap>
+  	
+  	<select id="selectOne" resultMap="communityResult" parameterType="int">
+  		select * from community where num=#{num}
+  	</select>
+  	
+  	<select id="selectFile" parameterType="int" resultType="com.five.ware.community.UploadDTO">
+  		select * from upload where num=#{num}
+  	</select>
+  	
+  	<insert id="insert" parameterType="com.five.ware.community.CommunityDTO">
+  		<selectKey keyProperty="num" resultType="int" order="BEFORE">
+  			select notice_seq.nextval from dual
+  		</selectKey>
+  	
+  		insert into community values(#{num}, #{temp}, #{writer}, #{title}, #{contents}, sysdate, 0)
+  	</insert>
+  	
+  	<update id="update" parameterType="com.five.ware.community.CommunityDTO" >
+  		update community set 
+  		title=#{title}, contents=#{contents}, temp=#{temp}
+  		where num=#{num} 
+  	</update>
+  	
+  	<delete id="delete" parameterType="java.lang.Integer">
+  		delete community where num=#{num}
+  	</delete>
+  	
+  	<delete id="fileDelete" parameterType="int">
+  		delete upload where num=#{num}
+  	</delete>
+	
+</mapper>

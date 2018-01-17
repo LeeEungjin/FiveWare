@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.five.ware.erp.into.IntoDTO;
 import com.five.ware.file.FileDTO;
 
-public class MenuRegistDTO{
+public class MenuRegistDTO extends IntoDTO{
 	
 	private String menuCode;
 	private String menuKind;

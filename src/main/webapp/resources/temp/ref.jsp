@@ -8,9 +8,12 @@
 
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="${url}/resources/js/jquery-3.1.1.min.js"></script>
+	<script src="${url}/resources/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="${url}/resources/css/common/bootstrap.min.css">
+	<link rel="stylesheet" href="${url}/resources/css/common/bootstrap-theme.min.css">
+	<script type="text/javascript" src='${url}/resources/js/sweetalert.min.js?ver=1'></script>
+	<link rel="stylesheet" type="text/css" href='${url}/resources/css/common/sweetalert.css?ver=1.2'>
 
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link href="${url }/resources/css/header/header.css" rel="stylesheet">
@@ -18,11 +21,21 @@
 
 <script type="text/javascript">
 	$(function() {
-		$("#ej_sidebar").css("height", window.innerHeight);
+		/* $("#ej_sidebar").css("height", window.innerHeight);
 		$("#fw_container").css("height", window.innerHeight);
+		$("#fw_container").css("width", (window.innerWidth)-(230+'px'));
 		$("#fw_mainwrap").css("width", "70%");
 		$("#fw_mainwrap").css("margin-left", "1%");
-		$("#fw_subcontainer").css("height", "100%");
+		$("#fw_subcontainer").css("height", "100%"); */
+		$("#ej_sidebar").css("height", window.innerHeight);
+		$("#fw_container").css("height", window.innerHeight);
+		$("#ej_sidebar").css("width", "195px");
+		$("#fw_container").css("width", (window.innerWidth - 195)+'px');
+		$("#fw_mainwrap").css("width", "82%");
+		$("#fw_container").css("margin-left", "195px");
+		$("#fw_subcontainer").css("width", "17%");
+		$(".ej_default_img").css("margin-left", "10px");
+		$("#ej_icon_contents").show();
 		
 		var menu = true;
 		$("#ej_menu").click(function(){

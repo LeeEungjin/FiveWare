@@ -24,48 +24,6 @@ public class MemberContoller {
 	
 	
 	
-	//update
-	@RequestMapping(value="storeUpdate" ,method=RequestMethod.POST)
-	public String storeMyPageUpdate(RedirectAttributes rd,StoreRegistDTO storeRegistDTO, HttpSession session){
-		
-		
-		
-		int result=0;
-		try {
-			result=storeRegistService.myPageUpdate(storeRegistDTO);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		String message="fail";
-		if(result>0){
-			message="success";
-			try {
-				storeRegistDTO = storeRegistService.selectOne(storeRegistDTO.getCode());
-				session.setAttribute("member", storeRegistDTO);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		
-		
-		rd.addFlashAttribute("message", message);
-		
-		return "redirect:./storeMyPage";
-	}
-	
-	
-	
-	//myPage
-		@RequestMapping(value="storeMyPage")
-		public String storeMyPage(HttpSession session)throws Exception{
-			
-			
-			return  "/myPage/storeMyPage";
-		}
-	
-	
 	//storelogin
 	@RequestMapping(value="storeLogin")
 	public String storeLogin(StoreRegistDTO storeRegistDTO,HttpSession session,RedirectAttributes rd){
@@ -104,44 +62,6 @@ public class MemberContoller {
 	
 
 	
-	//update
-	@RequestMapping(value="memberUpdate" ,method=RequestMethod.POST)
-	public String memberMyPageUpdate(RedirectAttributes rd,MemberDTO memberDTO, HttpSession session){
-		
-		int result=0;
-		try {
-			result=memberService.myPageUpdate(memberDTO);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		String message="fail";
-		if(result>0){
-			message="success";
-			try {
-				memberDTO = memberService.memberOne(memberDTO.getCode());
-				session.setAttribute("member", memberDTO);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		
-		
-		rd.addFlashAttribute("message", message);
-		
-		return "redirect:./memberMyPage";
-	}
-	
-	
-	//myPage
-	@RequestMapping(value="memberMyPage")
-	public String memberMyPage(HttpSession session)throws Exception{
-		
-		
-		return  "/myPage/memberMyPage";
-	}
-	
 	
 	
 	//login
@@ -159,7 +79,6 @@ public class MemberContoller {
 		 if(memberDTO !=null){
 			 session.setAttribute("member", memberDTO);
 			 session.setAttribute("kind", "member");
-			 message=memberDTO.getName()+"님 환영합니다";
 		 }else{
 			 message="아이디와 비밀번호를 확인해주세요.";
 		 }
