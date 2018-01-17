@@ -22,13 +22,11 @@
   		<typeAlias type="com.five.ware.erp.human.dili.MemberWorkDTO" alias="MemberWorkDTO"/>
   		<typeAlias type="com.five.ware.groupware.epayment.FormListDTO" alias="FormListDTO"/>
   		<typeAlias type="com.five.ware.groupware.epayment.EpaymentDTO" alias="EpaymentDTO"/>
-<<<<<<< HEAD
   		<typeAlias type="com.five.ware.calendar.CalendarDTO" alias="CalendarDTO"/>
   		<typeAlias type="com.five.ware.calendar.CalendarEventDTO" alias="CalendarEventDTO"/>
   		<typeAlias type="com.five.ware.meeting.MeetingRoomDTO" alias="MeetingRoomDTO"/>
-=======
   		<typeAlias type="com.five.ware.groupware.epayment.EpaymentLeaveDTO" alias="EpaymentLeaveDTO"/>
   		
->>>>>>> arin
+
   	</typeAliases>
   </configuration>
