@@ -1,7 +1,14 @@
 package com.five.ware.ar.controller;
 
+<<<<<<< HEAD
 
 
+=======
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+>>>>>>> arin
 import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
@@ -10,6 +17,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +27,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.five.ware.erp.human.member.MemberDTO;
 import com.five.ware.groupware.epayment.EpaymentDTO;
+import com.five.ware.groupware.epayment.EpaymentLeaveDTO;
+import com.five.ware.groupware.epayment.EpaymentLeaveService;
 import com.five.ware.groupware.epayment.EpaymentService;
 import com.five.ware.groupware.epayment.FormListDTO;
 import com.five.ware.groupware.epayment.FormListService;
@@ -32,6 +42,8 @@ public class GroupWareEpaymentContoller {
 	FormListService formListService;
 	@Inject
 	EpaymentService epaymentService;
+	@Inject
+	EpaymentLeaveService epaymentLeaveService;
 	
 	
 	//내가 올린 결재문서만 보기
@@ -164,35 +176,78 @@ public class GroupWareEpaymentContoller {
 	}
 	
 	@RequestMapping(value="explanatory")
-	public ModelAndView explanatory() throws Exception{
+	public ModelAndView explanatory(HttpSession session) throws Exception{
 		Calendar ca = Calendar.getInstance();
 		
 		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
 		
 		String sysdate = sd.format(ca.getTime());
 		
-		ModelAndView mv = new ModelAndView();
 		
+		////////////////////////////// 문서 번호
+		String filePath = session.getServletContext().getRealPath("/resources/code");
+		String fileName= "docunum";
+		
+		File f= new File(filePath, fileName);
+		
+		FileReader fr = new FileReader(f);
+		
+		BufferedReader br = new BufferedReader(fr);
+		
+		fileName=br.readLine();
+		
+		String code = fileName;
+		char codeChar=code.charAt(0);
+		
+		code=code.substring(1);
+		int num = Integer.parseInt(code);
+		
+		num++;
+		
+		code=String.valueOf(num);
+		String codeNum="";
+		
+		for(int i=0; i<3-code.length(); i++){
+			codeNum = "0"+codeNum;
+		}
+		
+		
+		code=codeChar+codeNum+code;
+		
+		FileWriter fw = new FileWriter(f);
+		
+		fw.write(code);
+		
+		fw.flush();
+		
+		fw.close();
+		br.close();
+		fr.close();
+///////////////////////////////////////////////		
+		ModelAndView mv = new ModelAndView();
+		System.out.println("결과"+code);
 		mv.addObject("sysdate", sysdate);
+		mv.addObject("docunum", code);
 		mv.setViewName("GroupWare/epayment/explanatory");
 		
 		return mv;
 	}
 	
 	@RequestMapping(value="epaymentInsert", method=RequestMethod.POST)
-	public ModelAndView epaymentInsert(EpaymentDTO epaymentDTO) throws Exception{
+	public ModelAndView epaymentInsert(EpaymentDTO epaymentDTO, EpaymentLeaveDTO epaymentLeaveDTO) throws Exception{
 		int result = epaymentService.epaymentInsert(epaymentDTO);
+		int result2 = epaymentLeaveService.approvalInsert(epaymentLeaveDTO);
 		
 		String message = "결재 요청 실패";
 		
-		if(result>0){
-			message= "결재가 요청되었습니다.";
+		if(result>0 && result2>0){
+			message="결재가 요청되었습니다.";
 		}
 		
 		ModelAndView mv = new ModelAndView();
 		
 		mv.addObject("message", message);
-		mv.addObject("addr", "explanatory"); // 주소 바꿔야함
+		mv.addObject("addr", "formList");
 		mv.setViewName("common/result");
 		
 		return mv;
@@ -229,4 +284,6 @@ public class GroupWareEpaymentContoller {
 		
 		return memberDTO;
 	}
+	
+	
 }

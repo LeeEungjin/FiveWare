@@ -198,7 +198,7 @@
                         </span>
                      </a> 
                      
-                     <a href="#"> 
+                     <a href="../ware/calendar/coding"> 
                         <span class="groupWare_jk_smalldiv"> 
                            <span class="groupWare_jk_writing">전체 스케쥴</span>
                         </span>

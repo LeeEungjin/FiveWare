@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.five.ware.erp.storeRegist.StoreRegistDTO;
 import com.five.ware.util.FileSaver;
 import com.five.ware.util.ListData;
 
@@ -24,6 +25,12 @@ public class FreeService {
 	private FileSaver fileSaver;
 	@Autowired
 	private UploadDAO uploadDAO;
+	
+	public List<String>	storeList()throws Exception{
+		List<String> storeList=freeDAO.storeList();
+		
+		return storeList;
+	}
 	
 	public ModelAndView selectList(ListData listData, String target)throws Exception{
 		ModelAndView mv=new ModelAndView();
@@ -121,8 +128,9 @@ public class FreeService {
 	}
 	
 	public int delete(int num)throws Exception{
-		int result=freeDAO.delete(num);
-			result=freeDAO.fileDelete(num);
+		int result=freeDAO.fileDelete(num);
+			
+			result=freeDAO.delete(num);
 			
 		return result;
 	}

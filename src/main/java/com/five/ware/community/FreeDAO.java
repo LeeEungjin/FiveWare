@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.five.ware.erp.storeRegist.StoreRegistDTO;
 import com.five.ware.util.RowNum;
 
 @Repository
@@ -17,6 +18,10 @@ public class FreeDAO {
 	@Inject
 	SqlSession sqlSession;
 	private static final String namespace="freeMapper.";
+	
+	public List<String> storeList()throws Exception{
+		return sqlSession.selectList(namespace+"storeList");
+	}
 	
 	public int totalCount(RowNum rowNum, String target)throws Exception{
 		Map<String, Object> map=new HashMap<String, Object>();
@@ -65,7 +70,7 @@ public class FreeDAO {
 	}
 	
 	public int fileDelete(int num)throws Exception{
-		return sqlSession.delete(namespace+"delete", num);
+		return sqlSession.delete(namespace+"fileDelete", num);
 	}
 	
 	public int update(FreeDTO freeDTO)throws Exception{

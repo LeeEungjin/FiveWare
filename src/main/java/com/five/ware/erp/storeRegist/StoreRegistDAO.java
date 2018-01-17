@@ -37,6 +37,12 @@ private static final String namespace="storeRegistMapper.";
 		
 		return result;
 	}
+	
+	//allStoreList
+	public List<StoreRegistDTO> allStoreList()throws Exception{
+		
+		return sqlsession.selectList(namespace+"allStoreList");
+	}
 		
 	
     //list

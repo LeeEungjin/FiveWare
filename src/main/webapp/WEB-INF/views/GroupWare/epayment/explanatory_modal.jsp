@@ -38,9 +38,9 @@
 					   			
 					   		<div id="ar_signBtnWrap">
 					   			<div id="ar_signBtn">
-					   				<div id="ar_signok" class="ar_signBtns"> ></div>
-					   				<div id="ar_signdelete" class="ar_signBtns"> < </div>
-					   				<div id="ar_signformat" class="ar_signBtns"><i class="ar_before"></i></div>
+					   				<div id="ar_signok" class="ar_signBtns"><i class="fa fa-angle-right"></i></div>
+					   				<div id="ar_signdelete" class="ar_signBtns"><i class="fa fa-angle-left"></i></div>
+					   				<div id="ar_signformat" class="ar_signBtns"><i class="fa fa-rotate-left"></i></div>
 					   			</div>
 					   		</div>
 					   		
@@ -53,7 +53,7 @@
 					   				<table id="ar_resultTable" >
 					   					<tbody  id="ar_resultTableBody">
 						   					<tr >
-						   						<td id="ar_tableBlank" class="ar_tabletds"></td>
+						   						<td id="ar_tableBlank" class="ar_tabletds ar_end"></td>
 						   						<td id="ar_tabletd2" class="ar_tabletds">결재</td>
 						   						<td id="ar_tabletd3" class="ar_tabletds">${member.name } 기안 ${member.temp }</td>
 						   					</tr>
@@ -69,7 +69,7 @@
 					        
 					        <!-- modal footer -->
 					        <div class="modal-footer">
-					          <button type="button" class="btn btn-default" data-dismiss="" id="positionBtn">등록</button>
+					          <button type="button" class="btn btn-default" data-dismiss="" id="ar_signInsertBtn">등록</button>
 					          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					        </div>
 					      	<!-- modal footer 끝-->

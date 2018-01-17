@@ -39,8 +39,7 @@
 			var target=$(this).attr("id");
 			var kind=$("#memberKind").val();
 			var memberName=$("#memberName").val();
-			var writer=$("#writer").val();
-			
+			var writer=$("#writer").attr("title");
 			
 			var secret=$("#secret").val();
 			
@@ -62,7 +61,6 @@
 <body>
 <c:import url="${url}/resources/temp/headerExample.jsp"></c:import> 
 
-<input type="hidden" id="writer" value="${list.writer}">
 <input type="hidden" id="memberName" value="${member.name}">
 <input type="hidden" id="memberKind" value="${kind}">
 
@@ -82,6 +80,8 @@
 	
 	<div id="free_middle">
 		<div id="free_sub_title">
+			<a href="./freeList">모두보기</a>
+		
 			<a href="./freeList?kind=target&target=전체">전체공개 보기</a>
 			
 			<c:if test="${kind eq 'member'}">
@@ -91,9 +91,6 @@
 			<c:if test="${kind eq 'store'}">
 				<a href="./freeList?kind=target&target=${member.store}">우리 지점 공개 보기</a>
 			</c:if>
-			
-			<a href="./freeList">초기화</a>
-			
 		</div>
 		
 		<div id="free_contents">
@@ -122,7 +119,7 @@
 				      	<th>공개 여부</th>
 				        <th>제목</th>
 				        <th>날짜</th>
-				        <th>부서</th>
+				        <th>부서/지점</th>
 				        <th>작성자</th>
 				        <th>조회수</th>
 				      </tr>
@@ -133,10 +130,21 @@
 				      <tr>
 				      	<td>${list.num}</td>
 				      	<td>[${list.target}공개]</td>
-				      	<td><p id="${list.target}" title="${list.num}" class="freeView">${list.title}</p></a></td>
+				      	
+				      	
+				      	<td><p id="${list.target}" title="${list.num}" class="freeView">
+				      	<c:catch>
+							<c:forEach begin="1" end="${list.depth}">
+								└
+							</c:forEach>
+						</c:catch>
+				      	
+				      	${list.title}</p></td>
+				      	
+				      	
 				      	<td>${list.reg_date}</td>
 				      	<td>${list.temp}</td>
-				      	<td>${list.writer}</td>
+				      	<td><p id="writer" title="${list.writer}">${list.writer}</p></td>
 				      	<td>${list.hit}</td>
 				      </tr>
 				    </c:forEach>

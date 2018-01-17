@@ -1,0 +1,126 @@
+@CHARSET "UTF-8";
+
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+#fw_container{
+	width: 99%;
+	height: 100%;
+	background-color: lightblue;
+	transition: width 0.3s;	
+	margin-left: 1%;
+}
+
+#all_store_header{
+	width: 100%;
+    background-color: #ffdfe4;
+    height: 13%;
+}
+
+#all_store_icon{
+	height: 100%;
+	width: 5%;
+	background-color: #ff8080;
+	float: left;
+}
+
+#all_store_title{
+	height: 100%;
+	width: 15%;
+	background-color: #ffc8b0;
+	float: left;
+}
+
+#all_store_middle{
+	width: 100%;
+    background-color: #ffffcc;
+    height: 75%;
+}
+
+#all_store_contents{
+	width: 95%;
+    height: 95%;
+    background-color: #c8ffe3;
+    margin-left: 2.5;
+    margin-left: 2.5%;
+}
+
+#all_store_map{
+	width: 49%;
+	height: 90%;
+	background-color: #ffdfd0;
+	margin-right: 2%;
+	float: left;
+}
+
+#map_title{
+	width: 49%;
+	height: 100%;
+	background-color: #ceefff;
+	margin-right: 2%;
+	float: left;
+}
+
+#all_store_table{
+	width: 49%;
+	height: 90%;
+	background-color: #ffdfef;
+	overflow: scroll;
+}
+
+#table_title{
+	width: 49%;
+	height: 100%;
+	background-color: #e8d0ff;
+	float: right;
+}
+
+#all_store_sub_title{
+	width: 100%;
+	height: 10%;
+	background-color: #f8edd3;
+	float: left;
+}
+
+#all_store_footer{
+	width: 100%;
+    background-color: #cdcde7;
+    height: 12%;
+}
+
+#all_store_blank{
+	width: 100%;
+	background-color: #cdcde7;
+	height: 2%;
+}
+
+
+/*////////////////////////////////////////////*/
+
+.all_store_div{
+	width: 90%;
+    height: 35%;
+    margin-left: 5%;
+    background-color: #ffffce;
+    margin-top: 5%;
+}
+
+.store_title_div{
+	width: 100%;
+    height: 18%;
+    background-color: #aa7d73;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 2%;
+}
+
+.all_table{
+	text-align: center;
+}
+
+.rb{
+	border-right: 1px solid #e9e9e9;
+}

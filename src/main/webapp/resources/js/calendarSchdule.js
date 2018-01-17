@@ -2,11 +2,79 @@ var data = {} // List<Event>
 var locationMonth = 0; // 현재 달력위치
 var locationYear = 0; // 현재 년도위치
 var locationWeek = 0; // 현재 주차위치
+
+// 숫자 자리수
+function pad(n, width) {
+	  n = n + '';
+	  return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
+}
+
+// 회의실 찾기
+function meetingSearch() {
+	var meeting = document.getElementById('meetingName').value;
+	var reserv = document.getElementById('reservDate').value;
+	
+	if(meeting.trim() == '' || meeting.trim().length == 0) {
+		swal('회의실','선택해주세요');
+		return false;
+	} else if(reserv.trim() == '' || reserv.trim().length == 0) {
+		swal('예약날짜','입력해주세요');
+		return false;
+	}
+	
+	$.ajax({
+		url: './meetingSearch',
+		type: 'post',
+		async: false,
+		data : {
+			meetingName : meeting,
+			reservDate : reserv
+		},
+		success: function(data) {
+			var time = [];
+			$(data).each(function(i,item) {
+				console.log(item[i]);
+			});
+			for (var i=0; i<=9; i++) {
+				$('#meetingResult').append("<div class='timeBox able'>"+pad((i+9), 2)+":00</div>");
+			}
+			
+		}
+	});
+}
+
+//회의실 선택 효과
+function meetingRoom(index) {
+	var meeting = document.getElementById('meetingName');
+	var rooms = document.getElementsByClassName('room');
+	for(var i=0; i<rooms.length;i++) {
+		if(index == i) {
+			rooms[i].className="room meeting-active";
+			console.log(rooms[i].textContent.trim());
+			meeting.value=rooms[i].textContent.trim();
+		} else {
+			rooms[i].className="room";
+		}
+	}
+}
+
+//회의실 예약 폼
+function reservMeeting() {
+	$('#meetingForm').modal();
+}
 // 날짜 테그를 만들어준다
 function dayTagFormat(year, month, day) {
+	var d = new Date(year+"/"+month+"/"+day);
 	var tag = new StringBuffer();
 	tag.append("<td id="+year+month+day+">");
-	tag.append("<a class='cursor-pointer' onclick='schduleAdd("+year+","+month+","+day+")'>"+numFormat(day)+"</a>");
+	// 일요일, 토요일 구분
+	if(d.getDay()==0) {
+		tag.append("<a class='cursor-pointer sunday' onclick='schduleAdd("+year+","+month+","+day+")'>"+numFormat(day)+"</a>");
+	} else if(d.getDay()==6) {
+		tag.append("<a class='cursor-pointer saturday' onclick='schduleAdd("+year+","+month+","+day+")'>"+numFormat(day)+"</a>");
+	} else {
+		tag.append("<a class='cursor-pointer' onclick='schduleAdd("+year+","+month+","+day+")'>"+numFormat(day)+"</a>");
+	}
 	tag.append("</td>");
 	return tag.toString();
 }
