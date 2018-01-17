@@ -27,30 +27,7 @@ $(function(){
 			document.frm.submit();
 		});
 	 
-	 /*view  */
-	  $(".eb_viewBtn").click(function(){
-	 	 var num=$(this).attr("title");
-		 
-		 $.ajax({
-			type : "get",
-			url : "./epaymentView",
-			data : {"num" : num},
-			success : function(data){
-				$("#eb_viewNum").text(data.num);
-				$("#eb_viewDraftdate").text(data.draftdate);
-				$("#eb_viewDraftname").text(data.draftname);
-				$("#eb_viewDrafttemp").text(data.drafttemp);
-				$("#eb_viewTitle").text(data.title);
-				$("#eb_viewContents").text(data.contents);
-				$("#eb_viewApproval").text(data.approval);
-				$("#eb_viewApprovaltemp").text(data.approvaltemp);
-				$("#eb_viewResult").text(data.result);
-			},error : function(){
-				alert("error");
-			}
-		 }); 
-	 }); 
-	 
+	
 
 });
 
@@ -85,14 +62,14 @@ $(function(){
 			</div>
 			
 			<!-- ----------2---------- -->
-				<div class="fw_menu fw_selected" data-toggle="collapse" data-target="#sub2" title="sub2" >
+				<div class="fw_menu " data-toggle="collapse" data-target="#sub2" title="sub2" >
 					발신함
 				<div class="fw_arrow sub2">
 					∨
 				</div>
 			</div>
 			
-			<div class="fw_subsub collapse in"  id="sub2">
+			<div class="fw_subsub collapse "  id="sub2">
 				<ul>
 					<li> 기안 상신함</li>
 					<li> 임시보관함</li>
@@ -101,14 +78,14 @@ $(function(){
 			</div>
 			
 			<!-- -------------------- -->
-					<div class="fw_menu" data-toggle="collapse" data-target="#sub3" title="sub3" >
+					<div class="fw_menu fw_selected" data-toggle="collapse" data-target="#sub3" title="sub3" >
 					수신함
 				<div class="fw_arrow sub3">
 					∨
 				</div>
 				</div>
 			
-				<div class="fw_subsub collapse"  id="sub3">
+				<div class="fw_subsub collapse in"  id="sub3">
 					<ul>
 						<li><a href="./epaymentReceive">수신함</a></li>
 					
@@ -124,7 +101,7 @@ $(function(){
 			</div>
 			
 			<div class="ar_plusTitle">
-				<p id="ar_plustext">내 결제 보기</p>
+				<p id="ar_plustext">수신함</p>
 			</div>
 			
 			<div class="ar_plusSearchWrap">
@@ -132,7 +109,7 @@ $(function(){
 				
 			<form action="positionPlus" method="GET">
 				<div class="ar_plusSearch">
-					내가 올린 결재들만 보기
+					내가 받은 결재
 					</div>
 			</form>
 			</div>
@@ -186,7 +163,7 @@ $(function(){
 									</tr>
 								 </c:if> 
 								 
-								 <c:if test="${not empty epaymentList}">
+						<%-- 		 <c:if test="${not empty epaymentList}">
 								 <c:forEach items="${epaymentList }" var="dto">
 								 	<tr>
 									<td>${dto.num }</td>
@@ -200,7 +177,7 @@ $(function(){
 									<td><input type="button" value="상세보기" class="eb_viewBtn" title="${dto.num}"  data-toggle="modal" data-target="#myModal"></td>
 								</tr>
 								</c:forEach>
-								</c:if>
+								</c:if> --%>
 							</tbody>
 						
 						</table>
@@ -216,7 +193,7 @@ $(function(){
 						      <div class="modal-content">
 						        <div class="modal-header">
 						          <button type="button" class="close" data-dismiss="modal">&times;</button>
-						          <h4 class="modal-title">내 결재 보기</h4>
+						          <h4 class="modal-title">수신함</h4>
 						        </div>
 						        <div class="modal-body"  id="eb_modal" >
 						         

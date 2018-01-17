@@ -17,6 +17,26 @@ public class EpaymentDTO {
 	private String approvaltemp;
 	private String memberCode;
 	
+	
+	
+	public String getResult() {
+		return result;
+	}
+	public void setResult(String result) {
+		this.result = result;
+	}
+	public String getApproval() {
+		return approval;
+	}
+	public void setApproval(String approval) {
+		this.approval = approval;
+	}
+	public String getApprovaltemp() {
+		return approvaltemp;
+	}
+	public void setApprovaltemp(String approvaltemp) {
+		this.approvaltemp = approvaltemp;
+	}
 	public String getMemberCode() {
 		return memberCode;
 	}

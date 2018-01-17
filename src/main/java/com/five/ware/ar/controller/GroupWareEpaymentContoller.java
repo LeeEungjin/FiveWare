@@ -42,6 +42,14 @@ public class GroupWareEpaymentContoller {
 	EpaymentLeaveService epaymentLeaveService;
 	
 	
+	
+	//수신함
+	@RequestMapping(value="epaymentReceive")
+	public void epaymentReceive(){
+		
+		
+	}
+	
 	//내가 올린 결재문서만 보기
 	@RequestMapping(value="epaymentDispatch")
 	public ModelAndView epaymentDispatch(ListData listData){
