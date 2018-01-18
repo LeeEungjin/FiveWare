@@ -36,7 +36,7 @@
 #all_store_middle{
 	width: 100%;
     background-color: #ffffcc;
-    height: 75%;
+    height: 80%;
 }
 
 #all_store_contents{
@@ -47,7 +47,7 @@
     margin-left: 2.5%;
 }
 
-#all_store_map{
+#map{
 	width: 49%;
 	height: 90%;
 	background-color: #ffdfd0;
@@ -61,6 +61,9 @@
 	background-color: #ceefff;
 	margin-right: 2%;
 	float: left;
+	font-size: 30px;
+    font-weight: bold;
+    text-align: center;
 }
 
 #all_store_table{
@@ -75,6 +78,9 @@
 	height: 100%;
 	background-color: #e8d0ff;
 	float: right;
+	font-size: 30px;
+    font-weight: bold;
+    text-align: center;
 }
 
 #all_store_sub_title{
@@ -87,7 +93,7 @@
 #all_store_footer{
 	width: 100%;
     background-color: #cdcde7;
-    height: 12%;
+    height: 7%;
 }
 
 #all_store_blank{
