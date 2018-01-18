@@ -11,6 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 @Controller 
 @RequestMapping(value="/GroupWare/cloud/**")
 public class CloudController {
@@ -24,13 +27,13 @@ public class CloudController {
 		if(!parentFile.exists()) {
 			parentFile.mkdirs();
 		}
-		
+
 		File[] files = parentFile.listFiles();
-		List<String[]> list = new ArrayList<String[]>();
+		List<JsonArray> list = new ArrayList<JsonArray>();
+
+		JsonArray json = new JsonArray();
 		if(files.length > 0) {
 			for (File tempFile : files) {
-				String[] ar = new String[2];
-				
 				String temp = tempFile.getName();
 				String ext = null;
 
@@ -42,19 +45,16 @@ public class CloudController {
 					ext = temp.substring(index+1);
 				}
 			
+				//JSON
+				JsonObject obj = new JsonObject();
+				obj.addProperty("name", temp);
+				obj.addProperty("ext", ext);
+				json.add(obj);
 				
+				list.add(json);
 			}
 			
-			for (String[] strings : list) {
-				System.out.println("------------------");
-				for (String string : strings) {
-					System.out.println(string);
-				}
-				System.out.println("------------------");
-			}
-			
-			model.addAttribute("files", files);
-			model.addAttribute("fileInfo", list);
+			model.addAttribute("fileList", json);
 		}
 		
 		return "GroupWare/cloud/cloudList";

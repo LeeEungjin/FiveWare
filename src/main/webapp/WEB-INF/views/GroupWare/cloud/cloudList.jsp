@@ -224,12 +224,17 @@
 			<div class="cloud_dir_text">파일이름</div>
 		</div> -->
 		<div id="cloud_contents">
-			<c:forEach items="${fileInfo}" var="info">
-				<c:forEach items="${info}" var="name">
+			${fileList}
+			${fileList.size()}
+			<c:forEach items="${fileList}" var="file">
+				${file}
+			</c:forEach>
+			<%-- <c:forEach items="${fileList}" var="info">
+				<c:forEach items="${info}" var="file">
 					<div class="cloud_dir">
 						<div class="cloud_dir_img">
-							${name[1]}
-							<%-- <c:choose>
+							${file.ext}
+							<c:choose>
 								<c:when test="${name[1] eq 'folder'}">
 									<i class="fa fa-folder" style="font-size:56px;"></i>
 								</c:when>
@@ -248,12 +253,12 @@
 								<c:otherwise>
 									<i class="fa fa-file-o" style="font-size:56px;"></i>
 								</c:otherwise>
-							</c:choose> --%>
+							</c:choose>
 						</div>
-						<div class="cloud_dir_text">${name[0]}</div>
+						<div class="cloud_dir_text">${file.name}</div>
 					</div>
 				</c:forEach>
-			</c:forEach>
+			</c:forEach> --%>
 		</div>
 	</div>
 </div>
