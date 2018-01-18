@@ -85,6 +85,14 @@ public class GroupWareEpaymentContoller {
 
 	}
 	
+	@RequestMapping(value="stampok")
+	@ResponseBody
+	public String stampok(String docunum) throws Exception{
+		String message = epaymentLeaveService.stampok(docunum);
+		
+		return message;
+	}
+	
 	
 	//반려함에서 삭제
 	@RequestMapping(value="epaymentDelete")

@@ -15,17 +15,14 @@
 													<div id="ar_signText">
 														결 <br> 재
 													</div>
-														<div id="ar_signBoxBasis1">
+														<div id="ar_signBoxBasis100">
 															<div id="ar_signTemp"> 기 안</div>
 															<div id="ar_singMember"><input type=text  readonly=readonly value='${docuC.drafttemp}'><input type=text  readonly=readonly value='${docuC.draftname }'></div>
 															<input type=hidden value="${docuC.draftcode}" name="draftcode">
 														</div>
 													<!-- for문 돌리기(결재선) -->
-													<c:forEach items="${signmember}" var="list">
-													<c:if test="${list.statenum==1 }">
-														
-													</c:if>
-														<div id="ar_signBoxBasis">
+													<c:forEach items="${signmember}" var="list" varStatus="i" >
+														<div id="ar_signBoxBasis${list.docunum}${i.index}" class="ar_backstamp" title="${list.statenum}">
 															<div id="ar_signTemp"> ${list.approvaltemp}</div>
 															<div id="ar_singMember"><input type=text  readonly=readonly value='${list.approvalrank}'><input type=text  readonly=readonly value='${list.approvalname}'></div>
 															<%-- <input type=hidden value="${list.approvalranking}" name="draftcode"> --%>
@@ -70,9 +67,13 @@
 						         </div>
 						         
 						        </div>
-						        <div class="modal-footer">
-						        	<input type="button" class="btn btn-default" id="eb_Delete" value="결재 승인" >
+						        <div class="modal-footer" id="ar_beforeBtn">
+						        	<input type="button" class="btn btn-default" id="ar_approvalok" title="${docuC.docunum }" value="결재 승인" >
 						        	<input type="button" class="btn btn-default" id="eb_Delete" value="결재 거부" >
+						          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						        </div>
+						        
+						        <div class="modal-footer" id="ar_afterBtn">
 						          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 						        </div>
 						      </div>

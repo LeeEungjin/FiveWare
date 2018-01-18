@@ -43,4 +43,16 @@ public class EpaymentLeaveDAO {
 		
 		return ar;
 	}
+	
+	public int stampok(String docunum) throws Exception{
+		int result = sqlSession.update(NAMESPACE+"stampok", docunum);
+		
+		return result;
+	}
+	
+	public int stampok2(String docunum) throws Exception{
+		int result = sqlSession.update(NAMESPACE+"stampok2", docunum);
+		
+		return result;
+	}
 }

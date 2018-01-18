@@ -81,5 +81,17 @@ public class EpaymentLeaveService {
 		return epaymentDTO;
 	}
 	
+	public String stampok(String docunum) throws Exception{
+		int result = epaymentLeaveDAO.stampok(docunum);
+		int result2= epaymentLeaveDAO.stampok2(docunum);
+		
+		String message="결재 승인 실패";
+		
+		if(result>0 && result2>0){
+			message="결재가 승인되었습니다.";
+		}
+		
+		return message;
+	}
 
 }

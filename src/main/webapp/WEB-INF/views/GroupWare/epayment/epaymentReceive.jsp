@@ -27,7 +27,7 @@ $(function(){
 			document.frm.submit();
 		});
 	 
-	 $("#ar_epaylong").click(function(){
+	 $(".eb_viewBtn").click(function(){
 		 var docunum=$(this).attr("title");
 		 
 		 $.ajax({
@@ -37,9 +37,40 @@ $(function(){
 				 "docunum" : docunum
 			 },success:function(data){
 				 $(".modal-dialog").html(data);
+				 
+				var num = document.getElementsByClassName("ar_backstamp") ;
+				
+				 for(var i=0; i<num.length; i++){
+/* 					 alert($("#ar_signBoxBasis"+docunum+i).attr("title"));
+ */					 if($("#ar_signBoxBasis"+docunum+i).attr("title")=="1"){
+						 $("#ar_signBoxBasis"+docunum+i).addClass("ar_approvalimg");
+					 }else if($("#ar_signBoxBasis"+docunum+i).attr("title")=="-1"){
+						 $("#ar_signBoxBasis"+docunum+i).addClass("ar_refuse");
+					 }
+					 
+				 }
 				 }
 		 });
 	 });
+	 
+	$(".modal").on("click", "#ar_approvalok" ,function(){
+		
+		var docunum=$(this).attr("title");
+		
+		$.ajax({
+			type:"GET",
+			url:"./stampok",
+			data:{
+				"docunum":docunum
+			},success:function(data){
+				alert(data);
+				$("#ar_afterBtn").css("display", "block");
+				$("#ar_beforeBtn").css("display", "none");
+				// 어디다가 addClass 해야할까 ?
+				window.reload;
+			}
+		});
+	});
 	 
 	
 
@@ -181,15 +212,15 @@ $(function(){
 								 <c:forEach items="${list }" var="dto">
 								 	<tr>
 								 	<input type="hidden" value="${dto.docunum }" id="ar_docunum">
-									<td>${dto.num }</td>
-									<td>${dto.title }</td>
-									<td>${dto.draftname }</td>
-									<td>${dto.drafttemp }</td>
-									<td>${dto.kind }</td>
-									<td>${dto.draftdate }</td>
-									<td>${dto.state}</td> 
-									<td></td>
-									<td><input type="button" value="상세보기" class="eb_viewBtn"  data-toggle="modal" data-target="#myModal" title="${dto.docunum }" id="ar_epaylong"></td>
+										<td>${dto.num }</td>
+										<td>${dto.title }</td>
+										<td>${dto.draftname }</td>
+										<td>${dto.drafttemp }</td>
+										<td>${dto.kind }</td>
+										<td>${dto.draftdate }</td>
+										<td>${dto.state}</td> 
+										<td></td>
+										<td><input type="button" value="상세보기" class="eb_viewBtn"  data-toggle="modal" data-target="#myModal" title="${dto.docunum }" id="ar_epaylong"></td>
 								</tr>
 								</c:forEach>
 								</c:if> 

@@ -384,7 +384,7 @@
 	margin: 0 auto;
 }
 
-#ar_signBoxBasis1{
+#ar_signBoxBasis100{
 	width: 100px;
 	height: 100%;
 	background-color: #7bbdff;
@@ -394,4 +394,28 @@
 	background-repeat: repeat-x;
 	background-position: bottom;
 	
+}
+
+.ar_approvalimg{
+	background-image: url("../../../images/stamp/approvalimg.png");
+	background-repeat: repeat-x;
+	background-position: bottom;
+}
+
+.ar_refuse{
+	background-image: url("../../../images/stamp/refuse.png");
+	background-repeat: repeat-x;
+	background-position: bottom;
+}
+
+.ar_backstamp{
+	width: 100px;
+	height: 100%;
+	background-color: #7bbdff;
+	display: inline-block;
+	float:left;
+}
+
+#ar_afterBtn{
+	display: none;
 }
