@@ -88,9 +88,5 @@ public class FileController {
 		return "redirect:./"+photoDTO.getCallback()+photoDTO.getCallback_func()+stringBuffer.toString();
 	}*/
 	
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> eunbi2
 }
