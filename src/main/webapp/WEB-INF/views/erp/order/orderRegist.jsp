@@ -17,7 +17,7 @@
 		var message = '${message}';
 	
 		if(message != ""){
-			alert(message);
+			swal(message);
 		}
 		
 		$("#or_insert").click(function(){
@@ -97,7 +97,7 @@
 			var total=price*amount;
 			
 			if(amount<0){
-				alert("0이하 수량은 입력되지 않습니다.");
+				swal("0이하 수량은 입력되지 않습니다.");
 				$(this).val(null);
 			}else{
 				$("#"+total_input).val(total);
@@ -118,7 +118,7 @@
 			var all_total_input=$("#all_total_input").val();
 
 			if(all_total_input==""){
-				alert("주문 할 제품을 등록해주세요.")
+				swal("주문 할 제품을 등록해주세요.")
 			}else{
 				$("#or_write_frm").submit();
 			}
@@ -134,7 +134,7 @@
 					$("#or_update_modal").html(data);
 				},
 				error : function(){
-					alert("error");
+					swal("error");
 				}
 			});
 		});
@@ -157,11 +157,11 @@
 				url : "./orderDelete",
 				data : {orderCode:orderCode},
 				success:function(){
-					alert("삭제완료");
+					swal("삭제완료");
 					location.reload();
 				},
 				error : function(){
-					alert("error");
+					swal("error");
 				}
 			});
 		});
@@ -172,7 +172,7 @@
 			var ematerDate=$("#ematerDate").val(); 
 			
 		 	if(smaterDate=="" || ematerDate==""){
-				alert("기간을 입력해주세요.");
+		 		swal("기간을 입력해주세요.");
 			}else{ 
 				
 				$.ajax({

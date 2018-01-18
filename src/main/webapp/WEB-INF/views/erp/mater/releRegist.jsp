@@ -17,7 +17,7 @@
 		var message = '${message}';
 		
 		if(message != ""){
-			alert(message);
+			swal(message);
 		}
 		
 		
@@ -46,11 +46,11 @@
  			var name=$("#name").val();
  			
 			if(materDate==""){
-				alert("출고날을 입력해주세요.");
+				swal("출고날을 입력해주세요.");
 			}else if(temp=""){
-				alert("부서를 입력해주세요.");
+				swal("부서를 입력해주세요.");
 			}else if(name=""){
-				alert("담당자 입력해주세요.");
+				swal("담당자 입력해주세요.");
 			}else{
 				$("#rr_write_frm").submit();
 				$(".rr_btn").attr("data-dismiss", "modal");
@@ -64,7 +64,7 @@
 			var materKind="rele";
 			
 		 	if(smaterDate=="" || ematerDate==""){
-				alert("기간을 입력해주세요.");
+		 		swal("기간을 입력해주세요.");
 			}else{ 
 				
 				$.ajax({
@@ -97,7 +97,7 @@
 					$("#rr_update_modal").html(data);
 				},
 				error : function(){
-					alert("error");
+					swal("error");
 				}
 			});
 		});
@@ -140,11 +140,11 @@
 				url : "./materDelete",
 				type : "get",
 				success : function(data){
-					alert("삭제 완료");
+					swal("삭제 완료");
 					location.reload();
 				},
 				error : function(){
-					alert("error");
+					swal("error");
 				}
 			});
 		});

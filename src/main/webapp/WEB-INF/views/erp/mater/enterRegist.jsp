@@ -17,7 +17,7 @@
 		var message = '${message}';
 	
 		if(message != ""){
-			alert(message);
+			swal(message);
 		}
 		
 		$("#er_insert").click(function(){
@@ -44,13 +44,13 @@
  			var name=$("#name").val();
  			
 			if(materDate==""){
-				alert("입고날을 입력해주세요.");
+				swal("입고날을 입력해주세요.");
 			}else if(temp=""){
-				alert("부서를 입력해주세요.");
+				swal("부서를 입력해주세요.");
 			}else if(name=""){
-				alert("담당자 입력해주세요.");
+				swal("담당자 입력해주세요.");
 			}/* else if($(".materCheck").prop("checked", false)){
-				alert("입고할 주문 목록을 체크해주세요.")
+			swal("입고할 주문 목록을 체크해주세요.")
 			}  */else{
 				$("#er_write_frm").submit();
 				$(".er_btn").attr("data-dismiss", "modal");
@@ -64,7 +64,7 @@
 			var materKind="enter";
 			
 		 	if(smaterDate=="" || ematerDate==""){
-				alert("기간을 입력해주세요.");
+		 		swal("기간을 입력해주세요.");
 			}else{ 
 				
 				$.ajax({
@@ -97,7 +97,7 @@
 					$("#er_update_modal").html(data);
 				},
 				error : function(){
-					alert("error");
+					swal("error");
 				}
 			});
 		});
@@ -141,11 +141,11 @@
 				url : "./materDelete",
 				type : "get",
 				success : function(data){
-					alert("삭제 완료");
+					swal("삭제 완료");
 					location.reload();
 				},
 				error : function(){
-					alert("error");
+					swal("error");
 				}
 			});
 		});

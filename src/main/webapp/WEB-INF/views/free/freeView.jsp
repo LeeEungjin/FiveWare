@@ -17,7 +17,7 @@
 		
 		var message = '${message}';
 		if(message != ""){
-			alert(message);
+			swal(message);
 		}
 		
 	});

@@ -17,7 +17,7 @@
 		
 		var message = '${message}';
 		if(message != ""){
-			alert(message);
+			swal(message);
 		}
 		
 		$("#report_btn").click(function(){
@@ -33,10 +33,10 @@
 						names : names,
 						writer : writer},
 				success : function(data){
-					alert(data);
+					swal(data);
 					location.reload();
 				},error : function(){
-					alert("실패");
+					swal("실패");
 					location.reload();
 				}
 			});

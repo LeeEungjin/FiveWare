@@ -17,7 +17,7 @@
 	$(function(){
 		var message = '${message}';
 		if(message != ""){
-			alert(message);
+			swal(message);
 		}
 		
  		$(".mr_btn").click(function(){
@@ -26,11 +26,11 @@
  			var recipe=$("#recipe").val();
  			
 			if(menuName==""){
-				alert("메뉴명을 입력해주세요.");
+				swal("메뉴명을 입력해주세요.");
 			}else if(price==""){
-				alert("가격을 입력해주세요.");
+				swal("가격을 입력해주세요.");
 			}else if(recipe=""){
-				alert("레시피을 입력해주세요.");
+				swal("레시피을 입력해주세요.");
 			}else{
 				$("#mr_frm").submit();
 				$(".mr_btn").attr("data-dismiss", "modal");
@@ -97,7 +97,7 @@
 					
 				},
 				error : function(data){
-					alert("error");
+					swal("error");
 				}
 			});
 		});
@@ -110,11 +110,11 @@
 				url : "./menuRegistDelete",
 				type : "get",
 				success : function(data){
-					alert("삭제 완료");
+					swal("삭제 완료");
 					location.reload();
 				},
 				error : function(data){
-					alert("error");
+					swal("error");
 				}
 			});
 		});
@@ -135,7 +135,7 @@
 				}
 			});
 				if(codeAr.length<1){
-					alert("삭제할 메뉴를 선택해주세요.");
+					swal("삭제할 메뉴를 선택해주세요.");
 				}else{
 			
 				$.ajax({
@@ -144,14 +144,13 @@
 					data : {
 						"menuCode" : codeAr.toString()
 					}, success : function(data){
-						alert(count+"개의 메뉴가 삭제되었습니다.");
+						swal(count+"개의 메뉴가 삭제되었습니다.");
 						location.reload();
 					}
 					});
 				}
 		});
 		$("#checkDelete").click(function(){
-			alert("click");
 			if($("#menucheck").prop("checked")){
 			
 			}
@@ -260,16 +259,15 @@
 	            processData: false,
 	            contentType: false,
 	            success: function(data) {
-	            	alert("success!!");
 	            	F_FileMultiUpload_Callback(data, mode);
 	            	
 	            },
 	            error: function() {
-	            	alert("error");
+	            	swal("error");
 	            }
 	         });
 		} else {
-			alert("4개까지 이미지를 업로드할 수 있습니다.");
+			swal("4개까지 이미지를 업로드할 수 있습니다.");
 		}
 	    
 	}
@@ -294,7 +292,7 @@
 						url: '../../ajax/fileDeleteOne',
 						data: {'fnum': fnum},
 						success:function(result) {
-							alert("삭제되었습니다.");
+							swal("삭제되었습니다.");
 							temp.remove();
 						}
 					});
