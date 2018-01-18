@@ -22,7 +22,7 @@ public class CalendarService {
 	}
 	
 	public int insert(CalendarDTO calendarDTO) throws Exception {
-		String calendarId = UUID.randomUUID().toString()+"@group.fiveware.com";
+		String calendarId = UUID.randomUUID().toString()+"@calendar.fiveware.com";
 		calendarDTO.setCalendarId(calendarId);
 		
 		return calendarDAO.insert(calendarDTO);

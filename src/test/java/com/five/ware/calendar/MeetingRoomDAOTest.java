@@ -24,12 +24,29 @@ public class MeetingRoomDAOTest extends AbstractTest {
 	
 	@Test
 	public void meeting() {
-		meetingSearch();
+		insert();
+	}
+	
+	public void insert() {
+		MeetingRoomDTO meetingRoomDTO = new MeetingRoomDTO();
+		meetingRoomDTO.setMeetingId("test");
+		meetingRoomDTO.setMeetingName("회의실A");
+		meetingRoomDTO.setReservDate("2018-01-14");
+		meetingRoomDTO.setReservEndTime("11:00");
+		meetingRoomDTO.setReservStartTime("10:00");
+		
+		try {
+			int result = meetingRoomDAO.insert(meetingRoomDTO);
+			
+			assertTrue(result > 0);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void meetingSearch() {
 		MeetingRoomDTO meetingRoomDTO = new MeetingRoomDTO();
-		meetingRoomDTO.setMeetingName("ȸ�ǽ�A");
+		meetingRoomDTO.setMeetingName("ȸ�ǽ�A");
 		meetingRoomDTO.setReservDate("2018-01-14");
 		
 		try {

@@ -16,8 +16,8 @@
 	<link rel="stylesheet" type="text/css" href='${url}/resources/css/common/sweetalert.css?ver=1.2'>
 
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-	<link href="${url }/resources/css/header/header.css" rel="stylesheet">
-	<link href="${url }/resources/css/header/sample.css" rel="stylesheet">
+	<link href="${url}/resources/css/header/header.css" rel="stylesheet">
+	<link href="${url}/resources/css/header/sample.css" rel="stylesheet">
 
 <script type="text/javascript">
 	$(function() {
@@ -35,6 +35,7 @@
 		$("#fw_container").css("margin-left", "195px");
 		$("#fw_subcontainer").css("width", "17%");
 		$(".ej_default_img").css("margin-left", "10px");
+		$("#fw_mainwrap").css("margin-left", "1%");
 		$("#ej_icon_contents").show();
 		
 		var menu = true;

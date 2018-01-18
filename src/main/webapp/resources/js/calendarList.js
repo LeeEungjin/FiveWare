@@ -1,3 +1,21 @@
+//회의실 생성폼 호출
+function meetingAddForm() {
+	$('#meetingAddForm').modal();
+}
+
+// 회의실 생성 처리
+function meetingAdd() {
+	var name = $('#meetingName').val();
+	if(name.trim() == '' || name.trim().length == 0) {
+		swal('이름', '입력해주세요');
+		return false;
+	}
+	
+	$('#frmMeetingAdd').submit();
+}
+
+/***************************************************************************************/
+
 // 캘린더 생성폼 호출
 function calendarAddForm() {
 	$('#calendarAddForm').modal();

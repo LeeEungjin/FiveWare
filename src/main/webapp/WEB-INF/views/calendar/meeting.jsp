@@ -24,84 +24,58 @@
 	
 	<div id="com_middle">
 		<div class="middle_contents">
-			<form action="./calendarRemove" method="post" id="frmCalendarRemove">
+			
+			<!-- ************************회의실 생성/삭제****************************** -->
+		    <form action="./meetingRemove" method="post" id="frmMeetingRemove" style="margin-top: 50px;">
 		        <table class="table table-bordered">
 		            <tr>
 		                <th><input type='checkbox' onclick='checkAllDel(this.checked)' />전체</th>
-		                <th>캘린더이름</th>
-		                <th>캘린더코드</th>
+		                <th>회의실이름</th>
+		                <th>회의실코드</th>
 		            </tr>
-		            <c:forEach items="${items}" var="item">
+		            <c:forEach items="${meeting}" var="Mdto">
 		                <tr>
-		                    <td><input type='checkbox' name='chkVal' value="${item.calendarId}" /></td>
-		                    <td><input type="hidden" name='titles' value="${item.title}" />
-		                        <a href="./schdule?calendarId=${item.calendarId}&title=${item.title}">${item.title}</a>
+		                    <td><input type='checkbox' name='chkVal' value="${Mdto.meetingId}" /></td>
+		                    <td><input type="hidden" name='titles' value="${Mdto.meetingName}" />
+		                        ${Mdto.meetingName}
 		                    </td>
-		                    <td>${item.calendarId}</td>
+		                    <td>${Mdto.meetingId}</td>
 		                </tr>
 		            </c:forEach>
 		        </table>
 		    </form>
 		    
-		    <input type="button" class='btn btn-sm btn-warning' value="캘린더 생성"
-		        onclick="calendarAddForm()" />
-		    <input type="button" class='btn btn-sm btn-warning' value="캘린더 수정"
-		        onclick="calendarModifyForm()" />
-		    <input type="button" class='btn btn-sm btn-warning' value="캘린더 삭제"
-		        onclick="calendarRemove()" />
-		        
+		    <input type="button" class='btn btn-sm btn-warning' value="회의실 생성"
+		        onclick="meetingAddForm()" />
+		    <input type="button" class='btn btn-sm btn-warning' value="회의실 수정"
+		        onclick="meetingModifyForm()" />
+		    <input type="button" class='btn btn-sm btn-warning' value="회의실 삭제"
+		        onclick="meetingRemove()" />
+		    
 	    </div>
 	        
 	        
-	    <!-- 캘린더 생성 modal -->
-	    <div class="modal fade" id="calendarAddForm" role="dialog">
+	    <!-- 회의실 생성 modal -->
+	    <div class="modal fade" id="meetingAddForm" role="dialog">
 	        <div class="modal-dialog">
 	            <div class="modal-content">
 	            	<!-- modal Header -->
 	                <div class="modal-header">
 	                    <button type="button" class="close" data-dismiss="modal">×</button>
-	                    <h4 class="modal-title">캘린더 생성</h4>
+	                    <h4 class="modal-title">회의실 생성</h4>
 	                </div>
 	                
 	                <!-- modal Body -->
 	                <div class="modal-body">
-	                    <!-- 캘린더 생성처리 form -->
-	                    <form action="./calendarAdd" method='post' id='frmCalendarAdd'>
+	                    <!-- 회의실 생성처리 form -->
+	                    <form action="./meetingAdd" method='post' id='frmMeetingAdd'>
 	                        <div class='form-group'>
-	                            <label>캘린더이름</label>
-	                            <input class='form-control' type="text" name='title' id='title' />
+	                            <label>회의실이름</label>
+	                            <input class='form-control' type="text" name='meetingName' id='meetingName' />
 	                        </div>
 	                        <!-- modal Footer -->
 	                        <div class='modal-footer'>
-	                            <input type="button" class='btn btn-sm btn-warning' value="확인" onclick="calendarAdd()" /> 
-	                                <input type="reset" class='btn btn-sm btn-warning' value="초기화" /> 
-	                                <input type='button' class='btn btn-sm btn-warning' data-dismiss='modal' value="취소" />
-	                        </div>
-	                    </form>
-	                </div>
-	            </div>
-	        </div>
-	    </div>
-	    
-	    
-	    <!-- 캘린더 수정 modal -->
-	    <div class="modal fade" id="calendarModifyForm" role="dialog">
-	        <div class="modal-dialog">
-	            <div class="modal-content">
-	                <div class="modal-header">
-	                    <button type="button" class="close" data-dismiss="modal">×</button>
-	                    <h4 class="modal-title">캘린더 수정</h4>
-	                </div>
-	                <div class="modal-body">
-	                    <!-- 캘린더 수정처리 form -->
-	                    <form action="./calendarModify" method='post' id='frmCalendarModify'>
-	                        <div class='form-group'>
-	                            <label>캘린더이름</label>
-	                            <input class='form-control' type="text" name='title' id='titleModify' />
-	                        </div>
-	                        <input type="hidden" name="calendarId" id='calendarIdModify' />
-	                        <div class='modal-footer'>
-	                            <input type="button" class='btn btn-sm btn-warning' value="확인" onclick="calendarModify()" /> 
+	                            <input type="button" class='btn btn-sm btn-warning' value="확인" onclick="meetingAdd()" /> 
 	                            <input type="reset" class='btn btn-sm btn-warning' value="초기화" /> 
 	                            <input type='button' class='btn btn-sm btn-warning' data-dismiss='modal' value="취소" />
 	                        </div>
@@ -110,6 +84,35 @@
 	            </div>
 	        </div>
 	    </div>
+	    
+	    
+	    <!-- 회의실 수정 modal -->
+	    <div class="modal fade" id="meetingModifyForm" role="dialog">
+	        <div class="modal-dialog">
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <button type="button" class="close" data-dismiss="modal">×</button>
+	                    <h4 class="modal-title">캘린더 수정</h4>
+	                </div>
+	                <div class="modal-body">
+	                    <!-- 회의실 수정처리 form -->
+	                    <form action="./meetingModify" method='post' id='frmMeetingModify'>
+	                        <div class='form-group'>
+	                            <label>캘린더이름</label>
+	                            <input class='form-control' type="text" name='meetingName' id='nameModify' />
+	                        </div>
+	                        <input type="hidden" name="calendarId" id='meetingIdModify' />
+	                        <div class='modal-footer'>
+	                            <input type="button" class='btn btn-sm btn-warning' value="확인" onclick="meetingModify()" /> 
+	                            <input type="reset" class='btn btn-sm btn-warning' value="초기화" /> 
+	                            <input type='button' class='btn btn-sm btn-warning' data-dismiss='modal' value="취소" />
+	                        </div>
+	                    </form>
+	                </div>
+	            </div>
+	        </div>
+			
+	    </div><!-- end middle_contents -->
     </div>
 	
 </div>

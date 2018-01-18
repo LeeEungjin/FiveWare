@@ -72,7 +72,7 @@ public class CalendarEventDAOTest extends AbstractTest {
 	
 	public void selectList() {
 		try {
-			List<CalendarEventDTO> ar = calendarEventDAO.selectList();
+			List<CalendarEventDTO> ar = calendarEventDAO.selectList("");
 			
 			assertTrue(ar.size() > 0);
 			
