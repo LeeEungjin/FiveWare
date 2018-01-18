@@ -27,6 +27,24 @@ public class CalendarController {
 	private MeetingService meetingService;
 	
 	private Logger logger = LoggerFactory.getLogger(CalendarController.class);
+	
+	/*@RequestMapping(value="/meetingAdd", method=RequestMethod.POST)
+    public String meetingAdd(MeetingDTO meetingDTO) {
+        logger.info("meetingAdd "+meetingDTO.toString());
+        
+        int result = 0;
+        try {
+			result = meetingService.insert(meetingDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        
+        if(result > 0) { }
+        
+        return "redirect:./coding";
+    }*/
+	
+	/********************************************************************************/
 
 	// 
     @RequestMapping(value="/coding", method=RequestMethod.GET)

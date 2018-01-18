@@ -22,7 +22,7 @@ public class MeetingService {
 	}
 	
 	public int insert(MeetingDTO meetingDTO) throws Exception {
-		String meetingId = UUID.randomUUID().toString()+"@group.fiveware.com";
+		String meetingId = UUID.randomUUID().toString()+"@meeting.fiveware.com";
 		meetingDTO.setMeetingId(meetingId);
 		
 		return meetingDAO.insert(meetingDTO);
