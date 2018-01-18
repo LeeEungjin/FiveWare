@@ -258,17 +258,13 @@
 	margin-top: 2%;
 }
 
-
-
-#eb_modal{
-	height: 500px;
-	width: 600px;
-}
 #eb_modal_table{
-	widows: 700px;
-	height: 90%;
-	border-bottom: 1px solid #D5D5D5;
-
+    width: 100%;
+    height: 58%;
+    margin: 0 auto;
+    border-bottom: 1px solid #D5D5D5;
+    font-size: 14px;
+        margin-top: 4%;
 }
 .eb_modal_table_td{
 	width: 200px;
@@ -283,11 +279,119 @@
 	border-top: 1px solid #D5D5D5;
 }
 #eb_modal_tr_id{
-	height: 250px;
+	    height: 318px;
+}
+
+<!-- -->
+.modal-dialog {
+    width: 52%;
+    margin: 0 auto;
+    
+}
+
+.modal-content {
+    height: 900px;
+}
+
+#eb_modal {
+    height: 85%;
+    width: 100%;
+    background-color: #a8a8ff;
+}
+
+.modal-footer {
+    padding-top: 28px;
+    text-align: center;
+    background-color: #4444ff;
 }
 
 #ar_docuname{
 	text-align: center;
-	margin-bottom: 8%;
+	margin-bottom: 2%;
+	margin-top: 1%;
+}
+
+
+#ar_signBoxWrap{
+	width: 100%;
+	    height: 14%;
+	background-color: #c8ffc8;
+	    margin-top: 4%;
+}
+
+#ar_signBoxDiv{
+	background-color: #c0e0e0;
+	height: 100%;
+	float:right;
+	/* width: 11%;  */
+}
+
+#ar_signText{
+	background-color: blue;
+	width: 20px;
+	height: 100%;
+	display: inline-block;
+	float:left;
+	text-align: center;	
+    line-height: 46px;
+}
+
+#ar_signBoxBasis{
+	width: 100px;
+	height: 100%;
+	background-color: #7bbdff;
+	display: inline-block;
+	float:left;
+}
+
+#ar_signTemp{
+	display: inline-block;
+	width: 100%;
+	height: 25%;
+	background-color: #ffff80;
+	text-align: center;
+}
+
+#ar_singMember> input{
+	border: 0px;
+	text-align: center;
+	width: 100%;
+	background-color: rgba(0,0,0,0);
+}
+
+#ar_singMember{
+	margin-top: 13%;
+}
+
+#ar_signTemp> input{
+	border: 0px;
+	text-align: center;
+	width: 100%;
+	background-color: rgba(0,0,0,0);
+}
+
+#ar_dateWrap{
+	width: 100%;
+	height: 8%;
+	background-color: #ff97cb;
 	margin-top: 5%;
+}
+
+#ar_dateDiv{
+	width: 30%;
+	height: 100%;
+	background-color: #ffffaa;
+	margin: 0 auto;
+}
+
+#ar_signBoxBasis1{
+	width: 100px;
+	height: 100%;
+	background-color: #7bbdff;
+	display: inline-block;
+	float:left;
+	background-image: url("../../../images/stamp/ask.png");
+	background-repeat: repeat-x;
+	background-position: bottom;
+	
 }

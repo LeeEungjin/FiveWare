@@ -56,7 +56,7 @@ public class EpaymentLeaveService {
 		}
 		
 		for(EpaymentLeaveDTO epaymentLeaveDTO : ar2){
-			EpaymentDTO epaymentDTO = epaymentLeaveDAO.myepaymentListContents(epaymentLeaveDTO);
+			EpaymentDTO epaymentDTO = epaymentLeaveDAO.myepaymentListContents(epaymentLeaveDTO.getDocunum());
 			
 			list.add(epaymentDTO);
 			
@@ -67,6 +67,18 @@ public class EpaymentLeaveService {
 		model.addAttribute("list", list);
 		model.addAttribute("docuCon", ar22);
 		
+	}
+	
+	public EpaymentDTO epaymentContents(String docunum, Model model) throws Exception{
+		EpaymentDTO epaymentDTO = epaymentLeaveDAO.myepaymentListContents(docunum);
+		List<EpaymentLeaveDTO> ar = epaymentLeaveDAO.myepaymentMember(epaymentDTO);
+		
+		model.addAttribute("docuC", epaymentDTO);
+		model.addAttribute("signmember", ar);
+		
+		System.out.println(ar.size());
+		
+		return epaymentDTO;
 	}
 	
 

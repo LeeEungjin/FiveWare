@@ -32,8 +32,8 @@ public class EpaymentLeaveDAO {
 		return ar;
 	}
 	
-	public EpaymentDTO myepaymentListContents(EpaymentLeaveDTO epaymentLeaveDTO) throws Exception{
-		EpaymentDTO epaymentDTO = sqlSession.selectOne(NAMESPACE+"myepaymentListContents", epaymentLeaveDTO);
+	public EpaymentDTO myepaymentListContents(String docunum) throws Exception{
+		EpaymentDTO epaymentDTO = sqlSession.selectOne(NAMESPACE+"myepaymentListContents", docunum);
 		
 		return epaymentDTO;
 	}

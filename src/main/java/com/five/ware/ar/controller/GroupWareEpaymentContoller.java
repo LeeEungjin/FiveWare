@@ -57,6 +57,14 @@ public class GroupWareEpaymentContoller {
 		return "GroupWare/epayment/epaymentReceive";
 	}
 	
+	@RequestMapping(value="epaymentContents")
+	public String epaymentContents(String docunum, Model model) throws Exception{
+		
+		epaymentLeaveService.epaymentContents(docunum, model);
+		
+		return "GroupWare/epayment/epaymentView";
+	}
+	
 	//내가 올린 결재문서만 보기
 	@RequestMapping(value="epaymentDispatch")
 	public ModelAndView epaymentDispatch(ListData listData){
