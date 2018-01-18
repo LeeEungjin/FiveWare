@@ -79,8 +79,8 @@
 
 #fw_mainwrap{
     /* background-color: blue; */
-    width: 70%;
+    width: 77% !important;
     height: 100%;
-    margin-left: 19% !important;
+    margin-left: 21% !important;
     float: left;
 }

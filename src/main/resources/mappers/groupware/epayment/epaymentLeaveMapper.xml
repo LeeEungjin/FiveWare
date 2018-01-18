@@ -9,4 +9,8 @@
   	insert into epaymentleave values(epaymentleave_seq.nextval, #{docunum}, #{approvalcode}, #{approvalname}, #{approvaltemp}, #{approvalrank},'미결', #{ranking}, '0')
   </insert>
   
+  <select id="myepaymentList" parameterType="String" resultType="EpaymentLeaveDTO">
+  	select * from eepaymentleave where code=#{code} and state='0'
+  </select>
+  
   </mapper>
