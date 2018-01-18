@@ -10,7 +10,28 @@
   </insert>
   
   <select id="myepaymentList" parameterType="String" resultType="EpaymentLeaveDTO">
-  	select * from eepaymentleave where code=#{code} and state='0'
+  	select * from epaymentleave where approvalcode=#{code} and statenum='0'
   </select>
   
+  <select id="myepaymentList2" parameterType="EpaymentLeaveDTO" resultType="EpaymentLeaveDTO">
+  	select * from epaymentleave where docunum=#{docunum} 
+  	<choose>
+  		<when test="ranking==0">
+  			and ranking = #{ranking}  and statenum='0'
+  		</when>
+  		
+  		<otherwise>
+  			and ranking = #{ranking}-1  and statenum='1'
+  		</otherwise>
+  	</choose>
+  
+  </select>
+ 
+  <select id="myepaymentListContents" parameterType="String" resultType="EpaymentDTO">
+  	select * from epayment where docunum=#{docunum}
+  </select>
+  
+ <select id="myepaymentMember" parameterType="EpaymentDTO" resultType="EpaymentLeaveDTO">
+ 	select * from epaymentleave where docunum=#{docunum} order by ranking asc
+ </select> 
   </mapper>

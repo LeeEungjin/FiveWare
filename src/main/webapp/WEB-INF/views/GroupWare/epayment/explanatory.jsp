@@ -194,13 +194,17 @@
 				var temp = document.getElementsByClassName("ar_datatemp");
 				var code = document.getElementsByClassName("ar_tablecode1");
 				
-				$("#ar_signBoxBasis").html("");
-				
+				alert("dd");
 				if(num.length==0){
 					alert("결재선을 선택하세요.");
+					$("#ar_signInsertBtn").attr("data-dismiss", "");
 				}else{
+					$("#ar_signBoxDiv").html("");
 					
-					var sign="<div id='ar_signBoxBasis'>";
+					var sign="<div id='ar_signText'>";
+					sign=sign+"결 <br> 재";
+					sign=sign+"</div>";
+					sign=sign+"<div id='ar_signBoxBasis'>";
 					sign=sign + "<div id='ar_signTemp'> 기 안</div>";
 					sign = sign+"<div id='ar_singMember'><input type=text readonly=readonly value='${member.temp}'><input type=text name=draftrank readonly=readonly value='${member.rank }'><input type=text readonly=readonly value='${member.name }'></div>";
 					sign= sign+"<input type=hidden value='${member.code}' name='draftcode'>";
@@ -219,6 +223,7 @@
 						$("#ar_signBoxDiv").append(sign);
 					}					
 					
+					$("#ar_signInsertBtn").attr("data-dismiss", "modal");
 				}
 				
 			});
@@ -342,11 +347,11 @@
 				<div id="ar_signText">
 					결 <br> 재
 				</div>
-				<div id="ar_signBoxBasis">
-					<div id="ar_signTemp"> 기 안</div>
-					<div id="ar_singMember"><input type=text  readonly=readonly value='${member.temp}'><input type=text  readonly=readonly value='${member.name }'></div>
-					<input type=hidden value="${member.code}" name="draftcode">
-				</div>
+					<div id="ar_signBoxBasis">
+						<div id="ar_signTemp"> 기 안</div>
+						<div id="ar_singMember"><input type=text  readonly=readonly value='${member.temp}'><input type=text  readonly=readonly value='${member.name }'></div>
+						<input type=hidden value="${member.code}" name="draftcode">
+					</div>
 				<!-- for문 돌리기(결재선) -->
 				
 		</div>
