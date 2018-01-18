@@ -12,14 +12,6 @@
 <script type="text/javascript">
 	$(function() {
 		
-		/* $.ajax({
-			url: './cloudList',
-			type: 'post',
-			success:function() {
-				alert('test');
-			}
-		}); */
-		
 		$('#cloud_contents').bind("contextmenu", function(event) { 
 		    event.preventDefault();
 		    $(".rClick_modal")
@@ -232,14 +224,35 @@
 			<div class="cloud_dir_text">파일이름</div>
 		</div> -->
 		<div id="cloud_contents">
-			<c:forEach items="${files}" var="file">
-				<div class="cloud_dir">
-					<div class="cloud_dir_img">
-						<!-- <i class="fa fa-folder" style="font-size:56px;"></i> -->
-						<i class="fa fa-file-excel-o" style="font-size:56px"></i>
+			<c:forEach items="${fileInfo}" var="info">
+				<c:forEach items="${info}" var="name">
+					<div class="cloud_dir">
+						<div class="cloud_dir_img">
+							${name[1]}
+							<%-- <c:choose>
+								<c:when test="${name[1] eq 'folder'}">
+									<i class="fa fa-folder" style="font-size:56px;"></i>
+								</c:when>
+								<c:when test="${name[1] eq 'jpg' or name[1] eq 'gif' or name[1] eq 'png' or name[1] eq 'jpeg'}">
+									<i class="fa fa-folder" style="font-size:56px;"></i>
+								</c:when>
+								<c:when test="${name[1] eq 'txt'}">
+									<i class="fa fa-file-text-o" style="font-size:56px;"></i>
+								</c:when>
+								<c:when test="${name[1] eq 'pptx'}">
+									<i class="fa fa-file-powerpoint-o" style="font-size:24px"></i>
+								</c:when>
+								<c:when test="${name[1] eq 'xlsx'}">
+									<i class="fa fa-file-excel-o" style="font-size:56px"></i>
+								</c:when>
+								<c:otherwise>
+									<i class="fa fa-file-o" style="font-size:56px;"></i>
+								</c:otherwise>
+							</c:choose> --%>
+						</div>
+						<div class="cloud_dir_text">${name[0]}</div>
 					</div>
-					<div class="cloud_dir_text">${file.getName()}</div>
-				</div>
+				</c:forEach>
 			</c:forEach>
 		</div>
 	</div>

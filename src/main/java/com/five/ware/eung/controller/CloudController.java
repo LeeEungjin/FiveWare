@@ -29,32 +29,32 @@ public class CloudController {
 		List<String[]> list = new ArrayList<String[]>();
 		if(files.length > 0) {
 			for (File tempFile : files) {
-				String[] fileNames = new String[2];
+				String[] ar = new String[2];
+				
+				String temp = tempFile.getName();
 				String ext = null;
 
+				int index = temp.lastIndexOf(".");
 				
-				if(tempFile.getName().indexOf(".") == -1) {
-					System.out.println("folder");
+				if(temp.lastIndexOf(".") == -1) {
 					ext = "folder";
 				} else {
-					System.out.println("file");
-					String[] str = tempFile.getName().split(".");
-					for (String string : str) {
-						System.out.println(string);
-						System.out.println("========================");
-					}
-					
+					ext = temp.substring(index+1);
 				}
+			
 				
-				/*System.out.println(tempFile.getName());
-				System.out.println(ext);
-				System.out.println("--------------------");*/
-				
-				fileNames[0] = tempFile.getName();
-				fileNames[1] = ext;
-				list.add(fileNames);
 			}
+			
+			for (String[] strings : list) {
+				System.out.println("------------------");
+				for (String string : strings) {
+					System.out.println(string);
+				}
+				System.out.println("------------------");
+			}
+			
 			model.addAttribute("files", files);
+			model.addAttribute("fileInfo", list);
 		}
 		
 		return "GroupWare/cloud/cloudList";
