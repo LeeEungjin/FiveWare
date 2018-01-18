@@ -18,6 +18,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -47,9 +48,13 @@ public class GroupWareEpaymentContoller {
 	
 	//수신함
 	@RequestMapping(value="epaymentReceive")
-	public void epaymentReceive(){
+	public String myepaymentList(HttpSession session, Model model) throws Exception{
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		String code = memberDTO.getCode();
 		
+		epaymentLeaveService.myepaymentList(code,model);
 		
+		return "GroupWare/epayment/epaymentReceive";
 	}
 	
 	//내가 올린 결재문서만 보기
@@ -308,6 +313,7 @@ public class GroupWareEpaymentContoller {
 		
 		return memberDTO;
 	}
+	
 	
 	
 }

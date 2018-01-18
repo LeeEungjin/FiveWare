@@ -1,5 +1,7 @@
 package com.five.ware.groupware.epayment;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -16,5 +18,29 @@ public class EpaymentLeaveDAO {
 		int result = sqlSession.insert(NAMESPACE+"approvalInsert", epaymentLeaveDTO);
 		
 		return result;
+	}
+	
+	public List<EpaymentLeaveDTO> myepaymentList(String code) throws Exception{
+		List<EpaymentLeaveDTO> ar = sqlSession.selectList(NAMESPACE+"myepaymentList", code);
+		
+		return ar;
+	}
+	
+	public EpaymentLeaveDTO myepaymentList2(EpaymentLeaveDTO epaymentLeaveDTO) throws Exception{
+		EpaymentLeaveDTO ar = sqlSession.selectOne(NAMESPACE+"myepaymentList2", epaymentLeaveDTO);
+		
+		return ar;
+	}
+	
+	public EpaymentDTO myepaymentListContents(EpaymentLeaveDTO epaymentLeaveDTO) throws Exception{
+		EpaymentDTO epaymentDTO = sqlSession.selectOne(NAMESPACE+"myepaymentListContents", epaymentLeaveDTO);
+		
+		return epaymentDTO;
+	}
+	
+	public List<EpaymentLeaveDTO> myepaymentMember(EpaymentDTO epaymentDTO) throws Exception{
+		List<EpaymentLeaveDTO> ar = sqlSession.selectList(NAMESPACE+"myepaymentMember", epaymentDTO);
+		
+		return ar;
 	}
 }
