@@ -26,11 +26,8 @@
   		<typeAlias type="com.five.ware.calendar.CalendarEventDTO" alias="CalendarEventDTO"/>
   		<typeAlias type="com.five.ware.meeting.MeetingRoomDTO" alias="MeetingRoomDTO"/>
   		<typeAlias type="com.five.ware.groupware.epayment.EpaymentLeaveDTO" alias="EpaymentLeaveDTO"/>
-<<<<<<< HEAD
   		<typeAlias type="com.five.ware.storeSales.StoreSalesDTO" alias="storeSalesDTO"/>
-  		
-=======
->>>>>>> master
+
 
   	</typeAliases>
   </configuration>
