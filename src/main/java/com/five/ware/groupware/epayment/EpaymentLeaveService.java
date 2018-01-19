@@ -40,34 +40,46 @@ public class EpaymentLeaveService {
 	return result;
 	}
 	
-	public void myepaymentList(String code, Model model) throws Exception{
-		List<EpaymentLeaveDTO> ar2= new ArrayList<EpaymentLeaveDTO>();
-		List<EpaymentDTO> list = new ArrayList<EpaymentDTO>();
-		List<List<EpaymentLeaveDTO>> ar22 = new ArrayList<List<EpaymentLeaveDTO>>();
-	
-		List<EpaymentLeaveDTO> ar = epaymentLeaveDAO.myepaymentList(code);
-		
-		for(EpaymentLeaveDTO epaymentLeaveDTO : ar){
-			EpaymentLeaveDTO e = epaymentLeaveDAO.myepaymentList2(epaymentLeaveDTO);
+		public void myepaymentList(int statenum, String code, Model model) throws Exception{
+			//결재자리스트
+			List<EpaymentLeaveDTO> ar2= new ArrayList<EpaymentLeaveDTO>();
+			//결재내용
+			List<EpaymentDTO> list = new ArrayList<EpaymentDTO>();
 			
-			if(e!=null){
-				ar2.add(e);
+			List<List<EpaymentLeaveDTO>> ar22 = new ArrayList<List<EpaymentLeaveDTO>>();
+		
+			List<EpaymentLeaveDTO> ar = epaymentLeaveDAO.myepaymentList(code, statenum);
+			
+			for(EpaymentLeaveDTO epaymentLeaveDTO : ar){
+				if(statenum==1){
+				
+					epaymentLeaveDTO.setRanking(String.valueOf(Integer.parseInt(epaymentLeaveDTO.getRanking())+1));
+				}
+				
+				if(statenum==-1){
+					epaymentLeaveDTO.setRanking("-1");
+				}
+				EpaymentLeaveDTO e = epaymentLeaveDAO.myepaymentList2(epaymentLeaveDTO);
+				
+				if(e!=null){
+					ar2.add(e);
+				}
 			}
-		}
-		
-		for(EpaymentLeaveDTO epaymentLeaveDTO : ar2){
-			EpaymentDTO epaymentDTO = epaymentLeaveDAO.myepaymentListContents(epaymentLeaveDTO.getDocunum());
 			
-			list.add(epaymentDTO);
+			for(EpaymentLeaveDTO epaymentLeaveDTO : ar2){
+				EpaymentDTO epaymentDTO = epaymentLeaveDAO.myepaymentListContents(epaymentLeaveDTO.getDocunum());
+				
+				list.add(epaymentDTO);
+				
+				ar2 = epaymentLeaveDAO.myepaymentMember(epaymentDTO);
+				ar22.add(ar2);
+			}
 			
-			ar2 = epaymentLeaveDAO.myepaymentMember(epaymentDTO);
-			ar22.add(ar2);
+			model.addAttribute("list", list);
+			model.addAttribute("docuCon", ar22);
+			
 		}
-		
-		model.addAttribute("list", list);
-		model.addAttribute("docuCon", ar22);
-		
-	}
+	
 	
 	public EpaymentDTO epaymentContents(String docunum, Model model) throws Exception{
 		EpaymentDTO epaymentDTO = epaymentLeaveDAO.myepaymentListContents(docunum);
@@ -83,15 +95,22 @@ public class EpaymentLeaveService {
 	
 	public String stampok(EpaymentLeaveDTO epaymentLeaveDTO) throws Exception{
 		int result = epaymentLeaveDAO.stampok(epaymentLeaveDTO);
-		/*int result2= epaymentLeaveDAO.stampok2(epaymentLeaveDTO);*/
 		
 		String message="결재 실패";
 		String kind="";
 		
 		if(epaymentLeaveDTO.getApprovalname().equals("기결")){
 			kind="승인";
+			String ranking = epaymentLeaveDAO.maxRanking(epaymentLeaveDTO);
+			System.out.println(ranking);
+			System.out.println(epaymentLeaveDTO.getRanking());
+			if(ranking.equals(epaymentLeaveDTO.getRanking())){
+				System.out.println("여깃네");
+				 epaymentLeaveDAO.stampok2(epaymentLeaveDTO);
+			}
 		}else if(epaymentLeaveDTO.getApprovalname().equals("반려")){
 			kind="반려";
+			epaymentLeaveDAO.stampok2(epaymentLeaveDTO);
 		}
 		
 		

@@ -1,6 +1,8 @@
 package com.five.ware.groupware.epayment;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -20,8 +22,11 @@ public class EpaymentLeaveDAO {
 		return result;
 	}
 	
-	public List<EpaymentLeaveDTO> myepaymentList(String code) throws Exception{
-		List<EpaymentLeaveDTO> ar = sqlSession.selectList(NAMESPACE+"myepaymentList", code);
+	public List<EpaymentLeaveDTO> myepaymentList(String code, int statenum) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("code",code);
+		map.put("statenum", statenum);
+		List<EpaymentLeaveDTO> ar = sqlSession.selectList(NAMESPACE+"myepaymentList", map);
 		
 		return ar;
 	}
@@ -52,6 +57,12 @@ public class EpaymentLeaveDAO {
 	
 	public int stampok2(EpaymentLeaveDTO epaymentLeaveDTO) throws Exception{
 		int result = sqlSession.update(NAMESPACE+"stampok2", epaymentLeaveDTO);
+		
+		return result;
+	}
+	
+	public String maxRanking(EpaymentLeaveDTO epaymentLeaveDTO) throws Exception{
+		String result = sqlSession.selectOne(NAMESPACE+"maxRanking", epaymentLeaveDTO);
 		
 		return result;
 	}

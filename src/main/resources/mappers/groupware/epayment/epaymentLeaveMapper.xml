@@ -9,9 +9,10 @@
   	insert into epaymentleave values(epaymentleave_seq.nextval, #{docunum}, #{approvalcode}, #{approvalname}, #{approvaltemp}, #{approvalrank},'미결', #{ranking}, '0')
   </insert>
   
-  <select id="myepaymentList" parameterType="String" resultType="EpaymentLeaveDTO">
-  	select * from epaymentleave where approvalcode=#{code} and statenum='0'
+<select id="myepaymentList" parameterType="java.util.Map" resultType="EpaymentLeaveDTO">
+  	select * from epaymentleave where approvalcode=#{code} and statenum=#{statenum}
   </select>
+  
   
   <select id="myepaymentList2" parameterType="EpaymentLeaveDTO" resultType="EpaymentLeaveDTO">
   	select * from epaymentleave where docunum=#{docunum} 
@@ -20,9 +21,12 @@
   			and ranking = #{ranking}  and statenum='0'
   		</when>
   		
+  		<when test="ranking==-1">
+  		and statenum =#{ranking}
+  		</when>
   		<otherwise>
   			and ranking = #{ranking}-1  and statenum='1'
-  		</otherwise>
+  			</otherwise>
   	</choose>
   
   </select>
@@ -48,10 +52,14 @@
  	 where docunum=#{docunum} and approvalcode=#{approvalcode}
  </update>
  
-
+<select id="maxRanking" parameterType="EpaymentLeaveDTO" resultType="String">
+	select max(ranking) from epaymentleave where docunum=#{docunum} 
+</select>
  
+
  <!-- 초ㅣ종일 때만 if문 써서 .. -->
  <update id="stampok2" parameterType="EpaymentLeaveDTO">
- 	update epayment set state='반려' where docunum=#{docunum} and approvalcode=#{approvalcode}
+ 	update epayment set
+ 	 state=#{approvalname} where docunum=#{docunum} and draftcode=#{approvalcode}
  </update>
   </mapper>

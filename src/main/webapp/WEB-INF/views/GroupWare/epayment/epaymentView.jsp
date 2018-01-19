@@ -25,6 +25,7 @@
 														<div id="ar_signBoxBasis${list.docunum}${i.index}" class="ar_backstamp" title="${list.statenum}">
 															<div id="ar_signTemp"> ${list.approvaltemp}</div>
 															<div id="ar_singMember"><input type=text  readonly=readonly value='${list.approvalrank}'><input type=text  readonly=readonly value='${list.approvalname}'></div>
+															<input type="hidden" value="${list.ranking }" id="${list.approvalcode}"> 
 														</div>
 													</c:forEach>
 											</div>
@@ -44,6 +45,7 @@
 						         		<td><span id="eb_viewDrafttemp">${docuC.drafttemp }</span></td>
 						         		<td class="eb_modal_table_td_1">기안자</td>
 						         		<td><span id="eb_viewDraftname">${docuC.draftname }</span></td>
+						         		<input type="hidden" value="${docuC.draftcode}" name="approvalcode" id="ar_test">
 						         	</tr>
 						         	
 						         	<tr class="eb_modal_tr">
@@ -67,9 +69,11 @@
 						         
 						        </div>
 						        <div class="modal-footer" id="ar_beforeBtn">
+						      <c:if test="${type ne 0}">
 						        	<input type="button" class="btn btn-default" id="ar_approvalok" title="${docuC.docunum }" value="결재 승인" >
 						        	<input type="button" class="btn btn-default" id="ar_approvalno" title="${docuC.docunum }"value="결재 거부" >
 						          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						          </c:if>
 						        </div>
 						        
 						        <div class="modal-footer" id="ar_afterBtn">

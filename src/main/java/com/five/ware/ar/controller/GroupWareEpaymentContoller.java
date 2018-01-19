@@ -21,6 +21,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -48,18 +49,16 @@ public class GroupWareEpaymentContoller {
 	
 	
 	//수신함
-	@RequestMapping(value="epaymentReceive")
-	public String myepaymentList(String statenum, String draftcode, HttpSession session, Model model) throws Exception{
-		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		
-		if(!draftcode.equals("all")){
-			draftcode=memberDTO.getCode();
+		@RequestMapping(value="epaymentReceive")
+		public String myepaymentList(@RequestParam(defaultValue="0", required=false)int statenum,String code,HttpSession session, Model model) throws Exception{
+			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+			code = memberDTO.getCode();
+			
+			epaymentLeaveService.myepaymentList(statenum, code,model);
+			System.out.println("statenum :"+statenum);
+			model.addAttribute("type", statenum);
+			return "GroupWare/epayment/epaymentReceive";
 		}
-		
-		epaymentLeaveService.myepaymentList(statenum,draftcode,model);
-		
-		return "GroupWare/epayment/epaymentReceive";
-	}
 	
 	@RequestMapping(value="epaymentContents")
 	public String epaymentContents(String docunum, Model model) throws Exception{
@@ -69,7 +68,7 @@ public class GroupWareEpaymentContoller {
 		return "GroupWare/epayment/epaymentView";
 	}
 	
-	//내가 올린 결재문서만 보기
+	/*//내가 올린 결재문서만 보기
 	@RequestMapping(value="epaymentDispatch")
 	public ModelAndView epaymentDispatch(ListData listData){
 		
@@ -87,12 +86,15 @@ public class GroupWareEpaymentContoller {
 		
 		return mv;
 
-	}
+	}*/
 	
 	@RequestMapping(value="stampok")
-	public String stampok(EpaymentLeaveDTO epaymentLeaveDTO, HttpSession session,RedirectAttributes rd) throws Exception{
+	public String stampok(EpaymentLeaveDTO epaymentLeaveDTO, String ranking, String approvalcode, HttpSession session,RedirectAttributes rd) throws Exception{
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		epaymentLeaveDTO.setApprovalcode(memberDTO.getCode());
+		
+		epaymentLeaveDTO.setRanking(ranking);
+		epaymentLeaveDTO.setApprovalcode(approvalcode);
 		
 		String message = epaymentLeaveService.stampok(epaymentLeaveDTO);
 		
