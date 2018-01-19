@@ -15,6 +15,12 @@ public class EventController {
 	@Autowired
 	private EventService eventService;
 	
+	@RequestMapping(value="eventRegist")
+	public String eventRegist()throws Exception{
+		
+		return "erp/event/eventRegist";
+	}
+	
 	@RequestMapping(value="eventList")
 	public ModelAndView eventList(ListData listData)throws Exception{
 		ModelAndView mv=null;

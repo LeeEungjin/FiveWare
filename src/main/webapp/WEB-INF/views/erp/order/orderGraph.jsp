@@ -79,8 +79,8 @@
             <ul>
                <li> 거래처 등록</li>
                <li> 제품 등록</li>
-               <li><a href="../../erp/foundation/menuRegist">메뉴 등록</a></li>
-               <li><a href="../../erp/foundation/storageRegist">창고 등록</a></li>
+               <li><a href="../../foundation/menuRegist">메뉴 등록</a></li>
+               <li><a href="../../foundation/storageRegist">창고 등록</a></li>
             </ul>
          </div>
          

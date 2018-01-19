@@ -539,7 +539,7 @@
 	                        </span>
 	                     </a>
 	                     
-	                     <a href="#">
+	                     <a href="./event/eventRegist">
 	                        <span class="erp_jk_smalldiv">
 	                           <span class="erp_jk_writing" id="erp_jk_mr">
 	                              	이벤트<br>&nbsp;등록
