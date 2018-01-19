@@ -13,7 +13,8 @@
 	$(function(){
 		var message = '${message}';
 		if(message != ""){
-			alert(message);
+			swal(message);
+			
 		}
 		
 		var kind='${pager.kind}';

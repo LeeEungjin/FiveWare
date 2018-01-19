@@ -1,8 +1,12 @@
 package com.five.ware.groupware.epayment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 @Service
 public class EpaymentLeaveService {
@@ -15,11 +19,6 @@ public class EpaymentLeaveService {
 		String approvalname = epaymentLeaveDTO.getApprovalname();
 		String approvaltemp = epaymentLeaveDTO.getApprovaltemp();
 		String approvalrank = epaymentLeaveDTO.getApprovalrank();
-		
-		System.out.println(approvalcode);
-		System.out.println(approvalname);
-		System.out.println(approvaltemp);
-		System.out.println(approvalrank);
 		
 		String code[] = approvalcode.split(",");
 		String name[]=approvalname.split(",");
@@ -40,4 +39,47 @@ public class EpaymentLeaveService {
 	 
 	return result;
 	}
+	
+	public void myepaymentList(String code, Model model) throws Exception{
+		List<EpaymentLeaveDTO> ar2= new ArrayList<EpaymentLeaveDTO>();
+		List<EpaymentDTO> list = new ArrayList<EpaymentDTO>();
+		List<List<EpaymentLeaveDTO>> ar22 = new ArrayList<List<EpaymentLeaveDTO>>();
+	
+		List<EpaymentLeaveDTO> ar = epaymentLeaveDAO.myepaymentList(code);
+		
+		for(EpaymentLeaveDTO epaymentLeaveDTO : ar){
+			EpaymentLeaveDTO e = epaymentLeaveDAO.myepaymentList2(epaymentLeaveDTO);
+			
+			if(e!=null){
+				ar2.add(e);
+			}
+		}
+		
+		for(EpaymentLeaveDTO epaymentLeaveDTO : ar2){
+			EpaymentDTO epaymentDTO = epaymentLeaveDAO.myepaymentListContents(epaymentLeaveDTO.getDocunum());
+			
+			list.add(epaymentDTO);
+			
+			ar2 = epaymentLeaveDAO.myepaymentMember(epaymentDTO);
+			ar22.add(ar2);
+		}
+		
+		model.addAttribute("list", list);
+		model.addAttribute("docuCon", ar22);
+		
+	}
+	
+	public EpaymentDTO epaymentContents(String docunum, Model model) throws Exception{
+		EpaymentDTO epaymentDTO = epaymentLeaveDAO.myepaymentListContents(docunum);
+		List<EpaymentLeaveDTO> ar = epaymentLeaveDAO.myepaymentMember(epaymentDTO);
+		
+		model.addAttribute("docuC", epaymentDTO);
+		model.addAttribute("signmember", ar);
+		
+		System.out.println(ar.size());
+		
+		return epaymentDTO;
+	}
+	
+
 }

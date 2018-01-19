@@ -17,7 +17,7 @@
 	$(function(){
 		var message = '${message}';
 		if(message != ""){
-			alert(message);
+			swal(message);
 		}
 		
 		var kind='${pager.kind}';
@@ -57,7 +57,7 @@
 					F_FileMultiUpload_Callback(data.files, 'result_one');
 				},
 				error : function(data){
-					alert("error");
+					swal("error");
 				}
 			});
 		});
@@ -73,11 +73,11 @@
 				url : "./storageDelete",
 				type : "get",
 				success : function(data){
-					alert("삭제 완료");
+					swal("삭제 완료");
 					location.reload();
 				},
 				error : function(data){
-					alert("error");
+					swal("error");
 				}
 			});
 		});
@@ -187,16 +187,15 @@
 	            processData: false,
 	            contentType: false,
 	            success: function(data) {
-	            	alert("success!!");
 	            	F_FileMultiUpload_Callback(data, mode);
 	            	
 	            },
 	            error: function() {
-	            	alert("error");
+	            	swal("error");
 	            }
 	         });
 		} else {
-			alert("4개까지 이미지를 업로드할 수 있습니다.");
+			swal("4개까지 이미지를 업로드할 수 있습니다.");
 		}
 	    
 	}
@@ -219,7 +218,7 @@
 						url: '../../ajax/fileDeleteOne',
 						data: {'fnum': fnum},
 						success:function(result) {
-							alert("삭제되었습니다.");
+							swal("삭제되었습니다.");
 							temp.remove();
 						}
 					});

@@ -24,6 +24,13 @@
 	
 	<dependencies>
 	
+		<dependency>
+			<groupId>com.google.code.geocoder-java</groupId>
+			<artifactId>geocoder-java</artifactId>
+			<version>0.16</version>
+		</dependency>
+
+	
 		<!-- google api -->
         <dependency>
             <groupId>com.google.api-client</groupId>

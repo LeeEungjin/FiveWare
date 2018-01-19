@@ -1,13 +1,10 @@
 package com.five.ware.ar.controller;
 
 
-import java.io.BufferedReader; 
-
-
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-
 import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
@@ -19,6 +16,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -48,9 +46,21 @@ public class GroupWareEpaymentContoller {
 	
 	//수신함
 	@RequestMapping(value="epaymentReceive")
-	public void epaymentReceive(){
+	public String myepaymentList(HttpSession session, Model model) throws Exception{
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		String code = memberDTO.getCode();
 		
+		epaymentLeaveService.myepaymentList(code,model);
 		
+		return "GroupWare/epayment/epaymentReceive";
+	}
+	
+	@RequestMapping(value="epaymentContents")
+	public String epaymentContents(String docunum, Model model) throws Exception{
+		
+		epaymentLeaveService.epaymentContents(docunum, model);
+		
+		return "GroupWare/epayment/epaymentView";
 	}
 	
 	//내가 올린 결재문서만 보기
@@ -240,6 +250,24 @@ public class GroupWareEpaymentContoller {
 		return mv;
 	}
 	
+/*	@RequestMapping(value="epaymentInsert", method=RequestMethod.POST)
+	public ModelAndView epaymentInsert(EpaymentDTO epaymentDTO, String [] approvalcode, String [] approvalname, String [] approvaltemp, String [] approvalrank) throws Exception{
+		
+		for(int i=0; i<approvalcode.length; i++){
+			System.out.println(approvalcode[i]);
+			System.out.println(approvalname[i]);
+			System.out.println(approvaltemp[i]);
+			System.out.println(approvalrank[i]);
+		}
+		ModelAndView mv = new ModelAndView();
+		
+		
+		mv.setViewName("common/result");
+		
+		return mv;
+	}*/
+	
+	
 	@RequestMapping(value="epaymentInsert", method=RequestMethod.POST)
 	public ModelAndView epaymentInsert(EpaymentDTO epaymentDTO, EpaymentLeaveDTO epaymentLeaveDTO) throws Exception{
 		int result = epaymentService.epaymentInsert(epaymentDTO);
@@ -291,6 +319,7 @@ public class GroupWareEpaymentContoller {
 		
 		return memberDTO;
 	}
+	
 	
 	
 }

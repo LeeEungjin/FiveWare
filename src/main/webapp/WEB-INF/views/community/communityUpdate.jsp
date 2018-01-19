@@ -56,7 +56,7 @@
 					count++;
 					index++;
 				} else {
-					alert("파일은 3개까지 업로드 할 수 있습니다.");
+					swal("파일은 3개까지 업로드 할 수 있습니다.");
 				}
 		});
 
@@ -69,7 +69,7 @@
 		//delete
 		$(".com_file_del").click(function (){
 			var fnum=$(this).attr("title");
-			alert("해당 파일이 삭제됩니다.");
+			swal("해당 파일이 삭제됩니다.");
 			$.post(
 					"fileDelete",
 					{fnum:fnum},

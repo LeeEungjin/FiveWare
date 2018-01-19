@@ -1,6 +1,5 @@
 package com.five.ware.eung.controller;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -12,13 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import com.google.api.services.calendar.Calendar;
-import com.google.api.services.calendar.model.CalendarList;
-import com.google.api.services.calendar.model.CalendarListEntry;
-import com.five.ware.calendar.CalendarEventDTO;
 import com.five.ware.calendar.CalendarDTO;
 import com.five.ware.calendar.CalendarService;
-import com.five.ware.calendar.GoogleCalendarService;
+import com.five.ware.meeting.MeetingDTO;
+import com.five.ware.meeting.MeetingService;
 
 
 @Controller
@@ -27,25 +23,40 @@ public class CalendarController {
 	
 	@Inject
 	private CalendarService calendarService;
+	@Inject
+	private MeetingService meetingService;
 	
 	private Logger logger = LoggerFactory.getLogger(CalendarController.class);
+	
+	/*@RequestMapping(value="/meetingAdd", method=RequestMethod.POST)
+    public String meetingAdd(MeetingDTO meetingDTO) {
+        logger.info("meetingAdd "+meetingDTO.toString());
+        
+        int result = 0;
+        try {
+			result = meetingService.insert(meetingDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        
+        if(result > 0) { }
+        
+        return "redirect:./coding";
+    }*/
+	
+	/********************************************************************************/
 
 	// 
     @RequestMapping(value="/coding", method=RequestMethod.GET)
     public void coding(Model model) {
         logger.info("calendarList");
-        /*try {
-            Calendar service = GoogleCalendarService.getCalendarService();
-            CalendarList calendarList = service.calendarList().list().setPageToken(null).execute();
-            List<CalendarListEntry> items = calendarList.getItems();
-            model.addAttribute("items", items);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
         
         try {
 			List<CalendarDTO> itmes = calendarService.selectList();
+			List<MeetingDTO> meeting = meetingService.selectList();
+			
 			model.addAttribute("items", itmes);
+			model.addAttribute("meeting", meeting);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -57,15 +68,6 @@ public class CalendarController {
     public String calendarAdd(CalendarDTO calendarDTO) {
         logger.info("calendarAdd "+calendarDTO.toString());
         
-        /*try {
-            Calendar service = GoogleCalendarService.getCalendarService();
-            com.google.api.services.calendar.model.Calendar calendar = new com.google.api.services.calendar.model.Calendar();
-            calendar.setSummary(calDto.getSummary());
-            calendar.setTimeZone("America/Los_Angeles");
-            service.calendars().insert(calendar).execute();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
         int result = 0;
         try {
 			result = calendarService.insert(calendarDTO);
@@ -83,15 +85,6 @@ public class CalendarController {
     public String calendarRemove(HttpServletRequest req) {
         logger.info("calendarRemove");
         
-        /*String[] chkVal = req.getParameterValues("chkVal");
-        try {
-            Calendar service = GoogleCalendarService.getCalendarService();
-            for (String calendarId : chkVal) {
-                service.calendars().delete(calendarId).execute();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
         String[] chkVal = req.getParameterValues("chkVal");
         int result = 0;
 		try {
@@ -112,14 +105,6 @@ public class CalendarController {
     public String calendarModify(CalendarDTO calendarDTO) {
         logger.info("calendarModify "+calendarDTO.toString());
         
-        /*try {
-            Calendar service = GoogleCalendarService.getCalendarService();
-            com.google.api.services.calendar.model.Calendar calendar = service.calendars().get(calDto.getCalendarId()).execute();
-            calendar.setSummary(calDto.getSummary());
-            service.calendars().update(calendar.getId(), calendar).execute();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
         int result = 0;
         try {
 			result = calendarService.update(calendarDTO);
@@ -133,7 +118,7 @@ public class CalendarController {
         return "redirect:./coding";
     }    
     
-    // 罹섎┛�뜑 �씠�룞泥섎━
+    // schdule go
     @RequestMapping(value="/schdule", method=RequestMethod.GET)
     public String schdule(Model model, String calendarId, String title) {
         logger.info("schdule");

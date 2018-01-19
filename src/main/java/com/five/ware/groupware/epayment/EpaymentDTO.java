@@ -17,8 +17,6 @@ public class EpaymentDTO {
 	private String approvaltemp;
 	private String memberCode;
 	
-	
-	
 	public String getResult() {
 		return result;
 	}
@@ -44,7 +42,6 @@ public class EpaymentDTO {
 		this.memberCode = memberCode;
 	}
 	private String state;
-	
 	
 	public String getDraftrank() {
 		return draftrank;

@@ -13,7 +13,7 @@
 	$(function(){
 		var message = '${message}';
 		if(message != ""){
-			alert(message);
+			swal(message);
 		}
 		
 		var kind='${pager.kind}';
@@ -49,7 +49,7 @@
 				
 			}else{
 				
-				alert("해당 글은 "+target+"에게만 공개된 게시물입니다.")
+				swal("해당 글은 "+target+"에게만 공개된 게시물입니다.")
 				
 			}
 		}); 

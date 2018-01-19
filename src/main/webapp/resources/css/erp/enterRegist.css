@@ -3,7 +3,9 @@
 #erp_jh_modal_table{
 	overflow: scroll;
 	width: 100%;
+	height: 50%;
 }
+
 
 #mater_modal_table{
 	width: 100% !important;

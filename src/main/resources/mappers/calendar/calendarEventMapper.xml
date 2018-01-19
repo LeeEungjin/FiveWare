@@ -23,7 +23,8 @@
   	</insert>
   	
   	<select id="eventList" resultType="CalendarEventDTO">
-  		select * from calendarevent order by starttime asc
+  		select * from calendarevent where calendarId=#{calendarId}
+  		order by starttime asc
   	</select>
   	
   </mapper>

@@ -12,6 +12,11 @@ public class MeetingRoomService {
 	@Inject
 	private MeetingRoomDAO meetingRoomDAO;
 	
+	
+	public int insert(MeetingRoomDTO meetingRoomDTO) throws Exception {
+		return meetingRoomDAO.insert(meetingRoomDTO);
+	}
+	
 	public List<MeetingRoomDTO> searchList(MeetingRoomDTO meetingRoomDTO) throws Exception {
 		return meetingRoomDAO.searchList(meetingRoomDTO);
 	}

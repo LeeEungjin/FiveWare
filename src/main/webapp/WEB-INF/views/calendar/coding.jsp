@@ -49,6 +49,7 @@
 		        onclick="calendarModifyForm()" />
 		    <input type="button" class='btn btn-sm btn-warning' value="캘린더 삭제"
 		        onclick="calendarRemove()" />
+		        
 	    </div>
 	        
 	        
@@ -111,9 +112,6 @@
 	    </div>
     </div>
 	
-	<div id="com_footer">
-		<a href="communityWrite"><button type="button" class="btn btn-default">신규 등록</button></a>
-	</div>
 </div>
 
 

@@ -27,6 +27,20 @@ $(function(){
 			document.frm.submit();
 		});
 	 
+	 $("#ar_epaylong").click(function(){
+		 var docunum=$(this).attr("title");
+		 
+		 $.ajax({
+			 type:"GET",
+			 url:"./epaymentContents",
+			 data:{
+				 "docunum" : docunum
+			 },success:function(data){
+				 $(".modal-dialog").html(data);
+				 }
+		 });
+	 });
+	 
 	
 
 });
@@ -157,27 +171,28 @@ $(function(){
 							</thead>
 							
 							<tbody>
-								 <c:if  test="${empty epaymentList}"> 
+								 <c:if  test="${empty list}"> 
 									<tr>
 										<td colspan="8" style="text-align: center;"><p>결재 목록이 없습니다.</p></td>
 									</tr>
 								 </c:if> 
 								 
-						<%-- 		 <c:if test="${not empty epaymentList}">
-								 <c:forEach items="${epaymentList }" var="dto">
+							 <c:if test="${not empty list}">
+								 <c:forEach items="${list }" var="dto">
 								 	<tr>
+								 	<input type="hidden" value="${dto.docunum }" id="ar_docunum">
 									<td>${dto.num }</td>
 									<td>${dto.title }</td>
 									<td>${dto.draftname }</td>
 									<td>${dto.drafttemp }</td>
 									<td>${dto.kind }</td>
 									<td>${dto.draftdate }</td>
-									<td>${dto.result }</td> 
+									<td>${dto.state}</td> 
 									<td></td>
-									<td><input type="button" value="상세보기" class="eb_viewBtn" title="${dto.num}"  data-toggle="modal" data-target="#myModal"></td>
+									<td><input type="button" value="상세보기" class="eb_viewBtn"  data-toggle="modal" data-target="#myModal" title="${dto.docunum }" id="ar_epaylong"></td>
 								</tr>
 								</c:forEach>
-								</c:if> --%>
+								</c:if> 
 							</tbody>
 						
 						</table>
@@ -189,58 +204,7 @@ $(function(){
 						<div class="modal fade" id="myModal" role="dialog">
 						    <div class="modal-dialog">
 						    
-						      <!-- Modal content-->
-						      <div class="modal-content">
-						        <div class="modal-header">
-						          <button type="button" class="close" data-dismiss="modal">&times;</button>
-						          <h4 class="modal-title">수신함</h4>
-						        </div>
-						        <div class="modal-body"  id="eb_modal" >
-						         
-						         <table  id="eb_modal_table">
-						         	<tr class="eb_modal_tr">
-						         		<td class="eb_modal_table_td_1">상태</td>
-						         		<td class="eb_modal_table_td" colspan="3"><span id="eb_viewResult"></span></td>
-						         	
-						         	</tr>
-						         
-						         	<tr class="eb_modal_tr">
-						         		<td class="eb_modal_table_td_1">문서 번호</td>
-						         		<td class="eb_modal_table_td"><span id="eb_viewNum"></span></td>
-						         		<td class="eb_modal_table_td_1">기안 날짜</td>
-						         		<td class="eb_modal_table_td"><span id="eb_viewDraftdate"></span></td>
-						         	</tr>
-						         	<tr class="eb_modal_tr">
-						         		<td class="eb_modal_table_td_1">기안 부서</td>
-						         		<td><span id="eb_viewDrafttemp"></span></td>
-						         		<td class="eb_modal_table_td_1">기안자</td>
-						         		<td><span id="eb_viewDraftname"></span></td>
-						         	</tr>
-						         	
-						         	<tr class="eb_modal_tr">
-						         		<td class="eb_modal_table_td_1">승인 부서</td>
-						         		<td><span id="eb_viewApprovalTemp"></span></td>
-						         		<td class="eb_modal_table_td_1">결재선</td>
-						         		<td><span id="eb_viewApproval"></span></td>
-						         	</tr>
-						         	
-						         	<tr class="eb_modal_tr">
-						         		<td class="eb_modal_table_td_1">제목</td>
-						         		<td colspan="3"><span id="eb_viewTitle"></span></td>
-						         	</tr>
-						         
-						         	<tr class="eb_modal_tr">
-						         		<td class="eb_modal_table_td_1" id="eb_modal_tr_id">내용</td>
-						         		<td colspan="3"><span id="eb_viewContents"></span></td>
-						         	</tr>
-						         
-						         </table>
-						        </div>
-						        <div class="modal-footer">
-						        	<input type="button" class="btn btn-default" id="eb_Delete" value="삭제" >
-						          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						        </div>
-						      </div>
+						   
 						      
 						    </div>
 						  </div>
