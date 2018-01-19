@@ -40,6 +40,7 @@ public class MapService {
 		
 		//JSON
 		JsonArray ar = new JsonArray();
+		
 		for(int i=0; i<geoList.size();i++){
 			JsonObject obj = new JsonObject();
 			obj.addProperty("lat", geoList.get(i)[0]);

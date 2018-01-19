@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="orderGraphMapper">
+
+	<select id="codeCount" resultType="int">
+		select nvl(count(distinct ordercode), 0) from orderproduct
+	</select>
+	
+	<select id="selectList" resultType="com.five.ware.order.OrderProductDTO">
+		select * from orderproduct order by ordercode
+	</select>
+	
+	<select id="codeList" resultType="String">
+		select distinct code from orderproduct
+	</select>
+	
+	<select id="amountSum" parameterType="String" resultType="int">
+		select sum(amount) as amount_sum from orderproduct where code=#{code}
+	</select>
+	
+	<select id="priceSum" parameterType="String" resultType="int">
+		select sum(price) as price_sum from orderproduct where code=#{code}
+	</select>
+	
+	<select id="amountAvg" parameterType="String" resultType="double">
+		select avg(amount) from orderproduct where code=#{code}
+	</select>
+	
+	<select id="priceAvg" parameterType="String" resultType="double">
+		select avg(price) from orderproduct where code=#{code}
+	</select>
+
+</mapper>

@@ -1,0 +1,93 @@
+@CHARSET "UTF-8";
+
+#fw_main_contents{
+	width: 100%;
+	height: 91%;
+	background-color: white;
+	overflow: hidden;
+}
+
+#erp_graph_title{
+	width: 100%;
+	height: 10%;
+	background-color: #ffe1e7;
+	overflow: hidden;
+}
+
+#graph_icon{
+	width: 6%;
+	height: 100%;
+	background-color: #ff84c1;
+	float: left;
+}
+
+#graph_title{
+	font-size: 30px;
+	font-weight: bold;
+	margin-left: 5%;
+	margin-top: 1.5%;
+}
+
+#erp_graph_sub{
+	width: 100%;
+    height: 8%;
+    background-color: #e7ceff;
+    padding-top: 0.5%;
+}
+
+#sum_title{
+	width: 49%;
+	height: 80%;
+	margin-top: 1%;
+	float: left;
+	margin-right: 2%;
+	background-color: #ffd9ec;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+}
+
+#avg_title{
+	width: 49%;
+	height: 80%;
+	margin-top: 1%;
+	background-color: #caeeff;
+	float: left;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+}
+
+
+#erp_graph_mid{
+	width: 100%;
+	height: 75%;
+	background-color: #ffffce;
+}
+
+.sum_graph{
+	width: 49%;
+	height: 100%;
+	margin-right: 2%;
+	background-color: #ff0080;
+	float: left;
+}
+
+.avg_graph{
+	width: 49%;
+	height: 100%;
+	background-color: #8080ff;
+	float: left;
+	overflow: scroll;
+}
+
+#erp_graph_bottom{
+	width: 100%;
+	height: 10.5%;
+	background-color: #cee7ff;
+}
+
+.graph_table{
+	text-align: center;
+	font-size: 15px;
+}

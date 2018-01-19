@@ -196,6 +196,7 @@
          <div class="fw_subsub collapse"  id="sub2">
             <ul>
                <li><a href="../../erp/order/orderRegist">주문 입력</a></li>
+               <li><a href="../../erp/order/orderGraph">품목별 주문 현황</a></li>
             </ul>
          </div>
          
