@@ -209,9 +209,16 @@ td.eb_row:hover {
 #eb_modal_table{
 	width:100%;
 	height:300px;
+}
+.eb_modal_table_tr{
+	border-top: 1px solid gray;
 	
 }
 
+.eb_modal_table_td{
+	background-color: #EAEAEA;
+	text-align: center;
+}
 #eb_modal_tableT{
 	width: 100%;
 	height: 200px;

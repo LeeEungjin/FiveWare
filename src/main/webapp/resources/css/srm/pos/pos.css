@@ -34,6 +34,12 @@
 			border: 1px solid black;
 			margin-top: 5px;
 		}
+		
+		.eb_menuTable_th{
+			width: 20%;
+			height: 10px;
+			
+		}
 		.menu2{
 			width: 99%;
 			height: 8%;
@@ -69,6 +75,7 @@
 			float: left;
 		}
 		
+		
 		.menu4_1{
 			width: 40%;
 			height: 42%;
@@ -84,6 +91,10 @@
 			margin-top: 5px;
 			margin-right : 5px;
 			float: right;
+		}
+		.eb_table_td{
+		width: 130px;
+
 		}
 		
 		.menu5{

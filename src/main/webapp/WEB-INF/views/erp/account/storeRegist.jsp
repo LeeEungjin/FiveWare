@@ -190,7 +190,7 @@
 	 
 	 
 		 /* 코드 */
-  	  $("#eb_insertBtn").click(function(){
+ /*  	  $("#eb_insertBtn").click(function(){
 			
 			$.ajax({
 				type:"GET",
@@ -201,7 +201,7 @@
 					$(".eb_code").val(data);
 				}
 			});
-		});  
+		});  */ 
 		
 		
 	
@@ -537,24 +537,24 @@
 				 <div class="modal-body">
 		
 					<table id="eb_modal_table">
-						<tr>
-						   <td>지점명 코드</td>
-						   <td><input type="text" name="code" class="eb_code" ></td>
-						   <td>지점명</td>
+						<tr class="eb_modal_table_tr">
+						   <td  class="eb_modal_table_td">지점명 코드</td>
+						   <td> <input type="text" name="code" class="eb_code" ></td>
+						   <td class="eb_modal_table_td">지점명</td>
 						   <td><input type="text" name="store" id="eb_store"></td>
 						   
 						</tr>
 						
-						<tr>
-						   <td>대표자</td>
+						<tr class="eb_modal_table_tr">
+						   <td class="eb_modal_table_td">대표자</td>
 						   <td><input type="text" name="name" id="eb_name"></td>
-						   <td>사업자 등록 번호</td>
+						   <td class="eb_modal_table_td">사업자 등록 번호</td>
 						   <td><input type="text" name="storeNum" id="eb_storeNum"></td>
 						   
 						</tr>
 						          	
-						<tr>
-						   <td>주소</td>
+						<tr class="eb_modal_table_tr">
+						   <td class="eb_modal_table_td">주소</td>
 						   <td> 
 							   	<input type="text" id="sample6_postcode" placeholder="우편번호" name="addr">
 								<input type="button" class="btn btn-primary" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
@@ -562,25 +562,27 @@
 								<input type="text" id="sample6_address2" placeholder="나머지 주소를 입력해주세요." name="addr">  
 						   </td>
                                
-                             
-                              
-						   <td>영업시간</td>
+						      
+						  <td class="eb_modal_table_td">영업시간</td>
 						   <td><input type="text" name="time" id="eb_time"></td>
 						 
+						 
 						</tr>
+				
 						          	
-						<tr>
-						   <td>전화번호</td>
+						<tr class="eb_modal_table_tr">
+						   <td class="eb_modal_table_td">전화번호</td>
 						   <td><input type="text" name="tel" id="eb_tel"></td> 
-						   <td>E-mail</td>
+						   <td class="eb_modal_table_td">E-mail</td>
 						   <td><input type="text" name="email" id="eb_email"></td>
 						</tr>
 						          	
 						<tr>
 							
-						</tr>        
-						<tr>
-						   <td>은행</td>
+						</tr> 
+						       
+						<tr class="eb_modal_table_tr">
+						   <td class="eb_modal_table_td">은행</td>
 						   <td>
 						   		<select name="bank" id="eb_bank">
 						   			<option value="국민은행">국민 은행</option>
@@ -588,7 +590,7 @@
 						   			<option value="농협">농협</option>
 						   		</select>
 						   </td>
-						   <td>계좌번호</td>
+						   <td class="eb_modal_table_td">계좌번호</td>
 						   <td>
 						   		<input type="text" name="account" id="eb_account" placeholder="-없이 입력해주세요.">
 						   		<input type="button" id="eb_bankBtn" value="확인">

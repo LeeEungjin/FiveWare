@@ -23,6 +23,15 @@ public class MenuRegistService {
 	private FileDAO fileDAO;
 	
 
+	
+	//pos 메뉴
+	public ModelAndView posMenu(String menuKind)throws Exception{
+		ModelAndView mv=new ModelAndView();
+		mv.addObject("pos_menu", menuRegistDAO.posMenu(menuKind));
+		
+		return mv;
+	}
+	
 	public int menuRegistInsert(MenuRegistDTO menuRegistDTO)throws Exception{
 		List<FileDTO> ar=fileDAO.selectList(menuRegistDTO.getMenuCode());
 

@@ -13,6 +13,13 @@
   		insert into menuregist values(#{menuCode}, #{menuKind}, #{menuName}, #{imgNull}, #{recipe}, #{menuOption}, #{price})
   	</insert>
   	
+  	<!--pos 메뉴 불러오기!!  -->
+  	<select id="posMenu" parameterType="String" resultType="com.five.ware.erp.menuRegist.MenuRegistDTO">
+  		select menucode, menukind, menuname, price from menuregist where menukind=#{menuKind}
+  	</select>
+  	<!--pos 메뉴 불러오기 끝!!  -->
+  		
+  		
   	<select id="selectList" parameterType="java.util.Map" resultType="com.five.ware.erp.menuRegist.MenuRegistDTO">
   		select * from 
   		(select rownum R, N.* from

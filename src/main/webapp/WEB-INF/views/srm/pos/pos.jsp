@@ -98,6 +98,149 @@
 					}
 				}); 
 			 	
+			 	
+			 	$(".b3").click(function(){
+			 		var number=$(this).val();
+			 	
+			 		if(number!='='){
+			 		$(".price_p").text($(".price_p").text()+number);			 			
+			 		}
+			 	
+			 	});
+			 	
+			 	$("#eb_remove").click(function(){
+			 		$(".price_p").text("");
+			 	});
+			 	
+			 	$("#eb_enter").click(function(){
+			 		var price=$(".price_p").text();
+			 		var receive=$("#p4").text();
+			 		
+			 		
+			 		$("#eb_receive").text(price);
+			 		$("#eb_change").text(price*1-receive*1);
+			 		$("#eb_rest").text(price*1-receive*1);
+			 		$(".price_p").text("");
+			 	});
+			 	
+			 	$(".eb_menu").click(function(){
+			 		var menu=$(this).text();
+			 		var price=$(this).attr("title");
+			 		var num=document.getElementsByClassName("eb_menuTable_tr"+menu);
+			 		var price_amount = $("#eb_amount"+menu).html()*1;
+			 		
+			 		
+			 		 if(num.length==0) {
+				 		$(".eb_menuTable").append("<tr class='eb_menuTable_tr"+menu+"'>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+menu+"</td>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+price+"</td><td class='eb_menuTable_th' id='eb_amount"+menu+"'>"+1+"</td>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+0+"</td><td class='eb_menuTable_th' id='eb_price"+menu+"'>"+price+"</td></tr>");
+				 		$(".eb_menuTable").append("</tr>");
+			 		 }else{
+				 		$("#eb_amount"+menu).html(price_amount+1);
+				 		var price1=price*1*(price_amount+1);
+				 	
+				 		$("#eb_price"+menu).html(price1);
+			 			
+			 		 }
+			 		 var z = $("#p2").text()*1;
+			 		
+			 		$("#p2").text(z+price*1);
+			 		$("#p4").text(z+price*1);
+			 		
+			 	});
+			 	
+			 	$("#eb_allCancel").click(function(){
+			 		$(".eb_menuTable").html("");
+			 		$("#p2").text("");
+			 		$("#p4").text("0");
+			 	});
+			 	
+			 	$("#eb_drink").click(function(){
+			 		
+			 		$.ajax({
+			 			type : "get",
+			 			url : "./posMenu",
+			 			data : { "menuKind" : "drink"},
+			 			success : function(data){
+			 				$("#eb_drink_table").html(data);
+			 			},error : function(){
+			 				alert("error");
+			 			}
+			 		});
+			 	});
+			 	
+			 	$("#eb_bread").click(function(){
+			 		
+			 		$.ajax({
+			 			type : "get",
+			 			url : "./posMenu",
+			 			data : { "menuKind" : "bread"},
+			 			success : function(data){
+			 				$("#eb_bread_table").html(data);
+			 			},error : function(){
+			 				alert("error");
+			 			}
+			 		});
+			 		
+			 	});
+			 	
+			 	
+			 	
+			 	$("#eb_drink_table").on("click",".eb_menu",function(){
+			 		var menu=$(this).text();
+			 		var price=$(this).attr("title");
+			 		var num=document.getElementsByClassName("eb_menuTable_tr"+menu);
+			 		var price_amount = $("#eb_amount"+menu).html()*1;
+			 		
+			 		
+			 		 if(num.length==0) {
+				 		$(".eb_menuTable").append("<tr class='eb_menuTable_tr"+menu+"'>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+menu+"</td>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+price+"</td><td class='eb_menuTable_th' id='eb_amount"+menu+"'>"+1+"</td>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+0+"</td><td class='eb_menuTable_th' id='eb_price"+menu+"'>"+price+"</td></tr>");
+				 		$(".eb_menuTable").append("</tr>");
+			 		 }else{
+				 		$("#eb_amount"+menu).html(price_amount+1);
+				 		var price1=price*1*(price_amount+1);
+				 	
+				 		$("#eb_price"+menu).html(price1);
+			 			
+			 		 }
+			 		 var z = $("#p2").text()*1;
+			 		
+			 		$("#p2").text(z+price*1);
+			 		$("#p4").text(z+price*1);
+			 		
+			 	});
+			 	
+			 	$("#eb_bread_table").on("click",".eb_menu",function(){
+			 		var menu=$(this).text();
+			 		var price=$(this).attr("title");
+			 		var num=document.getElementsByClassName("eb_menuTable_tr"+menu);
+			 		var price_amount = $("#eb_amount"+menu).html()*1;
+			 		
+			 		
+			 		 if(num.length==0) {
+				 		$(".eb_menuTable").append("<tr class='eb_menuTable_tr"+menu+"'>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+menu+"</td>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+price+"</td><td class='eb_menuTable_th' id='eb_amount"+menu+"'>"+1+"</td>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+0+"</td><td class='eb_menuTable_th' id='eb_price"+menu+"'>"+price+"</td></tr>");
+				 		$(".eb_menuTable").append("</tr>");
+			 		 }else{
+				 		$("#eb_amount"+menu).html(price_amount+1);
+				 		var price1=price*1*(price_amount+1);
+				 	
+				 		$("#eb_price"+menu).html(price1);
+			 			
+			 		 }
+			 		 var z = $("#p2").text()*1;
+			 		
+			 		$("#p2").text(z+price*1);
+			 		$("#p4").text(z+price*1);
+			 		
+			 	});
+			 	
 	});
 	
 </script>
@@ -112,9 +255,9 @@
 			<table id="logo_Table">
 				<tr> 
 					<td>logo</td> 
-					<td>지점 : ${member.store }</td> 
+					<td>지점 : ${member.store}</td> 
 					<td>영업일자 : ${sysdate}</td> 
-					<td>지점장 : ${member.name }</td> 
+					<td>지점장 : ${member.name}</td> 
 					<td><span id="time"></span></td> 
 					<td>
 						<input type="button" value="출/퇴근" class="btn btn-default" data-toggle="modal" data-target="#myModal" id="eb_staff_time">
@@ -168,36 +311,32 @@
 		
 			<div class="menu1">
 				<table id="menu1_table">
+				<thead>
 					<tr>
-						<th>메뉴명</th>
-						<th>정가</th>
-						<th>수량</th>
-						<th>할인</th>
-						<th>금액</th>
+						<th class="eb_menuTable_th">메뉴명</th>
+						<th class="eb_menuTable_th">정가</th>
+						<th class="eb_menuTable_th">수량</th>
+						<th class="eb_menuTable_th">할인</th>
+						<th class="eb_menuTable_th">금액</th>
 					</tr>
+					</thead>
 					
+					<tbody class="eb_menuTable">
 					
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>	
-					
+					</tbody>
 				</table>
 			
 			</div>
 			
 			<div class="menu2">
 				<p id="p1">총금액 : </p>
-				<p id="p2"> 10000 won</p>
+				<p id="p2">0</p>
 			</div>
 			
 			<div class="menu3">
 			
 			<div class="btn-group" id="eb_btn-group_1">
-   			 	<button type="button" class="btn btn-primary b1">전체<br>취소</button>
+   			 	<button type="button" class="btn btn-primary b1" id="eb_allCancel">전체<br>취소</button>
    			 	<button type="button" class="btn btn-primary b1">선택<br>취소</button>
     			<button type="button" class="btn btn-primary b1">할인<br>처리</button>
     			<button type="button" class="btn btn-primary b1">수량<br>변경</button>
@@ -217,8 +356,8 @@
 					<div class="blank"></div>
 						<table id="menu4_table">
 							<tr>
-								<td>총금액</td>
-								<td>0</td>
+								<td class="eb_table_td">총금액</td>
+								<td><p id="p4">0</p></td>
 							</tr>	
 							<tr>
 								<td>할인금액</td>
@@ -226,15 +365,15 @@
 							</tr>
 							<tr>
 								<td>받은금액</td>
-								<td>0</td>
+								<td><p id="eb_receive">0</p></td>
 							</tr>
 							<tr>
 								<td>남은금액</td>
-								<td>0</td>
+								<td><p id="eb_rest">0</p></td>
 							</tr>
 							<tr>
 								<td>거스름돈</td>
-								<td>0</td>
+								<td><p id="eb_change">0</p></td>
 							</tr>
 					
 					</table>
@@ -242,33 +381,33 @@
 			
 			<div class="menu4_1">
 		       <div class="price">
-		       <p class="price_p">1000</p>
+		       <p class="price_p"></p>
 		       </div>
 		       
 		       <div class="price_1">
 		       <div class="btn-group-vertical1">
-    				<button type="button" class="btn btn-primary b3">7</button>
-    				<button type="button" class="btn btn-primary b3">4</button>
-    				<button type="button" class="btn btn-primary b3">1</button>
-    				<button type="button" class="btn btn-primary b3">0</button>
+    				<button type="button" class="btn btn-primary b3" value="7" id="eb_7">7</button>
+    				<button type="button" class="btn btn-primary b3" value="4" id="eb_4">4</button>
+    				<button type="button" class="btn btn-primary b3" value="1">1</button>
+    				<button type="button" class="btn btn-primary b3" value="0">0</button>
   				</div>
 		       </div>
 		       
 		       <div class="price_2">
 		      	 <div class="btn-group-vertical1">
-    				<button type="button" class="btn btn-primary b3">8</button>
-    				<button type="button" class="btn btn-primary b3">5</button>
-    				<button type="button" class="btn btn-primary b3">2</button>
-    				<button type="button" class="btn btn-primary b3">00</button>
+    				<button type="button" class="btn btn-primary b3" value="8">8</button>
+    				<button type="button" class="btn btn-primary b3" value="5">5</button>
+    				<button type="button" class="btn btn-primary b3" value="2">2</button>
+    				<button type="button" class="btn btn-primary b3" value="00">00</button>
   				</div>
 		       </div>
 		       
 		       <div class="price_3">
 		       	<div class="btn-group-vertical1">
-    				<button type="button" class="btn btn-primary b3">9</button>
-    				<button type="button" class="btn btn-primary b3">6</button>
-    				<button type="button" class="btn btn-primary b3">3</button>
-    				<button type="button" class="btn btn-primary b3">C</button>
+    				<button type="button" class="btn btn-primary b3" value="9">9</button>
+    				<button type="button" class="btn btn-primary b3" value="6">6</button>
+    				<button type="button" class="btn btn-primary b3" value="3">3</button>
+    				<button type="button" class="btn btn-primary b3" id="eb_remove">C</button>
   					</div>
 		       </div>
 		       
@@ -277,7 +416,7 @@
 		       </div>
 		       
 		       <div class="price_5">
-		    		<button type="button" class="btn btn-primary b4">Enter </button>
+		    		<button type="button" class="btn btn-primary b4" id="eb_enter">Enter </button>
 		       </div>
 			</div>
 			
@@ -296,23 +435,39 @@
 		  <div class="menu5">
 		  
 		   <ul class="nav nav-tabs">
-    		<li class="active"><a data-toggle="tab" href="#coffee">Coffee</a></li>
-    		<li><a data-toggle="tab" href="#drink">Drink</a></li>
-    		<li><a data-toggle="tab" href="#bread">Bread</a></li>
+    		<li class="active"><a data-toggle="tab" href="#coffee" id="eb_coffee">Coffee</a></li>
+    		<li><a data-toggle="tab" href="#drink" id="eb_drink">Drink</a></li>
+    		<li><a data-toggle="tab" href="#bread" id="eb_bread">Bread</a></li>
   		</ul>
 
   			<div class="tab-content">
     			<div id="coffee" class="tab-pane fade in active">
      			 	<h3>Coffee</h3>
-      				<p>아메~~~</p>
+      				<table>
+      				<c:forEach items="${pos_menu}" var="dto">
+      					<tr>
+      						<td><p class="eb_menu" title="${dto.price}">${dto.menuName}</p></td>
+      						<td><p class="eb_menuPrice" >${dto.price}</p></td>
+      					</tr>
+      				</c:forEach>
+      				</table>
     			</div>
     		
     			<div id="drink" class="tab-pane fade">
-     			 	<p>스무디~~~</p>
+     			 	
+	     			 	<table id="eb_drink_table">
+	     			 	
+	     			 	</table>
+	     			 	
    				
    				 </div>
+   				 
     			<div id="bread" class="tab-pane fade">
-      				<p>빵~~</p>
+      				
+      				<table id="eb_bread_table">
+      				
+      				</table>
+      			
    			 	</div>
    
   				  
@@ -348,5 +503,6 @@
 		</div>
 		
  	</div>
+ 	
 </body>
 </html>

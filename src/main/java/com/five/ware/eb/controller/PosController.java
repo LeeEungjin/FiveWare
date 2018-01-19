@@ -1,6 +1,6 @@
 package com.five.ware.eb.controller;
 
-import java.text.SimpleDateFormat;
+import java.text.SimpleDateFormat;  
 import java.util.Calendar;
 import java.util.Date;
 
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.five.ware.erp.menuRegist.MenuRegistService;
 import com.five.ware.srm.staff.StaffDTO;
 import com.five.ware.srm.staff.StaffService;
 import com.five.ware.srm.staff.StaffTimeDTO;
@@ -22,6 +23,8 @@ public class PosController {
 
 	@Inject
 	StaffService staffService;
+	@Inject
+	MenuRegistService menuRegistService;
 	
 	
 	//퇴근
@@ -54,24 +57,39 @@ public class PosController {
 	
 	
 	@RequestMapping(value="pos")
-	public ModelAndView pos(){
-	
+	public ModelAndView pos(String menuKind){
+		menuKind="coffee";
+		
 		ModelAndView mv=new ModelAndView();
 		
 		Calendar ca = Calendar.getInstance();
 		
 		SimpleDateFormat sd = new SimpleDateFormat("yyyy년 MM월 dd일 ");
-
-
-
-		
 		String sysdate = sd.format(ca.getTime());
 		
-		
+		try {
+			mv=menuRegistService.posMenu(menuKind);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		mv.addObject("sysdate", sysdate);
 		
+		return mv;
+	}
+	
+	@RequestMapping(value="posMenu",method=RequestMethod.GET)
+	@ResponseBody
+	public ModelAndView posMenu(String menuKind){
 		
-		
+		ModelAndView mv=new ModelAndView();
+		try {
+			mv=menuRegistService.posMenu(menuKind);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		mv.setViewName("/srm/pos/posDrink");
 		
 		return mv;
 	}

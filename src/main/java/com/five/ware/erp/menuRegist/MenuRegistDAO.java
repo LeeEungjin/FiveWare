@@ -19,6 +19,14 @@ public class MenuRegistDAO {
 	private SqlSession sqlsession;
 	private static final String namespace="menuRegistMapper.";
 	
+	
+	//pos 메뉴 불러오기
+	public List<MenuRegistDTO> posMenu(String menuKind)throws Exception{
+		return sqlsession.selectList(namespace+"posMenu", menuKind);
+		
+	}
+	
+	
 	public int dragandrop(FileDTO fileDTO)throws Exception{
 		return sqlsession.insert(namespace+"dragandrop", fileDTO);
 	}
