@@ -15,20 +15,17 @@
 													<div id="ar_signText">
 														결 <br> 재
 													</div>
-														<div id="ar_signBoxBasis1">
+														<div id="ar_signBoxBasis100">
 															<div id="ar_signTemp"> 기 안</div>
 															<div id="ar_singMember"><input type=text  readonly=readonly value='${docuC.drafttemp}'><input type=text  readonly=readonly value='${docuC.draftname }'></div>
 															<input type=hidden value="${docuC.draftcode}" name="draftcode">
 														</div>
 													<!-- for문 돌리기(결재선) -->
-													<c:forEach items="${signmember}" var="list">
-													<c:if test="${list.statenum==1 }">
-														
-													</c:if>
-														<div id="ar_signBoxBasis">
+													<c:forEach items="${signmember}" var="list" varStatus="i" >
+														<div id="ar_signBoxBasis${list.docunum}${i.index}" class="ar_backstamp" title="${list.statenum}">
 															<div id="ar_signTemp"> ${list.approvaltemp}</div>
 															<div id="ar_singMember"><input type=text  readonly=readonly value='${list.approvalrank}'><input type=text  readonly=readonly value='${list.approvalname}'></div>
-															<%-- <input type=hidden value="${list.approvalranking}" name="draftcode"> --%>
+															<input type="hidden" value="${list.ranking }" id="${list.approvalcode}"> 
 														</div>
 													</c:forEach>
 											</div>
@@ -48,6 +45,7 @@
 						         		<td><span id="eb_viewDrafttemp">${docuC.drafttemp }</span></td>
 						         		<td class="eb_modal_table_td_1">기안자</td>
 						         		<td><span id="eb_viewDraftname">${docuC.draftname }</span></td>
+						         		<input type="hidden" value="${docuC.draftcode}" name="approvalcode" id="ar_test">
 						         	</tr>
 						         	
 						         	<tr class="eb_modal_tr">
@@ -64,15 +62,25 @@
 						         
 						         <div id="ar_dateWrap">
 						         	<div id="ar_dateDiv">
-						         		<p id="ar_dateText"> 년      월   일</p>
+						         		<p id="ar_dateText"> ${year}년   ${month} 월 ${day}  일</p>
 						         		<p id="ar_date">기안자 : ${docuC.draftname } </p>
 						         	</div>
 						         </div>
 						         
 						        </div>
-						        <div class="modal-footer">
-						        	<input type="button" class="btn btn-default" id="eb_Delete" value="결재 승인" >
-						        	<input type="button" class="btn btn-default" id="eb_Delete" value="결재 거부" >
+						        <div class="modal-footer" id="ar_beforeBtn">
+						      <c:if test="${type == 0}">
+						        	<input type="button" class="btn btn-default" id="ar_approvalok" title="${docuC.docunum }" value="결재 승인" >
+						        	<input type="button" class="btn btn-default" id="ar_approvalno" title="${docuC.docunum }"value="결재 거부" >
+						          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						         </c:if>
+						         
+						         <c:if test="${docuC.state=='임시저장' }">
+						         		<input type="button" class="btn btn-default" id="ar_approvalUpdate" title="${docuC.docunum }" value="수정" >
+						         </c:if>
+						        </div>
+						        
+						        <div class="modal-footer" id="ar_afterBtn">
 						          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 						        </div>
 						      </div>

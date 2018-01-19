@@ -6,12 +6,13 @@
   <mapper namespace="epaymentLeaveMapper">
   
   <insert id="approvalInsert" parameterType="EpaymentLeaveDTO">
-  	insert into epaymentleave values(epaymentleave_seq.nextval, #{docunum}, #{approvalcode}, #{approvalname}, #{approvaltemp}, #{approvalrank},'미결', #{ranking}, '0')
+  	insert into epaymentleave values(epaymentleave_seq.nextval, #{docunum}, #{approvalcode}, #{approvalname}, #{approvaltemp}, #{approvalrank},#{state}, #{ranking}, '0')
   </insert>
   
-  <select id="myepaymentList" parameterType="String" resultType="EpaymentLeaveDTO">
-  	select * from epaymentleave where approvalcode=#{code} and statenum='0'
+<select id="myepaymentList" parameterType="java.util.Map" resultType="EpaymentLeaveDTO">
+  	select * from epaymentleave where approvalcode=#{code} and statenum=#{statenum}
   </select>
+  
   
   <select id="myepaymentList2" parameterType="EpaymentLeaveDTO" resultType="EpaymentLeaveDTO">
   	select * from epaymentleave where docunum=#{docunum} 
@@ -20,9 +21,12 @@
   			and ranking = #{ranking}  and statenum='0'
   		</when>
   		
+  		<when test="ranking==-1">
+  		and statenum =#{ranking}
+  		</when>
   		<otherwise>
   			and ranking = #{ranking}-1  and statenum='1'
-  		</otherwise>
+  			</otherwise>
   	</choose>
   
   </select>
@@ -34,4 +38,40 @@
  <select id="myepaymentMember" parameterType="EpaymentDTO" resultType="EpaymentLeaveDTO">
  	select * from epaymentleave where docunum=#{docunum} order by ranking asc
  </select> 
+ 
+ <update id="stampok" parameterType="EpaymentLeaveDTO">
+ 	update epaymentleave set 
+ 	<if test="approvalname=='기결'">
+	 	statenum='1', state='기결'
+ 	</if>
+ 	
+ 	<if test="approvalname=='반려'">
+	 	statenum='-1', state='반려'
+ 	</if>
+ 	
+ 	 where docunum=#{docunum} and approvalcode=#{approvalcode}
+ </update>
+ 
+<select id="maxRanking" parameterType="EpaymentLeaveDTO" resultType="String">
+	select max(ranking) from epaymentleave where docunum=#{docunum} 
+</select>
+ 
+
+ <!-- 초ㅣ종일 때만 if문 써서 .. -->
+ <update id="stampok2" parameterType="EpaymentLeaveDTO">
+ 	update epayment set
+ 	 state=#{approvalname} where docunum=#{docunum} and draftcode=#{approvalcode}
+ </update>
+ 
+ <select id="totalList" parameterType="String" resultType="EpaymentDTO">
+ 	select * from epayment where state=#{state}
+ </select>
+ 
+ <select id="storageList" parameterType="java.util.Map" resultType="EpaymentDTO">
+ 	select * from epayment where state=#{state} and draftcode=#{code}
+ </select>
+ 
+ <select id="viewOneModal" parameterType="String" resultType="EpaymentDTO">
+ 	select * from epayment where docunum=#{docunum}
+ </select>
   </mapper>

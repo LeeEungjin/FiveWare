@@ -361,7 +361,6 @@
 		<div id="ar_explantBtn">
 			<input type="button" value="결재선" class="ar_btnStyle" id="ar_signLine1">
 			<input type="button" value="결재요청" class="ar_btnStyle" id="ar_signAsk" title="미결" >
-			<input type="button" value="임시저장" class="ar_btnStyle1 ar_storage"  id="ar_signno">
 			<input type="button" value="취소" class="ar_btnStyle1" id="ar_signCen">
 		</div>
 	</div>
@@ -431,7 +430,6 @@
 		<div id="ar_explantBtn">
 			<input type="button" value="결재선" class="ar_btnStyle" id="ar_signLine" data-toggle="modal" data-target="#ar_positionInsert" >
 			<input type="button" value="결재요청" class="ar_btnStyle" id="ar_signAsk" title="미결" >
-			<input type="button" value="임시저장" class="ar_btnStyle1 ar_storage" id="ar_sign" >
 			<input type="button" value="취소" class="ar_btnStyle1" id="ar_sign2">
 		</div>
 	</div>

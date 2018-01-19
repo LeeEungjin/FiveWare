@@ -39,7 +39,7 @@
   
   
   <insert id="epaymentInsert" parameterType="EpaymentDTO">
-  	insert into epayment values(epayment_seq.nextval, #{docunum}, #{draftdate}, #{draftcode}, #{draftname}, #{drafttemp}, #{draftrank}, #{kind}, #{title}, #{contents}, '미결')
+  	insert into epayment values(epayment_seq.nextval, #{docunum}, #{draftdate}, #{draftcode}, #{draftname}, #{drafttemp}, #{draftrank}, #{kind}, #{title}, #{contents}, #{state})
   </insert>
   
 
