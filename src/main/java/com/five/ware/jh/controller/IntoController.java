@@ -44,7 +44,7 @@ public class IntoController {
 		return mv;
 	}
 	
-	@RequestMapping(value="intoMater", method=RequestMethod.POST)
+	@RequestMapping(value="intoallMater", method=RequestMethod.POST)
 	public ModelAndView materList(String tableName) {
 		ModelAndView mv = new ModelAndView();
 		List<IntoDTO> ar = null;

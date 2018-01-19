@@ -175,7 +175,7 @@
 					<div class="dropdown" style="display: inline;">
 						<button data-toggle="dropdown">재료</button>
 						<ul class="dropdown-menu">
-						  <li><a href="#" class="into" title="Mater">전체</a></li>
+						  <li><a href="#" class="into" title="allMater">전체</a></li>
 					      <li><a href="#" class="mater" title="enter">입고</a></li>
 					      <li><a href="#" class="mater" title="rele">출고</a></li>
 					      <li><a href="#" class="mater" title="back">반품</a></li>

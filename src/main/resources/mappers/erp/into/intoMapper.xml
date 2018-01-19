@@ -25,9 +25,13 @@
 		select * from storage
 	</select>
 	
-	<select id="intoMater" parameterType="String" resultType="com.five.ware.mater.MaterDTO">
+	<select id="intoMater2" parameterType="String" resultType="com.five.ware.mater.MaterDTO">
 		select * from mater
 		where materkind=#{kind}
+	</select>
+	
+	<select id="intoMater1" resultType="com.five.ware.mater.MaterDTO">
+		select * from mater
 	</select>
   
   </mapper>
