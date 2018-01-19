@@ -59,6 +59,7 @@ public class EpaymentLeaveService {
 				if(statenum==-1){
 					epaymentLeaveDTO.setRanking("-1");
 				}
+				
 				EpaymentLeaveDTO e = epaymentLeaveDAO.myepaymentList2(epaymentLeaveDTO);
 				
 				if(e!=null){
@@ -66,8 +67,10 @@ public class EpaymentLeaveService {
 				}
 			}
 			
+			EpaymentDTO epaymentDTO = null;
+			
 			for(EpaymentLeaveDTO epaymentLeaveDTO : ar2){
-				EpaymentDTO epaymentDTO = epaymentLeaveDAO.myepaymentListContents(epaymentLeaveDTO.getDocunum());
+				epaymentDTO = epaymentLeaveDAO.myepaymentListContents(epaymentLeaveDTO.getDocunum());
 				
 				list.add(epaymentDTO);
 				
@@ -75,9 +78,25 @@ public class EpaymentLeaveService {
 				ar22.add(ar2);
 			}
 			
+			String longdate = epaymentDTO.getDraftdate();
+			
+			String [] year = longdate.split("-");
+			
+			model.addAttribute("year", year[0]);
+			model.addAttribute("month", year[1]);
+			model.addAttribute("day", year[2]);
+			
+			System.out.println(year[0]);
+			
 			model.addAttribute("list", list);
 			model.addAttribute("docuCon", ar22);
 			
+		}
+		
+		public List<EpaymentDTO> totalList(String state) throws Exception{
+			List<EpaymentDTO> ar = epaymentLeaveDAO.totalList(state);
+			
+			return ar;
 		}
 	
 	
@@ -101,15 +120,15 @@ public class EpaymentLeaveService {
 		
 		if(epaymentLeaveDTO.getApprovalname().equals("기결")){
 			kind="승인";
+			
 			String ranking = epaymentLeaveDAO.maxRanking(epaymentLeaveDTO);
-			System.out.println(ranking);
-			System.out.println(epaymentLeaveDTO.getRanking());
+			
 			if(ranking.equals(epaymentLeaveDTO.getRanking())){
-				System.out.println("여깃네");
 				 epaymentLeaveDAO.stampok2(epaymentLeaveDTO);
 			}
 		}else if(epaymentLeaveDTO.getApprovalname().equals("반려")){
 			kind="반려";
+			
 			epaymentLeaveDAO.stampok2(epaymentLeaveDTO);
 		}
 		
@@ -119,6 +138,18 @@ public class EpaymentLeaveService {
 		}
 		
 		return message;
+	}
+	
+	public List<EpaymentDTO> storageList(String code, String state) throws Exception{
+		List<EpaymentDTO> ar = epaymentLeaveDAO.storageList(code, state);
+		
+		return ar;
+	}
+	
+	public EpaymentDTO viewOneModal(String docunum) throws Exception{
+		EpaymentDTO epaymentDTO = epaymentLeaveDAO.viewOneModal(docunum);
+		
+		return epaymentDTO;
 	}
 
 }

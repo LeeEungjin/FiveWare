@@ -6,7 +6,7 @@
   <mapper namespace="epaymentLeaveMapper">
   
   <insert id="approvalInsert" parameterType="EpaymentLeaveDTO">
-  	insert into epaymentleave values(epaymentleave_seq.nextval, #{docunum}, #{approvalcode}, #{approvalname}, #{approvaltemp}, #{approvalrank},'미결', #{ranking}, '0')
+  	insert into epaymentleave values(epaymentleave_seq.nextval, #{docunum}, #{approvalcode}, #{approvalname}, #{approvaltemp}, #{approvalrank},#{state}, #{ranking}, '0')
   </insert>
   
 <select id="myepaymentList" parameterType="java.util.Map" resultType="EpaymentLeaveDTO">
@@ -62,4 +62,16 @@
  	update epayment set
  	 state=#{approvalname} where docunum=#{docunum} and draftcode=#{approvalcode}
  </update>
+ 
+ <select id="totalList" parameterType="String" resultType="EpaymentDTO">
+ 	select * from epayment where state=#{state}
+ </select>
+ 
+ <select id="storageList" parameterType="java.util.Map" resultType="EpaymentDTO">
+ 	select * from epayment where state=#{state} and draftcode=#{code}
+ </select>
+ 
+ <select id="viewOneModal" parameterType="String" resultType="EpaymentDTO">
+ 	select * from epayment where docunum=#{docunum}
+ </select>
   </mapper>

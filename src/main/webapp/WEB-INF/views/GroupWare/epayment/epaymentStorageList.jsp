@@ -9,17 +9,68 @@
 <c:import url="${url}/resources/temp/ref.jsp"></c:import> 
  
  <link href="${url}/resources/css/GroupWare/epayment/epaymentPendency.css" rel="stylesheet">
+  <script src="${url }/resources/SE2/js/HuskyEZCreator.js"></script>
 
 <title>Insert title here</title>
 </head>
 <script type="text/javascript">
 $(function(){
 	
+	
 	var message="${message}";
 	
 	if(message!=""){
 		alert(message);
 	}
+	
+	/* // SmartEditor
+	var editor_object = [];
+
+	nhn.husky.EZCreator.createInIFrame({
+		oAppRef : editor_object,
+		//textarea ID
+		elPlaceHolder : "ar_tableTextArea",
+		/* 주소 바꿀껏  */
+		/* sSkinURI : "../../resources/SE2/SmartEditor2Skin.html", */
+		/* htParams : { */
+			// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+			/* bUseToolbar : true, */
+			// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+		/* 	bUseVerticalResizer : true, */
+			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+		/* 	bUseModeChanger : true,
+		}
+	});
+	
+	//전송버튼 클릭이벤트
+	$("#ar_signAsk").click(
+			function() {
+				
+				var num = document.getElementsByClassName("ar_draftrank").length;
+				
+				//id가 smarteditor인 textarea에 에디터에서 대입
+				editor_object.getById["ar_tableTextArea"].exec(
+						"UPDATE_CONTENTS_FIELD", []);
+
+				// 이부분에 에디터 validation 검증
+
+				//폼 submit
+				if($("#ar_tableKindSelectBtn").val()==""){
+					alert("유형을 선택하세요.");
+				}else if($("#ar_docuTitle").val()==""){
+					alert("제목을 입력하세요.");
+				}else if($("#ar_tableTextArea").val()==""){
+					alert("사유내용을 입력하세요.");
+				}else if(num==0){
+					alert("결재선을 선택하세요.");
+				}else{
+					var state=$("#ar_signAsk").attr("title");
+					alert(state);
+					 $("#frm").attr("action", "./epaymentInsert?state="+state);
+					$("#frm").submit();
+				}
+				
+			}); */ 
 	
 	
 	 /*page 처리  */
@@ -91,9 +142,20 @@ $(function(){
 		
 		location.href="./stampok?docunum="+docunum+"&approvalname="+approvalname+"&approvalcode="+approvalcode;
 	});
-	 
 	
-
+	$(".modal").on("click", "#ar_approvalUpdate" ,function(){
+		var docunum=$(this).attr("title");
+		
+		$.ajax({
+			type:"GET",
+			url:"./epaymentViewUpdate",
+			data:{
+				"docunum":docunum
+			}, success:function(data){
+				$("#eb_modal_table").html(data);
+			}
+		});
+	 });
 });
 
 </script>
@@ -137,7 +199,7 @@ $(function(){
 			<div class="fw_subsub collapse "  id="sub2">
 				<ul>
 					<li> 기안 상신함</li>
-					<li> <a href="./epaymentStorageList?state=임시저장">임시보관함</a></li>
+					<li> <a href="./epaymentTotalList?state=2">임시보관함</a></li>
 					<li> <a href="./epaymentDispatch">내 결재 보기</a></li>
 				</ul>
 			</div>

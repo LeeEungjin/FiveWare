@@ -66,4 +66,27 @@ public class EpaymentLeaveDAO {
 		
 		return result;
 	}
+	
+	public List<EpaymentDTO> totalList(String state) throws Exception{
+		List<EpaymentDTO> ar = sqlSession.selectList(NAMESPACE+"totalList", state);
+		
+		return ar;
+	}
+	
+	public List<EpaymentDTO> storageList(String code, String state) throws Exception{
+		Map<String, String> map = new HashMap<String, String>();
+		
+		map.put("code", code);
+		map.put("state", state);
+		
+		List<EpaymentDTO> ar = sqlSession.selectList(NAMESPACE+"storageList", map);
+		
+		return ar;
+	}
+	
+	public EpaymentDTO viewOneModal(String docunum) throws Exception{
+		EpaymentDTO epaymentDTO = sqlSession.selectOne(NAMESPACE+"viewOneModal", docunum);
+		
+		return epaymentDTO;
+	}
 }

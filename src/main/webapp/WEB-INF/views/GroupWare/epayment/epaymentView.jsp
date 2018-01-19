@@ -62,18 +62,22 @@
 						         
 						         <div id="ar_dateWrap">
 						         	<div id="ar_dateDiv">
-						         		<p id="ar_dateText"> 년      월   일</p>
+						         		<p id="ar_dateText"> ${year}년   ${month} 월 ${day}  일</p>
 						         		<p id="ar_date">기안자 : ${docuC.draftname } </p>
 						         	</div>
 						         </div>
 						         
 						        </div>
 						        <div class="modal-footer" id="ar_beforeBtn">
-						      <c:if test="${type ne 0}">
+						      <c:if test="${type == 0}">
 						        	<input type="button" class="btn btn-default" id="ar_approvalok" title="${docuC.docunum }" value="결재 승인" >
 						        	<input type="button" class="btn btn-default" id="ar_approvalno" title="${docuC.docunum }"value="결재 거부" >
 						          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						          </c:if>
+						         </c:if>
+						         
+						         <c:if test="${docuC.state=='임시저장' }">
+						         		<input type="button" class="btn btn-default" id="ar_approvalUpdate" title="${docuC.docunum }" value="수정" >
+						         </c:if>
 						        </div>
 						        
 						        <div class="modal-footer" id="ar_afterBtn">

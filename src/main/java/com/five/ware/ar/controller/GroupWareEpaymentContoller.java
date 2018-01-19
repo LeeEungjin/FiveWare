@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -46,7 +47,17 @@ public class GroupWareEpaymentContoller {
 	@Inject
 	EpaymentLeaveService epaymentLeaveService;
 	
-	
+	// 전체 결재함
+	@RequestMapping(value="epaymentTotalList")
+	public String totalList(String state, Model model) throws Exception{
+		List<EpaymentDTO> ar = epaymentLeaveService.totalList(state);
+		
+		System.out.println(state);
+		
+		model.addAttribute("list", ar);
+		
+		return "GroupWare/epayment/epaymentReceive";
+	}
 	
 	//수신함
 		@RequestMapping(value="epaymentReceive")
@@ -55,7 +66,6 @@ public class GroupWareEpaymentContoller {
 			code = memberDTO.getCode();
 			
 			epaymentLeaveService.myepaymentList(statenum, code,model);
-			System.out.println("statenum :"+statenum);
 			model.addAttribute("type", statenum);
 			return "GroupWare/epayment/epaymentReceive";
 		}
@@ -286,17 +296,41 @@ public class GroupWareEpaymentContoller {
 		
 		return mv;
 	}*/
-	
+	@RequestMapping(value="epaymentStorageList")
+	public ModelAndView storageList(String code, String state, HttpSession session) throws Exception{
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		
+		code = memberDTO.getCode();
+		
+		List<EpaymentDTO> ar = epaymentLeaveService.storageList(code, state);
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("list", ar);
+		
+		mv.setViewName("GroupWare/epayment/epaymentStorageList");
+		
+		return mv;
+		
+	}
 	
 	@RequestMapping(value="epaymentInsert", method=RequestMethod.POST)
-	public ModelAndView epaymentInsert(EpaymentDTO epaymentDTO, EpaymentLeaveDTO epaymentLeaveDTO) throws Exception{
+	public ModelAndView epaymentInsert(EpaymentDTO epaymentDTO, String state, EpaymentLeaveDTO epaymentLeaveDTO) throws Exception{
+		
+		System.out.println(state);
+		epaymentDTO.setState(state);
+		
 		int result = epaymentService.epaymentInsert(epaymentDTO);
 		int result2 = epaymentLeaveService.approvalInsert(epaymentLeaveDTO);
 		
 		String message = "결재 요청 실패";
 		
 		if(result>0 && result2>0){
-			message="결재가 요청되었습니다.";
+			if(state.equals("임시저장")){
+				message="임시저장 되었습니다.";				
+			}else{
+				message="결재 요청되었습니다.";
+			}
 		}
 		
 		ModelAndView mv = new ModelAndView();
@@ -340,6 +374,13 @@ public class GroupWareEpaymentContoller {
 		return memberDTO;
 	}
 	
-	
+	@RequestMapping(value="epaymentViewUpdate")
+	public String epaymentViewUpdate(String docunum, Model model) throws Exception{
+		EpaymentDTO epaymentDTO = epaymentLeaveService.viewOneModal(docunum);
+		
+		model.addAttribute("docuC", epaymentDTO);
+		
+		return "GroupWare/epayment/epaymentViewUpdate";
+	}
 	
 }
