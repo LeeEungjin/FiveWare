@@ -35,11 +35,23 @@
  	select * from epaymentleave where docunum=#{docunum} order by ranking asc
  </select> 
  
- <update id="stampok" parameterType="String">
- 	update epaymentleave set statenum='1', state='기결' where docunum=#{docunum}
+ <update id="stampok" parameterType="EpaymentLeaveDTO">
+ 	update epaymentleave set 
+ 	<if test="approvalname=='기결'">
+	 	statenum='1', state='기결'
+ 	</if>
+ 	
+ 	<if test="approvalname=='반려'">
+	 	statenum='-1', state='반려'
+ 	</if>
+ 	
+ 	 where docunum=#{docunum} and approvalcode=#{approvalcode}
  </update>
  
- <update id="stampok2" parameterType="String">
- 	update epaymentleave set state='기결' where docunum=#{docunum}
+
+ 
+ <!-- 초ㅣ종일 때만 if문 써서 .. -->
+ <update id="stampok2" parameterType="EpaymentLeaveDTO">
+ 	update epayment set state='반려' where docunum=#{docunum} and approvalcode=#{approvalcode}
  </update>
   </mapper>

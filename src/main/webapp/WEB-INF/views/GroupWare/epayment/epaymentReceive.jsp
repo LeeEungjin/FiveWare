@@ -15,6 +15,13 @@
 <script type="text/javascript">
 $(function(){
 	
+	var message="${message}";
+	
+	if(message!=""){
+		alert(message);
+	}
+	
+	
 	 /*page 처리  */
 	  $(".eb_list").click(function(){
 			
@@ -54,10 +61,12 @@ $(function(){
 	 });
 	 
 	$(".modal").on("click", "#ar_approvalok" ,function(){
+		 var docunum=$(this).attr("title");
+		 var approvalname="기결";
+		 location.href="./stampok?docunum="+docunum+"&&approvalname="+approvalname;
 		
-		var docunum=$(this).attr("title");
-		
-		$.ajax({
+		 // 이런 방법도 있다 (참고)
+		 /*$.ajax({
 			type:"GET",
 			url:"./stampok",
 			data:{
@@ -66,10 +75,16 @@ $(function(){
 				alert(data);
 				$("#ar_afterBtn").css("display", "block");
 				$("#ar_beforeBtn").css("display", "none");
-				// 어디다가 addClass 해야할까 ?
+			
 				window.reload;
 			}
-		});
+		}); */
+	});
+	
+	$(".modal").on("click", "#ar_approvalno" ,function(){
+		var docunum=$(this).attr("title");
+		var approvalname="반려";
+		location.href="./stampok?docunum="+docunum+"&&approvalname="+approvalname;
 	});
 	 
 	
@@ -100,9 +115,9 @@ $(function(){
 			
 			<div class="fw_subselected collapse" id="sub1">
 				<ul>
-					<li> <a href="./epaymentPendency">미결함</a> </li>
-					<li> <a href="./epaymentDetermine">기결함</a> </li>
-					<li> <a href="./epaymentReturn">반려함</a> </li>
+					<li> <a href="./epaymentReceive?statenum=0&draftcode=all">미결함</a> </li>
+					<li> <a href="./epaymentReceive?statenum=1&draftcode=all">기결함</a> </li>
+					<li> <a href="./epaymentReceive?statenum=-1&draftcode=all">반려함</a> </li>
 				</ul>
 			</div>
 			
@@ -132,8 +147,9 @@ $(function(){
 			
 				<div class="fw_subsub collapse in"  id="sub3">
 					<ul>
-						<li><a href="./epaymentReceive">수신함</a></li>
-					
+					<li> <a href="./epaymentReceive?statenum=0">미결함</a> </li>
+					<li> <a href="./epaymentReceive?statenum=1">기결함</a> </li>
+					<li> <a href="./epaymentReceive?statenum=-1">반려함</a> </li>
 					</ul>
 				</div>
 			

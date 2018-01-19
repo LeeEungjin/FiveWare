@@ -25,7 +25,6 @@
 														<div id="ar_signBoxBasis${list.docunum}${i.index}" class="ar_backstamp" title="${list.statenum}">
 															<div id="ar_signTemp"> ${list.approvaltemp}</div>
 															<div id="ar_singMember"><input type=text  readonly=readonly value='${list.approvalrank}'><input type=text  readonly=readonly value='${list.approvalname}'></div>
-															<%-- <input type=hidden value="${list.approvalranking}" name="draftcode"> --%>
 														</div>
 													</c:forEach>
 											</div>
@@ -69,7 +68,7 @@
 						        </div>
 						        <div class="modal-footer" id="ar_beforeBtn">
 						        	<input type="button" class="btn btn-default" id="ar_approvalok" title="${docuC.docunum }" value="결재 승인" >
-						        	<input type="button" class="btn btn-default" id="eb_Delete" value="결재 거부" >
+						        	<input type="button" class="btn btn-default" id="ar_approvalno" title="${docuC.docunum }"value="결재 거부" >
 						          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 						        </div>
 						        

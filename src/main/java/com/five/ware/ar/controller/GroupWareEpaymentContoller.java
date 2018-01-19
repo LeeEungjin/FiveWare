@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.five.ware.erp.human.member.MemberDTO;
 import com.five.ware.groupware.epayment.EpaymentDTO;
@@ -48,11 +49,14 @@ public class GroupWareEpaymentContoller {
 	
 	//수신함
 	@RequestMapping(value="epaymentReceive")
-	public String myepaymentList(HttpSession session, Model model) throws Exception{
+	public String myepaymentList(String statenum, String draftcode, HttpSession session, Model model) throws Exception{
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		String code = memberDTO.getCode();
 		
-		epaymentLeaveService.myepaymentList(code,model);
+		if(!draftcode.equals("all")){
+			draftcode=memberDTO.getCode();
+		}
+		
+		epaymentLeaveService.myepaymentList(statenum,draftcode,model);
 		
 		return "GroupWare/epayment/epaymentReceive";
 	}
@@ -86,11 +90,15 @@ public class GroupWareEpaymentContoller {
 	}
 	
 	@RequestMapping(value="stampok")
-	@ResponseBody
-	public String stampok(String docunum) throws Exception{
-		String message = epaymentLeaveService.stampok(docunum);
+	public String stampok(EpaymentLeaveDTO epaymentLeaveDTO, HttpSession session,RedirectAttributes rd) throws Exception{
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		epaymentLeaveDTO.setApprovalcode(memberDTO.getCode());
 		
-		return message;
+		String message = epaymentLeaveService.stampok(epaymentLeaveDTO);
+		
+		rd.addFlashAttribute("message", message);
+		
+		return "redirect:./epaymentReceive";
 	}
 	
 	

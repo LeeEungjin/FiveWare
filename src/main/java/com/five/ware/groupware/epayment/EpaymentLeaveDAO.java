@@ -44,14 +44,14 @@ public class EpaymentLeaveDAO {
 		return ar;
 	}
 	
-	public int stampok(String docunum) throws Exception{
-		int result = sqlSession.update(NAMESPACE+"stampok", docunum);
+	public int stampok(EpaymentLeaveDTO epaymentLeaveDTO) throws Exception{
+		int result = sqlSession.update(NAMESPACE+"stampok", epaymentLeaveDTO);
 		
 		return result;
 	}
 	
-	public int stampok2(String docunum) throws Exception{
-		int result = sqlSession.update(NAMESPACE+"stampok2", docunum);
+	public int stampok2(EpaymentLeaveDTO epaymentLeaveDTO) throws Exception{
+		int result = sqlSession.update(NAMESPACE+"stampok2", epaymentLeaveDTO);
 		
 		return result;
 	}

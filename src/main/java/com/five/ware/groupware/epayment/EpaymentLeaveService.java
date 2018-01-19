@@ -81,14 +81,22 @@ public class EpaymentLeaveService {
 		return epaymentDTO;
 	}
 	
-	public String stampok(String docunum) throws Exception{
-		int result = epaymentLeaveDAO.stampok(docunum);
-		int result2= epaymentLeaveDAO.stampok2(docunum);
+	public String stampok(EpaymentLeaveDTO epaymentLeaveDTO) throws Exception{
+		int result = epaymentLeaveDAO.stampok(epaymentLeaveDTO);
+		/*int result2= epaymentLeaveDAO.stampok2(epaymentLeaveDTO);*/
 		
-		String message="결재 승인 실패";
+		String message="결재 실패";
+		String kind="";
 		
-		if(result>0 && result2>0){
-			message="결재가 승인되었습니다.";
+		if(epaymentLeaveDTO.getApprovalname().equals("기결")){
+			kind="승인";
+		}else if(epaymentLeaveDTO.getApprovalname().equals("반려")){
+			kind="반려";
+		}
+		
+		
+		if(result>0 ){
+			message="결재가 "+kind+"되었습니다.";
 		}
 		
 		return message;
