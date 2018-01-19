@@ -11,7 +11,6 @@
 
 <script type="text/javascript">
 	$(function() {
-		
 		$('#cloud_contents').bind("contextmenu", function(event) { 
 		    event.preventDefault();
 		    $(".rClick_modal")
@@ -21,6 +20,18 @@
 		    $("div.rClick_modal").hide();
 		});
 	});
+	
+	function selectDirEffect(index) {
+		var dirs = document.getElementsByClassName('cloud_dir');
+		
+		for(var i=0; i<dirs.length; i++) {
+			if(i == index-1) {
+				$('#dir'+(i+1)).css("border", "2px solid blue");
+			} else {
+				$('#dir'+(i+1)).css("border", "1px solid lightgray");
+			}
+		}
+	}
 	
 </script>
 
@@ -109,7 +120,7 @@
 	
 		<!-- submenu banner -->
 		<div id="fw_subbanner">
-			인사
+			클라우드
 		</div>
 		<!-- submenu banner end -->
 		
@@ -224,41 +235,33 @@
 			<div class="cloud_dir_text">파일이름</div>
 		</div> -->
 		<div id="cloud_contents">
-			${fileList}
-			${fileList.size()}
-			<c:forEach items="${fileList}" var="file">
-				${file}
-			</c:forEach>
-			<%-- <c:forEach items="${fileList}" var="info">
-				<c:forEach items="${info}" var="file">
-					<div class="cloud_dir">
-						<div class="cloud_dir_img">
-							${file.ext}
-							<c:choose>
-								<c:when test="${name[1] eq 'folder'}">
-									<i class="fa fa-folder" style="font-size:56px;"></i>
-								</c:when>
-								<c:when test="${name[1] eq 'jpg' or name[1] eq 'gif' or name[1] eq 'png' or name[1] eq 'jpeg'}">
-									<i class="fa fa-folder" style="font-size:56px;"></i>
-								</c:when>
-								<c:when test="${name[1] eq 'txt'}">
-									<i class="fa fa-file-text-o" style="font-size:56px;"></i>
-								</c:when>
-								<c:when test="${name[1] eq 'pptx'}">
-									<i class="fa fa-file-powerpoint-o" style="font-size:24px"></i>
-								</c:when>
-								<c:when test="${name[1] eq 'xlsx'}">
-									<i class="fa fa-file-excel-o" style="font-size:56px"></i>
-								</c:when>
-								<c:otherwise>
-									<i class="fa fa-file-o" style="font-size:56px;"></i>
-								</c:otherwise>
-							</c:choose>
-						</div>
-						<div class="cloud_dir_text">${file.name}</div>
+			<c:forEach items="${fileList}" var="file" varStatus="count">
+				<div class="cloud_dir" id="dir${count.count}" onclick=selectDirEffect(${count.count})>
+					<div class="cloud_dir_img">
+						<c:choose>
+							<c:when test="${file.ext eq 'folder'}">
+								<i class="fa fa-folder" style="font-size:56px;"></i>
+							</c:when>
+							<c:when test="${file.ext eq 'jpg' or name[1] eq 'gif' or name[1] eq 'png' or name[1] eq 'jpeg'}">
+								<i class="fa fa-folder" style="font-size:56px;"></i>
+							</c:when>
+							<c:when test="${file.ext eq 'txt'}">
+								<i class="fa fa-file-text-o" style="font-size:56px;"></i>
+							</c:when>
+							<c:when test="${file.ext eq 'pptx'}">
+								<i class="fa fa-file-powerpoint-o" style="font-size:24px"></i>
+							</c:when>
+							<c:when test="${file.ext eq 'xlsx'}">
+								<i class="fa fa-file-excel-o" style="font-size:56px"></i>
+							</c:when>
+							<c:otherwise>
+								<i class="fa fa-file-o" style="font-size:56px;"></i>
+							</c:otherwise>
+						</c:choose>
 					</div>
-				</c:forEach>
-			</c:forEach> --%>
+					<div class="cloud_dir_text">${file.name}</div>
+				</div>
+			</c:forEach>
 		</div>
 	</div>
 </div>
