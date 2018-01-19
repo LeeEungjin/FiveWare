@@ -87,9 +87,9 @@
 
 					if(viewKind=='coffee'){
 						$("#coffee").attr("selected", "selected");
-					}else if(viewKind=='juice'){
+					}else if(viewKind=='drink'){
 						$("#juice").attr("selected", "selected");
-					}else if(viewKind=='desert'){
+					}else if(viewKind=='bread'){
 						$("#desert").attr("selected", "selected");
 					}
 					
@@ -463,8 +463,8 @@
 							      <li class="divider"></li>
 							      <li class="dropdown-header">구분</li>
 							      <li><a href="./menuRegist?kind=menukind&menukind=coffee">커피</a></li>
-							      <li><a href="./menuRegist?kind=menukind&menukind=juice">음료</a></li>
-							      <li><a href="./menuRegist?kind=menukind&menukind=desert">디저트</a></li>
+							      <li><a href="./menuRegist?kind=menukind&menukind=drink">음료</a></li>
+							      <li><a href="./menuRegist?kind=menukind&menukind=bread">디저트</a></li>
 							      
 							      <li class="divider"></li>
 							      <li><a  href="./menuRegist"><span class="mr_cusor" id="searchReset">검색 초기화</span></a></li>
@@ -562,8 +562,8 @@
 							  <span class="input-group-addon">메뉴구분*</span>
 							  <select class="form-control" id="sel12" name="menuKind">
 							        <option value="coffee">커피</option>
-							        <option value="juice">음료</option>
-							        <option value="desert">디저트</option>
+							        <option value="drink">음료</option>
+							        <option value="bread">디저트</option>
 							   </select>			
 							</div>
 							
@@ -639,8 +639,8 @@
 							  <span class="input-group-addon">메뉴구분</span>
 							  <select name="menuKind" class="form-control" id="sel2">
 							        <option id="coffee" value="coffee">커피</option>
-							        <option id="juice" value="juice">음료</option>
-							        <option id="desert" value="desert">디저트</option>
+							        <option id="drink" value="juice">음료</option>
+							        <option id="bread" value="desert">디저트</option>
 							     </select>				
 							</div>
 							

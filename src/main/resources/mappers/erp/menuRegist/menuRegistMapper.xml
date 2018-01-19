@@ -35,12 +35,12 @@
 				and menukind='coffee'
 			</if>
 			
-			<if test="menukind=='juice'">
-				and menukind='juice'
+			<if test="menukind=='drink'">
+				and menukind='drink'
 			</if>
 			
-			<if test="menukind=='desert'">
-				and menukind='desert'
+			<if test="menukind=='bread'">
+				and menukind='bread'
 			</if>
   		</if>
   		
@@ -83,12 +83,12 @@
 				and menukind='coffee'
 			</if>
   			
-  			<if test="menukind=='juice'">
-				and menukind='juice'
+  			<if test="menukind=='drink'">
+				and menukind='drink'
 			</if>
   			
-  			<if test="menukind=='desert'">
-				and menukind='desert'
+  			<if test="menukind=='bread'">
+				and menukind='bread'
 			</if>
   		</if>
   		

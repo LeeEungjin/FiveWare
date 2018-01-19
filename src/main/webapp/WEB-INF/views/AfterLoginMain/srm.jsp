@@ -156,12 +156,6 @@
                         </span>
                      </a>
                      
-                     <a href="../../../ware/map/mapList">
-                        <span class="srm_jk_smalldiv">
-                           <span class="srm_jk_writing">지도 테스트</span>
-                        </span>
-                     </a>
-                     
                   </div>
                   
                   <div class="srm_jk_srm">
