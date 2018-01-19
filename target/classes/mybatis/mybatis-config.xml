@@ -29,6 +29,7 @@
   		<typeAlias type="com.five.ware.meeting.MeetingRoomDTO" alias="MeetingRoomDTO"/>
 
   		<typeAlias type="com.five.ware.groupware.epayment.EpaymentLeaveDTO" alias="EpaymentLeaveDTO"/>
+  		<typeAlias type="com.five.ware.storeSales.StoreSalesDTO" alias="storeSalesDTO"/>
   		
 
   	</typeAliases>

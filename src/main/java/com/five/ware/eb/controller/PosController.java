@@ -11,11 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.five.ware.erp.menuRegist.MenuRegistService;
 import com.five.ware.srm.staff.StaffDTO;
 import com.five.ware.srm.staff.StaffService;
 import com.five.ware.srm.staff.StaffTimeDTO;
+import com.five.ware.storeSales.StoreSalesDTO;
+import com.five.ware.storeSales.StoreSalesService;
 
 @Controller
 @RequestMapping(value="/srm/**")
@@ -25,7 +28,32 @@ public class PosController {
 	StaffService staffService;
 	@Inject
 	MenuRegistService menuRegistService;
+	@Inject
+	StoreSalesService storeSalesService;
 	
+	
+	
+	//insert
+	@RequestMapping(value="storeSales",method=RequestMethod.POST)
+	public String storeSales(StoreSalesDTO storeSalesDTO,RedirectAttributes rd){
+		int result=0;
+		try {
+			result=storeSalesService.insert(storeSalesDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String message="결제 실패";
+		 if(result>0){
+			 message="결제 성공";
+		 }
+		rd.addFlashAttribute("message", message);
+		
+		return "redirect:./pos";
+		 
+		
+	}
 	
 	//퇴근
 	@RequestMapping(value="staffTimeUpdate",method=RequestMethod.POST)
@@ -56,6 +84,7 @@ public class PosController {
 	}
 	
 	
+	//pos
 	@RequestMapping(value="pos")
 	public ModelAndView pos(String menuKind){
 		menuKind="coffee";
@@ -78,6 +107,8 @@ public class PosController {
 		return mv;
 	}
 	
+	
+	//pos 메뉴
 	@RequestMapping(value="posMenu",method=RequestMethod.GET)
 	@ResponseBody
 	public ModelAndView posMenu(String menuKind){
@@ -94,6 +125,8 @@ public class PosController {
 		return mv;
 	}
 	
+	
+	//직원 리스트
 	@RequestMapping(value="staffList")
 	@ResponseBody
 	public ModelAndView staffList(String store){

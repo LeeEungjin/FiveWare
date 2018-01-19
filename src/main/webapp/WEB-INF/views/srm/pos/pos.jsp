@@ -9,6 +9,12 @@
 <html>
 <script type="text/javascript">
 	$(function(){
+		
+		var message = '${message}';
+	     if(message != ""){
+	        alert(message);
+	     }
+		
 		var myVar = setInterval(myTimer, 1000);
 
 		function myTimer() {
@@ -132,7 +138,7 @@
 			 		
 			 		 if(num.length==0) {
 				 		$(".eb_menuTable").append("<tr class='eb_menuTable_tr"+menu+"'>");
-				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+menu+"</td>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th product'>"+menu+"</td>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+price+"</td><td class='eb_menuTable_th' id='eb_amount"+menu+"'>"+1+"</td>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+0+"</td><td class='eb_menuTable_th' id='eb_price"+menu+"'>"+price+"</td></tr>");
 				 		$(".eb_menuTable").append("</tr>");
@@ -163,7 +169,7 @@
 			 			url : "./posMenu",
 			 			data : { "menuKind" : "drink"},
 			 			success : function(data){
-			 				$("#eb_drink_table").html(data);
+			 				$("#drink").html(data);
 			 			},error : function(){
 			 				alert("error");
 			 			}
@@ -177,7 +183,7 @@
 			 			url : "./posMenu",
 			 			data : { "menuKind" : "bread"},
 			 			success : function(data){
-			 				$("#eb_bread_table").html(data);
+			 				$("#bread").html(data);
 			 			},error : function(){
 			 				alert("error");
 			 			}
@@ -187,7 +193,7 @@
 			 	
 			 	
 			 	
-			 	$("#eb_drink_table").on("click",".eb_menu",function(){
+			 	$("#drink").on("click",".eb_menu",function(){
 			 		var menu=$(this).text();
 			 		var price=$(this).attr("title");
 			 		var num=document.getElementsByClassName("eb_menuTable_tr"+menu);
@@ -196,7 +202,7 @@
 			 		
 			 		 if(num.length==0) {
 				 		$(".eb_menuTable").append("<tr class='eb_menuTable_tr"+menu+"'>");
-				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+menu+"</td>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th product'>"+menu+",</td>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+price+"</td><td class='eb_menuTable_th' id='eb_amount"+menu+"'>"+1+"</td>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+0+"</td><td class='eb_menuTable_th' id='eb_price"+menu+"'>"+price+"</td></tr>");
 				 		$(".eb_menuTable").append("</tr>");
@@ -214,7 +220,7 @@
 			 		
 			 	});
 			 	
-			 	$("#eb_bread_table").on("click",".eb_menu",function(){
+			 	$("#bread").on("click",".eb_menu",function(){
 			 		var menu=$(this).text();
 			 		var price=$(this).attr("title");
 			 		var num=document.getElementsByClassName("eb_menuTable_tr"+menu);
@@ -223,7 +229,7 @@
 			 		
 			 		 if(num.length==0) {
 				 		$(".eb_menuTable").append("<tr class='eb_menuTable_tr"+menu+"'>");
-				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+menu+"</td>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th product'>"+menu+",</td>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+price+"</td><td class='eb_menuTable_th' id='eb_amount"+menu+"'>"+1+"</td>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+0+"</td><td class='eb_menuTable_th' id='eb_price"+menu+"'>"+price+"</td></tr>");
 				 		$(".eb_menuTable").append("</tr>");
@@ -238,6 +244,27 @@
 			 		
 			 		$("#p2").text(z+price*1);
 			 		$("#p4").text(z+price*1);
+			 		
+			 	});
+			 	
+			 	$("#eb_paymentBtn").click(function(){
+			 		
+			 		var totalPrice=$("#p4").text();
+			 		var product=$(".product").text();
+			 	
+			 		
+			 		$("#eb_productSales").val(totalPrice);
+			 		$("#eb_product").val(product);
+			 		
+			 		if($("#p4").text()==0){
+			 			alert("메뉴 선택 먼저 해주세요.");
+			 			return false;
+			 		}
+			 		
+			 		if(confirm("결제 하시겠습니까?")==false){
+			 			alert("결제가 취소되었습니다.");
+			 			return false;
+			 		}
 			 		
 			 	});
 			 	
@@ -254,7 +281,7 @@
 		<div class="logo">
 			<table id="logo_Table">
 				<tr> 
-					<td>logo</td> 
+					<td><a href="${pageContext.request.contextPath}/srm" id="eb_home">Home Page</a></td> 
 					<td>지점 : ${member.store}</td> 
 					<td>영업일자 : ${sysdate}</td> 
 					<td>지점장 : ${member.name}</td> 
@@ -420,14 +447,7 @@
 		       </div>
 			</div>
 			
-			<div class="menu4_2">
-				<div class="btn-group-vertical1">
-    				<button type="button" class="btn btn-primary b2">Home Page</button>
-    				<button type="button" class="btn btn-primary b2">주문</button>
-    				<button type="button" class="btn btn-primary b2">환전</button>
-    				<button type="button" class="btn btn-primary b2">상품<br>등록</button>
-  				</div>
-			</div>
+		
 			
 		</div>
 		
@@ -442,31 +462,28 @@
 
   			<div class="tab-content">
     			<div id="coffee" class="tab-pane fade in active">
-     			 	<h3>Coffee</h3>
-      				<table>
+     			 	
+      				
       				<c:forEach items="${pos_menu}" var="dto">
-      					<tr>
-      						<td><p class="eb_menu" title="${dto.price}">${dto.menuName}</p></td>
-      						<td><p class="eb_menuPrice" >${dto.price}</p></td>
-      					</tr>
+      				<div class="eb_menuBox">
+      					<p class="eb_menu" title="${dto.price}">${dto.menuName}</p>
+      					<p class="eb_menuPrice" >${dto.price}</p>
+      				</div>
+      					
       				</c:forEach>
-      				</table>
+      			
     			</div>
     		
     			<div id="drink" class="tab-pane fade">
      			 	
-	     			 	<table id="eb_drink_table">
 	     			 	
-	     			 	</table>
 	     			 	
    				
    				 </div>
    				 
     			<div id="bread" class="tab-pane fade">
       				
-      				<table id="eb_bread_table">
-      				
-      				</table>
+      			
       			
    			 	</div>
    
@@ -476,9 +493,21 @@
 		
 		
 		   <div class="menu6">
+		   	
+		   	<form action="./storeSales" method="post">
+		   		<input type="hidden" name="store" value="${member.store}">
+		   		<input type="hidden" name="product" id="eb_product">
+		   		<input type="hidden" name="salesAmount" value="1">
+		   		<input type="hidden" name="productSales" value="1" id="eb_productSales">
+		   		<input type="hidden" name="regdate" value="${sysdate}">
+		   		
+		   		
 		   		<div class="menu6_1">
-		   				<button type="button" class="btn btn-primary b4">현금 결제</button>
+		   			
+		   			<input type="submit" class="btn btn-primary b4" value="결제" id="eb_paymentBtn">
+		   			
 		   		</div>
+		   		</form>
 		   		
 		   		<div class="menu6_234">
 		   			<div class="menu6_2">
@@ -495,10 +524,32 @@
 		   		</div>
 		   		
 		   		 <div class="menu6_5">
-		   				<button type="button" class="btn btn-primary b4">신용카드 결제</button>
+		   				<button type="button" class="btn btn-primary b4" data-toggle="modal" data-target="#eb_payment">결제 내역 보기</button>
 		   		</div> 
 		   
 		   </div>
+		   <!-- 현금결제 modal창 -->
+		   	<div class="modal fade" id="eb_payment" role="dialog">
+			    <div class="modal-dialog">
+			    
+			      <!-- Modal content-->
+			      <div class="modal-content">
+			        <div class="modal-header">
+			          <button type="button" class="close" data-dismiss="modal">&times;</button>
+			          <h4 class="modal-title">결제 내역</h4>
+			        </div>
+			        <div class="modal-body">
+			          <p>Some text in the modal.</p>
+			        </div>
+			        <div class="modal-footer">
+			          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        </div>
+			      </div>
+			      
+			    </div>
+			  </div>
+					   
+		   
 		  
 		</div>
 		
