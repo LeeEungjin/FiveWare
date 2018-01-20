@@ -16,6 +16,7 @@
 		    $(".rClick_modal")
 		        .appendTo("#cloud_contents")
 		        .css({display: "block", top: event.pageY + "px", left: event.pageX + "px"});
+		    $(".cloud_dir").css("border", "1px solid lightgray");
 		}).bind("click", function(event) {
 		    $("div.rClick_modal").hide();
 		});
@@ -31,6 +32,40 @@
 				$('#dir'+(i+1)).css("border", "1px solid lightgray");
 			}
 		}
+	}
+	
+	function enterFolder(name) {
+		$('#folderName').val(name);
+		
+		$('#frmcreateFolder').attr('action', '#');
+		$('#frmCreateFolder').submit();
+		
+	}
+	
+	// 폴더 생성 Modal 호출
+	function folderModal() {
+		$('#folderName').val("");
+		
+		$('#createFolderForm').modal();
+	}
+	
+	// 수정 요망
+	function createFolder() {
+		var folderName = $('#folderName').val();
+		if(folderName.trim() == '' || folderName.trim().length == 0) {
+			swal('폴더이름', '입력해주세요');
+			return false;
+		}
+		
+		$('#frmcreateFolder').attr('action', '#');
+		$('#frmCreateFolder').submit();
+	}
+	
+	
+	
+	// test 함수
+	function test() {
+		alert('test');
 	}
 	
 </script>
@@ -81,6 +116,11 @@
 	z-index: 999;
 	position: absolute;
 	box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2);
+}
+
+.cloud_contents_title {
+	padding-bottom: 10px;
+	color: gray;
 }
 
 .cloud_dir  {
@@ -224,7 +264,7 @@
 					<i class="fa fa-navicon" style="font-size:24px"></i>
 				</button>
 				<ul class="dropdown-menu">
-					<li><a href="#">새 폴더</a></li>
+					<li><a href="javascript:folderModal();">새 폴더</a></li>
 					<li><a href="#">파일 업로드</a></li>
 			    </ul>
 			</div>
@@ -234,36 +274,89 @@
 			<div class="cloud_dir_img"><i class="fa fa-folder" style="font-size:56px;"></i></div>
 			<div class="cloud_dir_text">파일이름</div>
 		</div> -->
+		
 		<div id="cloud_contents">
-			<c:forEach items="${fileList}" var="file" varStatus="count">
-				<div class="cloud_dir" id="dir${count.count}" onclick=selectDirEffect(${count.count})>
-					<div class="cloud_dir_img">
-						<c:choose>
-							<c:when test="${file.ext eq 'folder'}">
-								<i class="fa fa-folder" style="font-size:56px;"></i>
-							</c:when>
-							<c:when test="${file.ext eq 'jpg' or name[1] eq 'gif' or name[1] eq 'png' or name[1] eq 'jpeg'}">
-								<i class="fa fa-folder" style="font-size:56px;"></i>
-							</c:when>
-							<c:when test="${file.ext eq 'txt'}">
-								<i class="fa fa-file-text-o" style="font-size:56px;"></i>
-							</c:when>
-							<c:when test="${file.ext eq 'pptx'}">
-								<i class="fa fa-file-powerpoint-o" style="font-size:24px"></i>
-							</c:when>
-							<c:when test="${file.ext eq 'xlsx'}">
-								<i class="fa fa-file-excel-o" style="font-size:56px"></i>
-							</c:when>
-							<c:otherwise>
-								<i class="fa fa-file-o" style="font-size:56px;"></i>
-							</c:otherwise>
-						</c:choose>
+			<div class="cloud_contents_folder">
+				<div class="cloud_contents_title">폴더</div>
+				
+				<c:forEach items="${folderList}" var="folder" varStatus="count">
+					<c:set value="${count.count}" var="index" />
+					
+					<div class="cloud_dir" id="dir${count.count}" onclick="selectDirEffect(${count.count})" ondblclick="enterFolder('${folder.name}')">
+						<div class="cloud_dir_img">
+							<i class="fa fa-folder" style="font-size:56px;"></i>
+						</div>
+						<div class="cloud_dir_text">${folder.name}</div>
 					</div>
-					<div class="cloud_dir_text">${file.name}</div>
-				</div>
-			</c:forEach>
+					
+				</c:forEach>
+			</div>
+			
+			<div class="cloud_contents_file">
+				<div class="cloud_contents_title">파일</div>
+				
+				<c:forEach items="${fileList}" var="file" varStatus="count"> 
+					<div class="cloud_dir" id="dir${count.count+index}" onclick="selectDirEffect(${count.count+index})">
+						<div class="cloud_dir_img">
+							<c:choose>
+								<c:when test="${file.ext eq 'jpg' or name[1] eq 'gif' or name[1] eq 'png' or name[1] eq 'jpeg'}">
+									<i class="fa fa-folder" style="font-size:56px;"></i>
+								</c:when>
+				
+								<c:when test="${file.ext eq 'txt'}">
+									<i class="fa fa-file-text-o" style="font-size:56px;"></i>
+								</c:when>
+				
+								<c:when test="${file.ext eq 'pptx'}">
+									<i class="fa fa-file-powerpoint-o" style="font-size:56px"></i>
+								</c:when>
+				
+								<c:when test="${file.ext eq 'xlsx'}">
+									<i class="fa fa-file-excel-o" style="font-size:56px"></i>
+								</c:when>
+				
+								<c:otherwise>
+									<i class="fa fa-file-o" style="font-size:56px;"></i>
+								</c:otherwise>
+							</c:choose>
+						</div>
+						<div class="cloud_dir_text">${file.name}</div>
+					</div>
+				</c:forEach>
+			</div>
+			
 		</div>
 	</div>
+</div>
+
+<!-- 캘린더 생성 modal -->
+<div class="modal fade" id="createFolderForm" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        	<!-- modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 class="modal-title">새 폴더 생성</h4>
+            </div>
+            
+            <!-- modal Body -->
+            <div class="modal-body">
+                <!-- 폴더 생성처리 form -->
+                <form action="./myCloud" method='post' id='frmCreateFolder'>
+                    <div class='form-group'>
+                        <label>폴더이름</label>
+                        <input class='form-control' type="text" name='folderName' id='folderName' />
+                    </div>
+                    <!-- modal Footer -->
+                    <div class='modal-footer'>
+                        <input type="button" class='btn btn-sm btn-warning' value="확인" onclick="createFolder()" /> 
+                        <input type="reset" class='btn btn-sm btn-warning' value="초기화" /> 
+                        <input type='button' class='btn btn-sm btn-warning' data-dismiss='modal' value="취소" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- 우클릭 생성 moal -->

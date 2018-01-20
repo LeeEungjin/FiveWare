@@ -7,19 +7,42 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.five.ware.erp.human.member.MemberDTO;
 
 
 @Controller 
 @RequestMapping(value="/GroupWare/cloud/**")
 public class CloudController {
 	
+	@RequestMapping(value="myCloud", method={RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView cloudList(HttpSession session, @RequestParam(defaultValue="", required=false)String folderName) {
+		ModelAndView mv = new ModelAndView();
+		
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+
+		String path = "resources/cloud/private/"+memberDTO.getCode();
+		if(!folderName.equals("")) {
+			path = path+"/"+folderName;
+		}
+		
+		System.out.println("path : " + path);
+		
+		createFolder(mv, session, path);
+		
+		return mv;
+	}
+	
 	@SuppressWarnings("unchecked")
-	@RequestMapping(value="cloudList", method=RequestMethod.GET)
-	public String cloudList(HttpSession session, Model model) {
-		String filePath = session.getServletContext().getRealPath("resources/cloud");
+	private void createFolder(ModelAndView mv, HttpSession session, String path) {
+		JSONArray jsonFolder = new JSONArray();
+		JSONArray jsonFile = new JSONArray();
+		
+		String filePath = session.getServletContext().getRealPath(path);
 		System.out.println(filePath);
 	
 		File parentFile = new File(filePath);
@@ -28,8 +51,7 @@ public class CloudController {
 		}
 
 		File[] files = parentFile.listFiles();
-
-		JSONArray json = new JSONArray();
+		
 		if(files.length > 0) {
 			for (File tempFile : files) {
 				String temp = tempFile.getName();
@@ -37,20 +59,26 @@ public class CloudController {
 
 				if(temp.lastIndexOf(".") == -1) {
 					ext = "folder";
+					
+					JSONObject obj = new JSONObject();
+					obj.put("name", temp);
+					obj.put("ext", ext);
+					jsonFolder.add(obj);
 				} else {
 					ext = temp.substring(temp.lastIndexOf(".")+1);
+					
+					JSONObject obj = new JSONObject();
+					obj.put("name", temp);
+					obj.put("ext", ext);
+					jsonFile.add(obj);
 				}
-			
-				//JSON
-				JSONObject obj = new JSONObject();
-				obj.put("name", temp);
-				obj.put("ext", ext);
-				json.add(obj);
 			}
 			
-			model.addAttribute("fileList", json);
+			mv.addObject("folderList", jsonFolder);
+			mv.addObject("fileList", jsonFile);
+			mv.addObject("filePath", path);
+			mv.setViewName("GroupWare/cloud/myCloud");
 		}
 		
-		return "GroupWare/cloud/cloudList";
-	}
+	}// End createFile()
 }

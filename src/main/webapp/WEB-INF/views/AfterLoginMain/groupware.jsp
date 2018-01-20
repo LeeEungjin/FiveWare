@@ -206,7 +206,7 @@
                   </div>
                   <div class="groupWare_jk_groupWare">
                      
-                     <a href="#"> 
+                     <a href="${pageContext.request.contextPath}/GroupWare/cloud/myCloud"> 
                         <span class="groupWare_jk_inerp"> 
                            <span class="groupWare_jk_bigdiv">클라우드</span>
                         </span>
