@@ -60,9 +60,18 @@
 						         
 						         </table>
 						         
+						         <div id="ar_fileLineWrap">
+									<div id="ar_fileWrap">
+										<c:forEach items="${file}" var="file" varStatus="i">
+											<a href="../file/fileDown?filename=${file.filename}&oriname=${file.oriname}">${file.oriname}</a>
+											
+										</c:forEach>
+									</div>
+								</div>
+								
 						         <div id="ar_dateWrap">
 						         	<div id="ar_dateDiv">
-						         		<p id="ar_dateText"> ${year}년   ${month} 월 ${day}  일</p>
+						         		<p id="ar_dateText"> ${dateresult }</p>
 						         		<p id="ar_date">기안자 : ${docuC.draftname } </p>
 						         	</div>
 						         </div>

@@ -256,6 +256,24 @@
 				}
 				
 			});
+			
+			$("#ar_fileInsert").click(function(){
+				var add = " <input type='file' class='epaymentFile' name='oriname' id='ar_fileInsert'>";
+				add=add+"<input type=hidden name='filename' value='test'>";
+				var num = document.getElementsByClassName("epaymentFile").length;
+				
+				if(num==3){
+					alert("파일은 최대 3개까지 가능합니다.");
+				}else{
+					$("#ar_fileWrap").append(add);
+				}
+				
+			});
+			
+		/* 	$(".epaymentFile").click(function(){
+				var add="<input type='hidden' name='filename'>";
+				
+			}); */
 	});
 	
 		var i =0;
@@ -370,7 +388,7 @@
 		사유서
 	</div>
 	
-<form id="frm" action="./epaymentInsert" method="POST">
+<form id="frm" action="./epaymentInsert" method="POST" enctype="multipart/form-data">
 	<div id="ar_signBoxWrap">
 		<div id="ar_signBoxDiv">
 				<div id="ar_signText">
@@ -390,7 +408,9 @@
 		<table id="ar_signTable" border="1px">
 			<tr>
 				<td class="ar_tableTitle">문서번호</td>
-				<td class="ar_tableInput"><input type="text"  class="ar_draftInput" value="${docunum }" name="docunum" readonly="readonly" ></td>
+				<td class="ar_tableInput"><input type="text"  class="ar_draftInput" value="${docunum }" name="docunum" readonly="readonly" >
+				<input type="hidden"  class="ar_draftInput" value="${docunum }" name="code" readonly="readonly" >
+				</td>
 				<td class="ar_tableTitle">기안일자</td>
 				<td class="ar_tableInput" ><input type ="text"  name="draftdate" class="ar_draftInput" readonly="readonly" value="${sysdate }"></td>
 			</tr>
@@ -426,6 +446,11 @@
 			
 		</table>
 	</div>
+	<div id="ar_fileLineWrap">
+		<input type="button" value="파일 첨부" id="ar_fileInsert">
+		<div id="ar_fileWrap"></div>
+	</div>
+	
 	
 	<div id="ar_explantBtnWrap">
 		<div id="ar_explantBtn">

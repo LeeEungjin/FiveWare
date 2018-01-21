@@ -74,4 +74,15 @@
  <select id="viewOneModal" parameterType="String" resultType="EpaymentDTO">
  	select * from epayment where docunum=#{docunum}
  </select>
-  </mapper>
+ 
+ <select id="sendEpaymentList" parameterType="String" resultType="EpaymentDTO">
+ 	select * from epayment where draftcode=#{code}
+ </select>
+ 
+ <insert id="epaymentFile" parameterType="FileDTO">
+	insert into fivefile values(file_seq.nextval, #{code}, #{oriname}, #{filename})	
+ </insert>
+ 
+ <select id="epaymentFileList" parameterType="String" resultType="FileDTO">
+ 	select * from fivefile where code=#{docunum}
+ </select> </mapper>

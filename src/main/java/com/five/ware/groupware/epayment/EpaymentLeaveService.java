@@ -8,6 +8,8 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.five.ware.file.FileDTO;
+
 @Service
 public class EpaymentLeaveService {
 
@@ -40,6 +42,12 @@ public class EpaymentLeaveService {
 	return result;
 	}
 	
+	public int epaymentFile(FileDTO fileDTO) throws Exception{
+		int result = epaymentLeaveDAO.epaymentFile(fileDTO);
+		
+		return result;
+	}
+	
 		public void myepaymentList(int statenum, String code, Model model) throws Exception{
 			//결재자리스트
 			List<EpaymentLeaveDTO> ar2= new ArrayList<EpaymentLeaveDTO>();
@@ -49,6 +57,11 @@ public class EpaymentLeaveService {
 			List<List<EpaymentLeaveDTO>> ar22 = new ArrayList<List<EpaymentLeaveDTO>>();
 		
 			List<EpaymentLeaveDTO> ar = epaymentLeaveDAO.myepaymentList(code, statenum);
+			
+			List<FileDTO> fileList = new ArrayList<FileDTO>();
+			
+			List<List<FileDTO>> file = new ArrayList<List<FileDTO>>();
+			
 			
 			for(EpaymentLeaveDTO epaymentLeaveDTO : ar){
 				if(statenum==1){
@@ -78,18 +91,23 @@ public class EpaymentLeaveService {
 				ar22.add(ar2);
 			}
 			
-			String longdate = epaymentDTO.getDraftdate();
+			for(EpaymentDTO a : list){
+				System.out.println("docunum="+a.getDocunum());
+				fileList = epaymentLeaveDAO.epaymentFileList(a.getDocunum());
+				
+				System.out.println("file:"+ fileList.size());
+				file.add(fileList);				
+			}
 			
-			String [] year = longdate.split("-");
 			
-			model.addAttribute("year", year[0]);
-			model.addAttribute("month", year[1]);
-			model.addAttribute("day", year[2]);
 			
-			System.out.println(year[0]);
+		/*	fileList = epaymentLeaveDAO.epaymentFileList(epaymentDTO.getDocunum());
+			System.out.println(fileList.size());*/
+			
 			
 			model.addAttribute("list", list);
 			model.addAttribute("docuCon", ar22);
+			model.addAttribute("file", file);
 			
 		}
 		
@@ -103,11 +121,15 @@ public class EpaymentLeaveService {
 	public EpaymentDTO epaymentContents(String docunum, Model model) throws Exception{
 		EpaymentDTO epaymentDTO = epaymentLeaveDAO.myepaymentListContents(docunum);
 		List<EpaymentLeaveDTO> ar = epaymentLeaveDAO.myepaymentMember(epaymentDTO);
+		List<FileDTO> file = epaymentLeaveDAO.epaymentFileList(docunum);
+		
+		String [] datez = epaymentDTO.getDraftdate().split("-");
+		String dataresult = datez[0]+"년 "+datez[1]+"월 "+datez[2] + "일";
 		
 		model.addAttribute("docuC", epaymentDTO);
 		model.addAttribute("signmember", ar);
-		
-		System.out.println(ar.size());
+		model.addAttribute("file", file);
+		model.addAttribute("dateresult", dataresult);
 		
 		return epaymentDTO;
 	}
@@ -152,4 +174,9 @@ public class EpaymentLeaveService {
 		return epaymentDTO;
 	}
 
+	public List<EpaymentDTO> sendEpaymentList(String code) throws Exception{
+		List<EpaymentDTO> ar = epaymentLeaveDAO.sendEpaymentList(code);
+		
+		return ar;
+	}
 }

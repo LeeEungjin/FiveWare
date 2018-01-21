@@ -28,9 +28,7 @@ public class FileController {
 
 		
 
-/*	@RequestMapping(value="fileDown")
-	public ModelAndView fileDown(NoticeDTO noticeDTO, HttpSession session) throws Exception	{
-
+/*
 
 	@RequestMapping(value="fileDown")
 	public ModelAndView fileDown(CommunityDTO communityDTO, HttpSession session) throws Exception	{

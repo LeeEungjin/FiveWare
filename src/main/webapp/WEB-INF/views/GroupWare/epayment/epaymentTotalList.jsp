@@ -111,14 +111,14 @@ $(function(){
 		<!-- submenu banner end -->
 		
 		<!-- submenu menu -->
-			<div class="fw_menu " data-toggle="collapse" data-target=".fw_subselected" title="sub1">
+			<div class="fw_menu  fw_selected " data-toggle="collapse" data-target=".fw_subselected" title="sub1">
 				 전체 결재함
 				<div class="fw_arrow sub1">
 					∧
 				</div>
 			</div>
 			
-			<div class="fw_subselected collapse" id="sub1">
+			<div class="fw_subselected collapse in" id="sub1">
 				<ul>
 					<li> <a href="./epaymentReceive?state='미결'&code=all">미결함</a> </li>
 					<li> <a href="./epaymentReceive?state='기결'&code=all">기결함</a> </li>
@@ -143,14 +143,14 @@ $(function(){
 			</div>
 			
 			<!-- -------------------- -->
-					<div class="fw_menu fw_selected" data-toggle="collapse" data-target="#sub3" title="sub3" >
+					<div class="fw_menu" data-toggle="collapse" data-target="#sub3" title="sub3" >
 					수신함
 				<div class="fw_arrow sub3">
 					∨
 				</div>
 				</div>
 			
-				<div class="fw_subsub collapse in"  id="sub3">
+				<div class="fw_subsub collapse "  id="sub3">
 					<ul>
 					<li> <a href="./epaymentReceive?statenum=0">미결함</a> </li>
 					<li> <a href="./epaymentReceive?statenum=1">기결함</a> </li>
