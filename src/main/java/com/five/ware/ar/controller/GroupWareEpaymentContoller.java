@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.UUID;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -24,10 +25,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.five.ware.erp.human.member.MemberDTO;
+import com.five.ware.file.FileDTO;
 import com.five.ware.groupware.epayment.EpaymentDTO;
 import com.five.ware.groupware.epayment.EpaymentLeaveDTO;
 import com.five.ware.groupware.epayment.EpaymentLeaveService;
@@ -52,9 +55,8 @@ public class GroupWareEpaymentContoller {
 	public String totalList(String state, Model model) throws Exception{
 		List<EpaymentDTO> ar = epaymentLeaveService.totalList(state);
 		
-		System.out.println(state);
-		
 		model.addAttribute("list", ar);
+		model.addAttribute("title", state+"함");
 		
 		return "GroupWare/epayment/epaymentReceive";
 	}
@@ -65,8 +67,21 @@ public class GroupWareEpaymentContoller {
 			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 			code = memberDTO.getCode();
 			
+			String title = "";
+			
+			if(statenum==0){
+				title="수신함";
+			}else if(statenum==1){
+				title="기결함";
+			}else if(statenum== -1){
+				title="반려함";
+			}
+			
 			epaymentLeaveService.myepaymentList(statenum, code,model);
+			
 			model.addAttribute("type", statenum);
+			model.addAttribute("title", title);
+			
 			return "GroupWare/epayment/epaymentReceive";
 		}
 	
@@ -315,17 +330,54 @@ public class GroupWareEpaymentContoller {
 	}
 	
 	@RequestMapping(value="epaymentInsert", method=RequestMethod.POST)
-	public ModelAndView epaymentInsert(EpaymentDTO epaymentDTO, String state, EpaymentLeaveDTO epaymentLeaveDTO) throws Exception{
+	public ModelAndView epaymentInsert(EpaymentDTO epaymentDTO, MultipartFile [] oriname, HttpSession session,String state, EpaymentLeaveDTO epaymentLeaveDTO) throws Exception{
 		
-		System.out.println(state);
+		System.out.println("들어옴");
+		System.out.println(oriname.length);
+		
+		FileDTO fileDTO = new FileDTO();
+		
+		//file
+		String filePath=session.getServletContext().getRealPath("resources/epayment");
+		
+		File file=new File(filePath);
+		
+		if(!file.exists()){
+			file.mkdirs();
+		}
+		
+		int result3 = 0;
+		
+		fileDTO.setCode(epaymentDTO.getDocunum());
+		
+		for(MultipartFile f2 : oriname){			
+			String fileName=f2.getOriginalFilename();
+			fileDTO.setOriname(fileName);
+			fileName=fileName.substring(fileName.lastIndexOf("."));
+			
+			String name=UUID.randomUUID().toString();
+			fileName=name+fileName;
+			
+			file=new File(filePath, fileName);
+			System.out.println(filePath);
+			
+			fileDTO.setFilename(fileName);
+			
+			
+			result3 = epaymentLeaveService.epaymentFile(fileDTO);
+			
+			f2.transferTo(file);		
+		}
+		//////////////////////////////////////
+		
 		epaymentDTO.setState(state);
 		
 		int result = epaymentService.epaymentInsert(epaymentDTO);
 		int result2 = epaymentLeaveService.approvalInsert(epaymentLeaveDTO);
-		
+	
 		String message = "결재 요청 실패";
 		
-		if(result>0 && result2>0){
+		if(result>0 && result2>0 && result3>0){
 			if(state.equals("임시저장")){
 				message="임시저장 되었습니다.";				
 			}else{
@@ -383,4 +435,18 @@ public class GroupWareEpaymentContoller {
 		return "GroupWare/epayment/epaymentViewUpdate";
 	}
 	
+	@RequestMapping(value="myEpayment")
+	public ModelAndView sendEpaymentList(String code, HttpSession session) throws Exception{
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		code = memberDTO.getCode();
+		
+		List<EpaymentDTO> ar = epaymentLeaveService.sendEpaymentList(code);
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("list", ar);
+		mv.setViewName("GroupWare/epayment/myEpayment");
+		
+		return mv;
+	}
 }

@@ -9,6 +9,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.five.ware.file.FileDTO;
+
 @Repository
 public class EpaymentLeaveDAO {
 
@@ -88,5 +90,23 @@ public class EpaymentLeaveDAO {
 		EpaymentDTO epaymentDTO = sqlSession.selectOne(NAMESPACE+"viewOneModal", docunum);
 		
 		return epaymentDTO;
+	}
+	
+	public List<EpaymentDTO> sendEpaymentList(String code) throws Exception{
+		List<EpaymentDTO> ar = sqlSession.selectList(NAMESPACE+"sendEpaymentList", code);
+		
+		return ar;
+	}
+	
+	public int epaymentFile(FileDTO fileDTO) throws Exception{
+		int result = sqlSession.insert(NAMESPACE+"epaymentFile", fileDTO);
+		
+		return result;
+	}
+	
+	public List<FileDTO> epaymentFileList(String docunum) throws Exception{
+		List<FileDTO> ar = sqlSession.selectList(NAMESPACE+"epaymentFileList", docunum);
+		
+		return ar;
 	}
 }

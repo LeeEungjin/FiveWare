@@ -112,7 +112,7 @@ $(function(){
 		
 		<!-- submenu menu -->
 			<div class="fw_menu " data-toggle="collapse" data-target=".fw_subselected" title="sub1">
-				결재함
+				 전체 결재함
 				<div class="fw_arrow sub1">
 					∧
 				</div>
@@ -120,9 +120,9 @@ $(function(){
 			
 			<div class="fw_subselected collapse" id="sub1">
 				<ul>
-					<li> <a href="./epaymentTotalList?state=미결">미결함</a> </li>
-					<li> <a href="./epaymentTotalList?state=기결">기결함</a> </li>
-					<li> <a href="./epaymentTotalList?state=반려">반려함</a> </li>
+					<li> <a href="./epaymentReceive?state='미결'&code=all">미결함</a> </li>
+					<li> <a href="./epaymentReceive?state='기결'&code=all">기결함</a> </li>
+					<li> <a href="./epaymentReceive?state='반려'&code=all">반려함</a> </li>
 				</ul>
 			</div>
 			
@@ -137,8 +137,8 @@ $(function(){
 			<div class="fw_subsub collapse "  id="sub2">
 				<ul>
 					<li> 기안 상신함</li>
-					<li> <a href="./epaymentStorageList?state=임시저장">임시보관함</a></li>
-					<li> <a href="./myEpayment">내 결재 보기</a></li>
+					<li> 임시보관함</li>
+					<li> <a href="./epaymentDispatch">내 결재 보기</a></li>
 				</ul>
 			</div>
 			
@@ -167,7 +167,7 @@ $(function(){
 			</div>
 			
 			<div class="ar_plusTitle">
-				<p id="ar_plustext">${title }</p>
+				<p id="ar_plustext">내가 보낸 결재함</p>
 			</div>
 			
 			<div class="ar_plusSearchWrap">
@@ -230,7 +230,7 @@ $(function(){
 								 </c:if> 
 								 
 							 <c:if test="${not empty list}">
-								 <c:forEach items="${list }" var="dto" varStatus="i">
+								 <c:forEach items="${list }" var="dto">
 								 	<tr>
 								 	<input type="hidden" value="${dto.docunum }" id="ar_docunum">
 										<td>${dto.num }</td>
@@ -240,16 +240,7 @@ $(function(){
 										<td>${dto.kind }</td>
 										<td>${dto.draftdate }</td>
 										<td>${dto.state}</td> 
-										<td>
-											<c:if test="${file[i.index].size() ==  0}">
-												없음
-											</c:if>  
-											
-											<c:if test="${file[i.index].size() !=  0}">
-												${file[i.index].size()}개
-											</c:if>  
-											
-										</td>
+										<td></td>
 										<td><input type="button" value="상세보기" class="eb_viewBtn"  data-toggle="modal" data-target="#myModal" title="${dto.docunum }" id="ar_epaylong"></td>
 								</tr>
 								</c:forEach>
@@ -269,6 +260,14 @@ $(function(){
 						      
 						    </div>
 						  </div>
+							
+					
+					
+					
+					
+					
+		  
+				
 				</div>
 			</div>
 			

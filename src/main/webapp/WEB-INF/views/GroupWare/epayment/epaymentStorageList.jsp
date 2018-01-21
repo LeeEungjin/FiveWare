@@ -23,56 +23,6 @@ $(function(){
 		alert(message);
 	}
 	
-	/* // SmartEditor
-	var editor_object = [];
-
-	nhn.husky.EZCreator.createInIFrame({
-		oAppRef : editor_object,
-		//textarea ID
-		elPlaceHolder : "ar_tableTextArea",
-		/* 주소 바꿀껏  */
-		/* sSkinURI : "../../resources/SE2/SmartEditor2Skin.html", */
-		/* htParams : { */
-			// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-			/* bUseToolbar : true, */
-			// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-		/* 	bUseVerticalResizer : true, */
-			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-		/* 	bUseModeChanger : true,
-		}
-	});
-	
-	//전송버튼 클릭이벤트
-	$("#ar_signAsk").click(
-			function() {
-				
-				var num = document.getElementsByClassName("ar_draftrank").length;
-				
-				//id가 smarteditor인 textarea에 에디터에서 대입
-				editor_object.getById["ar_tableTextArea"].exec(
-						"UPDATE_CONTENTS_FIELD", []);
-
-				// 이부분에 에디터 validation 검증
-
-				//폼 submit
-				if($("#ar_tableKindSelectBtn").val()==""){
-					alert("유형을 선택하세요.");
-				}else if($("#ar_docuTitle").val()==""){
-					alert("제목을 입력하세요.");
-				}else if($("#ar_tableTextArea").val()==""){
-					alert("사유내용을 입력하세요.");
-				}else if(num==0){
-					alert("결재선을 선택하세요.");
-				}else{
-					var state=$("#ar_signAsk").attr("title");
-					alert(state);
-					 $("#frm").attr("action", "./epaymentInsert?state="+state);
-					$("#frm").submit();
-				}
-				
-			}); */ 
-	
-	
 	 /*page 처리  */
 	  $(".eb_list").click(function(){
 			
@@ -229,7 +179,7 @@ $(function(){
 			</div>
 			
 			<div class="ar_plusTitle">
-				<p id="ar_plustext">수신함</p>
+				<p id="ar_plustext">임시보관함</p>
 			</div>
 			
 			<div class="ar_plusSearchWrap">
