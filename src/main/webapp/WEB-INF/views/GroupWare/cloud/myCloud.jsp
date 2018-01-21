@@ -11,6 +11,41 @@
 
 <script type="text/javascript">
 	$(function() {
+		var session = '${member.code}';
+		var path = '${filePath}';
+		var paths = path.split('/');
+		
+		var htmlText = '<a href="./myCloud">내 드라이브</a>';
+
+		if(paths[paths.length-1] == session) {
+			$('.cloud_location').html(htmlText);
+		} else {
+			var index = 4;
+			var rootPath = '';
+			for(var i=0; i<index; i++) {
+				rootPath = rootPath + paths[i];
+				if(i != index-1) {
+					rootPath = rootPath + "/";
+				}
+			}
+			
+			console.log("Root : "+rootPath);
+			
+			// 동적 location 생성
+			var cnt = 0;
+			for(var i=index; i<paths.length; i++) {
+				for(var j=0; j<cnt; j++) {
+					rootPath = rootPath +"/"+ paths[index];
+				}
+				htmlText = htmlText + " > <a href=javascript:enterFolder('"+rootPath+"','"+paths[i]+"')>"+paths[i]+"</a>";
+				cnt++;
+			}
+			
+			console.log(htmlText);
+			$('.cloud_location').html(htmlText);
+		}
+		
+		// 우클릭 이벤트
 		$('#cloud_contents').bind("contextmenu", function(event) { 
 		    event.preventDefault();
 		    $(".rClick_modal")
@@ -20,7 +55,14 @@
 		}).bind("click", function(event) {
 		    $("div.rClick_modal").hide();
 		});
-	});
+	}); // END
+	
+	function fileUpload() {
+		var ch = $('#file').click();
+		
+		
+		$("frmFileUpload").submit();
+	}
 	
 	function selectDirEffect(index) {
 		var dirs = document.getElementsByClassName('cloud_dir');
@@ -34,10 +76,10 @@
 		}
 	}
 	
-	function enterFolder(name) {
-		$('#folderName').val(name);
+	function enterFolder(path, name) {
+		$('#folderName').val(path+'/'+name);
 		
-		$('#frmcreateFolder').attr('action', '#');
+		$('#frmcreateFolder').attr('action', './myCloud');
 		$('#frmCreateFolder').submit();
 		
 	}
@@ -49,15 +91,19 @@
 		$('#createFolderForm').modal();
 	}
 	
-	// 수정 요망
+	// 파일 생성 처리
 	function createFolder() {
 		var folderName = $('#folderName').val();
+		var path = $('#folderName').attr('title');
+		
 		if(folderName.trim() == '' || folderName.trim().length == 0) {
 			swal('폴더이름', '입력해주세요');
 			return false;
 		}
 		
-		$('#frmcreateFolder').attr('action', '#');
+		$('#folderName').val(path+"/"+folderName);
+		
+		$('#frmCreateFolder').attr('action', './createFolder');
 		$('#frmCreateFolder').submit();
 	}
 	
@@ -108,6 +154,14 @@
 	height: 100%;
 	padding: 30px;
     background-color: antiquewhite;
+}
+
+.cloud_location {
+	width: 100%;
+	height: 30px;
+	font-size: 16px;
+	background-color: yellow;
+	margin-bottom: 10px;
 }
 
 .rClick_modal {
@@ -270,19 +324,16 @@
 			</div>
 		</div>
 		
- 		<!-- <div class="cloud_dir">
-			<div class="cloud_dir_img"><i class="fa fa-folder" style="font-size:56px;"></i></div>
-			<div class="cloud_dir_text">파일이름</div>
-		</div> -->
-		
 		<div id="cloud_contents">
+			<div class="cloud_location"></div>
+		
 			<div class="cloud_contents_folder">
 				<div class="cloud_contents_title">폴더</div>
 				
 				<c:forEach items="${folderList}" var="folder" varStatus="count">
 					<c:set value="${count.count}" var="index" />
 					
-					<div class="cloud_dir" id="dir${count.count}" onclick="selectDirEffect(${count.count})" ondblclick="enterFolder('${folder.name}')">
+					<div class="cloud_dir" id="dir${count.count}" onclick="selectDirEffect(${count.count})" ondblclick="enterFolder('${filePath}', '${folder.name}')">
 						<div class="cloud_dir_img">
 							<i class="fa fa-folder" style="font-size:56px;"></i>
 						</div>
@@ -345,7 +396,7 @@
                 <form action="./myCloud" method='post' id='frmCreateFolder'>
                     <div class='form-group'>
                         <label>폴더이름</label>
-                        <input class='form-control' type="text" name='folderName' id='folderName' />
+                        <input class='form-control' type="text" name='folderName' id='folderName' title="${filePath}" />
                     </div>
                     <!-- modal Footer -->
                     <div class='modal-footer'>
@@ -362,10 +413,15 @@
 <!-- 우클릭 생성 moal -->
 <div class="rClick_modal"> 
 	<div class="list-group">
-	    <a href="#" class="list-group-item">새 폴더</a>
-	    <a href="#" class="list-group-item">파일 업로드</a>
+	    <a href="javascript:folderModal();" class="list-group-item">새 폴더</a>
+	    <a href="javascript:fileUpload();" class="list-group-item">파일 업로드</a>
   	</div>
 </div>
+
+<form id="frmFileUpload" action="./fileUpload" method="POST" enctype="multipart/form-data" style="display: none;">
+	<input type="text" name="path" value="${filePath}">
+	<input type="file" name="file" id="file">
+</form>
 
 </body>
 </html>
