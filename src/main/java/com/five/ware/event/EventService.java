@@ -1,13 +1,23 @@
 package com.five.ware.event;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.five.ware.community.NumFileDTO;
+import com.five.ware.community.UploadDAO;
+import com.five.ware.community.UploadDTO;
+import com.five.ware.util.FileSaver;
 import com.five.ware.util.ListData;
 
 @Transactional
@@ -17,17 +27,107 @@ public class EventService {
 	@Inject
 	private EventDAO eventDAO;
 	
+	@Inject
+	private UploadDAO uploadDAO;
+	
+	@Autowired
+	private FileSaver fileSaver;
+	
 	public ModelAndView selectList(ListData listData)throws Exception{
 		
 		listData.setCurPage(5);
 		
 		ModelAndView mv=new ModelAndView();
-		List<EventDTO> eventList=eventDAO.selectList(listData.makeRow());;
+		List<EventDTO> eventList=eventDAO.selectList(listData.makeRow());
 		
 		mv.addObject("eventList", eventList);
 		mv.setViewName("srm/event/eventList");
 		
 		return mv;
 	}
+	
+	public ModelAndView eventList(ListData listData)throws Exception{
+		ModelAndView mv=new ModelAndView();
+		List<EventDTO> eventList=eventDAO.selectList(listData.makeRow());
+		
+		mv.addObject("eventList", eventList);
+		mv.setViewName("erp/event/eventRegist");
+		
+		return mv;
+	}
+	
+	public int update(EventDTO eventDTO, HttpSession session)throws Exception{
+		MultipartFile [] files=eventDTO.getFiles();
+		int result=0;
+		
+		result=eventDAO.update(eventDTO);
+		
+		if(files!=null){
+			for(MultipartFile multipartFile :files){
+				if(multipartFile.getOriginalFilename()==""){
+					continue;
+				}else{
+					result=uploadDAO.deleteNum(eventDTO.getEventNum());
+					
+					System.out.println("delete result : "+result);
+					
+					String name=fileSaver.fileSave(multipartFile, session, "upload");
+					
+					UploadDTO uploadDTO=new UploadDTO();
+					uploadDTO.setNum(eventDTO.getEventNum());
+					uploadDTO.setFileName(name);
+					uploadDTO.setOriName(multipartFile.getOriginalFilename());
+					
+					result=uploadDAO.insert(uploadDTO);
+					
+				} 
+			}
+		}
+		return result;
+	}
+	
+	
+	public int insert(EventDTO eventDTO, HttpSession session)throws Exception{
+		MultipartFile [] files=eventDTO.getFiles();
+		int result=0;
+		
+		result=eventDAO.insert(eventDTO);
+		
+		int num=eventDAO.getNum()-1;
+		
+		if(files!=null){
+			for(MultipartFile multipartFile :files){
+				if(multipartFile.getOriginalFilename()==""){
+					continue;
+				}else{
+					String name=fileSaver.fileSave(multipartFile, session, "upload");
+					
+					UploadDTO uploadDTO=new UploadDTO();
+					uploadDTO.setNum(num);
+					uploadDTO.setFileName(name);
+					uploadDTO.setOriName(multipartFile.getOriginalFilename());
+					
+					System.out.println(uploadDTO.getNum());
+					
+					result=uploadDAO.insert(uploadDTO);
+					
+				} 
+			}
+		}
+		
+		return result;
+	}
+	
+	public Map<String, Object> selectOne(int eventNum)throws Exception{
+		Map<String, Object> map=new HashMap<String, Object>();
+		EventDTO eventDTO=eventDAO.selectOne(eventNum);
+		NumFileDTO numFileDTO=eventDAO.fileOne(eventNum);
+		
+		map.put("event", eventDTO);
+		map.put("file", numFileDTO);
+		
+		return map;
+	}
+
 
 }

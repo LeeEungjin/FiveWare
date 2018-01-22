@@ -16,14 +16,99 @@
 <script type="text/javascript">
 	$(function(){
 		var message = '${message}';
+		
+		
 		if(message != ""){
 			swal(message);
 		}
+		
+		$("#allcheck").click(function() {
+			if($("#allcheck").prop("checked")){
+				$(".eventCheck").prop("checked", true);
+			}else{
+				$(".eventCheck").prop("checked", false);
+			}
+		});
+		
+		$(".eventRegistBtn").click(function(){
+			
+			var eventName=$("#eventname").val();
+			var temp=$("#temp").val();
+			var eventSdate=$("#eventsdate").val();
+			var eventEdate=$("#eventedate").val();
+			var eventOption=$("#eventoption").val();
+			var eventFile=$("#eventfile").val();
+			
+			if(eventName==""){
+				swal("이벤트명을 입력해주세요.");
+			}else if(temp==""){
+				swal("부서명을 입력해주세요.");
+			}else if(eventSdate==""){
+				swal("이벤트 시작 기간을 입력해주세요.");
+			}else if(eventEdate==""){
+				swal("이벤트 마감 기간을 입력해주세요.");
+			}else if(eventOption==""){
+				swal("이벤트 설명을 입력해주세요.");
+			}else if(eventFile==""){
+				swal("첨부파일을 입력해주세요.");
+			}else{
+				$("#eventfrm").submit();
+				swal("등록");
+				$(".eventRegistBtn").attr("data-dismiss", "modal");
+			}
+			
+		});
+		
+		$(".eventView").click(function() {
+			var eventNum=$(this).attr("title");
+			
+			$.ajax({
+				data : {"eventNum" : eventNum},
+				url : "./eventView",
+				type : "get",
+				success : function(data){
+					
+					console.log(data.file.filename);
+					
+					$("#eventImg").attr("src", "${pageContext.request.contextPath}/resources/upload/"+data.file.filename);
+					$("#eventImg").val(data.file.filename);
+					
+					$(".eventNum").val(data.event.eventNum);
+					$(".eventName").val(data.event.eventName);
+					$(".temp").val(data.event.temp);
+					$(".eventSdate").val(data.event.eventSdate);
+					$(".eventEdate").val(data.event.eventEdate);
+					$(".eventOption").html(data.event.eventOption)
+					
+				},
+				error : function(data){
+					swal("error");
+				}
+			});
+			
+			$("#imgChange").click(function(){
+				$("#img_update_div").append("<input type=\"file\" id=\"img_update\" name=\"files\">");
+			});
+			
+			$(".eventUpdateBtn").click(function(){
+				$("#eventUpdatefrm").submit();
+			});
+			
+		});
+		
+		
+		
 	});
 	
 	
 </script>
+<style type="text/css">
+#eventImg{
+	width:150px;
+	height: 150px;
+}
 
+</style>
 </head>
 <body>
 
@@ -125,16 +210,10 @@
 								
 									<form action="" name="mr_search_frm" method="get">
 										<input type="hidden" name="curPage" value="1">
-										<select class="form-control" id="sel1" name="kind">
-							        		<option class="op" value="eventname">이벤트명</option>
-							        		<option class="op" value="eventoption">레시피</option>
-							     		</select>							
-										<!-- select box 끝 -->
-								      <input type="text" class="form-control" placeholder="Search" name="search">
+										
+										<!--이벤트 시작일 검색으로 하기? -->
+															
 								      
-								      <div class="input-group-btn">
-								        <button id="search_btn" class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-								      </div>
 							       </form>	
 							    </div>
 						   
@@ -158,9 +237,19 @@
 						      </tr>
 						    </thead>
 						    
-						    <tbody>
-						    	
-						    </tbody>
+							<tbody>
+							    <c:forEach items="${eventList}" var="list">
+									<tr>
+										<td><input type="checkbox" class="eventCheck"></td>
+										<td>${list.eventNum}</td>
+										<td class="eventView" title="${list.eventNum}" data-toggle="modal" data-target="#jh_event_update_Modal">${list.eventName}</td>
+										<td>${list.temp}</td>
+										<td>${list.eventSdate}~${list.eventEdate}</td>
+										<td><img src="${pageContext.request.contextPath}/resources/images/common/icon_file.gif"></td>
+									</tr>
+								</c:forEach>
+							</tbody>
+							
 						 </table>
 						 
 						 <!-- pager -->
@@ -193,30 +282,34 @@
 				        <!-- modal header 끝-->
 				        
 				        <!-- modal contents -->
-				        <form action="" method="post" id="mr_frm" enctype="multipart/form-data">
+				        <form action="./eventInsert" method="post" id="eventfrm" enctype="multipart/form-data">
 				        
 				        
 				        <div class="modal-body">
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">이벤트명*</span>
-							  <input type="text" class="form-control" placeholder="Additional Info">
+							  <input id="eventname" name="eventName" type="text" class="form-control" placeholder="Additional Info">
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">등록 부서</span>
-							  <input type="text" class="form-control"  placeholder="Additional Info">
+							  <input id="temp" name="temp" type="text" class="form-control"  placeholder="Additional Info">
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">기간</span>
-							  <input type="date" class="form-control"  placeholder="Additional Info">
-							  -<input type="date" class="form-control"  placeholder="Additional Info">
+							  <input id="eventsdate" name="eventSdate" type="date" class="form-control"  placeholder="Additional Info">
+							  -<input id="eventedate" name="eventEdate" type="date" class="form-control"  placeholder="Additional Info">
 							</div>
 							
 							<div class="form-group">
 						      <div id="area_text"><label class="jh_label" for="comment">이벤트 설명을 작성해주세요.</label></div> 
-						      <textarea class="form-control form-control_area" rows="5"></textarea>
+						      <textarea id="eventoption" name="eventOption" class="form-control form-control_area" rows="5"></textarea>
+						    </div>
+						    
+						    <div>
+						    	<input id="eventfile" name="files" type="file" class="form-control">
 						    </div>
 
 				        </div>
@@ -224,7 +317,7 @@
 				        
 				        <!-- modal footer -->
 				        <div class="modal-footer">
-				          <input type="button" class="btn btn-default"  value="등록">
+				          <input type="button" class="btn btn-default eventRegistBtn"  value="등록">
 				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				        </div>
 				       </form>
@@ -238,7 +331,70 @@
 				
 				
 				<!-- 수정 Modal -->
-				
+					<div class="modal fade" id="jh_event_update_Modal" role="dialog">
+					    <div class="modal-dialog modal-m">
+					      <div class="modal-content">
+					      
+					      	<!-- modal header -->
+					        <div class="modal-header">
+					          <button type="button" class="close jh_file_cancel" data-dismiss="modal">&times;</button>
+					          <h4 class="modal-title">|이벤트 등록</h4>
+					        </div>
+					        <!-- modal header 끝-->
+					        
+					        <!-- modal contents -->
+					        <form action="./eventUpdate" method="post" id="eventUpdatefrm" enctype="multipart/form-data">
+					        
+					        
+					        <div class="modal-body">
+								<div class="input-group input-group_modal">
+								  <span class="input-group-addon">이벤트 번호</span>
+								  <input name="eventNum" type="text" class="eventNum form-control">
+								</div>
+								
+								<div class="input-group input-group_modal">
+								  <span class="input-group-addon">이벤트명*</span>
+								  <input name="eventName" type="text" class="eventName form-control" placeholder="Additional Info">
+								</div>
+								
+								<div class="input-group input-group_modal">
+								  <span class="input-group-addon">등록 부서</span>
+								  <input name="temp" type="text" class="temp form-control"  placeholder="Additional Info">
+								</div>
+								
+								<div class="input-group input-group_modal">
+								  <span class="input-group-addon">기간</span>
+								  <input name="eventSdate" type="date" class="eventSdate form-control"  placeholder="Additional Info">
+								  -<input name="eventEdate" type="date" class="eventEdate form-control"  placeholder="Additional Info">
+								</div>
+								
+								<div class="form-group">
+							      <div id="area_text"><label class="jh_label" for="comment">이벤트 설명을 작성해주세요.</label></div> 
+							      <textarea name="eventOption" class="eventOption form-control form-control_area" rows="5"></textarea>
+							    </div>
+							    
+							    <div>
+							    	<img name="files" id="eventImg">
+							    	<input type="button" id="imgChange" value="이미지 변경">
+							    	<div id="img_update_div">
+							    	
+							    	</div>
+							    	
+							    </div>
+	
+					        </div>
+					        <!-- modal contents 끝-->
+					        
+					        <!-- modal footer -->
+					        <div class="modal-footer">
+					          <input type="button" class="btn btn-default eventUpdateBtn"  value="수정">
+					          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					        </div>
+					       </form>
+					      	<!-- modal footer 끝-->
+					      </div>
+					    </div>
+					  </div>
 				
 				<!-- 수정 Modal 끝 -->
 				

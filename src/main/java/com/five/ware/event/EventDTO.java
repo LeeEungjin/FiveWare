@@ -1,6 +1,8 @@
 package com.five.ware.event;
 
-public class EventDTO {
+import com.five.ware.community.NumFileDTO;
+
+public class EventDTO extends NumFileDTO{
 	
 	private int eventNum;
 	private String temp;
@@ -8,6 +10,8 @@ public class EventDTO {
 	private String eventOption;
 	private String eventSdate;
 	private String eventEdate;
+	
+	
 	
 	public int getEventNum() {
 		return eventNum;

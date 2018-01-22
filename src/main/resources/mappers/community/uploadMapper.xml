@@ -33,4 +33,8 @@
   		delete from upload where fnum=#{fnum}
   	</delete>  	
   	
+  	<delete id="deleteNum" parameterType="int">
+  		delete from upload where num=#{fnum}
+  	</delete>  
+  	
 </mapper>

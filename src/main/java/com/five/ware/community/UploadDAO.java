@@ -7,6 +7,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.five.ware.event.EventDTO;
+
 @Repository
 public class UploadDAO {
 	
@@ -29,5 +31,10 @@ public class UploadDAO {
 	public int delete(int fnum)throws Exception{
 		return sqlSession.delete(namespace+"delete", fnum);
 	}
+	
+	public int deleteNum(int num)throws Exception{
+		return sqlSession.delete(namespace+"deleteNum", num);
+	}
+
 	
 }
