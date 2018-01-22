@@ -33,6 +33,37 @@ public class PosController {
 	
 	
 	
+	//결제 내역 view
+	@RequestMapping(value="ListView",method=RequestMethod.GET)
+	@ResponseBody
+	public ModelAndView ListView(int num)throws Exception{
+		ModelAndView mv=new ModelAndView();
+		mv=storeSalesService.selectOne(num);
+		mv.setViewName("/srm/pos/storeSalesView");
+		return mv;
+		
+	}
+	
+	
+	//결제 내역 리스트
+	@RequestMapping(value="storeSalesList",method=RequestMethod.GET)
+	@ResponseBody
+	public ModelAndView storeSalesList(StoreSalesDTO storeSalesDTO){
+	
+		ModelAndView mv=new ModelAndView();
+		try {
+			mv=storeSalesService.selectList(storeSalesDTO);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		mv.setViewName("/srm/pos/storeSalesList");
+		
+		return mv;
+		
+	}
+	
 	//insert
 	@RequestMapping(value="storeSales",method=RequestMethod.POST)
 	public String storeSales(StoreSalesDTO storeSalesDTO,RedirectAttributes rd){
@@ -93,7 +124,7 @@ public class PosController {
 		
 		Calendar ca = Calendar.getInstance();
 		
-		SimpleDateFormat sd = new SimpleDateFormat("yyyy년 MM월 dd일 ");
+		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
 		String sysdate = sd.format(ca.getTime());
 		
 		try {

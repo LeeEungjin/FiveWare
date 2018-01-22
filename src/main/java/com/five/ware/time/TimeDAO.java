@@ -1,5 +1,7 @@
 package com.five.ware.time;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -11,6 +13,13 @@ public class TimeDAO {
 		@Inject
 		private SqlSession sqlSession;
 		private static final String namespace="timeMapper.";
+		
+		
+		
+		//selectOne list
+		public List<TimeDTO> selectOneList(String memberCode)throws Exception{
+			return sqlSession.selectList(namespace+"selectOneList",memberCode);
+		}
 		
 		
 		//selectOne

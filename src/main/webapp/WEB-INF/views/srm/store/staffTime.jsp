@@ -65,7 +65,7 @@
 			<div class="fw_subselected collapse in" id="sub1">
 				<ul>
 					<li><a href="${pageContext.request.contextPath}/member/storeMyPage">매장 정보</a></li>
-					<li><a href="${pageContext.request.contextPath}/srm/staff">직원 관리</a></li>
+					<li><a href="${pageContext.request.contextPath}/srm/staff?store=${member.store}">직원 관리</a></li>
 					<li><a href="${pageContext.request.contextPath}/srm/staffTime?store=${member.store}">직원 출/퇴근 조회</a></li>
 				</ul>
 			</div>
@@ -132,7 +132,7 @@
 						    <tbody class="eb_chitTable">
 						    	<c:forEach items="${list }" var="dto">
 						    		<tr>
-						    			<td>${dto.num}</td>
+						    			<td>${dto.name}</td>
 						    			<td>${dto.regdate}</td>
 						    			<td>${dto.startTime}</td>
 						    			<td>${dto.lastTime}</td>

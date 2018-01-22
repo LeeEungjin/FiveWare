@@ -173,7 +173,7 @@
                      </a>
                      
                      
-                     <a href="./srm/staff">
+                     <a href="./srm/staff?store=${member.store}">
                         <span class="srm_jk_smalldiv">
                            <span class="srm_jk_writing">직원 관리</span>
                         </span>

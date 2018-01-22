@@ -5,6 +5,10 @@
   
   <mapper namespace="timeMapper">
   
+  <select id="selectOneList" resultType="timeDTO" parameterType="String">
+  	select * from time where memberCode=#{memberCode}
+  </select>
+  
   <select id="selectOne" resultType="timeDTO">
   	select * from time where memberCode=#{memberCode} and regdate=#{regdate}
   </select>

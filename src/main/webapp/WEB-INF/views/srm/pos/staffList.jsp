@@ -7,7 +7,7 @@
 	<td>${dto.store}</td>
 	<td><span>${dto.name}</span></td>
 	<td>${dto.time}</td>
-	<td><input type="button" class="eb_startTime" value="출근" title="${dto.num}"></td>
-	<td><input type="button" class="eb_lastTime" value="퇴근" title="${dto.num}"></td>
+	<td><input type="button" class="eb_startTime" value="출근" title="${dto.name}"></td>
+	<td><input type="button" class="eb_lastTime" value="퇴근" title="${dto.name}"></td>
 </tr>
 </c:forEach>

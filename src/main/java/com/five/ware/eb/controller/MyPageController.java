@@ -1,33 +1,66 @@
 package com.five.ware.eb.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.test.web.ModelAndViewAssert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.five.ware.erp.human.member.MemberDTO;
 import com.five.ware.erp.human.member.MemberService;
 import com.five.ware.erp.storeRegist.StoreRegistDTO;
 import com.five.ware.erp.storeRegist.StoreRegistService;
+import com.five.ware.time.TimeDTO;
+import com.five.ware.time.TimeService;
+import com.google.gson.JsonObject;
 
 @Controller
 @RequestMapping(value="/myPage/**")
 public class MyPageController {
 	
 	@Inject
-	MemberService memberService;
+	private MemberService memberService;
 	@Inject
-	StoreRegistService storeRegistService;
+	private StoreRegistService storeRegistService;
+	@Inject
+	private TimeService timeService;
+	
 	
 	
 	//출퇴근 기록
-	@RequestMapping(value="timeRecord")
-	public String timeRecord(){
+	@RequestMapping(value="timeRecord" ,method=RequestMethod.GET)
+	@ResponseBody
+	public ModelAndView timeRecord(String memberCode){
 		
-		return "/GroupWare/myPage/timeRecord";
+		ModelAndView mv=new ModelAndView();
+		
+		Calendar ca = Calendar.getInstance();
+		
+		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+		String sysdate = sd.format(ca.getTime());
+	
+			try {
+			mv=timeService.selectOneList(memberCode);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		mv.addObject("sysdate", sysdate);
+		mv.setViewName("/GroupWare/myPage/timeRecord");
+		
+		
+		return mv;
 	}
 	
 	//update

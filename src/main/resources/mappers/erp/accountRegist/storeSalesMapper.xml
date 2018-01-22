@@ -5,8 +5,15 @@
   
   <mapper namespace="storeSalesMapper">
   	<insert id="insert" parameterType="storeSalesDTO">
-  		insert into storesales values(#{store},#{product},#{salesAmount},#{productSales},#{regdate},store_seq.nextval)
+  		insert into storesales values(#{store},#{product},#{salesAmount},#{productSales},#{regdate},store_seq.nextval,#{time},#{totalPrice})
   	</insert>
+  	
+  	<select id="selectList" resultType="storeSalesDTO" parameterType="storeSalesDTO">
+  		select * from storesales where regdate=#{regdate} and store=#{store} order by num asc
+  	</select>
    
+   <select id="selectOne" resultType="storeSalesDTO" parameterType="storeSalesDTO">
+   	select * from storesales where num=#{num}
+   </select>
   </mapper>
  
