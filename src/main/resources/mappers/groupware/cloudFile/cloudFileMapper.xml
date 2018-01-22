@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cloudFileMapper">
+  
+  	<select id="selectOne" parameterType="String" resultType="com.five.ware.cloud.CloudFileDTO">
+  		select * from cloudfile where filename=#{filename}
+  	</select>
+  	
+  	<insert id="insert" parameterType="com.five.ware.cloud.CloudFileDTO">
+  		insert into cloudfile values(file_seq.nextval, #{filename}, #{oriname})
+  	</insert>
+  	
+  </mapper>

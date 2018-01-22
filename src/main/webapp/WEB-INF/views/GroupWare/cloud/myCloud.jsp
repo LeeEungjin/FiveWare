@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,7 @@
 
 <script type="text/javascript">
 	$(function() {
+		// Start Location
 		var session = '${member.code}';
 		var path = '${filePath}';
 		var paths = path.split('/');
@@ -44,30 +46,61 @@
 			console.log(htmlText);
 			$('.cloud_location').html(htmlText);
 		}
+		// END Location
 		
 		// 우클릭 이벤트
 		$('#cloud_contents').bind("contextmenu", function(event) { 
 		    event.preventDefault();
+		    
 		    $(".rClick_modal")
 		        .appendTo("#cloud_contents")
 		        .css({display: "block", top: event.pageY + "px", left: event.pageX + "px"});
 		    $(".cloud_dir").css("border", "1px solid lightgray");
+		    
+		    $("div.folder_rClick").hide();
 		}).bind("click", function(event) {
 		    $("div.rClick_modal").hide();
+		    $("div.folder_rClick").hide();
+		});
+		
+		// 폴더 우클릭 이벤트
+		$('.cloud_dir').bind("contextmenu", function(event) { 
+		    event.preventDefault();
+		    event.stopPropagation();
+		    
+		    $(".folder_rClick").css({display: "block", top: event.pageY + "px", left: event.pageX + "px"});
+		    $($(this)).css("border", "1px solid lightgray");
+		    
+		    $('.folder_rClick a').attr("href", "javascript:fileDelete('"+$(this).attr('title')+"');");
+		    
+		    $("div.rClick_modal").hide();
+		}).bind("click", function(event) {
+		    $("div.folder_rClick").hide();
+		});
+
+		// 파일 업로드 넘기기
+		$('#file').change(function() {
+			$('#frmFile').attr('action', './fileUpload');
+			$('#frmFile').submit();
 		});
 	}); // END
 	
-	function fileUpload() {
-		var ch = $('#file').click();
+	function fileDelete(name) {
+		$('#name').val(name);
 		
-		
-		$("frmFileUpload").submit();
+		$('#frmFile').attr('action', './fileDelete');
+		$('#frmFile').submit();
 	}
 	
+	function fileClick() {
+		var ch = $('#file').click();
+	}
+	
+	// 폴더 선택효과
 	function selectDirEffect(index) {
-		var dirs = document.getElementsByClassName('cloud_dir');
+		var len = document.getElementsByClassName('cloud_dir').length;
 		
-		for(var i=0; i<dirs.length; i++) {
+		for(var i=0; i<len; i++) {
 			if(i == index-1) {
 				$('#dir'+(i+1)).css("border", "2px solid blue");
 			} else {
@@ -172,12 +205,22 @@
 	box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2);
 }
 
+.folder_rClick {
+	width: 150px;
+	height: 44px;
+	display: none;
+	z-index: 999;
+	position: absolute;
+	box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2);
+}
+
 .cloud_contents_title {
 	padding-bottom: 10px;
 	color: gray;
 }
 
 .cloud_dir  {
+	position: relative;
     display: inline-block;
     width: 12%;
     height: 150px;
@@ -200,6 +243,7 @@
 	text-align: center;
     line-height: 38px;
 	background-color: yellow;
+	text-overflow: ellipsis;
 }
 
 </style>
@@ -333,7 +377,7 @@
 				<c:forEach items="${folderList}" var="folder" varStatus="count">
 					<c:set value="${count.count}" var="index" />
 					
-					<div class="cloud_dir" id="dir${count.count}" onclick="selectDirEffect(${count.count})" ondblclick="enterFolder('${filePath}', '${folder.name}')">
+					<div class="cloud_dir" id="dir${count.count}" onclick="selectDirEffect(${count.count})" ondblclick="enterFolder('${filePath}', '${folder.name}')" title="${folder.name}">
 						<div class="cloud_dir_img">
 							<i class="fa fa-folder" style="font-size:56px;"></i>
 						</div>
@@ -347,22 +391,22 @@
 				<div class="cloud_contents_title">파일</div>
 				
 				<c:forEach items="${fileList}" var="file" varStatus="count"> 
-					<div class="cloud_dir" id="dir${count.count+index}" onclick="selectDirEffect(${count.count+index})">
+					<div class="cloud_dir" id="dir${count.count+index}" onclick="selectDirEffect(${count.count+index})" title="${file.name}">
 						<div class="cloud_dir_img">
 							<c:choose>
-								<c:when test="${file.ext eq 'jpg' or name[1] eq 'gif' or name[1] eq 'png' or name[1] eq 'jpeg'}">
-									<i class="fa fa-folder" style="font-size:56px;"></i>
+								<c:when test="${fn:toLowerCase(file.ext) eq 'jpg' or fn:toLowerCase(file.ext) eq 'gif' or fn:toLowerCase(file.ext) eq 'png' or fn:toLowerCase(file.ext) eq 'jpeg'}">
+									<i class="fa fa-file-image-o" style="font-size:56px;"></i>
 								</c:when>
-				
-								<c:when test="${file.ext eq 'txt'}">
+								
+								<c:when test="${fn:toLowerCase(file.ext) eq 'txt'}">
 									<i class="fa fa-file-text-o" style="font-size:56px;"></i>
 								</c:when>
 				
-								<c:when test="${file.ext eq 'pptx'}">
+								<c:when test="${fn:toLowerCase(file.ext) eq 'pptx'}">
 									<i class="fa fa-file-powerpoint-o" style="font-size:56px"></i>
 								</c:when>
 				
-								<c:when test="${file.ext eq 'xlsx'}">
+								<c:when test="${fn:toLowerCase(file.ext) eq 'xlsx'}">
 									<i class="fa fa-file-excel-o" style="font-size:56px"></i>
 								</c:when>
 				
@@ -410,17 +454,26 @@
     </div>
 </div>
 
-<!-- 우클릭 생성 moal -->
+<!-- 우클릭 생성 modal -->
 <div class="rClick_modal"> 
 	<div class="list-group">
 	    <a href="javascript:folderModal();" class="list-group-item">새 폴더</a>
-	    <a href="javascript:fileUpload();" class="list-group-item">파일 업로드</a>
+	    <a href="javascript:fileClick();" class="list-group-item">파일 업로드</a>
   	</div>
 </div>
 
-<form id="frmFileUpload" action="./fileUpload" method="POST" enctype="multipart/form-data" style="display: none;">
+<!-- 폴더 우클릭 생성 modal -->
+<div class="folder_rClick"> 
+	<div class="list-group">
+	    <a href="javascript:fileDelete();" class="list-group-item">삭제</a>
+  	</div>
+</div>
+
+<!-- 파일 form -->
+<form id="frmFile" action="./fileUpload" method="POST" enctype="multipart/form-data" style="display: none;">
 	<input type="text" name="path" value="${filePath}">
 	<input type="file" name="file" id="file">
+	<input type="text" name="name" id="name">
 </form>
 
 </body>

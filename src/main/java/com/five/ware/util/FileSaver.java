@@ -8,10 +8,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.five.ware.cloud.CloudFileDTO;
+
 @Component
 public class FileSaver {
 	
-	public String cloudFileSave(HttpSession session, MultipartFile multipartFile, String path) throws Exception {
+	public CloudFileDTO cloudFileSave(HttpSession session, MultipartFile multipartFile, String path) throws Exception {
 		//1.reaulPath
 		String filePath=session.getServletContext().getRealPath(path);
 		System.out.println("FileSave(Cloud) - filePath : "+filePath);
@@ -26,13 +28,18 @@ public class FileSaver {
 		fileName = fileName.substring(fileName.lastIndexOf('.'));
 		fileName = UUID.randomUUID().toString() + fileName;
 		
-		//3.file 저장
+		//3.file Write
 		file = new File(filePath, fileName);
 		
 		byte[] fileData = multipartFile.getBytes();
 		FileCopyUtils.copy(fileData, file);
 		
-		return fileName;
+		//4. DB SAVE
+		CloudFileDTO cloudFileDTO = new CloudFileDTO();
+		cloudFileDTO.setFilename(fileName);
+		cloudFileDTO.setOriname(multipartFile.getOriginalFilename());
+		
+		return cloudFileDTO;
 	}
 	
 	public String fileSave(MultipartFile multipartFile, HttpSession session,String path )throws Exception{
@@ -49,7 +56,7 @@ public class FileSaver {
 		fileName=fileName.substring(fileName.lastIndexOf("."));
 		fileName=UUID.randomUUID().toString()+fileName;
 		
-		//3.file 저장
+		//3.file Write
 		file=new File(file, fileName);
 		multipartFile.transferTo(file);
 		
