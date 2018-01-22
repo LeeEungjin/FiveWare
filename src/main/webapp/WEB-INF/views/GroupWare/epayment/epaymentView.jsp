@@ -8,7 +8,7 @@
 						          <h4 class="modal-title">결재문서</h4>
 						        </div>
 						        <div class="modal-body"  id="eb_modal" >
-						         	<h1 id="ar_docuname">사 유 서</h1>
+						         	<h1 id="ar_docuname">${docuC.kind } 사 유 서</h1>
 						         	
 						         		<div id="ar_signBoxWrap">
 											<div id="ar_signBoxDiv">

@@ -210,7 +210,7 @@ $(function(){
 								<option value="title">문서 제목</option>
 								<option value="draftdate">기안 날짜</option>
 								<option value="kind">문서 유형</option>
-								<option value="state">결과</option>
+								
 							</select>
 				
 						</form>	
