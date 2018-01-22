@@ -18,8 +18,8 @@
   	<if test="rowNum.kind=='title'">
    and	e.title like '%' || #{rowNum.search} || '%'
   	</if>
-  	<if test="rowNum.kind=='draftname'">
-  	and e.draftname like '%' || #{rowNum.search} || '%'
+  	<if test="rowNum.kind=='draftdate'">
+  	and e.draftdate like '%' || #{rowNum.search} || '%'
   	</if>
   	<if test="rowNum.kind=='kind'">
   	and e.kind like '%' || #{rowNum.search} || '%'
@@ -37,8 +37,8 @@
   	<if test="rowNum.kind=='title'">
    and	e.title like '%' || #{rowNum.search} || '%'
   	</if>
-  	<if test="rowNum.kind=='draftname'">
-  	and e.draftname like '%' || #{rowNum.search} || '%'
+  	<if test="rowNum.kind=='draftdate'">
+  	and e.draftdate like '%' || #{rowNum.search} || '%'
   	</if>
   	<if test="rowNum.kind=='kind'">
   	and e.kind like '%' || #{rowNum.search} || '%'
@@ -106,8 +106,8 @@
  		<if test="rowNum.kind=='title'">
   			 and	title like '%' || #{rowNum.search} || '%'
 	  	</if>
-	  	<if test="rowNum.kind=='draftname'">
-		  	and draftname like '%' || #{rowNum.search} || '%'
+	  	<if test="rowNum.kind=='draftdate'">
+		  	and draftdate like '%' || #{rowNum.search} || '%'
 	  	</if>
 	  	<if test="rowNum.kind=='kind'">
 		  and	 kind like '%' || #{rowNum.search} || '%'
@@ -125,8 +125,8 @@
  		<if test="rowNum.kind=='title'">
   			 and	title like '%' || #{rowNum.search} || '%'
 	  	</if>
-	  	<if test="rowNum.kind=='draftname'">
-		  	and draftname like '%' || #{rowNum.search} || '%'
+	  	<if test="rowNum.kind=='draftdate'">
+		  	and draftdate like '%' || #{rowNum.search} || '%'
 	  	</if>
 	  	<if test="rowNum.kind=='kind'">
 		  	and kind like '%' || #{rowNum.search} || '%'
@@ -144,8 +144,8 @@
  		<if test="rowNum.kind=='title'">
   			 and	title like '%' || #{rowNum.search} || '%'
 	  	</if>
-	  	<if test="rowNum.kind=='draftname'">
-		  	and draftname like '%' || #{rowNum.search} || '%'
+	  	<if test="rowNum.kind=='draftdate'">
+		  and draftdate like '%' || #{rowNum.search} || '%'
 	  	</if>
 	  	<if test="rowNum.kind=='kind'">
 		  and	 kind like '%' || #{rowNum.search} || '%'
@@ -163,8 +163,8 @@
  	<if test="rowNum.kind=='title'">
   			 and	title like '%' || #{rowNum.search} || '%'
 	  	</if>
-	  	<if test="rowNum.kind=='draftname'">
-		  	and draftname like '%' || #{rowNum.search} || '%'
+	  	<if test="rowNum.kind=='draftdate'">
+		  and draftdate like '%' || #{rowNum.search} || '%'
 	  	</if>
 	  	<if test="rowNum.kind=='kind'">
 		  and	 kind like '%' || #{rowNum.search} || '%'
@@ -185,8 +185,8 @@
  		<if test="rowNum.kind=='title'">
   			 and	title like '%' || #{rowNum.search} || '%'
 	  	</if>
-	  	<if test="rowNum.kind=='draftname'">
-		  	and draftname like '%' || #{rowNum.search} || '%'
+	  	<if test="rowNum.kind=='draftdate'">
+		  	and draftdate like '%' || #{rowNum.search} || '%'
 	  	</if>
 	  	<if test="rowNum.kind=='kind'">
 		  and	 kind like '%' || #{rowNum.search} || '%'
@@ -203,8 +203,8 @@
  		<if test="rowNum.kind=='title'">
   			 and	title like '%' || #{rowNum.search} || '%'
 	  	</if>
-	  	<if test="rowNum.kind=='draftname'">
-		  	and draftname like '%' || #{rowNum.search} || '%'
+	  	<if test="rowNum.kind=='draftdate'">
+		  	and draftdate like '%' || #{rowNum.search} || '%'
 	  	</if>
 	  	<if test="rowNum.kind=='kind'">
 		  and	 kind like '%' || #{rowNum.search} || '%'

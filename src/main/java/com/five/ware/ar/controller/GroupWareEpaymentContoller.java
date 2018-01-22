@@ -194,7 +194,7 @@ public class GroupWareEpaymentContoller {
 		fr.close();
 ///////////////////////////////////////////////		
 		ModelAndView mv = new ModelAndView();
-		System.out.println("결과"+code);
+		
 		mv.addObject("sysdate", sysdate);
 		mv.addObject("docunum", code);
 		mv.setViewName("GroupWare/epayment/explanatory");
