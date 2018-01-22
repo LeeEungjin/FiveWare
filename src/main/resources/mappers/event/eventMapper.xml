@@ -17,7 +17,20 @@
 		select * from
 		(select rownum R, N.* from
 		(select * from event
-		order by eventnum) N)
+		
+		<if test="kind=='code'">
+			where eventname like '%'||#{search}||'%'
+		</if>
+		
+		<if test="kind=='eventName'">
+			where eventname like '%'||#{search}||'%'
+		</if>
+		
+		<if test="kind=='eventOption'">
+			where eventoption like '%'||#{search}||'%'
+		</if>
+		
+		order by eventnum desc) N)
 		where R between #{startRow} and #{lastRow}
 	</select>
 	

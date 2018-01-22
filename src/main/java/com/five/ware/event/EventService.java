@@ -1,5 +1,6 @@
 package com.five.ware.event;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,20 +35,31 @@ public class EventService {
 	@Autowired
 	private FileSaver fileSaver;
 	
-	public List<EventDTO> eventDateList(String sdate, String edate)throws Exception{
+	public List<EventDTO> eventDateList(ListData listData, String sdate, String edate)throws Exception{
 		List<EventDTO> ar=eventDAO.eventDateList(sdate, edate);
 		
 		return ar;
 	}
 	
-	public ModelAndView selectList(ListData listData)throws Exception{
+	public ModelAndView selectList(int perPage, int curPage, ListData listData)throws Exception{
+		
+		listData=new ListData(perPage);
+		listData.setCurPage(curPage);
 		
 		int totalCount=eventDAO.totalCount(listData.makeRow());
 		ModelAndView mv=new ModelAndView();
 		List<EventDTO> eventList=eventDAO.selectList(listData.makeRow());
+		List<NumFileDTO> ar=new ArrayList<NumFileDTO>();
 		
 		System.out.println(eventList.size());
 		
+		for(int i=0; i<eventList.size(); i++){
+			System.out.println(eventList.get(i).getEventNum());
+			/*ar.add(eventDAO.fileOne(eventList.get(i).getEventNum()));
+			System.out.println(ar.get(i).getFilename());*/
+		}
+		
+		mv.addObject("eventImg", ar);
 		mv.addObject("pager", listData.makePage(totalCount));
 		mv.addObject("eventList", eventList);
 		mv.setViewName("srm/event/eventList");
