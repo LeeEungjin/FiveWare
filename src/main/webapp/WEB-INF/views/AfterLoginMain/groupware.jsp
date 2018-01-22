@@ -238,7 +238,7 @@
                         </span>
                      </a> 
                      
-                     <a href="./myPage/timeRecord"> 
+                     <a href="./myPage/timeRecord?memberCode=${member.code }"> 
                         <span class="groupWare_jk_smalldiv"> 
                            <span class="groupWare_jk_writing">출/퇴근 기록</span>
                         </span>

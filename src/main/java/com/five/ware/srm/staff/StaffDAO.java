@@ -73,12 +73,13 @@ public class StaffDAO {
 	}
 	
 	//list
-	public List<StaffDTO> selectList(RowNum rowNum, ListData listData) throws Exception{
+	public List<StaffDTO> selectList(RowNum rowNum, ListData listData,String store) throws Exception{
 		Map<String,Object> map=new HashMap<String, Object>();
 		map.put("startRow", rowNum.getStartRow());
 		map.put("lastRow", rowNum.getLastRow());
 		map.put("kind", listData.getKind());
 		map.put("search", listData.getSearch());
+		map.put("store", store);
 		
 		return sqlSession.selectList(namespace+"selectList", map);
 	}

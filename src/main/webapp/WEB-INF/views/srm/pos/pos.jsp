@@ -47,24 +47,25 @@
 					
 			 	$("#eb_staffList").on("click",".eb_startTime",function(){
 			 		
-					var num=$(this).attr("title");
+					var name=$(this).attr("title");
 					var regdate='${sysdate}';
 					var time=$("#time").text();
 					var store='${member.store}';
+			
 					
 					if(confirm("출근처리 하시겠습니까?")==false){
 						alert("출근처리가 취소되었습니다.");
 						return false;
 					}else{
 					
-			 		$.ajax({
+			  		$.ajax({
 						type : "POST",
 						 url : "./staffTime",
 						data :{
-							"num" : num,
+							"name" : name,
 							"regdate" : regdate,
 							"startTime" : time,
-							"lastTime" : '0',
+							"lastTime" : '-',
 							"store" : store
 						},success : function(data){
 							alert(regdate+time+"출근처리 완료");
@@ -72,13 +73,13 @@
 							alert("Error");
 						}
 						
-					});
+					}); 
 					}
 				}); 
 			 	
 			 	$("#eb_staffList").on("click",".eb_lastTime",function(){
 			
-					var num=$(this).attr("title");
+					var name=$(this).attr("title");
 					var regdate='${sysdate}';
 					var time=$("#time").text();
 					
@@ -91,8 +92,9 @@
 						type : "POST",
 						 url : "./staffTimeUpdate",
 						data :{
-							"num" : num,
-							"lastTime" : time
+							"name" : name,
+							"lastTime" : time,
+							"regdate"  : regdate
 						},success : function(data){
 							alert(regdate+time+"퇴근처리 완료");
 							alert(data);
@@ -133,20 +135,22 @@
 			 		var menu=$(this).text();
 			 		var price=$(this).attr("title");
 			 		var num=document.getElementsByClassName("eb_menuTable_tr"+menu);
-			 		var price_amount = $("#eb_amount"+menu).html()*1;
+			 		var price_amount = $("#eb_amount"+menu).val()*1;
 			 		
-			 		
+			 	
 			 		 if(num.length==0) {
 				 		$(".eb_menuTable").append("<tr class='eb_menuTable_tr"+menu+"'>");
-				 		$(".eb_menuTable").append("<td class='eb_menuTable_th product'>"+menu+"</td>");
-				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+price+"</td><td class='eb_menuTable_th' id='eb_amount"+menu+"'>"+1+"</td>");
-				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+0+"</td><td class='eb_menuTable_th' id='eb_price"+menu+"'>"+price+"</td></tr>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th product'><input type='text' class='eb_input' name='product' value="+menu+" readonly='readonly'></td>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' name='price' value="+price+" readonly='readonly' class='eb_input'></td>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' id='eb_amount"+menu+"' name='salesAmount' value='1' class='eb_input'></td>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+0+"</td>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' id='eb_price"+menu+"' name='productSales' value="+price+" readonly='readonly' class='eb_input'></td></tr>");
 				 		$(".eb_menuTable").append("</tr>");
 			 		 }else{
-				 		$("#eb_amount"+menu).html(price_amount+1);
+				 		$("#eb_amount"+menu).val(price_amount+1);
 				 		var price1=price*1*(price_amount+1);
 				 	
-				 		$("#eb_price"+menu).html(price1);
+				 		$("#eb_price"+menu).val(price1);
 			 			
 			 		 }
 			 		 var z = $("#p2").text()*1;
@@ -197,20 +201,22 @@
 			 		var menu=$(this).text();
 			 		var price=$(this).attr("title");
 			 		var num=document.getElementsByClassName("eb_menuTable_tr"+menu);
-			 		var price_amount = $("#eb_amount"+menu).html()*1;
+			 		var price_amount = $("#eb_amount"+menu).val()*1;
 			 		
-			 		
+				 	
 			 		 if(num.length==0) {
 				 		$(".eb_menuTable").append("<tr class='eb_menuTable_tr"+menu+"'>");
-				 		$(".eb_menuTable").append("<td class='eb_menuTable_th product'>"+menu+",</td>");
-				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+price+"</td><td class='eb_menuTable_th' id='eb_amount"+menu+"'>"+1+"</td>");
-				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+0+"</td><td class='eb_menuTable_th' id='eb_price"+menu+"'>"+price+"</td></tr>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th product'><input type='text' class='eb_input' name='product' value="+menu+" readonly='readonly'></td>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' name='price' value="+price+" readonly='readonly' class='eb_input'></td>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' id='eb_amount"+menu+"' name='salesAmount' value='1' class='eb_input'></td>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+0+"</td>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' id='eb_price"+menu+"' name='productSales' value="+price+" readonly='readonly' class='eb_input'></td></tr>");
 				 		$(".eb_menuTable").append("</tr>");
 			 		 }else{
-				 		$("#eb_amount"+menu).html(price_amount+1);
+				 		$("#eb_amount"+menu).val(price_amount+1);
 				 		var price1=price*1*(price_amount+1);
 				 	
-				 		$("#eb_price"+menu).html(price1);
+				 		$("#eb_price"+menu).val(price1);
 			 			
 			 		 }
 			 		 var z = $("#p2").text()*1;
@@ -224,20 +230,22 @@
 			 		var menu=$(this).text();
 			 		var price=$(this).attr("title");
 			 		var num=document.getElementsByClassName("eb_menuTable_tr"+menu);
-			 		var price_amount = $("#eb_amount"+menu).html()*1;
+			 		var price_amount = $("#eb_amount"+menu).val()*1;
 			 		
-			 		
+				 	
 			 		 if(num.length==0) {
 				 		$(".eb_menuTable").append("<tr class='eb_menuTable_tr"+menu+"'>");
-				 		$(".eb_menuTable").append("<td class='eb_menuTable_th product'>"+menu+",</td>");
-				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+price+"</td><td class='eb_menuTable_th' id='eb_amount"+menu+"'>"+1+"</td>");
-				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+0+"</td><td class='eb_menuTable_th' id='eb_price"+menu+"'>"+price+"</td></tr>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th product'><input type='text' class='eb_input' name='product' value="+menu+" readonly='readonly'></td>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' name='price' value="+price+" readonly='readonly' class='eb_input'></td>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' id='eb_amount"+menu+"' name='salesAmount' value='1' class='eb_input'></td>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+0+"</td>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' id='eb_price"+menu+"' name='productSales' value="+price+" readonly='readonly' class='eb_input'></td></tr>");
 				 		$(".eb_menuTable").append("</tr>");
 			 		 }else{
-				 		$("#eb_amount"+menu).html(price_amount+1);
+				 		$("#eb_amount"+menu).val(price_amount+1);
 				 		var price1=price*1*(price_amount+1);
 				 	
-				 		$("#eb_price"+menu).html(price1);
+				 		$("#eb_price"+menu).val(price1);
 			 			
 			 		 }
 			 		 var z = $("#p2").text()*1;
@@ -249,12 +257,11 @@
 			 	
 			 	$("#eb_paymentBtn").click(function(){
 			 		
-			 		var totalPrice=$("#p4").text();
-			 		var product=$(".product").text();
 			 	
-			 		
-			 		$("#eb_productSales").val(totalPrice);
-			 		$("#eb_product").val(product);
+			 		var time=$("#time").text();
+			 		var totalPrice=$("#p2").text();
+			 		$("#eb_timeSales").val(time);
+			 		$("#eb_totalPrice").val(totalPrice);
 			 		
 			 		if($("#p4").text()==0){
 			 			alert("메뉴 선택 먼저 해주세요.");
@@ -267,6 +274,38 @@
 			 		}
 			 		
 			 	});
+			 	
+			 	$("#eb_salesList").click(function(){
+			 		 var regdate='${sysdate}';
+			 		 var store='${member.store}';
+			 	
+			 		$.ajax({
+			 			type :"get",
+			 			url : "./storeSalesList",
+			 			data : {
+			 				"regdate" : regdate,
+			 				"store" : store	
+			 			},success : function(data){
+			 				$("#eb_modal_contents1").html(data);
+			 			}
+			 		}); 
+			 	});
+			 	
+			 	
+			 	$("#eb_modal_contents1").on("click",".eb_modal_tr",function(){
+			 		var num=$(this).attr("title");
+			 		
+			 		
+			 		$.ajax({
+			 			type : "get",
+			 			url : "./ListView",
+			 			data : { "num" : num},
+			 			success : function(data){
+			 				$("#eb_modal_contents2").html(data);
+			 			}
+			 		});
+			 	});
+			 	
 			 	
 	});
 	
@@ -334,8 +373,12 @@
     </div>
   </div>
 		
+		   	<form action="./storeSales" method="post">
 		<div class="menuWrap1">
-		
+		   		<input type="hidden" name="store" value="${member.store}">
+		   		<input type="hidden" name="regdate" value="${sysdate}">
+		   		<input type="hidden" name="time" id="eb_timeSales">
+		   		<input type="hidden" name="totalPrice" id="eb_totalPrice">
 			<div class="menu1">
 				<table id="menu1_table">
 				<thead>
@@ -354,6 +397,9 @@
 				</table>
 			
 			</div>
+		
+			
+			
 			
 			<div class="menu2">
 				<p id="p1">총금액 : </p>
@@ -494,12 +540,7 @@
 		
 		   <div class="menu6">
 		   	
-		   	<form action="./storeSales" method="post">
-		   		<input type="hidden" name="store" value="${member.store}">
-		   		<input type="hidden" name="product" id="eb_product">
-		   		<input type="hidden" name="salesAmount" value="1">
-		   		<input type="hidden" name="productSales" value="1" id="eb_productSales">
-		   		<input type="hidden" name="regdate" value="${sysdate}">
+		
 		   		
 		   		
 		   		<div class="menu6_1">
@@ -507,7 +548,7 @@
 		   			<input type="submit" class="btn btn-primary b4" value="결제" id="eb_paymentBtn">
 		   			
 		   		</div>
-		   		</form>
+		
 		   		
 		   		<div class="menu6_234">
 		   			<div class="menu6_2">
@@ -524,22 +565,33 @@
 		   		</div>
 		   		
 		   		 <div class="menu6_5">
-		   				<button type="button" class="btn btn-primary b4" data-toggle="modal" data-target="#eb_payment">결제 내역 보기</button>
+		   				<button type="button" id="eb_salesList" class="btn btn-primary b4" data-toggle="modal" data-target="#eb_payment">결제 내역 보기</button>
 		   		</div> 
 		   
 		   </div>
-		   <!-- 현금결제 modal창 -->
+		
+		   
+		   
+		   <!-- 결제 내역 modal창 -->
 		   	<div class="modal fade" id="eb_payment" role="dialog">
 			    <div class="modal-dialog">
 			    
 			      <!-- Modal content-->
-			      <div class="modal-content">
+			      <div class="modal-content" id="eb_modal_contents">
 			        <div class="modal-header">
 			          <button type="button" class="close" data-dismiss="modal">&times;</button>
 			          <h4 class="modal-title">결제 내역</h4>
 			        </div>
-			        <div class="modal-body">
-			          <p>Some text in the modal.</p>
+			        <div class="modal-body" id="eb_modal">
+			          
+			          <div id="eb_modal_contents1">
+				     
+			          </div>
+			          
+			          <div id="eb_modal_contents2">
+			          
+			          </div>
+			          
 			        </div>
 			        <div class="modal-footer">
 			          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -552,7 +604,7 @@
 		   
 		  
 		</div>
-		
+		</form>
  	</div>
  	
 </body>

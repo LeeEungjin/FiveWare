@@ -118,10 +118,11 @@ public class SrmController {
 	}
 	
 	@RequestMapping(value="staff")
-	public ModelAndView List(ListData listData){
+	public ModelAndView List(ListData listData,String store){
+		System.out.println(store);
 	ModelAndView mv=null;
 	try {
-		mv=staffService.selectList(listData);
+		mv=staffService.selectList(listData,store);
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

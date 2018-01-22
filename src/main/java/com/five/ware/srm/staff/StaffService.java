@@ -82,11 +82,11 @@ public class StaffService {
 		 }
 		 
 		 //list
-		 public ModelAndView selectList(ListData listData) throws Exception{
+		 public ModelAndView selectList(ListData listData, String store ) throws Exception{
 			 RowNum rowNum=listData.makeRow();
 			 int totalCount=staffDAO.totalCount(rowNum);
 			 List<StaffDTO> ar=new ArrayList<StaffDTO>();
-			 ar=staffDAO.selectList(rowNum, listData);
+			 ar=staffDAO.selectList(rowNum, listData,store);
 			 Pager pager=listData.makePage(totalCount);
 			 ModelAndView mv=new ModelAndView();
 			 

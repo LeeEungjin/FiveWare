@@ -8,7 +8,22 @@ public class StoreSalesDTO {
 	private String productSales;
 	private String regdate;
 	private int num;
+	private String time;
+	private String totalPrice;
 
+	
+	public String getTotalPrice() {
+		return totalPrice;
+	}
+	public void setTotalPrice(String totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
 	public String getStore() {
 		return store;
 	}

@@ -60,7 +60,7 @@
 		
 		<!-- submenu menu -->
 			<div class="fw_menu fw_selected" data-toggle="collapse" data-target=".fw_subselected" title="sub1">
-				우리 매장 관리
+				내 정보 관리
 				<div class="fw_arrow sub1">
 					∧
 				</div>
@@ -69,7 +69,7 @@
 			<div class="fw_subselected collapse in" id="sub1">
 				<ul>
 					<li><a href="${pageContext.request.contextPath}/myPage/memberMyPage">내 정보</a></li>
-					<li><a href="${pageContext.request.contextPath}/myPage/timeRecord">출/퇴근 조회</a></li>
+					<li><a href="${pageContext.request.contextPath}/myPage/timeRecord?memberCode=${member.code }">출/퇴근 조회</a></li>
 					<li><a href="#">년/월차 휴가 조회</a></li>
 			
 				</ul>

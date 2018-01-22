@@ -252,10 +252,10 @@
 	   }
 	   
 	   .menu6_234{
-	   float: left;
-	   width:36%;
-	   height: 100%;
-	   margin-left: 5px;
+		   float: left;
+		   width:36%;
+		   height: 100%;
+		   margin-left: 5px;
 	   }
 	   
 	   .menu6_2{
@@ -294,4 +294,55 @@
 	   }
 		.eb_menu{
 			margin-top: 10px;
+		}
+		.eb_input{
+			width: 110px;
+			height: 20px;
+			text-align: center;
+			border: 0;
+		}
+		#eb_modal_contents{
+			width: 900px;
+		}
+		#eb_modal{
+			
+			height: 500px;
+		}
+		#eb_modal_contents1{
+			width: 520px;
+			height: 450px;
+			border: 1px solid gray;
+			margin-top: 10px;
+			margin-left: 10px;
+			float: left;
+			overflow: scroll;
+			
+		}
+		
+		#eb_modal_contents2{
+			width: 300px;
+			height: 450px;
+			border: 1px solid gray;
+			margin-left: 300px;
+			margin-top: 10px;
+			margin-left: 550px;
+			
+		} 
+		.eb_modal_th{
+			width: 25%;
+		
+		}
+		#eb_modalT1{
+		 	margin-left : 20px;
+			float: left;
+		}
+		#eb_modalT2{
+			float: left;
+		}
+		#eb_modalT3{
+
+		}
+		.eb_madalTr{
+			width: 100px;
+			height: 30px;
 		}

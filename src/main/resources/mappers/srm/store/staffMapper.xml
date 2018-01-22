@@ -7,10 +7,10 @@
 
 
 	<update id="staffTimeUpdate" parameterType="staffTimeDTO">
-		update stafftime set lastTime=#{lastTime} where num=#{num}
+		update stafftime set lastTime=#{lastTime} where name=#{name} and regdate=#{regdate}
 	</update>	
 	<insert id="staffTime" parameterType="staffTimeDTO">
-		insert into stafftime values(#{num},#{regdate},#{startTime},#{lastTime},#{store}) 
+		insert into stafftime values(#{regdate},#{startTime},#{lastTime},#{store},#{name},staff_seq.nextval) 
 	</insert>
 	
 	<select id="staffTimeList" parameterType="staffTimeDTO" resultType="staffTimeDTO">
@@ -41,7 +41,7 @@
 				where hiredate like '%'||#{search}||'%' 
 			</if>
 	 	order by num desc) S)
-		where R between #{startRow} and #{lastRow}
+		where R between #{startRow} and #{lastRow} and store=#{store}
 	</select>
   
   <insert id="insert" parameterType="staffDTO">
