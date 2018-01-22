@@ -1,6 +1,8 @@
 package com.five.ware.event;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -8,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.five.ware.community.NumFileDTO;
+import com.five.ware.mater.MaterDTO;
 import com.five.ware.util.RowNum;
 
 @Repository
@@ -19,6 +22,15 @@ public class EventDAO {
 	
 	public int totalCount(RowNum rowNum)throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"totalCount", rowNum);
+	}
+	
+	public List<EventDTO> eventDateList(String sdate, String edate)throws Exception{
+		Map<String, Object> map=new HashMap<String, Object>();
+		
+		map.put("sdate", sdate);
+		map.put("edate", edate);
+		
+		return sqlSession.selectList(NAMESPACE+"eventDateList", map);
 	}
 	
 	public List<EventDTO> selectList(RowNum rowNum){

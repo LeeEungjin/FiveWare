@@ -17,11 +17,25 @@ import com.five.ware.event.EventService;
 import com.five.ware.util.ListData;
 
 @Controller
-@RequestMapping(value="erp/event/**")
+@RequestMapping(value="**/event/**")
 public class EventController {
 	
 	@Autowired
 	private EventService eventService;
+	
+	@RequestMapping(value="eventDateList")
+	public ModelAndView materDateSerach(ModelAndView mv, String sdate, String edate){
+
+		try {
+			mv.addObject("dateList", eventService.eventDateList(sdate, edate));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mv.setViewName("erp/event/eventDateList");
+		
+		return mv;
+	}
 	
 	@RequestMapping(value="eventUpdate")
 	public String update(EventDTO eventDTO, RedirectAttributes rd, HttpSession session)throws Exception{
@@ -84,4 +98,19 @@ public class EventController {
 		return map;
 	}
 	
+	@RequestMapping(value="eventDelete")
+	public String delete(int eventNum, RedirectAttributes rd)throws Exception{
+		int result=0;
+		String message="삭제 실패";
+		
+		result=eventService.delete(eventNum);
+		
+		if(result>0){
+			message="삭제 성공";
+		}
+		
+		rd.addFlashAttribute("message", message);
+		
+		return "redirect:./eventRegist";
+	}
 }

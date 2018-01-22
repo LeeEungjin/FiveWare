@@ -8,6 +8,10 @@
 	<select id="getNum" resultType="int">
 		select event_seq.nextval from dual
 	</select>
+	
+	<select id="eventDateList" parameterType="java.util.Map" resultType="com.five.ware.event.EventDTO">
+  		<![CDATA[select * from event where eventsdate>=#{sdate} and eventsdate<=#{edate} ]]>
+    </select>
 
 	<select id="selectList" parameterType="com.five.ware.util.RowNum" resultType="com.five.ware.event.EventDTO">
 		select * from
