@@ -22,6 +22,44 @@
 			swal(message);
 		}
 		
+		$(".list").click(function(){
+			var cur = $(this).attr("title");
+			
+			alert(cur);
+			
+			document.event_search_frm.curPage.value=cur;
+			document.event_search_frm.submit();
+		});
+		
+		
+		$("#event_search_btn").click(function(){
+			
+			var sdate=$("#sdate").val();
+			var edate=$("#edate").val(); 
+			
+		 	if(sdate=="" || edate==""){
+		 		swal("기간을 입력해주세요.");
+			}else{ 
+				
+				$.ajax({
+					type : "GET",
+					url : "./eventDateList",
+					data : {
+						sdate : sdate,
+						edate : edate
+					},
+					success:function(data){
+						alert(data);
+						$("#erp_jh_contents_table").html(data);
+					}
+				});
+			}
+		});
+		
+		$("#eventDateReset").click(function(){
+			location.reload();
+		});
+		
 		$("#allcheck").click(function() {
 			if($("#allcheck").prop("checked")){
 				$(".eventCheck").prop("checked", true);
@@ -53,7 +91,6 @@
 				swal("첨부파일을 입력해주세요.");
 			}else{
 				$("#eventfrm").submit();
-				swal("등록");
 				$(".eventRegistBtn").attr("data-dismiss", "modal");
 			}
 			
@@ -80,6 +117,8 @@
 					$(".eventEdate").val(data.event.eventEdate);
 					$(".eventOption").html(data.event.eventOption)
 					
+					$(".eventDeleteBtn").attr("title", data.event.eventNum);
+					
 				},
 				error : function(data){
 					swal("error");
@@ -96,6 +135,46 @@
 			
 		});
 		
+		$("#event_checkDelete").click(function(){
+			var count=0;
+			var num=0;
+			var codeAr=[];
+			
+			$(".eventCheck").each(function(){
+				
+				if(this.checked){
+					num=$(this).attr("title");
+					count++;
+					codeAr.push(num);
+				}
+			});
+				if(codeAr.length<1){
+					swal("삭제할 메뉴를 선택해주세요.");
+				}else{
+			
+				for(var i=0; i<codeAr.length; i++){
+					$.ajax({
+						type : "POST",
+						url : "./eventDelete",
+						data : {
+							"eventNum" : codeAr[i]
+						}, success : function(data){
+							swal("삭제되었습니다.");
+							location.reload();
+						}
+						});
+					}
+				}
+				
+		});
+		
+		
+		$(".eventDeleteBtn").click(function(){
+			
+			var eventNum=$(this).attr("title");
+			
+			location.href="./eventDelete?eventNum="+eventNum;
+		});
 		
 		
 	});
@@ -208,11 +287,16 @@
 						
 								<div class="input-group">
 								
-									<form action="" name="mr_search_frm" method="get">
+									<form action="./eventRegist" name="event_search_frm" method="get">
 										<input type="hidden" name="curPage" value="1">
 										
-										<!--이벤트 시작일 검색으로 하기? -->
-															
+										이벤트 기간 선택 <input id="sdate" name="sdate" type="date"> ~ <input id="edate" name="edate" type="date">		
+								      <div class="input-group-btn">
+								        <button type="button" id="event_search_btn" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+								      </div>
+								      
+								      <input id="eventDateReset" class="btn btn-default" type="button" value="초기화">
+																
 								      
 							       </form>	
 							    </div>
@@ -240,7 +324,7 @@
 							<tbody>
 							    <c:forEach items="${eventList}" var="list">
 									<tr>
-										<td><input type="checkbox" class="eventCheck"></td>
+										<td><input type="checkbox" class="eventCheck" title="${list.eventNum}"></td>
 										<td>${list.eventNum}</td>
 										<td class="eventView" title="${list.eventNum}" data-toggle="modal" data-target="#jh_event_update_Modal">${list.eventName}</td>
 										<td>${list.temp}</td>
@@ -254,7 +338,17 @@
 						 
 						 <!-- pager -->
 						 	<div id="evnet_pager">
-						 		
+						 		<div id="mr_pager">
+							 		  <c:if test="${pager.curBlock gt 1}">
+										<span class="list" title="${pager.startNum-1}">[이전]</span>
+									</c:if>
+									<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+										<span class="list" title="${i}">${i}</span>
+									</c:forEach>
+									<c:if test="${pager.curBlock lt pager.totalBlock}">
+										<span class="list" title="${pager.lastNum+1}">[다음]</span>
+									</c:if>
+							 	</div>
 						 	</div>
 						 <!-- pager 끝 -->
 					</div>
@@ -262,7 +356,7 @@
 				
 				<!-- 등록 버튼 -->
 					<div id="erp_jh_contents_bottom">
-						<button>선택삭제</button>
+						<button id="event_checkDelete">선택삭제</button>
 						<button class="modal_btn" data-toggle="modal" data-target="#jh_event_Modal">신규등록</button>
 						
 					</div>
@@ -349,7 +443,7 @@
 					        <div class="modal-body">
 								<div class="input-group input-group_modal">
 								  <span class="input-group-addon">이벤트 번호</span>
-								  <input name="eventNum" type="text" class="eventNum form-control">
+								  <input name="eventNum" type="text" class="eventNum form-control" readonly="readonly">
 								</div>
 								
 								<div class="input-group input-group_modal">
@@ -388,6 +482,7 @@
 					        <!-- modal footer -->
 					        <div class="modal-footer">
 					          <input type="button" class="btn btn-default eventUpdateBtn"  value="수정">
+					          <input type="button" class="btn btn-default eventDeleteBtn"  value="삭제">
 					          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					        </div>
 					       </form>

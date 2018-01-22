@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.five.ware.community.NumFileDTO;
 import com.five.ware.community.UploadDAO;
 import com.five.ware.community.UploadDTO;
+import com.five.ware.mater.MaterDTO;
 import com.five.ware.util.FileSaver;
 import com.five.ware.util.ListData;
 
@@ -33,13 +34,21 @@ public class EventService {
 	@Autowired
 	private FileSaver fileSaver;
 	
+	public List<EventDTO> eventDateList(String sdate, String edate)throws Exception{
+		List<EventDTO> ar=eventDAO.eventDateList(sdate, edate);
+		
+		return ar;
+	}
+	
 	public ModelAndView selectList(ListData listData)throws Exception{
 		
-		listData.setCurPage(5);
-		
+		int totalCount=eventDAO.totalCount(listData.makeRow());
 		ModelAndView mv=new ModelAndView();
 		List<EventDTO> eventList=eventDAO.selectList(listData.makeRow());
 		
+		System.out.println(eventList.size());
+		
+		mv.addObject("pager", listData.makePage(totalCount));
 		mv.addObject("eventList", eventList);
 		mv.setViewName("srm/event/eventList");
 		
@@ -49,7 +58,9 @@ public class EventService {
 	public ModelAndView eventList(ListData listData)throws Exception{
 		ModelAndView mv=new ModelAndView();
 		List<EventDTO> eventList=eventDAO.selectList(listData.makeRow());
+		int totalCount=eventDAO.totalCount(listData.makeRow());
 		
+		mv.addObject("pager", listData.makePage(totalCount));
 		mv.addObject("eventList", eventList);
 		mv.setViewName("erp/event/eventRegist");
 		
@@ -127,6 +138,14 @@ public class EventService {
 		map.put("file", numFileDTO);
 		
 		return map;
+	}
+	
+	public int delete(int eventNum)throws Exception{
+		int result=eventDAO.delete(eventNum);
+		
+		result=uploadDAO.deleteNum(eventNum);
+		
+		return result;
 	}
 
 
