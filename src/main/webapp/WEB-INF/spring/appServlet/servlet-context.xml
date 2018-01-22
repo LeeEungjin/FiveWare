@@ -26,10 +26,6 @@
 	<beans:bean id="excelMultiView2007" class="com.five.ware.excel.ExcelMultiView2007" />
 	<beans:bean id="excelDiliSearch2007" class="com.five.ware.excel.ExcelDiliSearch2007" />
 
-	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
-		<beans:property name="order" value="1"></beans:property>
-	</beans:bean>
-
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />

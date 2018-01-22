@@ -24,16 +24,7 @@ $(function(){
 	}
 	
 	 /*page 처리  */
-	  $(".eb_list").click(function(){
-			
-			var cur=$(this).attr("title");
-			var s = '${pager.search}';
-			var t = '${pager.kind}';
-			document.frm.curPage.value=cur;
-			document.frm.search.value=s;
-			document.frm.kind.value=t;
-			document.frm.submit();
-		});
+
 	 
 	 $(".eb_viewBtn").click(function(){
 		 var docunum=$(this).attr("title");
@@ -60,6 +51,13 @@ $(function(){
 				 }
 		 });
 	 });
+	 
+	 $(".ar_paging1").click(function(){
+			var curPage = $(this).attr("id");
+			
+			document.storagefrm.curPage.value=curPage;
+			document.storagefrm.submit();
+		 });
 	 
 	$(".modal").on("click", "#ar_approvalok" ,function(){
 		 var docunum=$(this).attr("title");
@@ -124,9 +122,9 @@ $(function(){
 		
 		<!-- submenu menu -->
 			<div class="fw_menu " data-toggle="collapse" data-target=".fw_subselected" title="sub1">
-				결재함
+				전체 결재함
 				<div class="fw_arrow sub1">
-					∧
+					∨
 				</div>
 			</div>
 			
@@ -139,30 +137,30 @@ $(function(){
 			</div>
 			
 			<!-- ----------2---------- -->
-				<div class="fw_menu " data-toggle="collapse" data-target="#sub2" title="sub2" >
+				<div class="fw_menu fw_selected" data-toggle="collapse" data-target="#sub2" title="sub2" >
 					발신함
 				<div class="fw_arrow sub2">
-					∨
+					∧
 				</div>
 			</div>
 			
-			<div class="fw_subsub collapse "  id="sub2">
+			<div class="fw_subsub collapse in"  id="sub2">
 				<ul>
-					<li> 기안 상신함</li>
-					<li> <a href="./epaymentTotalList?state=2">임시보관함</a></li>
-					<li> <a href="./epaymentDispatch">내 결재 보기</a></li>
+					<li>  <a href="./formList?curPage=1">기안 상신함</a></li>
+					<li> <a href="./epaymentStorageList?state=임시저장">임시보관함</a></li>
+					<li> <a href="./myEpayment">내 결재 보기</a></li>
 				</ul>
 			</div>
 			
 			<!-- -------------------- -->
-					<div class="fw_menu fw_selected" data-toggle="collapse" data-target="#sub3" title="sub3" >
+					<div class="fw_menu " data-toggle="collapse" data-target="#sub3" title="sub3" >
 					수신함
 				<div class="fw_arrow sub3">
 					∨
 				</div>
 				</div>
 			
-				<div class="fw_subsub collapse in"  id="sub3">
+				<div class="fw_subsub collapse "  id="sub3">
 					<ul>
 					<li> <a href="./epaymentReceive?statenum=0">미결함</a> </li>
 					<li> <a href="./epaymentReceive?statenum=1">기결함</a> </li>
@@ -199,8 +197,8 @@ $(function(){
 					<div id="ar_tableTop">
 				
 						
-						<form action="./epaymentDispatch" action="get">
-							
+						<form action="./epaymentStorageList" action="get" name="storagefrm">
+							<input type="hidden" name="state" value="${state }">
 							<input type="hidden" name="curPage" value="1">
 							<input type="hidden" name="memberCode" value="${member.code }">
 						
@@ -212,7 +210,7 @@ $(function(){
 								<option value="title">문서 제목</option>
 								<option value="draftdate">기안 날짜</option>
 								<option value="kind">문서 유형</option>
-								<option value="result">결과</option>
+								<option value="state">결과</option>
 							</select>
 				
 						</form>	
@@ -242,7 +240,7 @@ $(function(){
 								 </c:if> 
 								 
 							 <c:if test="${not empty list}">
-								 <c:forEach items="${list }" var="dto">
+								 <c:forEach items="${list }" var="dto" varStatus="i">
 								 	<tr>
 								 	<input type="hidden" value="${dto.docunum }" id="ar_docunum">
 										<td>${dto.num }</td>
@@ -252,7 +250,16 @@ $(function(){
 										<td>${dto.kind }</td>
 										<td>${dto.draftdate }</td>
 										<td>${dto.state}</td> 
-										<td></td>
+										<td>
+											
+											<c:if test="${file[i.index].size() ==  0}">
+												없음
+											</c:if>  
+											
+											<c:if test="${file[i.index].size() !=  0}">
+												${file[i.index].size()}개
+											</c:if>  
+										</td>
 										<td><input type="button" value="상세보기" class="eb_viewBtn"  data-toggle="modal" data-target="#myModal" title="${dto.docunum }" id="ar_epaylong"></td>
 								</tr>
 								</c:forEach>
@@ -262,7 +269,19 @@ $(function(){
 						</table>
 			 
 					</div>
+					<div>
+						<c:if test="${pager.curBlock>1}">
+							<span class="ar_paging1" id="${pager.startNum-1 }">이전</span>
+						</c:if>
 					
+						<c:forEach begin="${pager.startNum }" end="${pager.lastNum }" var="i">
+							<span class="ar_paging1" id="${i }">${i }</span>
+						</c:forEach>
+						
+						<c:if test="${pager.curBlock<pager.totalBlock}">
+							<span class="ar_paging1" id="${pager.lastNum+1 }">다음</span>
+						</c:if>
+					</div>
 					
 					<!-- view Modal -->
 						<div class="modal fade" id="myModal" role="dialog">

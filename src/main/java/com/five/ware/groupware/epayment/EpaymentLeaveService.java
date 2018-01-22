@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.five.ware.file.FileDTO;
+import com.five.ware.util.ListData;
+import com.five.ware.util.Pager;
+import com.five.ware.util.RowNum;
 
 @Service
 public class EpaymentLeaveService {
@@ -48,7 +51,15 @@ public class EpaymentLeaveService {
 		return result;
 	}
 	
-		public void myepaymentList(int statenum, String code, Model model) throws Exception{
+		public void myepaymentList(int statenum, String code, Model model, ListData listdata) throws Exception{
+			RowNum rowNum= listdata.makeRow();
+		
+			int totalCount = epaymentLeaveDAO.myepaymentListCount(code, statenum, rowNum);
+			
+			System.out.println(totalCount);
+			
+			Pager pager= listdata.makePage(totalCount);
+			
 			//결재자리스트
 			List<EpaymentLeaveDTO> ar2= new ArrayList<EpaymentLeaveDTO>();
 			//결재내용
@@ -56,7 +67,7 @@ public class EpaymentLeaveService {
 			
 			List<List<EpaymentLeaveDTO>> ar22 = new ArrayList<List<EpaymentLeaveDTO>>();
 		
-			List<EpaymentLeaveDTO> ar = epaymentLeaveDAO.myepaymentList(code, statenum);
+			List<EpaymentLeaveDTO> ar = epaymentLeaveDAO.myepaymentList(code, statenum ,rowNum);
 			
 			List<FileDTO> fileList = new ArrayList<FileDTO>();
 			
@@ -92,31 +103,40 @@ public class EpaymentLeaveService {
 			}
 			
 			for(EpaymentDTO a : list){
-				System.out.println("docunum="+a.getDocunum());
 				fileList = epaymentLeaveDAO.epaymentFileList(a.getDocunum());
 				
-				System.out.println("file:"+ fileList.size());
 				file.add(fileList);				
 			}
 			
-			
-			
-		/*	fileList = epaymentLeaveDAO.epaymentFileList(epaymentDTO.getDocunum());
-			System.out.println(fileList.size());*/
-			
-			
+			model.addAttribute("file", file);
 			model.addAttribute("list", list);
 			model.addAttribute("docuCon", ar22);
-			model.addAttribute("file", file);
+			model.addAttribute("pager", pager);
 			
 		}
 		
-		public List<EpaymentDTO> totalList(String state) throws Exception{
-			List<EpaymentDTO> ar = epaymentLeaveDAO.totalList(state);
+		public void totalList(String state, ListData listData, Model model) throws Exception{
+			RowNum rowNum= listData.makeRow();
 			
-			return ar;
+			List<EpaymentDTO> ar = epaymentLeaveDAO.totalList(state, rowNum);
+			int totalCount = epaymentLeaveDAO.totalListCount(state, rowNum);
+			
+			Pager pager = listData.makePage(totalCount);
+			
+			List<FileDTO> fileList = new ArrayList<FileDTO>();
+			List<List<FileDTO>> file = new ArrayList<List<FileDTO>>();
+			
+			for(EpaymentDTO a : ar){
+				fileList = epaymentLeaveDAO.epaymentFileList(a.getDocunum());
+				
+				file.add(fileList);				
+			}
+			
+			model.addAttribute("file", file);
+			model.addAttribute("pager", pager);
+			model.addAttribute("list", ar);
+		
 		}
-	
 	
 	public EpaymentDTO epaymentContents(String docunum, Model model) throws Exception{
 		EpaymentDTO epaymentDTO = epaymentLeaveDAO.myepaymentListContents(docunum);
@@ -162,10 +182,26 @@ public class EpaymentLeaveService {
 		return message;
 	}
 	
-	public List<EpaymentDTO> storageList(String code, String state) throws Exception{
-		List<EpaymentDTO> ar = epaymentLeaveDAO.storageList(code, state);
+	public void storageList(String code, String state, ListData listData, Model model) throws Exception{
+		RowNum rowNum = listData.makeRow();
 		
-		return ar;
+		List<EpaymentDTO> ar = epaymentLeaveDAO.storageList(code, state, rowNum);
+		int totalCount=epaymentLeaveDAO.storageListCount(code, state, rowNum);
+		
+		Pager pager =listData.makePage(totalCount);
+		
+		List<FileDTO> fileList = new ArrayList<FileDTO>();
+		List<List<FileDTO>> file = new ArrayList<List<FileDTO>>();
+		
+		for(EpaymentDTO a : ar){
+			fileList = epaymentLeaveDAO.epaymentFileList(a.getDocunum());
+			
+			file.add(fileList);				
+		}
+		
+		model.addAttribute("file", file);
+		model.addAttribute("list", ar);
+		model.addAttribute("pager", pager);
 	}
 	
 	public EpaymentDTO viewOneModal(String docunum) throws Exception{
@@ -174,9 +210,28 @@ public class EpaymentLeaveService {
 		return epaymentDTO;
 	}
 
-	public List<EpaymentDTO> sendEpaymentList(String code) throws Exception{
-		List<EpaymentDTO> ar = epaymentLeaveDAO.sendEpaymentList(code);
+	public void sendEpaymentList(String code, ListData listData, Model model) throws Exception{
+		RowNum rowNum = listData.makeRow();
 		
-		return ar;
+		int totalCount = epaymentLeaveDAO.sendEpaymentListCount(code, rowNum);
+		
+		Pager pager = listData.makePage(totalCount);
+		
+		List<EpaymentDTO> ar = epaymentLeaveDAO.sendEpaymentList(code, rowNum);
+		
+		List<FileDTO> fileList = new ArrayList<FileDTO>();
+		List<List<FileDTO>> file = new ArrayList<List<FileDTO>>();
+		
+		for(EpaymentDTO a : ar){
+			fileList = epaymentLeaveDAO.epaymentFileList(a.getDocunum());
+			System.out.println(fileList.size());
+			
+			file.add(fileList);				
+		}
+		
+		model.addAttribute("file", file);
+		model.addAttribute("list", ar);
+		model.addAttribute("pager", pager);
+		
 	}
 }

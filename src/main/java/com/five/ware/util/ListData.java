@@ -8,6 +8,15 @@ public class ListData {
 	private String result;
 	private String memberCode;
 	
+	public ListData(int perPage){
+		this.curPage = 1;
+		this.kind = "code";
+		this.search = "";
+		this.perPage = perPage;
+		this.result="";
+		this.memberCode="";
+	}
+	
 	public ListData() {
 		// TODO Auto-generated constructor stub
 		this.curPage = 1;

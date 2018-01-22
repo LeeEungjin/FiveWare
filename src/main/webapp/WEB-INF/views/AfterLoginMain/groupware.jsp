@@ -144,7 +144,7 @@
                      </a> 
                      
 
-                    <a href="${pageContext.request.contextPath}/GroupWare/epayment/formList">
+                    <a href="${pageContext.request.contextPath}/GroupWare/epayment/formList?curPage=1">
 
 
                         <span class="groupWare_jk_smalldiv"> 

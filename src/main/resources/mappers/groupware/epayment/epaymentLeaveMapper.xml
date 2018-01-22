@@ -10,9 +10,44 @@
   </insert>
   
 <select id="myepaymentList" parameterType="java.util.Map" resultType="EpaymentLeaveDTO">
-  	select * from epaymentleave where approvalcode=#{code} and statenum=#{statenum}
+  	select * from
+  	(select rownum R , N.* from
+  	(select el.* from epaymentleave el, epayment e where el.approvalcode=#{code} and el.statenum=#{statenum} 
+  	and el.docunum=e.docunum
+   
+  	<if test="rowNum.kind=='title'">
+   and	e.title like '%' || #{rowNum.search} || '%'
+  	</if>
+  	<if test="rowNum.kind=='draftname'">
+  	and e.draftname like '%' || #{rowNum.search} || '%'
+  	</if>
+  	<if test="rowNum.kind=='kind'">
+  	and e.kind like '%' || #{rowNum.search} || '%'
+  	</if>
+  	<if test="rowNum.kind=='state'">
+  	 and e.state like '%' || #{rowNum.search} || '%'
+  	</if>) N)
+  	where R between #{rowNum.startRow} and #{rowNum.lastRow}
   </select>
   
+  <select id="myepaymentListCount" parameterType="java.util.Map" resultType="int">
+  	select count(el.docunum) from epaymentleave el, epayment e where el.approvalcode=#{code} and el.statenum=#{statenum} 
+  	and el.docunum=e.docunum
+   
+  	<if test="rowNum.kind=='title'">
+   and	e.title like '%' || #{rowNum.search} || '%'
+  	</if>
+  	<if test="rowNum.kind=='draftname'">
+  	and e.draftname like '%' || #{rowNum.search} || '%'
+  	</if>
+  	<if test="rowNum.kind=='kind'">
+  	and e.kind like '%' || #{rowNum.search} || '%'
+  	</if>
+  	<if test="rowNum.kind=='state'">
+  	 and e.state like '%' || #{rowNum.search} || '%'
+  	</if>
+
+  </select>
   
   <select id="myepaymentList2" parameterType="EpaymentLeaveDTO" resultType="EpaymentLeaveDTO">
   	select * from epaymentleave where docunum=#{docunum} 
@@ -63,20 +98,121 @@
  	 state=#{approvalname} where docunum=#{docunum} and draftcode=#{approvalcode}
  </update>
  
- <select id="totalList" parameterType="String" resultType="EpaymentDTO">
- 	select * from epayment where state=#{state}
+ <select id="totalList" parameterType="java.util.Map" resultType="EpaymentDTO">
+ 	select * from
+ 	(select rownum R, N.* from
+ 	(select * from epayment where state=#{state}
+ 	
+ 		<if test="rowNum.kind=='title'">
+  			 and	title like '%' || #{rowNum.search} || '%'
+	  	</if>
+	  	<if test="rowNum.kind=='draftname'">
+		  	and draftname like '%' || #{rowNum.search} || '%'
+	  	</if>
+	  	<if test="rowNum.kind=='kind'">
+		  and	 kind like '%' || #{rowNum.search} || '%'
+	  	</if>
+	  	<if test="rowNum.kind=='state'">
+	 	 	and  state like '%' || #{rowNum.search} || '%'
+	  	</if>
+ 	 order by num ) N)
+ 	where R between #{rowNum.startRow} and #{rowNum.lastRow}
+ </select>
+ 
+ <select id="totalListCount" parameterType="java.util.Map" resultType="int">
+ 	
+ 	select count(nvl(docunum,0)) from epayment where state=#{state}
+ 		<if test="rowNum.kind=='title'">
+  			 and	title like '%' || #{rowNum.search} || '%'
+	  	</if>
+	  	<if test="rowNum.kind=='draftname'">
+		  	and draftname like '%' || #{rowNum.search} || '%'
+	  	</if>
+	  	<if test="rowNum.kind=='kind'">
+		  	and kind like '%' || #{rowNum.search} || '%'
+	  	</if>
+	  	<if test="rowNum.kind=='state'">
+	 	 	 and state like '%' || #{rowNum.search} || '%'
+	  	</if>
+ 	
  </select>
  
  <select id="storageList" parameterType="java.util.Map" resultType="EpaymentDTO">
- 	select * from epayment where state=#{state} and draftcode=#{code}
+ 	select * from 
+ 	(select rownum R, N.* from
+ 	(select * from epayment where state=#{state} and draftcode=#{code}
+ 		<if test="rowNum.kind=='title'">
+  			 and	title like '%' || #{rowNum.search} || '%'
+	  	</if>
+	  	<if test="rowNum.kind=='draftname'">
+		  	and draftname like '%' || #{rowNum.search} || '%'
+	  	</if>
+	  	<if test="rowNum.kind=='kind'">
+		  and	 kind like '%' || #{rowNum.search} || '%'
+	  	</if>
+	  	<if test="rowNum.kind=='state'">
+	 	 	and  state like '%' || #{rowNum.search} || '%'
+	  	</if>
+ 	 ) N)
+ 	where R between #{rowNum.startRow} and #{rowNum.lastRow}
+ </select>
+ 
+  <select id="storageListCount" parameterType="java.util.Map" resultType="int">
+ 	select count(nvl(docunum,0)) from epayment where state=#{state} and draftcode=#{code}
+ 	
+ 	<if test="rowNum.kind=='title'">
+  			 and	title like '%' || #{rowNum.search} || '%'
+	  	</if>
+	  	<if test="rowNum.kind=='draftname'">
+		  	and draftname like '%' || #{rowNum.search} || '%'
+	  	</if>
+	  	<if test="rowNum.kind=='kind'">
+		  and	 kind like '%' || #{rowNum.search} || '%'
+	  	</if>
+	  	<if test="rowNum.kind=='state'">
+	 	 	and  state like '%' || #{rowNum.search} || '%'
+	  	</if>
  </select>
  
  <select id="viewOneModal" parameterType="String" resultType="EpaymentDTO">
  	select * from epayment where docunum=#{docunum}
  </select>
  
- <select id="sendEpaymentList" parameterType="String" resultType="EpaymentDTO">
- 	select * from epayment where draftcode=#{code}
+ <select id="sendEpaymentList" parameterType="java.util.Map" resultType="EpaymentDTO">
+ 	select * from
+ 	(select rownum R, N.* from
+ 	(select * from epayment where draftcode=#{code} 
+ 		<if test="rowNum.kind=='title'">
+  			 and	title like '%' || #{rowNum.search} || '%'
+	  	</if>
+	  	<if test="rowNum.kind=='draftname'">
+		  	and draftname like '%' || #{rowNum.search} || '%'
+	  	</if>
+	  	<if test="rowNum.kind=='kind'">
+		  and	 kind like '%' || #{rowNum.search} || '%'
+	  	</if>
+	  	<if test="rowNum.kind=='state'">
+	 	 	and  state like '%' || #{rowNum.search} || '%'
+	  	</if>
+ 	order by num) N)
+ 	where R between #{rowNum.startRow} and #{rowNum.lastRow}
+ </select>
+ 
+  <select id="sendEpaymentListCount" parameterType="java.util.Map" resultType="int">
+ 	select count(nvl(docunum,0)) from epayment where draftcode=#{code} 
+ 		<if test="rowNum.kind=='title'">
+  			 and	title like '%' || #{rowNum.search} || '%'
+	  	</if>
+	  	<if test="rowNum.kind=='draftname'">
+		  	and draftname like '%' || #{rowNum.search} || '%'
+	  	</if>
+	  	<if test="rowNum.kind=='kind'">
+		  and	 kind like '%' || #{rowNum.search} || '%'
+	  	</if>
+	  	<if test="rowNum.kind=='state'">
+	 	 	and  state like '%' || #{rowNum.search} || '%'
+	  	</if>
+ 	
  </select>
  
  <insert id="epaymentFile" parameterType="FileDTO">
@@ -85,4 +221,6 @@
  
  <select id="epaymentFileList" parameterType="String" resultType="FileDTO">
  	select * from fivefile where code=#{docunum}
- </select> </mapper>
+ </select> 
+ 
+ </mapper>

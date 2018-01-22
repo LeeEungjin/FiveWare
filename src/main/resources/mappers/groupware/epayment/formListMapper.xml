@@ -5,13 +5,23 @@
   
   <mapper namespace="formListMapper">
   
-  <select id="formList" parameterType="String" resultType="FormListDTO">
-  	select * from formlist 
+  <select id="formList" parameterType="java.util.Map" resultType="FormListDTO">
+  	select * from
+  	(select rownum R, N.* from  	
+  	(select * from formlist 
   	<if test="search != null">
   		where formname like '%'||#{search}||'%'
   	</if>
+  	order by num ) N)
+  	where R between #{rowNum.startRow} and #{rowNum.lastRow}
   </select>
   
+  <select id="formListCount" parameterType="java.util.Map" resultType="int">
+  	select count(nvl(num, 0)) from formlist 
+  	<if test="search != null">
+  		where formname like '%'||#{search}||'%'
+  	</if>
   
+  </select>
   
   </mapper>

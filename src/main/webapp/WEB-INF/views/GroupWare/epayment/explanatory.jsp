@@ -322,50 +322,53 @@
 	<!-- submenu -->
 	<div id="fw_subcontainer">
 	
-			<!-- submenu banner -->
-		<div id="fw_subbanner">
-			전자결재
-		</div>
-		<!-- submenu banner end -->
-		
-		<!-- submenu menu -->
-			<div class="fw_menu fw_selected" data-toggle="collapse" data-target=".fw_subselected" title="sub1">
-				결재함
+		<div class="fw_menu " data-toggle="collapse" data-target=".fw_subselected" title="sub1">
+				전체 결재함
 				<div class="fw_arrow sub1">
-					∧
-				</div>
-			</div>
-			
-			<div class="fw_subselected collapse in" id="sub1">
-				<ul>
-					<li> 미결함 </li>
-					<li> 기결함 </li>
-					<li> 반려함 </li>
-				</ul>
-			</div>
-			
-			<!-- ----------2---------- -->
-				<div class="fw_menu" data-toggle="collapse" data-target="#sub2" title="sub2" >
-					발신함
-				<div class="fw_arrow sub2">
 					∨
 				</div>
 			</div>
 			
-			<div class="fw_subsub collapse"  id="sub2">
+			<div class="fw_subselected collapse" id="sub1">
 				<ul>
-					<li> 기안 상신함</li>
-					<li> 임시보관함</li>
+					<li> <a href="./epaymentTotalList?state=미결">미결함</a> </li>
+					<li> <a href="./epaymentTotalList?state=기결">기결함</a> </li>
+					<li> <a href="./epaymentTotalList?state=반려">반려함</a> </li>
+				</ul>
+			</div>
+			
+			<!-- ----------2---------- -->
+				<div class="fw_menu fw_selected" data-toggle="collapse" data-target="#sub2" title="sub2" >
+					발신함
+				<div class="fw_arrow sub2">
+					∧
+				</div>
+			</div>
+			
+			<div class="fw_subsub collapse in"  id="sub2">
+				<ul>
+					<li>  <a href="./formList?curPage=1">기안 상신함</a></li>
+					<li> <a href="./epaymentStorageList?state=임시저장">임시보관함</a></li>
+					<li> <a href="./myEpayment">내 결재 보기</a></li>
 				</ul>
 			</div>
 			
 			<!-- -------------------- -->
-				<div class="fw_menu" data-toggle="collapse" data-target="#sub3" title="sub3" >
+					<div class="fw_menu " data-toggle="collapse" data-target="#sub3" title="sub3" >
 					수신함
-				<div class="fw_arrow sub3" >
-					
+				<div class="fw_arrow sub3">
+					∨
 				</div>
-			</div>
+				</div>
+			
+				<div class="fw_subsub collapse "  id="sub3">
+					<ul>
+					<li> <a href="./epaymentReceive?statenum=0">미결함</a> </li>
+					<li> <a href="./epaymentReceive?statenum=1">기결함</a> </li>
+					<li> <a href="./epaymentReceive?statenum=-1">반려함</a> </li>
+					</ul>
+				</div>
+			
 			
 		
 </div>
