@@ -1,14 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script type="text/javascript">
 
-
-</script>
-
+<div id="eb_modal_div">
 <p>${list.store}</p>
 <p>${list.regdate} ${list.time}</p>
-
+</div>
 
 			<table id="eb_modalT1">
 				<tr>
@@ -42,5 +39,8 @@
 				</tr>
 			</c:forEach> 
 			</table>
-<p>총 금액 : ${list.totalPrice}</p>	
-	
+			
+			<div id="eb_modal_div2">
+				<p id="eb_modal_p">총 금액 : ${list.totalPrice}</p>	
+			</div>
+				

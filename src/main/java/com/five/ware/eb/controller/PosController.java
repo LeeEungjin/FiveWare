@@ -49,7 +49,7 @@ public class PosController {
 	@RequestMapping(value="storeSalesList",method=RequestMethod.GET)
 	@ResponseBody
 	public ModelAndView storeSalesList(StoreSalesDTO storeSalesDTO){
-		
+	
 		ModelAndView mv=new ModelAndView();
 		try {
 			mv=storeSalesService.selectList(storeSalesDTO);

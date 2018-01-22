@@ -291,6 +291,23 @@
 			 		}); 
 			 	});
 			 	
+			 	$("#eb_salesList2").click(function(){
+			 		var regdate=$("#eb_modal_s").val();
+			 		var store='${member.store}';
+				 	
+			 		$.ajax({
+			 			type :"get",
+			 			url : "./storeSalesList",
+			 			data : {
+			 				"regdate" : regdate,
+			 				"store" : store	
+			 			},success : function(data){
+			 				
+			 				$("#eb_modal_contents1").html(data);
+	
+			 			}
+			 		}); 
+			 	});
 			 	
 			 	$("#eb_modal_contents1").on("click",".eb_modal_tr",function(){
 			 		var num=$(this).attr("title");
@@ -565,13 +582,17 @@
 		   		</div>
 		   		
 		   		 <div class="menu6_5">
-		   				<button type="button" id="eb_salesList" class="btn btn-primary b4" data-toggle="modal" data-target="#eb_payment">결제 내역 보기</button>
+		   				<button type="button" id="eb_salesList" class="btn btn-primary b4 " data-toggle="modal" data-target="#eb_payment">결제 내역 보기</button>
 		   		</div> 
 		   
 		   </div>
 		
+		    
 		   
-		   
+		  
+		</div>
+		</form>
+			   
 		   <!-- 결제 내역 modal창 -->
 		   	<div class="modal fade" id="eb_payment" role="dialog">
 			    <div class="modal-dialog">
@@ -582,7 +603,12 @@
 			          <button type="button" class="close" data-dismiss="modal">&times;</button>
 			          <h4 class="modal-title">결제 내역</h4>
 			        </div>
+			     
+			 
 			        <div class="modal-body" id="eb_modal">
+			          
+			          <input type="date" name="regdate" id="eb_modal_s" style="margin-left: 10px;">
+			          <input type="button" value="조회" id="eb_salesList2" class="btn btn-defalut">
 			          
 			          <div id="eb_modal_contents1">
 				     
@@ -593,6 +619,8 @@
 			          </div>
 			          
 			        </div>
+			       
+			        
 			        <div class="modal-footer">
 			          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			        </div>
@@ -600,11 +628,7 @@
 			      
 			    </div>
 			  </div>
-					   
-		   
-		  
-		</div>
-		</form>
+					  
  	</div>
  	
 </body>

@@ -1,11 +1,10 @@
 package com.five.ware.storeSales;
 
-import java.lang.reflect.Array;
+
 import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
-import java.util.StringTokenizer;
+
 
 import javax.inject.Inject;
 
@@ -60,7 +59,7 @@ public class StoreSalesService {
 		
 		//list
 		public ModelAndView selectList(StoreSalesDTO storeSalesDTO)throws Exception{
-			storeSalesDTO.setStore("강남점");
+			
 			ModelAndView mv=new ModelAndView();
 			
 			
