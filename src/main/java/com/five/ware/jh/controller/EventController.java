@@ -80,10 +80,10 @@ public class EventController {
 	}
 	
 	@RequestMapping(value="eventList")
-	public ModelAndView eventList(ListData listData)throws Exception{
+	public ModelAndView eventList(int perPage, ListData listData)throws Exception{
 		ModelAndView mv=null;
 		
-		mv=eventService.selectList(listData);
+		mv=eventService.selectList(perPage, listData);
 		
 		return mv;
 	}

@@ -40,13 +40,13 @@ public class EventService {
 		return ar;
 	}
 	
-	public ModelAndView selectList(ListData listData)throws Exception{
+	public ModelAndView selectList(int perPage,ListData listData)throws Exception{
+		
+		listData=new ListData(perPage);
 		
 		int totalCount=eventDAO.totalCount(listData.makeRow());
 		ModelAndView mv=new ModelAndView();
 		List<EventDTO> eventList=eventDAO.selectList(listData.makeRow());
-		
-		System.out.println(eventList.size());
 		
 		mv.addObject("pager", listData.makePage(totalCount));
 		mv.addObject("eventList", eventList);
