@@ -25,10 +25,25 @@ import com.five.ware.util.FileSaver;
 @RequestMapping(value="/file/**")
 public class FileController {
 
-
+	@RequestMapping(value="arfileDown")
+	public ModelAndView arfileDown(FileDTO fileDTO, HttpSession session) throws Exception{
+		String filePath = session.getServletContext().getRealPath("resources/epayment");
+		System.out.println("filePath : " +filePath);
+		
+		File file = new File(filePath, fileDTO.getFilename());
+		System.out.println("filename : "+fileDTO.getFilename());
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("down", file);
+		mv.addObject("oriname", fileDTO.getOriname());
+		mv.setViewName("fileDown");
+		
+		return mv;
+	}
 		
 
-/*
+
 
 	@RequestMapping(value="fileDown")
 	public ModelAndView fileDown(CommunityDTO communityDTO, HttpSession session) throws Exception	{
@@ -84,7 +99,7 @@ public class FileController {
 		System.out.println("redirect:./"+photoDTO.getCallback()+photoDTO.getCallback_func()+stringBuffer.toString());
 		
 		return "redirect:./"+photoDTO.getCallback()+photoDTO.getCallback_func()+stringBuffer.toString();
-	}*/
+	}
 	
 
 }

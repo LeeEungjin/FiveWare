@@ -63,7 +63,7 @@
 						         <div id="ar_fileLineWrap">
 									<div id="ar_fileWrap">
 										<c:forEach items="${file}" var="file" varStatus="i">
-											<a href="../file/fileDown?filename=${file.filename}&oriname=${file.oriname}">${file.oriname}</a>
+											<a href="../../file/arfileDown?filename=${file.filename}&oriname=${file.oriname}">${file.oriname}</a>
 											
 										</c:forEach>
 									</div>

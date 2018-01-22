@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.five.ware.file.FileDTO;
+import com.five.ware.util.RowNum;
 
 @Repository
 public class EpaymentLeaveDAO {
@@ -24,18 +25,22 @@ public class EpaymentLeaveDAO {
 		return result;
 	}
 	
-	public List<EpaymentLeaveDTO> myepaymentList(String code, int statenum) throws Exception{
+	public List<EpaymentLeaveDTO> myepaymentList(String code, int statenum, RowNum rowNum) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
+	
 		map.put("code",code);
 		map.put("statenum", statenum);
+		map.put("rowNum", rowNum);
+
 		List<EpaymentLeaveDTO> ar = sqlSession.selectList(NAMESPACE+"myepaymentList", map);
 		
 		return ar;
 	}
 	
 	public EpaymentLeaveDTO myepaymentList2(EpaymentLeaveDTO epaymentLeaveDTO) throws Exception{
-		EpaymentLeaveDTO ar = sqlSession.selectOne(NAMESPACE+"myepaymentList2", epaymentLeaveDTO);
 		
+		EpaymentLeaveDTO ar = sqlSession.selectOne(NAMESPACE+"myepaymentList2", epaymentLeaveDTO);
+	
 		return ar;
 	}
 	
@@ -69,21 +74,50 @@ public class EpaymentLeaveDAO {
 		return result;
 	}
 	
-	public List<EpaymentDTO> totalList(String state) throws Exception{
-		List<EpaymentDTO> ar = sqlSession.selectList(NAMESPACE+"totalList", state);
+	public List<EpaymentDTO> totalList(String state, RowNum rownum) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("rowNum", rownum);
+		map.put("state", state);
+		
+		List<EpaymentDTO> ar = sqlSession.selectList(NAMESPACE+"totalList", map);
 		
 		return ar;
 	}
 	
-	public List<EpaymentDTO> storageList(String code, String state) throws Exception{
-		Map<String, String> map = new HashMap<String, String>();
+	public int totalListCount(String state, RowNum rownum) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("rowNum", rownum);
+		map.put("state", state);
+		
+		int result = sqlSession.selectOne(NAMESPACE+"totalListCount", map);
+		
+		return result;
+	}
+	
+	public List<EpaymentDTO> storageList(String code, String state, RowNum rowNum) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("code", code);
 		map.put("state", state);
+		map.put("rowNum", rowNum);
 		
 		List<EpaymentDTO> ar = sqlSession.selectList(NAMESPACE+"storageList", map);
 		
 		return ar;
+	}
+	
+	public int storageListCount(String code, String state, RowNum rowNum) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("code", code);
+		map.put("state", state);
+		map.put("rowNum", rowNum);
+		
+		int result = sqlSession.selectOne(NAMESPACE+"storageListCount", map);
+		
+		return result;
 	}
 	
 	public EpaymentDTO viewOneModal(String docunum) throws Exception{
@@ -92,10 +126,26 @@ public class EpaymentLeaveDAO {
 		return epaymentDTO;
 	}
 	
-	public List<EpaymentDTO> sendEpaymentList(String code) throws Exception{
-		List<EpaymentDTO> ar = sqlSession.selectList(NAMESPACE+"sendEpaymentList", code);
+	public List<EpaymentDTO> sendEpaymentList(String code, RowNum rowNum) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("code", code);
+		map.put("rowNum", rowNum);
+		
+		List<EpaymentDTO> ar = sqlSession.selectList(NAMESPACE+"sendEpaymentList", map);
 		
 		return ar;
+	}
+	
+	public int sendEpaymentListCount(String code, RowNum rowNum) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("code", code);
+		map.put("rowNum", rowNum);
+		
+		int result = sqlSession.selectOne(NAMESPACE+"sendEpaymentListCount", map);
+		
+		return result;
 	}
 	
 	public int epaymentFile(FileDTO fileDTO) throws Exception{
@@ -109,4 +159,17 @@ public class EpaymentLeaveDAO {
 		
 		return ar;
 	}
+	
+	public int myepaymentListCount(String code, int statenum, RowNum rowNum) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+	
+		map.put("code",code);
+		map.put("statenum", statenum);
+		map.put("rowNum", rowNum);
+
+		int result = sqlSession.selectOne(NAMESPACE+"myepaymentListCount", map);
+		
+		return result;
+	}
+	
 }

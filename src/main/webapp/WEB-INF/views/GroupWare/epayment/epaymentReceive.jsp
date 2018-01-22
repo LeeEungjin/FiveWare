@@ -41,7 +41,8 @@ $(function(){
 			 type:"GET",
 			 url:"./epaymentContents",
 			 data:{
-				 "docunum" : docunum
+				 "docunum" : docunum,
+				 statenum:'${type }'
 			 },success:function(data){
 				 $(".modal-dialog").html(data);
 				 
@@ -58,6 +59,14 @@ $(function(){
 				 }
 				 }
 		 });
+	 });
+	 
+	 $(".ar_paging").click(function(){
+		var curPage=$(this).attr("id");
+		
+		document.frm.curPage.value=curPage;
+		document.frm.submit();
+		
 	 });
 	 
 	$(".modal").on("click", "#ar_approvalok" ,function(){
@@ -112,7 +121,7 @@ $(function(){
 		
 		<!-- submenu menu -->
 			<div class="fw_menu " data-toggle="collapse" data-target=".fw_subselected" title="sub1">
-				결재함
+				전체 결재함
 				<div class="fw_arrow sub1">
 					∧
 				</div>
@@ -136,7 +145,7 @@ $(function(){
 			
 			<div class="fw_subsub collapse "  id="sub2">
 				<ul>
-					<li> 기안 상신함</li>
+					<li>  <a href="./formList?curPage=1">기안 상신함</a></li>
 					<li> <a href="./epaymentStorageList?state=임시저장">임시보관함</a></li>
 					<li> <a href="./myEpayment">내 결재 보기</a></li>
 				</ul>
@@ -187,8 +196,8 @@ $(function(){
 					<div id="ar_tableTop">
 				
 						
-						<form action="./epaymentDispatch" action="get">
-							
+						<form action="./epaymentReceive"  action="get" name="frm">
+							<input type="hidden" name="statenum" value="${type }">
 							<input type="hidden" name="curPage" value="1">
 							<input type="hidden" name="memberCode" value="${member.code }">
 						
@@ -200,7 +209,7 @@ $(function(){
 								<option value="title">문서 제목</option>
 								<option value="draftdate">기안 날짜</option>
 								<option value="kind">문서 유형</option>
-								<option value="result">결과</option>
+								<option value="state">결과</option>
 							</select>
 				
 						</form>	
@@ -259,7 +268,19 @@ $(function(){
 						</table>
 			 
 					</div>
+					<div>
+						<c:if test="${pager.curBlock>1}">
+							<span class="ar_paging" id="${pager.startNum-1 }">이전</span>
+						</c:if>
 					
+						<c:forEach begin="${pager.startNum }" end="${pager.lastNum }" var="i">
+							<span class="ar_paging" id="${i }">${i }</span>
+						</c:forEach>
+						
+						<c:if test="${pager.curBlock<pager.totalBlock}">
+							<span class="ar_paging" id="${pager.lastNum+1 }">다음</span>
+						</c:if>
+					</div>
 					
 					<!-- view Modal -->
 						<div class="modal fade" id="myModal" role="dialog">

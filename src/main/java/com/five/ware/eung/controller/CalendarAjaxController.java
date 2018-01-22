@@ -5,12 +5,8 @@ import java.io.IOException;
 
 import java.io.IOException;  
 
-<<<<<<< HEAD
 import java.io.IOException;  
 
-
-=======
->>>>>>> arin
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
