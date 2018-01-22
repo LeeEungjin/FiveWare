@@ -194,7 +194,7 @@
                         </span>
                      </a> 
                      
-                     <a href="./srm/event/eventList?perPage=5">
+                     <a href="./srm/event/eventList?perPage=5&curPage=1">
                         <span class="srm_jk_smalldiv">
                            <span class="srm_jk_writing">이벤트 리스트</span>
                         </span>

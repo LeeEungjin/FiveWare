@@ -24,10 +24,10 @@ public class EventController {
 	private EventService eventService;
 	
 	@RequestMapping(value="eventDateList")
-	public ModelAndView materDateSerach(ModelAndView mv, String sdate, String edate){
+	public ModelAndView materDateSerach(ModelAndView mv, ListData listData, String sdate, String edate){
 
 		try {
-			mv.addObject("dateList", eventService.eventDateList(sdate, edate));
+			mv.addObject("dateList", eventService.eventDateList(listData, sdate, edate));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -80,10 +80,10 @@ public class EventController {
 	}
 	
 	@RequestMapping(value="eventList")
-	public ModelAndView eventList(int perPage, ListData listData)throws Exception{
+	public ModelAndView eventList(int perPage, int curPage, ListData listData)throws Exception{
 		ModelAndView mv=null;
 		
-		mv=eventService.selectList(perPage, listData);
+		mv=eventService.selectList(perPage, curPage, listData);
 		
 		return mv;
 	}

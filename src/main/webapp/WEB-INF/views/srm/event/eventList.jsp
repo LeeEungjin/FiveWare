@@ -23,6 +23,16 @@
 		}
 		
 		
+		$(".list").click(function(){
+			var cur = $(this).attr("title");
+			
+			alert(cur);
+			
+			document.event_search_frm.curPage.value=cur;
+			document.event_search_frm.submit();
+		});
+		
+		
 	});
 	
 	
@@ -131,9 +141,10 @@
 					</div>
 					
 				<!-- 검색 기능 -->
-					<div id="event_search">
-						
-					</div>
+						<form action="./eventList" name="event_search_frm" method="get">
+							<input type="hidden" name="perPage" value="5">
+							<input type="hidden" name="curPage">
+						</form>	
 				<!-- 검색 기능 끝 -->
 
 				</div>
@@ -141,36 +152,46 @@
 				<!-- table -->
 					<div id="erp_jh_contents_table">
 						
-						<c:forEach items="${eventList}" var="list">
+						
 							<div class="eventList">
-								<div class="eventImg"></div>
+								<c:forEach items="${eventImg}" var="list">
+								<div class="eventImg">
+									<img src="${pageContext.request.contextPath}/resources/upload/${list.filename}">
+								</div>
+								</c:forEach>
+								
+								<c:forEach items="${eventList}" var="list">
 								<div class="eventText">
 									<div class="eventTitle">${list.eventName} (기간 : ${list.eventSdate}~${list.eventEdate})</div>
 									<div class="eventOption">${list.eventOption}</div>
 									<div class="eventFile"></div>
 								</div>
+								</c:forEach>
 							</div>
-						</c:forEach>
+						
 					</div>
 				<!-- table 끝 -->
 				
+				
+				<div id="erp_jh_contents_bottom">
+					
+					<c:if test="${pager.curBlock gt 1}">
+						<span class="list" title="${pager.startNum-1}">[이전]</span>
+					</c:if>
+							
+					<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+						<span class="list" title="${i}">${i}</span>
+					</c:forEach>
+										
+					<c:if test="${pager.curBlock lt pager.totalBlock}">
+						<span class="list" title="${pager.lastNum+1}">[다음]</span>
+					</c:if>
+					
+				</div> 
+				
 			</div>
 			
-			<div id="erp_jh_contents_bottom">
-					
-				<c:if test="${pager.curBlock gt 1}">
-					<span class="list" title="${pager.startNum-1}">[이전]</span>
-				</c:if>
-						
-				<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-					<span class="list" title="${i}">${i}</span>
-				</c:forEach>
-									
-				<c:if test="${pager.curBlock lt pager.totalBlock}">
-					<span class="list" title="${pager.lastNum+1}">[다음]</span>
-				</c:if>
-					
-			</div> -
+			
 			
 		</div>
 	</div>
