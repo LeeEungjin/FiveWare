@@ -2,6 +2,8 @@ package com.five.ware.cloud;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,11 +22,17 @@ public class CloudFileDAOTest extends AbstractTest {
 	@Test
 	public void cloud() {
 		try {
-			this.selectOne();
+			this.selectList();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void selectList() throws Exception {
+		List<CloudFileDTO> ar = cloudfileDAO.selectList("1");
+		
+		assertTrue(ar.size() == 0);
 	}
 	
 	public void selectOne() throws Exception {

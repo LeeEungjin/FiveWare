@@ -27,18 +27,39 @@ public class CloudController {
 	@Inject
 	private CloudFileService cloudFileService;
 	
+	// Download
+	@RequestMapping(value="fileDown")
+	public ModelAndView fileDown(HttpSession session, CloudFileDTO cloudFileDTO, String path){
+		String filePath = session.getServletContext().getRealPath(path);
+		System.out.println("fileDown - filepath: "+filePath);
+		System.out.println("fileDown - oriname: "+cloudFileDTO.getOriname());
+		System.out.println("fileDown - filename: "+cloudFileDTO.getFilename());
+		
+		//ì €ìž¥ë  ì‹¤ì œ íŒŒì¼ ì´ë¦„
+		File file = new File(filePath, cloudFileDTO.getFilename());
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("down", file);
+		mv.addObject("oriname", cloudFileDTO.getOriname());
+		//viewNameì€ 
+		mv.setViewName("filedown");
+		
+		return mv;
+	}
+	
 	//Delete
 	@RequestMapping(value="fileDelete", method=RequestMethod.POST)
-	public String fileDelete(HttpSession session, String path, String name) {
-		////////////////////////////
-		String filepath = session.getServletContext().getRealPath(path+"/"+name);
+	public String fileDelete(HttpSession session, String path, String filename) {
+		
+		String filepath = session.getServletContext().getRealPath(path+"/"+filename);
 		System.out.println("fileDelete - filepath: "+filepath);
 		
 		File file = new File(filepath);
 		if(file.exists()) { 
-			Boolean b = file.delete();
-			if(b) {
-				System.out.println("»èÁ¦¼º°ø!");
+			System.out.println("File Exist!!!");
+			if(file.delete()) {
+				System.out.println("Delete Success!");
+			} else {
+				System.out.println("Delete Fail");
 			}
 		}
 		
@@ -73,7 +94,7 @@ public class CloudController {
 		
 		File f = new File(filepath);
 		if(!f.exists()) {
-			System.out.println("createFolder - »ý¼º!");
+			System.out.println("createFolder - ï¿½ï¿½ï¿½ï¿½!");
 			f.mkdirs();
 		}
 		
@@ -102,6 +123,8 @@ public class CloudController {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 
 		String path = "resources/cloud/private/"+memberDTO.getCode();
+		
+		
 		if(!folderName.equals("")) {
 			path = folderName;
 		}
@@ -114,6 +137,22 @@ public class CloudController {
 		return mv;
 	}
 	
+	private void sideFolderList(ModelAndView mv, HttpSession session, String path) {
+		String filepath = session.getServletContext().getRealPath(path);
+		
+		File f = new File(filepath);
+		if(!f.exists()) {
+			f.mkdirs();
+		}
+		
+		File[] files = f.listFiles();
+		if(files.length > 0) {
+			for (File file : files) {
+				System.out.println("this this this this this this this this");
+			}
+		}
+	}
+	
 	@SuppressWarnings("unchecked")
 	private void folderList(ModelAndView mv, HttpSession session, String path) {
 		JSONArray jsonFolder = new JSONArray();
@@ -124,7 +163,7 @@ public class CloudController {
 		
 		File file = new File(filePath);
 		if(!file.exists()) {
-			System.out.println("folderList - »ý¼º!");
+			System.out.println("folderList - ï¿½ï¿½ï¿½ï¿½!");
 			file.mkdirs();
 		}
 
@@ -143,9 +182,12 @@ public class CloudController {
 					obj.put("ext", ext);
 					jsonFolder.add(obj);
 				} else {
+					String oriname = null;
+					String filename = null;
 					try {
 						CloudFileDTO cloudFileDTO = cloudFileService.selectOne(temp);
-						temp = cloudFileDTO.getOriname();
+						oriname = cloudFileDTO.getOriname();
+						filename = cloudFileDTO.getFilename();
 						
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -153,7 +195,8 @@ public class CloudController {
 					ext = temp.substring(temp.lastIndexOf(".")+1);
 					
 					JSONObject obj = new JSONObject();
-					obj.put("name", temp);
+					obj.put("name", oriname);
+					obj.put("filename", filename);
 					obj.put("ext", ext);
 					jsonFile.add(obj);
 				}

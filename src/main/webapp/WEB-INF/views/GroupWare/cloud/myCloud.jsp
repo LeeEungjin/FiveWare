@@ -71,7 +71,8 @@
 		    $(".folder_rClick").css({display: "block", top: event.pageY + "px", left: event.pageX + "px"});
 		    $($(this)).css("border", "1px solid lightgray");
 		    
-		    $('.folder_rClick a').attr("href", "javascript:fileDelete('"+$(this).attr('title')+"');");
+		    $('.folder_rClick a:first-child').attr("href", "javascript:fileDelete('"+$(this).attr('title')+"');");
+		    $('.folder_rClick a:last-child').attr("href", "javascript:fileDownload('"+$(this).attr('title')+"');");
 		    
 		    $("div.rClick_modal").hide();
 		}).bind("click", function(event) {
@@ -85,8 +86,19 @@
 		});
 	}); // END
 	
+	// File Download
+	function fileDownload(name) { // name = filename, oriname
+		var names = name.split(',');
+		$('#oriname').val(names[1]);
+		$('#filename').val(names[0]);
+		
+		$('#frmFile').attr('action', './fileDown');
+		$('#frmFile').submit();
+	}
+	
 	function fileDelete(name) {
-		$('#name').val(name);
+		var filename = name.split(',')[0];
+		$('#filename').val(filename);
 		
 		$('#frmFile').attr('action', './fileDelete');
 		$('#frmFile').submit();
@@ -264,7 +276,7 @@
 		
 		<!-- submenu menu -->
 			<div class="fw_menu fw_selected" data-toggle="collapse" data-target=".fw_subselected" title="sub1">
-				기초정보
+				내 드라이브
 				<div class="fw_arrow sub1">
 					∧
 				</div>
@@ -272,10 +284,9 @@
 			
 			<div class="fw_subselected collapse in" id="sub1">
 				<ul>
-					<li> 선택1</li>
-					<li> 선택2</li>
-					<li> 선택3</li>
-					<li> 선택4</li>
+					<c:forEach items="${folderList}" var="folder" varStatus="count">
+						<li><a href="javascript:enterFolder('${filePath}', '${folder.name}')">${folder.name}</a></li>
+					</c:forEach>
 				</ul>
 			</div>
 			
@@ -391,7 +402,7 @@
 				<div class="cloud_contents_title">파일</div>
 				
 				<c:forEach items="${fileList}" var="file" varStatus="count"> 
-					<div class="cloud_dir" id="dir${count.count+index}" onclick="selectDirEffect(${count.count+index})" title="${file.name}">
+					<div class="cloud_dir" id="dir${count.count+index}" onclick="selectDirEffect(${count.count+index})" title="${file.filename},${file.name}">
 						<div class="cloud_dir_img">
 							<c:choose>
 								<c:when test="${fn:toLowerCase(file.ext) eq 'jpg' or fn:toLowerCase(file.ext) eq 'gif' or fn:toLowerCase(file.ext) eq 'png' or fn:toLowerCase(file.ext) eq 'jpeg'}">
@@ -466,6 +477,7 @@
 <div class="folder_rClick"> 
 	<div class="list-group">
 	    <a href="javascript:fileDelete();" class="list-group-item">삭제</a>
+	    <a href="javascript:fileDownload();" class="list-group-item">다운로드</a>
   	</div>
 </div>
 
@@ -473,7 +485,8 @@
 <form id="frmFile" action="./fileUpload" method="POST" enctype="multipart/form-data" style="display: none;">
 	<input type="text" name="path" value="${filePath}">
 	<input type="file" name="file" id="file">
-	<input type="text" name="name" id="name">
+	<input type="text" name="oriname" id="oriname"><!-- oriname -->
+	<input type="text" name="filename" id="filename"><!-- filename -->
 </form>
 
 </body>

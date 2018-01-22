@@ -5,6 +5,10 @@
   
   <mapper namespace="cloudFileMapper">
   
+  	<select id="selectList" parameterType="String" resultType="com.five.ware.cloud.CloudFileDTO">
+  		select * from cloudfile where oriname=#{oriname}
+  	</select>
+  
   	<select id="selectOne" parameterType="String" resultType="com.five.ware.cloud.CloudFileDTO">
   		select * from cloudfile where filename=#{filename}
   	</select>
