@@ -241,3 +241,7 @@
 	display: inline-block;
 	float: left;
 }
+
+#fw_mainwrap {
+       margin-left: 21% !important;
+}

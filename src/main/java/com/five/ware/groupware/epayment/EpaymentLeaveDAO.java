@@ -38,7 +38,7 @@ public class EpaymentLeaveDAO {
 	}
 	
 	public EpaymentLeaveDTO myepaymentList2(EpaymentLeaveDTO epaymentLeaveDTO) throws Exception{
-		
+		System.out.println(epaymentLeaveDTO.getDocunum());
 		EpaymentLeaveDTO ar = sqlSession.selectOne(NAMESPACE+"myepaymentList2", epaymentLeaveDTO);
 	
 		return ar;
@@ -168,6 +168,12 @@ public class EpaymentLeaveDAO {
 		map.put("rowNum", rowNum);
 
 		int result = sqlSession.selectOne(NAMESPACE+"myepaymentListCount", map);
+		
+		return result;
+	}
+	
+	public int epaymentUpdate(EpaymentDTO epaymentDTO) throws Exception{
+		int result = sqlSession.update(NAMESPACE+"epaymentUpdate", epaymentDTO);
 		
 		return result;
 	}

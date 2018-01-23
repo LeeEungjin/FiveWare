@@ -21,6 +21,13 @@ $(function(){
 		alert(message);
 	}
 	
+	var kind = "${kind}";
+	
+	if(kind=="code"){
+		kind="title";
+	}
+	
+	$("#ar_searchTitle").val(kind);
 	
 	 /*page 처리  */
 	  $(".eb_list").click(function(){
@@ -203,9 +210,9 @@ $(function(){
 						
 						<input type="submit" id="ar_searchBtn" value="검색">
 						
-						<input type="text" id="ar_searchInput" name="search">
+						<input type="text" id="ar_searchInput" name="search" value="${search }">
 						
-							<select id="ar_searchTitle" name="kind">
+							<select id="ar_searchTitle" name="kind"  >
 								<option value="title">문서 제목</option>
 								<option value="draftdate">기안 날짜</option>
 								<option value="kind">문서 유형</option>

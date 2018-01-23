@@ -58,13 +58,15 @@ public class GroupWareEpaymentContoller {
 		
 		model.addAttribute("title", state+"함");
 		model.addAttribute("state", state);
+		model.addAttribute("kind", listData.getKind());
+		model.addAttribute("search", listData.getSearch());
 		
 		return "GroupWare/epayment/epaymentTotalList";
 	}
 	
 	//수신함
 		@RequestMapping(value="epaymentReceive")
-		public String myepaymentList(@RequestParam(defaultValue="0", required=false)int statenum,String code,HttpSession session, Model model, ListData listdata) throws Exception{
+		public String myepaymentList(@RequestParam(defaultValue="0", required=false)int statenum,String code,HttpSession session, Model model, ListData listData) throws Exception{
 			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 			code = memberDTO.getCode();
 			
@@ -78,10 +80,12 @@ public class GroupWareEpaymentContoller {
 				title="반려함";
 			}
 			
-			epaymentLeaveService.myepaymentList(statenum, code,model, listdata);
+			epaymentLeaveService.myepaymentList(statenum, code,model, listData);
 			
 			model.addAttribute("type", statenum);
 			model.addAttribute("title", title);
+			model.addAttribute("kind", listData.getKind());
+			model.addAttribute("search", listData.getSearch());
 			
 			return "GroupWare/epayment/epaymentReceive";
 		}
@@ -140,6 +144,8 @@ public class GroupWareEpaymentContoller {
 		 }else{
 			 model.addAttribute("perPage", perPage);
 		 }
+		 
+		model.addAttribute("search", listData.getSearch());
 		
 		return "GroupWare/epayment/formList";
 	}
@@ -222,6 +228,9 @@ public class GroupWareEpaymentContoller {
 	public String storageList(String code, String state, HttpSession session, ListData listData, Model model) throws Exception{
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		
+		model.addAttribute("kind", listData.getKind());
+		model.addAttribute("search", listData.getSearch());
+		
 		code = memberDTO.getCode();
 		
 		epaymentLeaveService.storageList(code, state, listData, model);
@@ -281,18 +290,19 @@ public class GroupWareEpaymentContoller {
 	
 		String message = "결재 요청 실패";
 		
-		if(result>0 && result2>0 && result3>0){
-			if(state.equals("임시저장")){
+		if(result>0 && result2>0){
+			if((oriname.length==0 && state.equals("임시저장")) || (result3>0 && state.equals("임시저장"))){
 				message="임시저장 되었습니다.";				
-			}else{
-				message="결재 요청되었습니다.";
-			}
+				}	else{
+					message="결재 요청되었습니다.";
+				}
 		}
+		
 		
 		ModelAndView mv = new ModelAndView();
 		
 		mv.addObject("message", message);
-		mv.addObject("addr", "formList");
+		mv.addObject("addr", "formList?curPage=1");
 		mv.setViewName("common/result");
 		
 		return mv;
@@ -346,6 +356,33 @@ public class GroupWareEpaymentContoller {
 		
 		epaymentLeaveService.sendEpaymentList(code, listData, model);
 		
+		model.addAttribute("kind", listData.getKind());
+		model.addAttribute("search", listData.getSearch());
+		
 		return "GroupWare/epayment/myEpayment";
+	}
+	
+	@RequestMapping(value="epaymentUpdate", method=RequestMethod.POST)
+	public ModelAndView epaymentUpdate(EpaymentDTO epaymentDTO) throws Exception{
+		System.out.println("들어오니");
+		System.out.println(epaymentDTO.getTitle());
+		System.out.println(epaymentDTO.getContents());
+		System.out.println(epaymentDTO.getDocunum());
+		int result = epaymentLeaveService.epaymentUpdate(epaymentDTO);
+		
+		String message = "수정 실패";
+		
+		if(result>0){
+			message="결재 요청되었습니다.";
+		}
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("message", message);
+		mv.addObject("addr", "./myEpayment");
+		
+		mv.setViewName("common/result");
+		
+		return mv;
 	}
 }

@@ -76,9 +76,13 @@
 					alert("결재선을 선택하세요.");
 				}else{
 					var state=$(this).val();
-					alert(state);
-					$("#frm").attr("action", "./epaymentInsert?state="+state);
-					$("#frm").submit();
+					var conf=confirm("임시저장 후 수정 시 파일과 결재선 수정이 불가합니다. \n저장하시겠습니까?");
+					if(conf){
+						$("#frm").attr("action", "./epaymentInsert?state="+state);
+						$("#frm").submit();
+					}else{
+						alert("ㅋㅋ");
+					}
 					
 				}
 					

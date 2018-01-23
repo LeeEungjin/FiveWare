@@ -234,4 +234,10 @@ public class EpaymentLeaveService {
 		model.addAttribute("pager", pager);
 		
 	}
+	
+	public int epaymentUpdate(EpaymentDTO epaymentDTO) throws Exception{
+		int result = epaymentLeaveDAO.epaymentUpdate(epaymentDTO);
+		
+		return result;
+	}
 }

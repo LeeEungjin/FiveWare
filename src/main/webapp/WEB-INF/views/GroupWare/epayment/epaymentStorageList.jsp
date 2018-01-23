@@ -10,11 +10,13 @@
  
  <link href="${url}/resources/css/GroupWare/epayment/epaymentPendency.css" rel="stylesheet">
   <script src="${url }/resources/SE2/js/HuskyEZCreator.js"></script>
+   <script src="//cdn.ckeditor.com/4.8.0/basic/ckeditor.js"></script>
 
 <title>Insert title here</title>
 </head>
 <script type="text/javascript">
 $(function(){
+	
 	
 	
 	var message="${message}";
@@ -23,6 +25,13 @@ $(function(){
 		alert(message);
 	}
 	
+	var kind = "${kind}";
+	
+	if(kind=="code"){
+		kind="title";
+	}
+	
+	$("#ar_searchTitle").val(kind);
 	 /*page 처리  */
 
 	 
@@ -101,9 +110,27 @@ $(function(){
 				"docunum":docunum
 			}, success:function(data){
 				$("#eb_modal_table").html(data);
+				CKEDITOR.replace('ar_tableTextArea1',{
+					width: '100%',
+					height: 300
+				});
+				$("#ar_approvalUpdate").val("결재 요청");
+				$("#ar_approvalUpdate").attr("id", "ar_approvalUpOk");
 			}
 		});
 	 });
+	
+	$(".modal").on("click", "#ar_approvalUpOk" ,function(){
+		var title = $("#ar_uptitle").val();
+		var contents =$("#ar_tableTextArea1").val();
+		var docunum =$(this).attr("title");
+		
+		$.post("./epaymentUpdate", {title:title, contents:contents, docunum:docunum},function(data){
+			alert("요청되었습니다.");
+			location.reload();
+			
+		})
+	});
 });
 
 </script>
@@ -204,7 +231,7 @@ $(function(){
 						
 						<input type="submit" id="ar_searchBtn" value="검색">
 						
-						<input type="text" id="ar_searchInput" name="search">
+						<input type="text" id="ar_searchInput" name="search" value="${search}">
 						
 							<select id="ar_searchTitle" name="kind">
 								<option value="title">문서 제목</option>

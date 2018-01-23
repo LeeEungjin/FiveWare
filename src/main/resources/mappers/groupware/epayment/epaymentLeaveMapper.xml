@@ -26,7 +26,8 @@
   	</if>
   	<if test="rowNum.kind=='state'">
   	 and e.state like '%' || #{rowNum.search} || '%'
-  	</if>) N)
+  	</if>
+  	order by e.num) N)
   	where R between #{rowNum.startRow} and #{rowNum.lastRow}
   </select>
   
@@ -53,7 +54,7 @@
   	select * from epaymentleave where docunum=#{docunum} 
   	<choose>
   		<when test="ranking==0">
-  			and ranking = #{ranking}  and statenum='0'
+  			and ranking = #{ranking}  and statenum='0' and state != '임시저장'
   		</when>
   		
   		<when test="ranking==-1">
@@ -153,7 +154,7 @@
 	  	<if test="rowNum.kind=='state'">
 	 	 	and  state like '%' || #{rowNum.search} || '%'
 	  	</if>
- 	 ) N)
+ 	order by num ) N)
  	where R between #{rowNum.startRow} and #{rowNum.lastRow}
  </select>
  
@@ -223,4 +224,7 @@
  	select * from fivefile where code=#{docunum}
  </select> 
  
+ <update id="epaymentUpdate" parameterType="EpaymentDTO">
+ 	update epayment set title=#{title}, contents=#{contents} where docunum=#{docunum}
+ </update>
  </mapper>
