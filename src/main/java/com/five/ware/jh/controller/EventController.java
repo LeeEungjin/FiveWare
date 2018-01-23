@@ -1,6 +1,9 @@
 package com.five.ware.jh.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -114,5 +117,24 @@ public class EventController {
 		rd.addFlashAttribute("message", message);
 		
 		return "redirect:./eventRegist";
+	}
+	
+	@RequestMapping(value="eventRecord")
+	@ResponseBody
+	public ModelAndView eventListS() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		Calendar ca = Calendar.getInstance();
+		
+		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+		String sysdate = sd.format(ca.getTime());
+		
+		mv=eventService.eventListS();
+		
+		mv.addObject("sysdate", sysdate);
+		mv.setViewName("srm/event/eventRecord");
+		
+		return mv;
+		
 	}
 }

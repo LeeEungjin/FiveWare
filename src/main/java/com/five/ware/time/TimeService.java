@@ -25,7 +25,9 @@ public class TimeService {
 	
 	public ModelAndView selectOneList(String memberCode)throws Exception{
 		ModelAndView mv=new ModelAndView();
+		
 		List<TimeDTO> ar=new ArrayList<TimeDTO>();
+		
 		ar=timeDAO.selectOneList(memberCode);
 		JSONArray json = new JSONArray(); // []
 
