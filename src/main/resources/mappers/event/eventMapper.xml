@@ -34,6 +34,10 @@
 		where R between #{startRow} and #{lastRow}
 	</select>
 	
+	<select id="eventListS" resultType="EventDTO">
+		select * from event 
+	</select>
+	
 	<select id="totalCount" resultType="int">
 		select nvl(count(eventnum), 0) from event
 	</select>

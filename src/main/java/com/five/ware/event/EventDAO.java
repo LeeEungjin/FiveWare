@@ -63,5 +63,9 @@ public class EventDAO {
 	public int getNum()throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getNum");
 	}
+	
+	public List<EventDTO> eventListS() throws Exception{
+		return sqlSession.selectList(NAMESPACE+"eventListS");
+	}
 
 }

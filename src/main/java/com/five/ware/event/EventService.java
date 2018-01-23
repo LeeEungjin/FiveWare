@@ -8,6 +8,8 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -166,6 +168,29 @@ public class EventService {
 		result=uploadDAO.deleteNum(eventNum);
 		
 		return result;
+	}
+	
+	public ModelAndView eventListS() throws Exception{		
+		List<EventDTO> ar = eventDAO.eventListS();
+		
+		ModelAndView mv = new ModelAndView();
+		
+		JSONArray json = new JSONArray();
+		
+		for(EventDTO eventDTO : ar){
+			JSONObject obj = new JSONObject();
+
+			obj.put("title", eventDTO.getEventName());
+			obj.put("start", eventDTO.getEventSdate());
+			obj.put("end", eventDTO.getEventEdate());
+			
+			json.add(obj);
+		}
+		System.out.println(json);
+		
+		mv.addObject("list1", json);
+		
+		return mv;
 	}
 
 
