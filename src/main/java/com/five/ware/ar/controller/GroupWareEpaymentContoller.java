@@ -385,4 +385,19 @@ public class GroupWareEpaymentContoller {
 		
 		return mv;
 	}
+	
+	@RequestMapping(value="epaymentDelete", method=RequestMethod.POST)
+	@ResponseBody
+	public String epaymentDelete(String docunum) throws Exception{
+		System.out.println("삭제되거라!!");
+		int result = epaymentLeaveService.epaymentDelete(docunum);
+		
+		String message="삭제 실패";
+		
+		if(result>0){
+			message="삭제되었습니다.";
+		}
+		
+		return message;
+	}
 }

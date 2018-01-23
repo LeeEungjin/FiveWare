@@ -86,6 +86,7 @@
 						         
 						         <c:if test="${docuC.state=='임시저장' }">
 						         		<input type="button" class="btn btn-default" id="ar_approvalUpdate" title="${docuC.docunum }" value="수정" >
+						         		<input type="button" class="btn btn-default" id="ar_approvalDelete" title="${docuC.docunum }" value="삭제" >
 						         </c:if>
 						        </div>
 						        

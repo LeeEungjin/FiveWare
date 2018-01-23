@@ -34,7 +34,7 @@
 		});
 
 		//전송버튼 클릭이벤트
-		$("#ar_signAsk").click(
+		$(".ar_signAsk").click(
 				function() {
 					
 					var num = document.getElementsByClassName("ar_draftrank").length;
@@ -89,7 +89,7 @@
 				
 		});
 		
-		$("#ar_signLine").click(function(){
+		$(".ar_signLine").click(function(){
 			 $("#ar_tempWrap").html(""); 
 			 
 			$.ajax({
@@ -221,6 +221,10 @@
 				}
 		 });
 			
+			$(".ar_signCen").click(function(){
+				location.href="./formList?curPage=1";
+			});
+			
 			$("#ar_signInsertBtn").click(function(){
 				var num=document.getElementsByClassName("ar_resultA");
 				var mem = document.getElementsByClassName("ar_dataname");
@@ -261,18 +265,36 @@
 				
 			});
 			
+		
+			
+			var i = 0;	
 			$("#ar_fileInsert").click(function(){
-				var add = " <input type='file' class='epaymentFile' name='oriname' id='ar_fileInsert'>";
-				add=add+"<input type=hidden name='filename' value='test'>";
+				
+				var add = "<div id=ar_ff"+i+" class=ar_ffWrap>";
+				add =add+ " <input type='file' class='epaymentFile' name='oriname' id='ar_fileInsert' >";
+				add=add+"<input type=hidden name='filename' value='test'><span id='aa' class='ar_filedeleted' title='ar_ff"+i+"'>X</span>";
+				add= add+"</div>";
+				
+				
+				
 				var num = document.getElementsByClassName("epaymentFile").length;
 				
 				if(num==3){
 					alert("파일은 최대 3개까지 가능합니다.");
+					
 				}else{
 					$("#ar_fileWrap").append(add);
+					i++;
 				}
 				
 			});
+			
+			$("#ar_fileWrap").on("click", ".ar_filedeleted", function(){
+				var i = $(this).attr("title");
+				
+				$("#"+i).remove();
+			});
+		
 			
 		/* 	$(".epaymentFile").click(function(){
 				var add="<input type='hidden' name='filename'>";
@@ -325,6 +347,11 @@
 <div id="fw_container">
 	<!-- submenu -->
 	<div id="fw_subcontainer">
+		<!-- submenu banner -->
+		<div id="fw_subbanner">
+			전자결재
+		</div>
+		<!-- submenu banner end -->
 	
 		<div class="fw_menu " data-toggle="collapse" data-target=".fw_subselected" title="sub1">
 				전체 결재함
@@ -384,10 +411,10 @@
 			
 	<div id="ar_explantBtnWrap">
 		<div id="ar_explantBtn">
-			<input type="button" value="결재선" class="ar_btnStyle" id="ar_signLine1">
-			<input type="button" value="결재요청" class="ar_btnStyle" id="ar_signAsk" title="미결" >
+			<input type="button" value="결재선" class="ar_btnStyle ar_signLine" id="ar_signLine1" data-toggle="modal" data-target="#ar_positionInsert" >
+			<input type="button" value="결재요청" class="ar_btnStyle ar_signAsk" id="ar_signAsk" title="미결" >
 			<input type="button" value="임시저장" class="ar_btnStyle1 ar_storage"  id="ar_signno">
-			<input type="button" value="취소" class="ar_btnStyle1" id="ar_signCen">
+			<input type="button" value="취소" class="ar_btnStyle1 ar_signCen"  id="ar_signCen">
 		</div>
 	</div>
 	
@@ -461,10 +488,10 @@
 	
 	<div id="ar_explantBtnWrap">
 		<div id="ar_explantBtn">
-			<input type="button" value="결재선" class="ar_btnStyle" id="ar_signLine" data-toggle="modal" data-target="#ar_positionInsert" >
-			<input type="button" value="결재요청" class="ar_btnStyle" id="ar_signAsk" title="미결" >
+			<input type="button" value="결재선" class="ar_btnStyle ar_signLine" id="ar_signLine" data-toggle="modal" data-target="#ar_positionInsert" >
+			<input type="button" value="결재요청" class="ar_btnStyle ar_signAsk" id="ar_signAsk" title="미결" >
 			<input type="button" value="임시저장" class="ar_btnStyle1 ar_storage" id="ar_sign" >
-			<input type="button" value="취소" class="ar_btnStyle1" id="ar_sign2">
+			<input type="button" value="취소" class="ar_btnStyle1 ar_signCen"  id="ar_sign2">
 		</div>
 	</div>
 	

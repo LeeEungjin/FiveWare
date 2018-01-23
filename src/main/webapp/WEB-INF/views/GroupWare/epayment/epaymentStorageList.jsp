@@ -112,7 +112,7 @@ $(function(){
 				$("#eb_modal_table").html(data);
 				CKEDITOR.replace('ar_tableTextArea1',{
 					width: '100%',
-					height: 300
+					height: 270
 				});
 				$("#ar_approvalUpdate").val("결재 요청");
 				$("#ar_approvalUpdate").attr("id", "ar_approvalUpOk");
@@ -125,12 +125,22 @@ $(function(){
 		var contents =$("#ar_tableTextArea1").val();
 		var docunum =$(this).attr("title");
 		
-		$.post("./epaymentUpdate", {title:title, contents:contents, docunum:docunum},function(data){
+		 $.post("./epaymentUpdate", {title:title, contents:contents, docunum:docunum},function(data){
 			alert("요청되었습니다.");
 			location.reload();
 			
-		})
+		}) 
 	});
+	
+	$(".modal").on("click", "#ar_approvalDelete", function(){
+		var docunum = $(this).attr("title");
+		
+		$.post("./epaymentDelete", {docunum:docunum}, function(data){
+			alert(data);
+			location.reload();
+		});
+	});
+	
 });
 
 </script>

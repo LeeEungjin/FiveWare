@@ -237,7 +237,29 @@ public class EpaymentLeaveService {
 	
 	public int epaymentUpdate(EpaymentDTO epaymentDTO) throws Exception{
 		int result = epaymentLeaveDAO.epaymentUpdate(epaymentDTO);
+		int result2 = epaymentLeaveDAO.epaymentUpdateState(epaymentDTO);
+		int result3 = epaymentLeaveDAO.epaymentUpdateState2(epaymentDTO);
 		
-		return result;
+		int end = 0;
+		
+		if(result>0 && result2>0 && result3>0){
+			end=1;
+		}
+		
+		return end;
+	}
+	
+	public int epaymentDelete(String docunum) throws Exception{
+		int result = epaymentLeaveDAO.epaymentDelete(docunum);
+		int result2 = epaymentLeaveDAO.epaymentDelete2(docunum);
+		int result3 = epaymentLeaveDAO.epaymentDelete3(docunum);
+		
+		int end = 0;
+		
+		if(result>0 && result2>0 && result3>0){
+			end=1;
+		}
+		
+		return end;
 	}
 }

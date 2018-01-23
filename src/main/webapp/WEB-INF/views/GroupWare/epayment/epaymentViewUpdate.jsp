@@ -30,8 +30,11 @@
 						         		<td colspan="3"><textarea rows="" cols="" name="contents" id="ar_tableTextArea1" > ${docuC.contents }</textarea></td>
 						         	</tr>
 						         
+						        <tr>
+						        	<td colspan="4"> * 임시저장 후 결재요청 시 결재선과 파일을 변경할 수 없습니다.</td>
+						              
+						         </tr>
 						         </table>
-						        <span>* 임시저장 후 결재요청 시 결재선과 파일을 변경할 수 없습니다.</span>
 						        </form>
 						      	
 						          

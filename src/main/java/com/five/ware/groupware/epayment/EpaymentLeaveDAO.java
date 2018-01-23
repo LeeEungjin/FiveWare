@@ -38,7 +38,6 @@ public class EpaymentLeaveDAO {
 	}
 	
 	public EpaymentLeaveDTO myepaymentList2(EpaymentLeaveDTO epaymentLeaveDTO) throws Exception{
-		System.out.println(epaymentLeaveDTO.getDocunum());
 		EpaymentLeaveDTO ar = sqlSession.selectOne(NAMESPACE+"myepaymentList2", epaymentLeaveDTO);
 	
 		return ar;
@@ -178,4 +177,33 @@ public class EpaymentLeaveDAO {
 		return result;
 	}
 	
+	public int epaymentUpdateState(EpaymentDTO epaymentDTO) throws Exception{
+		int result = sqlSession.update(NAMESPACE+"epaymentUpdateState", epaymentDTO);
+		
+		return result;
+	}
+	
+	public int epaymentUpdateState2(EpaymentDTO epaymentDTO) throws Exception{
+		int result = sqlSession.update(NAMESPACE+"epaymentUpdateState2", epaymentDTO);
+		
+		return result;
+	}
+	
+	public int epaymentDelete(String docunum) throws Exception{
+		int result = sqlSession.delete(NAMESPACE+"epaymentDelete", docunum);
+		
+		return result;
+	}
+	
+	public int epaymentDelete2(String docunum) throws Exception{
+		int result = sqlSession.delete(NAMESPACE+"epaymentDelete2", docunum);
+		
+		return result;
+	}
+	
+	public int epaymentDelete3(String docunum) throws Exception{
+		int result = sqlSession.delete(NAMESPACE+"epaymentDelete3", docunum);
+		
+		return result;
+	}
 }

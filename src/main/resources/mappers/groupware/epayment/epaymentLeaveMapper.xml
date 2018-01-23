@@ -227,4 +227,24 @@
  <update id="epaymentUpdate" parameterType="EpaymentDTO">
  	update epayment set title=#{title}, contents=#{contents} where docunum=#{docunum}
  </update>
+ 
+ <update id ="epaymentUpdateState" parameterType="EpaymentDTO">
+ 	update epayment set state='미결' where docunum=#{docunum}
+ </update>
+ 
+ <update id ="epaymentUpdateState2" parameterType="EpaymentDTO">
+ 	update epaymentleave set state='미결' where docunum=#{docunum}
+ </update> 
+ 
+ <delete id="epaymentDelete" parameterType="String">
+ 	delete from epayment where docunum=#{docunum}
+ </delete>
+ 
+<delete id="epaymentDelete2" parameterType="String">
+ 	delete from epaymentleave where docunum=#{docunum}
+ </delete> 
+ 
+ <delete id="epaymentDelete3" parameterType="String">
+ 	delete from fivefile where code=#{docunum}
+ </delete>
  </mapper>

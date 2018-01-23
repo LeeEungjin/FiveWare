@@ -437,3 +437,7 @@
 	display: inline-block;
 	float: left;
 }
+
+#ar_message{
+	width: 100%;
+}
