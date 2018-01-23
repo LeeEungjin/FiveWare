@@ -6,7 +6,7 @@
 <mapper namespace="eventMapper">
 
 	<select id="getNum" resultType="int">
-		select event_seq.nextval from dual
+		select notice_seq.nextval from dual
 	</select>
 	
 	<select id="eventDateList" parameterType="java.util.Map" resultType="com.five.ware.event.EventDTO">
@@ -47,7 +47,7 @@
   	</select>	
 	
 	<insert id="insert" parameterType="com.five.ware.event.EventDTO">
-		insert into event values (event_seq.nextval, #{temp}, #{eventName}, #{eventOption}, #{eventSdate}, #{eventEdate})
+		insert into event values (notice_seq.nextval, #{temp}, #{eventName}, #{eventOption}, #{eventSdate}, #{eventEdate})
 	</insert>
 	
 	<update id="update" parameterType="com.five.ware.event.EventDTO">
