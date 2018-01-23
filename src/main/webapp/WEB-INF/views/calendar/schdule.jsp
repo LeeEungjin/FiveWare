@@ -231,6 +231,7 @@ a:visited, a:hover, a:active {
 		                <!-- modal Body -->
 		                <div class="modal-body">
 		                    <form class='form-margin40' role='form' action="#" method='post' id='frmMeeting'>
+		                     	<input type="hidden" name="calendarId" value="${calendarId}">
 		                     	<div class='form-group'>
 		                            <label>예약날짜</label> 
 		                            <input type='date' class='form-control' id='reservDate' name='reservDate'>

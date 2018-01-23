@@ -256,6 +256,7 @@
     line-height: 38px;
 	background-color: yellow;
 	text-overflow: ellipsis;
+	overflow: hidden;
 }
 
 </style>
@@ -426,7 +427,7 @@
 								</c:otherwise>
 							</c:choose>
 						</div>
-						<div class="cloud_dir_text">${file.name}</div>
+						<div class="cloud_dir_text" data-toggle="tooltip" data-placement="bottom" title="${file.name}">${file.name}</div>
 					</div>
 				</c:forEach>
 			</div>

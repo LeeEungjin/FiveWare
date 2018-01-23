@@ -1,11 +1,6 @@
 package com.five.ware.eung.controller;
 
 
-
-import java.io.IOException;  
-
-import java.io.IOException;  
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.five.ware.calendar.CalendarEventDTO;
@@ -38,14 +34,11 @@ public class CalendarAjaxController {
 	
 	@RequestMapping(value="meetingRoomInsert", method=RequestMethod.POST)
 	public Map<String, Boolean> meetingRoomInsert(MeetingRoomDTO meetingRoomDTO) {
-		/*System.out.println(meetingRoomDTO.getMeetingName());
-		System.out.println(meetingRoomDTO.getReservDate());
-		System.out.println(meetingRoomDTO.getReservEndTime());
-		System.out.println(meetingRoomDTO.getReservStartTime());*/
 		boolean isc = false;
 		int result = 0;
 		try {
 			result = meetingRoomService.insert(meetingRoomDTO);
+			System.out.println("meetingRoomInsert - result : "+ result);
 			if(result > 0) {
 				isc = true;
 			}
@@ -61,6 +54,7 @@ public class CalendarAjaxController {
 	}
 	
 	@RequestMapping(value="meetingSearch", method=RequestMethod.POST)
+	@ResponseBody
 	public List<MeetingRoomDTO> meetingSearch(MeetingRoomDTO meetingRoomDTO) {
 		
 		List<MeetingRoomDTO> ar = null;

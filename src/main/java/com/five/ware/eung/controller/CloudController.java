@@ -68,7 +68,8 @@ public class CloudController {
 	
 	//FileUpload
 	@RequestMapping(value="fileUpload", method=RequestMethod.POST)
-	public String fileUpload(HttpSession session, MultipartFile file, String path) {
+	public ModelAndView fileUpload(HttpSession session, MultipartFile file, String path) {
+		ModelAndView mv = new ModelAndView();
 		FileSaver fileSaver = new FileSaver();
 		
 		try {
@@ -79,7 +80,10 @@ public class CloudController {
 			e.printStackTrace();
 		}
 		
-		return "redirect:./myCloud";
+		folderList(mv, session, path);
+		mv.setViewName("GroupWare/cloud/myCloud");
+		
+		return mv;
 	}
 	
 	// Create Folder
@@ -135,22 +139,6 @@ public class CloudController {
 		mv.setViewName("GroupWare/cloud/myCloud");
 		
 		return mv;
-	}
-	
-	private void sideFolderList(ModelAndView mv, HttpSession session, String path) {
-		String filepath = session.getServletContext().getRealPath(path);
-		
-		File f = new File(filepath);
-		if(!f.exists()) {
-			f.mkdirs();
-		}
-		
-		File[] files = f.listFiles();
-		if(files.length > 0) {
-			for (File file : files) {
-				System.out.println("this this this this this this this this");
-			}
-		}
 	}
 	
 	@SuppressWarnings("unchecked")
