@@ -31,12 +31,7 @@
 				<div id="lang_icon">
 					<i class="fa fa-globe" style="font-size:35px"></i>
 				</div>
-				<div id="lang_eng" class=" w3-round-xxlarge ">
-					<p id="lang_p">English</p>
-				</div>
-				<div id="lang_kor" class=" w3-round-xxlarge ">
-				 	<p id="lang_p">Korean</p>
-				</div>    
+			  
 			</div> 
 			
 			  <div id="menu_wrap">
@@ -217,13 +212,13 @@
                      
                      <a href="#">
                         <span class="srm_jk_inerp">
-                           <span class="srm_jk_bigdiv">공지사항</span>
+                           <span class="srm_jk_bigdiv">게시판</span>
                         </span>
                      </a> 
                      
                      <a href="./srm/storeNotice">
                         <span class="srm_jk_smalldiv">
-                           <span class="srm_jk_writing">공지사항</span>
+                           <span class="srm_jk_writing">자유 게시판</span>
                         </span>
                      </a>
                   </div>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="storeNoticeMapper">
+  
+  	<select	id="replyView" resultType="storeNoticeDTO">
+  		select * from storeNotice where num=#{num} and kind=#{kind}
+  	</select>
+  
+ 	<select id="getnum" resultType="int">
+  		select notice_seq.nextval from dual
+  	</select>
+  	
+	<update	id="update" parameterType="storeNoticeDTO">
+		update storeNotice set title=#{title}, contents=#{contents} where num=#{num}
+	</update>
+	
+	<update id="hitUpdate" >
+	  update storeNotice set hit=hit+1 where num=#{num}
+	  </update>
+	
+	
+	<delete id="delete" >
+		delete storeNotice where num=#{num}
+	</delete>
+	
+	<select id="selectOne" resultType="storeNoticeDTO">
+		select * from storeNotice where num=#{num} and kind='원글'
+	</select>
+	
+	
+	
+	<select id="getNum" resultType="int">
+  		select store_seq.nextval from dual
+  	</select>
+	
+	<insert id="insert" parameterType="storeNoticeDTO">
+
+		insert into storenotice values
+		(#{num},#{store},#{title},#{write},#{contents},sysdate,0,#{kind})
+	</insert>
+	
+	<select id="selectList" parameterType="com.five.ware.util.RowNum" resultType="storeNoticeDTO">
+		select * from
+		(select rownum R, S.*from
+		(select * from storenotice 
+			<if test="kind=='store'"> 
+				where store like '%'||#{search}||'%' 
+			</if>
+		
+			<if test="kind=='write'"> 
+				where write like '%'||#{search}||'%' 
+			</if>
+			
+			<if test="kind=='contents'"> 
+				where contents like '%'||#{search}||'%' 
+			</if>
+	 	order by num desc) S)
+		where R between #{startRow} and #{lastRow} and kind='원글'
+	</select>
+
+	<select id="totalCount" resultType="int" >
+		select nvl(count(num),0) from storenotice
+	</select>
+  
+  </mapper>
+ 

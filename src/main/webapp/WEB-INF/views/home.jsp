@@ -113,8 +113,8 @@
          <form action="" id="eb_frm"> 
           <div class="login" >
 
-              <input type="text" placeholder="id" class="loginid wrap" name="code" id="eb_code" value="180107-005">
-             <input type="text" placeholder="password" class="loginpw wrap" name="pw" value="180107-005">
+              <input type="text" placeholder="id" class="loginid wrap" name="code" id="eb_code" value="A001">
+             <input type="text" placeholder="password" class="loginpw wrap" name="pw" value="A001">
 
            	  아이디저장
              <div class="idsave wrap">
