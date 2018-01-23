@@ -38,7 +38,6 @@ public class MyPageController {
 	
 	//출퇴근 기록
 	@RequestMapping(value="timeRecord" ,method=RequestMethod.GET)
-	@ResponseBody
 	public ModelAndView timeRecord(String memberCode){
 		
 		ModelAndView mv=new ModelAndView();

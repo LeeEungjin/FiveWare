@@ -7,7 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 <c:import url="${url}/resources/temp/ref.jsp"></c:import> 
- <link href="${url }/resources/css/srm/store.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <link href="${url }/resources/css/srm/storeNotice.css" rel="stylesheet">
 
 <title>Insert title here</title>
 <script type="text/javascript">
@@ -43,7 +44,44 @@
 				document.frm.submit();
 			});
 	 
+			var num=${view.num};
+			
+			$.ajax({
+			 	type: "get",
+				url : "./storeNoticeReplyView",
+				data :  {"num" : num},
+				success : function(data){
+				
+					$("#eb_replyBox2").html(data);
+					
+				}
+			});
+			
+			$("#eb_replyBtn").click(function(){
+				var store='${member.store}';
+				var write='${member.name}';
+				var title="-";
+				var contents=$("#eb_replyText").val();
 
+			 	$.ajax({
+					type : "post",
+					url : "./storeReply",
+					data : {
+						"num" : num,
+						"store" : store,
+						"write" : write,
+						"title" : title,
+						"contents" : contents
+					},success : function(data){
+						location.reload();
+						$("#eb_replyBox2").html(data);
+					}
+				});
+					
+			});
+			
+		
+			
 	 
  });
  
@@ -113,92 +151,62 @@
 				<div class="eb_contents_text">
 				 	<span class="glyphicon glyphicon-file" id="eb_contents_text_p">자유게시판</span>
 				</div>
-				
-		
-			 	
-				<div id="eb_contents_box">
-				  <div class="eb_blank"></div>
-					
-					
-				<!-- 검색 -->
-				   <input type="hidden" name="curPage" value="1">
-					
-					
-				<form name="frm" action="./storeNotice" method="get">
-					<div id="eb_contents_box_div" >
-						<input type="hidden" name="curPage" value="1">
-						  	
-						  	<select name="kind">
-						  		<option value="store">지점명</option>
-						  		<option value="title">제목</option>
-						  		<option value="contents">내용</option>
-						  	</select>
-						  	
-						<input type="text" name="search">
-						
-						  <button class="btn btn-default">search</button>
-						
-						</div>
-				</form>		
-				   <!--검색 끝 -->
-				 
-				</div> 
+			
 				
 				
 				<div id="eb_contents_table">
 				  	
              				
-             		<table class="table">
+             		<table id="eb_viewTable" >
+						   <tr>
+						   	<td colspan="4" class="eb_tableTitle"> ${view.title }</td>
 						   
-						<thead id="eb_table_head">
+						   </tr>
+			
+						
 						    <tr>
-						     <th>No.</th>
-						     <th>지점명</th>
-						     <th>제목</th>
-						     <th>글쓴이</th>
-						     <th>조회수</th>				   
+						     <td class="eb_Wtable_td2">지점명 : ${view.store}</td>
+						 
+						     <td class="eb_Wtable_td2">글쓴이 : ${view.write}</td>
+								   
+						     <td class="eb_Wtable_td2">날짜 : ${view.regdate}</td>
+					
+						     <td class="eb_Wtable_td2">조회수 : ${view.hit} </td>
+				   
 						    </tr>
-						 </thead>
+					
+						    <tr>
+						    	<td colspan="4" id="eb_td">${view.contents}</td>
+						    </tr>
 						    
-						    <tbody >
-						    
-						    <c:forEach items="${list }" var="dto">
-						    	<tr>
-						    		<td>${dto.num }</td>
-						    		<td>${dto.store }</td>
-						    		<td><a href="./storeNoticeView?num=${dto.num}">${dto.title}</a></td>
-						    		<td>${dto.write }</td>
-						    		<td>${dto.hit}</td>	
-						    	</tr>
-						    
-						    </c:forEach>
-						    
-						   </tbody>
+						
 					 </table>
-
-	
 		</div>
+			
+		<c:if test="${member.store eq view.store}">
+			<a href="./storeNoticeDelete?num=${view.num}"><input type="button" value="삭제"  class="w3-button w3-black" ></a>
+			<a href="./storeNoticeUpdate?num=${view.num}"><input type="button" value="수정"  class="w3-button w3-black" ></a>
+		</c:if>	
+			<div id="eb_replyBox">
 		
-		<!-- page 처리 -->
-				<div id="eb_page">
-					<c:if test="${pager.curBlock gt 1}">
-						<span class="eb_list" title="${pager.startNum-1}">[이전]</span>
-					</c:if>
-					
-					<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-						<span class="eb_list" title="${i}">${i}</span>
-					</c:forEach>
-					
-					<c:if test="${pager.curBlock lt pager.totalBlock}">
-						<span class="eb_list" title="${pager.lastNum+1}">[다음]</span>
-					</c:if>
-				</div>  		  
-						  
-						  
-				<!-- page 처리 끝 -->
+			
+				<textarea id="eb_replyText"></textarea>
+				<input type="button" value="등록"  class="w3-button w3-black" id="eb_replyBtn">
+		
+			</div>
+			
+			<div id="eb_replyBox2">
 				
+			</div>
+			
+	
+		
+		
+		
 				
-		<a href="./storeNoticeWrite"><input type="button" value="신규등록"  class="w3-button w3-black" ></a>
+	
+		
+		
 	
 		
 		

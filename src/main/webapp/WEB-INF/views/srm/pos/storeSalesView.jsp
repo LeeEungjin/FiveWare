@@ -3,44 +3,33 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div id="eb_modal_div">
-<p>${list.store}</p>
-<p>${list.regdate} ${list.time}</p>
+<c:forEach items="${list}" var="dto" end="0">
+ <p>${dto.store}</p>
+<p>${dto.regdate} ${dto.time}</p>
+</c:forEach>
 </div>
 
+		<div id="eb_modal_div2">
 			<table id="eb_modalT1">
 				<tr>
 					<td>상품명</td>
+					<td>수량</td>
+					<td>금액</td>
 				</tr>
-			<c:forEach items="${ar1}" var="dto">
+			<c:forEach items="${list}" var="dto">
 				<tr>
-					<td class="eb_madalTr">${dto}</td>
+					<td class="eb_madalTd">${dto.product}</td>
+					<td class="eb_madalTd">${dto.salesAmount }</td>
+					<td class="eb_madalTd">${dto.productSales }</td>
 				</tr>
 			</c:forEach>
 			</table>
 			
-			<table id="eb_modalT2">
-				<tr>
-					<td>수량</td>
-				</tr>
-		<c:forEach items="${ar2}" var="dto">
-				<tr >
-					<td class="eb_madalTr">${dto}</td>
-				</tr>
-			</c:forEach> 
-			</table>
+		</div>
 			
-			<table id="eb_modalT3">
-				<tr>
-					<td>금액</td>
-				</tr>
-			<c:forEach items="${ar3}" var="dto">
-				<tr >
-					<td class="eb_madalTr">${dto}</td>
-				</tr>
-			</c:forEach> 
-			</table>
-			
-			<div id="eb_modal_div2">
-				<p id="eb_modal_p">총 금액 : ${list.totalPrice}</p>	
-			</div>
+			<div id="eb_modal_div3">
+				<c:forEach items="${list}" var="dto" end="0">
+				 <p id="eb_modal_p"> 총 금액 : ${dto.totalPrice}</p>
+				</c:forEach>
+			</div> 
 				

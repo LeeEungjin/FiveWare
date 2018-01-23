@@ -67,6 +67,7 @@ public class PosController {
 	//insert
 	@RequestMapping(value="storeSales",method=RequestMethod.POST)
 	public String storeSales(StoreSalesDTO storeSalesDTO,RedirectAttributes rd){
+
 		int result=0;
 		try {
 			result=storeSalesService.insert(storeSalesDTO);
@@ -118,6 +119,7 @@ public class PosController {
 	//pos
 	@RequestMapping(value="pos")
 	public ModelAndView pos(String menuKind){
+		
 		menuKind="coffee";
 		
 		ModelAndView mv=new ModelAndView();

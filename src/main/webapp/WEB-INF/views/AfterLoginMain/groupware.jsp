@@ -32,12 +32,7 @@
 				<div id="lang_icon">
 					<i class="fa fa-globe" style="font-size:35px"></i>
 				</div>
-				<div id="lang_eng" class=" w3-round-xxlarge ">
-					<p id="lang_p">English</p>
-				</div>
-				<div id="lang_kor" class=" w3-round-xxlarge ">
-				 	<p id="lang_p">Korean</p>
-				</div>    
+		  
 			</div> 
 			
 		 	 <div id="menu_wrap">

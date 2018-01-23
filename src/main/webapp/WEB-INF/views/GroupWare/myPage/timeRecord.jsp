@@ -57,7 +57,7 @@
 		      navLinks: true, // can click day/week names to navigate views
 		      editable: false,
 		      eventLimit: true, // allow "more" link when too many events
-		      events: ${list} 
+		      events: ${list}
 		    	 
 		});
 
@@ -152,23 +152,7 @@
 		<!-- contents -->
 				 <div id='calendar'></div>
 				
-				<%-- <table>
-					<tr>
-						<td>날짜</td>
-						<td>출근</td>
-						<td>퇴근</td>
-					</tr>
-					
-					<c:forEach items="${list }" var="dto">
-						<tr>
-							<td>${dto.regdate }</td>
-							<td>${dto.startTime }</td>
-							<td>${dto.lastTime }</td>
-						</tr>
-					
-					</c:forEach>
-				
-				</table> --%>
+			
 					
 		
 				

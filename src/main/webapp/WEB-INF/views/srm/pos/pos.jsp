@@ -23,6 +23,7 @@
 		
 		}
 		
+		//직원 리스트
 		$("#eb_staff_time").click(function(){
 			
 			var store='${member.store}';
@@ -44,7 +45,8 @@
 			
 		});
 		
-					
+		
+		    //직원 출근			
 			 	$("#eb_staffList").on("click",".eb_startTime",function(){
 			 		
 					var name=$(this).attr("title");
@@ -77,6 +79,8 @@
 					}
 				}); 
 			 	
+		    
+		    //직원 퇴근 
 			 	$("#eb_staffList").on("click",".eb_lastTime",function(){
 			
 					var name=$(this).attr("title");
@@ -107,6 +111,7 @@
 				}); 
 			 	
 			 	
+		    //메뉴
 			 	$(".b3").click(function(){
 			 		var number=$(this).val();
 			 	
@@ -142,7 +147,7 @@
 				 		$(".eb_menuTable").append("<tr class='eb_menuTable_tr"+menu+"'>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th product'><input type='text' class='eb_input' name='product' value="+menu+" readonly='readonly'></td>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' name='price' value="+price+" readonly='readonly' class='eb_input'></td>");
-				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' id='eb_amount"+menu+"' name='salesAmount' value='1' class='eb_input'></td>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' id='eb_amount"+menu+"' name='salesAmount' value='1' readonly='readonly' class='eb_input'></td>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+0+"</td>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' id='eb_price"+menu+"' name='productSales' value="+price+" readonly='readonly' class='eb_input'></td></tr>");
 				 		$(".eb_menuTable").append("</tr>");
@@ -208,7 +213,7 @@
 				 		$(".eb_menuTable").append("<tr class='eb_menuTable_tr"+menu+"'>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th product'><input type='text' class='eb_input' name='product' value="+menu+" readonly='readonly'></td>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' name='price' value="+price+" readonly='readonly' class='eb_input'></td>");
-				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' id='eb_amount"+menu+"' name='salesAmount' value='1' class='eb_input'></td>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' id='eb_amount"+menu+"' name='salesAmount' readonly='readonly' value='1' class='eb_input'></td>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+0+"</td>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' id='eb_price"+menu+"' name='productSales' value="+price+" readonly='readonly' class='eb_input'></td></tr>");
 				 		$(".eb_menuTable").append("</tr>");
@@ -237,7 +242,7 @@
 				 		$(".eb_menuTable").append("<tr class='eb_menuTable_tr"+menu+"'>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th product'><input type='text' class='eb_input' name='product' value="+menu+" readonly='readonly'></td>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' name='price' value="+price+" readonly='readonly' class='eb_input'></td>");
-				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' id='eb_amount"+menu+"' name='salesAmount' value='1' class='eb_input'></td>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' id='eb_amount"+menu+"' name='salesAmount' readonly='readonly' value='1' class='eb_input'></td>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+0+"</td>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' id='eb_price"+menu+"' name='productSales' value="+price+" readonly='readonly' class='eb_input'></td></tr>");
 				 		$(".eb_menuTable").append("</tr>");
@@ -311,8 +316,7 @@
 			 	
 			 	$("#eb_modal_contents1").on("click",".eb_modal_tr",function(){
 			 		var num=$(this).attr("title");
-			 		
-			 		
+			 
 			 		$.ajax({
 			 			type : "get",
 			 			url : "./ListView",
