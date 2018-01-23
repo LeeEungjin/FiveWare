@@ -1,9 +1,14 @@
 package com.five.ware.community;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
+
+import com.five.ware.erp.human.member.MemberDTO;
+import com.five.ware.file.FileDTO;
 
 @Repository
 public class BlackListDAO {
@@ -32,6 +37,16 @@ public class BlackListDAO {
 		return sqlSession.selectOne(namespace+"codeCheck", num);
 	}
 	
+	public List<String> writerList()throws Exception{
+		return sqlSession.selectList(namespace+"writerList");
+	}
 	
+	public MemberDTO blackList(String writer)throws Exception{
+		return sqlSession.selectOne(namespace+"blackList", writer);
+	}
+	
+	public FileDTO blackFile(String code)throws Exception{
+		return sqlSession.selectOne(namespace+"blackFile", code);
+	}
 	
 }

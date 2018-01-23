@@ -516,6 +516,12 @@
 	                           <span class="erp_jk_writing">조회</span>
 	                        </span>
 	                     </a>
+	                     
+	                     <a href="./community/blackList">
+	                        <span class="erp_jk_smalldiv">
+	                           <span class="erp_jk_writing">블랙 <br> 리스트</span>
+	                        </span>
+	                     </a>
 	                  </div>
 	                  <div class="erp_jk_erp">
 	                     

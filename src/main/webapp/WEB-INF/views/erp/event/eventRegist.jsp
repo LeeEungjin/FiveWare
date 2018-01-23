@@ -10,13 +10,16 @@
 	<c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 	<link href="${url}/resources/css/erp/eventRegist.css" rel="stylesheet">
 	<c:import url="${url}/resources/temp/ref.jsp"></c:import> 
-
+	<script src="//cdn.ckeditor.com/4.8.0/basic/ckeditor.js"></script>
+	
 <title>Insert title here</title>
 
 <script type="text/javascript">
 	$(function(){
 		var message = '${message}';
 		
+		CKEDITOR.replace('eventoption');
+		CKEDITOR.replace('updateEventOption');
 		
 		if(message != ""){
 			swal(message);
@@ -464,7 +467,7 @@
 								
 								<div class="form-group">
 							      <div id="area_text"><label class="jh_label" for="comment">이벤트 설명을 작성해주세요.</label></div> 
-							      <textarea name="eventOption" class="eventOption form-control form-control_area" rows="5"></textarea>
+							      <textarea id="updateEventOption" name="eventOption" class="eventOption form-control form-control_area" rows="5"></textarea>
 							    </div>
 							    
 							    <div>

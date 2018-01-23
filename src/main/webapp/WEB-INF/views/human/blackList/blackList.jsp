@@ -8,7 +8,7 @@
 
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
-	<link href="${url}/resources/css/srm/eventList.css" rel="stylesheet">
+	<link href="${url}/resources/css/human/blackList/blackList.css" rel="stylesheet">
 	<c:import url="${url}/resources/temp/ref.jsp"></c:import> 
 
 <title>Insert title here</title>
@@ -20,17 +20,6 @@
 		if(message != ""){
 			swal(message);
 		}
-		
-		
-		$(".list").click(function(){
-			var cur = $(this).attr("title");
-			
-			alert(cur);
-			
-			document.event_search_frm.curPage.value=cur;
-			document.event_search_frm.submit();
-		});
-		
 		
 	});
 	
@@ -127,61 +116,49 @@
 			<div id="fw_main_contents">
 				<div id="erp_jh_contents_title">
 					<div id="event_icon">icon</div>
-					<p id="event_title">이벤트 목록</p>
+					<p id="event_title">블랙리스트 관리</p>
 				</div>
 				<div id="erp_jh_event_sub">
 					
 					<div id="event_contents">
 						<p>　</p>
-						<p>각 지점에서 기간에 맞게 이벤트를 진행해 주시기 바랍니다.</p>
-						<p>포스터를 인쇄하여 광고해주시고, 이벤트에 대한 정보를 반드시 정독하시기 바랍니다.</p>
-						<p>이벤트 미진행시 불이익이 있으며, 진행이 불가한 지점은 본사로 연락해주시기 바랍니다.</p>
+						<p>게시물 신고를 3회 이상 받은 작성자 목록입니다.</p>
+						<p>블랙 리스트 목록을 보신후 개별 연락 바랍니다.</p>
+						<p>　</p>
 						<p>　</p>
 					</div>
-					
-				<!-- 검색 기능 -->
-						<form action="./eventList" name="event_search_frm" method="get">
-							<input type="hidden" name="perPage" value="5">
-							<input type="hidden" name="curPage">
-						</form>	
-				<!-- 검색 기능 끝 -->
 
 				</div>
 				
 				<!-- table -->
+				<c:forEach items="${blackList}" var="list" varStatus="i">
 					<div id="erp_jh_contents_table">
-							<c:forEach items="${eventList}" var="i" varStatus="j">
 							<div class="eventList">
 							
 								<div class="eventImg_div">
-									<img class="eventImg" src="${pageContext.request.contextPath}/resources/upload/${eventImg[j.index].filename}">
+									<img class="eventImg" src="${pageContext.request.contextPath}/resources/member/${file[i.index].filename}">
 								</div>
 								
 								<div class="eventText">
-									<div class="eventTitle">${i.eventName} (기간 : ${i.eventSdate}~${i.eventEdate})</div>
-									<div class="eventOption">${i.eventOption}</div>
-									<div class="eventFile"><a href="../../file/eventFileDown?filename=${eventImg[j.index].filename}&oriname=${eventImg[j.index].oriname}">첨부 파일 : ${eventImg[j.index].oriname}</a></div>
+									<div class="blackListName">[${list.code}] ${list.name}</div>
+									<div class="infoTable">
+										<p>부서 : ${list.temp} (직급 : ${list.rank})</p>
+										<p>입사일 : ${list.hiredate}</p>
+										<p>생년월일 : ${list.birth}</p>
+										<p>핸드폰 번호 : ${list.phone}</p>
+										<p>주소 : ${list.addr}</p>
+										<p>이메일 : ${list.email}</p>
+									</div>
 								</div>
 								
 							</div>
-							</c:forEach>
 					</div>
+				</c:forEach>
 				<!-- table 끝 -->
 				
 				
 				<div id="erp_jh_contents_bottom">
 					
-					<c:if test="${pager.curBlock gt 1}">
-						<span class="list" title="${pager.startNum-1}">[이전]</span>
-					</c:if>
-							
-					<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-						<span class="list" title="${i}">${i}</span>
-					</c:forEach>
-										
-					<c:if test="${pager.curBlock lt pager.totalBlock}">
-						<span class="list" title="${pager.lastNum+1}">[다음]</span>
-					</c:if>
 					
 				</div> 
 				

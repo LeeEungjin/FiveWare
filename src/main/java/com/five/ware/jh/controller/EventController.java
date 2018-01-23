@@ -80,8 +80,10 @@ public class EventController {
 	}
 	
 	@RequestMapping(value="eventList")
-	public ModelAndView eventList(int perPage, int curPage, ListData listData)throws Exception{
+	public ModelAndView eventList(int perPage, int curPage, ListData listData,HttpSession session)throws Exception{
 		ModelAndView mv=null;
+		
+		System.out.println(session.getServletContext().getRealPath("resources/upload"));
 		
 		mv=eventService.selectList(perPage, curPage, listData);
 		

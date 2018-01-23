@@ -11,8 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import com.five.ware.community.CommunityDTO;
-
-
+import com.five.ware.event.EventDTO;
 import com.five.ware.file.FileDTO;
 
 
@@ -42,7 +41,24 @@ public class FileController {
 		return mv;
 	}
 		
+	
+	@RequestMapping(value="eventFileDown")
+	public ModelAndView fileDown(EventDTO eventDTO, HttpSession session) throws Exception	{
+		
 
+		String filePath = session.getServletContext().getRealPath("resources/upload");
+		System.out.println("filePath : " +filePath);
+		
+		File file = new File(filePath, eventDTO.getFilename());
+		System.out.println("filename : "+eventDTO.getFilename());
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("down", file);
+		mv.addObject("oriname", eventDTO.getOriname());
+		mv.setViewName("fileDown");
+		
+		return mv;
+	}
+	
 
 
 	@RequestMapping(value="fileDown")

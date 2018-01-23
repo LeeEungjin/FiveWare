@@ -41,22 +41,25 @@ public class EventService {
 		return ar;
 	}
 	
+	//srm
 	public ModelAndView selectList(int perPage, int curPage, ListData listData)throws Exception{
 		
 		listData=new ListData(perPage);
 		listData.setCurPage(curPage);
 		
+		List<Object> map=new ArrayList<Object>();
 		int totalCount=eventDAO.totalCount(listData.makeRow());
 		ModelAndView mv=new ModelAndView();
 		List<EventDTO> eventList=eventDAO.selectList(listData.makeRow());
 		List<NumFileDTO> ar=new ArrayList<NumFileDTO>();
 		
-		System.out.println(eventList.size());
+		
 		
 		for(int i=0; i<eventList.size(); i++){
-			System.out.println(eventList.get(i).getEventNum());
-			/*ar.add(eventDAO.fileOne(eventList.get(i).getEventNum()));
-			System.out.println(ar.get(i).getFilename());*/
+			System.out.println("num : "+eventList.get(i).getEventNum());
+			ar.add(eventDAO.fileOne(eventList.get(i).getEventNum()));
+			System.out.println("fileName : "+ar.get(i).getFilename());
+			
 		}
 		
 		mv.addObject("eventImg", ar);
@@ -67,6 +70,7 @@ public class EventService {
 		return mv;
 	}
 	
+	//erp
 	public ModelAndView eventList(ListData listData)throws Exception{
 		ModelAndView mv=new ModelAndView();
 		List<EventDTO> eventList=eventDAO.selectList(listData.makeRow());
@@ -114,9 +118,13 @@ public class EventService {
 		MultipartFile [] files=eventDTO.getFiles();
 		int result=0;
 		
+		//eventDTO.setEventOption(eventDTO.getEventOption().replaceAll("\n\r", "<br>"));
+		
 		result=eventDAO.insert(eventDTO);
 		
 		int num=eventDAO.getNum()-1;
+		
+		
 		
 		if(files!=null){
 			for(MultipartFile multipartFile :files){
