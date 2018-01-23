@@ -304,6 +304,7 @@
 	
 		var i =0;
 	function tableInsert(code){
+		
 		$.ajax({
 			type:"GET",
 			url:"./memberSelect",
@@ -312,9 +313,15 @@
 			}, success:function(data){
 				
 					var boo = true;
+					
+					if($("#ar_meCode").attr("title")==data.code){
+						alert("자신에게 등록할 수 없습니다.");
+						boo=false;
+					}
+				 
 				$(".ar_resultA").each(function(){
 					
-					if(data.code==$(this).attr("title")){
+					 if(data.code==$(this).attr("title")){
 						alert("이미 결재선에 등록되어있습니다.");
 						boo=false;
 					}

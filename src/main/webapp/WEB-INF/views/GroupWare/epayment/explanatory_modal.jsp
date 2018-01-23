@@ -52,9 +52,9 @@
 					   			<div id="ar_groupResultTable">
 					   				<table id="ar_resultTable" >
 					   					<tbody  id="ar_resultTableBody">
-						   					<tr >
+						   					<tr id="ar_meCode" title=${member.code }>
 						   						<td id="ar_tableBlank" class="ar_tabletds ar_end"></td>
-						   						<td id="ar_tabletd2" class="ar_tabletds">결재</td>
+						   						<td id="ar_tabletd2" class="ar_tabletds">요청</td>
 						   						<td id="ar_tabletd3" class="ar_tabletds">${member.name } 기안 ${member.temp }</td>
 						   					</tr>
 					   					</tbody>

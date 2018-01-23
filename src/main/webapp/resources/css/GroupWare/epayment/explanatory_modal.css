@@ -80,6 +80,7 @@
 	background-color: #dbdbdb;
 	padding-left:2%;
 	border: 1px solid gray;
+	overflow: scroll;
 }
 
 #ar_resultTable{
