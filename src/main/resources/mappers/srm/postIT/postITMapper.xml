@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="postITMapper">
+	
+	<select id="postList" parameterType="String" resultType="com.five.ware.postIT.PostITDTO">
+		select * from postit where store=#{store}
+	</select>
+	
+	<insert id="postInsert" parameterType="com.five.ware.postIT.PostITDTO">
+		insert into postit values(post_seq.nextval, #{store}, sysdate, #{contents}, #{skin})
+	</insert>
+	
+	<select id="postView" parameterType="int" resultType="com.five.ware.postIT.PostITDTO">
+		select * from postit where num=#{num}
+	</select>
+	
+	<delete id="postDelete" parameterType="int">
+		delete postit where num=#{num}
+	</delete>
+
+</mapper>

@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.five.ware.erp.menuRegist.MenuRegistService;
+import com.five.ware.postIT.PostITService;
 import com.five.ware.srm.staff.StaffDTO;
 import com.five.ware.srm.staff.StaffService;
 import com.five.ware.srm.staff.StaffTimeDTO;
@@ -30,6 +31,8 @@ public class PosController {
 	MenuRegistService menuRegistService;
 	@Inject
 	StoreSalesService storeSalesService;
+	@Inject
+	private PostITService postitService;
 	
 	
 	
@@ -117,10 +120,12 @@ public class PosController {
 	
 	//pos
 	@RequestMapping(value="pos")
-	public ModelAndView pos(String menuKind){
+	public ModelAndView pos(String menuKind, String store){
+		ModelAndView mv=new ModelAndView();
+		
+		System.out.println("store:"+store);
 		menuKind="coffee";
 		
-		ModelAndView mv=new ModelAndView();
 		
 		Calendar ca = Calendar.getInstance();
 		
@@ -129,11 +134,13 @@ public class PosController {
 		
 		try {
 			mv=menuRegistService.posMenu(menuKind);
+			mv.addObject("postList", postitService.postList(store));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		mv.addObject("sysdate", sysdate);
+		/*mv.setViewName("srm/pos/pos?store="+store);*/
 		
 		return mv;
 	}

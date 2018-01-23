@@ -7,8 +7,9 @@
 	    }
 		.wrap{
 			width: 90%;
-			height : 100%;
-			margin: 0 auto;
+			height: 100%;
+			margin-left: 5%;
+			float: left;
 		}
 		.logo{
 			width: 100%;
@@ -370,3 +371,12 @@
 			margin-right: 20px;
 		}
 		
+		
+/* /////////포스트잇/////////// */
+
+#postList{
+	height: 100%;
+	width: 5%;
+	float: right;
+	background-color: #ffffd9;
+}
