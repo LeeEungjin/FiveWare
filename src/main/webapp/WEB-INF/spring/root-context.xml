@@ -6,6 +6,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+		<context:component-scan base-package="com.five.ware.project"></context:component-scan>
 		<context:component-scan base-package="com.five.ware.cloud"></context:component-scan>
 		<context:component-scan base-package="com.five.ware.meeting"></context:component-scan>
 		<context:component-scan base-package="com.five.ware.calendar"></context:component-scan>
