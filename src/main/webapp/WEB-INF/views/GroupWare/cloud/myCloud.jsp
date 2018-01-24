@@ -86,6 +86,11 @@
 		});
 	}); // END
 	
+	// file Search
+	function fileSearch() {
+		
+	}
+	
 	// File Download
 	function fileDownload(name) { // name = filename, oriname
 		var names = name.split(',');
@@ -188,6 +193,12 @@
 	  border: 1px solid #ddd;
 }
 
+.cloud-search-box {
+	width: 90%;
+	font-size: 12px;
+	padding: 12px;
+}
+
 .cloud_filePlus {
 	background-image: url('${url}/resources/images/common/plus.png');
 	background-position: 10px 12px;
@@ -277,7 +288,7 @@
 		
 		<!-- submenu menu -->
 			<div class="fw_menu fw_selected" data-toggle="collapse" data-target=".fw_subselected" title="sub1">
-				내 드라이브
+				<a href="${url}/GroupWare/cloud/myCloud">내 드라이브</a>
 				<div class="fw_arrow sub1">
 					∧
 				</div>
@@ -293,7 +304,7 @@
 			
 			<!-- ----------2---------- -->
 				<div class="fw_menu" data-toggle="collapse" data-target="#sub2" title="sub2" >
-					사원관리
+					<a href="${url}/GroupWare/wbs/projectList">프로젝트 관리</a>
 				<div class="fw_arrow sub2">
 					∨
 				</div>
@@ -301,61 +312,9 @@
 			
 			<div class="fw_subsub collapse"  id="sub2">
 				<ul>
-					<li> 비선택1</li>
-					<li> 비선택2</li>
-					<li> 비선택3</li>
-					<li> 비선택4</li>
-				</ul>
-			</div>
-			
-			<!-- -------------------- -->
-				<div class="fw_menu" data-toggle="collapse" data-target="#sub3" title="sub3" >
-					사원관리
-				<div class="fw_arrow sub3" >
-					∨
-				</div>
-			</div>
-			
-			<div class="fw_subsub collapse"  id="sub3">
-				<ul>
-					<li> 비선택1</li>
-					<li> 비선택2</li>
-					<li> 비선택3</li>
-					<li> 비선택4</li>
-				</ul>
-			</div>
-			
-			<!-- -------------------- -->
-				<div class="fw_menu" data-toggle="collapse" data-target="#sub4" title="sub4" >
-					사원관리
-				<div class="fw_arrow sub4">
-					∨
-				</div>
-			</div>
-			
-			<div class="fw_subsub collapse"  id="sub4">
-				<ul>
-					<li> 비선택1</li>
-					<li> 비선택2</li>
-					<li> 비선택3</li>
-					<li> 비선택4</li>
-				</ul>
-			</div>
-			
-			<!-- -------------------- -->
-				<div class="fw_menu" data-toggle="collapse" data-target="#sub5" title="sub5" >
-					사원관리
-				<div class="fw_arrow sub5">
-					∨
-				</div>
-			</div>
-			
-			<div class="fw_subsub collapse"  id="sub5">
-				<ul>
-					<li> 비선택1</li>
-					<li> 비선택2</li>
-					<li> 비선택3</li>
-					<li> 비선택4</li>
+					<c:forEach items="${prjLists}" var="dto">
+						<li><a href="#" style="text-decoration: none;" onclick="projectSchdule('${dto.prj_no}')">${dto.prj_name}</a></li>
+					</c:forEach>
 				</ul>
 			</div>
 		<!-- submenu menu end -->
@@ -369,6 +328,20 @@
 		
 		<div class="cloud_title"> 
 			<input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="파일명을 입력해주세요">
+			<!-- Serch BOX -->
+			<div class="cloud-search-box" style="display: block">
+				<ul>
+					<li>asdasd</li>
+					<li>asdasd</li>
+					<li>asdasd</li>
+				</ul>
+				
+				<ul>
+					<li>fqwfqd</li>
+					<li>fqwfqd</li>
+				</ul>
+			</div>
+			
 			<div class="dropdown" style="display: inline;">
 				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
 					<i class="fa fa-navicon" style="font-size:24px"></i>
@@ -465,6 +438,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- 우클릭 생성 modal -->
 <div class="rClick_modal"> 

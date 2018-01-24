@@ -68,7 +68,7 @@
 			| 프로젝트 생성
 		</div>
 		
-		<div class="container">
+		<div class="container" style="margin-top: 30px;">
 			<form action="./updateDelProject" method="post"
 				id='frmUpdateDelProject'>
 				<table class="table table-bordered table-hover">
