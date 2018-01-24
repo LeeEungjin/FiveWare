@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="contestMapper">
+  
+  <insert id="contestInsert" parameterType="ContestListDTO">
+  	insert into contestlist values(contestlist_seq.nextval, #{code}, #{name}, #{sdate}, #{edate}, #{prize}, #{regdate}, #{info})
+  </insert>
+  
+  <insert id="contestFileInsert" parameterType="FileDTO">
+  	insert into fivefile values(file_seq.nextval, #{code}, #{oriname}, #{filename})
+  </insert>
+  
+  <select id="contestList" resultType="ContestListDTO">
+  	select * from contestlist 
+  </select>
+  
+   <select id="fileList" resultType="FileDTO">
+  	select * from fivefile where code like 'C%'
+  </select>
+ 
+  
+  </mapper>

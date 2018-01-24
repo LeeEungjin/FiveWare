@@ -29,8 +29,14 @@
   		<typeAlias type="com.five.ware.storeSales.StoreSalesDTO" alias="storeSalesDTO"/>
 		<typeAlias type="com.five.ware.srm.storeNotice.StoreNoticeDTO" alias="storeNoticeDTO"/>
   		<typeAlias type="com.five.ware.event.EventDTO" alias="EventDTO"/>
+<<<<<<< HEAD
   		<typeAlias type="com.five.ware.project.ProjectDTO" alias="ProjectDTO"/>
   		<typeAlias type="com.five.ware.project.ProjectScheduleDTO" alias="ProjectScheduleDTO"/>
+=======
+  		<typeAlias type="com.five.ware.srm.contest.ContestListDTO" alias="ContestListDTO"/>
+  		<typeAlias type="com.five.ware.srm.contest.ContestJoinDTO" alias="ContestJoinDTO"/>
+  		<typeAlias type="com.five.ware.srm.contest.ContestLikeDTO" alias="ContestLikeDTO"/>
+>>>>>>> arin
 
 
   	</typeAliases>
