@@ -122,14 +122,16 @@ $(function(){
 	
 	$(".modal").on("click", "#ar_approvalUpOk" ,function(){
 		var title = $("#ar_uptitle").val();
-		var contents =$("#ar_tableTextArea1").val();
+		var contents =CKEDITOR.instances.ar_tableTextArea1.getData();
 		var docunum =$(this).attr("title");
+		
+		alert(contents);
 		
 		 $.post("./epaymentUpdate", {title:title, contents:contents, docunum:docunum},function(data){
 			alert("요청되었습니다.");
 			location.reload();
 			
-		}) 
+		})  
 	});
 	
 	$(".modal").on("click", "#ar_approvalDelete", function(){

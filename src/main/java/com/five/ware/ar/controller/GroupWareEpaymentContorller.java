@@ -42,7 +42,7 @@ import com.five.ware.util.RowNum;
 
 @Controller
 @RequestMapping(value="GroupWare/epayment/**")
-public class GroupWareEpaymentContoller {
+public class GroupWareEpaymentContorller {
 
 	@Inject
 	FormListService formListService;

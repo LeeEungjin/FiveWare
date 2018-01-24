@@ -28,6 +28,9 @@
   		<typeAlias type="com.five.ware.groupware.epayment.EpaymentLeaveDTO" alias="EpaymentLeaveDTO"/>
   		<typeAlias type="com.five.ware.storeSales.StoreSalesDTO" alias="storeSalesDTO"/>
   		<typeAlias type="com.five.ware.event.EventDTO" alias="EventDTO"/>
+  		<typeAlias type="com.five.ware.srm.contest.ContestListDTO" alias="ContestListDTO"/>
+  		<typeAlias type="com.five.ware.srm.contest.ContestJoinDTO" alias="ContestJoinDTO"/>
+  		<typeAlias type="com.five.ware.srm.contest.ContestLikeDTO" alias="ContestLikeDTO"/>
 
 
   	</typeAliases>
