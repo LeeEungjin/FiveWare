@@ -123,7 +123,6 @@ public class PosController {
 	public ModelAndView pos(String menuKind, String store){
 		ModelAndView mv=new ModelAndView();
 		
-		System.out.println("store:"+store);
 		menuKind="coffee";
 		
 		

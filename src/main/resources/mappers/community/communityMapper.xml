@@ -8,10 +8,14 @@
 	<select id="getNum">
 		select notice_seq.nextval from dual
 	</select>
-
+	
 	<update id="hitUpdate" parameterType="int">
 		update community set hit=hit+1 where num=#{num} 
 	</update>	
+	
+	<select id="fileCount" resultType="int" parameterType="int">
+		select nvl(count(num),0) from upload where num=#{num}
+	</select>	
 	
 	<select id="totalCount" resultType="int"  parameterType="java.util.Map">
   		select nvl(count(num),0) from community

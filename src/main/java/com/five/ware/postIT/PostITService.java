@@ -14,15 +14,13 @@ public class PostITService {
 	@Inject
 	private PostITDAO postITDAO;
 	
-	public ModelAndView postList(String store)throws Exception{
-		ModelAndView mv=new ModelAndView();
+	public List<PostITDTO> postList(String store)throws Exception{
 		List<PostITDTO> postList=new ArrayList<PostITDTO>();
 		
 		postList=postITDAO.postList(store);
 		
-		mv.addObject("postList", postList);
 		
-		return mv;
+		return postList;
 	}
 	
 	public int postInsert(PostITDTO postITDTO)throws Exception{
@@ -46,6 +44,8 @@ public class PostITService {
 		int result=0;
 		
 		result=postITDAO.postDelete(num);
+		
+		System.out.println(result);
 		
 		return result;
 	}

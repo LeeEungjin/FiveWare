@@ -42,4 +42,17 @@ public class PostITController {
 		return path;
 	}
 	
+	@RequestMapping(value="postDelete")
+	public String postDelete(String store, int num, RedirectAttributes rd)throws Exception{
+		
+		postITService.postDelete(num);
+		
+		store=URLEncoder.encode(store, "UTF-8");
+
+		String path="redirect:../../srm/pos/pos?store="+store;
+		
+		
+		return path;
+	}
+	
 }

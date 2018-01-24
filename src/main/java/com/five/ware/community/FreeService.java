@@ -1,6 +1,8 @@
 package com.five.ware.community;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -44,13 +46,18 @@ public class FreeService {
 		return mv;
 	}
 	
-	public FreeDTO selectOne(int num)throws Exception{
+	public Map<String, Object> selectOne(int num)throws Exception{
+		Map<String, Object> map=new HashMap<String, Object>();
+		int fileCount=freeDAO.fileCount(num);
+
 		freeDAO.hitUpdate(num);
-		
 		FreeDTO freeDTO=freeDAO.selectOne(num);
 		freeDTO.setFileNames(uploadDAO.selectList(num));
 		
-		return freeDTO;
+		map.put("freeDTO", freeDTO);
+		map.put("fileCount", fileCount);
+		
+		return map;
 	}
 	
 	public int freeInsert(FreeDTO freeDTO, HttpSession session)throws Exception{

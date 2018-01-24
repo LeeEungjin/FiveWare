@@ -18,6 +18,10 @@ public class CommunityDAO {
 	private SqlSession sqlSession;
 	private static final String namespace="communityMapper.";
 	
+	public int fileCount(int num)throws Exception{
+		return sqlSession.selectOne(namespace+"fileCount", num);
+	}
+	
 	public int totalCount(RowNum rowNum, String temp)throws Exception{
 		Map<String, Object> map=new HashMap<String, Object>();
 		

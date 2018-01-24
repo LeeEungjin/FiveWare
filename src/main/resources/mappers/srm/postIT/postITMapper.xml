@@ -6,18 +6,18 @@
 <mapper namespace="postITMapper">
 	
 	<select id="postList" parameterType="String" resultType="com.five.ware.postIT.PostITDTO">
-		select * from postit where store=#{store}
+		select * from postit where store=#{store} order by num desc
 	</select>
 	
 	<insert id="postInsert" parameterType="com.five.ware.postIT.PostITDTO">
 		insert into postit values(post_seq.nextval, #{store}, sysdate, #{contents}, #{skin})
 	</insert>
 	
-	<select id="postView" parameterType="int" resultType="com.five.ware.postIT.PostITDTO">
+	<select id="postView" parameterType="java.lang.Integer" resultType="com.five.ware.postIT.PostITDTO">
 		select * from postit where num=#{num}
 	</select>
 	
-	<delete id="postDelete" parameterType="int">
+	<delete id="postDelete" parameterType="java.lang.Integer">
 		delete postit where num=#{num}
 	</delete>
 
