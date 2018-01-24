@@ -56,7 +56,7 @@
 			</div>
 		
 </div>
-
+</div>
 	<div id="fw_mainwrap">
 			<div id="fw_main">
 				main Title
