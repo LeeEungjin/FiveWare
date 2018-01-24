@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 <c:import url="${url}/resources/temp/ref.jsp"></c:import> 
- <link href="${url }/resources/css/erp/storeRegist.css" rel="stylesheet">
+ <link href="${url }/resources/css/erp/storeSales.css" rel="stylesheet">
 
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -37,13 +37,27 @@
 			
 		});
 	 
-		/*전체선택  */
-	 $("input[class=input_all]").click(function(){
-			if($("input[class=input_all]").prop("checked")){
-				$("input[class=input_chk]").prop("checked",true);
-			}else{
-				$("input[class=input_chk]").prop("checked",false);
-			}
+		$("#eb_searchBtn").click(function(){
+			var store=$("#eb_selectStore").val();
+			var menu=$("#eb_selectMenu").val();
+			var regdate=$("#eb_selectRegdate").val();
+			alert(store);
+			alert(menu)
+			alert(regdate)			
+			$("#eb_contents_table").css("display","block");
+			$("#eb_storeName").val(store);
+			
+			$.ajax({
+				type : "post",
+				url : "./storeSearch",
+				data : {
+					"store" : store,
+					"product" : menu,
+					"regdate" : regdate
+				}, success : function(data){
+					alert(data);
+				}
+			});
 		});
 	 
 	
@@ -142,30 +156,54 @@
 				
 				<div id="eb_contents_box">
 				
-				 <div class="eb_blank"></div>
+			<div class="eb_blank"></div>
 					
 					
 				<!-- 검색 -->
 				   <input type="hidden" name="curPage" value="1">
 					
 					
-				<form name="frm" action="./tempRegist" method="get">
+				<!-- <form name="frm" action="./storeSales" method="get"> -->
 					<div id="eb_contents_box_div" >
 						<input type="hidden" name="curPage" value="1">
+					  	
+						  	<table id="eb_searchTable" >
+						  		<tr>
+						  			<td class="eb_searchTd1">날짜</td>
+						  			<td class="eb_searchTd"><input type="date" name="regdate" id="eb_selectRegdate"></td>
+						  			<td class="eb_searchTd1">지점</td>
+						  			<td class="eb_searchTd">
+						  			
+						  				<select name="store" id="eb_selectStore">
+						  			 <c:forEach items="${list }" var="dto">	
+									  		<option value="${dto.store }" title="${dto.code}">${dto.store }</option>
+									  	</c:forEach>	
+						  				</select>
+						  			</td>
+						  		</tr>
+						  		
+						  		<tr>
+						  			<td class="eb_searchTd1">상품명</td>
+						  			<td class="eb_searchTd">
+						  					<select name="menu" id="eb_selectMenu">
+						  				 <c:forEach items="${mr_list}" var="dto">	
+									  		<option value="${dto.menuName}">${dto.menuName}</option>
+									  	</c:forEach>	
+						  				</select>
+						  			
+						  			</td>
+						  			
+						  			<td colspan="2"><input type="button" class="btn btn-defalut" id="eb_searchBtn" value="search"></td>
+						  		</tr>
 						  	
-						  	<select name="kind">
-						  		<option>날짜</option>
-						  		<option>지점명</option>
-						  		<option>상품명</option>
-						  		<option>매출금액</option>
-						  	</select>
 						  	
-						<input type="text" name="search">
-						
-						  <button class="btn btn-default">search</button>
+						  	
+						  	</table> 
+			
+					
 						
 						</div>
-				</form>		
+			<!-- 	</form>		 -->
 				   <!--검색 끝 -->
 				  
 				</div> 
@@ -173,12 +211,13 @@
 				<div id="eb_contents_table">
 				  	
              				
+             			
+             			<p>지점명 <input type="text" id="eb_storeName" readonly="readonly" style="border: 0;"></p>
              		<table class="table">
 						   
 						<thead id="eb_table_head">
 						    <tr>
-						     <th>지점코드</th>
-						     <th>지점명</th>
+						     <th>날짜</th>
 						     <th>상품명</th>
 						     <th>판매개수</th>	
 						     <th>상품당 매출</th>					   
@@ -187,15 +226,6 @@
 						    
 					<%-- 	    <tbody>
 						   
-						    	<c:forEach items="${list}" var="dto">
-							      <tr>
-							        <td><input type="checkbox" class="input_chk"></td>
-							      	<td>${dto.code}</td>
-							        <td>${dto.temp}</td>					
-							        <td>${dto.memo}</td>		
-							        <td><button class="eb_view" title="${dto.code}" data-toggle="modal" data-target="#eb_view_modal">수정</button></td>
-							     
-							     </c:forEach>
 						   </tbody> --%>
 					 </table>
 		

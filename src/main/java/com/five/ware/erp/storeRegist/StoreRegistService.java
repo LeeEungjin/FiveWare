@@ -6,6 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.five.ware.util.ListData;
@@ -55,7 +56,7 @@ public class StoreRegistService {
 	
 	
 	//list
-	public ModelAndView selectList(ListData listData) throws Exception{
+	public void selectList(ListData listData,Model model) throws Exception{
 		
 		RowNum rowNum=listData.makeRow();
 		
@@ -67,12 +68,12 @@ public class StoreRegistService {
 		
 		ar=storeRegistDAO.selectList(rowNum,listData);
 		
-		ModelAndView mv=new ModelAndView();
 		
-		mv.addObject("list",ar);
-		mv.addObject("pager", pager);
 		
-		return mv;
+		model.addAttribute("list", ar);
+		model.addAttribute("pager", pager);
+		
+		
 	}
 	
 	

@@ -327,6 +327,25 @@
 			 		});
 			 	});
 			 	
+			 	$("#eb_total").click(function(){
+			 		var store='${member.store}';
+			 		var storeCode='${member.code}';
+			 		var regdate='${sysdate}';
+			 		
+			 		$.ajax({
+			 			type : "POST",
+			 			url : "./posTotal",
+			 			data : {
+			 				"store" : store,
+			 				"regdate" : regdate,
+			 				"storeCode" : storeCode
+			 			}, success : function(data){
+			 				alert(data);
+			 			}
+			 		});
+			 		
+			 	});
+			 	
 			 	
 	});
 	
@@ -577,7 +596,7 @@
 		   			</div>
 		   		
 		   			<div class="menu6_3">
-		   				<button type="button" class="btn btn-primary b4">부분 계산</button>
+		   				<button type="button" class="btn btn-primary b4" id="eb_total">정산</button>
 		   			</div> 
 		   		
 		   			<div class="menu6_4">

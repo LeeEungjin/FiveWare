@@ -17,6 +17,7 @@ import com.five.ware.erp.menuRegist.MenuRegistService;
 import com.five.ware.srm.staff.StaffDTO;
 import com.five.ware.srm.staff.StaffService;
 import com.five.ware.srm.staff.StaffTimeDTO;
+import com.five.ware.storeSales.StoreMoneyDTO;
 import com.five.ware.storeSales.StoreSalesDTO;
 import com.five.ware.storeSales.StoreSalesService;
 
@@ -32,6 +33,22 @@ public class PosController {
 	StoreSalesService storeSalesService;
 	
 	
+	
+	//정산
+	@RequestMapping(value="posTotal",method=RequestMethod.POST)
+	@ResponseBody
+	public String posTotal(StoreSalesDTO storeSalesDTO,String storeCode)throws Exception{
+		String message="fail";
+		
+		
+		int result=storeSalesService.storeMoney(storeSalesDTO,storeCode);
+		
+		if(result>0){
+			message="success";
+		}
+		
+		return message;
+	}
 	
 	//결제 내역 view
 	@RequestMapping(value="ListView",method=RequestMethod.GET)

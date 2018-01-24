@@ -19,5 +19,26 @@
    <select id="selectOne" resultType="storeSalesDTO" parameterType="storeSalesDTO">
    	select * from storesales where num=#{num} order by num asc
    </select>
+   
+   
+   <!-- 총 갯수-->
+   <select id="salesAmount" parameterType="storeSalesDTO" resultType="int">
+   		select nvl(SUM(salesamount), 0) from storesales where store=#{store} and product=#{product} and regdate=#{regdate}
+   </select>
+   
+   <!-- 총 금액 -->
+   <select id="productAmount" parameterType="storeSalesDTO" resultType="int">
+   		select nvl(SUM(productsales), 0) FROM storesales where store=#{store} and product=#{product} and regdate=#{regdate}
+   </select>
+   
+   <!--memu List  -->
+   <select id="menuList"  resultType="String">
+   		select menuname from menuregist
+   </select>
+   
+   <!-- storeMoney insert -->
+   <insert id="storeMoneyInsert" parameterType="storeMoneyDTO" >
+   		insert into storemoney values(store_seq.nextval,#{storeCode},#{store},#{product},#{salseAmount},#{productSales},#{regdate})
+   </insert>
   </mapper>
  

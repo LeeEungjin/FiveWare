@@ -1,5 +1,6 @@
 package com.five.ware.erp.menuRegist;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,10 +8,15 @@ import javax.inject.Inject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.five.ware.erp.storeRegist.StoreRegistDTO;
 import com.five.ware.file.FileDAO;
 import com.five.ware.file.FileDTO;
 import com.five.ware.util.ListData;
+import com.five.ware.util.Pager;
+import com.five.ware.util.RowNum;
 
 @Transactional
 @Service
@@ -23,7 +29,26 @@ public class MenuRegistService {
 	private FileDAO fileDAO;
 	
 
-	
+	//menuList
+	public void storeSelectList(ListData listData, String order, String menukind,Model model)throws Exception{
+		ModelAndView mv=new ModelAndView();
+
+		RowNum rowNum=listData.makeRow();
+		
+		int totalCount=menuRegistDAO.totalCount(rowNum, menukind);
+		
+		Pager pager=listData.makePage(totalCount);
+		
+		List<MenuRegistDTO> ar=new ArrayList<MenuRegistDTO>();
+		
+		ar=menuRegistDAO.selectList(rowNum, order, menukind);
+		
+		
+		model.addAttribute("mr_list", ar);
+
+
+		
+	}
 	//pos 메뉴
 	public ModelAndView posMenu(String menuKind)throws Exception{
 		ModelAndView mv=new ModelAndView();
