@@ -378,14 +378,12 @@
 	height: 100%;
 	width: 5%;
 	float: right;
-	background-color: #ffffd9;
 	overflow: scroll;
 }
 
 .postOne{
 	width: 80%;
     height: 7%;
-    background-color: #e2e2f1;
     margin-left: 10%;
     margin-top: 30%;
     cursor: pointer;
@@ -413,21 +411,67 @@
 }
 
 #skin2{
-	background-color: #ffffdd
+	background-color: #ffffdd;
 }
 
 #skin3{
-	background-color: #e6ffe6
+	background-color: #e6ffe6;
 }
 
 #skin4{
-	background-color: #e3e3ff
+	background-color: #e3e3ff;
 }
 
 #skin5{
-	background-color: #ffe1ff
+	background-color: #ffe1ff;
 }
 
 .post-body{
 	padding: 5px !important;
+	width: 307px !important;
+}
+
+.post-content{
+	width: 307px !important;
+}
+
+#postView{
+	visibility: hidden;
+    width: 30%;
+    float: right;
+    height: 50%;
+    margin-top: 29%;
+    margin-right: 2%;
+    box-shadow: 0 8px 12px 0 rgba(0,0,0,0.5);
+}
+
+#pin{
+	width: 100%;
+	height: 20%;
+}
+
+#pin_img{
+	margin-left: 32%;
+}
+
+#postOneDate{
+	float: right;
+    font-size: 20px;
+    margin-right: 5%;
+}
+
+#postBlank{
+	width: 100%;
+	height: 5%;
+}
+
+#postOneContents{
+	text-align: center;
+    margin-top: 20%;
+    font-size: 30px;
+}
+
+#postClose{
+	float: right;
+	margin-right: 5%;
 }

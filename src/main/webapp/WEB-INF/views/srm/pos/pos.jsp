@@ -361,16 +361,66 @@
 				});		 	
 			 	
 			 	
-			 	$("#skin2").click(function(){
+			 	/* $("#skin2").click(function(){
 			 		var skin=$(this).attr("title");
 			 		
 			 		alert(skin);
 			 		
 			 		$(this).style("border", "2px solid #bcbcbc");
 			 		
+			 	}); */
+			 	
+			 	
+				var count=document.getElementsByClassName('postOne').length;
+				
+			 	for(var i=0; i<count+1; i++){
+			 		var skin=$("#postColor"+(i)).attr("title");
+			 		$("#postColor"+i).css("background-color", skin);
+			 	}
+			 	
+			 	
+			 	$(".postView").click(function(){
+			 		var num=$(this).attr("accesskey");
+			 		
+			 		$.ajax({
+			 			type : "get",
+			 			url : "../postIT/postView",
+			 			data : { "num" : num},
+			 			success : function(data){
+			 				$("#postView").html(data);
+			 				$("#postView").css("visibility", "visible");
+			 				
+			 				var postViewSkin=$(".postViewSkin").val();
+			 				
+			 				$("#postView").css("background-color", postViewSkin);
+			 			}
+			 		});
+			 		
 			 	});
 			 	
+			 	
+			 	$("#postView").on("click", "#postCloseBtn", function(){
+			 		$("#postView").css("visibility", "hidden");
+			 	});
+				
+			 	
 	});
+	
+	
+	function selectPost(index){
+ 		
+ 		var size=document.getElementsByClassName('postSkin').length;
+ 		var color=$("#skin"+index).attr("title");
+ 		
+ 		for(var i=0; i<size; i++){
+ 			if(i==index-1){
+ 				$("#skin"+(i+1)).css("border", "2px solid #bcbcbc");
+ 				$("#skinSelect").val(color);
+ 			}else{
+ 				$("#skin"+(i+1)).css("border", "2px solid white");
+ 			}
+ 		}
+ 	}
 	
 </script>
 <head>
@@ -402,7 +452,7 @@
 		<!-- 포스트잇 modal -->
 		<div class="modal fade" id="postIT" role="dialog">
 			<div class="modal-dialog modal-sm">
-			   <div class="modal-content">
+			   <div class="modal-content post-content">
 			     <div class="modal-header">
 			       <button type="button" class="close" data-dismiss="modal">&times;</button>
 			       <h4 class="modal-title">POST IT</h4>
@@ -410,13 +460,13 @@
 			     <div class="modal-body post-body">
 			        <form action="../postIT/postInsert" id="postFrm" method="post">
 			        	<input type="hidden" name="store" value="${member.store}">
-			        	<input type="hidden" name="skin" value="#cde7e7">
+			        	<input type="hidden" id="skinSelect" name="skin" value="#ffe1e1">
 
-			        	<div id="skin1" class="postSkin" title="#ffe1e1"></div>
-			        	<div id="skin2" class="postSkin" title="#ffffdd"></div>
-			        	<div id="skin3" class="postSkin" title="#e6ffe6"></div>
-			        	<div id="skin4" class="postSkin" title="#e3e3ff"></div>
-			        	<div id="skin5" class="postSkin" title="#ffe1ff"></div>
+			        	<div id="skin1" onclick="selectPost(1)" class="postSkin" title="#ffe1e1"></div>
+			        	<div id="skin2" onclick="selectPost(2)" class="postSkin" title="#ffffdd"></div>
+			        	<div id="skin3" onclick="selectPost(3)" class="postSkin" title="#e6ffe6"></div>
+			        	<div id="skin4" onclick="selectPost(4)" class="postSkin" title="#e3e3ff"></div>
+			        	<div id="skin5" onclick="selectPost(5)" class="postSkin" title="#ffe1ff"></div>
 			        	
 				        <textarea id="postITarea" rows="5" name="contents"></textarea>
 				        <button type="submit" class="btn">등록</button>
@@ -631,6 +681,12 @@
    
   				  
 		 	</div>
+		 	
+		 	<div id="postView">
+				<%-- <div id="pin"><img id="pin_img" src="${pageContext.request.contextPath}/resources/images/pos/pin.png"></div>
+		 		<div id="postContents">${view.contents}</div> --%>
+		 	</div>
+		 	
 		</div>
 		
 		
@@ -711,8 +767,8 @@
  	</div>
  	
  	<div id="postList">
- 		<c:forEach items="${postList}" var="post">
- 			<div class="postOne" id="${post.num}"><span class="postDel" title="${post.num}">X</span><br><span class="postView">${post.num}번째<br>메모</span></div>
+ 		<c:forEach items="${postList}" var="post" varStatus="i">
+ 			<div class="postOne" id="postColor${i.count}" title="${post.skin}"><span class="postDel" title="${post.num}">X</span><br><span accesskey="${post.num}" class="postView">${post.num}번째<br>메모</span></div>
  		</c:forEach>
  	</div>
  	

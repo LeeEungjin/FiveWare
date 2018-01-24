@@ -5,8 +5,10 @@ import java.net.URLEncoder;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -53,6 +55,19 @@ public class PostITController {
 		
 		
 		return path;
+	}
+	
+	@RequestMapping(value="postView")
+	public ModelAndView postView(int num)throws Exception{
+		ModelAndView mv=new ModelAndView();
+		PostITDTO postITDTO=new PostITDTO();
+		
+		postITDTO=postITService.postView(num);
+		
+		mv.addObject("view", postITDTO);
+		mv.setViewName("srm/pos/postView");
+		
+		return mv;
 	}
 	
 }

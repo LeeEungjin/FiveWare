@@ -19,7 +19,6 @@ public class PostITService {
 		
 		postList=postITDAO.postList(store);
 		
-		
 		return postList;
 	}
 	
@@ -44,8 +43,6 @@ public class PostITService {
 		int result=0;
 		
 		result=postITDAO.postDelete(num);
-		
-		System.out.println(result);
 		
 		return result;
 	}
