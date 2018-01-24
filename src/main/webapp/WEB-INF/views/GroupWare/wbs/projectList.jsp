@@ -10,7 +10,7 @@
 
 <c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 <c:import url="${url}/resources/temp/ref.jsp"></c:import> 
-<script type="text/javascript" src="./js/projectList.js"></script>
+<script type="text/javascript" src="${url}/resources/js/projectList.js"></script>
 
 </head>
 <body>
@@ -34,8 +34,7 @@
 						<td><input type='checkbox' name='chkVal'
 							value="${dto.prj_no}" /></td>
 						<td>${dto.prj_no}</td>
-						<td><a style="text-decoration: none;"
-							onclick="projectSchdule(${dto.prj_no})">${dto.prj_name}</a></td>
+						<td><a href="#" style="text-decoration: none;" onclick="projectSchdule('${dto.prj_no}')">${dto.prj_name}</a></td>
 						<td>${dto.prj_start}</td>
 						<td>${dto.prj_last}</td>
 					</tr>
@@ -43,15 +42,13 @@
 			</table>
 		</form>
 
-		<input class='btn btn-sm btn-warning btn-center' type='button'
-			value='생성' onclick='insertProjectForm()'> <input
-			class='btn btn-sm btn-warning btn-center' type='button' value='삭제'
-			onclick='updateDelProject()'>
+		<input class='btn btn-sm btn-warning btn-center' type='button' value='생성' onclick='insertProjectForm()'> 
+		<input class='btn btn-sm btn-warning btn-center' type='button' value='삭제' onclick='updateDelProject()'>
 
 	</div>
 	<!-- 프로젝트일정 상세보기 -->
 	<form action="./projectSchedule.do" method="post" id='projectSchedule'>
-		<input type="hidden" name="prj_no" id='prj_no' />
+		<input type="hidden" name="prj_no" id='prj_no' value="" />
 	</form>
 
 	<!-- 프로젝트 생성 modal -->
