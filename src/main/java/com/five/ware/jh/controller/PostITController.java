@@ -39,8 +39,6 @@ public class PostITController {
 
 		String path="redirect:../../srm/pos/pos?store="+store;
 		
-		System.out.println(path);
-		
 		return path;
 	}
 	

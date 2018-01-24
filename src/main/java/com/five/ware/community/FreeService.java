@@ -1,5 +1,6 @@
 package com.five.ware.community;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,21 @@ public class FreeService {
 	private FileSaver fileSaver;
 	@Autowired
 	private UploadDAO uploadDAO;
+	
+	public List<FreeDTO> randomNotice()throws Exception{
+		FreeDTO freeDTO=new FreeDTO();
+		List<Integer> numList=new ArrayList<Integer>();
+		List<FreeDTO> randomList=new ArrayList<FreeDTO>();
+		
+		numList=freeDAO.numList();
+		
+		for(int i=0; i<numList.size(); i++){
+			freeDTO=freeDAO.selectOne(numList.get(i));
+			randomList.add(freeDTO);
+		}
+		
+		return randomList;
+	}
 	
 	public List<String>	storeList()throws Exception{
 		List<String> storeList=freeDAO.storeList();
@@ -147,5 +163,7 @@ public class FreeService {
 		
 		return result;
 	}
+
+
 
 }

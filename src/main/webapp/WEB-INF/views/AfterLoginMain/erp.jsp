@@ -13,9 +13,28 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <script type="text/javascript">
-	$(function(){
-		$('[data-toggle="tooltip"]').tooltip();   
+	var slideIndex = 0;
+
+	function carousel() {
+	    var i;
+	    var x = document.getElementsByClassName("mySlides");
+	    
+	    for (i = 0; i < x.length; i++) {
+	      x[i].style.display = "none"; 
+	    }
+	    
+	    slideIndex++;
+	    
+	    if (slideIndex > x.length) {slideIndex = 1} 
+	    x[slideIndex-1].style.display = "block"; 
+	    setTimeout(carousel, 3000); 
+	}
 	
+	$(function(){
+		
+		carousel();
+		
+		$('[data-toggle="tooltip"]').tooltip();   
 		
 		/* 출퇴근~~~~ */
 		var myVar = setInterval(myTimer, 1000);
@@ -365,11 +384,6 @@
 				</div>
 				
 				
-				
-				
-				
-				
-				
 				<div id="often_call">
 					<p id="quick_p">자주 연락하는 사람들
 						<a href="#" data-toggle="tooltip" title="목록 설정">
@@ -390,9 +404,11 @@
 						<i class="fa fa-bullhorn" style="font-size:48px;color: #CE3636"></i>
 					</div>
 					
-					<div id="notice_text">
-						<p id="notice_text_p">Notice Random slidShow~~~</p>
-					</div>
+					<c:forEach items="${randomList}" var="random">
+						<div class="mySlides w3-animate-bottom" id="notice_text">
+							<a href="#">${random.contents}</a>
+						</div>
+					</c:forEach>
 					
 					<div id="weather_div">
 						<i class="fa fa-cloud weather_div_p" style="font-size:36px">Weather</i>

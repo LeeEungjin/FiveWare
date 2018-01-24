@@ -223,10 +223,8 @@ td.eb_row:hover {
 
 #notice_text{
 	width: 55%;
-	height: 100%;
-	margin-top: 15px;
-	font-size:20px;
-	float: left;
+    font-size: 20px;
+    float: left;
 }
 
 #weather_div{

@@ -5,6 +5,10 @@
   
 <mapper namespace="freeMapper">
 	
+	<select id="randomNum" resultType="int">
+		select num from free order by num desc
+	</select>
+	
 	<select id="fileCount" resultType="int" parameterType="int">
 		select nvl(count(num),0) from upload where num=#{num}
 	</select>	

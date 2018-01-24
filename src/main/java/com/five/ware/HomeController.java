@@ -7,13 +7,17 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.FilterWriter;
 import java.io.IOException;
+import java.lang.annotation.Inherited;
 import java.nio.Buffer;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -25,11 +29,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.five.ware.community.CommunityDTO;
+import com.five.ware.community.CommunityService;
+import com.five.ware.community.FreeDTO;
+import com.five.ware.community.FreeService;
+
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class HomeController {
+	
+	@Inject
+	private CommunityService communityService;
+	
+	@Inject
+	private FreeService freeService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -57,14 +72,19 @@ public class HomeController {
 	
 	@RequestMapping(value="/erp")
 	public ModelAndView erp(){
+		List<CommunityDTO> randomList=new ArrayList<CommunityDTO>();
 		Calendar ca = Calendar.getInstance();
-		
 		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
-		
 		String sysdate = sd.format(ca.getTime());
-		
 		ModelAndView mv = new ModelAndView();
 		
+		try {
+			randomList=communityService.randomNotice();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mv.addObject("randomList", randomList);
 		mv.addObject("sysdate", sysdate);
 		mv.setViewName("AfterLoginMain/erp");
 		
@@ -72,8 +92,20 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/groupware")
-	public String groupware(){
-		return "AfterLoginMain/groupware";
+	public ModelAndView groupware(){
+		ModelAndView mv=new ModelAndView();
+		List<FreeDTO> randomList=new ArrayList<FreeDTO>();
+		
+		try {
+			randomList=freeService.randomNotice();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mv.addObject("randomList", randomList);
+		mv.setViewName("AfterLoginMain/groupware");
+		
+		return mv;
 	}
 	
 	@RequestMapping(value="/srm")
