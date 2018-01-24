@@ -73,11 +73,12 @@
 				}
 		});
 
-		$("#free_file_add").on("click", ".free_file_del", function() {
+		
+		$("#free_file_div").on("click", ".free_file_del", function() {
 			var id = $(this).attr("title");
 			$("#" + id).remove();
-			index--;
-		});
+			index--; 
+		}); 
 		
 		
 	});

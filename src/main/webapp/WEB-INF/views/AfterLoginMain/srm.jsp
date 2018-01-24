@@ -231,7 +231,7 @@
                         </span>
                      </a>
                      
-                       <a href="./srm/pos/pos">
+                       <a href="./srm/pos/pos?store=${member.store}">
                         <span class="srm_jk_smalldiv">
                            <span class="srm_jk_writing">우리 매장 <br>포스기</span>
                         </span>

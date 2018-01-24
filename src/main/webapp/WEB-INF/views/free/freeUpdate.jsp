@@ -56,7 +56,7 @@
 			$("#free_update_frm").submit();
 		});
 		
-		var index = 0;
+		var index = ${fileCount};
 		var count = 0;
 		
 		$("#free_file_add").click(function() {

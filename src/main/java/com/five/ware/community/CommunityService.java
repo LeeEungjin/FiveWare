@@ -47,14 +47,20 @@ public class CommunityService {
 		return mv;
 	}
 	
-	public CommunityDTO selectOne(int num)throws Exception{
+	public Map<String, Object> selectOne(int num)throws Exception{
+		Map<String, Object> map=new HashMap<String, Object>();
+		int fileCount=communityDAO.fileCount(num);
 		
 		communityDAO.hitUpdate(num);
 		CommunityDTO communityDTO=communityDAO.selectOne(num);
 		communityDTO.setFileNames(uploadDAO.selectList(num));
 		
+		System.out.println(communityDTO.getNum());
 		
-		return communityDTO;
+		map.put("communityDTO", communityDTO);
+		map.put("fileCount", fileCount);
+		
+		return map;
 	}
 	
 	public int reportCount(int num)throws Exception{

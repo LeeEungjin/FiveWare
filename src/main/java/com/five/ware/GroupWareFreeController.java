@@ -3,6 +3,7 @@ package com.five.ware;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -48,8 +49,9 @@ public class GroupWareFreeController {
 	//view
 	@RequestMapping(value="freeView")
 	public String selectOne(Model model, int num)throws Exception{
+		Map<String, Object> map=freeService.selectOne(num);
 		
-		model.addAttribute("view", freeService.selectOne(num));
+		model.addAttribute("view", map.get("freeDTO"));
 		
 		return "free/freeView";
 	}
@@ -107,9 +109,9 @@ public class GroupWareFreeController {
 	//update->form
 	@RequestMapping(value="freeUpdate", method={RequestMethod.GET})
 	public String update(Model model, int num)throws Exception{
-		FreeDTO freeDTO=freeService.selectOne(num);
+		Map<String, Object> map=freeService.selectOne(num);
 		
-		model.addAttribute("update", freeDTO);
+		model.addAttribute("update", map.get("freeDTO"));
 		
 		return "free/freeUpdate";
 	}

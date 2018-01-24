@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+  <script src="//cdn.ckeditor.com/4.8.0/basic/ckeditor.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -9,6 +9,9 @@
 <html>
 <script type="text/javascript">
 	$(function(){
+		
+		CKEDITOR.replace('postITarea');
+		
 		
 		var message = '${message}';
 	     if(message != ""){
@@ -328,6 +331,45 @@
 			 	});
 			 	
 			 	
+			 	/* $("#postInsertBtn").click(function(){
+			 		
+			 		var contents=$("#postITarea").val();
+			 		
+			 		if(contents==""){
+			 			alert("내용을 입력해 주세요.");
+			 		}else{
+			 			alert("?");
+			 			$("#postFrm").submit();
+			 		}
+			 		
+			 	}); */
+			 	
+				$(".postDel").click(function(){
+					var num=$(this).attr("title");
+					var store=$("#storeName").val();
+					
+					$.ajax({
+						type : "get",
+			 			url : "../postIT/postDelete",
+			 			data : { "num" : num,
+			 					"store" : store},
+			 			success : function(){
+			 				alert("삭제 성공");
+			 				location.reload();
+			 			}
+					});
+				});		 	
+			 	
+			 	
+			 	$("#skin2").click(function(){
+			 		var skin=$(this).attr("title");
+			 		
+			 		alert(skin);
+			 		
+			 		$(this).style("border", "2px solid #bcbcbc");
+			 		
+			 	});
+			 	
 	});
 	
 </script>
@@ -349,11 +391,44 @@
 					<td>
 						<input type="button" value="출/퇴근" class="btn btn-default" data-toggle="modal" data-target="#myModal" id="eb_staff_time">
 					</td>
+					<td>
+						<input type="button" data-toggle="modal" data-target="#postIT" class="btn btn-default" value="포스트잇">
+					</td>
 				</tr>
 				
 			</table>
 		</div>
 		
+		<!-- 포스트잇 modal -->
+		<div class="modal fade" id="postIT" role="dialog">
+			<div class="modal-dialog modal-sm">
+			   <div class="modal-content">
+			     <div class="modal-header">
+			       <button type="button" class="close" data-dismiss="modal">&times;</button>
+			       <h4 class="modal-title">POST IT</h4>
+			     </div>
+			     <div class="modal-body post-body">
+			        <form action="../postIT/postInsert" id="postFrm" method="post">
+			        	<input type="hidden" name="store" value="${member.store}">
+			        	<input type="hidden" name="skin" value="#cde7e7">
+
+			        	<div id="skin1" class="postSkin" title="#ffe1e1"></div>
+			        	<div id="skin2" class="postSkin" title="#ffffdd"></div>
+			        	<div id="skin3" class="postSkin" title="#e6ffe6"></div>
+			        	<div id="skin4" class="postSkin" title="#e3e3ff"></div>
+			        	<div id="skin5" class="postSkin" title="#ffe1ff"></div>
+			        	
+				        <textarea id="postITarea" rows="5" name="contents"></textarea>
+				        <button type="submit" class="btn">등록</button>
+			     	</form>
+			     </div>
+			     <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			     </div>
+			  </div>
+			</div>
+		</div>
+		<!-- 포스트잇 modal 끝-->
 		
 		
 		<!--직원 출퇴근 modal  -->
@@ -396,7 +471,7 @@
 		
 		   	<form action="./storeSales" method="post">
 		<div class="menuWrap1">
-		   		<input type="hidden" name="store" value="${member.store}">
+		   		<input id="storeName" type="hidden" name="store" value="${member.store}">
 		   		<input type="hidden" name="regdate" value="${sysdate}">
 		   		<input type="hidden" name="time" id="eb_timeSales">
 		   		<input type="hidden" name="totalPrice" id="eb_totalPrice">
@@ -633,6 +708,12 @@
 			    </div>
 			  </div>
 					  
+ 	</div>
+ 	
+ 	<div id="postList">
+ 		<c:forEach items="${postList}" var="post">
+ 			<div class="postOne" id="${post.num}"><span class="postDel" title="${post.num}">X</span><br><span class="postView">${post.num}번째<br>메모</span></div>
+ 		</c:forEach>
  	</div>
  	
 </body>
