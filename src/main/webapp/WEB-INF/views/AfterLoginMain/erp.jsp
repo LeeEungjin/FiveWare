@@ -4,14 +4,36 @@
 
 <html>
 <head>
+<meta name=description content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 	<title>ERP</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="./resources/css/erp.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style type="text/css">
+
+.line{
+		border-style:solid;
+		border-width:2px;
+		border-color:black;
+	}
+
+	.bridge{
+		border-style:solid;
+		border-width:2px;
+		border-color:white white black white;
+
+	}
+
+</style>
+
 </head>
+
 <script type="text/javascript">
 	var slideIndex = 0;
 
@@ -227,9 +249,119 @@
 		
 	 /* 출퇴근 끝~~~ */
 	 
+	 /* var s=null;
+	 	$("#gamePeopleBtn").click(function(){
+	 		
+	 		$("#game_contents").html("");
+	 		
+	 		var people=$("#gamePeople").val();
+	 		
+	 		if(people==null){
+	 			alert("인원을 입력해주세요.");
+	 		}else if(people<2){
+	 			alert("최소인원은 2명 이상입니다.");
+	 		}else if(people>5){
+	 			alert("최대인원은 5명입니다.")
+	 		}else{
+	 			
+	 			alert(people+"명으로 사다리타기를 진행합니다.");
+	 			
+	 			var width=100/people;
+	 			
+	 			
+	 				
+	 			for(var i=0; i<people; i++){
+	 				
+	 				s="<div id='gameDiv"+i+"' class='gameDivs'>"
+		 				s=s+"<input id='peopleName"+i+"' class='peopleNames' type='text'>";
+		 				s=s+"<svg class='gameLines' height='300'id='gameLine"+i+"'>";
+		 				s=s+" <line x1='0' y1='1500' x2='0' y2='0' style='stroke:rgb(0,0,0);stroke-width:5'/>";
+		 				s=s+"</svg>";
+		 				s=s+"<input id='gameItem"+i+"' class='gameItems' type='text'>";
+		 				s=s+"</div>";
+	 				
+	 				$("#game_contents").append(s);
+	 				
+	 			}
+	 			
+	 			$("#gameStart").css("visibility", "visible");
+	 		}
+	 			
+	 	});
+	 	
+	 	$("#gameStart").click(function(){
+	 		var size;
+	 		var people=$("#gamePeople").val();
+	 		
+	 		setBridge ();
+	 		 
+	 		size = 80/people;
+	 		
+	 		
+		 		 var ladder = $("<div style='width:5%;' align='center' valign='center'></div>"); 
+	
+				for (var i=0; i<people+5; i++) {
+					 var line = $("<div style='display:inline-block; padding:0px; margin:0px;' id='line" + i + "'></div>");		
+					
+					for (var j=0; j<people+5; j++) {
+						line.append("<div style='width:0px; height:60px;' class='line'></div>");
+					}
+					line.appendTo(ladder); 
+		 		
+		 		var bridge = "";
+	
+				if (i<people-1) {
+					 for (var j=0; j<people+1; j++) {
+						bridge = $("<div style='display:inline-block; width:" + size + "%; padding:0px; margin:0px;' class='bridge' id='bridge" + i + "'></div>");
+						bridge.append("<div style='width:100%; height:60px;'></div>");
+					 }
+					 
+					$('#game_contents').prepend(bridge);
+					 bridge.appendTo(s); 
+				}
+			}
+			 ladder.appendTo("body"); 
+	 	});
+	 	
+	 	
+	 	function setBridge () {
+			var tempArray = [];
+			var randomNumber;
+			var people=$("#gamePeople").val();
+			
+			for (var i=0; i<people-1; i++) {
+				for (var j=0; j<people+5; j++) {
+					randomNumber = Math.floor(Math.random() *  2);
+
+					$("#bridge" + i + " > div:eq(" + j + ")").attr("value", randomNumber);
+
+					if (i === 0) {
+						if (j === people+4) {
+							randomNumber = 0;
+						}
+						tempArray.push(randomNumber);
+					} else {
+						if (tempArray[j] === 1 || j === people+4) {
+							randomNumber = 0;
+						}
+						tempArray[j] = randomNumber;
+					}
+
+					if (randomNumber === 1) {
+						$("#bridge" + i + " > div:eq(" + j + ")").addClass("bridge");
+					}
+				}
+			}
+		} */
+
+		$("#ladderClose").click(function(){
+			location.reload();
+		})
 	 
 	});
 </script>
+
+
 <body>
 
 	<div id="login_after_wrap">
@@ -350,40 +482,86 @@
 				
 				<div id="quick_menu" class="dropdown">
 					<p id="quick_p">바로가기
-					<a href="#" data-toggle="tooltip" title="바로가기 설정">
-					<i class="fa fa-cog" style="font-size:20px; color : gray;"></i>
-					</a>
-	
-						</p>
-
-
-
+						<a href="#" data-toggle="tooltip" title="바로가기 메뉴입니다.">
+						<i class="fa fa-cog" style="font-size:20px; color : gray;"></i>
+						</a>
+					</p>
 
 					<div id="quick_menu_box">
-					<div class="quick_menu_box_1">
-						<i class="glyphicon glyphicon-time" id="eb_check" ></i>
 					
+					<!-- 공지사항 -->
+					<div class="quick_menu_box_1" >
+						<i class="fa fa-list" style="font-size:45px" data-toggle="tooltip" data-placement="bottom" title="공지사항"></i>
 					</div>
 					
-					<div class="quick_menu_box_1">
-						
-					
+					<!-- 쪽지 -->
+					<div class="quick_menu_box_1" >
+						<i class="fa fa-envelope-o" style="font-size:45px" data-toggle="tooltip" data-placement="bottom" title="쪽지"></i>
 					</div>
 					
+					<!-- 마이페이지 -->
 					<div class="quick_menu_box_1">
-						
-					
+						<i class="fa fa-user-circle-o" style="font-size:45px"  data-toggle="tooltip" data-placement="bottom" title="마이페이지"></i>
 					</div>
 					
-					<div class="quick_menu_box_1">
-						
-					
+					<!-- 사다리타기 -->
+					<div class="quick_menu_box_1" data-toggle="modal" data-target="#game">
+						<img id="ladderImg" src="./resources/images/shortCut/ladder.png" data-toggle="tooltip" data-placement="bottom" title="사다리 게임">
 					</div>
+					
+					
+					<!-- 사다리 타기 모달 -->
+					 <div class="modal fade" id="game">
+					    <div class="modal-dialog">
+					      <div class="modal-content">
+					      
+					        <!-- Modal Header -->
+					        <div class="modal-header">
+					          <h4 class="modal-title">사다리 타기</h4>
+					          <button type="button" id="ladderClose" class="close" data-dismiss="modal">&times;</button>
+					        </div>
+					        
+					        <!-- Modal body -->
+					        <div class="modal-body">
+					          <!-- 	참여 인원 : <input id="gamePeople" type="number"><input id="gamePeopleBtn" type="button" value="확인">
+					        	
+					        	<div id="game_contents">
+					        		
+					        	</div> -->
+					        	
+					        	<div class="landing" id="landing">
+							       <div class="start-form">
+							            <div class="landing-form">
+							                <div class="group">      
+							                  <input type="text" name="member" required>
+							                  <span class="highlight"></span>
+							                  <span class="bar"></span>
+							                  <label>참여자 수</label>
+							                    <div  id="button" class="button raised green">
+							                      <div  class="center" fit>START</div>
+							                      <paper-ripple fit></paper-ripple>
+							                    </div>
+							                </div>
+							            </div>
+							       </div>
+							    </div>
+							    <div id="ladder" class="ladder">
+							        <div class="dim"></div>
+							         <canvas class="ladder_canvas" id="ladder_canvas"></canvas>
+							    </div>
+							<script src="./resources/js/ladder.js"></script>
+					        
+					        </div>
+					        
+					      </div>
+					    </div>
+					  </div>
+					
 					
 					</div>
 				</div>
 				
-				
+				<!-- 
 				<div id="often_call">
 					<p id="quick_p">자주 연락하는 사람들
 						<a href="#" data-toggle="tooltip" title="목록 설정">
@@ -391,7 +569,7 @@
 						color : gray;"></i>
 						</a>
 					</p>
-				</div>				
+				</div>	 -->			
 			</div>
 			
 			<div id="contents_wrap">
@@ -457,7 +635,7 @@
 	                        </span>
 	                     </a> 
 	                     
-	                     <a href="#">
+	                     <a href="./erp/foundation/supplier">
 	                        <span class="erp_jk_smalldiv">
 	                           <span class="erp_jk_writing">기초정보</span>
 	                         
@@ -465,25 +643,19 @@
 	                        </span>
 	                     </a> 
 	                     
-	                     <a href="#">
+	                     <a href="./erp/order/orderRegist">
 	                        <span class="erp_jk_smalldiv">
 	                           <span class="erp_jk_writing">구매관리</span>
 	                        </span>
 	                     </a> 
 	                     
-	                     <a href="#">
+	                     <a href="./erp/mater/materRegist?materKind=enter">
 	                        <span class="erp_jk_smalldiv">
 	                           <span class="erp_jk_writing">자재관리</span>
 	                        </span>
 	                     </a> 
-	                     
-	                     <a href="#">
-	                        <span class="erp_jk_smalldiv">
-	                           <span class="erp_jk_writing">반품관리</span>
-	                        </span>
-	                     </a> 
-	                     
-	                     <a href="#">
+	                                        
+	                     <a href="./erp/into/intoList">
 	                        <span class="erp_jk_smalldiv">
 	                           <span class="erp_jk_writing">조회</span>
 	                        </span>

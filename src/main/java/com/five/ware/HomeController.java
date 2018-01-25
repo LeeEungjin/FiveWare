@@ -33,6 +33,8 @@ import com.five.ware.community.CommunityDTO;
 import com.five.ware.community.CommunityService;
 import com.five.ware.community.FreeDTO;
 import com.five.ware.community.FreeService;
+import com.five.ware.event.EventDTO;
+import com.five.ware.event.EventService;
 
 /**
  * Handles requests for the application home page.
@@ -45,6 +47,9 @@ public class HomeController {
 	
 	@Inject
 	private FreeService freeService;
+	
+	@Inject
+	private EventService eventService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -109,8 +114,20 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/srm")
-	public String srm(){
-		return "AfterLoginMain/srm";
+	public ModelAndView srm(){
+		ModelAndView mv=new ModelAndView();
+		List<EventDTO> randomList=new ArrayList<EventDTO>();
+		
+		try {
+			randomList=eventService.randomNotice();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mv.addObject("randomList", randomList);
+		mv.setViewName("AfterLoginMain/srm");
+		
+		return mv;
 	}
 	
 	
