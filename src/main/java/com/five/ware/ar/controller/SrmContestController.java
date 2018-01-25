@@ -20,19 +20,29 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.five.ware.file.FileDTO;
+import com.five.ware.srm.contest.ContestJoinDTO;
 import com.five.ware.srm.contest.ContestListDTO;
 import com.five.ware.srm.contest.ContestService;
+import com.five.ware.util.FileSaver;
 
 @Controller
-@RequestMapping(value="srm/contest/**")
+@RequestMapping(value="/srm/contest/**")
 public class SrmContestController {
 
 	@Inject
 	private ContestService contestService;
 	
 	@RequestMapping(value="contest")
-	public void contest() throws Exception{
+	public ModelAndView contest() throws Exception{
+		List<ContestListDTO> ar = contestService.contestList();
 		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("list", ar);
+		
+		mv.setViewName("srm/contest/contest");
+		
+		return mv;
 	}
 	
 	@RequestMapping(value="contestList")
@@ -157,6 +167,41 @@ public class SrmContestController {
 		
 		mv.addObject("message", message);
 		mv.addObject("addr", "contestList");
+		
+		mv.setViewName("common/result");
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="contestJoin", method=RequestMethod.POST)
+	public ModelAndView contestJoinInsert(ContestJoinDTO contestJoinDTO, MultipartFile menuphoto, HttpSession session) throws Exception{
+		FileSaver fileSaver = new FileSaver();
+		System.out.println("들어와?");
+		
+		String fileName=fileSaver.fileSave(menuphoto, session, "contest");
+		System.out.println(fileName);
+		
+		FileDTO fileDTO = new FileDTO();
+		
+		fileDTO.setCode(contestJoinDTO.getCode()+contestJoinDTO.getCnum());
+		fileDTO.setOriname(menuphoto.getOriginalFilename());
+		fileDTO.setFilename(fileName);
+		
+		contestJoinDTO.setPhoto(fileName);
+		
+		int result = contestService.contestJoinInsert(contestJoinDTO);
+		int file = contestService.contestFileInsert(fileDTO);
+		
+		String message="등록 실패";
+		
+		if(result>0 && file>0){
+			message="제출되었습니다.";
+		}
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("message", message);
+		mv.addObject("addr", "contest");
 		
 		mv.setViewName("common/result");
 		

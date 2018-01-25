@@ -21,5 +21,8 @@
   	select * from fivefile where code like 'C%'
   </select>
  
+ <insert id="contestJoinInsert" parameterType="ContestJoinDTO">
+ 	insert into contestJoin values(contestJoin_seq.nextval, #{code}, #{store}, #{menuname},#{photo}, #{account}, '진행', #{recipe})
+ </insert>
   
   </mapper>

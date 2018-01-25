@@ -9,8 +9,55 @@
 <c:import url="${url}/resources/temp/ref.jsp"></c:import> 
  
  <link href="${url}/resources/css/srm/contest/contest.css" rel="stylesheet">
+   <script src="//cdn.ckeditor.com/4.8.0/basic/ckeditor.js"></script>
 
 <title>Insert title here</title>
+
+<script type="text/javascript">
+
+$(function(){
+	CKEDITOR.replace('ar_recipe',{
+		width: 600,
+		height: 100
+	});
+	
+	CKEDITOR.replace('ar_info',{
+		width: 600,
+		height: 150
+	});
+	
+	$("#ar_insertBtn").click(function(){
+		var code=$(this).attr("title");
+	
+		alert('${member.store}');
+		
+		$("#ar_contestCode").val(code);
+		$("#ar_store").val('${member.store}');
+	
+	});
+	
+	$(".ar_InsertBtn").click(function(){
+		var recipe =CKEDITOR.instances.ar_recipe.getData();
+		var info =CKEDITOR.instances.ar_info.getData();
+		var file= $("#ar_mphoto").val();
+		var a = file.substring(file.lastIndexOf("."));
+		alert(a);
+		if($("#ar_mphoto").val()==""){
+			alert("사진을 등록해주십시오.");
+		}else if($("#ar_menu").val()==""){
+			alert("메뉴명을 입력하세요.");
+		}else if(recipe==""){
+			alert("레시피를 입력하세요.");
+		}else if(info==""){
+			alert("메뉴 설명을 입력하세요.");
+		}else{
+			/* document.contestfrm.submit(); */
+			$("#contestfrm").submit();
+		}
+	});
+});
+
+</script>
 </head>
 <body>
 <c:import url="${url}/resources/temp/headerExample.jsp"></c:import> 
@@ -55,7 +102,7 @@
 				</ul>
 			</div>
 		
-</div>
+
 </div>
 	<div id="fw_mainwrap">
 			<div id="fw_main">
@@ -78,27 +125,98 @@
 				</div>
 			</div>
 			
-			<div class="ar_contestWrap">
-				<div class="ar_contestTitle">
-				</div>
-				<div class="ar_contestTitleBtn">
-					<input type="button" value="올리기" id="ar_insertBtn" title="">
-				</div>
+			
 				
-				<div class="ar_ar_contestMenu">
-					<div class="ar_contestJoin">
-						<div class="ar_contestPhoto">
-						</div>
-						<div class="ar_contestContain">
-						</div>
-						
-						<div class="ar_contestLike"></div>
+			 	<c:forEach items="${list }" var="i">			
+			 	
+			 	<div class="ar_contestWrap">
+					<div class="ar_contestTitle">
+						${i.sdate } ~${i.edate}  ${i.name }
 					</div>
+				<div class="ar_contestTitleBtn">
+					<input type="button" value="올리기" id="ar_insertBtn" title="${i.code }" data-toggle="modal" data-target="#ar_contest_Modal">
+				</div>	
+					<div class="ar_ar_contestMenu">
+						<div class="ar_contestJoin">
+							<div class="ar_contestPhoto">
+							</div>
+							<div class="ar_contestContain">
+							</div>
+							
+							<div class="ar_contestLike"></div>
+						</div>
+					
+					</div>
+					</div>
+				</c:forEach> 
 				
-				</div>
 			</div>
-	
-</div>
+			
+			<!-- Modal -->
+				
+				<div class="modal fade" id="ar_contest_Modal" role="dialog">
+				    <div class="modal-dialog modal-m">
+				      <div class="modal-content">
+				      
+				      	<!-- modal header -->
+				        <div class="modal-header">
+				          <button type="button" class="close jh_file_cancel" data-dismiss="modal">&times;</button>
+				          <h4 class="modal-title">| 공모전 참가</h4>
+				        </div>
+				        <!-- modal header 끝-->
+				        
+				        <!-- modal contents -->
+				        <form action="contestJoin" method="post" id="contestfrm" name="contestfrm" enctype="multipart/form-data">
+				        
+				        
+				        <div class="modal-body">
+				        
+				        	<div class="ar_modalTop">
+				        		* 등록 시 수정, 삭제가 불가한 점을 참고하여 제출하여 주십시오. <br>
+				        		------------------------------------------------<br>
+				        	</div>
+							
+							<div class="input-group input-group_modal">
+								<input type="hidden" name="code" id="ar_contestCode">
+							  <span class="input-group-addon">지점명</span>
+							  <input id="ar_store" name="store" type="text" class="form-control" placeholder="Additional Info">
+							</div>
+							
+							<div class="input-group input-group_modal">
+							  <span class="input-group-addon">메뉴사진</span>
+							  <input id="ar_mphoto" name="menuphoto" type="file" class="form-control"  placeholder="Additional Info">
+							</div>
+							
+							<div class="input-group input-group_modal">
+							  <span class="input-group-addon">메뉴명</span>
+							  <input id="ar_menu" name="menuname" type="text" class="form-control"  placeholder="Additional Info">
+							</div>
+							
+							<div class="input-group input-group_modal">
+							   <div id="area_text"><label class="jh_label" for="comment">레시피</label></div> 
+							  <textarea name="recipe" id="ar_recipe"></textarea>
+							</div>
+							
+							<div class="form-group">
+						      <div id="area_text"><label class="jh_label" for="comment">메뉴에 대해 작성해주세요.</label></div> 
+						      <textarea id="ar_info" name="account" class="form-control form-control_area" rows="5"></textarea>
+						    </div>
+				        </div>
+				        <!-- modal contents 끝-->
+				        
+				        <!-- modal footer -->
+				        <div class="modal-footer">
+				          <input type="button" class="btn btn-default ar_InsertBtn"  value="올리기">
+				          <button type="button" class="btn btn-default" data-dismiss="modal">초기화</button>
+				        </div>
+				       </form>
+				      	<!-- modal footer 끝-->
+				      </div>
+				    </div>
+				  </div>
+				<!-- Modal 끝 -->
 
+
+</div>
 </body>
 </html>

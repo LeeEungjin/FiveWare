@@ -39,4 +39,11 @@ public class ContestDAO {
 		
 		return ar;
 	}
+	
+	public int contestJoinInsert(ContestJoinDTO contestJoinDTO) throws Exception{
+		int result = sqlSession.insert(NAMESPACE+"contestJoinInsert", contestJoinDTO);
+		
+		return result;
+	}
+	
 }

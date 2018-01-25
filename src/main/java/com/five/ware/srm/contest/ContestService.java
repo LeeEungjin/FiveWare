@@ -37,4 +37,10 @@ public class ContestService {
 		
 		return ar;
 	}
+	
+	public int contestJoinInsert(ContestJoinDTO contestJoinDTO) throws Exception{
+		int result = contestDAO.contestJoinInsert(contestJoinDTO);
+		
+		return result;
+	}
 }
