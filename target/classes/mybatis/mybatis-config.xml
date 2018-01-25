@@ -31,6 +31,7 @@
   		<typeAlias type="com.five.ware.srm.contest.ContestListDTO" alias="ContestListDTO"/>
   		<typeAlias type="com.five.ware.srm.contest.ContestJoinDTO" alias="ContestJoinDTO"/>
   		<typeAlias type="com.five.ware.srm.contest.ContestLikeDTO" alias="ContestLikeDTO"/>
+  		<typeAlias type="com.five.ware.util.RowNum" alias="RowNum"/>
 
 
   	</typeAliases>

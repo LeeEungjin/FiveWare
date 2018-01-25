@@ -5,8 +5,12 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.five.ware.file.FileDTO;
+import com.five.ware.util.ListData;
+import com.five.ware.util.Pager;
+import com.five.ware.util.RowNum;
 
 @Service
 public class ContestService {
@@ -26,11 +30,22 @@ public class ContestService {
 		return result;
 	}
 	
-	public List<ContestListDTO> contestList() throws Exception{
-		List<ContestListDTO> ar = contestDAO.contestList();
+	public List<ContestListDTO> contestList(ListData listData, Model model) throws Exception{
+		RowNum rowNum = listData.makeRow();
+		
+		int totalcount = contestDAO.contestListCount();
+		System.out.println(totalcount);
+		
+		Pager pager = listData.makePage(totalcount);		
+		
+		List<ContestListDTO> ar = contestDAO.contestList(rowNum);
+		
+		model.addAttribute("list", ar);
+		model.addAttribute("pager", pager);
 		
 		return ar;
 	}
+
 	
 	public List<FileDTO> fileList() throws Exception{
 		List<FileDTO> ar = contestDAO.fileList();
@@ -42,5 +57,11 @@ public class ContestService {
 		int result = contestDAO.contestJoinInsert(contestJoinDTO);
 		
 		return result;
+	}
+	
+	public List<ContestJoinDTO> contestJoinList() throws Exception{
+		List<ContestJoinDTO> ar= contestDAO.contestJoinList();
+		
+		return ar;
 	}
 }

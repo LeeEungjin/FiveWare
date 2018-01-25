@@ -26,10 +26,11 @@ $(function(){
 		height: 150
 	});
 	
-	$("#ar_insertBtn").click(function(){
+	$(".ar_insertBtn").click(function(){
+		$("#ar_mphoto").val("");
+		$("#ar_menu").val("");
+		
 		var code=$(this).attr("title");
-	
-		alert('${member.store}');
 		
 		$("#ar_contestCode").val(code);
 		$("#ar_store").val('${member.store}');
@@ -39,9 +40,9 @@ $(function(){
 	$(".ar_InsertBtn").click(function(){
 		var recipe =CKEDITOR.instances.ar_recipe.getData();
 		var info =CKEDITOR.instances.ar_info.getData();
-		var file= $("#ar_mphoto").val();
+	/* 	var file= $("#ar_mphoto").val();
 		var a = file.substring(file.lastIndexOf("."));
-		alert(a);
+		alert(a); */
 		if($("#ar_mphoto").val()==""){
 			alert("사진을 등록해주십시오.");
 		}else if($("#ar_menu").val()==""){
@@ -54,6 +55,13 @@ $(function(){
 			/* document.contestfrm.submit(); */
 			$("#contestfrm").submit();
 		}
+	});
+	
+	$(".list").click(function(){
+		var curPage = $(this).attr("title");
+		
+		document.ar_contestPage.curPage.value=curPage;
+		document.ar_contestPage.submit();
 	});
 });
 
@@ -125,6 +133,10 @@ $(function(){
 				</div>
 			</div>
 			
+			<form action="./contest" name="ar_contestPage">
+				<input type="hidden" id="ar_curPage" name="curPage">
+			</form>
+			
 			
 				
 			 	<c:forEach items="${list }" var="i">			
@@ -134,21 +146,47 @@ $(function(){
 						${i.sdate } ~${i.edate}  ${i.name }
 					</div>
 				<div class="ar_contestTitleBtn">
-					<input type="button" value="올리기" id="ar_insertBtn" title="${i.code }" data-toggle="modal" data-target="#ar_contest_Modal">
+					<input type="button" value="올리기" class="ar_insertBtn" title="${i.code }" data-toggle="modal" data-target="#ar_contest_Modal">
 				</div>	
 					<div class="ar_ar_contestMenu">
-						<div class="ar_contestJoin">
-							<div class="ar_contestPhoto">
-							</div>
-							<div class="ar_contestContain">
-							</div>
-							
-							<div class="ar_contestLike"></div>
-						</div>
+						<c:forEach items="${list2 }" var="j">
+							<c:if test="${i.code==j.code }">
+								<div class="ar_contestJoin">
+									<div class="ar_contestPhoto">
+										<img class="ar_menuimg" src="${url }/resources/contest/${j.photo}">
+									</div>
+									<div class="ar_contestContain">
+										<p>지점 : ${j.store} </p>
+										<p>메뉴명 : ${j.menuname}</p>
+										<p>메뉴설명: ${j.account}</p>
+									</div>
+									
+									<div class="ar_contestLike"></div>
+								</div>							
+							</c:if>
+						</c:forEach>
 					
 					</div>
 					</div>
 				</c:forEach> 
+				
+						<div id="ar_pageWrap">
+					
+					<c:if test="${pager.curBlock gt 1}">
+						<span class="list" title="${pager.startNum-1}">[이전]</span>
+					</c:if>
+							
+					<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+						<span class="list" title="${i}">${i}</span>
+					</c:forEach>
+										
+					<c:if test="${pager.curBlock lt pager.totalBlock}">
+						<span class="list" title="${pager.lastNum+1}">[다음]</span>
+					</c:if>
+					
+				</div> 
+				
+			</div>
 				
 			</div>
 			
@@ -177,7 +215,7 @@ $(function(){
 				        	</div>
 							
 							<div class="input-group input-group_modal">
-								<input type="hidden" name="code" id="ar_contestCode">
+								<input type="text" name="code" id="ar_contestCode">
 							  <span class="input-group-addon">지점명</span>
 							  <input id="ar_store" name="store" type="text" class="form-control" placeholder="Additional Info">
 							</div>

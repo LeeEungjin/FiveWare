@@ -24,8 +24,6 @@
 		$(".list").click(function(){
 			var cur = $(this).attr("title");
 			
-			alert(cur);
-			
 			document.event_search_frm.curPage.value=cur;
 			document.event_search_frm.submit();
 		});
@@ -107,8 +105,7 @@
 					</div>
 					
 				<!-- 검색 기능 -->
-						<form action="./eventList" name="event_search_frm" method="get">
-							<input type="hidden" name="perPage" value="5">
+						<form action="./contestList" name="event_search_frm" method="get">
 							<input type="hidden" name="curPage">
 						</form>	
 				<!-- 검색 기능 끝 -->
@@ -117,7 +114,7 @@
 				
 				<!-- table -->
 					<div id="erp_jh_contents_table">
-							<c:forEach items="${list}" var="i" varStatus="j">
+							<c:forEach items="${list}" var="i" >
 							<div class="eventList">
 							
 								<div class="eventImg_div">
@@ -128,10 +125,11 @@
 								
 								<div class="eventText">
 									<div class="eventTitle">기간 : ${i.sdate}~${i.edate}</div>
-									<c:if test="${member.temp =='영업/구매'}">
-										<div class="eventBtn"><input type="button" id="ar_contestPlus" value="수정" title="${i.code }">  </div>
-									</c:if>
-									
+										<c:if test="${kind=='member' }">
+											<c:if test="${member.temp =='영업/구매'}">
+												<div class="eventBtn"><input type="button" id="ar_contestPlus" value="수정" title="${i.code }">  </div>
+											</c:if>
+										</c:if>
 									<div class="eventOption"> ${i.info}</div>
 									<%-- <div class="eventPrize">${i.prize }</div> --%>
 									<c:forEach items="${files}" var="a">

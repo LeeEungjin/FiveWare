@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.five.ware.file.FileDTO;
+import com.five.ware.util.RowNum;
 
 @Repository
 public class ContestDAO {
@@ -28,8 +29,8 @@ public class ContestDAO {
 		return result;
 	}
 	
-	public List<ContestListDTO> contestList() throws Exception{
-		List<ContestListDTO> ar = sqlSession.selectList(NAMESPACE+"contestList");
+	public List<ContestListDTO> contestList(RowNum rowNum) throws Exception{
+		List<ContestListDTO> ar = sqlSession.selectList(NAMESPACE+"contestList", rowNum);
 		
 		return ar;
 	}
@@ -46,4 +47,15 @@ public class ContestDAO {
 		return result;
 	}
 	
+	public List<ContestJoinDTO> contestJoinList() throws Exception{
+		List<ContestJoinDTO> ar = sqlSession.selectList(NAMESPACE+"contestJoinList");
+		
+		return ar;
+	}
+	
+	public int contestListCount() throws Exception{
+		int totalcount = sqlSession.selectOne(NAMESPACE+"contestListCount");
+		
+		return totalcount;
+	}
 }

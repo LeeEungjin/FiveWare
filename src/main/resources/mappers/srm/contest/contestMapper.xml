@@ -13,8 +13,15 @@
   	insert into fivefile values(file_seq.nextval, #{code}, #{oriname}, #{filename})
   </insert>
   
-  <select id="contestList" resultType="ContestListDTO">
-  	select * from contestlist 
+  <select id="contestList" parameterType="RowNum" resultType="ContestListDTO">
+  	select * from 
+  	(select rownum R, N.* from
+  	(select * from contestlist order by num desc) N)
+  	where R between #{startRow} and #{lastRow} 
+  </select>
+  
+<select id="contestListCount" resultType="int">
+  	select count(nvl(num, 0)) from contestlist
   </select>
   
    <select id="fileList" resultType="FileDTO">
@@ -24,5 +31,9 @@
  <insert id="contestJoinInsert" parameterType="ContestJoinDTO">
  	insert into contestJoin values(contestJoin_seq.nextval, #{code}, #{store}, #{menuname},#{photo}, #{account}, '진행', #{recipe})
  </insert>
+ 
+ <select id="contestJoinList" resultType="contestJoinDTO">
+ 	select * from contestJoin
+ </select>
   
   </mapper>

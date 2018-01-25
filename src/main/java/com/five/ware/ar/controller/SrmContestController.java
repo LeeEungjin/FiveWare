@@ -14,8 +14,10 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -24,6 +26,8 @@ import com.five.ware.srm.contest.ContestJoinDTO;
 import com.five.ware.srm.contest.ContestListDTO;
 import com.five.ware.srm.contest.ContestService;
 import com.five.ware.util.FileSaver;
+import com.five.ware.util.ListData;
+import com.five.ware.util.RowNum;
 
 @Controller
 @RequestMapping(value="/srm/contest/**")
@@ -33,30 +37,29 @@ public class SrmContestController {
 	private ContestService contestService;
 	
 	@RequestMapping(value="contest")
-	public ModelAndView contest() throws Exception{
-		List<ContestListDTO> ar = contestService.contestList();
+	public String contest(Model model,@RequestParam(defaultValue="1", required=false) int curPage) throws Exception{
+		ListData listData = new ListData(3);
+		listData.setCurPage(curPage);
 		
-		ModelAndView mv = new ModelAndView();
+		contestService.contestList(listData, model);
+		List<ContestJoinDTO> ar2 = contestService.contestJoinList();
 		
-		mv.addObject("list", ar);
+		model.addAttribute("list2", ar2);
 		
-		mv.setViewName("srm/contest/contest");
-		
-		return mv;
+		return "srm/contest/contest";
 	}
 	
 	@RequestMapping(value="contestList")
-	public ModelAndView contestList() throws Exception{
-		List<ContestListDTO> ar = contestService.contestList();
+	public String contestList(Model model, @RequestParam(defaultValue="1", required=false) int curPage) throws Exception{
+		ListData listData = new ListData(3);
+		listData.setCurPage(curPage);
+		
+		contestService.contestList(listData, model);
 		List<FileDTO> files = contestService.fileList();
 		
-		ModelAndView mv = new ModelAndView();
+		model.addAttribute("files", files);
 		
-		mv.addObject("list", ar);
-		mv.addObject("files", files);
-		mv.setViewName("srm/contest/contestList");
-		
-		return mv;
+		return "srm/contest/contestList";
 	}
 	
 	@RequestMapping(value="contestWrite")
@@ -176,7 +179,6 @@ public class SrmContestController {
 	@RequestMapping(value="contestJoin", method=RequestMethod.POST)
 	public ModelAndView contestJoinInsert(ContestJoinDTO contestJoinDTO, MultipartFile menuphoto, HttpSession session) throws Exception{
 		FileSaver fileSaver = new FileSaver();
-		System.out.println("들어와?");
 		
 		String fileName=fileSaver.fileSave(menuphoto, session, "contest");
 		System.out.println(fileName);

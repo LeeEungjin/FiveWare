@@ -76,6 +76,13 @@
 	height: 90%;
 	background-color: #ffbbff;
 	border: 1px solid black;
+	display: inline-block;
+	margin-right: 5%;
+}
+
+.ar_menuimg{
+	width: 100%;
+	height: 100%;
 }
 
 .ar_contestPhoto{
@@ -88,6 +95,7 @@
 	width: 100%;
 	height: 45%;
 	background-color: #ff9393;
+	padding: 5% 5%;
 }
 
 .ar_contestLike{
