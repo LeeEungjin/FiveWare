@@ -7,36 +7,43 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+
 
 <link href="resources/css/home.css" rel="stylesheet">
 
 <script type="text/javascript">
    $(function(){
-	   $(".total_wrap").css("height", window.innerHeight);
+	   $(".background-image").css("height", window.innerHeight);
 	   
-	   // 높이 중간 구하기
+	   // 중간 구하기
 	   var mainHeight = $('.main_wrap').css('height');
+	   var mainWidth = $('.main_wrap').css('width');
+	   
 	   var restHeight = (window.innerHeight - mainHeight.split('p')[0]*1)/2;
-	   $('.total_wrap').css('padding-top', restHeight+'px');
+	   var restWidth = (window.innerWidth - mainWidth.split('p')[0]*1)/2;
+	   $('.main_wrap').css('top', restHeight+'px');
+	   $('.main_wrap').css('left', restWidth+'px');
 	   
 	   // 로그아웃 ********************************************************
 	   $('#btn-logout').click(function() {
 		   swal({
-			   title: "Are you sure?",
-			   text: "Your will not be able to recover this imaginary file!",
+			   title: "로그아웃",
+			   text: "정말로  로그아웃 하시겠습니까?",
 			   type: "warning",
 			   showCancelButton: true,
 			   confirmButtonClass: "btn-danger",
-			   confirmButtonText: "Yes, delete it!",
+			   confirmButtonText: "네",
 			   closeOnConfirm: false
 			 },
 			 function(){
-			   /* $('#frmHomeProcess').attr("action", "./member/memberLogout");
-			   $('#frmHomeProcess').submit(); */
+			   $('#frmHomeProcess').attr("action", "./member/memberLogout");
+			   $('#frmHomeProcess').submit();
 			 });
-		   
 		   
 	   });
 	   
@@ -68,10 +75,19 @@
 					"login" : login
 				},success : function(msg) {
 					if(msg.ch) {
-						swal(msg.name+"님", "환영합니다!", "success")
-							.then((value) => 
-								location.reload()
-							);
+						swal({
+						   title: msg.name+"님",
+						   text: "환영합니다!",
+						   type: "success",
+						   showCancelButton: true,
+						   confirmButtonClass: "btn-primary",
+						   confirmButtonText: "확인",
+						   closeOnConfirm: false
+						 },
+						 function(){
+						   location.reload();
+						 });
+							
 					} else {
 						swal("로그인", "실패했습니다.", "error");
 					}
@@ -119,9 +135,9 @@
 </head>
 <body>
 	<!-- 전부 -->
-	<div class="total_wrap">
-		<%-- <img src="${pageContext.request.contextPath}/resources/images/common/company.jpg" style="width:100%; height: 100%">  --%>
-		<div class="main_wrap">
+	<div class="background-image">
+		<div class="main_wrap animate">
+			<div class="logo"></div>
 		
 			<form id="frmHomeProcess" action="#" method="post">
 			<table class="table">
@@ -145,9 +161,9 @@
 							</div>
 							
 							<div class="container" style="float: left; width: 50%;">
-								<label><b>Code</b></label> 
+								<label><b>사원번호</b></label> 
 								<input type="text" class="inputTextBox" placeholder="Enter Code" name="code" id="code"> 
-								<label><b>Password</b></label>
+								<label><b>비밀번호</b></label>
 								<input type="password" class="inputTextBox" placeholder="Enter Password" name="pw" id="pw">
 						
 								<div class="container">
@@ -169,7 +185,12 @@
 						<c:if test="${kind eq 'member'}">
 							<td colspan="3">
 								<div class="imgcontainer">
-									<img src="#" alt="이미지 없음" class="avatar">
+									<c:if test="${file eq null}">
+										<img src="${pageContext.request.contextPath}/resources/images/home/noimage.gif" alt="이미지 없음" class="avatar">
+									</c:if>
+									<c:if test="${file ne null}">
+										<img src="${pageContext.request.contextPath}/resources/member/${file.filename}" class="avatar">
+									</c:if>
 								</div>
 								
 								<div class="container" style="float: left; width: 50%;">
@@ -192,7 +213,7 @@
 						<c:if test="${kind eq 'store'}">
 							<td colspan="3">
 								<div class="imgcontainer">
-									<img src="#" alt="이미지 없음" class="avatar">
+									<img src="${pageContext.request.contextPath}/resources/images/home/noimage.gif" alt="이미지 없음" class="avatar">
 								</div>
 								
 								<div class="container" style="float: left; width: 50%;">

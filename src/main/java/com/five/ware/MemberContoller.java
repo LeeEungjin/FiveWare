@@ -16,17 +16,29 @@ import com.five.ware.erp.human.member.MemberDTO;
 import com.five.ware.erp.human.member.MemberService;
 import com.five.ware.erp.storeRegist.StoreRegistDTO;
 import com.five.ware.erp.storeRegist.StoreRegistService;
+import com.five.ware.file.FileDTO;
+import com.five.ware.file.FileService;
 
 @Controller
 @RequestMapping(value="/member/**")
 public class MemberContoller {
 
 	@Inject
-	MemberService memberService;
+	private MemberService memberService;
 	@Inject
-	StoreRegistService storeRegistService;
+	private StoreRegistService storeRegistService;
+	@Inject
+	private FileService fileService;
 	
-	//Checl
+	//logout
+	@RequestMapping(value="memberLogout")
+	public String memberLogout(HttpSession session) throws Exception{
+		session.invalidate();
+		
+		return "redirect:/";
+	}
+	
+	//Check
 	@RequestMapping(value="checkLogin", method={RequestMethod.POST, RequestMethod.GET})
 	@ResponseBody
 	public Map<String, Object> checkLogin(HttpSession session, String code, String pw, String login) {
@@ -38,7 +50,11 @@ public class MemberContoller {
 				MemberDTO memberDTO = this.memberCheck(code, pw);
 				
 				if(memberDTO != null) {
+					//이미지
+					FileDTO fileDTO = fileService.fileOne(code);
+					
 					session.setAttribute("member", memberDTO);
+					session.setAttribute("file", fileDTO);
 					session.setAttribute("kind", "member");
 					map.put("name", memberDTO.getName());
 					ch = true;
@@ -98,15 +114,6 @@ public class MemberContoller {
 	}
 	
 	
-	//logout
-	@RequestMapping(value="memberLogout")
-	public String memberLogout(HttpSession session) throws Exception{
-		session.invalidate();
-		
-		return "redirect:/";
-	}
-	
-	
 	//login
 	@RequestMapping(value="memberLogin")
 	public String memberLogin(MemberDTO memberDTO,HttpSession session,RedirectAttributes rd){
@@ -123,7 +130,7 @@ public class MemberContoller {
 			 session.setAttribute("member", memberDTO);
 			 session.setAttribute("kind", "member");
 		 }else{
-			 message="�븘�씠�뵒�� 鍮꾨�踰덊샇瑜� �솗�씤�빐二쇱꽭�슂.";
+			 message="占쎈툡占쎌뵠占쎈탵占쏙옙 �뜮袁⑨옙甕곕뜇�깈�몴占� 占쎌넇占쎌뵥占쎈퉸雅뚯눘苑�占쎌뒄.";
 		 }
 		 
 		 rd.addFlashAttribute("message", message);
