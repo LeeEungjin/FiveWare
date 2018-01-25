@@ -357,8 +357,8 @@
          
          <div class="fw_subselected collapse in" id="sub1">
             <ul>
-               <li> 거래처 등록</li>
-               <li> 제품 등록</li>
+               <li><a href="../foundation/supplier">거래처 등록</a></li>
+               <li><a href="../foundation/product">제품 등록</a></li>
                <li><a href="./menuRegist">메뉴 등록</a></li>
                <li><a href="./storageRegist">창고 등록</a></li>
             </ul>
@@ -374,8 +374,8 @@
          
          <div class="fw_subsub collapse"  id="sub2">
             <ul>
-               <li> 주문 입력</li>
-               <li> 주문 현황 보기</li>
+               <li><a href="../order/orderRegist">주문 입력</a></li>
+               <li><a href="../order/graph/orderGraph">주문 현황 보기</a></li>
             </ul>
          </div>
          
