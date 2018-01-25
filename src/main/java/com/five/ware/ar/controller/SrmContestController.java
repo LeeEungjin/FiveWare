@@ -254,4 +254,16 @@ public class SrmContestController {
 		
 		return kind;
 	}
+	
+	@RequestMapping(value="contestJoinView", method=RequestMethod.POST)
+	public ModelAndView contestJoinView(String cnum) throws Exception{
+		ContestJoinDTO contestJoinDTO = contestService.contestJoinView(cnum);
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("one", contestJoinDTO);
+		mv.setViewName("srm/contest/contestJoinView");
+		
+		return mv;
+	}
 }

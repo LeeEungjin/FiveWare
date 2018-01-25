@@ -114,6 +114,8 @@
 }
 
 .modal-body1 {
+	position: relative;
+    padding: 15px;
     height: 790px !important;
 }
 
@@ -123,8 +125,18 @@
 
 #ar_recipe{
 	width: 100%;
+	height: 100px;
 }
 
+.ar_area{
+	width: 100%;
+	height: 20%;
+}
+
+#ar_info{
+	width: 100%;
+	height: 100%;
+}
 .ar_like{
 	display:inline-block;
 	text-align: right;

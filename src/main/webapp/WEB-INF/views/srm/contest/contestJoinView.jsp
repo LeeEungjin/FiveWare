@@ -1,47 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-	<!-- modal header -->
-				       <!--  <div class="modal-header">
-				          <button type="button" class="close jh_file_cancel" data-dismiss="modal">&times;</button>
-				          <h4 class="modal-title">| 공모전 참가</h4>
-				        </div> -->
-				        <!-- modal header 끝-->
+				    <div class="modal-dialog modal-m">
+				      <div class="modal-content">
 				        
 				        <!-- modal contents -->
 				        <form action="contestJoin" method="post" id="contestfrm" name="contestfrm" enctype="multipart/form-data">
 				        
 				        
-				        <div class="modal-body">
-				        
-				        	<div class="ar_modalTop">
-				        		* 등록 시 수정, 삭제가 불가한 점을 참고하여 제출하여 주십시오. <br>
-				        		------------------------------------------------<br>
-				        	</div>
-							
-							<div class="input-group input-group_modal">
-								<input type="text" name="code" id="ar_contestCode">
-							  <span class="input-group-addon">지점명</span>
-							  <input id="ar_store" name="store" type="text" class="form-control" placeholder="Additional Info">
+				        <div class="modal-body1">
+							<div class="ar_Viewphoto">
+								<img src="D:/arin_1/FiveWare_ar/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/FiveWare/resources/contest/${one.photo}">
+							 
 							</div>
 							
 							<div class="input-group input-group_modal">
-							  <span class="input-group-addon">메뉴사진</span>
-							  <input id="ar_mphoto" name="menuphoto" type="file" class="form-control"  placeholder="Additional Info">
+							  <span class="input-group-addon">지점명</span>
+							  <input id="ar_store" name="store" type="text" class="form-control" readonly="readonly" value="${one.store }">
 							</div>
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">메뉴명</span>
-							  <input id="ar_menu" name="menuname" type="text" class="form-control"  placeholder="Additional Info">
+							  <input id="ar_menu" name="menuname" type="text" class="form-control" readonly="readonly" value="${one.menuname }">
 							</div>
 							
-							<div class="input-group input-group_modal">
+							<div class="input-group input-group_modal ar_area" >
 							   <div id="area_text"><label class="jh_label" for="comment">레시피</label></div> 
-							  <textarea name="recipe" id="ar_recipe"></textarea>
+							  <textarea name="recipe" id="ar_recipe" class="form-control form-control_area" readonly="readonly" >${one.recipe }</textarea>
 							</div>
 							
-							<div class="form-group">
-						      <div id="area_text"><label class="jh_label" for="comment">메뉴에 대해 작성해주세요.</label></div> 
-						      <textarea id="ar_info" name="account" class="form-control form-control_area" rows="5"></textarea>
+							<div class="form-group  ar_area">
+						      <div id="area_text"><label class="jh_label" for="comment">메뉴설명</label></div> 
+						      <textarea id="ar_info" name="account" class="form-control form-control_area"  readonly="readonly">${one.account}</textarea>
 						    </div>
 				        </div>
 				        <!-- modal contents 끝-->
@@ -53,3 +42,6 @@
 				        </div>
 				       </form>
 				      	<!-- modal footer 끝-->
+				      
+				      </div>
+				    </div>

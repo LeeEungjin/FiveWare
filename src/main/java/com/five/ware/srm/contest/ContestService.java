@@ -82,4 +82,10 @@ public class ContestService {
 		
 		return contestLikeDTO2;
 	}
+	
+	public ContestJoinDTO contestJoinView(String cnum) throws Exception{
+		ContestJoinDTO contestJoinDTO = contestDAO.contestJoinView(cnum);
+		
+		return contestJoinDTO;
+	}
 }

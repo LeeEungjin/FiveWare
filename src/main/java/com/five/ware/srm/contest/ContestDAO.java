@@ -90,4 +90,10 @@ public class ContestDAO {
 		
 		return contestLikeDTO2;
 	}
+	
+	public ContestJoinDTO contestJoinView(String cnum) throws Exception{
+		ContestJoinDTO contestJoinDTO = sqlSession.selectOne(NAMESPACE+"contestJoinView", cnum);
+		
+		return contestJoinDTO;
+	}
 }

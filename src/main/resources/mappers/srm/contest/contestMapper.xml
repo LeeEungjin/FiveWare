@@ -58,4 +58,8 @@ select * from contestJoin order by cnum desc
   <select id="likeSelectOne" parameterType="ContestLikeDTO" resultType="ContestLikeDTO">
   	select * from contestlike where code=#{code} and store=#{store}  	
   </select>
+  
+  <select id="contestJoinView" parameterType="String" resultType="ContestJoinDTO">
+  	select * from contestjoin where cnum=#{cnum}
+  </select>
   </mapper>
