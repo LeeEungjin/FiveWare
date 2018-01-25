@@ -113,10 +113,33 @@
     height: 600px !important;
 }
 
+.modal-body1 {
+    height: 790px !important;
+}
+
 .input-group{
 	margin-bottom: 2%;
 }
 
 #ar_recipe{
 	width: 100%;
+}
+
+.ar_like{
+	display:inline-block;
+	text-align: right;
+	margin-right: 2%;
+}
+
+.ar_big{
+	display:inline-block;
+	text-align: right;
+	margin-right: 2%;
+}
+
+.ar_Viewphoto{
+	width: 100%;
+	height: 300px;
+	background-color: yellow;
+	margin-bottom: 3%;
 }

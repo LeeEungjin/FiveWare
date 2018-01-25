@@ -7,9 +7,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 <c:import url="${url}/resources/temp/ref.jsp"></c:import> 
- 
- <link href="${url}/resources/css/srm/contest/contest.css" rel="stylesheet">
    <script src="//cdn.ckeditor.com/4.8.0/basic/ckeditor.js"></script>
+ 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <link href="${url}/resources/css/srm/contest/contest.css" rel="stylesheet">
 
 <title>Insert title here</title>
 
@@ -62,6 +63,36 @@ $(function(){
 		
 		document.ar_contestPage.curPage.value=curPage;
 		document.ar_contestPage.submit();
+	});
+	
+	$(".ar_like").click(function(){
+		var ccnum=$(this).attr("title");
+		var code=$(this).attr("id");
+		var store='${member.store}';
+		var state=$("#"+ccnum).attr("class");
+		
+		alert("state")
+
+	  	$.post("./like", {ccnum:ccnum, code:code, store:store, state:state}, function(data){
+			if(data=="like"){
+				alert("참여해주셔서 감사합니다.");
+				$("#"+ccnum).html("Like &#xf004");
+			}
+		});  
+	});
+	
+	$(".ar_view").click(function(){
+		var cnum = $(this).attr("title");
+		
+		$.ajax({
+			url:"./contestJoinView",
+			type:"GET",
+			data:{
+				"cnum":cnum
+			}, success:function(data){
+				
+			}
+		});
 	});
 });
 
@@ -139,18 +170,20 @@ $(function(){
 			
 			
 				
-			 	<c:forEach items="${list }" var="i">			
+			 	<c:forEach items="${list }" var="i" >			
 			 	
 			 	<div class="ar_contestWrap">
 					<div class="ar_contestTitle">
 						${i.sdate } ~${i.edate}  ${i.name }
 					</div>
 				<div class="ar_contestTitleBtn">
-					<input type="button" value="올리기" class="ar_insertBtn" title="${i.code }" data-toggle="modal" data-target="#ar_contest_Modal">
+					<c:if test="${kind=='store' }">
+						<input type="button" value="올리기" class="ar_insertBtn" title="${i.code }" data-toggle="modal" data-target="#ar_contest_Modal">
+					</c:if>
 				</div>	
 					<div class="ar_ar_contestMenu">
-						<c:forEach items="${list2 }" var="j">
-							<c:if test="${i.code==j.code }">
+						<c:forEach items="${list2 }" var="j" varStatus="k">
+							<c:if test="${i.code==j.code}">
 								<div class="ar_contestJoin">
 									<div class="ar_contestPhoto">
 										<img class="ar_menuimg" src="${url }/resources/contest/${j.photo}">
@@ -161,7 +194,17 @@ $(function(){
 										<p>메뉴설명: ${j.account}</p>
 									</div>
 									
-									<div class="ar_contestLike"></div>
+									<div class="ar_contestLike">
+										<p class="ar_like" title="${j.cnum}" id="${i.code }">
+											<c:if test="${result[k.index].cnum!=j.cnum}">
+												<i style="font-size:17px" class="fa" id="${j.cnum}">Like &#xf08a;</i>
+											</c:if>
+											<c:if test="${result[k.index].cnum==j.cnum}">
+												<i style="font-size:17px" class="fa" id="${j.cnum}">Like &#xf004;</i>
+											</c:if>
+										</p>
+										<p class="ar_big" title="${i.code}${j.cnum}"><i style="font-size:17px" class="fa ar_view"  id="${i.code}${j.cnum}" title="${j.cnum }"data-toggle="modal" data-target="#ar_View_Modal">&#xf0b2;</i></p>
+									</div>
 								</div>							
 							</c:if>
 						</c:forEach>
@@ -254,6 +297,62 @@ $(function(){
 				  </div>
 				<!-- Modal 끝 -->
 
+
+			<!-- Modal -->
+				
+				<div class="modal fade" id="ar_View_Modal" role="dialog">
+				    <div class="modal-dialog modal-m">
+				      <div class="modal-content">
+				          <!--  <div class="modal-header">
+				          <button type="button" class="close jh_file_cancel" data-dismiss="modal">&times;</button>
+				          <h4 class="modal-title">| 공모전 참가</h4>
+				        </div> -->
+				        <!-- modal header 끝-->
+				        
+				        <!-- modal contents -->
+				        <form action="contestJoin" method="post" id="contestfrm" name="contestfrm" enctype="multipart/form-data">
+				        
+				        
+				        <div class="modal-body1">
+							
+							<div class="ar_Viewphoto">
+							 
+							</div>
+							
+							<div class="input-group input-group_modal">
+							  <span class="input-group-addon">지점명</span>
+							  <input id="ar_store" name="store" type="text" class="form-control" placeholder="Additional Info">
+							</div>
+							
+							<div class="input-group input-group_modal">
+							  <span class="input-group-addon">메뉴명</span>
+							  <input id="ar_menu" name="menuname" type="text" class="form-control"  placeholder="Additional Info">
+							</div>
+							
+							<div class="input-group input-group_modal">
+							   <div id="area_text"><label class="jh_label" for="comment">레시피</label></div> 
+							  <textarea name="recipe" id="ar_recipe"></textarea>
+							</div>
+							
+							<div class="form-group">
+						      <div id="area_text"><label class="jh_label" for="comment">메뉴설명</label></div> 
+						      <textarea id="ar_info" name="account" class="form-control form-control_area" rows="5"></textarea>
+						    </div>
+				        </div>
+				        <!-- modal contents 끝-->
+				        
+				        <!-- modal footer -->
+				        <div class="modal-footer">
+				          <input type="button" class="btn btn-default ar_InsertBtn"  value="올리기">
+				          <button type="button" class="btn btn-default" data-dismiss="modal">초기화</button>
+				        </div>
+				       </form>
+				      	<!-- modal footer 끝-->
+				      
+				      </div>
+				    </div>
+				  </div>
+				<!-- Modal 끝 -->
 
 </div>
 </body>

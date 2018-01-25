@@ -64,4 +64,22 @@ public class ContestService {
 		
 		return ar;
 	}
+	
+	public int likeInsert(int cnum, String code, String store) throws Exception{
+		int result =contestDAO.likeInsert(cnum, code, store);
+		
+		return result;
+	}
+	
+	public int likeDelete(int cnum) throws Exception{
+		int result =contestDAO.likeDelete(cnum);
+		
+		return result;
+	}
+	
+	public ContestLikeDTO likeSelectOne(ContestLikeDTO contestLikeDTO) throws Exception{
+		ContestLikeDTO contestLikeDTO2 = contestDAO.likeSelectOne(contestLikeDTO);
+		
+		return contestLikeDTO2;
+	}
 }

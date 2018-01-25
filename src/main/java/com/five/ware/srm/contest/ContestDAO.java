@@ -1,6 +1,8 @@
 package com.five.ware.srm.contest;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -57,5 +59,35 @@ public class ContestDAO {
 		int totalcount = sqlSession.selectOne(NAMESPACE+"contestListCount");
 		
 		return totalcount;
+	}
+	
+	public int contestJoinListCount() throws Exception{
+		int totalCount = sqlSession.selectOne(NAMESPACE+"contestJoinListCount");
+		
+		return totalCount;
+	}
+	
+	public int likeInsert(int cnum, String code, String store) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("code", code);
+		map.put("cnum", cnum);
+		map.put("store", store);
+		
+		int result = sqlSession.insert(NAMESPACE+"likeInsert", map);
+		
+		return result;
+	}
+	
+	public int likeDelete(int cnum) throws Exception{
+		int result = sqlSession.delete(NAMESPACE+"likeDelete", cnum);
+		
+		return result;
+	}
+	
+	public ContestLikeDTO likeSelectOne(ContestLikeDTO contestLikeDTO) throws Exception{
+		ContestLikeDTO contestLikeDTO2 = sqlSession.selectOne(NAMESPACE+"likeSelectOne", contestLikeDTO);
+		
+		return contestLikeDTO2;
 	}
 }

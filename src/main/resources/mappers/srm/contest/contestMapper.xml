@@ -32,8 +32,30 @@
  	insert into contestJoin values(contestJoin_seq.nextval, #{code}, #{store}, #{menuname},#{photo}, #{account}, '진행', #{recipe})
  </insert>
  
- <select id="contestJoinList" resultType="contestJoinDTO">
- 	select * from contestJoin
+<!--  <select id="contestJoinList" resultType="contestJoinDTO">
+ 	select * from
+ 	(select rownum R, N.* from
+ 	(select * from contestJoin order by num desc) N)
+ 	where R between #{startRow} and #{lastRow}
+ </select> -->
+ 
+<select id="contestJoinList" resultType="contestJoinDTO">
+select * from contestJoin order by cnum desc
+ </select>
+ 
+  <select id="contestJoinListCount" resultType="int">
+ 	select count(nvl(num,0)) from contestJoin 
  </select>
   
+  <insert id="likeInsert" parameterType="java.util.Map">
+  	insert into contestlike values(contestlike_seq.nextval, #{code}, #{cnum}, #{store})
+  </insert>
+  
+  <delete id="likeDelete" parameterType="int">
+  	delete contestlike where cnum=#{cnum}
+  </delete>
+  
+  <select id="likeSelectOne" parameterType="ContestLikeDTO" resultType="ContestLikeDTO">
+  	select * from contestlike where code=#{code} and store=#{store}  	
+  </select>
   </mapper>

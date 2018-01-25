@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
@@ -18,11 +19,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.five.ware.erp.human.member.MemberDTO;
+import com.five.ware.erp.storeRegist.StoreRegistDAO;
+import com.five.ware.erp.storeRegist.StoreRegistDTO;
 import com.five.ware.file.FileDTO;
 import com.five.ware.srm.contest.ContestJoinDTO;
+import com.five.ware.srm.contest.ContestLikeDTO;
 import com.five.ware.srm.contest.ContestListDTO;
 import com.five.ware.srm.contest.ContestService;
 import com.five.ware.util.FileSaver;
@@ -37,14 +43,32 @@ public class SrmContestController {
 	private ContestService contestService;
 	
 	@RequestMapping(value="contest")
-	public String contest(Model model,@RequestParam(defaultValue="1", required=false) int curPage) throws Exception{
+	public String contest(Model model,@RequestParam(defaultValue="1", required=false) int curPage, HttpSession session) throws Exception{
 		ListData listData = new ListData(3);
 		listData.setCurPage(curPage);
 		
+		StoreRegistDTO storeRegistDTO = (StoreRegistDTO) session.getAttribute("member");
+		String store = storeRegistDTO.getCode();
+		
 		contestService.contestList(listData, model);
 		List<ContestJoinDTO> ar2 = contestService.contestJoinList();
+		List<ContestLikeDTO> result2 = new ArrayList<ContestLikeDTO>();
+		
+		for(ContestJoinDTO contestJoinDTO : ar2){
+			ContestLikeDTO contestLikeDTO = new ContestLikeDTO();
+			
+			contestLikeDTO.setCode(contestJoinDTO.getCode());
+			contestLikeDTO.setStore(store);
+			
+			System.out.println(contestJoinDTO.getCode());
+			
+			contestLikeDTO = contestService.likeSelectOne(contestLikeDTO);
+			
+			result2.add(contestLikeDTO);
+		}
 		
 		model.addAttribute("list2", ar2);
+		model.addAttribute("result", result2);
 		
 		return "srm/contest/contest";
 	}
@@ -208,5 +232,26 @@ public class SrmContestController {
 		mv.setViewName("common/result");
 		
 		return mv;
+	}
+	
+	@RequestMapping(value="like")
+	@ResponseBody
+	public String like(int ccnum, String code, String store, String state) throws Exception{
+		int result =0;
+		String kind="";
+		
+		if(state.equals("fa")){
+			result=contestService.likeInsert(ccnum, code, store);
+			if(result>0){
+				kind="like";
+			}
+		}else{
+			result=contestService.likeDelete(ccnum);
+			if(result>0){
+				kind="cancel";
+			}
+		}
+		
+		return kind;
 	}
 }
