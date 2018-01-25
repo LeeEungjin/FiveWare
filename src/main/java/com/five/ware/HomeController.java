@@ -85,6 +85,9 @@ public class HomeController {
 		
 		try {
 			randomList=communityService.randomNotice();
+			
+			System.out.println(randomList.size());
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -137,11 +140,11 @@ public class HomeController {
 		String filePath = session.getServletContext().getRealPath("resources/code");
 		String fileName = "code.code";
 		File f = new File(filePath, fileName);		
-		// 파일 읽을 준비
+		// �뙆�씪 �씫�쓣 以�鍮�
 			FileReader fr = new FileReader(f);
-			// 파일 읽기
+			// �뙆�씪 �씫湲�
 			BufferedReader br = new BufferedReader(fr);
-			// 한 줄을 읽어와라
+			// �븳 以꾩쓣 �씫�뼱���씪
 			fileName=br.readLine();
 		
 		String code=fileName;
@@ -233,7 +236,7 @@ public class HomeController {
 		fw.flush();
 		fw.close();
 		
-		System.out.println("코드:"+code);		
+		System.out.println("肄붾뱶:"+code);		
 		
 		return code;
 	}
@@ -244,11 +247,11 @@ public class HomeController {
 		String filePath = session.getServletContext().getRealPath("resources/code");
 		String fileName = "storeCode";
 		File f = new File(filePath, fileName);		
-		// 파일 읽을 준비
+		// �뙆�씪 �씫�쓣 以�鍮�
 			FileReader fr = new FileReader(f);
-			// 파일 읽기
+			// �뙆�씪 �씫湲�
 			BufferedReader br = new BufferedReader(fr);
-			// 한 줄을 읽어와라
+			// �븳 以꾩쓣 �씫�뼱���씪
 			fileName=br.readLine();
 		
 		String code=fileName;
