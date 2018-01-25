@@ -258,10 +258,10 @@
 								<form id="er_search_frm" method="get">
 									<input type="hidden" name="materKind" value="enter">
 									기간 선택 <input id="smaterDate" name="smaterDate" type="date"> ~ <input id="ematerDate" name="ematerDate" type="date">		
-							      <div class="input-group-btn">
+							      <div id="enterLeft" class="input-group-btn">
 							        <button type="button" id="search_btn" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+							        <input id="dateListReset" class="btn btn-default" type="button" value="초기화">
 							      </div>
-							      <input id="dateListReset" class="btn btn-default" type="button" value="초기화">
 							    </form>	
 						    </div>	
 						<!-- 검색 기능 끝 -->

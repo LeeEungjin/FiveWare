@@ -11,7 +11,8 @@
 	<link href="${url}/resources/css/erp/storageRegist.css" rel="stylesheet">
 	<link href="${url}/resources/css/common/modal_boot.css" rel="stylesheet">
 	<c:import url="${url}/resources/temp/ref.jsp"></c:import> 
-
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
 <title>Insert title here</title>
 <script type="text/javascript">
 	$(function(){
@@ -366,10 +367,10 @@
 							     </select>							
 							<!-- select box 끝 -->
 						
-						      <input name="search" type="text" class="form-control" placeholder="Search" name="search">
+						      <input id="storageSearchInput" name="search" type="text" class="form-control" placeholder="Search" name="search">
 						      
 						      <div class="input-group-btn">
-						        <button  id="search_btn" class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+						        <button  id="search_btn" class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
 						      </div>
 						      </form>	
 						    </div>	
@@ -428,7 +429,7 @@
 				
 				<!-- 등록 버튼 -->
 					<div id="erp_jh_contents_bottom">
-						<button id="sr_insert" class="modal_btn" data-toggle="modal" data-target="#jh_sr_Modal">신규등록</button>
+						<button id="sr_insert" class="modal_btn btn-default btn" data-toggle="modal" data-target="#jh_sr_Modal">신규등록</button>
 					</div>
 				<!-- 등록 버튼 끝 -->
 				

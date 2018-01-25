@@ -295,7 +295,7 @@
 			
 			<div class="fw_subselected collapse in" id="sub1">
 				<ul>
-					<li><a href="../foundation/supplier">거래처 등록</a></li>
+				<li><a href="../foundation/supplier">거래처 등록</a></li>
                <li><a href="../foundation/product">제품 등록</a></li>
                <li><a href="./menuRegist">메뉴 등록</a></li>
                <li><a href="./storageRegist">창고 등록</a></li>
@@ -349,32 +349,18 @@
 			</div>
 			
 			<!-- -------------------- -->
-				<div class="fw_menu" data-toggle="collapse" data-target="#sub5" title="sub5" >
-					사원관리
-				<div class="fw_arrow sub5">
-					∨
-				</div>
-			</div>
 			
-			<div class="fw_subsub collapse"  id="sub5">
-				<ul>
-					<li> 비선택1</li>
-					<li> 비선택2</li>
-					<li> 비선택3</li>
-					<li> 비선택4</li>
-				</ul>
-			</div>
 		<!-- submenu menu end -->
 	</div>
 	<!-- submenu end -->
 	
 	<div id="fw_mainwrap">
 			<div id="fw_main">
-				<div class="sales_title_menu">기초 정보</div>
+				<!-- <div class="sales_title_menu">기초 정보</div>
 				<div class="sales_title_menu">구매 관리</div>
 				<div class="sales_title_menu">자재 관리</div>
 				<div class="sales_title_menu">반품 관리</div>
-				<div class="sales_title_menu">조 회</div>
+				<div class="sales_title_menu">조 회</div> -->
 			</div>
 			
 			<!-- main contents -->

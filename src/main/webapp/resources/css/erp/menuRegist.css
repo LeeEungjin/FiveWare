@@ -94,7 +94,6 @@
 
 #erp_jh_contents_table{
 	width: 99%;
-	height: 65%;
 	background-color: #ffffce;
 }
 
@@ -180,4 +179,14 @@
     float: left !important;
     margin-right: 2% !important;
     margin-left: 0% !important;
+}
+
+/*//////////////////////////*/
+#mr_checkDelete{
+	margin-left: 6%;	
+}
+
+#mr_insert{
+	float: right;
+	margin-right: 5%;
 }
