@@ -485,7 +485,7 @@ function insertProjectSchdule() {
 // 저장 ajax
 var ajaxSchdule = function() {
 	$.ajax({
-		url: './insertProjectSchdule.do',
+		url: './insertProjectSchdule',
 		type: 'post',
 		async: false,
 		data: $('#insertProjectSchdule').serialize(),
@@ -540,7 +540,7 @@ $(document).ready(function() {
 	// 테이블 thead부분을 그려준다
 	screenWriteThead();
 	$.ajax({
-		url: './selectListProjectSchdule.do',
+		url: './selectListProjectSchdule',
 		type: 'post',
 		async: false,
 		data : {

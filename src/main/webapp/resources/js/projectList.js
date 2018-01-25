@@ -59,5 +59,5 @@ function updateDelProject() {
 // 프로젝트일정 상세 이동
 function projectSchdule(prj_no) {
 	$("#prj_no").attr('value', prj_no);
-	$('#projectSchdule').submit();
+	$('#projectSchedule').submit();
 }

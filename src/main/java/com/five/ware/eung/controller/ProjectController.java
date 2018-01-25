@@ -24,7 +24,7 @@ public class ProjectController {
 	@Autowired
 	private ProjectService projectService;
 	
-	// ÇÁ·ÎÁ§Æ® ¸ñ·Ï ÀÌµ¿
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
 	@RequestMapping(value="/projectList")
 	public String projectList(Model model) {
 		logger.info("projectList");
@@ -34,33 +34,36 @@ public class ProjectController {
 		return "GroupWare/wbs/projectList";
 	}
 	
-	// ÇÁ·ÎÁ§Æ® »ý¼º Ã³¸®
-	@RequestMapping(value="/insertProject.do", method=RequestMethod.POST)
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
+	@RequestMapping(value="/insertProject", method=RequestMethod.POST)
 	public String insertProject(ProjectDTO prjDto) {
 		logger.info("insertProject " + prjDto);
 		
 		projectService.insertProject(prjDto);
-		return "redirect:/projectList.do";
+		return "redirect:./projectList";
 	}
 	
-	// ÇÁ·ÎÁ§Æ® »èÁ¦ Ã³¸®
-	@RequestMapping(value="/updateDelProject.do", method=RequestMethod.POST)
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
+	@RequestMapping(value="/updateDelProject", method=RequestMethod.POST)
 	public String updateDelProject(HttpServletRequest request) {
 		logger.info("updateDelProject");
 		
 		String[] chkVal = request.getParameterValues("chkVal");
 		projectService.updateDelProject(chkVal);
-		return "redirect:/projectList.do";
+		return "redirect:./projectList";
 	}
 	
-	// ÇÁ·ÎÁ§Æ®ÀÏÁ¤ »ó¼¼ ÀÌµ¿
-	@RequestMapping(value="/projectSchedule.do", method=RequestMethod.POST)
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ìµï¿½
+	@RequestMapping(value="/projectSchedule", method=RequestMethod.POST)
 	public String projectSchdule(Model model, String prj_no) {
 		logger.info("projectSchdule " + prj_no);
 		
+		List<ProjectDTO> prjLists = projectService.selectProject();
+		model.addAttribute("prjLists", prjLists);
 		ProjectDTO prjDto = projectService.selectOneProject(Integer.parseInt(prj_no));
 		model.addAttribute("prjDto", prjDto);
-		return "projectSchdule";
+		
+		return "GroupWare/wbs/projectSchedule";
 	}
 	
 }

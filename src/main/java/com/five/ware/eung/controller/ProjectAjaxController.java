@@ -20,6 +20,7 @@ import com.five.ware.project.ProjectScheduleDTO;
 import com.five.ware.project.ProjectService;
 
 @RestController
+@RequestMapping(value="GroupWare/wbs/**")
 public class ProjectAjaxController {
 
 	private Logger logger = LoggerFactory.getLogger(ProjectAjaxController.class);
@@ -27,8 +28,8 @@ public class ProjectAjaxController {
 	@Autowired
 	private ProjectService projectService;
 	
-	// 프로젝트일정 상세 데이터 처리
-	@RequestMapping(value = "/selectListProjectSchdule.do", method = RequestMethod.POST)
+	//
+	@RequestMapping(value = "/selectListProjectSchdule", method = RequestMethod.POST)
 	public List<ProjectScheduleDTO> selectListProjectSchdule(String prj_no) {
 		logger.info("selectListProjectSchdule : " + prj_no);
 		
@@ -36,8 +37,8 @@ public class ProjectAjaxController {
 		return prjsLists;
 	}
 	
-	// 프로젝트일정 저장 처리
-	@RequestMapping(value = "/insertProjectSchdule.do", method = RequestMethod.POST)
+	//
+	@RequestMapping(value = "/insertProjectSchdule", method = RequestMethod.POST)
 	public Map<String, Boolean> insertProjectSchdule(HttpServletRequest req, ProjectDTO prjDto) {
 		logger.info("insertProjectSchdule : " + prjDto);
 		
