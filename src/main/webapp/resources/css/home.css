@@ -14,8 +14,7 @@
 } 
 
 .main_wrap{
-	width: 40%;
-    height: 75%;
+	width: 33%;
     margin: 0 auto;
     background-color: lightblue;
 }
@@ -27,14 +26,86 @@
 }
 
 .menu{
+	/* position: relative; */
     width: 33.3%;
     height: 100%;
-    float: left;
+    /* float: left; */
     background-color: white;
-    font-size: 40px;
+    font-size: 35px;
     text-align: center;
-    box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2);
+   /*  box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2); */
+    word-break: keep-all;
 }
+
+/*********************************************************/
+
+.table tr {
+	border-bottom: 1px solid black;
+}
+
+.table td {
+	padding: 12px;
+}
+
+.container {
+	padding-top: 10px;
+}
+
+.radioBox {
+	display: block;
+	float: left;
+	width: 50%;
+	text-align: center;
+}
+
+/* Full-width input fields */
+.inputTextBox {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+    position: relative;
+	width: 50%;
+    margin: 24px 0 12px 0;
+    text-align: center;
+    float: left;
+}
+
+img.avatar {
+    width: 60%;
+    border-radius: 50%;
+}
+
+
+.login-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+
 
 
 /* 로그인 전  */
