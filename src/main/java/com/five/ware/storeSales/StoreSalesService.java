@@ -29,30 +29,23 @@ public class StoreSalesService {
 			int result=0;
 			
 			for(String str : ar){
-				System.out.println(str);
+
 				storeSalesDTO.setProduct(str);
 				
 				StoreMoneyDTO storeMoneyDTO=new StoreMoneyDTO();
 				storeMoneyDTO.setProduct(str);
-				///////////////////////////////////////////////////////////////////////
 				storeMoneyDTO.setSalesAmount(storeSalesDAO.salesAmount(storeSalesDTO));
 				storeMoneyDTO.setProductSales(storeSalesDAO.productSales(storeSalesDTO));
 				storeMoneyDTO.setStore(storeSalesDTO.getStore());
 				storeMoneyDTO.setStoreCode(storeCode);
-				
-				System.out.println("--------------StoreMoneyDTO-------------");
-				System.out.println(storeMoneyDTO.getProduct());
-				System.out.println(storeMoneyDTO.getProductSales());
-				System.out.println(storeMoneyDTO.getSalesAmount());
-				System.out.println(storeMoneyDTO.getStore());
-				System.out.println(storeMoneyDTO.getStoreCode());
-				System.out.println("---------------------------------------");
+				storeMoneyDTO.setRegdate(storeSalesDTO.getRegdate());
+			
 				
 				list.add(storeMoneyDTO);
 			}
 			
 			for (StoreMoneyDTO storeMoneyDTO : list) {
-				/////////////////////여기여기여기여기여기여기여기여기//////////////////////////
+				
 				result=storeSalesDAO.storeMoneyInsert(storeMoneyDTO);
 				
 			}
@@ -90,28 +83,37 @@ public class StoreSalesService {
 			return mv;
 		}
 		
+		
+		
+		//salesList
+		public ModelAndView salesList(String store, String product, String regdate)throws Exception{
+			ModelAndView mv=new ModelAndView();
+			
+			List<StoreMoneyDTO> ar=new ArrayList<StoreMoneyDTO>();
+			ar=storeSalesDAO.salesList(store, product, regdate);
+			mv.addObject("list", ar);
+			
+			return mv;
+		}
 		//insert
-		public int insert(StoreSalesDTO storeSalesDTO)throws Exception{
+		public int insert(StoreSalesDTO storeSalesDTO,int [] salesAmount, int [] productSales)throws Exception{
 
 			String product=storeSalesDTO.getProduct();
-			int salesAmount=storeSalesDTO.getSalesAmount();
-			int productSales=storeSalesDTO.getProductSales();
-			String tempSales = String.valueOf(salesAmount);
-			String tempProducts = String.valueOf(productSales);
-
+		
 			String pro[]=product.split(",");
-			String amount[]=tempSales.split(",");
-			String sales[]=tempProducts.split(",");
-
+			
+			
+			int result=0;
 			
 			storeSalesDTO.setNum(storeSalesDAO.getNum());
 			
-			int result=0;
 						
 				for(int i=0; i<pro.length; i++){
+					System.out.println(salesAmount[i]);
+					
 					storeSalesDTO.setProduct(pro[i]);
-					storeSalesDTO.setSalesAmount(Integer.parseInt(amount[i]));
-					storeSalesDTO.setProductSales(Integer.parseInt(sales[i]));
+					storeSalesDTO.setSalesAmount(salesAmount[i]);
+					storeSalesDTO.setProductSales(productSales[i]);
 					
 					try {
 						result=storeSalesDAO.insert(storeSalesDTO);

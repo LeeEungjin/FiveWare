@@ -164,14 +164,19 @@ td.eb_row:hover {
     border-top: 1px solid #ddd;
 }
 #eb_contents_table{
-	display: none;
+	display: none; 
 	margin-top: 50px;
+	height : 380px;
+	width : 850px;
+	overflow: scroll;
+
 	
 }
 
 #eb_table_head{
 	background-color: black;
 	color:white;
+
 }
 
 #eb_page{
@@ -206,3 +211,4 @@ td.eb_row:hover {
 #eb_searchBtn{
 	margin-left: 100px;
 }
+

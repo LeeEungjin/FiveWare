@@ -41,11 +41,23 @@
 			var store=$("#eb_selectStore").val();
 			var menu=$("#eb_selectMenu").val();
 			var regdate=$("#eb_selectRegdate").val();
-			alert(store);
-			alert(menu)
-			alert(regdate)			
+		
+			if(regdate==""){
+				alert("날짜를 선택해주세요.");
+				return false;
+			}
+			
+			if(store=="-선택-"){
+				alert("지점을 선택해주세요.");
+				return false;
+			}
+			
+			if(menu=="-선택-"){
+				alert("메뉴를 선택해주세요.");
+				return false;
+			}
 			$("#eb_contents_table").css("display","block");
-			$("#eb_storeName").val(store);
+		
 			
 			$.ajax({
 				type : "post",
@@ -55,7 +67,7 @@
 					"product" : menu,
 					"regdate" : regdate
 				}, success : function(data){
-					alert(data);
+					$("#eb_result").html(data);
 				}
 			});
 		});
@@ -175,6 +187,8 @@
 						  			<td class="eb_searchTd">
 						  			
 						  				<select name="store" id="eb_selectStore">
+						  					<option>-선택-</option>
+						  					<option value="all">All</option>
 						  			 <c:forEach items="${list }" var="dto">	
 									  		<option value="${dto.store }" title="${dto.code}">${dto.store }</option>
 									  	</c:forEach>	
@@ -186,6 +200,8 @@
 						  			<td class="eb_searchTd1">상품명</td>
 						  			<td class="eb_searchTd">
 						  					<select name="menu" id="eb_selectMenu">
+						  					<option>-선택-</option>
+						  					<option value="all">All</option>
 						  				 <c:forEach items="${mr_list}" var="dto">	
 									  		<option value="${dto.menuName}">${dto.menuName}</option>
 									  	</c:forEach>	
@@ -212,11 +228,12 @@
 				  	
              				
              			
-             			<p>지점명 <input type="text" id="eb_storeName" readonly="readonly" style="border: 0;"></p>
+             			
              		<table class="table">
 						   
-						<thead id="eb_table_head">
+						<thead id="eb_table_head" class="eb_table_head" >
 						    <tr>
+						     <th>지점명</th>
 						     <th>날짜</th>
 						     <th>상품명</th>
 						     <th>판매개수</th>	
@@ -224,33 +241,12 @@
 						    </tr>
 						 </thead>
 						    
-					<%-- 	    <tbody>
+					    <tbody id="eb_result">
 						   
-						   </tbody> --%>
+						   </tbody> 
 					 </table>
 		
 		 	 
-				
-				
-				
-				<!-- page 처리 -->
-				<div id="eb_page">
-					<c:if test="${pager.curBlock gt 1}">
-						<span class="eb_list" title="${pager.startNum-1}">[이전]</span>
-					</c:if>
-					
-					<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-						<span class="eb_list" title="${i}">${i}</span>
-					</c:forEach>
-					
-					<c:if test="${pager.curBlock lt pager.totalBlock}">
-						<span class="eb_list" title="${pager.lastNum+1}">[다음]</span>
-					</c:if>
-				</div>  		  
-						  
-						  
-				<!-- page 처리 끝 -->		  
-				
 			
 		</div>
 	</div>

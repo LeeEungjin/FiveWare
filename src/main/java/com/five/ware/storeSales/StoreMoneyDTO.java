@@ -8,6 +8,14 @@ public class StoreMoneyDTO {
 	private String product;
 	private int salesAmount;
 	private int productSales;
+	private String regdate;
+	
+	public String getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
+	}
 	public int getNum() {
 		return num;
 	}
@@ -44,6 +52,8 @@ public class StoreMoneyDTO {
 	public void setProductSales(int productSales) {
 		this.productSales = productSales;
 	}
+	
+	
 	
 	
 }

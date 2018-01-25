@@ -38,7 +38,29 @@
    
    <!-- storeMoney insert -->
    <insert id="storeMoneyInsert" parameterType="storeMoneyDTO" >
-   		insert into storemoney values(store_seq.nextval,#{storeCode},#{store},#{product},#{salseAmount},#{productSales},#{regdate})
+   		insert into storemoney values(store_seq.nextval,#{storeCode},#{store},#{product},#{salesAmount},#{productSales},#{regdate})
    </insert>
+   
+   <!--매출 검색  -->
+   <select id="salseList" parameterType="java.util.Map" resultType="storeMoneyDTO">
+   		select * from storemoney 
+   		<if test="store=='all' and product !='all' ">
+   			where regdate=#{regdate} and product=#{product}
+   		</if>
+   		
+   		<if	test="product=='all' and store !='all'">
+   			where store=#{store} and regdate=#{regdate} 
+   		</if>
+   		
+   		 <if test="product=='all' and store=='all'">
+   			where regdate=#{regdate}
+   		</if>
+   		
+   		<if test="product !='all' and store !='all'">
+   			where store=#{store} and regdate=#{regdate} and product=#{product}
+   		</if>
+   		order by regdate desc
+   </select>
+   
   </mapper>
  

@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.five.ware.erp.menuRegist.MenuRegistDTO;
+import com.five.ware.util.ListData;
 
 @Repository
 public class StoreSalesDAO {
@@ -33,10 +34,6 @@ public class StoreSalesDAO {
 	
 	//총갯수
 	public int salesAmount(StoreSalesDTO storeSalesDTO)throws Exception{
-		System.out.println("------DAO--------");
-		System.out.println(storeSalesDTO.getProduct());
-		System.out.println(storeSalesDTO.getStore());
-		System.out.println(storeSalesDTO.getRegdate());
 	
 		return sqlSession.selectOne(namespace+"salesAmount", storeSalesDTO);
 	}
@@ -63,6 +60,15 @@ public class StoreSalesDAO {
 		return sqlSession.selectList(namespace+"selectList", storeSalesDTO);
 	}
 	
+	//storeSearch
+	public List<StoreMoneyDTO> salesList(String store, String product,String regdate)throws Exception{
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("store", store);
+		map.put("product", product);
+		map.put("regdate", regdate);
+		
+		return sqlSession.selectList(namespace+"salseList", map);
+	}
 	//insert
 	public int insert(StoreSalesDTO storeSalesDTO)throws Exception{
 		int result=sqlSession.insert(namespace+"insert", storeSalesDTO);

@@ -39,13 +39,14 @@ public class StoreSalesController {
 	
 	@RequestMapping(value="storeSearch", method=RequestMethod.POST)
 	@ResponseBody
-	public String storeSearch(String store, String product,String regdate)throws Exception{
+	public ModelAndView storeSearch(String store, String product, String regdate)throws Exception{
+		ModelAndView mv=new ModelAndView();
+		mv=storeSalesService.salesList(store, product, regdate);
+		mv.setViewName("/erp/account/storeSalesResult");
 		
-	
-		String message="success";
 		
 		
-		return message;
+		return mv;
 	}
 
 

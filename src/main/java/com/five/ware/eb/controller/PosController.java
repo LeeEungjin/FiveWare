@@ -83,11 +83,12 @@ public class PosController {
 	
 	//insert
 	@RequestMapping(value="storeSales",method=RequestMethod.POST)
-	public String storeSales(StoreSalesDTO storeSalesDTO,RedirectAttributes rd){
-
+	public String storeSales(StoreSalesDTO storeSalesDTO,int [] salesAmount, int [] productSales, RedirectAttributes rd){
+		
+		
 		int result=0;
 		try {
-			result=storeSalesService.insert(storeSalesDTO);
+			result=storeSalesService.insert(storeSalesDTO,salesAmount,productSales);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
