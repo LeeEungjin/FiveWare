@@ -29,6 +29,7 @@
   		<typeAlias type="com.five.ware.storeSales.StoreSalesDTO" alias="storeSalesDTO"/>
   		<typeAlias type="com.five.ware.storeSales.StoreMoneyDTO" alias="storeMoneyDTO"/>
 		<typeAlias type="com.five.ware.srm.storeNotice.StoreNoticeDTO" alias="storeNoticeDTO"/>
+		<typeAlias type="com.five.ware.message.MessageDTO" alias="messageDTO"/>
 
   	</typeAliases>
   </configuration>
