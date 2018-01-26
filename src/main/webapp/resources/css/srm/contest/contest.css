@@ -5,85 +5,6 @@
 	padding: 0px;
 }
 
-#fw_container{
-	width: 100%;
-	height: 100%;
-	background-color: lightblue;
-	transition: width 0.3s;	
-}
-
-#fw_subcontainer{
-	background-color: pink;
-	float:left;
-	width: 15%;
-	height: 100%;
-} 
-
-#fw_subbanner{
-		background-color: red;
-		height: 8.5%;
-		width: 100%;
-		font-size : 30px;
-		font-weight: bolder;
-		text-align: center;
-		line-height: 240.5%;
-}
-
-.fw_menu{
-	width: 100%;
-	height: 5%;
-	float:left;
-	background-color: yellow;
-	  font-weight: bold;
-    font-size: 16px;
-    line-height: 324%;
-    padding-left: 6%;
-    padding-top:1%;
-}
-
-
-.fw_selected{
-	color: red;
-   
-}
-
-.fw_arrow{
-	width:15%;
-	float:right;
-	height: 100%;
-	background-color: purple;
-	size:20px; 
-}
-
-.fw_subselected{
-	width: 70%;
-	background-color: #d1eaf1;
-	margin: 0 auto;
-	padding-top:1%;
-}
-
-.fw_subsub{
-		width: 70%;
-	background-color: #d1eaf1;
-	margin: 0 auto;
-	padding-top:1%;
-}
-
-#fw_main{
-	background-color: green;
-		height: 8.5%;
-		width: 100%;
-}
-
-#fw_mainwrap{
-	 /* background-color: blue; */
-	 width: 72%;
-	 height : 100%;
-	 /* margin-left: 28%; */
-	 float: left;
-}
-
-
 .ar_plusTitle{
 	width: 100%;
 	height: 5%;
@@ -155,6 +76,13 @@
 	height: 90%;
 	background-color: #ffbbff;
 	border: 1px solid black;
+	display: inline-block;
+	margin-right: 5%;
+}
+
+.ar_menuimg{
+	width: 100%;
+	height: 100%;
 }
 
 .ar_contestPhoto{
@@ -167,10 +95,63 @@
 	width: 100%;
 	height: 45%;
 	background-color: #ff9393;
+	padding: 5% 5%;
 }
 
 .ar_contestLike{
 		width: 100%;
 	height: 10%;
 	background-color: #ffca95;
+}
+
+.modal-dialog {
+    width: 649px;
+    margin: 30px auto;
+}
+
+.modal-body {
+    height: 600px !important;
+}
+
+.modal-body1 {
+	position: relative;
+    padding: 15px;
+    height: 790px !important;
+}
+
+.input-group{
+	margin-bottom: 2%;
+}
+
+#ar_recipe{
+	width: 100%;
+	height: 100px;
+}
+
+.ar_area{
+	width: 100%;
+	height: 20%;
+}
+
+#ar_info{
+	width: 100%;
+	height: 100%;
+}
+.ar_like{
+	display:inline-block;
+	text-align: right;
+	margin-right: 2%;
+}
+
+.ar_big{
+	display:inline-block;
+	text-align: right;
+	margin-right: 2%;
+}
+
+.ar_Viewphoto{
+	width: 100%;
+	height: 300px;
+	background-color: yellow;
+	margin-bottom: 3%;
 }

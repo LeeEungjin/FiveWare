@@ -1,15 +1,26 @@
 package com.five.ware.srm.contest;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ContestJoinDTO {
 
 	private int cnum;
 	private String code;
 	private String store;
 	private String menuname;
-	private String menuphoto;
+	private String photo;
 	private String account;
 	private String state;
+	private String recipe;
 	
+	
+	
+	public String getRecipe() {
+		return recipe;
+	}
+	public void setRecipe(String recipe) {
+		this.recipe = recipe;
+	}
 	public int getCnum() {
 		return cnum;
 	}
@@ -34,11 +45,12 @@ public class ContestJoinDTO {
 	public void setMenuname(String menuname) {
 		this.menuname = menuname;
 	}
-	public String getMenuphoto() {
-		return menuphoto;
+
+	public String getPhoto() {
+		return photo;
 	}
-	public void setMenuphoto(String menuphoto) {
-		this.menuphoto = menuphoto;
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 	public String getAccount() {
 		return account;
