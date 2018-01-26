@@ -62,7 +62,7 @@
   	delete contestlike where cnum=#{cnum}
   </delete>
   
-  <select id="likeSelectOne" parameterType="ContestLikeDTO" resultType="ContestLikeDTO">
+  <select id="likeSelectOne" parameterType="java.util.Map" resultType="ContestLikeDTO">
   	select * from contestlike where code=#{code} and store=#{store} and cnum=#{cnum}
   </select>
   

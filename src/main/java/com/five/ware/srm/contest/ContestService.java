@@ -108,8 +108,8 @@ public class ContestService {
 		return result;
 	}
 	
-	public ContestLikeDTO likeSelectOne(ContestLikeDTO contestLikeDTO) throws Exception{
-		ContestLikeDTO contestLikeDTO2 = contestDAO.likeSelectOne(contestLikeDTO);
+	public ContestLikeDTO likeSelectOne(String code, int cnum, String store) throws Exception{
+		ContestLikeDTO contestLikeDTO2 = contestDAO.likeSelectOne(code, cnum, store);
 		
 		return contestLikeDTO2;
 	}

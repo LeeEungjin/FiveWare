@@ -17,6 +17,7 @@
 <script type="text/javascript">
 
 $(function(){
+	
 	CKEDITOR.replace('ar_recipe',{
 		width: 600,
 		height: 100
@@ -72,11 +73,16 @@ $(function(){
 		var store='${member.store}';
 		var state=$(this).attr("accesskey");
 		var Tstate=$("#ar_"+code).attr("title");
+		
+		if($(".fa").html()=="Like &#xf08a;"){
+			alert("ㄴㅇ미라ㅓ미아럼니ㅏ");
+		}
 	
 		var a=true;
 		var check=1;
 		
-		alert(state);
+		
+		
 		if(Tstate =='yes'){
 			
 			if(state=="yes"){
@@ -98,7 +104,7 @@ $(function(){
 		  			alert("참여해주셔서 감사합니다.");
 		  			$("#"+cnum).html("Like &#xf004;");
 		  			$(t).attr("accesskey","yes");
-		  			$("#ar_"+code).attr("title", 'yes');
+		  			$("#ar_"+code).attr("title", "yes");
 		  			
 		  		}
 			});  
@@ -200,17 +206,21 @@ $(function(){
 			 	<c:if test="${count[a.index]==0}">
 				 	<div class="ar_contestWrap" id="ar_${i.code }" title="no">
 			 	</c:if>
+			 	
 			 	<c:if test="${count[a.index]!=0}">
-				 	<div class="ar_contestWrap" id="ar_${i.code }" title="yes">
+				 	<div class="ar_contestWrap" id="ar_${i.code }" title="yes" >
 			 	</c:if>
+			 	
 					<div class="ar_contestTitle">
 						${i.sdate } ~${i.edate}  ${i.name}
 					</div>
+					
 				<div class="ar_contestTitleBtn">
 					<c:if test="${kind=='store' }">
 						<input type="button" value="올리기" class="ar_insertBtn" title="${i.code }" data-toggle="modal" data-target="#ar_contest_Modal">
 					</c:if>
 				</div>	
+				
 					<div class="ar_ar_contestMenu">
 						<c:forEach items="${joins[a.index]}" var="j" varStatus="k">
 							 <c:if test="${i.code==j.code}"> 
@@ -225,13 +235,17 @@ $(function(){
 									</div>
 									
 									<div class="ar_contestLike">
-										<p class="ar_like" title="${j.cnum}" id="${j.code }" accesskey="no">
-											<c:if test="${result==null}">
+										<p class="ar_like" title="${j.cnum}" id="${j.code }" accesskey="yes">
+										
+											<c:if test="${result[k.index]==null}">
 												<i style="font-size:17px" class="fa" id="${j.cnum}" >Like &#xf08a;</i>
 											</c:if>
 											<c:if test="${result[k.index]!=null}">
+											
 												<i style="font-size:17px" class="fa" id="${j.cnum}" >Like &#xf004;</i>
 											</c:if>
+									
+										
 										</p>
 										<p class="ar_big" title="${i.code}${j.cnum}"><i style="font-size:17px" class="fa ar_view"  id="${i.code}${j.cnum}" title="${j.cnum }"data-toggle="modal" data-target="#ar_View_Modal">&#xf0b2;</i></p>
 									</div>
@@ -242,11 +256,38 @@ $(function(){
 								<div id="ar_pageWrap">
 					
 										<c:if test="${pagers[a.index].curBlock gt 1}">
-											<span class="list" title="${pager[a.index].startNum-1}">[이전]</span>
+											<c:choose>
+												<c:when test="${a.index==0 }">
+												<a href="./contest?curPage=${curPage}&subcurPage=${pager[a.index].startNum-1}&subcurPage=1&subcurPage=1"> 이전</a>
+												</c:when>
+												
+												<c:when test="${a.index==1 }">
+													<a href="./contest?curPage=${curPage}&subcurPage=1&subcurPage=${pager[a.index].startNum-1}&subcurPage=1"> 이전</a>
+												</c:when>
+												
+												<c:otherwise>
+													<a href="./contest?curPage=${curPage}&subcurPage=1&subcurPage=1&subcurPage=${pager[a.index].startNum-1}"> 이전</a>
+												</c:otherwise>
+												
+											</c:choose>
 										</c:if>
 												
-										<c:forEach begin="${pagers[a.index].startNum}" end="${pagers[a.index].lastNum}" var="b">
-											<span class="list" title="${b}">${b}</span>
+										<c:forEach begin="${pagers[a.index].startNum}" end="${pagers[a.index].lastNum}" var="b" varStatus="n">
+											
+											<c:choose>
+												<c:when test="${a.index==0 }">
+												<a href="./contest?curPage=${curPage}&subcurPage=${b}&subcurPage=1&subcurPage=1"> ${b}</a>
+												</c:when>
+												
+												<c:when test="${a.index==1 }">
+													<a href="./contest?curPage=${curPage}&subcurPage=1&subcurPage=${b}&subcurPage=1"> ${b}</a>
+												</c:when>
+												
+												<c:otherwise>
+													<a href="./contest?curPage=${curPage}&subcurPage=1&subcurPage=1&subcurPage=${b}"> ${b}</a>
+												</c:otherwise>
+												
+											</c:choose>
 										</c:forEach>
 															
 										<c:if test="${pagers[a.index].curBlock lt pagers[a.index].totalBlock}">
@@ -255,9 +296,10 @@ $(function(){
 					
 							</div> 
 					
+					</div> <!-- 공모전 3개 끝 -->
+					
 					</div>
-					</div>
-				</c:forEach> 
+					</c:forEach> 
 				
 						<div id="ar_pageWrap">
 					
@@ -352,5 +394,6 @@ $(function(){
 				<!-- Modal 끝 -->
 
 </div>
+
 </body>
 </html>

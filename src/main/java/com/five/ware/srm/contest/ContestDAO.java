@@ -105,10 +105,23 @@ public class ContestDAO {
 		return result;
 	}
 	
-	public ContestLikeDTO likeSelectOne(ContestLikeDTO contestLikeDTO) throws Exception{
-		ContestLikeDTO contestLikeDTO2 = sqlSession.selectOne(NAMESPACE+"likeSelectOne", contestLikeDTO);
+	public ContestLikeDTO likeSelectOne(String code, int cnum, String store) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
 		
-		return contestLikeDTO2;
+		map.put("code", code);
+		map.put("cnum", cnum);
+		map.put("store", store);
+		
+		System.out.println(code);
+		System.out.println(cnum);
+		System.out.println(store);
+		/*ContestLikeDTO contestLikeDTO2=new ContestLikeDTO();
+		
+		contestLikeDTO2 = sqlSession.selectOne(NAMESPACE+"likeSelectOne", map);
+		
+		System.out.println(contestLikeDTO2.getCode());
+		*/
+		return sqlSession.selectOne(NAMESPACE+"likeSelectOne", map);
 	}
 	
 	public ContestLikeDTO likeSelectJoin(ContestLikeDTO contestLikeDTO) throws Exception{

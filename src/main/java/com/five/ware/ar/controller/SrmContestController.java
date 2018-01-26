@@ -46,7 +46,7 @@ public class SrmContestController {
 	private ContestService contestService;
 	
 	@RequestMapping(value="contest")
-	public String contest(Model model,@RequestParam(defaultValue="1", required=false) int curPage, int [] subcurPage, HttpSession session) throws Exception{
+	public String contest( Model model,@RequestParam(defaultValue="1", required=false) int curPage, int [] subcurPage, HttpSession session, String state) throws Exception{
 		ListData listData = new ListData(3);
 		listData.setCurPage(curPage);
 		
@@ -58,7 +58,7 @@ public class SrmContestController {
 		}
 		
 		StoreRegistDTO storeRegistDTO = (StoreRegistDTO) session.getAttribute("member");
-		String store = storeRegistDTO.getStore();
+		String store = storeRegistDTO.getStore().trim();
 		
 		List<ContestListDTO> ar =contestService.contestList(listData, model, store);
 		List<List<ContestJoinDTO>>ar2 =contestService.contestJoinList(subcurPage, ar, model);
@@ -69,16 +69,17 @@ public class SrmContestController {
 			for(ContestJoinDTO contestJoinDTO : list){
 				ContestLikeDTO contestLikeDTO = new ContestLikeDTO();
 				
-				contestLikeDTO.setCode(contestJoinDTO.getCode());
-				contestLikeDTO.setStore(store);
-				
-				contestLikeDTO = contestService.likeSelectOne(contestLikeDTO);
+				contestLikeDTO = contestService.likeSelectOne(contestJoinDTO.getCode().trim(), contestJoinDTO.getCnum() , store);
 				
 				result2.add(contestLikeDTO);
 			}
 		}
 		
+		
 		model.addAttribute("result", result2);
+		model.addAttribute("curPage", curPage);
+		model.addAttribute("subcurPage", subcurPage);
+		model.addAttribute("state", state);
 		
 		return "srm/contest/contest";
 	}
