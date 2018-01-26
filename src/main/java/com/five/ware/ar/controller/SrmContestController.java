@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,42 +46,52 @@ public class SrmContestController {
 	private ContestService contestService;
 	
 	@RequestMapping(value="contest")
-	public String contest(Model model,@RequestParam(defaultValue="1", required=false) int curPage, HttpSession session) throws Exception{
+	public String contest(Model model,@RequestParam(defaultValue="1", required=false) int curPage, int [] subcurPage, HttpSession session) throws Exception{
 		ListData listData = new ListData(3);
 		listData.setCurPage(curPage);
 		
-		StoreRegistDTO storeRegistDTO = (StoreRegistDTO) session.getAttribute("member");
-		String store = storeRegistDTO.getCode();
-		
-		contestService.contestList(listData, model);
-		List<ContestJoinDTO> ar2 = contestService.contestJoinList();
-		List<ContestLikeDTO> result2 = new ArrayList<ContestLikeDTO>();
-		
-		for(ContestJoinDTO contestJoinDTO : ar2){
-			ContestLikeDTO contestLikeDTO = new ContestLikeDTO();
-			
-			contestLikeDTO.setCode(contestJoinDTO.getCode());
-			contestLikeDTO.setStore(store);
-			
-			System.out.println(contestJoinDTO.getCode());
-			
-			contestLikeDTO = contestService.likeSelectOne(contestLikeDTO);
-			
-			result2.add(contestLikeDTO);
+		if(subcurPage==null){
+			subcurPage = new int [3];
+			subcurPage[0]=1;
+			subcurPage[1]=1;
+			subcurPage[2]=1;
 		}
 		
-		model.addAttribute("list2", ar2);
+		StoreRegistDTO storeRegistDTO = (StoreRegistDTO) session.getAttribute("member");
+		String store = storeRegistDTO.getStore();
+		
+		List<ContestListDTO> ar =contestService.contestList(listData, model, store);
+		List<List<ContestJoinDTO>>ar2 =contestService.contestJoinList(subcurPage, ar, model);
+		List<ContestLikeDTO> result2 = new ArrayList<ContestLikeDTO>();
+		
+		for(List<ContestJoinDTO> list : ar2){
+			
+			for(ContestJoinDTO contestJoinDTO : list){
+				ContestLikeDTO contestLikeDTO = new ContestLikeDTO();
+				
+				contestLikeDTO.setCode(contestJoinDTO.getCode());
+				contestLikeDTO.setStore(store);
+				
+				contestLikeDTO = contestService.likeSelectOne(contestLikeDTO);
+				
+				result2.add(contestLikeDTO);
+			}
+		}
+		
 		model.addAttribute("result", result2);
 		
 		return "srm/contest/contest";
 	}
 	
 	@RequestMapping(value="contestList")
-	public String contestList(Model model, @RequestParam(defaultValue="1", required=false) int curPage) throws Exception{
+	public String contestList(Model model, @RequestParam(defaultValue="1", required=false) int curPage, HttpSession session) throws Exception{
 		ListData listData = new ListData(3);
 		listData.setCurPage(curPage);
 		
-		contestService.contestList(listData, model);
+		StoreRegistDTO storeRegistDTO = (StoreRegistDTO)session.getAttribute("member");
+		String store=storeRegistDTO.getStore();
+		
+		contestService.contestList(listData, model, store);
 		List<FileDTO> files = contestService.fileList();
 		
 		model.addAttribute("files", files);
@@ -242,6 +253,7 @@ public class SrmContestController {
 		int result = 0;
 		String message="";
 		System.out.println("check:"+check);
+		
 		if(check==0) { // 지우는거
 			result = contestService.likeDelete(cnum, store);
   			message="delete";

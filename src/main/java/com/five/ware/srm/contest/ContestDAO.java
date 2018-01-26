@@ -49,10 +49,25 @@ public class ContestDAO {
 		return result;
 	}
 	
-	public List<ContestJoinDTO> contestJoinList() throws Exception{
-		List<ContestJoinDTO> ar = sqlSession.selectList(NAMESPACE+"contestJoinList");
+	public List<ContestJoinDTO> contestJoinList(RowNum rownum, String code) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		System.out.println("zhem"+code);
+		System.out.println("s"+rownum.getStartRow());
+		System.out.println("l"+rownum.getLastRow());
+		map.put("rowNum", rownum);
+		map.put("code", code);
+		
+		List<ContestJoinDTO> ar = sqlSession.selectList(NAMESPACE+"contestJoinList", map);
 		
 		return ar;
+	}
+	
+	public int contestJoinListTotal(String code) throws Exception{
+		System.out.println("zhem"+code);
+		int reuslt = sqlSession.selectOne(NAMESPACE+"contestJoinListTotal", code);
+		
+		return reuslt;
 	}
 	
 	public int contestListCount() throws Exception{
@@ -96,9 +111,28 @@ public class ContestDAO {
 		return contestLikeDTO2;
 	}
 	
+	public ContestLikeDTO likeSelectJoin(ContestLikeDTO contestLikeDTO) throws Exception{
+		ContestLikeDTO contestLikeDTO2 = sqlSession.selectOne(NAMESPACE+"likeSelectJoin", contestLikeDTO);
+		
+		return contestLikeDTO2;
+	}
+	
 	public ContestJoinDTO contestJoinView(String cnum) throws Exception{
 		ContestJoinDTO contestJoinDTO = sqlSession.selectOne(NAMESPACE+"contestJoinView", cnum);
 		
 		return contestJoinDTO;
 	}
+	
+	public int likeSelectJoinCount(ContestListDTO contestListDTO, String store) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("contestLIstDTO", contestListDTO);
+		map.put("store", store);
+		
+		int result = sqlSession.selectOne(NAMESPACE+"likeSelectJoinCount", map);
+		
+		return result;
+	}
+	
+	
 }

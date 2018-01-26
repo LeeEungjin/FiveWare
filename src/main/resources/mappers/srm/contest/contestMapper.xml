@@ -39,12 +39,19 @@
  	where R between #{startRow} and #{lastRow}
  </select> -->
  
-<select id="contestJoinList" resultType="contestJoinDTO">
-select * from contestJoin order by cnum desc 
+<select id="contestJoinList" parameterType="java.util.Map" resultType="contestJoinDTO">
+	select * from
+	(select rownum R, N.* from
+	(select * from contestJoin where code=#{code} order by cnum desc) N)
+	where R between #{rowNum.startRow} and #{rowNum.lastRow}
+ </select>
+ 
+ <select id="contestJoinListTotal" parameterType="String" resultType="int">
+	select count(nvl(cnum,0)) from contestJoin where code=#{code}
  </select>
  
   <select id="contestJoinListCount" resultType="int">
- 	select count(nvl(num,0)) from contestJoin 
+ 	select count(nvl(cnum,0)) from contestJoin 
  </select>
   
   <insert id="likeInsert" parameterType="java.util.Map">
@@ -57,6 +64,14 @@ select * from contestJoin order by cnum desc
   
   <select id="likeSelectOne" parameterType="ContestLikeDTO" resultType="ContestLikeDTO">
   	select * from contestlike where code=#{code} and store=#{store} and cnum=#{cnum}
+  </select>
+  
+    <select id="likeSelectJoin" parameterType="ContestLikeDTO" resultType="ContestLikeDTO">
+  	select * from contestlike where code=#{code} and store=#{store}
+  </select>
+  
+      <select id="likeSelectJoinCount" parameterType="ContestListDTO" resultType="int">
+  	select count(num) from contestlike where code=#{contestLIstDTO.code} and store=#{store}
   </select>
   
   <select id="contestJoinView" parameterType="String" resultType="ContestJoinDTO">

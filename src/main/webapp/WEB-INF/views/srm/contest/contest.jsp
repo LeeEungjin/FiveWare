@@ -71,30 +71,39 @@ $(function(){
 		var code=$(this).attr("id");
 		var store='${member.store}';
 		var state=$(this).attr("accesskey");
+		var Tstate=$("#ar_"+code).attr("title");
 	
 		var a=true;
 		var check=1;
 		
 		alert(state);
-		
-		if(state=="yes"){
-			a = confirm("취소하시겠습니까?");
-			check=0;
+		if(Tstate =='yes'){
+			
+			if(state=="yes"){
+				a = confirm("취소하시겠습니까?");
+				check=0;
+			}else{
+				alert("이미 참여하셨습니다.");
+				a=false;
+			}
 		}
-
 		if(a){			
 		  	$.post("./like/"+check, {cnum:cnum, code:code, store:store, state:state}, function(data){
 		  		if(data=="delete"){
 		  			alert("취소되었습니다.");
 		  			$("#"+cnum).html("Like &#xf08a;");
 		  			$(t).attr("accesskey","no");
+		  			$("#ar_"+code).attr("title",'no');
 		  		}else{
 		  			alert("참여해주셔서 감사합니다.");
 		  			$("#"+cnum).html("Like &#xf004;");
 		  			$(t).attr("accesskey","yes");
+		  			$("#ar_"+code).attr("title", 'yes');
+		  			
 		  		}
 			});  
 		}
+
 	});
 	
 	$(".ar_view").click(function(){
@@ -186,11 +195,16 @@ $(function(){
 			
 			
 				
-			 	<c:forEach items="${list }" var="i" >			
+			 	<c:forEach items="${list }" var="i"  varStatus="a">			
 			 	
-			 	<div class="ar_contestWrap">
+			 	<c:if test="${count[a.index]==0}">
+				 	<div class="ar_contestWrap" id="ar_${i.code }" title="no">
+			 	</c:if>
+			 	<c:if test="${count[a.index]!=0}">
+				 	<div class="ar_contestWrap" id="ar_${i.code }" title="yes">
+			 	</c:if>
 					<div class="ar_contestTitle">
-						${i.sdate } ~${i.edate}  ${i.name }
+						${i.sdate } ~${i.edate}  ${i.name}
 					</div>
 				<div class="ar_contestTitleBtn">
 					<c:if test="${kind=='store' }">
@@ -198,8 +212,8 @@ $(function(){
 					</c:if>
 				</div>	
 					<div class="ar_ar_contestMenu">
-						<c:forEach items="${list2 }" var="j" varStatus="k">
-							<c:if test="${i.code==j.code}">
+						<c:forEach items="${joins[a.index]}" var="j" varStatus="k">
+							 <c:if test="${i.code==j.code}"> 
 								<div class="ar_contestJoin">
 									<div class="ar_contestPhoto">
 										<img class="ar_menuimg" src="${url }/resources/contest/${j.photo}">
@@ -211,8 +225,8 @@ $(function(){
 									</div>
 									
 									<div class="ar_contestLike">
-										<p class="ar_like" title="${j.cnum}" id="${i.code }" accesskey="no">
-											<c:if test="${result[k.index]==null}">
+										<p class="ar_like" title="${j.cnum}" id="${j.code }" accesskey="no">
+											<c:if test="${result==null}">
 												<i style="font-size:17px" class="fa" id="${j.cnum}" >Like &#xf08a;</i>
 											</c:if>
 											<c:if test="${result[k.index]!=null}">
@@ -222,8 +236,24 @@ $(function(){
 										<p class="ar_big" title="${i.code}${j.cnum}"><i style="font-size:17px" class="fa ar_view"  id="${i.code}${j.cnum}" title="${j.cnum }"data-toggle="modal" data-target="#ar_View_Modal">&#xf0b2;</i></p>
 									</div>
 								</div>							
-							</c:if>
+							</c:if> 
+							
 						</c:forEach>
+								<div id="ar_pageWrap">
+					
+										<c:if test="${pagers[a.index].curBlock gt 1}">
+											<span class="list" title="${pager[a.index].startNum-1}">[이전]</span>
+										</c:if>
+												
+										<c:forEach begin="${pagers[a.index].startNum}" end="${pagers[a.index].lastNum}" var="b">
+											<span class="list" title="${b}">${b}</span>
+										</c:forEach>
+															
+										<c:if test="${pagers[a.index].curBlock lt pagers[a.index].totalBlock}">
+											<span class="list" title="${pagers[a.index].lastNum+1}">[다음]</span>
+										</c:if>
+					
+							</div> 
 					
 					</div>
 					</div>

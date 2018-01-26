@@ -1,5 +1,6 @@
 package com.five.ware.srm.contest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -30,7 +31,7 @@ public class ContestService {
 		return result;
 	}
 	
-	public List<ContestListDTO> contestList(ListData listData, Model model) throws Exception{
+	public List<ContestListDTO> contestList(ListData listData, Model model, String store) throws Exception{
 		RowNum rowNum = listData.makeRow();
 		
 		int totalcount = contestDAO.contestListCount();
@@ -39,8 +40,15 @@ public class ContestService {
 		Pager pager = listData.makePage(totalcount);		
 		
 		List<ContestListDTO> ar = contestDAO.contestList(rowNum);
+		List<Integer> counts = new ArrayList<Integer>();
 		
+		for(ContestListDTO contestListDTO : ar ){
+			int count = contestDAO.likeSelectJoinCount(contestListDTO, store);
+			System.out.println("count"+count);
+			counts.add(count);
+		}
 		model.addAttribute("list", ar);
+		model.addAttribute("count", counts);
 		model.addAttribute("pager", pager);
 		
 		return ar;
@@ -59,10 +67,33 @@ public class ContestService {
 		return result;
 	}
 	
-	public List<ContestJoinDTO> contestJoinList() throws Exception{
-		List<ContestJoinDTO> ar= contestDAO.contestJoinList();
+	public List<List<ContestJoinDTO>> contestJoinList(int[] subcurPage, List<ContestListDTO> ar, Model model) throws Exception{
 		
-		return ar;
+		
+		List<List<ContestJoinDTO>> joins = new ArrayList<List<ContestJoinDTO>>();
+		List<Pager> pagers= new ArrayList<Pager>();
+		
+		for(int i=0; i<ar.size(); i++){
+			ListData listData = new ListData(3);
+			
+			listData.setCurPage(subcurPage[i]);
+			
+			RowNum rowNum = listData.makeRow();
+			int totalCount = contestDAO.contestJoinListTotal(ar.get(i).getCode());
+			
+			Pager pager = listData.makePage(totalCount);
+			
+			List<ContestJoinDTO> ar2= contestDAO.contestJoinList(rowNum, ar.get(i).getCode());
+			
+			joins.add(ar2);
+			System.out.println("size  : "+ar2.size());
+			pagers.add(pager);
+		}
+		
+		model.addAttribute("joins", joins);
+		model.addAttribute("pagers", pagers);
+	
+		return joins;
 	}
 	
 	public int likeInsert(int cnum, String code, String store) throws Exception{
@@ -79,6 +110,12 @@ public class ContestService {
 	
 	public ContestLikeDTO likeSelectOne(ContestLikeDTO contestLikeDTO) throws Exception{
 		ContestLikeDTO contestLikeDTO2 = contestDAO.likeSelectOne(contestLikeDTO);
+		
+		return contestLikeDTO2;
+	}
+	
+	public ContestLikeDTO likeSelectJoin(ContestLikeDTO contestLikeDTO) throws Exception{
+		ContestLikeDTO contestLikeDTO2 = contestDAO.likeSelectJoin(contestLikeDTO);
 		
 		return contestLikeDTO2;
 	}
