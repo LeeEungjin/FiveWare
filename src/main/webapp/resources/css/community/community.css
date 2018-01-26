@@ -1,84 +1,99 @@
 @CHARSET "UTF-8";
 
-*{
+* {
 	margin: 0px;
 	padding: 0px;
 }
 
-#fw_container{
+#fw_container {
 	width: 99%;
 	height: 100%;
-	background-color: lightblue;
-	transition: width 0.3s;	
+	transition: width 0.3s;
 	margin-left: 1%;
 }
 
-#com_header{
+#com_header {
 	width: 100%;
-    background-color: #ffdfe4;
-    height: 13%;
+	background-color: #ffdfe4;
+	height: 13%;
 }
 
-#com_icon{
+#com_icon {
 	height: 100%;
 	width: 5%;
 	background-color: #ff8080;
 	float: left;
 }
 
-#com_title{
+#com_title {
 	height: 100%;
 	width: 15%;
 	background-color: #ffc8b0;
 	float: left;
 }
 
-#com_middle{
+#com_middle {
 	width: 100%;
-    background-color: #ffffcc;
-    height: 75%;
+	height: 75%;
 }
 
-#com_sub_title{
+#com_sub_title {
 	width: 50%;
 	height: 10%;
 	margin-left: 25%;
-	background-color: #f8edd3;
+	background-color: #D5D5D5;
+	text-align: center;
+	padding: 1%;
+	font-size: 18px;
+	margin-bottom: 1%;
+	margin-top: 1%;
 }
 
-#com_contents{
+#com_sub_title a {
+	text-decoration: none;
+}
+
+#com_contents {
 	width: 80%;
-    height: 83%;
-    background-color: #c8ffe3;
-    margin-left: 10%;
+	height: 83%;
+	background-color: #F6F6F6;
+	margin-left: 10%;
+	padding: 20px;
 }
 
-#com_search{
+#com_search {
 	width: 50%;
-    height: 10%;
-    background-color: #ffdbff;
-    margin-left: 25%;
+	height: 10%;
+	margin-left: 29.15%;
+	margin-bottom: 3%;
 }
 
-.com_select{
+.com_select {
 	width: 20%;
 	float: left;
+	margin-right: 1%;
 }
 
-.com_search_input{
+.com_search_input {
 	width: 50%;
 	float: left;
+	margin-right: 1%;
 }
 
-#com_pager{
+#com_pager {
 	width: 30%;
 	height: 10%;
 	margin-left: 35%;
-	background-color: #eeeeee;
+	text-align: center;
 }
 
-#com_footer{
+#com_footer {
 	width: 100%;
-    background-color: #cdcde7;
-    height: 12%;
+	background-color: #cdcde7;
+	height: 12%;
+}
+
+#comInsertBtn {
+	float: right;
+	margin-right: 10%;
 }
