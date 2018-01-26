@@ -413,7 +413,7 @@
 				        <!-- modal contents 끝-->
 				        
 				        <!-- modal footer -->
-				        <div class="modal-footer">
+				        <div class="modal-footer" id="eventModalFooter">
 				          <input type="button" class="btn btn-default eventRegistBtn"  value="등록">
 				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				        </div>
