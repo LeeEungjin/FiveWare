@@ -372,29 +372,31 @@
 				
 				<!-- 검색 기능 -->
 				<div id="erp_jh_contents_search">
-					<form name="ej_frm" action="./product" method="get">
-						<div class="erp_ej_search" style="max-width: 420px;">
-							<div class="erp_ej_inputBox">
-								<select name="kind">
-									<option value="code">품목코드</option>
-									<option value="name">품목명</option>
-									<option value="standard">규격</option>
-								</select>
+					<div class="container" style="background-color: #EAEAEA;">
+						<form name="ej_frm" action="./product" method="get">
+							<div class="erp_ej_search" style="max-width: 420px;">
+								<div class="erp_ej_inputBox">
+									<select name="kind">
+										<option value="code">품목코드</option>
+										<option value="name">품목명</option>
+										<option value="standard">규격</option>
+									</select>
+								</div>
+								<div class="erp_ej_inputBox">
+									<input type="text" name="search">
+								</div>
+								<div class="erp_ej_inputBox">
+									<input class="ej_search_btn btn" type="submit" value="검색">
+								</div>
 							</div>
-							<div class="erp_ej_inputBox">
-								<input type="text" name="search">
-							</div>
-							<div class="erp_ej_inputBox">
-								<input class="ej_search_btn btn" type="submit" value="검색">
-							</div>
-						</div>
-					</form>					
+						</form>					
+					</div>
 				</div>
 				<!-- 검색 기능 끝 -->
 				
 				
 				<!-- table Start -->
-				<div id="erp_jh_contents_table">
+				<div class="container">
 					<table class="table">
 					    <thead>
 					      <tr>
@@ -420,7 +422,7 @@
 					 </table>
 					 
 					 <!-- pager Start -->
-					 	<div id="mr_pager" style="margin-top: 20px;">
+					 	<div id="mr_pager" class="container" style="margin-top: 20px;">
 							<c:if test="${pager.curBlock gt 1}">
 								<span class="ej_list" title="${pager.startNum-1}">◀</span>
 							</c:if>
@@ -436,7 +438,7 @@
 				<!-- table 끝 -->
 					
 				<!-- 등록 버튼 -->
-				<div id="erp_jh_contents_bottom">
+				<div id="erp_jh_contents_bottom" class="container" style="text-align: right;">
 					<button class="ej_right_btn btn" id="ej_write_btn">신규등록</button>
 				</div>
 				<!-- 등록 버튼 끝 -->

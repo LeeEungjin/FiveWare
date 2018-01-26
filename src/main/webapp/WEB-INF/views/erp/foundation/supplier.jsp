@@ -10,7 +10,8 @@
 <c:import url="${url}/resources/temp/ref.jsp"></c:import> 
 
 <link href="${url}/resources/css/erp/ej_erp.css" rel="stylesheet">
-<link href="${url}/resources/css/common/modal.css" rel="stylesheet">
+<link href="${url}/resources/css/common/modal_boot.css" rel="stylesheet">
+<%-- <link href="${url}/resources/css/common/modal.css" rel="stylesheet"> --%>
 
 <title>Insert title here</title>
 
@@ -71,6 +72,17 @@
 	               alert("error");
 	            }
          	}); 
+		});
+		
+		// write - code
+		$("#ej_write_btn").click(function() {
+			$.ajax({
+				type:"GET",
+				url:"../../codeName",
+				success:function(data){
+					$("#code").val(data);
+				}
+			});
 		});
 		
 		////////////////////////////////////////////////////////////////////
@@ -217,41 +229,42 @@
 				
 				<!-- 검색 기능 -->
 				<div id="erp_jh_contents_search">
-					<form name="ej_frm" action="./supplier" method="get">
-						<input type="hidden" name="curPage" value="1">
-						<div class="erp_ej_search">
-							<div class="erp_ej_inputBox">
-								<label for="">거래처 분류</label>
-								<select class="erp_ej_select" name="search">
-									<option value="">전체</option>
-									<option value="매출서">매출서</option>
-									<option value="매입서">매입서</option>
-									<option value="매출 및 매입">매출 및 매입</option>
-									<option value="일반 거래처">일반 거래처</option>
-								</select>
+					<div class="container" style="background-color: #EAEAEA;">
+						<form name="ej_frm" action="./supplier" method="get">
+							<input type="hidden" name="curPage" value="1">
+							<div class="erp_ej_search">
+								<div class="erp_ej_inputBox">
+									<label for="">거래처 분류</label>
+									<select class="erp_ej_select" name="search">
+										<option value="">전체</option>
+										<option value="매출서">매출서</option>
+										<option value="매입서">매입서</option>
+										<option value="매출 및 매입">매출 및 매입</option>
+										<option value="일반 거래처">일반 거래처</option>
+									</select>
+								</div>
+								
+								<div class="erp_ej_inputBox">
+									<label for="">거래처명</label>
+									<input type="text" class="ej_inputText" name="search">
+								</div>
+								
+								<div class="erp_ej_inputBox">
+									<input class="ej_search_btn btn" type="submit" value="검색">
+								</div>
+								
 							</div>
-							
-							<div class="erp_ej_inputBox">
-								<label for="">거래처명</label>
-								<input type="text" class="ej_inputText" name="search">
-							</div>
-							
-							<div class="erp_ej_inputBox">
-								<input class="ej_search_btn btn" type="submit" value="검색">
-							</div>
-							
-						</div>
-					</form>					
+						</form>					
+					</div>
 				</div>
 				<!-- 검색 기능 끝 -->
 				
 				
 				<!-- table -->
-				<div id="erp_jh_contents_table">
+				<div class="container">
 					<table class="table">
 					    <thead>
 					      <tr>
-					        <th><input type="checkbox" id="ej_erp_totalCheckBox"></th>
 					        <th>코드</th>
 					        <th>거래처명</th>
 					        <th>사업자번호</th>
@@ -262,7 +275,6 @@
 					    <tbody>
 						    <c:forEach items="${list}" var="dto">
 							    <tr>
-							      	<td><input type="checkbox" class="ej_erp_checkBox"></td>
 							        <td><a class="ej_modalOne_btn">${dto.code}</a></td>
 							        <td>${dto.name}</td>
 							        <td>${dto.business_number}</td>
@@ -281,7 +293,7 @@
 					 </table>
 					 
 					 <!-- pager -->
-					 	<div id="mr_pager" style="margin-top: 20px;">
+					 	<div id="mr_pager" class="container" style="margin-top: 20px;">
 							<c:if test="${pager.curBlock gt 1}">
 								<span class="ej_list" title="${pager.startNum-1}">◀</span>
 							</c:if>
@@ -297,8 +309,8 @@
 				<!-- table 끝 -->
 					
 				<!-- 등록 버튼 -->
-				<div id="erp_jh_contents_bottom">
-					<button class="ej_right_btn btn" id="ej_write_btn">신규등록</button>
+				<div id="erp_jh_contents_bottom" class="container" style="text-align: right;">
+					<button class="btn" id="ej_write_btn">신규등록</button>
 				</div>
 				<!-- 등록 버튼 끝 -->
 				
@@ -307,121 +319,212 @@
 	</div>
 </div>
 
-
-<!-- Modal Start -->
-<form id="ej-modal-form" action="./supplier" method="POST">
 <div id="ej_modal" class="modal">
-
-  <!-- Modal content -->
-  <div id="modal-result" class="modal-content">
-	  <div class="modal-header">
-	    <span class="close">&times;</span>
-	    <h2>| 거래처 등록</h2>
-	  </div>
-	  <div class="modal-body">
-	  	<!-- Modal Contents -->
-	  	<div class="erp_ej_container">
-	  	
-	 	<!-- 거래처 분류 Classification -->
-	 	<div class="erp_ej_row">
-		  <div class="erp_ej_col-25">
-		    <label class="erp_ej_label" for="classification">Classification</label>
-		  </div>
-		  <div class="erp_ej_col-75">
-		    <select id="classification" name="classification" class="erp_ej_inputText">
-		      <option value="매출서">매출서</option>
-		      <option value="매입서">매입서</option>
-		      <option value="매출 및 매입서">매출 및 매입서</option>
-		      <option value="일반 거래처">일반 거래처</option>
-		    </select>
-		  </div>
-		</div>
-	 
-	 	<!-- 거래처명 Name -->
-		<div class="erp_ej_row">
-		  <div class="erp_ej_col-25">
-		    <label for="name">Name</label>
-		  </div>
-		  <div class="erp_ej_col-75">
-		    <input type="text" id="name" name="name" class="erp_ej_inputText" placeholder="Supplier name..">
-		  </div>
-		</div>
-		
-		<!-- 사업자번호 Business Number -->
-		<div class="erp_ej_row">
-		  <div class="erp_ej_col-25">
-		    <label for="business_number">Business Number</label>
-		  </div>
-		  <div class="erp_ej_col-75">
-		    <input type="text" id="business_number" name="business_number" class="erp_ej_inputText" placeholder="Your business number..">
-		  </div>
-		</div>
-		
-		<!-- 대표자 Representative -->
-		<div class="erp_ej_row">
-		  <div class="erp_ej_col-25">
-		    <label for="representative">Representative</label>
-		  </div>
-		  <div class="erp_ej_col-75">
-		    <input type="text" id="representative" name="representative" class="erp_ej_inputText" placeholder="Representative name..">
-		  </div>
-		</div>
-		
-		 <!-- 담당자 division -->
-		<div class="erp_ej_row">
-		  <div class="erp_ej_col-25">
-		    <label for="division">Division</label>
-		  </div>
-		  <div class="erp_ej_col-75">
-		    <input type="text" id="division" name="division" class="erp_ej_inputText" placeholder="Division name..">
-		  </div>
-		</div>
-		
-		<!-- 담당자 메일 division_mail -->
-		<div class="erp_ej_row">
-		  <div class="erp_ej_col-25">
-		    <label for="division_mail">Division Mail</label>
-		  </div>
-		  <div class="erp_ej_col-75">
-		    <input type="text" id="division_mail" name="division_mail" class="erp_ej_inputText" placeholder="Division Mail..">
-		  </div>
-		</div>
-		
-		 <!-- 은행명 bank -->
-		<div class="erp_ej_row">
-		  <div class="erp_ej_col-25">
-		    <label for="bank">Bank</label>
-		  </div>
-		  <div class="erp_ej_col-75">
-		    <input type="text" id="bank" name="bank" class="erp_ej_inputText" placeholder="Bank name..">
-		  </div>
-		</div>
-		
-		 <!-- 계좌번호 account_number -->
-		<div class="erp_ej_row">
-		  <div class="erp_ej_col-25">
-		    <label for="account_number">Account Number</label>
-		  </div>
-		  <div class="erp_ej_col-75">
-		    <input type="text" id="account_number" name="account_number" class="erp_ej_inputText" placeholder="Account number..">
-		  </div>
-		</div>
-		
-		<input type="hidden" value="true">
-		
-	  
-		</div>
-	  	<!-- Modal Contents End -->
-		  
-	  </div>
-	  <div class="modal-footer">
-	    <input type="submit" id="ej_modal_wirte" class="btn" value="등록">
-	  </div>
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      
+      	<!-- modal header -->
+        <div class="modal-header">
+          <button type="button" class="close">&times;</button>
+          <h4 class="modal-title">|거래처 등록</h4>
+        </div>
+        <!-- modal header 끝-->
+        
+        <!-- modal contents -->
+       <form action="./supplier" method="POST">
+       <input type="hidden" id="path" name="path" value="product">
+       <input type="hidden" name="use" value="true">
+        <div class="modal-body">
+        
+        	<div class="input-group input-group_modal or_input-group_modal">
+			  <span class="input-group-addon">거래처코드</span>
+			  <input id="code" name="code" type="text" class="form-control" readonly="readonly">
+			</div>
+			
+			<div class="input-group input-group_modal or_input-group_modal">
+			  <span class="input-group-addon">거래처 분류</span>
+			  <select id="classification" name="classification" class="form-control">
+					<option value="매출서">매출서</option>
+					<option value="매입서">매입서</option>
+					<option value="매출 및 매입서">매출 및 매입서</option>
+					<option value="일반 거래처">일반 거래처</option>
+			  </select>
+			</div>
+			
+			<div class="input-group input-group_modal or_input-group_modal">
+			  <span class="input-group-addon">거래처 명</span>
+			  <input id="name" name="name" type="text" class="form-control">
+			</div>
+			
+			<div class="input-group input-group_modal or_input-group_modal">
+			  <span class="input-group-addon">사업자 번호</span>
+			  <input id="business_number" name="business_number" type="text" class="form-control">
+			</div>
+			
+			<div class="input-group input-group_modal or_input-group_modal">
+			  <span class="input-group-addon">대표자</span>
+			  <input id="representative" name="representative" type="text" class="form-control">
+			</div>
+			
+			<div class="input-group input-group_modal or_input-group_modal">
+			  <span class="input-group-addon">당담자</span>
+			  <input id="division" name="division" type="text" class="form-control">
+			</div>
+			
+			<div class="input-group input-group_modal or_input-group_modal">
+			  <span class="input-group-addon">당담자 메일</span>
+			  <input id="division_mail" name="division_mail" type="text" class="form-control">
+			</div>
+			
+			<div class="input-group input-group_modal or_input-group_modal">
+			  <span class="input-group-addon">은행명</span>
+			  <input id="bank" name="bank" type="text" class="form-control">
+			</div>
+			
+			<div class="input-group input-group_modal or_input-group_modal">
+			  <span class="input-group-addon">계좌번호</span>
+			  <input id="account_number" name="account_number" type="text" class="form-control">
+			</div>
+        </div>
+        <!-- modal contents 끝-->
+        
+        <!-- modal footer -->
+        <div class="modal-footer">
+          <input type="submit" id="ej_modal_wirte" class="btn btn-default" value="등록">
+          <button type="button" class="btn btn-default" id="close" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+      	<!-- modal footer 끝-->
+      </div>
+    </div>
   </div>
 
-</div>
-</form>
-<!-- Modal End -->
+
+<!-- Modal Start -->
+	<!-- <form id="ej-modal-form" action="./supplier" method="POST">
+		<div id="ej_modal" class="modal">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+
+					Modal content
+					<div class="modal-content">
+						<div class="modal-header">
+							<span class="close">&times;</span>
+							<h2>| 거래처 등록</h2>
+						</div>
+						<div class="modal-body">
+							Modal Contents
+							<div class="erp_ej_container">
+
+								거래처 분류 Classification
+								<div class="erp_ej_row">
+									<div class="erp_ej_col-25">
+										<label class="erp_ej_label" for="classification">Classification</label>
+									</div>
+									<div class="erp_ej_col-75">
+										<select id="classification" name="classification"
+											class="erp_ej_inputText">
+											<option value="매출서">매출서</option>
+											<option value="매입서">매입서</option>
+											<option value="매출 및 매입서">매출 및 매입서</option>
+											<option value="일반 거래처">일반 거래처</option>
+										</select>
+									</div>
+								</div>
+
+								거래처명 Name
+								<div class="erp_ej_row">
+									<div class="erp_ej_col-25">
+										<label for="name">Name</label>
+									</div>
+									<div class="erp_ej_col-75">
+										<input type="text" id="name" name="name"
+											class="erp_ej_inputText" placeholder="Supplier name..">
+									</div>
+								</div>
+
+								사업자번호 Business Number
+								<div class="erp_ej_row">
+									<div class="erp_ej_col-25">
+										<label for="business_number">Business Number</label>
+									</div>
+									<div class="erp_ej_col-75">
+										<input type="text" id="business_number" name="business_number"
+											class="erp_ej_inputText" placeholder="Your business number..">
+									</div>
+								</div>
+
+								대표자 Representative
+								<div class="erp_ej_row">
+									<div class="erp_ej_col-25">
+										<label for="representative">Representative</label>
+									</div>
+									<div class="erp_ej_col-75">
+										<input type="text" id="representative" name="representative"
+											class="erp_ej_inputText" placeholder="Representative name..">
+									</div>
+								</div>
+
+								담당자 division
+								<div class="erp_ej_row">
+									<div class="erp_ej_col-25">
+										<label for="division">Division</label>
+									</div>
+									<div class="erp_ej_col-75">
+										<input type="text" id="division" name="division"
+											class="erp_ej_inputText" placeholder="Division name..">
+									</div>
+								</div>
+
+								담당자 메일 division_mail
+								<div class="erp_ej_row">
+									<div class="erp_ej_col-25">
+										<label for="division_mail">Division Mail</label>
+									</div>
+									<div class="erp_ej_col-75">
+										<input type="text" id="division_mail" name="division_mail"
+											class="erp_ej_inputText" placeholder="Division Mail..">
+									</div>
+								</div>
+
+								은행명 bank
+								<div class="erp_ej_row">
+									<div class="erp_ej_col-25">
+										<label for="bank">Bank</label>
+									</div>
+									<div class="erp_ej_col-75">
+										<input type="text" id="bank" name="bank"
+											class="erp_ej_inputText" placeholder="Bank name..">
+									</div>
+								</div>
+
+								계좌번호 account_number
+								<div class="erp_ej_row">
+									<div class="erp_ej_col-25">
+										<label for="account_number">Account Number</label>
+									</div>
+									<div class="erp_ej_col-75">
+										<input type="text" id="account_number" name="account_number"
+											class="erp_ej_inputText" placeholder="Account number..">
+									</div>
+								</div>
+
+								<input type="hidden" value="true">
+
+
+							</div>
+							Modal Contents End
+
+						</div>
+						<div class="modal-footer">
+							<input type="submit" id="ej_modal_wirte" class="btn" value="등록">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form> -->
+	<!-- Modal End -->
 
 
 <!-- Modal update/delete Start -->

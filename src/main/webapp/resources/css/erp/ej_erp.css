@@ -23,14 +23,12 @@
 #erp_jh_contents_title{
 	width: 100%;
 	height: 10%;
-	background-color: #ffe1e7;
 	overflow: hidden;
 }
 
 #mr_icon{
 	width: 6%;
 	height: 100%;
-	background-color: #ff84c1;
 	float: left;
 }
 
@@ -44,15 +42,13 @@
 #erp_jh_contents_search{
 	width: 100%;
     height: 14.5%;
-    background-color: #e7ceff;
     padding-top: 0.5%;
 }
 
-#erp_jh_contents_table{
+/* #erp_jh_contents_table{
 	width: 99%;
 	height: 65%;
-	background-color: #ffffce;
-}
+} */
 
 #mr_pager{
 	width: 20%;
@@ -66,17 +62,10 @@
 	margin-left: 
 }
 
-#erp_jh_contents_bottom{
-	width: 100%;
-	height: 10.5%;
-	background-color: #cee7ff;
-}
-
 .erp_ej_search {
 	max-width: 600px;
 	height: 30px;
-	margin: 0 auto;
-	margin-top: 25px;
+	margin: 25px auto;
 }
 
 .erp_ej_search .erp_ej_inputBox {
@@ -169,4 +158,13 @@
 .ej_list:hover {
 	color: #fff;
 	background-color: #333;
+}
+
+.table {
+	margin-top: 20px;
+}
+
+.table thead {
+	background-color: #333;
+	color: #fff;
 }
