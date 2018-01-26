@@ -35,12 +35,12 @@ public class CloudController {
 		System.out.println("fileDown - oriname: "+cloudFileDTO.getOriname());
 		System.out.println("fileDown - filename: "+cloudFileDTO.getFilename());
 		
-		//저장될 실제 파일 이름
+		//���옣�맆 �떎�젣 �뙆�씪 �씠由�
 		File file = new File(filePath, cloudFileDTO.getFilename());
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("down", file);
 		mv.addObject("oriname", cloudFileDTO.getOriname());
-		//viewName은 
+		//viewName�� 
 		mv.setViewName("filedown");
 		
 		return mv;
@@ -98,7 +98,7 @@ public class CloudController {
 		
 		File f = new File(filepath);
 		if(!f.exists()) {
-			System.out.println("createFolder - ����!");
+			System.out.println("createFolder - 占쏙옙占쏙옙!");
 			f.mkdirs();
 		}
 		
@@ -125,18 +125,19 @@ public class CloudController {
 		ModelAndView mv = new ModelAndView();
 		
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-
-		String path = "resources/cloud/private/"+memberDTO.getCode();
 		
-		
-		if(!folderName.equals("")) {
-			path = folderName;
+		if(memberDTO != null) {
+			String path = "resources/cloud/private/"+memberDTO.getCode();
+			
+			if(!folderName.equals("")) {
+				path = folderName;
+			}
+			
+			System.out.println("cloudList - path : " + path);
+			
+			folderList(mv, session, path);
+			mv.setViewName("GroupWare/cloud/myCloud");
 		}
-		
-		System.out.println("cloudList - path : " + path);
-		
-		folderList(mv, session, path);
-		mv.setViewName("GroupWare/cloud/myCloud");
 		
 		return mv;
 	}
@@ -151,7 +152,7 @@ public class CloudController {
 		
 		File file = new File(filePath);
 		if(!file.exists()) {
-			System.out.println("folderList - ����!");
+			System.out.println("folderList - 占쏙옙占쏙옙!");
 			file.mkdirs();
 		}
 

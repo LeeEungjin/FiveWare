@@ -79,7 +79,7 @@
 						   title: msg.name+"님",
 						   text: "환영합니다!",
 						   type: "success",
-						   showCancelButton: true,
+						   showCancelButton: false,
 						   confirmButtonClass: "btn-primary",
 						   confirmButtonText: "확인",
 						   closeOnConfirm: false
@@ -95,39 +95,6 @@
 			 }); // END ajax
 		  }
 	   }); // 로그인 버튼 끝
-      
-      //로그인 후 이용
-/*        $(".eb_login").click(function(){
-    	  
-   			var member=$("#eb_code").val();
-   			var kind='${kind}';
-
-   			
-    	if(member==""){
-    		alert("로그인 후 이용해주세요.");
-    	}else{
-    	
-    		if(kind=="member"){
-    		$("#eb_href_1").attr("href","erp");
-    		$("#eb_href_2").attr("href","groupware");
-    		
-    		$("#eb_href_3").click(function(){
-    			alert("지점사람들만 이용가능합니다.");
-    	    });    		
-    			
-    		}else{
-    			$("#eb_href_2").attr("href","groupware");
-        		$("#eb_href_3").attr("href","srm");
-        		
-        		$("#eb_href_1").click(function(){
-        			alert("본사사람들만 이용가능합니다.");
-        	    }); 
-    			
-    		}
-    	}
-	  
-      });  */
-       
    });
 </script>
 
@@ -145,7 +112,7 @@
 				<thead>
 				<tr>
 					<td class="menu"><a href="erp" class="eb_login" id="eb_href_1">ERP</a></td>
-					<td class="menu"><a href="groupware" class="eb_login" id="eb_href_2">Group Ware</a></td>
+					<td class="menu"><a href="GroupWare" class="eb_login" id="eb_href_2">Group Ware</a></td>
 					<td class="menu"><a href="srm" class="eb_login" id="eb_href_3">SRM</a></td>
 				</tr>
 				</thead>
@@ -239,53 +206,6 @@
 			</table>
 			</form>
 
-
-
-
-			<!-- 로그인 끝 화면 시작 -->
-			<%-- <c:if test="${member ne null }">
-			<div class="login_after">
-
-				<!-- 사원 정보 -->
-				<div class="member_wrap">
-					<div class="member_pci">사진 사진</div>
-
-					<c:if test="${kind eq 'member'}">
-						<div class="member_info">
-							<div class="info">
-								사원명 : <input type="text" readonly="readonly"
-									value="${member.name }" id="eb_name">
-							</div>
-							<div class="info">
-								부서 : <input type="text" readonly="readonly"
-									value="${member.temp }">
-							</div>
-							<div class="info">
-								직급 : <input type="text" readonly="readonly"
-									value="${member.rank }">
-							</div>
-							------------------------------------------------<br> 알림?
-						</div>
-					</c:if>
-
-					<c:if test="${kind eq 'store'}">
-						<div class="member_info">
-							<div class="info">
-								지점명 : <input type="text" readonly="readonly"
-									value="${member.store }" id="eb_name">
-							</div>
-
-							------------------------------------------------<br> 알림?
-						</div>
-					</c:if>
-
-				</div>
-
-				<!--  인사말? -->
-				<div class="welcome">인사말? 동영상? 할일 ?</div>
-			</div>
-			</c:if> --%>
-			<!-- 로그인 끝 화면 끝 -->
 		</div>
 	</div>
 
