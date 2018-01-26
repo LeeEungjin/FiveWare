@@ -70,13 +70,13 @@
 			
 		<div id="free_footer">
 			<c:forEach items="${view.fileNames}" var="file">
-			<a href="../file/fileDown?filename=${file.fileName}&oriname=${file.oriName}">${file.oriName}</a> 
+			<p class="freeViewFiles">첨부 파일 : <a href="../file/fileDown?filename=${file.fileName}&oriname=${file.oriName}">${file.oriName}</a></p>
 			</c:forEach>
 			
-			<a href="freeUpdate?num=${view.num}"><button type="button" class="btn btn-default free_update_btn">수정</button></a>
-			<a href="freeDelete?num=${view.num}"><button type="button" class="btn btn-default">삭제</button></a>
-			<a href="freeReply?num=${view.num}"><button type="button" class="btn btn-default">답글</button></a>
-			<a href="freeList"><button type="button" class="btn btn-default">목록</button></a>
+			<a href="freeList"><button id="freeViewBtn4" type="button" class="freeViewBtns btn btn-default">목록</button></a>
+			<a href="freeReply?num=${view.num}"><button type="button" class="freeViewBtns btn btn-default">답글</button></a>
+			<a href="freeUpdate?num=${view.num}"><button type="button" class="freeViewBtns btn btn-default free_update_btn">수정</button></a>
+			<a href="freeDelete?num=${view.num}"><button type="button" class="freeViewBtns btn btn-default">삭제</button></a>
 		</div>
 	
 	</div>

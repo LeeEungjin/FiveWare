@@ -58,7 +58,12 @@ public class GroupWareFreeController {
 	
 	//insert->form
 	@RequestMapping(value="freeWrite", method={RequestMethod.GET})
-	public String insert()throws Exception{
+	public String insert(Model model)throws Exception{
+		
+		List<String> storeList=freeService.storeList();
+		
+		model.addAttribute("storeList", storeList);
+		
 		
 		return "free/freeWrite";
 	}
@@ -83,7 +88,6 @@ public class GroupWareFreeController {
 	//reply->form
 	@RequestMapping(value="freeReply", method={RequestMethod.GET})
 	public String reply(Model model, int num)throws Exception{
-		
 		model.addAttribute("reply", freeService.selectOne(num));
 		
 		return "free/freeReply";
@@ -110,7 +114,10 @@ public class GroupWareFreeController {
 	@RequestMapping(value="freeUpdate", method={RequestMethod.GET})
 	public String update(Model model, int num)throws Exception{
 		Map<String, Object> map=freeService.selectOne(num);
+		List<String> storeList=freeService.storeList();
 		
+		model.addAttribute("storeList", storeList);
+		model.addAttribute("fileCount", map.get("fileCount"));
 		model.addAttribute("update", map.get("freeDTO"));
 		
 		return "free/freeUpdate";

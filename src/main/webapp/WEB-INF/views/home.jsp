@@ -137,7 +137,7 @@
 	<!-- 전부 -->
 	<div class="background-image">
 		<div class="main_wrap animate">
-			<div class="logo"></div>
+			<div class="logo"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/logo5.png"></div>
 		
 			<form id="frmHomeProcess" action="#" method="post">
 			<table class="table">

@@ -4,6 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 <c:import url="${url}/resources/temp/ref.jsp"></c:import> 
@@ -63,7 +65,7 @@
 		$("#free_file_add").click(function() {
 				if (index < 3) {
 				var s = '<div class="free_file_sdiv" id="d'+count+'">';
-					s = s+ '<input class="free_file_sdiv" type="file" name="files"><span class="free_file_del" title="d'+count+'">X</span></div>';
+					s = s+ '<input class="free_file_sdiv" type="file" name="files"><span class="free_file_del" title="d'+count+'"><i class="fa fa-close"></i></span></div>';
 				
 				$("#free_file_div").append(s);
 					count++;
@@ -102,7 +104,7 @@
 				<table class="table">
 				    <thead>
 				      <tr>
-				      	<th>target</th>
+				      	<th>공개 범위</th>
 				      	
 				      	<c:if test="${kind eq 'store'}">
 					        <th>
@@ -118,7 +120,6 @@
 					        </th>
 				        </c:if>
 				        
-				        <!-- 나중에 전체 지점정보에서 리스트 가져와서 option값으로 뿌려주기 -->
 				        <c:if test="${kind eq 'member'}">
 					        <th>
 					        	<select id="free_store_list" name="target" class="form-control free_temp_select">
@@ -129,12 +130,14 @@
 				        </c:if>
 				        
 				        
-				        <th>작성자</th>
-				        <th><input value="${member.name}" readonly="readonly" name="writer" type="text" class="form-control free_write_input"></th>
+				        <th>제목</th>
+				        <th>
+				        	<input name="title" type="text" class="form-control free_write_input">
+				        </th>
 				        
-				      	<th>제목</th>
+				      	<th>작성자</th>
 				      	<th colspan="3">
-				      		<input name="title" type="text" class="form-control free_write_input">
+				      		<input value="${member.name}" readonly="readonly" name="writer" type="text" class="form-control free_write_input">
 				      	</th>
 				      </tr>
 				    </thead>

@@ -47,6 +47,10 @@ public class FreeService {
 	public List<String>	storeList()throws Exception{
 		List<String> storeList=freeDAO.storeList();
 		
+		for(int i=0; i<storeList.size(); i++){
+			System.out.println(storeList.get(i));
+		}
+		
 		return storeList;
 	}
 	

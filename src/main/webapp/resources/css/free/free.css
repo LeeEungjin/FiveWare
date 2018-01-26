@@ -8,7 +8,6 @@
 #fw_container{
 	width: 99%;
 	height: 100%;
-	background-color: lightblue;
 	transition: width 0.3s;	
 	margin-left: 1%;
 }
@@ -35,46 +34,49 @@
 
 #free_middle{
 	width: 100%;
-    background-color: #ffffcc;
     height: 75%;
 }
 
 #free_sub_title{
-	width: 50%;
-	height: 10%;
-	margin-left: 25%;
-	background-color: #f8edd3;
+	    width: 50%;
+    height: 10%;
+    margin-left: 25%;
+    text-align: center;
+    padding: 1%;
+    font-size: 18px;
 }
 
 #free_contents{
 	width: 80%;
     height: 83%;
-    background-color: #c8ffe3;
+    background-color: #F6F6F6;
     margin-left: 10%;
+    padding: 20px;
 }
 
 #free_search{
 	width: 50%;
     height: 10%;
-    background-color: #ffdbff;
     margin-left: 25%;
 }
 
 .free_select{
 	width: 20%;
 	float: left;
+	margin-right: 1%;
 }
 
 .free_search_input{
 	width: 50%;
 	float: left;
+	margin-right: 1%;
 }
 
 #free_pager{
 	width: 30%;
 	height: 10%;
 	margin-left: 35%;
-	background-color: #eeeeee;
+	text-align: center;
 }
 
 #free_footer{
@@ -82,3 +84,17 @@
     background-color: #cdcde7;
     height: 12%;
 }
+
+#free_table{
+	    margin-top: 4%;
+}
+
+#newFreeInserBtn{
+	float: right;
+    margin-right: 10%;
+}
+
+#free_sub_title a{
+	text-decoration: none;
+}
+
