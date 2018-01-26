@@ -6,6 +6,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link href="${pageContext.request.contextPath}/resources/css/srm/pos/pos.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <html>
 <script type="text/javascript">
 	$(function(){
@@ -455,7 +457,7 @@
 			   <div class="modal-content post-content">
 			     <div class="modal-header">
 			       <button type="button" class="close" data-dismiss="modal">&times;</button>
-			       <h4 class="modal-title">POST IT</h4>
+			       <h3 class="modal-title">포스트잇</h3>
 			     </div>
 			     <div class="modal-body post-body">
 			        <form action="../postIT/postInsert" id="postFrm" method="post">
@@ -469,11 +471,11 @@
 			        	<div id="skin5" onclick="selectPost(5)" class="postSkin" title="#ffe1ff"></div>
 			        	
 				        <textarea id="postITarea" rows="5" name="contents"></textarea>
-				        <button type="submit" class="btn">등록</button>
+				        <button id="postInsertBtn" type="submit" class="btn btn-default">등록</button>
 			     	</form>
 			     </div>
 			     <div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        <button type="button" class="btn" data-dismiss="modal">Close</button>
 			     </div>
 			  </div>
 			</div>
@@ -768,7 +770,7 @@
  	
  	<div id="postList">
  		<c:forEach items="${postList}" var="post" varStatus="i">
- 			<div class="postOne" id="postColor${i.count}" title="${post.skin}"><span class="postDel" title="${post.num}">X</span><br><span accesskey="${post.num}" class="postView">${post.num}번째<br>메모</span></div>
+ 			<div class="postOne" id="postColor${i.count}" title="${post.skin}"><span class="postDel" title="${post.num}"><i class="fa fa-close"></i></span><br><span accesskey="${post.num}" class="postView">${post.num}번째<br>메모</span></div>
  		</c:forEach>
  	</div>
  	

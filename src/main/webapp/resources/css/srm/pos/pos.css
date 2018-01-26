@@ -387,10 +387,11 @@
     margin-left: 10%;
     margin-top: 30%;
     cursor: pointer;
+    text-align: center;
 }
 
 .postDel{
-	color: red;
+	color: #ff7d7d;
     float: right;
     cursor: pointer;
 }
@@ -456,7 +457,7 @@
 
 #postOneDate{
 	float: right;
-    font-size: 20px;
+    font-size: 15px;
     margin-right: 5%;
 }
 
@@ -468,10 +469,16 @@
 #postOneContents{
 	text-align: center;
     margin-top: 20%;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 #postClose{
 	float: right;
 	margin-right: 5%;
+}
+
+#postInsertBtn{
+	margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 42%;
 }
