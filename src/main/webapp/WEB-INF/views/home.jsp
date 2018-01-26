@@ -13,7 +13,7 @@
 	   
 	   var message = '${message}';
 	     if(message != ""){
-	        alert(message);
+	        swal(message);
 	     }
 	   
       $(".total_wrap").css("height", window.innerHeight);

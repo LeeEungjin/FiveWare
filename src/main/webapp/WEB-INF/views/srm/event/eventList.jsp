@@ -158,9 +158,9 @@
 								</div>
 								
 								<div class="eventText">
-									<div class="eventTitle">${i.eventName} (기간 : ${i.eventSdate}~${i.eventEdate})</div>
+									<div class="eventTitle"><span id="eventListTextL">${i.eventName}</span> <span  id="eventListTextR">(기간 : ${i.eventSdate}~${i.eventEdate})</span></div>
 									<div class="eventOption">${i.eventOption}</div>
-									<div class="eventFile"><a href="../../file/eventFileDown?filename=${eventImg[j.index].filename}&oriname=${eventImg[j.index].oriname}">첨부 파일 : ${eventImg[j.index].oriname}</a></div>
+									<div class="eventFile"><a href="../../file/eventFileDown?filename=${eventImg[j.index].filename}&oriname=${eventImg[j.index].oriname}"><span id="eventListImgText">첨부 파일 : ${eventImg[j.index].oriname}</span></a></div>
 								</div>
 								
 							</div>
