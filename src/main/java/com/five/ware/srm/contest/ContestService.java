@@ -71,8 +71,8 @@ public class ContestService {
 		return result;
 	}
 	
-	public int likeDelete(int cnum) throws Exception{
-		int result =contestDAO.likeDelete(cnum);
+	public int likeDelete(int cnum, String store) throws Exception{
+		int result =contestDAO.likeDelete(cnum, store);
 		
 		return result;
 	}

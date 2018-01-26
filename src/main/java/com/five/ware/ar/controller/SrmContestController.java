@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +28,7 @@ import com.five.ware.erp.human.member.MemberDTO;
 import com.five.ware.erp.storeRegist.StoreRegistDAO;
 import com.five.ware.erp.storeRegist.StoreRegistDTO;
 import com.five.ware.file.FileDTO;
+import com.five.ware.srm.contest.ContestDAO;
 import com.five.ware.srm.contest.ContestJoinDTO;
 import com.five.ware.srm.contest.ContestLikeDTO;
 import com.five.ware.srm.contest.ContestListDTO;
@@ -234,25 +236,21 @@ public class SrmContestController {
 		return mv;
 	}
 	
-	@RequestMapping(value="like")
+	@RequestMapping(value="like/{check}")
 	@ResponseBody
-	public String like(int ccnum, String code, String store, String state) throws Exception{
-		int result =0;
-		String kind="";
-		
-		if(state.equals("fa")){
-			result=contestService.likeInsert(ccnum, code, store);
-			if(result>0){
-				kind="like";
-			}
-		}else{
-			result=contestService.likeDelete(ccnum);
-			if(result>0){
-				kind="cancel";
-			}
+	public String like(@PathVariable int check,  int cnum, String code, String store, String state) throws Exception{
+		int result = 0;
+		String message="";
+		System.out.println("check:"+check);
+		if(check==0) { // 지우는거
+			result = contestService.likeDelete(cnum, store);
+  			message="delete";
+		}else{ // insert
+			result = contestService.likeInsert(cnum, code, store);
+			message="insert";
 		}
 		
-		return kind;
+		return message;
 	}
 	
 	@RequestMapping(value="contestJoinView", method=RequestMethod.POST)

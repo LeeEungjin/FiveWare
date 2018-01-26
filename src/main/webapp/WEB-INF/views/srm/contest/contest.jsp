@@ -66,19 +66,35 @@ $(function(){
 	});
 	
 	$(".ar_like").click(function(){
-		var ccnum=$(this).attr("title");
+		var t =$(this);
+		var cnum=$(this).attr("title");
 		var code=$(this).attr("id");
 		var store='${member.store}';
-		var state=$("#"+ccnum).attr("class");
+		var state=$(this).attr("accesskey");
+	
+		var a=true;
+		var check=1;
 		
-		alert("state")
+		alert(state);
+		
+		if(state=="yes"){
+			a = confirm("취소하시겠습니까?");
+			check=0;
+		}
 
-	  	$.post("./like", {ccnum:ccnum, code:code, store:store, state:state}, function(data){
-			if(data=="like"){
-				alert("참여해주셔서 감사합니다.");
-				$("#"+ccnum).html("Like &#xf004");
-			}
-		});  
+		if(a){			
+		  	$.post("./like/"+check, {cnum:cnum, code:code, store:store, state:state}, function(data){
+		  		if(data=="delete"){
+		  			alert("취소되었습니다.");
+		  			$("#"+cnum).html("Like &#xf08a;");
+		  			$(t).attr("accesskey","no");
+		  		}else{
+		  			alert("참여해주셔서 감사합니다.");
+		  			$("#"+cnum).html("Like &#xf004;");
+		  			$(t).attr("accesskey","yes");
+		  		}
+			});  
+		}
 	});
 	
 	$(".ar_view").click(function(){
@@ -195,12 +211,12 @@ $(function(){
 									</div>
 									
 									<div class="ar_contestLike">
-										<p class="ar_like" title="${j.cnum}" id="${i.code }">
-											<c:if test="${result[k.index].cnum!=j.cnum}">
-												<i style="font-size:17px" class="fa" id="${j.cnum}">Like &#xf08a;</i>
+										<p class="ar_like" title="${j.cnum}" id="${i.code }" accesskey="no">
+											<c:if test="${result[k.index]==null}">
+												<i style="font-size:17px" class="fa" id="${j.cnum}" >Like &#xf08a;</i>
 											</c:if>
-											<c:if test="${result[k.index].cnum==j.cnum}">
-												<i style="font-size:17px" class="fa" id="${j.cnum}">Like &#xf004;</i>
+											<c:if test="${result[k.index]!=null}">
+												<i style="font-size:17px" class="fa" id="${j.cnum}" >Like &#xf004;</i>
 											</c:if>
 										</p>
 										<p class="ar_big" title="${i.code}${j.cnum}"><i style="font-size:17px" class="fa ar_view"  id="${i.code}${j.cnum}" title="${j.cnum }"data-toggle="modal" data-target="#ar_View_Modal">&#xf0b2;</i></p>

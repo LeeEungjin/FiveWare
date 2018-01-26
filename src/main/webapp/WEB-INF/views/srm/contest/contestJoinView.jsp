@@ -9,7 +9,7 @@
 				        
 				        <div class="modal-body1">
 							<div class="ar_Viewphoto">
-								<img src="D:/arin_1/FiveWare_ar/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/FiveWare/resources/contest/${one.photo}">
+								<img src="${url }/resources/contest/${one.photo}">
 							 
 							</div>
 							

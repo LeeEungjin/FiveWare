@@ -40,7 +40,7 @@
  </select> -->
  
 <select id="contestJoinList" resultType="contestJoinDTO">
-select * from contestJoin order by cnum desc
+select * from contestJoin order by cnum desc 
  </select>
  
   <select id="contestJoinListCount" resultType="int">
@@ -51,15 +51,16 @@ select * from contestJoin order by cnum desc
   	insert into contestlike values(contestlike_seq.nextval, #{code}, #{cnum}, #{store})
   </insert>
   
-  <delete id="likeDelete" parameterType="int">
+  <delete id="likeDelete" parameterType="java.util.Map">
   	delete contestlike where cnum=#{cnum}
   </delete>
   
   <select id="likeSelectOne" parameterType="ContestLikeDTO" resultType="ContestLikeDTO">
-  	select * from contestlike where code=#{code} and store=#{store}  	
+  	select * from contestlike where code=#{code} and store=#{store} and cnum=#{cnum}
   </select>
   
   <select id="contestJoinView" parameterType="String" resultType="ContestJoinDTO">
   	select * from contestjoin where cnum=#{cnum}
   </select>
+ 
   </mapper>

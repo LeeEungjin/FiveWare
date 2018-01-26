@@ -79,8 +79,13 @@ public class ContestDAO {
 		return result;
 	}
 	
-	public int likeDelete(int cnum) throws Exception{
-		int result = sqlSession.delete(NAMESPACE+"likeDelete", cnum);
+	public int likeDelete(int cnum, String store) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("cnum", cnum);
+		map.put("store", store);
+		
+		int result = sqlSession.delete(NAMESPACE+"likeDelete", map);
 		
 		return result;
 	}
