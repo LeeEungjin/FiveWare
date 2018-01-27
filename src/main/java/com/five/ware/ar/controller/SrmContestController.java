@@ -69,7 +69,7 @@ public class SrmContestController {
 		
 		System.out.println(sysdate);
 		
-		model.addAttribute("sysdate", sysdate);
+		model.addAttribute("todaydate", sysdate);
 		model.addAttribute("curPage", curPage);
 		model.addAttribute("subcurPage", subcurPage);
 		model.addAttribute("state", state);

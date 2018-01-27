@@ -78,4 +78,7 @@
   	select * from contestjoin where cnum=#{cnum}
   </select>
  
+ <select id="likeCount" parameterType="java.util.Map" resultType="int">
+ 	select count(num) from contestlike where code=#{code} and cnum=#{cnum}
+ </select>
   </mapper>

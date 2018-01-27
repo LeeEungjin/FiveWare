@@ -74,6 +74,7 @@ public class ContestService {
 		List<Pager> pagers= new ArrayList<Pager>();
 		
 		List<List<ContestLikeDTO>> blikes=new ArrayList<List<ContestLikeDTO>>();
+		List<List<Integer>> bnums=new ArrayList<List<Integer>>();
 		List<ContestJoinDTO> ar2 = new ArrayList<ContestJoinDTO>();
 		
 		for(int i=0; i<ar.size(); i++){
@@ -138,22 +139,30 @@ public class ContestService {
 		
 		*/
 		List<ContestLikeDTO> likes=null;
+		List<Integer> nums=null;
 	for(int o=0; o<ar.size(); o++){
 		ContestLikeDTO contestLikeDTO =null;
 		likes=new ArrayList<ContestLikeDTO>();
-		
+		nums=new ArrayList<Integer>();		
 		for(int z=0; z<joins.get(o).size(); z++){
 			System.out.println("---------------------"+z);
 			System.out.println("ar2code"+joins.get(o).get(z).getCode());
 			contestLikeDTO = contestDAO.likeSelectOne(joins.get(o).get(z).getCode() ,joins.get(o).get(z).getCnum(),store );
+			int num = contestDAO.likeCount(joins.get(o).get(z).getCode() ,joins.get(o).get(z).getCnum());
 			
+			nums.add(num);
 			likes.add(contestLikeDTO);
 			System.out.println(likes);
+			System.out.println(nums);
 	}
 		
 		blikes.add(likes);
+		bnums.add(nums);
+		
+		System.out.println(bnums);
 	}
 
+		model.addAttribute("num", bnums);
 		model.addAttribute("result", blikes);
 		model.addAttribute("joins", joins);
 		model.addAttribute("pagers", pagers);
@@ -173,16 +182,6 @@ public class ContestService {
 		return result;
 	}
 	
-/*	public ContestLikeDTO likeSelectOne(List<ContestJoinDTO> joins, String store) throws Exception{
-		ContestLikeDTO contestLikeDTO2 =null;
-		
-		for(int i=0; i<joins.size(); i++){
-			 contestLikeDTO2 = contestDAO.likeSelectOne(joins.get(i).getCode() , joins.get(i).getCnum(), store);
-		}
-		
-		return contestLikeDTO2;
-	}*/
-	
 	public ContestLikeDTO likeSelectJoin(ContestLikeDTO contestLikeDTO) throws Exception{
 		ContestLikeDTO contestLikeDTO2 = contestDAO.likeSelectJoin(contestLikeDTO);
 		
@@ -194,4 +193,10 @@ public class ContestService {
 		
 		return contestJoinDTO;
 	}
+	
+/*	public int likeCount(String code, int cnum) throws Exception{
+		int result = contestDAO.likeCount(code, cnum);
+		
+		return result;
+	}*/
 }

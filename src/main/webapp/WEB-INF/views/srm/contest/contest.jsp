@@ -73,42 +73,46 @@ $(function(){
 		var store='${member.store}';
 		var state=$(this).attr("accesskey");
 		var Tstate=$("#ar_"+code).attr("title");
-		
-		if($(".fa").html()=="Like &#xf08a;"){
-			alert("ㄴㅇ미라ㅓ미아럼니ㅏ");
-		}
-	
+		var edate = $("#ar_hicode").val();
+		var todaydate = $("#ar_hidate").val();
+			
 		var a=true;
 		var check=1;
 		
 		
-		
-		if(Tstate =='yes'){
-			
-			if(state=="yes"){
-				a = confirm("취소하시겠습니까?");
-				check=0;
-			}else{
-				alert("이미 참여하셨습니다.");
-				a=false;
+		if(edate<=todaydate){
+			alert("이미 마감된 공모전입니다.");
+		}else{
+			if(Tstate =='yes'){
+				
+				if(state=="yes"){
+					a = confirm("취소하시겠습니까?");
+					check=0;
+				}else{
+					alert("이미 참여하셨습니다.");
+					a=false;
+				}
+			}
+			if(a){			
+			  	$.post("./like/"+check, {cnum:cnum, code:code, store:store, state:state}, function(data){
+			  		if(data=="delete"){
+			  			alert("취소되었습니다.");
+			  			$("#"+cnum).html("Like &#xf08a;");
+			  			$(t).attr("accesskey","no");
+			  			$("#ar_"+code).attr("title",'no');
+			  		}else{
+			  			alert("참여해주셔서 감사합니다.");
+			  			$("#"+cnum).html("Like &#xf004;");
+			  			$(t).attr("accesskey","yes");
+			  			$("#ar_"+code).attr("title", "yes");
+			  			
+			  		}
+				});  
 			}
 		}
-		if(a){			
-		  	$.post("./like/"+check, {cnum:cnum, code:code, store:store, state:state}, function(data){
-		  		if(data=="delete"){
-		  			alert("취소되었습니다.");
-		  			$("#"+cnum).html("Like &#xf08a;");
-		  			$(t).attr("accesskey","no");
-		  			$("#ar_"+code).attr("title",'no');
-		  		}else{
-		  			alert("참여해주셔서 감사합니다.");
-		  			$("#"+cnum).html("Like &#xf004;");
-		  			$(t).attr("accesskey","yes");
-		  			$("#ar_"+code).attr("title", "yes");
-		  			
-		  		}
-			});  
-		}
+		
+		
+		
 
 	});
 	
@@ -220,8 +224,8 @@ $(function(){
 						<input type="button" value="올리기" class="ar_insertBtn" title="${i.code }" data-toggle="modal" data-target="#ar_contest_Modal">
 					</c:if>
 					
-					<c:if test="${i.edate >= 'sysdate' }">
-					dd
+					<c:if test="${i.edate >= sysdate  }">
+						<input type="button" value="결과보기" class="ar_insertBtn" title="${i.code }" data-toggle="modal" data-target="#ar_contest_Modal">
 					</c:if>
 				</div>	
 				
@@ -239,14 +243,16 @@ $(function(){
 									</div>
 									
 									<div class="ar_contestLike">
-										<p class="ar_like" title="${j.cnum}" id="${j.code }" accesskey="">
-										
+										<%-- <p class="ar_like" title="${j.cnum}" id="${j.code }" accesskey="no"> --%>
+											<input type="hidden" value="${i.edate}" id="ar_hicode"> 
+											<input type="hidden" value="${todaydate}" id="ar_hidate"> 
 											<c:if test="${result[a.index][k.index]==null}">
-												<i style="font-size:17px" class="fa" id="${j.cnum}" >Like &#xf08a;</i>
+												<p class="ar_like" title="${j.cnum}" id="${j.code }" accesskey="no">
+												<i style="font-size:17px" class="fa" id="${j.cnum}" >Like &#xf08a; * ${num[a.index][k.index]}</i>
 											</c:if>
 											<c:if test="${result[a.index][k.index]!=null}">
-											
-												<i style="font-size:17px" class="fa" id="${j.cnum}" >Like &#xf004;</i>
+												<p class="ar_like" title="${j.cnum}" id="${j.code }" accesskey="yes">
+												<i style="font-size:17px" class="fa" id="${j.cnum}" >Like &#xf004;* ${num[a.index][k.index]}</i>
 											</c:if>
 									
 										

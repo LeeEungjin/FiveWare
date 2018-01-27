@@ -146,5 +146,15 @@ public class ContestDAO {
 		return result;
 	}
 	
+	public int likeCount(String code, int cnum) throws Exception{
+		Map<String, Object> map= new HashMap<String, Object>();
+		
+		map.put("code", code);
+		map.put("cnum", cnum);
+		
+		int result = sqlSession.selectOne(NAMESPACE+"likeCount", map);
+		
+		return result;
+	}
 	
 }
