@@ -409,7 +409,7 @@
 	</div>
 </div>
 
-<!-- 캘린더 생성 modal -->
+<!-- 새 폴더 생성 modal -->
 <div class="modal fade" id="createFolderForm" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">

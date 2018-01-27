@@ -371,26 +371,24 @@
 				</div>
 				
 				<!-- 검색 기능 -->
-				<div id="erp_jh_contents_search">
-					<div class="container" style="background-color: #EAEAEA;">
-						<form name="ej_frm" action="./product" method="get">
-							<div class="erp_ej_search" style="max-width: 420px;">
-								<div class="erp_ej_inputBox">
-									<select name="kind">
-										<option value="code">품목코드</option>
-										<option value="name">품목명</option>
-										<option value="standard">규격</option>
-									</select>
-								</div>
-								<div class="erp_ej_inputBox">
-									<input type="text" name="search">
-								</div>
-								<div class="erp_ej_inputBox">
-									<input class="ej_search_btn btn" type="submit" value="검색">
-								</div>
+				<div class="container" style="background-color: #EAEAEA;">
+					<form name="ej_frm" action="./product" method="get">
+						<div class="erp_ej_search" style="max-width: 420px;">
+							<div class="erp_ej_inputBox">
+								<select name="kind">
+									<option value="code">품목코드</option>
+									<option value="name">품목명</option>
+									<option value="standard">규격</option>
+								</select>
 							</div>
-						</form>					
-					</div>
+							<div class="erp_ej_inputBox">
+								<input type="text" name="search">
+							</div>
+							<div class="erp_ej_inputBox">
+								<input class="ej_search_btn btn" type="submit" value="검색">
+							</div>
+						</div>
+					</form>					
 				</div>
 				<!-- 검색 기능 끝 -->
 				

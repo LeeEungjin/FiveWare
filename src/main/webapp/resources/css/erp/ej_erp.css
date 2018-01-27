@@ -1,29 +1,14 @@
 @charset "UTF-8";
 
-.sales_title_menu{
-	width: 10%;
-	height: 30%;
-	background-color: black;
-	color: white;
-	float: left;
-	margin-right: 2%;
-	text-align: center;
-	margin-top: 2%;
-	margin-left: 3%;
-	overflow: hidden;
-}
-
 #fw_main_contents{
 	width: 100%;
 	height: 91%;
 	background-color: white;
-	overflow: hidden;
 }
 
 #erp_jh_contents_title{
 	width: 100%;
 	height: 10%;
-	overflow: hidden;
 }
 
 #mr_icon{
@@ -39,11 +24,11 @@
 	margin-top: 1.5%;
 }
 
-#erp_jh_contents_search{
+/* #erp_jh_contents_search{
 	width: 100%;
     height: 14.5%;
     padding-top: 0.5%;
-}
+} */
 
 /* #erp_jh_contents_table{
 	width: 99%;
@@ -167,4 +152,8 @@
 .table thead {
 	background-color: #333;
 	color: #fff;
+}
+
+.container {
+	max-width: 1000px;	
 }
