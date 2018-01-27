@@ -53,8 +53,7 @@ public class ContestDAO {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		System.out.println("zhem"+code);
-		System.out.println("s"+rownum.getStartRow());
-		System.out.println("l"+rownum.getLastRow());
+		
 		map.put("rowNum", rownum);
 		map.put("code", code);
 		

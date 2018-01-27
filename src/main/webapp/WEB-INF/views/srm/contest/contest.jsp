@@ -219,6 +219,10 @@ $(function(){
 					<c:if test="${kind=='store' }">
 						<input type="button" value="올리기" class="ar_insertBtn" title="${i.code }" data-toggle="modal" data-target="#ar_contest_Modal">
 					</c:if>
+					
+					<c:if test="${i.edate >= 'sysdate' }">
+					dd
+					</c:if>
 				</div>	
 				
 					<div class="ar_ar_contestMenu">
@@ -235,12 +239,12 @@ $(function(){
 									</div>
 									
 									<div class="ar_contestLike">
-										<p class="ar_like" title="${j.cnum}" id="${j.code }" accesskey="yes">
+										<p class="ar_like" title="${j.cnum}" id="${j.code }" accesskey="">
 										
-											<c:if test="${result[k.index]==null}">
+											<c:if test="${result[a.index][k.index]==null}">
 												<i style="font-size:17px" class="fa" id="${j.cnum}" >Like &#xf08a;</i>
 											</c:if>
-											<c:if test="${result[k.index]!=null}">
+											<c:if test="${result[a.index][k.index]!=null}">
 											
 												<i style="font-size:17px" class="fa" id="${j.cnum}" >Like &#xf004;</i>
 											</c:if>
