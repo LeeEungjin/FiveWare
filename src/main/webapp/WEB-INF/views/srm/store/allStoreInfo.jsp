@@ -62,9 +62,9 @@ $(function() {
 			
 			<div id="all_store_contents">
 				<div id="all_store_sub_title">
-					<div id="map_title">전체 지점 위치</div>
+					<div id="map_title"><span class="allStoreTestMargin">전체 지점 위치</span></div>
 					
-					<div id="table_title">전체 지점 정보</div>
+					<div id="table_title"><span class="allStoreTestMargin">전체 지점 정보</span></div>
 				</div>
 				
 				<div id="map" class="all_store_map">

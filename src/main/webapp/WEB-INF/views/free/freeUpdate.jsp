@@ -4,6 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 <c:import url="${url}/resources/temp/ref.jsp"></c:import> 
@@ -56,13 +58,14 @@
 			$("#free_update_frm").submit();
 		});
 		
-		var index = 0;
+		var index = ${fileCount};
+		
 		var count = 0;
 		
 		$("#free_file_add").click(function() {
 				if (index < 3) {
 				var s = '<div class="free_file_sdiv" id="d'+count+'">';
-					s = s+ '<input class="free_file_sdiv" type="file" name="files"><span class="free_file_del" title="d'+count+'">X</span></div>';
+					s = s+ '<input class="free_file_sdiv" type="file" name="files"><span class="free_file_del" title="d'+count+'"><i class="fa fa-close"></i></span></div>';
 				
 				$("#free_file_div").append(s);
 					count++;
@@ -138,11 +141,7 @@
 					        <th>
 					        	<select name="target" class="form-control free_temp_select">
 					        	   <option value="전체">전체공개</option>
-							       <option value="강남점">강남점</option>
-							       <option value="영등포점">영등포점</option>
-							       <option value="신사점">신사점</option>
-							       <option value="용산점">용산점</option>
-							       <option value="신림점">신림점</option>
+							
 							    </select>
 							    <input value="${member.temp}" name="temp" type="hidden">
 					        </th>

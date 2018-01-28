@@ -21,39 +21,11 @@ public class StoreSalesService {
 		//selectOne
 		public ModelAndView selectOne(int num)throws Exception{
 			ModelAndView mv=new ModelAndView();
-			StoreSalesDTO storeSalesDTO=storeSalesDAO.selectOne(num);
-			List<String> ar1=new ArrayList<String>();
+			List<StoreSalesDTO> ar=storeSalesDAO.selectOne(num);
+	
 			
-			String[] product=storeSalesDTO.getProduct().split(",");
-			String [] amount=storeSalesDTO.getSalesAmount().split(",");
-			String [] price=storeSalesDTO.getProductSales().split(",");
-			
-			
-		
-			for(String dto_product : product){
-
-				ar1.add(dto_product);
-			}
-		
-			List<String> ar2=new ArrayList<String>();
-			for(String dto_amount : amount){
-
-				ar2.add(dto_amount);
-			}
-			
-			List<String> ar3=new ArrayList<String>();
-			for(String dto_price : price){
-
-				ar3.add(dto_price);
-			}
-			
-			
-			mv.addObject("list", storeSalesDTO);
-			mv.addObject("ar1", ar1);
-			mv.addObject("ar2", ar2);
-			mv.addObject("ar3", ar3);
-			
-			
+			mv.addObject("list", ar);
+	
 			return mv;
 		}
 		
@@ -77,7 +49,33 @@ public class StoreSalesService {
 		
 		//insert
 		public int insert(StoreSalesDTO storeSalesDTO)throws Exception{
-			int result=storeSalesDAO.insert(storeSalesDTO);
+
+			String product=storeSalesDTO.getProduct();
+			String salesAmount=storeSalesDTO.getSalesAmount();
+			String productSales=storeSalesDTO.getProductSales();
+
+			String pro[]=product.split(",");
+			String amount[]=salesAmount.split(",");
+			String sales[]=productSales.split(",");
+
+			
+			storeSalesDTO.setNum(storeSalesDAO.getNum());
+			
+			int result=0;
+						
+				for(int i=0; i<pro.length; i++){
+					storeSalesDTO.setProduct(pro[i]);
+					storeSalesDTO.setSalesAmount(amount[i]);
+					storeSalesDTO.setProductSales(sales[i]);
+					
+					try {
+						result=storeSalesDAO.insert(storeSalesDTO);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				
 			return result;
 		}
 }

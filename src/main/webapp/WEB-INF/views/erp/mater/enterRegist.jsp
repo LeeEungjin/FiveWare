@@ -178,10 +178,10 @@
          
          <div class="fw_subselected collapse in" id="sub1">
             <ul>
-               <li> 거래처 등록</li>
-               <li> 제품 등록</li>
-               <li><a href="../../erp/foundation/menuRegist">메뉴 등록</a></li>
-               <li><a href="../../erp/foundation/storageRegist">창고 등록</a></li>
+               <li><a href="../foundation/supplier">거래처 등록</a></li>
+               <li><a href="../foundation/product">제품 등록</a></li>
+               <li><a href="./menuRegist">메뉴 등록</a></li>
+               <li><a href="./storageRegist">창고 등록</a></li>
             </ul>
          </div>
          
@@ -195,8 +195,8 @@
          
          <div class="fw_subsub collapse"  id="sub2">
             <ul>
-               <li><a href="../../erp/order/orderRegist">주문 입력</a></li>
-               <li><a href="../../erp/order/orderGraph">품목별 주문 현황</a></li>
+               <li><a href="../order/orderRegist">주문 입력</a></li>
+               <li><a href="../order/graph/orderGraph">주문 현황 보기</a></li>
             </ul>
          </div>
          
@@ -227,15 +227,7 @@
          
          <div class="fw_subsub collapse"  id="sub4">
             <ul>
-               <li>거래처 조회</li>
-               <li>제품 조회</li>
-               <li>메뉴 조회</li>
-               <li>창고 조회</li>
-               <li>주문 조회</li>
-               <li>입고 조회</li>
-               <li>출고 조회</li>
-               <li>반품 조회</li>
-               <li>불출 조회</li>
+               <li><a href="../../erp/into/intoList">조회 및 엑셀 다운</a></li>
             </ul>
          </div>
          
@@ -266,10 +258,10 @@
 								<form id="er_search_frm" method="get">
 									<input type="hidden" name="materKind" value="enter">
 									기간 선택 <input id="smaterDate" name="smaterDate" type="date"> ~ <input id="ematerDate" name="ematerDate" type="date">		
-							      <div class="input-group-btn">
+							      <div id="enterLeft" class="input-group-btn">
 							        <button type="button" id="search_btn" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+							        <input id="dateListReset" class="btn btn-default" type="button" value="초기화">
 							      </div>
-							      <input id="dateListReset" class="btn btn-default" type="button" value="초기화">
 							    </form>	
 						    </div>	
 						<!-- 검색 기능 끝 -->

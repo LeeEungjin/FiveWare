@@ -12,7 +12,27 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <script type="text/javascript">
+	var slideIndex = 0;
+	
+	function carousel() {
+	    var i;
+	    var x = document.getElementsByClassName("mySlides");
+	    
+	    for (i = 0; i < x.length; i++) {
+	      x[i].style.display = "none"; 
+	    }
+	    
+	    slideIndex++;
+	    
+	    if (slideIndex > x.length) {slideIndex = 1} 
+	    x[slideIndex-1].style.display = "block"; 
+	    setTimeout(carousel, 3000); 
+	}
+
 	$(function(){
+		
+		carousel();
+		
 		$('[data-toggle="tooltip"]').tooltip();  
 		
 		$("#logout_btn_1").click(function(){
@@ -32,12 +52,7 @@
 				<div id="lang_icon">
 					<i class="fa fa-globe" style="font-size:35px"></i>
 				</div>
-				<div id="lang_eng" class=" w3-round-xxlarge ">
-					<p id="lang_p">English</p>
-				</div>
-				<div id="lang_kor" class=" w3-round-xxlarge ">
-				 	<p id="lang_p">Korean</p>
-				</div>    
+		  
 			</div> 
 			
 		 	 <div id="menu_wrap">
@@ -87,22 +102,91 @@
 				</div>
 				<div id="quick_menu">
 					<p id="quick_p">바로가기
-					<a href="#" data-toggle="tooltip" title="바로가기 설정">
-					<i class="fa fa-cog" style="font-size:20px; color : gray;"></i>
-					</a>
-						</p>
+						<a href="#" data-toggle="tooltip" title="바로가기 메뉴입니다.">
+						<i class="fa fa-cog" style="font-size:20px; color : gray;"></i>
+						</a>
+					</p>
 					
 				
 					
-					<div id="quick_menu_box"></div>
+					<div id="quick_menu_box">
+								<!-- 공지사항 -->
+							<div class="quick_menu_box_1">
+								<i class="fa fa-list" style="font-size:45px" data-toggle="tooltip" data-placement="bottom" title="공지사항"></i>
+							</div>
+							
+							<!-- 쪽지 -->
+							<div class="quick_menu_box_1">
+								<i class="fa fa-envelope-o" style="font-size:45px" data-toggle="tooltip" data-placement="bottom" title="쪽지"></i>
+							</div>
+							
+							<!-- 마이페이지 -->
+							<div class="quick_menu_box_1">
+								<i class="fa fa-user-circle-o" style="font-size:45px" data-toggle="tooltip" data-placement="bottom" title="마이페이지"></i>
+							</div>
+							
+							<!-- 사다리타기 -->
+							<div class="quick_menu_box_1" data-toggle="modal" data-target="#game">
+								<img id="ladderImg" src="./resources/images/shortCut/ladder.png" data-toggle="tooltip" data-placement="bottom" title="사다리 게임">
+							</div>
+							
+							
+							<!-- 사다리 타기 모달 -->
+							 <div class="modal fade" id="game">
+							    <div class="modal-dialog">
+							      <div class="modal-content">
+							      
+							        <!-- Modal Header -->
+							        <div class="modal-header">
+							          <h4 class="modal-title">사다리 타기</h4>
+							          <button type="button" id="ladderClose" class="close" data-dismiss="modal">&times;</button>
+							        </div>
+							        
+							        <!-- Modal body -->
+							        <div class="modal-body">
+							          <!-- 	참여 인원 : <input id="gamePeople" type="number"><input id="gamePeopleBtn" type="button" value="확인">
+							        	
+							        	<div id="game_contents">
+							        		
+							        	</div> -->
+							        	
+							        	<div class="landing" id="landing">
+									       <div class="start-form">
+									            <div class="landing-form">
+									                <div class="group">      
+									                  <input type="text" name="member" required>
+									                  <span class="highlight"></span>
+									                  <span class="bar"></span>
+									                  <label>참여자 수</label>
+									                    <div  id="button" class="button raised green">
+									                      <div  class="center" fit>START</div>
+									                      <paper-ripple fit></paper-ripple>
+									                    </div>
+									                </div>
+									            </div>
+									       </div>
+									    </div>
+									    <div id="ladder" class="ladder">
+									        <div class="dim"></div>
+									         <canvas class="ladder_canvas" id="ladder_canvas"></canvas>
+									    </div>
+									<script src="./resources/js/ladder.js"></script>
+							        
+							        </div>
+							        
+							      </div>
+							    </div>
+							  </div>
+						
+					</div>
 				</div>
 				
 				
-				<div id="often_call">
+				<!-- <div id="often_call">
 					<p id="quick_p">자주 연락하는 사람들</p>
 					<i class="fa fa-address-book-o" style="font-size:36px">Call</i>
 					<i class="fa fa-cog" style="font-size:24px"></i>
-				</div>				
+				</div> -->				
 			</div>
 			
 			
@@ -116,9 +200,11 @@
 						<i class="fa fa-bullhorn" style="font-size:48px;color:#CE3636"></i>
 					</div>
 					
-					<div id="notice_text">
-						<p id="notice_text_p">Group Ware Random slidShow</p>
-					</div>
+					<c:forEach items="${randomList}" var="random">
+						<div  class="mySlides w3-animate-bottom" id="notice_text">
+							<a href="#">${random.contents}</a>
+						</div>
+					</c:forEach>
 					
 					<div id="weather_div">
 						<i class="fa fa-cloud weather_div_p" style="font-size:36px">Weather</i>
@@ -206,7 +292,7 @@
                   </div>
                   <div class="groupWare_jk_groupWare">
                      
-                     <a href="#"> 
+                     <a href="${pageContext.request.contextPath}/GroupWare/cloud/myCloud"> 
                         <span class="groupWare_jk_inerp"> 
                            <span class="groupWare_jk_bigdiv">클라우드</span>
                         </span>

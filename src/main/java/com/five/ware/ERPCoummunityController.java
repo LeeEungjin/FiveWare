@@ -2,6 +2,9 @@ package com.five.ware;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,8 +46,11 @@ public class ERPCoummunityController {
 	//selectOne
 	@RequestMapping(value="communityOne")
 	public String selectOne(Model model, int num)throws Exception{
+		System.out.println("왜안돼");
+
+		Map<String, Object> map=communityService.selectOne(num);
 		
-		model.addAttribute("view", communityService.selectOne(num));
+		model.addAttribute("view", map.get("communityDTO"));
 		model.addAttribute("community", "ERP");
 		model.addAttribute("report", communityService.reportCount(num));
 		
@@ -82,9 +88,10 @@ public class ERPCoummunityController {
 	//update->form
 	@RequestMapping(value="communityUpdate", method={RequestMethod.GET})
 	public String update(int num, Model model)throws Exception{
-		CommunityDTO communityDTO=communityService.selectOne(num);
-		
-		model.addAttribute("update", communityDTO);
+		Map<String, Object> map=communityService.selectOne(num);
+		System.out.println("?");
+		model.addAttribute("update", map.get("communityDTO"));
+		model.addAttribute("fileCount", map.get("fileCount"));
 		model.addAttribute("community", "ERP");
 		
 		return "community/communityUpdate";

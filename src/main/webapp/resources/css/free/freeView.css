@@ -35,7 +35,6 @@
 
 #free_middle{
 	width: 100%;
-    background-color: #ffffcc;
     height: 75%;
 }
 
@@ -43,13 +42,12 @@
 	width: 50%;
 	height: 10%;
 	margin-left: 25%;
-	background-color: #f8edd3;
 }
 
 #free_contents{
 	width: 80%;
-    height: 90%;
-    background-color: #c8ffe3;
+    height: 88%;
+    background-color: #F6F6F6;
     margin-left: 10%;
 }
 
@@ -73,7 +71,6 @@
 
 #free_file_div {
     width: 50%;
-    background-color: #bbffff;
     height: 79%;
     margin-left: 2%;
     float: left;
@@ -92,4 +89,21 @@
 .free_file_sdiv{
 	float: left;
 	width: 55%;
+}
+
+.freeViewBtns{
+	float: right;
+	margin-right: 1%;
+}
+
+#freeViewBtn4{
+	margin-right: 10%;
+}
+
+.freeViewFiles{
+	margin-left: 10%;
+}
+
+#free_footer a{
+	text-decoration: none;
 }

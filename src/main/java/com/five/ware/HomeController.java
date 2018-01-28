@@ -7,13 +7,17 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.FilterWriter;
 import java.io.IOException;
+import java.lang.annotation.Inherited;
 import java.nio.Buffer;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -25,11 +29,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.five.ware.community.CommunityDTO;
+import com.five.ware.community.CommunityService;
+import com.five.ware.community.FreeDTO;
+import com.five.ware.community.FreeService;
+import com.five.ware.event.EventDTO;
+import com.five.ware.event.EventService;
+
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class HomeController {
+	
+	@Inject
+	private CommunityService communityService;
+	
+	@Inject
+	private FreeService freeService;
+	
+	@Inject
+	private EventService eventService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -57,14 +77,22 @@ public class HomeController {
 	
 	@RequestMapping(value="/erp")
 	public ModelAndView erp(){
+		List<CommunityDTO> randomList=new ArrayList<CommunityDTO>();
 		Calendar ca = Calendar.getInstance();
-		
 		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
-		
 		String sysdate = sd.format(ca.getTime());
-		
 		ModelAndView mv = new ModelAndView();
 		
+		try {
+			randomList=communityService.randomNotice();
+			
+			System.out.println(randomList.size());
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mv.addObject("randomList", randomList);
 		mv.addObject("sysdate", sysdate);
 		mv.setViewName("AfterLoginMain/erp");
 		
@@ -72,13 +100,37 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/groupware")
-	public String groupware(){
-		return "AfterLoginMain/groupware";
+	public ModelAndView groupware(){
+		ModelAndView mv=new ModelAndView();
+		List<FreeDTO> randomList=new ArrayList<FreeDTO>();
+		
+		try {
+			randomList=freeService.randomNotice();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mv.addObject("randomList", randomList);
+		mv.setViewName("AfterLoginMain/groupware");
+		
+		return mv;
 	}
 	
 	@RequestMapping(value="/srm")
-	public String srm(){
-		return "AfterLoginMain/srm";
+	public ModelAndView srm(){
+		ModelAndView mv=new ModelAndView();
+		List<EventDTO> randomList=new ArrayList<EventDTO>();
+		
+		try {
+			randomList=eventService.randomNotice();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mv.addObject("randomList", randomList);
+		mv.setViewName("AfterLoginMain/srm");
+		
+		return mv;
 	}
 	
 	
@@ -88,11 +140,11 @@ public class HomeController {
 		String filePath = session.getServletContext().getRealPath("resources/code");
 		String fileName = "code.code";
 		File f = new File(filePath, fileName);		
-		// 파일 읽을 준비
+		// �뙆�씪 �씫�쓣 以�鍮�
 			FileReader fr = new FileReader(f);
-			// 파일 읽기
+			// �뙆�씪 �씫湲�
 			BufferedReader br = new BufferedReader(fr);
-			// 한 줄을 읽어와라
+			// �븳 以꾩쓣 �씫�뼱���씪
 			fileName=br.readLine();
 		
 		String code=fileName;
@@ -184,7 +236,7 @@ public class HomeController {
 		fw.flush();
 		fw.close();
 		
-		System.out.println("코드:"+code);		
+		System.out.println("肄붾뱶:"+code);		
 		
 		return code;
 	}
@@ -195,11 +247,11 @@ public class HomeController {
 		String filePath = session.getServletContext().getRealPath("resources/code");
 		String fileName = "storeCode";
 		File f = new File(filePath, fileName);		
-		// 파일 읽을 준비
+		// �뙆�씪 �씫�쓣 以�鍮�
 			FileReader fr = new FileReader(f);
-			// 파일 읽기
+			// �뙆�씪 �씫湲�
 			BufferedReader br = new BufferedReader(fr);
-			// 한 줄을 읽어와라
+			// �븳 以꾩쓣 �씫�뼱���씪
 			fileName=br.readLine();
 		
 		String code=fileName;

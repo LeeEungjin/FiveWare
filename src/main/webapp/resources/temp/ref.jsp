@@ -4,9 +4,6 @@
 
 <c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 
-
-
-
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="${url}/resources/js/jquery-3.1.1.min.js"></script>
 	<script src="${url}/resources/js/bootstrap.min.js"></script>
@@ -21,6 +18,8 @@
 
 <script type="text/javascript">
 	$(function() {
+		$('[data-toggle="tooltip"]').tooltip();
+		
 		/* $("#ej_sidebar").css("height", window.innerHeight);
 		$("#fw_container").css("height", window.innerHeight);
 		$("#fw_container").css("width", (window.innerWidth)-(230+'px'));
@@ -29,14 +28,24 @@
 		$("#fw_subcontainer").css("height", "100%"); */
 		$("#ej_sidebar").css("height", window.innerHeight);
 		$("#fw_container").css("height", window.innerHeight);
-		$("#ej_sidebar").css("width", "195px");
+		
+		/* $("#ej_sidebar").css("width", "195px");
 		$("#fw_container").css("width", (window.innerWidth - 195)+'px');
 		$("#fw_mainwrap").css("width", "82%");
 		$("#fw_container").css("margin-left", "195px");
 		$("#fw_subcontainer").css("width", "17%");
 		$(".ej_default_img").css("margin-left", "10px");
 		$("#fw_mainwrap").css("margin-left", "1%");
-		$("#ej_icon_contents").show();
+		$("#ej_icon_contents").show(); */
+		
+		$("#ej_sidebar").css("width", "59px");
+		$("#fw_container").css("width", (window.innerWidth - 60)+'px');
+		$("#fw_mainwrap").css("width", "82%");
+		$("#fw_mainwrap").css("margin-left", "1%");
+		$("#fw_container").css("margin-left", "60px");
+		$("#fw_subcontainer").css("width", "15%");
+		$(".ej_default_img").css("margin-left", "0px");
+		$("#ej_icon_contents").hide();
 		
 		var menu = true;
 		$("#ej_menu").click(function(){
@@ -45,7 +54,7 @@
 				menu = false;
 				$("#ej_sidebar").css("width", "59px");
 				$("#fw_container").css("width", (window.innerWidth - 60)+'px');
-				$("#fw_mainwrap").css("width", "84%");
+				$("#fw_mainwrap").css("width", "82%");
 				$("#fw_mainwrap").css("margin-left", "1%");
 				$("#fw_container").css("margin-left", "60px");
 				$("#fw_subcontainer").css("width", "15%");
@@ -55,7 +64,7 @@
 				menu = true;
 				$("#ej_sidebar").css("width", "195px");
 				$("#fw_container").css("width", (window.innerWidth - 195)+'px');
-				$("#fw_mainwrap").css("width", "82%");
+				$("#fw_mainwrap").css("width", "81%");
 				$("#fw_container").css("margin-left", "195px");
 				$("#fw_subcontainer").css("width", "17%");
 				$(".ej_default_img").css("margin-left", "10px");

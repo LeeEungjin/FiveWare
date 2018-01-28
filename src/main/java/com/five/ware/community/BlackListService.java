@@ -25,7 +25,6 @@ public class BlackListService {
 		List<String> writerList=blackListDAO.writerList();
 		MemberDTO memberDTO=new MemberDTO();
 		List<FileDTO> fileList=new ArrayList<FileDTO>();
-		int i=0;
 		
 		for (String writer : writerList) {
 			memberDTO=blackListDAO.blackList(writer);

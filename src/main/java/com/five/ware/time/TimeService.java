@@ -29,6 +29,7 @@ public class TimeService {
 		List<TimeDTO> ar=new ArrayList<TimeDTO>();
 		
 		ar=timeDAO.selectOneList(memberCode);
+		
 		JSONArray json = new JSONArray(); // []
 
 
@@ -40,6 +41,7 @@ public class TimeService {
 			obj.put("title", "출근 "+timeDTO.getStartTime()); // [{},{}]
 			json.add(obj);
 		}
+		
 		
 		
 		for(TimeDTO timeDTO :ar){

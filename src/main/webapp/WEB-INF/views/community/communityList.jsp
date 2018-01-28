@@ -33,6 +33,11 @@
 			document.com_search_frm.kind.value=t;
 			document.com_search_frm.submit();
 		});
+		
+		$("#reportCommunity").click(function(){
+			swal("REPORT","신고된 게시물입니다.", "error");
+		});
+		
 	});
 </script>
 	
@@ -48,11 +53,11 @@
 	
 	<div id="com_middle">
 		<div id="com_sub_title">
-			<a href="./communityList">전체</a>
-			<a href="./communityList?temp=회계부">회계부</a>
-			<a href="./communityList?temp=총무부">총무부</a>
-			<a href="./communityList?temp=인사부">인사부</a>
-			<a href="./communityList?temp=영업/구매부">영업/구매부</a>
+			<a href="./communityList">전체</a>&nbsp;|&nbsp;
+			<a href="./communityList?temp=회계부">회계부</a>&nbsp;|&nbsp;
+			<a href="./communityList?temp=총무부">총무부</a>&nbsp;|&nbsp;
+			<a href="./communityList?temp=인사부">인사부</a>&nbsp;|&nbsp;
+			<a href="./communityList?temp=영업/구매부">영업/구매부</a>&nbsp;|&nbsp;
 			<a href="./communityList?temp=마케팅부">마케팅부</a>
 		</div>
 		
@@ -95,7 +100,7 @@
 				      	<td>
 				      	<c:choose>
 				      		<c:when test="${reportList[i.index] gt 4}">
-				      			신고된 게시물입니다.
+				      			<span id="reportCommunity">신고된 게시물입니다.</span>
 				      		</c:when>
 				      		
 				      		<c:otherwise>
@@ -133,7 +138,7 @@
 	</div>
 	
 	<div id="com_footer">
-		<a href="communityWrite"><button type="button" class="btn btn-default">신규 등록</button></a>
+		<a href="communityWrite"><button id="comInsertBtn" type="button" class="btn btn-default">신규 등록</button></a>
 	</div>
 </div>
 

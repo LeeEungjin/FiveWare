@@ -110,18 +110,15 @@
 	background-color: #cee7ff;
 }
 
-.btn{
-	float: right !important;
-	margin-right: 25%;
-}
 
 #jh_bold_text{
 	font-weight: bold;
 }
 
 .search_group{
-	width: 80% !important;
+	width: 60% !important;
     float: left;
+    margin-left: 26%;
 }
 
 /*------------- modal -----------------*/
@@ -168,4 +165,23 @@ label {
     float: left !important;
     margin-right: 2% !important;
     margin-left: 0% !important;
+}
+
+#or_insert{
+	float: right !important;
+	margin-right: 9% !important;
+	margin-top: 1%;
+}
+
+#orderLeft{
+	  /*   float: right;
+    margin-right: 30% */;
+}
+
+#storageName{
+	height: 28px !important;
+}
+
+#account{
+	height: 28px !important;
 }

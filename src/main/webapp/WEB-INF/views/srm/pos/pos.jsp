@@ -1,14 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+  <script src="//cdn.ckeditor.com/4.8.0/basic/ckeditor.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link href="${pageContext.request.contextPath}/resources/css/srm/pos/pos.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <html>
 <script type="text/javascript">
 	$(function(){
+		
+		CKEDITOR.replace('postITarea');
+		
 		
 		var message = '${message}';
 	     if(message != ""){
@@ -23,6 +28,7 @@
 		
 		}
 		
+		//직원 리스트
 		$("#eb_staff_time").click(function(){
 			
 			var store='${member.store}';
@@ -44,7 +50,8 @@
 			
 		});
 		
-					
+		
+		    //직원 출근			
 			 	$("#eb_staffList").on("click",".eb_startTime",function(){
 			 		
 					var name=$(this).attr("title");
@@ -77,6 +84,8 @@
 					}
 				}); 
 			 	
+		    
+		    //직원 퇴근 
 			 	$("#eb_staffList").on("click",".eb_lastTime",function(){
 			
 					var name=$(this).attr("title");
@@ -107,6 +116,7 @@
 				}); 
 			 	
 			 	
+		    //메뉴
 			 	$(".b3").click(function(){
 			 		var number=$(this).val();
 			 	
@@ -142,7 +152,7 @@
 				 		$(".eb_menuTable").append("<tr class='eb_menuTable_tr"+menu+"'>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th product'><input type='text' class='eb_input' name='product' value="+menu+" readonly='readonly'></td>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' name='price' value="+price+" readonly='readonly' class='eb_input'></td>");
-				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' id='eb_amount"+menu+"' name='salesAmount' value='1' class='eb_input'></td>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' id='eb_amount"+menu+"' name='salesAmount' value='1' readonly='readonly' class='eb_input'></td>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+0+"</td>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' id='eb_price"+menu+"' name='productSales' value="+price+" readonly='readonly' class='eb_input'></td></tr>");
 				 		$(".eb_menuTable").append("</tr>");
@@ -208,7 +218,7 @@
 				 		$(".eb_menuTable").append("<tr class='eb_menuTable_tr"+menu+"'>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th product'><input type='text' class='eb_input' name='product' value="+menu+" readonly='readonly'></td>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' name='price' value="+price+" readonly='readonly' class='eb_input'></td>");
-				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' id='eb_amount"+menu+"' name='salesAmount' value='1' class='eb_input'></td>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' id='eb_amount"+menu+"' name='salesAmount' readonly='readonly' value='1' class='eb_input'></td>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+0+"</td>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' id='eb_price"+menu+"' name='productSales' value="+price+" readonly='readonly' class='eb_input'></td></tr>");
 				 		$(".eb_menuTable").append("</tr>");
@@ -237,7 +247,7 @@
 				 		$(".eb_menuTable").append("<tr class='eb_menuTable_tr"+menu+"'>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th product'><input type='text' class='eb_input' name='product' value="+menu+" readonly='readonly'></td>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' name='price' value="+price+" readonly='readonly' class='eb_input'></td>");
-				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' id='eb_amount"+menu+"' name='salesAmount' value='1' class='eb_input'></td>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' id='eb_amount"+menu+"' name='salesAmount' readonly='readonly' value='1' class='eb_input'></td>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+0+"</td>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' id='eb_price"+menu+"' name='productSales' value="+price+" readonly='readonly' class='eb_input'></td></tr>");
 				 		$(".eb_menuTable").append("</tr>");
@@ -311,8 +321,7 @@
 			 	
 			 	$("#eb_modal_contents1").on("click",".eb_modal_tr",function(){
 			 		var num=$(this).attr("title");
-			 		
-			 		
+			 
 			 		$.ajax({
 			 			type : "get",
 			 			url : "./ListView",
@@ -324,7 +333,96 @@
 			 	});
 			 	
 			 	
+			 	/* $("#postInsertBtn").click(function(){
+			 		
+			 		var contents=$("#postITarea").val();
+			 		
+			 		if(contents==""){
+			 			alert("내용을 입력해 주세요.");
+			 		}else{
+			 			alert("?");
+			 			$("#postFrm").submit();
+			 		}
+			 		
+			 	}); */
+			 	
+				$(".postDel").click(function(){
+					var num=$(this).attr("title");
+					var store=$("#storeName").val();
+					
+					$.ajax({
+						type : "get",
+			 			url : "../postIT/postDelete",
+			 			data : { "num" : num,
+			 					"store" : store},
+			 			success : function(){
+			 				alert("삭제 성공");
+			 				location.reload();
+			 			}
+					});
+				});		 	
+			 	
+			 	
+			 	/* $("#skin2").click(function(){
+			 		var skin=$(this).attr("title");
+			 		
+			 		alert(skin);
+			 		
+			 		$(this).style("border", "2px solid #bcbcbc");
+			 		
+			 	}); */
+			 	
+			 	
+				var count=document.getElementsByClassName('postOne').length;
+				
+			 	for(var i=0; i<count+1; i++){
+			 		var skin=$("#postColor"+(i)).attr("title");
+			 		$("#postColor"+i).css("background-color", skin);
+			 	}
+			 	
+			 	
+			 	$(".postView").click(function(){
+			 		var num=$(this).attr("accesskey");
+			 		
+			 		$.ajax({
+			 			type : "get",
+			 			url : "../postIT/postView",
+			 			data : { "num" : num},
+			 			success : function(data){
+			 				$("#postView").html(data);
+			 				$("#postView").css("visibility", "visible");
+			 				
+			 				var postViewSkin=$(".postViewSkin").val();
+			 				
+			 				$("#postView").css("background-color", postViewSkin);
+			 			}
+			 		});
+			 		
+			 	});
+			 	
+			 	
+			 	$("#postView").on("click", "#postCloseBtn", function(){
+			 		$("#postView").css("visibility", "hidden");
+			 	});
+				
+			 	
 	});
+	
+	
+	function selectPost(index){
+ 		
+ 		var size=document.getElementsByClassName('postSkin').length;
+ 		var color=$("#skin"+index).attr("title");
+ 		
+ 		for(var i=0; i<size; i++){
+ 			if(i==index-1){
+ 				$("#skin"+(i+1)).css("border", "2px solid #bcbcbc");
+ 				$("#skinSelect").val(color);
+ 			}else{
+ 				$("#skin"+(i+1)).css("border", "2px solid white");
+ 			}
+ 		}
+ 	}
 	
 </script>
 <head>
@@ -345,11 +443,44 @@
 					<td>
 						<input type="button" value="출/퇴근" class="btn btn-default" data-toggle="modal" data-target="#myModal" id="eb_staff_time">
 					</td>
+					<td>
+						<input type="button" data-toggle="modal" data-target="#postIT" class="btn btn-default" value="포스트잇">
+					</td>
 				</tr>
 				
 			</table>
 		</div>
 		
+		<!-- 포스트잇 modal -->
+		<div class="modal fade" id="postIT" role="dialog">
+			<div class="modal-dialog modal-sm">
+			   <div class="modal-content post-content">
+			     <div class="modal-header">
+			       <button type="button" class="close" data-dismiss="modal">&times;</button>
+			       <h3 class="modal-title">포스트잇</h3>
+			     </div>
+			     <div class="modal-body post-body">
+			        <form action="../postIT/postInsert" id="postFrm" method="post">
+			        	<input type="hidden" name="store" value="${member.store}">
+			        	<input type="hidden" id="skinSelect" name="skin" value="#ffe1e1">
+
+			        	<div id="skin1" onclick="selectPost(1)" class="postSkin" title="#ffe1e1"></div>
+			        	<div id="skin2" onclick="selectPost(2)" class="postSkin" title="#ffffdd"></div>
+			        	<div id="skin3" onclick="selectPost(3)" class="postSkin" title="#e6ffe6"></div>
+			        	<div id="skin4" onclick="selectPost(4)" class="postSkin" title="#e3e3ff"></div>
+			        	<div id="skin5" onclick="selectPost(5)" class="postSkin" title="#ffe1ff"></div>
+			        	
+				        <textarea id="postITarea" rows="5" name="contents"></textarea>
+				        <button id="postInsertBtn" type="submit" class="btn btn-default">등록</button>
+			     	</form>
+			     </div>
+			     <div class="modal-footer">
+			        <button type="button" class="btn" data-dismiss="modal">Close</button>
+			     </div>
+			  </div>
+			</div>
+		</div>
+		<!-- 포스트잇 modal 끝-->
 		
 		
 		<!--직원 출퇴근 modal  -->
@@ -392,7 +523,7 @@
 		
 		   	<form action="./storeSales" method="post">
 		<div class="menuWrap1">
-		   		<input type="hidden" name="store" value="${member.store}">
+		   		<input id="storeName" type="hidden" name="store" value="${member.store}">
 		   		<input type="hidden" name="regdate" value="${sysdate}">
 		   		<input type="hidden" name="time" id="eb_timeSales">
 		   		<input type="hidden" name="totalPrice" id="eb_totalPrice">
@@ -552,6 +683,12 @@
    
   				  
 		 	</div>
+		 	
+		 	<div id="postView">
+				<%-- <div id="pin"><img id="pin_img" src="${pageContext.request.contextPath}/resources/images/pos/pin.png"></div>
+		 		<div id="postContents">${view.contents}</div> --%>
+		 	</div>
+		 	
 		</div>
 		
 		
@@ -629,6 +766,12 @@
 			    </div>
 			  </div>
 					  
+ 	</div>
+ 	
+ 	<div id="postList">
+ 		<c:forEach items="${postList}" var="post" varStatus="i">
+ 			<div class="postOne" id="postColor${i.count}" title="${post.skin}"><span class="postDel" title="${post.num}"><i class="fa fa-close"></i></span><br><span accesskey="${post.num}" class="postView">${post.num}번째<br>메모</span></div>
+ 		</c:forEach>
  	</div>
  	
 </body>

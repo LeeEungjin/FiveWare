@@ -14,10 +14,15 @@ public class StoreSalesDAO {
 	private SqlSession sqlSession;
 	private static final String namespace="storeSalesMapper.";
 	
+	//시퀀스
+	public int getNum()throws Exception{
+		
+		return sqlSession.selectOne(namespace+"getNum");
+	}
 	
 	//selectOne
-	public StoreSalesDTO selectOne(int num)throws Exception{
-		return sqlSession.selectOne(namespace+"selectOne", num);
+	public List<StoreSalesDTO> selectOne(int num)throws Exception{
+		return sqlSession.selectList(namespace+"selectOne", num);
 	}
 	
 	//list

@@ -30,6 +30,18 @@
 			}
 			
 		});
+		
+		/*page 처리  */
+		  $(".eb_list").click(function(){
+				
+				var cur=$(this).attr("title");
+				var s = '${pager.search}';
+				var t = '${pager.kind}';
+				document.frm.curPage.value=cur;
+				document.frm.search.value=s;
+				document.frm.kind.value=t;
+				document.frm.submit();
+			});
 	 
 
 	 
@@ -50,13 +62,13 @@
 	
 		<!-- submenu banner -->
 		<div id="fw_subbanner">
-			우리 매장 관리
+			게시판
 		</div>
 		<!-- submenu banner end -->
 		
 		<!-- submenu menu -->
 			<div class="fw_menu fw_selected" data-toggle="collapse" data-target=".fw_subselected" title="sub1">
-				공지사항
+				게시판
 				<div class="fw_arrow sub1">
 					∧
 				</div>
@@ -64,7 +76,7 @@
 			
 			<div class="fw_subselected collapse in" id="sub1">
 				<ul>
-					<li><a href="${pageContext.request.contextPath}/srm/storeNotice">공지사항</a></li>
+					<li><a href="${pageContext.request.contextPath}/srm/storeNotice">자유 게시판</a></li>
 				</ul>
 			</div>
 			
@@ -99,13 +111,36 @@
 			<div id="eb_contents_wrap">
 				 
 				<div class="eb_contents_text">
-				 	<span class="glyphicon glyphicon-file" id="eb_contents_text_p">공지사항</span>
+				 	<span class="glyphicon glyphicon-file" id="eb_contents_text_p">자유게시판</span>
 				</div>
 				
 		
 			 	
 				<div id="eb_contents_box">
-				 <div class="eb_blank"></div>
+				  <div class="eb_blank"></div>
+					
+					
+				<!-- 검색 -->
+				   <input type="hidden" name="curPage" value="1">
+					
+					
+				<form name="frm" action="./storeNotice" method="get">
+					<div id="eb_contents_box_div" >
+						<input type="hidden" name="curPage" value="1">
+						  	
+						  	<select name="kind">
+						  		<option value="store">지점명</option>
+						  		<option value="title">제목</option>
+						  		<option value="contents">내용</option>
+						  	</select>
+						  	
+						<input type="text" name="search">
+						
+						  <button class="btn btn-default">search</button>
+						
+						</div>
+				</form>		
+				   <!--검색 끝 -->
 				 
 				</div> 
 				
@@ -118,14 +153,25 @@
 						<thead id="eb_table_head">
 						    <tr>
 						     <th>No.</th>
-						     <th>제목</th>
 						     <th>지점명</th>
+						     <th>제목</th>
 						     <th>글쓴이</th>
 						     <th>조회수</th>				   
 						    </tr>
 						 </thead>
 						    
-						    <tbody class="eb_chitTable">
+						    <tbody >
+						    
+						    <c:forEach items="${list }" var="dto">
+						    	<tr>
+						    		<td>${dto.num }</td>
+						    		<td>${dto.store }</td>
+						    		<td><a href="./storeNoticeView?num=${dto.num}">${dto.title}</a></td>
+						    		<td>${dto.write }</td>
+						    		<td>${dto.hit}</td>	
+						    	</tr>
+						    
+						    </c:forEach>
 						    
 						   </tbody>
 					 </table>
@@ -152,7 +198,7 @@
 				<!-- page 처리 끝 -->
 				
 				
-		<input type="button" value="신규등록"  class="w3-button w3-black" >
+		<a href="./storeNoticeWrite"><input type="button" value="신규등록"  class="w3-button w3-black" ></a>
 	
 		
 		
