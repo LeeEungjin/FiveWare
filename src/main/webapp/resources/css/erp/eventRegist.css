@@ -28,17 +28,19 @@
 }
 
 #erp_jh_contents_search {
-	width: 100%;
+	width: 70%;
 	height: 14.5%;
-	background-color: #e7ceff;
+	background-color: #D5D5D5;
 	padding-top: 0.5%;
+	margin-left: 15%;
+	margin-top: 1%;
+	margin-bottom: 1%;
 }
 
 #event_search {
-	width: 70%;
+	width: 100%;
 	height: 70%;
-	margin-left: 34%;
-	ackground-color: #ce9dff;
+	margin-left: 14%;
 	margin-top: 3.5%;
 }
 
@@ -57,7 +59,7 @@
 }
 
 .input-group {
-	width: 40% !important;
+	width: 80% !important;
 	float: left;
 }
 
@@ -71,15 +73,13 @@
 #sub_search {
 	width: 50%;
 	height: 45%;
-	background-color: #e188b7;
 	float: right;
 	margin-top: 2%;
 }
 
 #erp_jh_contents_table {
-	width: 99%;
-	height: 65%;
-	background-color: #ffffce;
+	width: 100%;
+	background-color: #F6F6F6;
 }
 
 #test {
@@ -94,7 +94,6 @@
 #event_pager {
 	width: 20%;
 	height: 10%;
-	/* background-color: #ffff5b; */
 	margin-left: 40%;
 }
 
@@ -106,7 +105,7 @@
 #erp_jh_contents_bottom {
 	width: 100%;
 	height: 10.5%;
-	background-color: #cee7ff;
+	margin-top: 1%;
 }
 
 #jh_bold_text {
@@ -114,8 +113,12 @@
 }
 
 /*------------- modal -----------------*/
-.modal-body {
-	height: 600px !important;
+.eventInsertModalBody {
+	height: 360px !important;
+}
+
+.eventUpdateModalBody {
+	height: 680px !important;
 }
 
 .input-group_modal {
@@ -161,4 +164,42 @@
 
 #eventModalFooter {
 	margin-top: 20% !important;
+}
+
+#event_pager {
+	text-align: center;
+}
+
+#event_checkDelete {
+	margin-left: 7%;
+}
+
+.modal_btn {
+	margin-left: 71%;
+}
+
+#eventsdate {
+	width: 45% !important;
+}
+
+.eventSdate{
+	width: 45% !important;
+}
+
+#eventedate {
+	width: 48% !important;
+	float: right !important;
+}
+
+.eventEdate{
+	width: 48% !important;
+	float: right !important;
+}
+
+#img_update_div{
+	margin-top: 2%;
+}
+
+.eventView{
+	font-weight: bold;
 }
