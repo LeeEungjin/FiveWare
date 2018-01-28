@@ -67,11 +67,15 @@ public class ContestService {
 		return result;
 	}
 	
-	public List<List<ContestJoinDTO>> contestJoinList(int[] subcurPage, List<ContestListDTO> ar, Model model) throws Exception{
+	public List<List<ContestJoinDTO>> contestJoinList(int[] subcurPage, List<ContestListDTO> ar, Model model,String store) throws Exception{
 		
 		
 		List<List<ContestJoinDTO>> joins = new ArrayList<List<ContestJoinDTO>>();
 		List<Pager> pagers= new ArrayList<Pager>();
+		
+		List<List<ContestLikeDTO>> blikes=new ArrayList<List<ContestLikeDTO>>();
+		List<List<Integer>> bnums=new ArrayList<List<Integer>>();
+		List<ContestJoinDTO> ar2 = new ArrayList<ContestJoinDTO>();
 		
 		for(int i=0; i<ar.size(); i++){
 			ListData listData = new ListData(3);
@@ -83,13 +87,83 @@ public class ContestService {
 			
 			Pager pager = listData.makePage(totalCount);
 			
-			List<ContestJoinDTO> ar2= contestDAO.contestJoinList(rowNum, ar.get(i).getCode());
+			 ar2= contestDAO.contestJoinList(rowNum, ar.get(i).getCode());
 			
 			joins.add(ar2);
-			System.out.println("size  : "+ar2.size());
+			
 			pagers.add(pager);
+		} /// for문 끝
+	/*	ContestLikeDTO contestLikeDTO = contestDAO.likeSelectOne(ar2.get(z).getCode() ,ar2.get(z).getCnum(),store );*/
+	/*		for(int o=0; o<joins.size(); o++){
+		ContestLikeDTO contestLikeDTO =null;
+		for(int z=0; z<ar2.size(); z++){
+			System.out.println("ar2code"+ar2.get(z).getCode());
+			contestLikeDTO = contestDAO.likeSelectOne(ar2.get(z).getCode() ,ar2.get(z).getCnum(),store );
+			
+		}
+		likes.add(contestLikeDTO);
+		
+	}
+		
+		blikes.add(likes);*/
+		
+		/*for(int j=0; j<ar2.size(); j++){
+			System.out.println("joinList"+ ar2.get(j).getCode());
+			System.out.println("joinList"+ ar2.get(j).getCnum());
+			
+		}
+		System.out.println(joins);*/
+		
+	/*	for(ContestJoinDTO joinList : ar2){
+			ContestLikeDTO contestLikeDTO = contestDAO.likeSelectOne(joinList.getCode() , joinList.getCnum(),store );
+			
+			likes.add(contestLikeDTO);
+		}*/
+		
+	/*	for(List<ContestJoinDTO> join : joins){
+			for(int i=0; i<ar2.size(); i++){
+				ContestJoinDTO jDTO = new ContestJoinDTO();
+				
+				if(jDTO.getCode()==ar2.get(i).getCode()){
+					ContestLikeDTO contestLikeDTO = contestDAO.likeSelectOne(jDTO.getCode() , jDTO.getCnum(),store );
+					
+					likes.add(contestLikeDTO);
+					
+				}
+				
+				System.out.println("joinSize"+join.size());
+			}
+			blikes.add(likes);
 		}
 		
+		
+		*/
+		List<ContestLikeDTO> likes=null;
+		List<Integer> nums=null;
+	for(int o=0; o<ar.size(); o++){
+		ContestLikeDTO contestLikeDTO =null;
+		likes=new ArrayList<ContestLikeDTO>();
+		nums=new ArrayList<Integer>();		
+		for(int z=0; z<joins.get(o).size(); z++){
+			System.out.println("---------------------"+z);
+			System.out.println("ar2code"+joins.get(o).get(z).getCode());
+			contestLikeDTO = contestDAO.likeSelectOne(joins.get(o).get(z).getCode() ,joins.get(o).get(z).getCnum(),store );
+			int num = contestDAO.likeCount(joins.get(o).get(z).getCode() ,joins.get(o).get(z).getCnum());
+			
+			nums.add(num);
+			likes.add(contestLikeDTO);
+			System.out.println(likes);
+			System.out.println(nums);
+	}
+		
+		blikes.add(likes);
+		bnums.add(nums);
+		
+		System.out.println(bnums);
+	}
+
+		model.addAttribute("num", bnums);
+		model.addAttribute("result", blikes);
 		model.addAttribute("joins", joins);
 		model.addAttribute("pagers", pagers);
 	
@@ -108,12 +182,6 @@ public class ContestService {
 		return result;
 	}
 	
-	public ContestLikeDTO likeSelectOne(String code, int cnum, String store) throws Exception{
-		ContestLikeDTO contestLikeDTO2 = contestDAO.likeSelectOne(code, cnum, store);
-		
-		return contestLikeDTO2;
-	}
-	
 	public ContestLikeDTO likeSelectJoin(ContestLikeDTO contestLikeDTO) throws Exception{
 		ContestLikeDTO contestLikeDTO2 = contestDAO.likeSelectJoin(contestLikeDTO);
 		
@@ -125,4 +193,10 @@ public class ContestService {
 		
 		return contestJoinDTO;
 	}
+	
+/*	public int likeCount(String code, int cnum) throws Exception{
+		int result = contestDAO.likeCount(code, cnum);
+		
+		return result;
+	}*/
 }
