@@ -10,62 +10,81 @@
  
  <link href="${url}/resources/css/srm/pos/revenueTable.css" rel="stylesheet">
 
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 <title>Insert title here</title>
+<script type="text/javascript">
+	
+$(function(){
+	console.log(${todayMoney});
+});
+
+	if(${kind=="today"}){
+		
+	google.charts.load("current", {packages:["corechart"]});
+	google.charts.setOnLoadCallback(drawChart);
+	
+	   function drawChart() {
+	        var data = google.visualization.arrayToDataTable([
+	          ['Task', 'Hours per Day'],
+	          ${todayMoney}
+	          
+	        ]);
+
+	        var options = {
+	          is3D: true,
+	          fontSize: 15,
+	          width : 520,
+	          height : 400,
+	          pieSliceTest : 'label',
+	          'chartArea': {'width': '80%', 'height': '80%'},
+	          'legend': {'position': 'bottom'}
+	          
+	        };
+
+	        var chart = new google.visualization.PieChart(document.getElementById('ar_graphWrap'));
+	        chart.draw(data, options);
+	      }
+	      
+	}else if(${kind=="week"}){
+		 google.charts.load('current', {'packages':['line']});
+	      google.charts.setOnLoadCallback(drawChart);
+
+	    function drawChart() {
+
+	      var data = new google.visualization.DataTable();
+	      data.addColumn('number', '일주일 전 매출');
+	      data.addColumn('number', 'date');
+
+	      data.addRows([
+	      
+	      ]);
+
+	      var options = {
+	        chart: {
+	          title: 'Box Office Earnings in First Two Weeks of Opening',
+	          subtitle: 'in millions of dollars (USD)'
+	        },
+	        width: 900,
+	        height: 500
+	      };
+
+	      var chart = new google.charts.Line(document.getElementById('ar_graphWrap'));
+
+	      chart.draw(data, google.charts.Line.convertOptions(options));
+	    }
+	}else if(${kind=="month"}){
+		
+	}
+
+</script> 
 </head>
 <body>
 <c:import url="${url}/resources/temp/headerExample.jsp"></c:import> 
 
 <div id="fw_container">
 	<!-- submenu -->
-	<div id="fw_subcontainer">
 	
-		<!-- submenu banner -->
-		<div id="fw_subbanner">
-			전자결재
-		</div>
-		<!-- submenu banner end -->
-		
-		<!-- submenu menu -->
-			<div class="fw_menu fw_selected" data-toggle="collapse" data-target=".fw_subselected" title="sub1">
-				결재함
-				<div class="fw_arrow sub1">
-					∧
-				</div>
-			</div>
-			
-			<div class="fw_subselected collapse in" id="sub1">
-				<ul>
-					<li> 미결함 </li>
-					<li> 기결함 </li>
-					<li> 반려함 </li>
-				</ul>
-			</div>
-			
-			<!-- ----------2---------- -->
-				<div class="fw_menu" data-toggle="collapse" data-target="#sub2" title="sub2" >
-					발신함
-				<div class="fw_arrow sub2">
-					∨
-				</div>
-			</div>
-			
-			<div class="fw_subsub collapse"  id="sub2">
-				<ul>
-					<li> 기안 상신함</li>
-					<li> 임시보관함</li>
-				</ul>
-			</div>
-			
-			<!-- -------------------- -->
-				<div class="fw_menu" data-toggle="collapse" data-target="#sub3" title="sub3" >
-					수신함
-				<div class="fw_arrow sub3" >
-					
-				</div>
-			</div>
-			
-		
-</div>
 
 	<div id="fw_mainwrap">
 			<div id="fw_main">
@@ -73,34 +92,57 @@
 			</div>
 			
 			<div class="ar_plusTitle">
-				<p id="ar_plustext">양식목록</p>
+				<p id="ar_plustext">매출현황</p>
 			</div>
 			
 			<div class="ar_plusSearchWrap">
 				<div class="ar_blank"></div>
 				
-			<form action="positionPlus" method="GET">
+			<form action="revenueTable" method="GET">
 				<div class="ar_plusSearch">
-					직급명  <input type="text" name="search" id="ar_psearch">
+					날짜  <input type="date" name="regdate" id="ar_psearch" value="${todayd }">
 					<input type="submit" value="검색" id="ar_psearchBtn">
 				</div>
 			</form>
 			</div>
 			
+			<div id="ar_graphWrap">
+			
+			</div>
+			
+			<div id="ar_graphdate">
+				<a href="./revenueTable?kind=week&regdate=${todayd }">일주일 전</a>
+				<a href="./revenueTable?kind=month&regdate=${todayd }">한달 전</a>
+			</div>
+			
 			<div class="ar_plusDivWrap">
-				<div class="ar_titleDiv">
-					<div class="ar_titleCheck ar_titleDiv1" ><input type="checkbox">	</div>
-					<div class="ar_titleCode ar_titleDiv1"> 직급코드 </div>
-					<div class="ar_titleName ar_titleDiv1"> 직급명 </div>
-					<div class="ar_titleRank ar_titleDiv1"> 직급순위 </div>
-					<div class="ar_titleUse ar_titleDiv1"> 사용여부 </div>					
-					<div class="ar_titleOther ar_titleDiv1"> 비고</div>
-				</div>				
+				<table class="table">
+						   
+						<thead id="eb_table_head" class="eb_table_head" >
+						    <tr>
+						     <th>지점명</th>
+						     <th>날짜</th>
+						     <th>상품명</th>
+						     <th>판매개수</th>	
+						     <th>상품당 매출</th>					   
+						    </tr>
+						 </thead>
+						    
+					    <tbody id="eb_result">
+						   <c:forEach items="${list }" var="i">
+							   	<tr>
+								     <th>${i.store }</th>
+								     <th>${i.regdate }</th>
+								     <th>${i.product }</th>
+								     <th>${i.salesAmount }</th>	
+								     <th>${i.productSales }</th>					   
+							    </tr>
+						   </c:forEach>
+						   </tbody> 
+					 </table>
 			</div>
 			
 			<div class="ar_plusButtonWrap">
-				<input type="button" id="ar_deleteBtn" value="선택 삭제">
-				<input type="button" id="ar_insertBtn" data-toggle="modal" data-target="#ar_positionInsert" value="신규 등록">
 			</div>
 			
 			

@@ -19,7 +19,7 @@
     <script type="text/javascript">
     
     $(function(){
-    	console.log(${map.code[0]});
+    	console.log(${a});
     });
    	
       google.charts.load("current", {packages:["corechart"]});

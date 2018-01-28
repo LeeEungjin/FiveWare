@@ -22,6 +22,7 @@ public class GraphService {
 	
 	public ModelAndView amountGraph()throws Exception{
 		ModelAndView mv=new ModelAndView();
+		
 		List<String> codeList=new ArrayList<String>();
 		List<Integer> amountList=new ArrayList<Integer>();
 		List<Object> graphAr= null;

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="StoreMoneyMapper">
+  
+  <select id="storeMoneyList" parameterType="java.util.Map" resultType="storeMoneyDTO">
+  <![CDATA[
+  	select * from storemoney where regdate<=#{regdate} and regdate >=#{sdate} and store=#{store}
+  	]]>	
+  </select>
+  
+  <select id="storeMoneySum" parameterType="java.util.Map" resultType="int">
+  <![CDATA[
+ 	select sum(productsales) from storemoney where regdate<=#{regdate} and store=#{store}  
+ 	]]>	
+  </select>
+  </mapper>
