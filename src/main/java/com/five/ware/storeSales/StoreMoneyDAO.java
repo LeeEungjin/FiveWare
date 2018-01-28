@@ -30,15 +30,36 @@ public class StoreMoneyDAO {
 		return ar;
 	}
 	
-	public List<Integer> storeMoneySum(String regdate, String store) throws Exception{
+	public int storeMoneySum(String regdate, String store) throws Exception{
 		Map<String, String> map = new HashMap<String, String>();
 		
 		map.put("regdate", regdate);
 		map.put("store", store);
 		
+		int result=0;
+		try{
+			result = sqlSession.selectOne(NAMESPACE+"storeMoneySum", map);
+		}catch (Exception e) {
+			result=0;
+		}
 		
-		List<Integer> ar = sqlSession.selectList(NAMESPACE+"storeMoneySum", map);
+		return result;
+	}
+	
+	public int storeMoneyWeekSum(String regdate, String sdate, String store) throws Exception{
+		Map<String, String> map = new HashMap<String, String>();
 		
-		return ar;
+		map.put("regdate", regdate);
+		map.put("sdate", sdate);
+		map.put("store", store);
+		
+		int result=0;
+		try{
+			result = sqlSession.selectOne(NAMESPACE+"storeMoneyWeekSum", map);
+		}catch (Exception e) {
+			result=0;
+		}
+		
+		return result;
 	}
 }

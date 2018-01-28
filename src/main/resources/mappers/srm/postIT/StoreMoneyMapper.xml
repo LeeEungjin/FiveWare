@@ -7,13 +7,17 @@
   
   <select id="storeMoneyList" parameterType="java.util.Map" resultType="storeMoneyDTO">
   <![CDATA[
-  	select * from storemoney where regdate<=#{regdate} and regdate >=#{sdate} and store=#{store}
+  	select * from storemoney where regdate<=#{regdate} and regdate >=#{sdate} and store=#{store} order by regdate 
   	]]>	
   </select>
   
   <select id="storeMoneySum" parameterType="java.util.Map" resultType="int">
+ 	select sum(productsales) from storemoney where regdate=#{regdate} and store=#{store}  
+  </select>
+  
+   <select id="storeMoneyWeekSum" parameterType="java.util.Map" resultType="int">
   <![CDATA[
- 	select sum(productsales) from storemoney where regdate<=#{regdate} and store=#{store}  
+ 	select sum(productsales) from storemoney where regdate<=#{regdate} and regdate>=#{sdate} and store=#{store}  
  	]]>	
   </select>
   </mapper>

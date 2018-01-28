@@ -21,12 +21,17 @@ public class StoreMoneyService {
 		List<List<Object>> result = new ArrayList<List<Object>>();
 		List<Object> graphAr= null;
 		
+		int moneytotal=0;
+		
 		for(int i=0; i<ar.size(); i++){
 			//ar은 큰 배열 안에 작은 ar을 생성해서 index0번에 String, 1번에 int를 넣는다.
 			graphAr = new ArrayList<Object>();
 		
 			graphAr.add("'"+ar.get(i).getProduct()+"'");
 			graphAr.add(ar.get(i).getProductSales());
+			
+			moneytotal = moneytotal+ar.get(i).getProductSales();
+			
 			
 			result.add(graphAr);
 			
@@ -38,36 +43,20 @@ public class StoreMoneyService {
 			todayMoney=todayMoney+result.get(i)+",";
 		}
 		
+		model.addAttribute("moneytotal", moneytotal);
 		model.addAttribute("todayMoney", todayMoney);
 		model.addAttribute("list", ar);
 	}
 	
-	public void storeMoneySum(String regdate, String store,Model model ) throws Exception{
-		List<Integer> ar = storeMoneyDAO.storeMoneySum(regdate, store);
+	public int storeMoneySum(String startdate, String store) throws Exception{
+		 int result = storeMoneyDAO.storeMoneySum(startdate, store);
 		
-		List<List<Object>> result = new ArrayList<List<Object>>();
-		List<Object> graphAr= null;
+		return result;
+	}
+	
+	public int storeMoneyWeekSum(String regdate, String sdate, String store) throws Exception{
+		int result = storeMoneyDAO.storeMoneyWeekSum(regdate, sdate, store);
 		
-		for(int i=0; i<ar.size(); i++){
-			//ar은 큰 배열 안에 작은 ar을 생성해서 index0번에 String, 1번에 int를 넣는다.
-			graphAr = new ArrayList<Object>();
-		
-			graphAr.add("'"+regdate+"'");
-			graphAr.add(ar.get(i));
-			
-			result.add(graphAr);
-			
-		}
-		
-		String weekMoney = "";
-		
-		for(int i=0; i<result.size(); i++){
-			weekMoney=weekMoney+result.get(i)+",";
-		}
-		
-		model.addAttribute("weekMoney", weekMoney);
-		model.addAttribute("list1", ar);
-		
-		
+		return result;
 	}
 }

@@ -104,13 +104,26 @@
 	height: 7%;
 	background-color: #fbc87b;
 	margin-bottom:2%;
+
 }
 
-.ar_plusSearch{
+#ar_moneyTotal{
 	width: 50%;
 	height: 50%;
 	background-color: #c46200;
 	margin-left: 2%;
+	display: inline-block;
+	float: left;
+	font-size: 30px;
+}
+
+.ar_plusSearch{
+	width: 40%;
+	height: 50%;
+	background-color: #c46200;
+	margin-left: 2%;
+	display: inline-block;
+	float: left;
 }
 
 #ar_psearch{

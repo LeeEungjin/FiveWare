@@ -16,7 +16,7 @@
 <script type="text/javascript">
 	
 $(function(){
-	console.log(${todayMoney});
+	console.log(${monthsum});
 });
 
 	if(${kind=="today"}){
@@ -34,7 +34,7 @@ $(function(){
 	        var options = {
 	          is3D: true,
 	          fontSize: 15,
-	          width : 520,
+	          width : 600,
 	          height : 400,
 	          pieSliceTest : 'label',
 	          'chartArea': {'width': '80%', 'height': '80%'},
@@ -53,20 +53,20 @@ $(function(){
 	    function drawChart() {
 
 	      var data = new google.visualization.DataTable();
-	      data.addColumn('number', '일주일 전 매출');
-	      data.addColumn('number', 'date');
+	      data.addColumn('string', '일별');
+	      data.addColumn('number', '매출');
 
 	      data.addRows([
-	      
+	      	${sumgraph}
 	      ]);
 
 	      var options = {
 	        chart: {
-	          title: 'Box Office Earnings in First Two Weeks of Opening',
-	          subtitle: 'in millions of dollars (USD)'
+	          title: '지난 일주일 간 매출',
+	          subtitle: '검색한 날짜를 기준 일주일 전 매출현황'
 	        },
-	        width: 900,
-	        height: 500
+	        width : 600,
+	          height : 400,
 	      };
 
 	      var chart = new google.charts.Line(document.getElementById('ar_graphWrap'));
@@ -74,7 +74,32 @@ $(function(){
 	      chart.draw(data, google.charts.Line.convertOptions(options));
 	    }
 	}else if(${kind=="month"}){
-		
+		 google.charts.load('current', {'packages':['line']});
+	      google.charts.setOnLoadCallback(drawChart);
+
+	    function drawChart() {
+
+	      var data = new google.visualization.DataTable();
+	      data.addColumn('string', '주 별');
+	      data.addColumn('number', '매출');
+
+	      data.addRows([
+	      	${monthsum}
+	      ]);
+
+	      var options = {
+	        chart: {
+	          title: '지난 한달 간 매출',
+	          subtitle: '검색한 날짜 기준 5주 매출현황'
+	        },
+	        width : 600,
+	          height : 400,
+	      };
+
+	      var chart = new google.charts.Line(document.getElementById('ar_graphWrap'));
+
+	      chart.draw(data, google.charts.Line.convertOptions(options));
+	    }
 	}
 
 </script> 
@@ -104,6 +129,10 @@ $(function(){
 					<input type="submit" value="검색" id="ar_psearchBtn">
 				</div>
 			</form>
+			
+			<div id="ar_moneyTotal">
+				${state } 매출 : ${moneytotal } 
+			</div>
 			</div>
 			
 			<div id="ar_graphWrap">
