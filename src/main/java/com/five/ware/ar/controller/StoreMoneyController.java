@@ -50,15 +50,23 @@ public class StoreMoneyController {
 			sdate=regdate;
 			System.out.println("today:"+sdate);
 		}else if(kind.equals("week")){
-			int day = Integer.parseInt(ymd[2]);
+			/*int year = Integer.parseInt(ymd[0]);
+			int month = Integer.parseInt(ymd[1]);
+			int day = Integer.parseInt(ymd[2]);*/
+			
+			ca.set(ca.get(Calendar.YEAR), ca.get(Calendar.MONTH), ca.get(Calendar.DAY_OF_MONTH));
+			ca.add(Calendar.DAY_OF_MONTH, -7); 
+			
+			sdate = sd.format(ca.getTime());
+			/*int day = Integer.parseInt(ymd[2]);
 			
 			day = day-7;
 			System.out.println(day);
 			sdate = String.valueOf(day);
-			sdate=ymd[0]+"-"+ymd[1]+"-"+sdate;
+			sdate=ymd[0]+"-"+ymd[1]+"-"+sdate;*/
 			System.out.println("일주일 전 날짜: "+sdate);
 		}else if(kind.equals("month")){
-			int month = Integer.parseInt(ymd[1]);
+			/*int month = Integer.parseInt(ymd[1]);
 			
 			month = month-1;
 			
@@ -70,7 +78,12 @@ public class StoreMoneyController {
 			}
 
 			sdate=String.valueOf(month);
-			sdate=ymd[0]+"-"+sdate+"-"+ymd[2];
+			sdate=ymd[0]+"-"+sdate+"-"+ymd[2];*/
+			
+			ca.set(ca.get(Calendar.YEAR), ca.get(Calendar.MONTH), ca.get(Calendar.DAY_OF_MONTH));
+			ca.add(Calendar.MONTH, -1); 
+			
+			sdate = sd.format(ca.getTime());
 			System.out.println("한달 전 날짜"+sdate);
 		}
 		
