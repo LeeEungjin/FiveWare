@@ -9,14 +9,16 @@
 #erp_jh_contents_title {
 	width: 100%;
 	height: 10%;
-	background-color: #ffe1e7;
 	overflow: hidden;
 }
 
+#logoImg{
+	    margin-top: 9%;
+}
+
 #event_icon {
-	width: 6%;
+	width: 15%;
 	height: 100%;
-	background-color: #ff84c1;
 	float: left;
 }
 
@@ -30,7 +32,7 @@
 #erp_jh_contents_search {
 	width: 70%;
 	height: 14.5%;
-	background-color: #D5D5D5;
+	background-color: #f6f6f6;
 	padding-top: 0.5%;
 	margin-left: 15%;
 	margin-top: 1%;
@@ -79,7 +81,11 @@
 
 #erp_jh_contents_table {
 	width: 100%;
-	background-color: #F6F6F6;
+}
+
+#erp_jh_contents_table thead{
+	color: white;
+	background-color: black;
 }
 
 #test {

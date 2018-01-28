@@ -104,7 +104,8 @@
 	<div id="fw_container">
 	
 		<div id="free_header">
-			<div id="free_icon"></div><div id="free_title"></div>	
+			<div id="free_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
+			<div id="free_title">게시판</div>	
 		</div>
 		
 		<form id="free_update_frm" action="freeUpdate" method="POST"  enctype="multipart/form-data">

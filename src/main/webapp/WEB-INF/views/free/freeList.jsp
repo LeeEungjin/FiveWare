@@ -75,7 +75,8 @@
 <div id="fw_container">
 
 	<div id="free_header">
-		<div id="free_icon"></div><div id="free_title"></div>	
+		<div id="free_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
+		<div id="free_title">게시판</div>	
 	</div>
 	
 	<div id="free_middle">
@@ -83,14 +84,14 @@
 			
 			<a href="./freeList">모두보기</a>&nbsp;|&nbsp;
 		
-			<a href="./freeList?kind=target&target=전체">전체공개 보기</a>&nbsp;|&nbsp;
+			<a href="./freeList?kind=target&target=전체">전체공개 보기</a>
 		
 			<c:if test="${kind eq 'member'}">
-				<a href="./freeList?kind=target&target=${member.temp}">우리 부서 공개 보기</a>
+				<a href="./freeList?kind=target&target=${member.temp}">&nbsp;|&nbsp;우리 부서 공개 보기</a>
 			</c:if>
 			
 			<c:if test="${kind eq 'store'}">
-				<a href="./freeList?kind=target&target=${member.store}">우리 지점 공개 보기</a>
+				<a href="./freeList?kind=target&target=${member.store}">&nbsp;|&nbsp;우리 지점 공개 보기</a>
 			</c:if>
 		</div>
 		

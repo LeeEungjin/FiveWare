@@ -48,7 +48,8 @@
 <div id="fw_container">
 
 	<div id="com_header">
-		<div id="com_icon"></div><div id="com_title"></div>	
+		<div id="com_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
+		<div id="com_title">공지사항</div>	
 	</div>
 	
 	<div id="com_middle">
@@ -138,7 +139,9 @@
 	</div>
 	
 	<div id="com_footer">
+	<c:if test="${kind eq 'member'}">
 		<a href="communityWrite"><button id="comInsertBtn" type="button" class="btn btn-default">신규 등록</button></a>
+	</c:if>
 	</div>
 </div>
 

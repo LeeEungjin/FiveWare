@@ -3,7 +3,7 @@
 #erp_jh_modal_table {
     width: 100%;
     overflow: scroll;
-    height: 40%;
+    height: 47%;
     margin-bottom: 2%;
 }
 
@@ -48,10 +48,13 @@
 }
 
 #erp_jh_contents_search{
-	width: 100%;
+	width: 90%;
     height: 14.5%;
-    background-color: #e7ceff;
+    background-color: #f6f6f6;
     padding-top: 0.5%;
+    margin-left: 5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
 }
 
 #or_search{
@@ -85,8 +88,12 @@
 #erp_jh_contents_table{
 	width: 100%;
 	height: 65%;
-	background-color: #ffffce;
 	overflow: scroll;
+}
+
+#erp_jh_contents_table thead{
+	color: white;
+	background-color: black;
 }
 
 #test{
@@ -107,7 +114,6 @@
 #erp_jh_contents_bottom{
 	width: 100%;
 	height: 10.5%;
-	background-color: #cee7ff;
 }
 
 
@@ -118,7 +124,7 @@
 .search_group{
 	width: 60% !important;
     float: left;
-    margin-left: 26%;
+    margin-left: 23%;
 }
 
 /*------------- modal -----------------*/
@@ -180,8 +186,29 @@ label {
 
 #storageName{
 	height: 28px !important;
+	width: 100% !important;
 }
 
 #account{
 	height: 28px !important;
+	width: 100% !important;
+}
+
+#order_search{
+	    margin-top: 3% !important;
+}
+
+#all_total_input{
+	float: right;
+	margin-right: 2%;
+    height: 5%;
+}
+
+#or_total_btn{
+	float: right;
+	margin-right: 1%;
+}
+
+.orderView{
+	font-weight: bold;
 }

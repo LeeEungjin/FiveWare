@@ -78,7 +78,8 @@
 	<div id="fw_container">
 	
 		<div id="reply_header">
-			<div id="reply_icon"></div><div id="reply_title"></div>	
+			<div id="reply_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
+			<div id="reply_title">게시판</div>	
 		</div>
 		
 		<form id="reply_frm" action="freeReply" method="post"  enctype="multipart/form-data">

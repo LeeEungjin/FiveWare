@@ -1,93 +1,94 @@
 @CHARSET "UTF-8";
 
-#fw_main_contents{
+#fw_main_contents {
 	width: 100%;
 	height: 91%;
 	background-color: white;
 	overflow: hidden;
 }
 
-#erp_graph_title{
+#erp_graph_title {
 	width: 100%;
 	height: 10%;
 	background-color: #ffe1e7;
 	overflow: hidden;
 }
 
-#graph_icon{
+#graph_icon {
 	width: 6%;
 	height: 100%;
 	background-color: #ff84c1;
 	float: left;
 }
 
-#graph_title{
+#graph_title {
 	font-size: 30px;
 	font-weight: bold;
 	margin-left: 5%;
 	margin-top: 1.5%;
 }
 
-#erp_graph_sub{
+#erp_graph_sub {
 	width: 100%;
-    height: 8%;
-    background-color: #e7ceff;
-    padding-top: 0.5%;
+	height: 8%;
+	padding-top: 0.5%;
 }
 
-#sum_title{
+#sum_title {
 	width: 49%;
 	height: 80%;
 	margin-top: 1%;
 	float: left;
 	margin-right: 2%;
-	background-color: #ffd9ec;
+	background-color: #f6f6f6;
 	font-size: 20px;
 	font-weight: bold;
 	text-align: center;
 }
 
-#avg_title{
+#avg_title {
 	width: 49%;
 	height: 80%;
 	margin-top: 1%;
-	background-color: #caeeff;
+	background-color: #f6f6f6;
 	float: left;
 	font-size: 20px;
 	font-weight: bold;
 	text-align: center;
 }
 
-
-#erp_graph_mid{
+#erp_graph_mid {
 	width: 100%;
 	height: 75%;
-	background-color: #ffffce;
 }
 
-.sum_graph{
-	width: 49%;
+.sum_graph {
+	width: 45%;
 	height: 100%;
 	margin-right: 2%;
-	background-color: #ff0080;
 	float: left;
+	margin-left: 4%;
 }
 
-.avg_graph{
+.avg_graph {
 	width: 49%;
 	height: 100%;
-	background-color: #8080ff;
 	float: left;
+	padding: 20px;
 	overflow: scroll;
 }
 
-#erp_graph_bottom{
-	width: 100%;
-	height: 10.5%;
-	background-color: #cee7ff;
+.avg_graph thead {
+	color: white;
+	background-color: black;
 }
 
-.graph_table{
+#erp_graph_bottom {
+	width: 100%;
+	height: 10.5%;
+}
+
+.graph_table {
 	text-align: center;
 	font-size: 15px;
 }

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<table id="mater_modal_table" class="table">
+<table id="mater_modal_table" class="table materOrderTable">
 	<thead>
 		<tr>
 			<th><input id="allCheck" type="checkbox"></th>

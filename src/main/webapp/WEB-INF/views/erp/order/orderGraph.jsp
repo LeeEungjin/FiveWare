@@ -17,10 +17,6 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     
     <script type="text/javascript">
-    
-    $(function(){
-    	console.log(${map.code[0]});
-    });
    	
       google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
@@ -38,7 +34,7 @@
           width : 520,
           height : 600,
           pieSliceTest : 'label',
-          'chartArea': {'width': '80%', 'height': '80%'},
+          'chartArea': {'width': '80%', 'height': '80%', 'margin-left' : '10%'},
           'legend': {'position': 'bottom'}
           
         };
@@ -68,30 +64,30 @@
       <!-- submenu banner end -->
       
       <!-- submenu menu -->
-         <div class="fw_menu fw_selected" data-toggle="collapse" data-target="#sub1" title="sub1">
+         <div class="fw_menu " data-toggle="collapse" data-target="#sub1" title="sub1">
             기초정보
             <div class="fw_arrow sub1">
                ∧
             </div>
          </div>
          
-         <div class="fw_subselected collapse in" id="sub1">
+         <div class="fw_subsub collapse " id="sub1">
             <ul>
-               <li><a href="../foundation/supplier">거래처 등록</a></li>
-               <li><a href="../foundation/product">제품 등록</a></li>
+               <li><a href="../../foundation/supplier">거래처 등록</a></li>
+               <li><a href="../../foundation/product">제품 등록</a></li>
                <li><a href="../../foundation/menuRegist">메뉴 등록</a></li>
                <li><a href="../../foundation/storageRegist">창고 등록</a></li>
             </ul>
          </div>
          
          <!-- ----------2---------- -->
-            <div class="fw_menu" data-toggle="collapse" data-target="#sub2" title="sub2" >
+            <div class="fw_menu fw_selected" data-toggle="collapse" data-target="#sub2" title="sub2" >
                구매관리
             <div class="fw_arrow sub2">
                ∨
             </div>
          </div>
-         <div class="fw_subsub collapse"  id="sub2">
+         <div class="fw_subselected  collapse in"  id="sub2">
             <ul>
                <li><a href="../../order/orderRegist">주문 입력</a></li>
                <li><a href="../../erp/order/orderGraph">품목별 주문 현황</a></li>

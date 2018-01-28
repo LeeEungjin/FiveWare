@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 	<link href="${url}/resources/css/erp/releRegist.css" rel="stylesheet">
@@ -94,7 +95,7 @@
 				url : "./materView",
 				type : "get",
 				success : function(data){
-					$("#rr_update_modal").html(data);
+					$("#er_update_modal_contents").html(data);
 				},
 				error : function(){
 					swal("error");
@@ -168,14 +169,14 @@
       <!-- submenu banner end -->
       
       <!-- submenu menu -->
-         <div class="fw_menu fw_selected" data-toggle="collapse" data-target="#sub1" title="sub1">
+         <div class="fw_menu " data-toggle="collapse" data-target="#sub1" title="sub1">
             기초정보
             <div class="fw_arrow sub1">
                ∧
             </div>
          </div>
          
-         <div class="fw_subselected collapse in" id="sub1">
+         <div class="fw_subsub collapse " id="sub1">
             <ul>
               <li><a href="../foundation/supplier">거래처 등록</a></li>
                <li><a href="../foundation/product">제품 등록</a></li>
@@ -200,14 +201,14 @@
          </div>
          
          <!-- ----------3---------- -->
-         <div class="fw_menu" data-toggle="collapse" data-target="#sub3" title="sub3" >
+         <div class="fw_menu fw_selected" data-toggle="collapse" data-target="#sub3" title="sub3" >
                자재관리
             <div class="fw_arrow sub3">
                ∨
             </div>
          </div>
          
-         <div class="fw_subsub collapse"  id="sub3">
+         <div class="fw_subselected  collapse in"  id="sub3">
             <ul>
                <li><a href="../../erp/mater/materRegist?materKind=enter">입고 입력</a></li>
                <li><a href="../../erp/mater/materRegist?materKind=rele">출고 입력</a></li>
@@ -245,7 +246,7 @@
 			
 			<div id="fw_main_contents">
 				<div id="erp_jh_contents_title">
-					<div id="rr_icon">icon</div>
+					<div id="rr_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
 					<p id="rr_title">출고등록</p>
 				</div>
 				<div id="erp_jh_contents_search">
@@ -254,10 +255,8 @@
 							<div class="input-group search_group">
 								<form id="rr_search_frm" method="get">
 								<input type="hidden" name="materKind" value="rele">
-									기간 선택 <input id="smaterDate" name="smaterDate" type="date"> ~ <input id="ematerDate" name="ematerDate" type="date">					
-							      <div class="input-group-btn">
-							        <button type="button" id="search_btn" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
-							      </div>
+									기간 선택 &nbsp;<input id="smaterDate" name="smaterDate" type="date"> &nbsp;~&nbsp; <input id="ematerDate" name="ematerDate" type="date">					
+							        <button type="button" id="search_btn" class="btn btn-default"><i class="fa fa-search"></i></button>
 							      <input id="dateListReset" class="btn btn-default" type="button" value="초기화">
 							    </form>
 						    </div>	
@@ -295,7 +294,9 @@
 				
 				<!-- 등록 버튼 -->
 					<div id="erp_jh_contents_bottom">
-						<button id="rr_insert" class="modal_btn" data-toggle="modal" data-target="#rr_modal">신규등록</button>
+					<c:if test="${member.temp eq '영업/구매부'}">
+						<button id="rr_insert" class="btn btn-default modal_btn" data-toggle="modal" data-target="#rr_modal">신규등록</button>
+					</c:if>
 					</div>
 				<!-- 등록 버튼 끝 -->
 				
@@ -364,7 +365,8 @@
 				<!-- 수정 Modal -->
 				
 				<div class="modal fade" id="rr_update_modal" role="dialog">
-				  
+				  <div id="er_update_modal_contents">
+					</div>
 				  </div>
 				<!-- 수정 Modal 끝 -->
 				
