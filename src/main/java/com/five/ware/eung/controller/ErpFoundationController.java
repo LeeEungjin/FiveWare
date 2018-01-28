@@ -139,9 +139,6 @@ public class ErpFoundationController {
 	
 	@RequestMapping(value="supplierStop", method={RequestMethod.GET,RequestMethod.POST})
 	public String supplierStop(SupplierDTO supplierDTO, Model model) {
-		System.out.println(supplierDTO.getCode());
-		System.out.println(supplierDTO.getUse());
-		
 		
 		String use = supplierDTO.getUse();
 		
@@ -172,7 +169,6 @@ public class ErpFoundationController {
 	
 	@RequestMapping(value="supplierDelete", method= {RequestMethod.GET,RequestMethod.POST})
 	public String supplierDelete(SupplierDTO supplierDTO, Model model) {
-		System.out.println("delete code: "+supplierDTO.getCode());
 		
 		int result = 0;
 		try {
@@ -213,7 +209,6 @@ public class ErpFoundationController {
 	@RequestMapping(value="supplierOne", method=RequestMethod.GET)
 	@ResponseBody
 	public SupplierDTO supplierOne(String code, RedirectAttributes rd) {
-		System.out.println("code : "+ code);
 		
 		SupplierDTO supplierDTO = null;
 		try {
