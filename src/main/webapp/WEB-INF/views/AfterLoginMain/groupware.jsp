@@ -317,12 +317,6 @@
                            <span class="groupWare_jk_writing">내 정보</span>
                         </span>
                      </a> 
-                
-                     <a href="#"> 
-                        <span class="groupWare_jk_smalldiv"> 
-                           <span class="groupWare_jk_writing" id="groupWare_jk_mr">년/월차<br>휴가조회</span>
-                        </span>
-                     </a> 
                      
                      <a href="./myPage/timeRecord?memberCode=${member.code }"> 
                         <span class="groupWare_jk_smalldiv"> 

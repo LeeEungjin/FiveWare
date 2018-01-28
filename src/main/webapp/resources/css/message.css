@@ -169,8 +169,10 @@
 	height: 115px !important;
 }
 #eb_MsendBtn{
-	margin-top : 2px;
-	margin-left: 85%;
+
+	margin-left: 75%;
+	width: 20%;
+	height: 98%;
 }
 .eb_Mview{
 	width: 30%;
@@ -187,11 +189,18 @@
 	
 }
 #eb_viewClose{
-	margin-left: 90%;
+	
+	 width: 10%;
+	 height: 98%;
 }
 
 .eb_MdeleteBtn{
-	 margin-left: 65% 
+	margin-left : 65%;
+	 width: 10%;
+	 height: 98%;
+}
+#eb_viewClose{
+	margin-left: 90%;
 }
 
 .eb_MsList{
@@ -199,6 +208,11 @@
 	border-bottom: 1px solid gray;
 }
 
+.eb_MrSendBtn{
+	width: 10%;
+	 height: 98%;
+	
+}
 .eb_MrList{
 	margin-top : 10px;
 	border-bottom: 1px solid gray;
@@ -208,3 +222,7 @@
 	color : black;
 }
 
+#eb_viewClose2{
+	width: 10%;
+	 height: 98%;
+}

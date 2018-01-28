@@ -453,13 +453,13 @@ height : 250px;
   position:relative; 
   margin-bottom:45px; 
 }
-input               {
+/* input{
   padding:10px 10px 10px 5px;
   display:block;
   width:300px;
   border:none;
   border-bottom:1px solid #757575;
-}
+} */
 input:focus         { outline:none; }
 
 /* LABEL ======================================= */
