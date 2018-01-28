@@ -25,13 +25,12 @@ public class StoreRegistController {
 	
 	//storeRegist
 	@RequestMapping(value="storeRegist")
-	public ModelAndView selectList(ListData listData) throws Exception{
-		ModelAndView mv=null;
+	public String selectList(ListData listData,Model model) throws Exception{
+	
 		
-		mv=storeRegistService.selectList(listData);
-		mv.setViewName("/erp/account/storeRegist");
+		storeRegistService.selectList(listData,model);
 		
-		return mv;
+		return "/erp/account/storeRegist";
 	}
 	
 	

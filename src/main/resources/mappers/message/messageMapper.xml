@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="messageMapper">
+  
+  <select id="readCount" parameterType="String" resultType="int">
+  	select nvl(count(num),0) from message where rcode=#{rCode} and read='읽지않음'
+  </select>
+  
+  <delete id="delete">
+  	delete message where num=#{num}
+  </delete>
+  
+  <update id="readUpdate" parameterType="int">
+  	update message set read='읽음' where num=#{num}
+  </update>
+  
+  <select id="selectOne" parameterType="int" resultType="messageDTO">
+  	select * from message where num=#{num}
+  </select>
+  
+  
+  <select id="rList" resultType="messageDTO" parameterType="String">
+  	select * from message where rcode=#{rCode} order by num desc
+  </select>
+  
+  <select id="sList" resultType="messageDTO" parameterType="String">
+  	select * from message where scode=#{sCode} order by num desc
+  </select>
+  
+  <insert id="insert" parameterType="messageDTO">
+  	insert into message values(message_seq.nextval,#{rCode},#{rName},#{sCode},#{sName},#{contents},sysdate,#{read},#{time})
+  </insert>
+  
+  </mapper>
+ 

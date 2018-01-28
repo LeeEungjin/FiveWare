@@ -1,17 +1,33 @@
 package com.five.ware.storeSales;
 
-public class StoreSalesDTO {
-	
+public class StoreMoneyDTO {
+
+	private int num;
+	private String storeCode;
 	private String store;
 	private String product;
 	private int salesAmount;
 	private int productSales;
 	private String regdate;
-	private int num;
-	private String time;
-	private int totalPrice;
 	
-	
+	public String getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
+	}
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
+	public String getStoreCode() {
+		return storeCode;
+	}
+	public void setStoreCode(String storeCode) {
+		this.storeCode = storeCode;
+	}
 	public String getStore() {
 		return store;
 	}
@@ -36,30 +52,8 @@ public class StoreSalesDTO {
 	public void setProductSales(int productSales) {
 		this.productSales = productSales;
 	}
-	public String getRegdate() {
-		return regdate;
-	}
-	public void setRegdate(String regdate) {
-		this.regdate = regdate;
-	}
-	public int getNum() {
-		return num;
-	}
-	public void setNum(int num) {
-		this.num = num;
-	}
-	public String getTime() {
-		return time;
-	}
-	public void setTime(String time) {
-		this.time = time;
-	}
-	public int getTotalPrice() {
-		return totalPrice;
-	}
-	public void setTotalPrice(int totalPrice) {
-		this.totalPrice = totalPrice;
-	}
-
+	
+	
+	
 	
 }

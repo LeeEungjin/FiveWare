@@ -217,7 +217,7 @@
 			 		 if(num.length==0) {
 				 		$(".eb_menuTable").append("<tr class='eb_menuTable_tr"+menu+"'>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th product'><input type='text' class='eb_input' name='product' value="+menu+" readonly='readonly'></td>");
-				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' name='price' value="+price+" readonly='readonly' class='eb_input'></td>");
+				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text'  value="+price+" readonly='readonly' class='eb_input'></td>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' id='eb_amount"+menu+"' name='salesAmount' readonly='readonly' value='1' class='eb_input'></td>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'>"+0+"</td>");
 				 		$(".eb_menuTable").append("<td class='eb_menuTable_th'><input type='text' id='eb_price"+menu+"' name='productSales' value="+price+" readonly='readonly' class='eb_input'></td></tr>");
@@ -330,6 +330,25 @@
 			 				$("#eb_modal_contents2").html(data);
 			 			}
 			 		});
+			 	});
+			 	
+			 	$("#eb_total").click(function(){
+			 		var store='${member.store}';
+			 		var storeCode='${member.code}';
+			 		var regdate='${sysdate}';
+			 		
+			 		$.ajax({
+			 			type : "POST",
+			 			url : "./posTotal",
+			 			data : {
+			 				"store" : store,
+			 				"regdate" : regdate,
+			 				"storeCode" : storeCode
+			 			}, success : function(data){
+			 				alert(data);
+			 			}
+			 		});
+			 		
 			 	});
 			 	
 			 	
@@ -710,7 +729,7 @@
 		   			</div>
 		   		
 		   			<div class="menu6_3">
-		   				<button type="button" class="btn btn-primary b4">부분 계산</button>
+		   				<button type="button" class="btn btn-primary b4" id="eb_total">정산</button>
 		   			</div> 
 		   		
 		   			<div class="menu6_4">
