@@ -9,6 +9,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.five.ware.cloud.CloudFileDTO;
+import com.five.ware.erp.human.member.MemberDTO;
 
 @Component
 public class FileSaver {
@@ -38,6 +39,7 @@ public class FileSaver {
 		CloudFileDTO cloudFileDTO = new CloudFileDTO();
 		cloudFileDTO.setFilename(fileName);
 		cloudFileDTO.setOriname(multipartFile.getOriginalFilename());
+		cloudFileDTO.setCode(((MemberDTO)session.getAttribute("member")).getCode());
 		
 		return cloudFileDTO;
 	}

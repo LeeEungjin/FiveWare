@@ -12,6 +12,10 @@ public class CloudFileService {
 	@Inject
 	private CloudFileDAO cloudFileDAO;
 	
+	public List<CloudFileDTO> fileList (String code, String foldername) throws Exception {
+		return cloudFileDAO.fileList(code, foldername);
+	}
+	
 	public List<CloudFileDTO> selectList(String oriname) throws Exception {
 		return cloudFileDAO.selectList(oriname);
 	}

@@ -104,6 +104,8 @@ public class HomeController {
 		ModelAndView mv=new ModelAndView();
 		List<FreeDTO> randomList=new ArrayList<FreeDTO>();
 		
+		System.out.println("????");
+		
 		try {
 			randomList=freeService.randomNotice();
 		} catch (Exception e) {

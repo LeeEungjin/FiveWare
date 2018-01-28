@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="cloudMapper">
+  
+
+	<insert id="cloudInsert" parameterType="com.five.ware.cloud.CloudDTO">
+		insert into cloud values(file_seq.nextval, #{code}, #{folderpath}, #{foldername}, #{uppername})
+	</insert>
+  
+  	<select id="cloudList" parameterType="java.util.Map" resultType="com.five.ware.cloud.CloudDTO">
+		select * from cloud where code=#{code} 	
+		<if test="uppername == ''">
+			and uppername is null
+		</if>
+		<if test="uppername != ''">
+			and uppername=#{uppername}
+		</if>
+  	</select>
+  	
+  </mapper>

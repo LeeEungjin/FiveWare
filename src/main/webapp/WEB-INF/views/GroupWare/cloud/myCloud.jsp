@@ -12,6 +12,36 @@
 
 <script type="text/javascript">
 	$(function() {
+		
+		//파일 찾기
+		/* $("#searchInput").on({
+			keyup: function() {
+				
+				ajax({
+					url: "./cloudSearch",
+					type: "POST",
+					data: {
+						
+					},
+					success: function() {
+						
+					}
+				});
+			}
+		}); */
+		$("#searchInput").keyup(function() {
+			var search = $(this).val();
+			
+			$.ajax({
+				url: "./cloudSearch",
+				type: "POST",
+				data: { "search":search },
+				success: function() {
+					alert("성공!");
+				}
+			});
+		});
+		
 		// Start Location
 		var session = '${member.code}';
 		var path = '${filePath}';
@@ -86,10 +116,6 @@
 		});
 	}); // END
 	
-	// file Search
-	function fileSearch() {
-		
-	}
 	
 	// File Download
 	function fileDownload(name) { // name = filename, oriname
@@ -327,7 +353,7 @@
 		</div>
 		
 		<div class="cloud_title"> 
-			<input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="파일명을 입력해주세요">
+			<input type="text" id="searchInput" placeholder="파일명을 입력해주세요">
 			<!-- Serch BOX -->
 			<div class="cloud-search-box" style="display: block">
 				<ul>
