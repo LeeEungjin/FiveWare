@@ -22,6 +22,10 @@ public class EventDAO {
 	SqlSession sqlSession;
 	private static final String NAMESPACE="eventMapper.";
 	
+	public List<Integer> numList()throws Exception{
+		return sqlSession.selectList(NAMESPACE+"randomNum");
+	}
+	
 	public int totalCount(RowNum rowNum)throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"totalCount", rowNum);
 	}
@@ -62,6 +66,10 @@ public class EventDAO {
 	
 	public int getNum()throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getNum");
+	}
+	
+	public List<EventDTO> eventListS() throws Exception{
+		return sqlSession.selectList(NAMESPACE+"eventListS");
 	}
 
 }

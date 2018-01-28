@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
@@ -47,14 +48,57 @@ public class CommunityService {
 		return mv;
 	}
 	
-	public CommunityDTO selectOne(int num)throws Exception{
+	public List<CommunityDTO> randomNotice()throws Exception{
+		//랜덤 값 r을 ar의 인덱스로 사용해서 numList의 num 값 뽑아오기
+		//그 num값으로 selectOne 하기
+		
+		CommunityDTO communityDTO=new CommunityDTO();
+		List<Integer> numList=new ArrayList<Integer>();
+		List<CommunityDTO> randomList=new ArrayList<CommunityDTO>();
+		int r=0;
+		
+		numList=communityDAO.numList();
+		
+		/*int[] ar = new int[numList.size()];
+		
+		r = (int)(Math.random()*numList.size())+1;
+		
+		
+		for(int i=0; i<numList.size(); i++){
+			ar[i]=numList.get(i);
+			randomList.add(communityDTO);
+		}
+		
+		int num=ar[r-1];
+		
+		for(int j=0; j<ar.length; j++){
+			communityDTO=communityDAO.selectOne(num);
+		}
+		
+		System.out.println(randomList.size());*/
+		
+		
+		for(int i=0; i<numList.size(); i++){
+			communityDTO=communityDAO.selectOne(numList.get(i));
+			randomList.add(communityDTO);
+		}
+		
+		
+		return randomList;
+	}
+	
+	public Map<String, Object> selectOne(int num)throws Exception{
+		Map<String, Object> map=new HashMap<String, Object>();
+		int fileCount=communityDAO.fileCount(num);
 		
 		communityDAO.hitUpdate(num);
 		CommunityDTO communityDTO=communityDAO.selectOne(num);
 		communityDTO.setFileNames(uploadDAO.selectList(num));
 		
+		map.put("communityDTO", communityDTO);
+		map.put("fileCount", fileCount);
 		
-		return communityDTO;
+		return map;
 	}
 	
 	public int reportCount(int num)throws Exception{

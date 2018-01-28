@@ -19,6 +19,14 @@ public class FreeDAO {
 	SqlSession sqlSession;
 	private static final String namespace="freeMapper.";
 	
+	public List<Integer> numList()throws Exception{
+		return sqlSession.selectList(namespace+"randomNum");
+	}
+	
+	public int fileCount(int num)throws Exception{
+		return sqlSession.selectOne(namespace+"fileCount", num);
+	}
+	
 	public List<String> storeList()throws Exception{
 		return sqlSession.selectList(namespace+"storeList");
 	}

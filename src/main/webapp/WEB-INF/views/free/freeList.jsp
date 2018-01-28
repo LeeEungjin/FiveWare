@@ -80,10 +80,11 @@
 	
 	<div id="free_middle">
 		<div id="free_sub_title">
-			<a href="./freeList">모두보기</a>
-		
-			<a href="./freeList?kind=target&target=전체">전체공개 보기</a>
 			
+			<a href="./freeList">모두보기</a>&nbsp;|&nbsp;
+		
+			<a href="./freeList?kind=target&target=전체">전체공개 보기</a>&nbsp;|&nbsp;
+		
 			<c:if test="${kind eq 'member'}">
 				<a href="./freeList?kind=target&target=${member.temp}">우리 부서 공개 보기</a>
 			</c:if>
@@ -171,7 +172,7 @@
 	</div>
 	
 	<div id="free_footer">
-		<a href="freeWrite"><button type="button" class="btn btn-default">신규 등록</button></a>
+		<a href="freeWrite"><button id="newFreeInserBtn" type="button" class="btn btn-default">신규 등록</button></a>
 	</div>
 </div>
 

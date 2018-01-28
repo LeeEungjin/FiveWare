@@ -40,6 +40,22 @@ public class FileController {
 		
 		return mv;
 	}
+	
+	@RequestMapping(value="contestFileDown")
+	public ModelAndView contestFileDown(FileDTO fileDTO, HttpSession session) throws Exception{
+		System.out.println("파일아 들어오니");
+		String filePath = session.getServletContext().getRealPath("resources/contest");
+		
+		File file = new File(filePath, fileDTO.getFilename());
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("down", file);
+		mv.addObject("oriname", fileDTO.getOriname());
+		mv.setViewName("fileDown");
+		
+		return mv;
+	}
 		
 	
 	@RequestMapping(value="eventFileDown")

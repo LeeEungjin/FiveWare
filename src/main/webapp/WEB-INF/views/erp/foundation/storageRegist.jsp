@@ -11,7 +11,8 @@
 	<link href="${url}/resources/css/erp/storageRegist.css" rel="stylesheet">
 	<link href="${url}/resources/css/common/modal_boot.css" rel="stylesheet">
 	<c:import url="${url}/resources/temp/ref.jsp"></c:import> 
-
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
 <title>Insert title here</title>
 <script type="text/javascript">
 	$(function(){
@@ -279,8 +280,8 @@
          
          <div class="fw_subselected collapse in" id="sub1">
             <ul>
-               <li> 거래처 등록</li>
-               <li> 제품 등록</li>
+               <li><a href="../foundation/supplier">거래처 등록</a></li>
+               <li><a href="../foundation/product">제품 등록</a></li>
                <li><a href="./menuRegist">메뉴 등록</a></li>
                <li><a href="./storageRegist">창고 등록</a></li>
             </ul>
@@ -296,8 +297,8 @@
          
          <div class="fw_subsub collapse"  id="sub2">
             <ul>
-               <li> 주문 입력</li>
-               <li> 주문 현황 보기</li>
+               <li><a href="../order/orderRegist">주문 입력</a></li>
+               <li><a href="../order/graph/orderGraph">주문 현황 보기</a></li>
             </ul>
          </div>
          
@@ -328,15 +329,7 @@
          
          <div class="fw_subsub collapse"  id="sub4">
             <ul>
-               <li>거래처 조회</li>
-               <li>제품 조회</li>
-               <li>메뉴 조회</li>
-               <li>창고 조회</li>
-               <li>주문 조회</li>
-               <li>입고 조회</li>
-               <li>출고 조회</li>
-               <li>반품 조회</li>
-               <li>불출 조회</li>
+               <li><a href="../../erp/into/intoList">조회 및 엑셀 다운</a></li>
             </ul>
          </div>
          
@@ -374,10 +367,10 @@
 							     </select>							
 							<!-- select box 끝 -->
 						
-						      <input name="search" type="text" class="form-control" placeholder="Search" name="search">
+						      <input id="storageSearchInput" name="search" type="text" class="form-control" placeholder="Search" name="search">
 						      
 						      <div class="input-group-btn">
-						        <button  id="search_btn" class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+						        <button  id="search_btn" class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
 						      </div>
 						      </form>	
 						    </div>	
@@ -436,7 +429,7 @@
 				
 				<!-- 등록 버튼 -->
 					<div id="erp_jh_contents_bottom">
-						<button id="sr_insert" class="modal_btn" data-toggle="modal" data-target="#jh_sr_Modal">신규등록</button>
+						<button id="sr_insert" class="modal_btn btn-default btn" data-toggle="modal" data-target="#jh_sr_Modal">신규등록</button>
 					</div>
 				<!-- 등록 버튼 끝 -->
 				

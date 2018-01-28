@@ -8,6 +8,8 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.five.ware.community.CommunityDTO;
 import com.five.ware.community.NumFileDTO;
 import com.five.ware.community.UploadDAO;
 import com.five.ware.community.UploadDTO;
@@ -34,6 +37,28 @@ public class EventService {
 	
 	@Autowired
 	private FileSaver fileSaver;
+	
+	public List<EventDTO> randomNotice()throws Exception{
+		//랜덤 값 r을 ar의 인덱스로 사용해서 numList의 num 값 뽑아오기
+		//그 num값으로 selectOne 하기
+		
+		EventDTO eventDTO=new EventDTO();
+		List<Integer> numList=new ArrayList<Integer>();
+		List<EventDTO> randomList=new ArrayList<EventDTO>();
+		int r=0;
+		
+		numList=eventDAO.numList();
+		
+		
+		for(int i=0; i<numList.size(); i++){
+			eventDTO=eventDAO.selectOne(numList.get(i));
+			randomList.add(eventDTO);
+		}
+		
+		
+		return randomList;
+	}
+	
 	
 	public List<EventDTO> eventDateList(ListData listData, String sdate, String edate)throws Exception{
 		List<EventDTO> ar=eventDAO.eventDateList(sdate, edate);
@@ -166,6 +191,29 @@ public class EventService {
 		result=uploadDAO.deleteNum(eventNum);
 		
 		return result;
+	}
+	
+	public ModelAndView eventListS() throws Exception{		
+		List<EventDTO> ar = eventDAO.eventListS();
+		
+		ModelAndView mv = new ModelAndView();
+		
+		JSONArray json = new JSONArray();
+		
+		for(EventDTO eventDTO : ar){
+			JSONObject obj = new JSONObject();
+
+			obj.put("title", eventDTO.getEventName());
+			obj.put("start", eventDTO.getEventSdate());
+			obj.put("end", eventDTO.getEventEdate());
+			
+			json.add(obj);
+		}
+		System.out.println(json);
+		
+		mv.addObject("list1", json);
+		
+		return mv;
 	}
 
 

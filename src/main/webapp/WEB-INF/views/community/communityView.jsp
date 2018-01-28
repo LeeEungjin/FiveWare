@@ -57,7 +57,7 @@
 		</div>
 		
 		<div id="com_middle">
-			<div id="com_sub_title"></div>
+			<div id="com_sub_title"><button id="report_btn" type="button" class="btn btn-danger">신고(${report})</button></div>
 			<div id="com_contents">
 				<table class="table">
 				    <thead>
@@ -92,13 +92,12 @@
 			
 		<div id="com_footer">
 			<c:forEach items="${view.fileNames}" var="file">
-			<a href="../file/fileDown?filename=${file.fileName}&oriname=${file.oriName}">${file.oriName}</a> 
+				<P class="comViewImgs">첨부 파일 : <a href="../file/fileDown?filename=${file.fileName}&oriname=${file.oriName}">${file.oriName}</a></P>
 			</c:forEach>
 			
-			<a href="communityUpdate?num=${view.num}"><button type="button" class="btn btn-default com_update_btn">수정</button></a>
-			<a href="communityDelete?num=${view.num}"><button type="button" class="btn btn-default">삭제</button></a>
-			<button id="report_btn" type="button" class="btn btn-danger">신고(${report})</button>
-			<a href="communityList"><button type="button" class="btn btn-default">목록</button></a>
+			<a href="communityList"><button id="comviewBtn1" type="button" class="btn btn-default comViewBtns">목록</button></a>
+			<a href="communityDelete?num=${view.num}"><button id="comviewBtn2" type="button" class="btn btn-default comViewBtns">삭제</button></a>
+			<a href="communityUpdate?num=${view.num}"><button type="button" id="comviewBtn3" class="btn btn-default comViewBtns com_update_btn">수정</button></a>
 		</div>
 	
 	</div>

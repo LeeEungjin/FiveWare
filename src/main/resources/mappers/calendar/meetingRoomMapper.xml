@@ -15,7 +15,7 @@
   
   	<insert id="meetingRoomInsert" parameterType="MeetingRoomDTO">
  		insert into meetingRoom values (
- 			'test', #{meetingName}, #{reservDate}, #{reservStartTime}, #{reservEndTime}
+ 			'test', #{meetingName}, #{reservDate}, #{reservStartTime}, #{reservEndTime}, #{eventId}
  		)	 
   	</insert>
   	

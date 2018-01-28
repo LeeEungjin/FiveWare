@@ -3,6 +3,7 @@ package com.five.ware;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -48,15 +49,21 @@ public class GroupWareFreeController {
 	//view
 	@RequestMapping(value="freeView")
 	public String selectOne(Model model, int num)throws Exception{
+		Map<String, Object> map=freeService.selectOne(num);
 		
-		model.addAttribute("view", freeService.selectOne(num));
+		model.addAttribute("view", map.get("freeDTO"));
 		
 		return "free/freeView";
 	}
 	
 	//insert->form
 	@RequestMapping(value="freeWrite", method={RequestMethod.GET})
-	public String insert()throws Exception{
+	public String insert(Model model)throws Exception{
+		
+		List<String> storeList=freeService.storeList();
+		
+		model.addAttribute("storeList", storeList);
+		
 		
 		return "free/freeWrite";
 	}
@@ -81,7 +88,6 @@ public class GroupWareFreeController {
 	//reply->form
 	@RequestMapping(value="freeReply", method={RequestMethod.GET})
 	public String reply(Model model, int num)throws Exception{
-		
 		model.addAttribute("reply", freeService.selectOne(num));
 		
 		return "free/freeReply";
@@ -107,9 +113,12 @@ public class GroupWareFreeController {
 	//update->form
 	@RequestMapping(value="freeUpdate", method={RequestMethod.GET})
 	public String update(Model model, int num)throws Exception{
-		FreeDTO freeDTO=freeService.selectOne(num);
+		Map<String, Object> map=freeService.selectOne(num);
+		List<String> storeList=freeService.storeList();
 		
-		model.addAttribute("update", freeDTO);
+		model.addAttribute("storeList", storeList);
+		model.addAttribute("fileCount", map.get("fileCount"));
+		model.addAttribute("update", map.get("freeDTO"));
 		
 		return "free/freeUpdate";
 	}

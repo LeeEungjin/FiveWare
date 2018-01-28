@@ -8,7 +8,6 @@
 #fw_container{
 	width: 99%;
 	height: 100%;
-	background-color: lightblue;
 	transition: width 0.3s;	
 	margin-left: 1%;
 }
@@ -35,21 +34,20 @@
 
 #com_middle{
 	width: 100%;
-    background-color: #ffffcc;
     height: 75%;
 }
 
 #com_sub_title{
-	width: 50%;
-	height: 10%;
-	margin-left: 25%;
-	background-color: #f8edd3;
+	width: 8%;
+    height: 10%;
+    margin-left: 83%;
+    padding: 2%;
 }
 
 #com_contents{
 	width: 80%;
     height: 90%;
-    background-color: #c8ffe3;
+    background-color: #F6F6F6;
     margin-left: 10%;
 }
 
@@ -73,7 +71,6 @@
 
 #com_file_div {
     width: 50%;
-    background-color: #bbffff;
     height: 79%;
     margin-left: 2%;
     float: left;
@@ -92,4 +89,22 @@
 .com_file_sdiv{
 	float: left;
 	width: 55%;
+}
+
+.comViewBtns{
+	float: right;
+    margin-top: 1%;
+}
+
+#comviewBtn1{
+	margin-right: 10%;
+	margin-left: 1%;
+}
+
+#comviewBtn2{
+	margin-left: 1%;
+}
+
+.comViewImgs{
+	margin-left: 10%;
 }

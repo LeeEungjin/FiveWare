@@ -1,110 +1,107 @@
 @CHARSET "UTF-8";
 
-
-#fw_main_contents{
+#fw_main_contents {
 	width: 100%;
 	height: 91%;
 	background-color: white;
 }
 
-#erp_jh_contents_title{
+#erp_jh_contents_title {
 	width: 100%;
 	height: 10%;
 	background-color: #ffe1e7;
 	overflow: hidden;
 }
 
-#event_icon{
+#event_icon {
 	width: 6%;
 	height: 100%;
 	background-color: #ff84c1;
 	float: left;
 }
 
-#event_title{
+#event_title {
 	font-size: 30px;
 	font-weight: bold;
 	margin-left: 5%;
 	margin-top: 1.5%;
 }
 
-#erp_jh_event_sub{
+#erp_jh_event_sub {
 	width: 100%;
-    height: 16%;
-    background-color: #e7ceff;
-    padding-top: 0.5%;
+	height: 16%;
+	background-color: #D5D5D5;
+	padding-top: 0.5%;
 }
 
-#event_contents{
+#event_contents {
 	height: 90%;
-    width: 70%;
-    margin-left: 15%;
-    text-align: center;
-    border-bottom: 2px solid #929292;
-    border-top: 2px solid #929292;
-}
-
-#event_search{
 	width: 70%;
-    height: 35%;
-    margin-left: 15%;
-    background-color: #ce9dff;
-    margin-top: 1.5%;
+	margin-left: 15%;
+	text-align: center;
+	border-bottom: 2px solid #929292;
+	border-top: 2px solid #929292;
 }
 
-#erp_jh_contents_table{
+#event_search {
+	width: 70%;
+	height: 35%;
+	margin-left: 15%;
+	margin-top: 1.5%;
+}
+
+#erp_jh_contents_table {
 	width: 100%;
-    height: 70%;
-    background-color: #ffffce;
-    margin-top: 1%;
-    overflow: scroll;
+	height: 70%;
+	margin-top: 1%;
+	overflow: scroll;
 }
 
-.eventList{
+.eventList {
 	width: 80%;
-    height: 40%;
-    background-color: #ddffdd;
-    margin-left: 10%;
-    margin-bottom: 2%;
+	height: 40%;
+	margin-left: 10%;
+	margin-bottom: 2%;
 }
 
-.eventImg_div{
+.eventImg_div {
 	width: 23%;
 	height: 100%;
-	background-color: #e1ffff;
 	margin-right: 5%;
 	float: left;
 }
 
-.eventImg{
-	width: 200px;
-    height: 227px;
+.eventImg {
+	width: 230px;
+	height: 227px;
 }
 
-.eventText{
+.eventText {
 	width: 72%;
 	height: 100%;
-	background-color: #cde7e7;
 	float: right;
 }
 
-.blackListName{
-	width: 50%;
-	height: 30%;
-	float: left;
-	background-color: #d5ffea;
-}
-
-.infoTable{
-	height: 65%;
-    margin-top: 2%;
-    width: 100%;
-    float: left;
-    background-color: #c8c8ff;
-}
-
-#erp_jh_contents_bottom{
+.blackListName {
 	width: 100%;
-    height: 3%;
-    background-color: #c0c0c0;
+	height: 20%;
+	float: left;
+	background-color: #CE3636;
+	font-size: 25px;
+	color: white;
+}
+
+.infoTable {
+	height: 65%;
+	width: 100%;
+	float: left;
+	background-color: #F6F6F6;
+	margin-top: 4%;
+	font-size: 16px;
+}
+
+#erp_jh_contents_bottom {
+	width: 100%;
+	height: 3%;
+	background-color: #c0c0c0;
 }

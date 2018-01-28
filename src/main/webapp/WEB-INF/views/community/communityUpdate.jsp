@@ -4,6 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 <c:import url="${url}/resources/temp/ref.jsp"></c:import> 
@@ -44,13 +46,14 @@
 			$("#com_update_frm").submit();
 		});
 		
-		var index = 0;
+		
+		var index = ${fileCount};
 		var count = 0;
 		
 		$("#com_file_add").click(function() {
 				if (index < 3) {
 				var s = '<div class="com_file_sdiv" id="d'+count+'">';
-					s = s+ '<input class="com_file_sdiv" type="file" name="files"><span class="com_file_del" title="d'+count+'">X</span></div>';
+					s = s+ '<input class="com_file_sdiv" type="file" name="files"><span class="com_file_del" title="d'+count+'"><i class="fa fa-close"></i></span></div>';
 				
 				$("#com_file_div").append(s);
 					count++;
@@ -146,7 +149,7 @@
 				<c:forEach items="${update.fileNames}" var="file">
 					<div class="com_file_sdiv" id="${file.fnum }">
 					${file.oriName}
-					<span class="com_file_del" title="${file.fnum }">X</span>
+					<span class="com_file_del" title="${file.fnum }"><i class="fa fa-close"></i></span>
 					</div>
 				</c:forEach>
 			</div>

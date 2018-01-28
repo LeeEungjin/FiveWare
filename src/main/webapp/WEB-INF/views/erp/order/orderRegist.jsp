@@ -10,7 +10,8 @@
 	<c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 	<link href="${url}/resources/css/erp/orderRegist.css" rel="stylesheet">
 	<c:import url="${url}/resources/temp/ref.jsp"></c:import> 
-
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
 <title>Insert title here</title>
 <script type="text/javascript">
 	$(function(){
@@ -221,8 +222,8 @@
          
          <div class="fw_subselected collapse in" id="sub1">
             <ul>
-               <li> 거래처 등록</li>
-               <li> 제품 등록</li>
+               <li><a href="../../erp/foundation/supplier">거래처 등록</a></li>
+               <li><a href="../../erp/foundation/product">제품 등록</a></li>
                <li><a href="../../erp/foundation/menuRegist">메뉴 등록</a></li>
                <li><a href="../../erp/foundation/storageRegist">창고 등록</a></li>
             </ul>
@@ -269,15 +270,7 @@
          
          <div class="fw_subsub collapse"  id="sub4">
             <ul>
-               <li>거래처 조회</li>
-               <li>제품 조회</li>
-               <li>메뉴 조회</li>
-               <li>창고 조회</li>
-               <li>주문 조회</li>
-               <li>입고 조회</li>
-               <li>출고 조회</li>
-               <li>반품 조회</li>
-               <li>불출 조회</li>
+               <li><a href="../../erp/into/intoList">조회 및 엑셀 다운</a></li>
             </ul>
          </div>
          
@@ -308,10 +301,10 @@
 								<form id="or_search_frm" method="get">
 								<input type="hidden" name="materKind" value="back">
 									계약 기간 선택 <input id="smaterDate" name="smaterDate" type="date"> ~ <input id="ematerDate" name="ematerDate" type="date">					
-							      <div class="input-group-btn">
-							        <button type="button" id="search_btn" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
-							      </div>
-							      <input id="dateListReset" class="btn btn-default" type="button" value="초기화">
+						        <button type="button" id="search_btn" class="btn btn-default"><i class="fa fa-search"></i></button>
+						      	<input id="dateListReset" class="btn btn-default" type="button" value="초기화">
+							      <!-- <div class="input-group-btn" id="orderLeft">
+							      </div> -->
 							    </form>
 						    </div>	
 						<!-- 검색 기능 끝 -->
@@ -346,7 +339,7 @@
 				
 				<!-- 등록 버튼 -->
 					<div id="erp_jh_contents_bottom">
-						<button id="or_insert" class="modal_btn" data-toggle="modal" data-target="#or_modal">신규등록</button>
+						<button id="or_insert" class="modal_btn btn btn-default" data-toggle="modal" data-target="#or_modal">신규등록</button>
 					</div>
 				<!-- 등록 버튼 끝 -->
 				

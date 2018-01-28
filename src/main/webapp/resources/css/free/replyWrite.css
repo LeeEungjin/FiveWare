@@ -8,7 +8,6 @@
 #fw_container{
 	width: 99%;
 	height: 100%;
-	background-color: lightblue;
 	transition: width 0.3s;	
 	margin-left: 1%;
 }
@@ -35,7 +34,6 @@
 
 #reply_middle{
 	width: 100%;
-    background-color: #ffffcc;
     height: 75%;
 }
 
@@ -43,15 +41,14 @@
 	width: 50%;
 	height: 10%;
 	margin-left: 25%;
-	background-color: #f8edd3;
 }
 
 #reply_contents {
     width: 80%;
     height: 90%;
-    background-color: #c8ffe3;
+    background-color: #F6F6F6;
     margin-left: 10%;
-    margin-top: 7%;
+    margin-top: 1%;
 }
 .reply_temp_select{
 	width: 80% !important;
@@ -62,18 +59,17 @@
 }
 
 .reply_textarea{
-	width: 92.5% !important;
+	width: 99% !important;
 	height: 450px !important;
 }
 
 #reply_file_add{
 	float: left;
-	margin-left: 5%;
+	margin-left: 11%;
 }
 
 #reply_file_div {
     width: 50%;
-    background-color: #bbffff;
     height: 79%;
     margin-left: 2%;
     float: left;
@@ -83,10 +79,11 @@
 	width: 100%;
     background-color: #cdcde7;
     height: 12%;
+    margin-top: 1%;
 }
 
 .free_reply_btn{
-	margin-left: 10%;
+	margin-left: 71%;
 }
 
 .reply_file_sdiv{

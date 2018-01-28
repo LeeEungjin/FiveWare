@@ -51,7 +51,7 @@
 #sr_search{
 	width: 70%;
     height: 70%;
-    margin-left: 20%;
+    margin-left: 38%;
     ackground-color: #ce9dff;
     margin-top: 3.5%;
 }
@@ -62,10 +62,10 @@
 }
 
 #sel1{
-    width: 30% !important;
+    width: 28% !important;
     float: left !important;
     margin-right: 2% !important;
-    margin-left: 8% !important;
+    margin-left: -30% !important;
 }
 
 #sub_search{
@@ -78,7 +78,6 @@
 
 #erp_jh_contents_table{
 	width: 100%;
-	height: 65%;
 	background-color: #ffffce;
 }
 
@@ -170,4 +169,16 @@ label {
     float: left !important;
     margin-right: 2% !important;
     margin-left: 0% !important;
+}
+
+/**/
+
+#storageSearchInput{
+	float: left;
+	width: 85% !important;
+}
+
+#sr_insert{
+	float: right !important;
+	margin-right: 8% !important;
 }

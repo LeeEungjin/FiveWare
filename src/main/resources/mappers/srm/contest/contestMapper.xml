@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="contestMapper">
+  
+  <insert id="contestInsert" parameterType="ContestListDTO">
+  	insert into contestlist values(contestlist_seq.nextval, #{code}, #{name}, #{sdate}, #{edate}, #{prize}, #{regdate}, #{info})
+  </insert>
+  
+  <insert id="contestFileInsert" parameterType="FileDTO">
+  	insert into fivefile values(file_seq.nextval, #{code}, #{oriname}, #{filename})
+  </insert>
+  
+  <select id="contestList" parameterType="RowNum" resultType="ContestListDTO">
+  	select * from 
+  	(select rownum R, N.* from
+  	(select * from contestlist order by num desc) N)
+  	where R between #{startRow} and #{lastRow} 
+  </select>
+  
+<select id="contestListCount" resultType="int">
+  	select count(nvl(num, 0)) from contestlist
+  </select>
+  
+   <select id="fileList" resultType="FileDTO">
+  	select * from fivefile where code like 'C%'
+  </select>
+ 
+ <insert id="contestJoinInsert" parameterType="ContestJoinDTO">
+ 	insert into contestJoin values(contestJoin_seq.nextval, #{code}, #{store}, #{menuname},#{photo}, #{account}, '진행', #{recipe})
+ </insert>
+ 
+<!--  <select id="contestJoinList" resultType="contestJoinDTO">
+ 	select * from
+ 	(select rownum R, N.* from
+ 	(select * from contestJoin order by num desc) N)
+ 	where R between #{startRow} and #{lastRow}
+ </select> -->
+ 
+<select id="contestJoinList" parameterType="java.util.Map" resultType="contestJoinDTO">
+	select * from
+	(select rownum R, N.* from
+	(select * from contestJoin where code=#{code} order by cnum desc) N)
+	where R between #{rowNum.startRow} and #{rowNum.lastRow}
+ </select>
+ 
+ <select id="contestJoinListTotal" parameterType="String" resultType="int">
+	select count(nvl(cnum,0)) from contestJoin where code=#{code}
+ </select>
+ 
+  <select id="contestJoinListCount" resultType="int">
+ 	select count(nvl(cnum,0)) from contestJoin 
+ </select>
+  
+  <insert id="likeInsert" parameterType="java.util.Map">
+  	insert into contestlike values(contestlike_seq.nextval, #{code}, #{cnum}, #{store})
+  </insert>
+  
+  <delete id="likeDelete" parameterType="java.util.Map">
+  	delete contestlike where cnum=#{cnum}
+  </delete>
+  
+  <select id="likeSelectOne" parameterType="java.util.Map" resultType="ContestLikeDTO">
+  	select * from contestlike where code=#{code} and store=#{store} and cnum=#{cnum}
+  </select>
+  
+    <select id="likeSelectJoin" parameterType="ContestLikeDTO" resultType="ContestLikeDTO">
+  	select * from contestlike where code=#{code} and store=#{store}
+  </select>
+  
+      <select id="likeSelectJoinCount" parameterType="ContestListDTO" resultType="int">
+  	select count(num) from contestlike where code=#{contestLIstDTO.code} and store=#{store}
+  </select>
+  
+  <select id="contestJoinView" parameterType="String" resultType="ContestJoinDTO">
+  	select * from contestjoin where cnum=#{cnum}
+  </select>
+ 
+  </mapper>

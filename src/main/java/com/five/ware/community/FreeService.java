@@ -1,6 +1,9 @@
 package com.five.ware.community;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -26,8 +29,27 @@ public class FreeService {
 	@Autowired
 	private UploadDAO uploadDAO;
 	
+	public List<FreeDTO> randomNotice()throws Exception{
+		FreeDTO freeDTO=new FreeDTO();
+		List<Integer> numList=new ArrayList<Integer>();
+		List<FreeDTO> randomList=new ArrayList<FreeDTO>();
+		
+		numList=freeDAO.numList();
+		
+		for(int i=0; i<numList.size(); i++){
+			freeDTO=freeDAO.selectOne(numList.get(i));
+			randomList.add(freeDTO);
+		}
+		
+		return randomList;
+	}
+	
 	public List<String>	storeList()throws Exception{
 		List<String> storeList=freeDAO.storeList();
+		
+		for(int i=0; i<storeList.size(); i++){
+			System.out.println(storeList.get(i));
+		}
 		
 		return storeList;
 	}
@@ -44,13 +66,18 @@ public class FreeService {
 		return mv;
 	}
 	
-	public FreeDTO selectOne(int num)throws Exception{
+	public Map<String, Object> selectOne(int num)throws Exception{
+		Map<String, Object> map=new HashMap<String, Object>();
+		int fileCount=freeDAO.fileCount(num);
+
 		freeDAO.hitUpdate(num);
-		
 		FreeDTO freeDTO=freeDAO.selectOne(num);
 		freeDTO.setFileNames(uploadDAO.selectList(num));
 		
-		return freeDTO;
+		map.put("freeDTO", freeDTO);
+		map.put("fileCount", fileCount);
+		
+		return map;
 	}
 	
 	public int freeInsert(FreeDTO freeDTO, HttpSession session)throws Exception{
@@ -140,5 +167,7 @@ public class FreeService {
 		
 		return result;
 	}
+
+
 
 }

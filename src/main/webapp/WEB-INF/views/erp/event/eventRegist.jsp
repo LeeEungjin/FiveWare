@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 	<link href="${url}/resources/css/erp/eventRegist.css" rel="stylesheet">
@@ -216,10 +217,10 @@
          
          <div class="fw_subselected collapse in" id="sub1">
             <ul>
-               <li> 거래처 등록</li>
-               <li> 제품 등록</li>
-               <li><a href="./menuRegist">메뉴 등록</a></li>
-               <li><a href="./storageRegist">창고 등록</a></li>
+               <li><a href="./../erp/foundation/supplier">거래처 등록</a></li>
+               <li><a href="./../erp/foundation/product">제품 등록</a></li>
+               <li><a href="./../erp/foundation/menuRegist">메뉴 등록</a></li>
+               <li><a href="./../erp/foundation/storageRegist">창고 등록</a></li>
             </ul>
          </div>
          
@@ -233,8 +234,8 @@
          
          <div class="fw_subsub collapse"  id="sub2">
             <ul>
-               <li> 주문 입력</li>
-               <li> 주문 현황 보기</li>
+               <li><a href="../erp/order/orderRegist">주문 입력</a></li>
+            	<li><a href="../erp/order/graph/orderGraph">주문 현황 보기</a></li>
             </ul>
          </div>
          
@@ -293,10 +294,8 @@
 									<form action="./eventRegist" name="event_search_frm" method="get">
 										<input type="hidden" name="curPage" value="1">
 										
-										이벤트 기간 선택 <input id="sdate" name="sdate" type="date"> ~ <input id="edate" name="edate" type="date">		
-								      <div class="input-group-btn">
-								        <button type="button" id="event_search_btn" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
-								      </div>
+										<span id="eventListEegistText">이벤트 기간 선택&nbsp;&nbsp;</span><input id="sdate" name="sdate" type="date">&nbsp;~&nbsp;<input id="edate" name="edate" type="date">		
+								        <button type="button" id="event_search_btn" class="btn btn-default"><i class="fa fa-search"></i></button>
 								      
 								      <input id="eventDateReset" class="btn btn-default" type="button" value="초기화">
 																
@@ -340,8 +339,7 @@
 						 </table>
 						 
 						 <!-- pager -->
-						 	<div id="evnet_pager">
-						 		<div id="mr_pager">
+						 		<div id="event_pager">
 							 		  <c:if test="${pager.curBlock gt 1}">
 										<span class="list" title="${pager.startNum-1}">[이전]</span>
 									</c:if>
@@ -352,15 +350,14 @@
 										<span class="list" title="${pager.lastNum+1}">[다음]</span>
 									</c:if>
 							 	</div>
-						 	</div>
 						 <!-- pager 끝 -->
 					</div>
 				<!-- table 끝 -->
 				
 				<!-- 등록 버튼 -->
 					<div id="erp_jh_contents_bottom">
-						<button id="event_checkDelete">선택삭제</button>
-						<button class="modal_btn" data-toggle="modal" data-target="#jh_event_Modal">신규등록</button>
+						<button id="event_checkDelete" class="btn btn-default">선택삭제</button>
+						<button class="modal_btn btn btn-default" data-toggle="modal" data-target="#jh_event_Modal">신규등록</button>
 						
 					</div>
 				<!-- 등록 버튼 끝 -->
@@ -382,7 +379,7 @@
 				        <form action="./eventInsert" method="post" id="eventfrm" enctype="multipart/form-data">
 				        
 				        
-				        <div class="modal-body">
+				        <div class="modal-body eventInsertModalBody">
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">이벤트명*</span>
@@ -396,8 +393,8 @@
 							
 							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">기간</span>
-							  <input id="eventsdate" name="eventSdate" type="date" class="form-control"  placeholder="Additional Info">
-							  -<input id="eventedate" name="eventEdate" type="date" class="form-control"  placeholder="Additional Info">
+							  <input id="eventsdate" name="eventSdate" type="date" class="form-control">
+							  &nbsp;&nbsp;-<input id="eventedate" name="eventEdate" type="date" class="form-control input-group_modal" >
 							</div>
 							
 							<div class="form-group">
@@ -406,14 +403,14 @@
 						    </div>
 						    
 						    <div>
-						    	<input id="eventfile" name="files" type="file" class="form-control">
+						    	<input id="eventfile" name="files" type="file">
 						    </div>
 
 				        </div>
 				        <!-- modal contents 끝-->
 				        
 				        <!-- modal footer -->
-				        <div class="modal-footer">
+				        <div class="modal-footer" id="eventModalFooter">
 				          <input type="button" class="btn btn-default eventRegistBtn"  value="등록">
 				          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				        </div>
@@ -435,7 +432,7 @@
 					      	<!-- modal header -->
 					        <div class="modal-header">
 					          <button type="button" class="close jh_file_cancel" data-dismiss="modal">&times;</button>
-					          <h4 class="modal-title">|이벤트 등록</h4>
+					          <h4 class="modal-title">|이벤트 확인 및 수정</h4>
 					        </div>
 					        <!-- modal header 끝-->
 					        
@@ -443,7 +440,7 @@
 					        <form action="./eventUpdate" method="post" id="eventUpdatefrm" enctype="multipart/form-data">
 					        
 					        
-					        <div class="modal-body">
+					        <div class="modal-body eventUpdateModalBody">
 								<div class="input-group input-group_modal">
 								  <span class="input-group-addon">이벤트 번호</span>
 								  <input name="eventNum" type="text" class="eventNum form-control" readonly="readonly">
@@ -462,7 +459,7 @@
 								<div class="input-group input-group_modal">
 								  <span class="input-group-addon">기간</span>
 								  <input name="eventSdate" type="date" class="eventSdate form-control"  placeholder="Additional Info">
-								  -<input name="eventEdate" type="date" class="eventEdate form-control"  placeholder="Additional Info">
+								  &nbsp;&nbsp;-<input name="eventEdate" type="date" class="eventEdate form-control"  placeholder="Additional Info">
 								</div>
 								
 								<div class="form-group">

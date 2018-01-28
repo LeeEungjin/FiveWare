@@ -5,12 +5,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 	<link href="${url}/resources/css/erp/menuRegist.css" rel="stylesheet">
 	<c:import url="${url}/resources/temp/ref.jsp"></c:import> 
-
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
 <title>Insert title here</title>
 
 <script type="text/javascript">
@@ -357,8 +358,8 @@
          
          <div class="fw_subselected collapse in" id="sub1">
             <ul>
-               <li> 거래처 등록</li>
-               <li> 제품 등록</li>
+               <li><a href="../foundation/supplier">거래처 등록</a></li>
+               <li><a href="../foundation/product">제품 등록</a></li>
                <li><a href="./menuRegist">메뉴 등록</a></li>
                <li><a href="./storageRegist">창고 등록</a></li>
             </ul>
@@ -374,8 +375,8 @@
          
          <div class="fw_subsub collapse"  id="sub2">
             <ul>
-               <li> 주문 입력</li>
-               <li> 주문 현황 보기</li>
+               <li><a href="../order/orderRegist">주문 입력</a></li>
+               <li><a href="../order/graph/orderGraph">주문 현황 보기</a></li>
             </ul>
          </div>
          
@@ -439,10 +440,10 @@
 							        <option class="op" value="menuoption">설명</option>
 							     </select>							
 							<!-- select box 끝 -->
-							      <input type="text" class="form-control" placeholder="Search" name="search">
+							      <input  type="text" class="form-control" placeholder="Search" name="search">
 							      
 							      <div class="input-group-btn">
-							        <button id="search_btn" class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+							        <button id="search_btn" class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
 							      </div>
 							       </form>	
 							    </div>
@@ -528,8 +529,8 @@
 				
 				<!-- 등록 버튼 -->
 					<div id="erp_jh_contents_bottom">
-						<button id="mr_checkDelete">선택삭제</button>
-						<button id="mr_insert" class="modal_btn" data-toggle="modal" data-target="#jh_mr_Modal">신규등록</button>
+						<button class="btn btn-default" id="mr_checkDelete">선택삭제</button>
+						<button class="btn btn-default" id="mr_insert" class="modal_btn" data-toggle="modal" data-target="#jh_mr_Modal">신규등록</button>
 						
 					</div>
 				<!-- 등록 버튼 끝 -->
