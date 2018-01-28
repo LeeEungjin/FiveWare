@@ -238,24 +238,7 @@
 				</tbody>
 			</table>
 			</form>
-<<<<<<< HEAD
 
-
-
-
-
-        
-  
-       
-    <!--    로그인 전 화면 끝 -->
-       </div>
-       </div>
-       
-       
-=======
-</div>
-</div>
->>>>>>> jihyun33
 
 </body>
 </html>
