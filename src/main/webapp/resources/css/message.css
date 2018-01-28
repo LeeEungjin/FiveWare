@@ -1,12 +1,12 @@
 @CHARSET "UTF-8";
 
 .eb_Mall{
-	width: 100px;
+	width: 50px;
 	height: 50px;
-	background-color: #D4F4FA;
+	background-color: #F15F5F;
 	position: fixed;
-	bottom: 40px;
-	right: 0px;	
+	bottom: 35px;
+	right: 20px;	
 	box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2);
 	
 }
@@ -24,14 +24,10 @@
 
 .eb_M1{
 	width: 100%;
-	height: 40%;
+	height: 80%;
 	text-align: center;
 }
-.eb_M2{
-	width: 100%;
-	height: 60%;
-	text-align: center;
-}
+
 #eb_Mp{
 	font-size : 20px;
 	padding-top: 5px;
@@ -68,7 +64,7 @@
 }
 
  .eb_Mclose{
-	margin-left: 13%;
+	margin-left: 5%;
 } 
 .eb_Mclose2{
 	margin-left: 420px;
@@ -205,18 +201,28 @@
 
 .eb_MsList{
 	margin-top : 10px;
-	border-bottom: 1px solid gray;
+	background-color: #F6F6F6;
+	margin-bottom: 5px;
+	height: 70px;
+	border-radius: 30px;
 }
 
 .eb_MrSendBtn{
-	width: 10%;
+	width: 13%;
 	 height: 98%;
 	
 }
 .eb_MrList{
 	margin-top : 10px;
-	border-bottom: 1px solid gray;
+	background-color: #F6F6F6;
+	margin-bottom: 5px;
+	height: 70px;
+	border-radius: 30px;
+
 }
+
+
+
 
 .eb_MsList:hover{
 	color : black;

@@ -249,14 +249,7 @@
 			<div id="eb_fw_main_1"></div>
 			
 			<div id="eb_fw_main_2">
-				<table id="eb_fw_main_2_table">
-					<tr >
-						<td class="eb_row">회계</td>
-						<td class="eb_row">영업/구매</td>
-						<td class="eb_row">인사</td>
-						<td class="eb_row">일정</td>
-					</tr>
-				</table>
+				
 			</div>
 				
 				

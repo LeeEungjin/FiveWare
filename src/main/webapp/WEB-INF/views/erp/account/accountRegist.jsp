@@ -156,9 +156,11 @@
 	 
 		
 		/* 계좌번호 확인 */
-	 $("#eb_bankBtn").click(function(){
+	 $(".eb_bankBtn").click(function(){
+		
 		   var bank=$("#eb_bank").val(); 
 		   var account=$("#eb_account").val().length;
+		   
 		alert(account);
 		  if(bank=='국민은행'){
 			  
@@ -258,14 +260,7 @@
 			<div id="eb_fw_main_1"></div>
 			
 			<div id="eb_fw_main_2">
-				<table id="eb_fw_main_2_table">
-					<tr >
-						<td class="eb_row">회계</td>
-						<td class="eb_row">영업/구매</td>
-						<td class="eb_row">인사</td>
-						<td class="eb_row">일정</td>
-					</tr>
-				</table>
+		
 			</div>
 				
 				
@@ -358,45 +353,35 @@
                           
                          <!--  Modal body -->
              <div class="modal-body">
-             
-               <table id="eb_modal_table">
-                  <tr>
-                     <td>예금계좌 코드</td>
-                     <td><input type="text" class="eb_viewCode" name="code" readonly="readonly"></td>
-                  </tr>
-                  <tr> 
-                     <td>계좌명</td>
-                     <td><input type="text" class="eb_viewMemo" name="memo"></td>
-                  </tr>
-                  <tr>   
-                     <td>은행</td>
-                     <td>
-                     	<select name="bank"  class="eb_viewBank">
+             	 <div class="input-group input-group_modal">
+							  <span class="input-group-addon">예금계좌 코드</span>
+							  <input type="text" class="form-control eb_viewCode"   readonly="readonly" name="code">
+					</div>
+					
+					 <div class="input-group input-group_modal">
+							  <span class="input-group-addon">계좌명</span>
+							  <input type="text" class="form-control eb_viewMemo"   name="memo">
+					</div>
+					
+					 <div class="input-group input-group_modal">
+							  <span class="input-group-addon">은행</span>
+							  <select name="bank" class="eb_viewBank">
 						   			<option value="국민은행">국민 은행</option>
 						   			<option value="신한은행">신한 은행</option>
 						   			<option value="농협">농협</option>
-						 </select>
-                     </td>
-                  </tr>
-                  <tr>   
-                     <td>계좌번호</td>
-                     <td>
-                     	<input type="text" name="account"  class="eb_viewAccount">
-                  	</td>
-                  </tr>
-                  
-                  
-               
-                            
-               </table>
+						 		</select>
+							  	<input type="text" class="form-control eb_viewAccount eb_account" name="account"  placeholder="-없이 입력해주세요.">
+						    <input type="button" class="btn btn-default eb_bankBtn"  value="확인">
+					</div>
+              
                
              </div>
                           
                           <!-- modal footer -->
             <div class="modal-footer">
-               <button id="eb_accountUpdate">수정</button>
+               <button id="eb_accountUpdate"  class="btn btn-default">수정</button>
                
-               <input type="button" id="eb_accountDelete" data-dismiss="modal" value="삭제">
+               <input type="button" id="eb_accountDelete" class="btn btn-default" data-dismiss="modal" value="삭제">
                
                   
              </div>
@@ -442,7 +427,7 @@
 			 
 				<div class="modal-dialog">
 				
-					 <div class="modal-content" id="tModal">
+					 <div class="modal-content">
 						      
 						        <!-- Modal Header -->
 						<div class="modal-header">
@@ -456,34 +441,27 @@
 						        <!-- Modal body -->
 				 <div class="modal-body">
 				 
-					<table id="eb_modal_tableT">
-						<tr>
-						   <td>예금계좌 코드</td>
-						   <td><input type="text" name="code" id="eb_accountCode" ></td>
-						</tr>
-						<tr>  
-						   <td>계좌명</td>
-						   <td><input type="text" name="memo"></td>
-						 </tr>
-						 <tr>  
-						   <td>은행</td>
-						   <td><select name="bank" id="eb_bank">
+				 <div class="input-group input-group_modal">
+							  <span class="input-group-addon">예금계좌 코드</span>
+							  <input type="text" class="form-control"  id="eb_accountCode" readonly="readonly" name="code">
+					</div>
+					
+					 <div class="input-group input-group_modal">
+							  <span class="input-group-addon">계좌명</span>
+							  <input type="text" class="form-control"   name="memo">
+					</div>
+					
+					 <div class="input-group input-group_modal">
+							  <span class="input-group-addon">은행</span>
+							  <select name="bank" id="eb_bank">
 						   			<option value="국민은행">국민 은행</option>
 						   			<option value="신한은행">신한 은행</option>
 						   			<option value="농협">농협</option>
 						 		</select>
-						  </td>
-						</tr>
-						 <tr>  
-						   <td>계좌번호</td>
-						   <td>
-						   	<input type="text" name="account" id="eb_account" placeholder="-없이 입력해주세요.">
-						    <input type="button" id="eb_bankBtn" value="확인">
-						   </td>
-						</tr>
-						
-						          
-					</table>
+							  	<input type="text" class="form-control " id="eb_account" name="account"  placeholder="-없이 입력해주세요.">
+						    <input type="button" class="eb_bankBtn" value="확인">
+					</div>
+
 					
 				 </div>
 						        

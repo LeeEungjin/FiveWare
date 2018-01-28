@@ -70,7 +70,7 @@
 				<ul>
 					<li><a href="${pageContext.request.contextPath}/myPage/memberMyPage">내 정보</a></li>
 					<li><a href="${pageContext.request.contextPath}/myPage/timeRecord?memberCode=${member.code }">출/퇴근 조회</a></li>
-					<li><a href="#">년/월차 휴가 조회</a></li>
+		
 			
 				</ul>
 			</div>
@@ -88,15 +88,7 @@
 			<div id="eb_fw_main_1"></div>
 			
 			<div id="eb_fw_main_2">
-				<table id="eb_fw_main_2_table">
-					<tr >
-						<td class="eb_row">전자결재</td>
-						<td class="eb_row">게시판</td>
-						<td class="eb_row">일정관리</td>
-						<td class="eb_row">클라우드</td>
-						<td class="eb_row">마이페이지</td>
-					</tr>
-				</table>
+			
 			</div>
 				
 				
@@ -114,8 +106,8 @@
 		
 					<div id="submenu_table_1" class="w3-panel w3-card-4">
 					<div class="eb_table_text">
-						
 							<h3>기본 정보</h3>
+						
 						</div>
 					
 					<table class="table" >

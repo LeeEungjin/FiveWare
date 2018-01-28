@@ -1,5 +1,5 @@
 @CHARSET "UTF-8";
-@CHARSET "UTF-8";
+
 
 *{
 	margin: 0px;
@@ -166,8 +166,8 @@ td.eb_row:hover {
 #eb_contents_table{
 	display: none; 
 	margin-top: 50px;
-	height : 380px;
-	width : 850px;
+	height : 55%;
+	width : 95%;
 	overflow: scroll;
 
 	

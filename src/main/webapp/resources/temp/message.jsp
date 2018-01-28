@@ -354,12 +354,11 @@
 		<div class="eb_Mall">
 		
 			<div class="eb_M1">
-				<i class="fa fa-hand-o-up" style="font-size:20px" id="eb_Micon"></i>
-			</div>
 			
-			<div class="eb_M2" >
-		  		<p id="eb_Mp">Message</p>
-		    </div>
+				<i class="fa fa-envelope" style="font-size:35px; color: white;" id="eb_Micon"></i>
+				
+			</div>
+	
 
 </div>
 
@@ -432,7 +431,7 @@
 			
 			   <input type="button" value="삭제" class="eb_MdeleteBtn">
             
-            <input type="button" value="답장" class="eb_MrSendBtn">
+            <input type="button" value="보내기" class="eb_MrSendBtn">
          
          <input type="button" value="확인" class="eb_viewClose" id="eb_viewClose2">
 		</div>
