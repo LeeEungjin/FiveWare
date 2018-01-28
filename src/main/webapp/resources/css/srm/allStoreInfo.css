@@ -15,22 +15,27 @@
 
 #all_store_header{
 	width: 100%;
-    background-color: #ffdfe4;
     height: 13%;
+}
+
+#logoImg {
+	margin-top: 9%;
+	margin-left: 11%;
 }
 
 #all_store_icon{
 	height: 100%;
-	width: 5%;
-	background-color: #ff8080;
+	width: 15%;
 	float: left;
 }
 
 #all_store_title{
 	height: 100%;
 	width: 15%;
-	background-color: #ffc8b0;
 	float: left;
+	font-size: 30px;
+	font-weight: bold;
+	margin-top: 1.4%;
 }
 
 #all_store_middle{
@@ -59,7 +64,7 @@
 #map_title{
 	width: 49%;
 	height: 100%;
-	/* background-color: #D5D5D5; */
+	background-color: #f9e3e4;
 	margin-right: 2%;
 	float: left;
 	font-size: 30px;
@@ -77,7 +82,7 @@
 #table_title{
 	width: 49%;
 	height: 100%;
-	/* background-color: #D5D5D5; */
+	background-color: #f9e3e4;
 	float: right;
 	font-size: 30px;
     font-weight: bold;
@@ -93,7 +98,6 @@
 
 #all_store_footer{
 	width: 100%;
-    background-color: #cdcde7;
     height: 7%;
 }
 

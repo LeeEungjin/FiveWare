@@ -132,7 +132,7 @@
 				url : "./orderView",
 				type : "get",
 				success : function(data){
-					$("#or_update_modal").html(data);
+					$("#order_update_modal_contents").html(data);
 				},
 				error : function(){
 					swal("error");
@@ -213,14 +213,14 @@
       <!-- submenu banner end -->
       
       <!-- submenu menu -->
-         <div class="fw_menu fw_selected" data-toggle="collapse" data-target="#sub1" title="sub1">
+         <div class="fw_menu " data-toggle="collapse" data-target="#sub1" title="sub1">
             기초정보
             <div class="fw_arrow sub1">
                ∧
             </div>
          </div>
          
-         <div class="fw_subselected collapse in" id="sub1">
+         <div class=" fw_subsub collapse" id="sub1">
             <ul>
                <li><a href="../../erp/foundation/supplier">거래처 등록</a></li>
                <li><a href="../../erp/foundation/product">제품 등록</a></li>
@@ -230,13 +230,13 @@
          </div>
          
          <!-- ----------2---------- -->
-            <div class="fw_menu" data-toggle="collapse" data-target="#sub2" title="sub2" >
+            <div class="fw_menu fw_selected" data-toggle="collapse" data-target="#sub2" title="sub2" >
                구매관리
             <div class="fw_arrow sub2">
                ∨
             </div>
          </div>
-         <div class="fw_subsub collapse"  id="sub2">
+         <div class="fw_subselected collapse  in"  id="sub2">
             <ul>
                <li><a href="../../erp/order/orderRegist">주문 입력</a></li>
                <li><a href="../../erp/order/graph/orderGraph">주문 현황 보기</a></li>
@@ -295,7 +295,7 @@
 					<p id="or_title">주문 입력</p>
 				</div>
 				<div id="erp_jh_contents_search">
-					<div id="er_search">
+					<div id="order_search">
 						<!-- 검색 기능 -->
 							<div class="input-group search_group">
 								<form id="or_search_frm" method="get">
@@ -339,7 +339,9 @@
 				
 				<!-- 등록 버튼 -->
 					<div id="erp_jh_contents_bottom">
+					<c:if test="${member.temp eq '영업/구매부'}">
 						<button id="or_insert" class="modal_btn btn btn-default" data-toggle="modal" data-target="#or_modal">신규등록</button>
+					</c:if>
 					</div>
 				<!-- 등록 버튼 끝 -->
 				
@@ -425,8 +427,8 @@
 								    </tbody>
 								 </table> -->
 							</div>
-							<input id="or_total_btn" type="button" value="합계 계산">
 							<input id="all_total_input" type="number" readonly="readonly">
+							<input id="or_total_btn" class="btn btn-danger" type="button" value="합계 계산">
 							
 				        </div>
 				        <!-- modal contents 끝-->
@@ -446,7 +448,7 @@
 				
 				<!-- 수정 Modal -->
 				<div class="modal fade" id="or_update_modal" role="dialog">
-				    
+				    <div id="order_update_modal_contents"></div>
 				</div>
 				
 				<!-- 수정 Modal 끝 -->

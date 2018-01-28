@@ -311,13 +311,14 @@
 <style>
     .dropzone
     {
-        border:2px dotted #3292A2;
-        width:100%;
+        border:2px dotted #CE3636;
+        width:119%;
         height:50px;
-        color:#92AAB0;
+        color:#CE3636;
         text-align:center;
         font-size:24px;
         padding:10px;
+            margin-top: 2%;
     }
     #result, #result_one {
     	width: 100%;
@@ -422,7 +423,7 @@
 			
 			<div id="fw_main_contents">
 				<div id="erp_jh_contents_title">
-					<div id="mr_icon">icon</div>
+					<div id="mr_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
 					<p id="mr_title">메뉴등록</p>
 				</div>
 				<div id="erp_jh_contents_search">
@@ -499,11 +500,11 @@
 							        <td>${mr_list.price }</td>
 							        
 							        <c:if test="${mr_list.imgNull eq 'true'}">
-							        	<td><img src="${pageContext.request.contextPath}/resources/images/common/icon_file.gif"></td>
+							        	<td><i class="fa fa-close"></i></td>
 							        </c:if>
 							        
 							        <c:if test="${mr_list.imgNull eq 'false'}">
-							        	<td>-</td>
+							        	<td><i class="fa fa-file-image-o"></i></td>
 							        </c:if>
 							        
 							      </tr>
@@ -528,10 +529,13 @@
 				<!-- table 끝 -->
 				
 				<!-- 등록 버튼 -->
+				
 					<div id="erp_jh_contents_bottom">
-						<button class="btn btn-default" id="mr_checkDelete">선택삭제</button>
-						<button class="btn btn-default" id="mr_insert" class="modal_btn" data-toggle="modal" data-target="#jh_mr_Modal">신규등록</button>
 						
+						<c:if test="${member.temp == '영업/구매부'}">
+							<button class="btn btn-default" id="mr_checkDelete">선택삭제</button>
+							<button class="btn btn-default" id="mr_insert" class="modal_btn" data-toggle="modal" data-target="#jh_mr_Modal">신규등록</button>
+						</c:if>
 					</div>
 				<!-- 등록 버튼 끝 -->
 				
@@ -624,7 +628,7 @@
 				      	<!-- modal header -->
 				        <div class="modal-header">
 				          <button type="button" class="close jh_file_cancel" data-dismiss="modal">&times;</button>
-				          <h4 class="modal-title">|메뉴 등록</h4>
+				          <h4 class="modal-title">|메뉴 확인 및 수정</h4>
 				        </div>
 				        <!-- modal header 끝-->
 				        
@@ -656,11 +660,6 @@
 							</div>
 							
 							<div class="input-group input-group_modal">
-							  <span class="input-group-addon">사진</span>
-							  <!-- <div id="mr_img_div"></div> -->
-							</div>
-							
-							<div class="input-group input-group_modal">
 							  <span class="input-group-addon">레시피</span>
 							  <input name="recipe"  type="text" class="form-control viewRecipe" placeholder="Additional Info">
 							</div>
@@ -684,8 +683,10 @@
 				        
 				        <!-- modal footer -->
 				        <div class="modal-footer">
+				        <c:if test="${member.temp eq '영업/구매부'}">
 				          <button type="button" class="btn btn-default menuUpdate" data-dismiss="modal">수정</button>
-						  <button type="button" class="btn btn-default menuDelete" data-dismiss="modal">삭제</button>				        
+						  <button type="button" class="btn btn-default menuDelete" data-dismiss="modal">삭제</button>	
+						</c:if>			        
 				          <button type="button" class="btn btn-default jh_file_cancel" data-dismiss="modal">Close</button>
 				        </div>
 				        </form>

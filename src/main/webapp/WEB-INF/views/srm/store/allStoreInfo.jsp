@@ -53,7 +53,8 @@ $(function() {
 	
 		<div id="all_store_header">
 		
-			<div id="all_store_icon"></div><div id="all_store_title"></div>	
+			<div id="all_store_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
+			<div id="all_store_title">전체 지점 정보</div>	
 		</div>
 		
 		<div id="all_store_middle">

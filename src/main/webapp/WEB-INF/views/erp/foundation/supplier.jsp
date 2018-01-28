@@ -211,7 +211,7 @@
 			<!-- main contents -->
 			<div id="fw_main_contents">
 				<div id="erp_jh_contents_title">
-					<div id="mr_icon">icon</div>
+					<div id="mr_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
 					<p id="mr_title">거래처 등록</p>
 				</div>
 				
@@ -298,7 +298,9 @@
 					
 				<!-- 등록 버튼 -->
 				<div id="erp_jh_contents_bottom">
+				<c:if test="${member.temp == '영업/구매부'}">
 					<button class="ej_right_btn btn" id="ej_write_btn">신규등록</button>
+				</c:if>
 				</div>
 				<!-- 등록 버튼 끝 -->
 				
@@ -534,9 +536,11 @@
 		  
 	  </div>
 	  <div class="modal-footer">
+	  <c:if test="${member.temp eq '영업/구매부'}">
 	    <input type="submit" id="ej_modal_update" class="btn" value="수정">
 	    <input type="button" id="ej_modal_stop" class="btn" value="사용중지">
 	    <input type="button" id="ej_modal_delete" class="btn" value="삭제">
+	  </c:if>
 	  </div>
   </div>
 

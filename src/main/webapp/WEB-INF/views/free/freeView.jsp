@@ -31,7 +31,8 @@
 	<div id="fw_container">
 	
 		<div id="free_header">
-			<div id="free_icon"></div><div id="free_title"></div>	
+			<div id="free_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
+			<div id="free_title">게시판</div>	
 		</div>
 		
 		<div id="free_middle">
@@ -74,9 +75,11 @@
 			</c:forEach>
 			
 			<a href="freeList"><button id="freeViewBtn4" type="button" class="freeViewBtns btn btn-default">목록</button></a>
+			<c:if test="${member.name eq view.writer}">
 			<a href="freeReply?num=${view.num}"><button type="button" class="freeViewBtns btn btn-default">답글</button></a>
 			<a href="freeUpdate?num=${view.num}"><button type="button" class="freeViewBtns btn btn-default free_update_btn">수정</button></a>
 			<a href="freeDelete?num=${view.num}"><button type="button" class="freeViewBtns btn btn-default">삭제</button></a>
+			</c:if>
 		</div>
 	
 	</div>
