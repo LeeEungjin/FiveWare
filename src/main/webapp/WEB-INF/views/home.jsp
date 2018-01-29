@@ -224,9 +224,9 @@
             <!-- 큰 메뉴 3개 (ERP, GROUPWARE, SRM) -->
             <thead>
             <tr>
-				<td class="menu"><a style="font-size: 25px;" href="erp" class="eb_login" id="eb_href_1">ERP</a></td>
-				<td class="menu"><a style="font-size: 25px;" href="GroupWare" class="eb_login" id="eb_href_2">Group Ware</a></td>
-				<td class="menu"><a style="font-size: 25px;" href="srm" class="eb_login" id="eb_href_3">SRM</a></td>
+               <td class="menu"><a style="font-size: 25px;" href="erp" class="eb_login" id="eb_href_1">ERP</a></td>
+               <td class="menu"><a style="font-size: 25px;" href="GroupWare" class="eb_login" id="eb_href_2">Group Ware</a></td>
+               <td class="menu"><a style="font-size: 25px;" href="srm" class="eb_login" id="eb_href_3">SRM</a></td>
             </tr>
             </thead>
             
@@ -242,7 +242,7 @@
                      
                      <div class="container" style="float: left; width: 50%;">
                         <label><b>사원번호</b></label> 
-                        <input type="text" class="inputTextBox" placeholder="Enter Code" name="code" id="code" value="180107-005"> 
+                        <input type="text" class="inputTextBox" placeholder="Enter Code" name="code" id="code" value="180108-008"> 
                         <label><b>비밀번호</b></label>
                         <input type="password" class="inputTextBox" placeholder="Enter Password" name="pw" id="pw" value="a">
                   
@@ -318,8 +318,16 @@
             </tbody>
          </table>
          </form>
+<<<<<<< HEAD
 </div>
 </div>
 
+=======
+
+         
+                </div>
+                </div>
+
+>>>>>>> 6105c38e10eccf4a49fe7b3096b0c972a12d9481
 </body>
 </html>

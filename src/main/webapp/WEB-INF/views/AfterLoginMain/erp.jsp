@@ -9,7 +9,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 
 <title>ERP</title>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6105c38e10eccf4a49fe7b3096b0c972a12d9481
    <link href="./resources/css/erp.css" rel="stylesheet">
    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -22,12 +25,18 @@
    <script src="./resources/js/clock.js"></script>
    <link href="./resources/css/common/clock.css" rel="stylesheet" />
    <!-- clock library End -->
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6105c38e10eccf4a49fe7b3096b0c972a12d9481
 
 </head>
 
 <script type="text/javascript">
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6105c38e10eccf4a49fe7b3096b0c972a12d9481
    var slideIndex = 0;
 
    function carousel() {
@@ -383,15 +392,21 @@
       })
     
    });
+<<<<<<< HEAD
 
 	
+=======
+>>>>>>> 6105c38e10eccf4a49fe7b3096b0c972a12d9481
 </script>
 
 
 <body>
  <c:import url="${url}/resources/temp/message.jsp"></c:import> 
 
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 6105c38e10eccf4a49fe7b3096b0c972a12d9481
    <div id="login_after_wrap">
       <div id="lofin_after_header">
          <div id="lang_wrap">

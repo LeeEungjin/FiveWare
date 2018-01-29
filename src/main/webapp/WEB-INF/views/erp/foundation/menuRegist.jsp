@@ -227,6 +227,14 @@
 	     });
 	 	 // Window Onload End
 		
+	 	 /* var id=$("#headerLoginIdValue").val();
+	 	 
+	 	 
+	 	 
+	 	 $("#headerLoginId").val(id); */
+	 	 
+	 	
+	 	 
 	});
 	
 	
@@ -352,7 +360,7 @@
    
       <!-- submenu banner -->
       <div id="fw_subbanner">
-         자재관리
+         구매/영업
       </div>
       <!-- submenu banner end -->
       
@@ -424,6 +432,9 @@
 	<!-- submenu end -->
 	
 	<div id="fw_mainwrap">
+	
+	<input id="headerLoginIdValue" type="hidden" value="${member.name}">
+	
 			<div id="fw_main">
 				<div id="mr_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
 			</div>

@@ -243,7 +243,9 @@
 					sign=sign+"</div>";
 					sign=sign+"<div id='ar_signBoxBasis'>";
 					sign=sign + "<div id='ar_signTemp'> 기 안</div>";
-					sign = sign+"<div id='ar_singMember'><input type=text readonly=readonly value='${member.temp}'><input type=text name=draftrank class=ar_draftrank readonly=readonly value='${member.rank }'><input type=text readonly=readonly value='${member.name }'></div>";
+					sign = sign+"<div id='ar_singMember'><input type=text readonly=readonly value='${member.temp}'>";
+					sign=sign+"<input type=text name=draftrank class=ar_draftrank readonly=readonly value='${member.rank }'><input type=text readonly=readonly value='${member.name }'></div>";
+					
 					sign= sign+"<input type=hidden value='${member.code}' name='draftcode'>";
 					sign= sign+"</div>";
 					
@@ -333,7 +335,7 @@
 					tr = tr +"<input type=hidden class=ar_tablecode1 value="+data.code+">";
 					tr = tr + "<td id='ar_tableBlank"+i+"'title="+data.code+" class='ar_tabletds ar_resultA' accesskey="+i+" >최종</td>";
 					tr = tr + "<td id='ar_tabletd2' class='ar_tabletds'>결재</td>";
-					tr = tr + "<td id='ar_tabletd3' class='ar_tabletds'>"+"<input type=text readonly=readonly class=ar_dataname value="+data.name+"> <input type=text  readonly=readonly class=ar_datarank value="+ data.rank+"> 기안 <input type=text readonly=readonly class=ar_datatemp value="+data.temp+"></td>"
+					tr = tr + "<td id='ar_tabletd3' class='ar_tabletds'>"+"<input type=text readonly=readonly class='ar_dataname ar_class' value="+data.name+"> <input type=text  readonly=readonly class='ar_datarank ar_class' value="+ data.rank+"> 기안 <input type=text readonly=readonly class='ar_datatemp ar_class' value="+data.temp+"></td>"
 					tr = tr + "</tr>";
 					
 					$("#ar_resultTableBody").append(tr);
@@ -413,7 +415,7 @@
 	
 <div id="fw_mainwrap">
 			<div id="fw_main">
-				기안문 작성
+				<div id="event_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
 			</div>
 			
 	<div id="ar_explantBtnWrap">
