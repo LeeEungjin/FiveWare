@@ -143,7 +143,7 @@ $(function(){
 
 	<div id="fw_mainwrap">
 			<div id="fw_main">
-				main Title
+				<img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png">
 			</div>
 			
 			<div class="ar_plusTitle">
@@ -204,7 +204,7 @@ $(function(){
 	
 	<div id="ar_explantBtnWrap">
 		<div id="ar_explantBtn">
-			<input type="button" value="등록" class="ar_btnStyle ar_signAsk" id="ar_signAsk">
+			<input style="margin-left: 93%;" type="button" value="등록" class="ar_btnStyle ar_signAsk" id="ar_signAsk">
 			<input type="button" value="취소" class="ar_btnStyle1 ar_signCen"  id="ar_sign2">
 		</div>
 	</div>

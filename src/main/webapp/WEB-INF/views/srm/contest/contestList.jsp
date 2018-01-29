@@ -86,12 +86,11 @@
 	
 	<div id="fw_mainwrap">
 			<div id="fw_main">
-
+				<img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png">
 			</div>
 			
 			<div id="fw_main_contents">
 				<div id="erp_jh_contents_title">
-					<div id="event_icon">icon</div>
 					<p id="event_title">공모전 현황</p>
 				</div>
 				<div id="erp_jh_event_sub">
