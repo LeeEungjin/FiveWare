@@ -33,10 +33,10 @@
             </div>
             
             <div class="ej_user_name">
-            	 NAME <%-- ${member.name} --%>
+            	${member.name}
             </div>
             <div class="ej_user_sub_info">
-            	<a href="#" class="ej_my_info">내정보</a>
+            	<a href="${pageContext.request.contextPath}/myPage/myPageMain" class="ej_my_info">내정보</a>
             	<a href="${pageContext.request.contextPath}/member/memberLogout" class="ej_logout">로그아웃</a>
             </div>
         </div>
@@ -51,7 +51,7 @@
 						<span class="ej_sidebar_menu ej_menu_color ej_erp">ERP</span>
 					</a>
 				</li><li class="productMenu menuTooltip" title="GroupWare">
-					<a href="${pageContext.request.contextPath}/groupware">
+					<a href="${pageContext.request.contextPath}/GroupWare">
 						<span class="ej_sidebar_menu  ej_menu_color ej_groupware">GroupWare</span>
 					</a>
 				</li><li class="productMenu menuTooltip" title="SRM">

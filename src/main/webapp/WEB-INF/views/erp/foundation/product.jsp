@@ -272,19 +272,6 @@
     	margin-right: 2.5%;
     }
 
-	#erp_jh_event_sub {
-		width: 90%;
-		height: 16%;
-		background-color: #f6f6f6;
-		padding-top: 0.5%;
-		margin-left: 5%;
-	}
-	
-	#erp_jh_event_sub p {
-		font-size: 30px;
-	    font-weight: bold;
-	    margin-top: 1.5%;
-	}
 </style>
 
 
@@ -383,10 +370,9 @@
 			
 			<!-- main contents -->
 			<div id="fw_main_contents">
-				<!-- erp_jh_contents_title -->
-				<div id="erp_jh_event_sub">
+				<div id="erp_jh_contents_title">
 					
-					<p>제품 등록</p>
+					<p id="sr_title">제품 등록</p>
 				</div>
 				
 				<!-- 검색 기능 -->
@@ -457,7 +443,7 @@
 				<!-- 등록 버튼 -->
 				<div class="container" id="erp_jh_contents_bottom">
 					<c:if test="${member.temp eq '영업/구매부'}">
-						<button class="ej_right_btn btn" id="ej_write_btn">신규등록</button>
+						<button class="sr_btn btn" id="ej_write_btn">신규등록</button>
 					</c:if>
 				</div>
 				<!-- 등록 버튼 끝 -->
