@@ -16,6 +16,9 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+	
 	<!-- clock library Start -->
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
 	<script src="./resources/js/clock.js"></script>
@@ -174,30 +177,36 @@
 	 $("#start").click(function(){
 			var time=$("#demo_2").text();
 			var date=$("#demo_1").text();
-	
-		 if(confirm("출근처리 하시겠습니까 ?") == false){
-		     alert("출근처리가 취소되었습니다.")   
-			 return false;
-		    }else{
-		    	var code='${member.code}';
-		    	$.ajax({
-		    		type : "POST",
-		    		url : "./time/timeInsert",
-		    		data : {
-		    			"memberCode" : code,
-		    			"regdate" : date,
-		    			"startTime" : time,
-		    			"lastTime" : null
-		    		},success : function(data){
-		    			alert(data)
-		    		},error : function(){
-		    			alert("ERROR")
-		    		}
-		    		
-		    	});
-			$("#start").val(time);
-		
-		    }
+
+			 swal({
+	             title:"출근 처리 하시겠습니까?",
+	             type: "success",
+	             showCancelButton: true,
+	             confirmButtonClass: "btn-primary",
+	             confirmButtonText: "확인",
+	             closeOnConfirm: false
+	           },
+	           function(){
+	        	   var code='${member.code}';
+			    	$.ajax({
+			    		type : "POST",
+			    		url : "./time/timeInsert",
+			    		data : {
+			    			"memberCode" : code,
+			    			"regdate" : date,
+			    			"startTime" : time,
+			    			"lastTime" : null
+			    		},success : function(data){
+			    			 swal(data)
+			    		},error : function(){
+			    			alert("ERROR")
+			    		}
+			    		
+			    	});
+				$("#start").val(time);
+			    	
+	           });
+			
 
 		}); 
 	 
@@ -208,32 +217,40 @@
 		 var start=$("#start").val();
 
 			if(start =="출근"){
-				alert("출근처리 먼저 해주세요.")
-				return false;
-			}else if(confirm("퇴근처리 하시겠습니까?")==false){
-				alert("퇴근처리가 취소되었습니다.")
+				swal("출근처리 먼저 해주세요.")
 				return false;
 			}else{
-				var code='${member.code}';
-				
-				$.ajax({
-					type : "post",
-					url : "./time/timeUpdate",
-					data : { 
-					   "memberCode" : code,
-					   "regdate" : date,
-					   "lastTime" :time,
-					   },success : function(data){
-						   alert(data);
-					   },error : function(){
-						   alert(error);
-					   }
+			
+			 swal({
+	             title:"퇴근 처리 하시겠습니까?",
+	             type: "success",
+	             showCancelButton: true,
+	             confirmButtonClass: "btn-primary",
+	             confirmButtonText: "확인",
+	             closeOnConfirm: false
+	           },
+	           function(){
+					var code='${member.code}';
 					
-				});
-				
-			$("#last").val(time);
+					$.ajax({
+						type : "post",
+						url : "./time/timeUpdate",
+						data : { 
+						   "memberCode" : code,
+						   "regdate" : date,
+						   "lastTime" :time,
+						   },success : function(data){
+							   swal(data)
+						   },error : function(){
+							   alert(error);
+						   }
+						
+					});
+					
+				$("#last").val(time);
+			    	
+	           });
 			}
-	
 			
 	 });
 		

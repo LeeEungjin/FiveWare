@@ -134,7 +134,7 @@
 			<div id="eb_contents_wrap">
 				 
 				<div class="eb_contents_text">
-				 	<span class="glyphicon glyphicon-file" id="eb_contents_text_p">출/퇴근조회</span>
+				 	<span  id="eb_contents_text_p">출/퇴근조회</span>
 				</div>
 		<!-- contents -->
 				 <div id='calendar'></div> 

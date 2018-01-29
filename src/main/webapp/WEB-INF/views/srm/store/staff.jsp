@@ -17,7 +17,17 @@
 	 
 		 var message = '${message}';
 	     if(message != ""){
-	        alert(message);
+	    	 swal({
+                 title:message,
+                 type: "success",
+                 showCancelButton: false,
+                 confirmButtonClass: "btn-primary",
+                 confirmButtonText: "확인",
+                 closeOnConfirm: false
+               },
+               function(){
+					location.reload();
+               });
 	     }
 	 
 		$(".fw_menu").click(function(){
@@ -63,8 +73,17 @@
 				url : "./staffDelete",
 				data : {"num" : num},
 				success : function(data){
-					alert(data);
-					location.reload();
+					 swal({
+		                 title:data,
+		                 type: "success",
+		                 showCancelButton: false,
+		                 confirmButtonClass: "btn-primary",
+		                 confirmButtonText: "확인",
+		                 closeOnConfirm: false
+		               },
+		               function(){
+							location.reload();
+		               });
 				},error : function(){
 					alert("Error");
 				}
@@ -121,19 +140,7 @@
 		
 		<div id="fw_main">
 			
-			<div id="eb_fw_main_1"></div>
-			
-			<div id="eb_fw_main_2">
-				<table id="eb_fw_main_2_table">
-					<tr >
-						<td class="eb_row">전체 지점 정보</td>
-						<td class="eb_row">우리 매장 관리</td>
-						<td class="eb_row">이벤트</td>
-						<td class="eb_row">공지사항</td>
-					</tr>
-				</table>
-			</div>
-				
+			<img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png">
 				
 		</div>
 			
@@ -142,7 +149,7 @@
 			<div id="eb_contents_wrap">
 				 
 				<div class="eb_contents_text">
-				 	<span class="glyphicon glyphicon-file" id="eb_contents_text_p">직원관리</span>
+				 	<span  id="eb_contents_text_p">직원관리</span>
 				</div>
 				
 		

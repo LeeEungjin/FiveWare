@@ -14,6 +14,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+  
 <html>
 <script type="text/javascript">
 	$(function(){
@@ -273,23 +276,37 @@
 			 	
 			 	$("#eb_paymentBtn").click(function(){
 			 		
-			 	
+			 
 			 		var time=$("#time").text();
 			 		var totalPrice=$("#p2").text();
 			 		$("#eb_timeSales").val(time);
 			 		$("#eb_totalPrice").val(totalPrice);
+
+			 		alert($("#storeName").val())
 			 		
-			 		if($("#p4").text()==0){
-			 			alert("메뉴 선택 먼저 해주세요.");
+			 		if($("#p4").text()=='0'){
+			 			swal("메뉴 선택 먼저 해주세요.");
 			 			return false;
-			 		}
+			 		}else{
 			 		
-			 		if(confirm("결제 하시겠습니까?")==false){
-			 			alert("결제가 취소되었습니다.");
-			 			return false;
+			 		swal({
+		                 title:"결제 하시겠습니까?",
+		                 type: "success",
+		                 showCancelButton: true,
+		                 confirmButtonClass: "btn-primary",
+		                 confirmButtonText: "확인",
+		                 closeOnConfirm: false
+		               },
+		               function(){
+		            	   $("#eb_frm").prop("action","./storeSales");
+							location.reload();
+		               });
+			 		
 			 		}
 			 		
 			 	});
+			 	
+			 	
 			 	
 			 	$("#eb_salesList").click(function(){
 			 		 var regdate='${sysdate}';
@@ -351,7 +368,7 @@
 			 				"regdate" : regdate,
 			 				"storeCode" : storeCode
 			 			}, success : function(data){
-			 				alert(data);
+			 				swal(data);
 			 			}
 			 		});
 			 		
@@ -545,7 +562,7 @@
     </div>
   </div>
 		
-		   	<form action="./storeSales" method="post">
+		   	<form  method="post" id="eb_frm">
 		<div class="menuWrap1">
 		   		<input id="storeName" type="hidden" name="store" value="${member.store}">
 		   		<input type="hidden" name="regdate" value="${sysdate}">
@@ -723,7 +740,7 @@
 		   		
 		   		<div class="menu6_1">
 		   			
-		   			<input style="font-size: 20px;" type="submit" class="btn btn-outline-primary b4" value="결제" id="eb_paymentBtn">
+		   			<input style="font-size: 20px;" type="button" class="btn btn-outline-primary b4" value="결제" id="eb_paymentBtn">
 		   			
 		   		</div>
 		

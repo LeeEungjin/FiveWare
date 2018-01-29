@@ -17,7 +17,17 @@
 	 
 		 var message = '${message}';
 	     if(message != ""){
-	        alert(message);
+	    	 swal({
+                 title:message,
+                 type: "success",
+                 showCancelButton: false,
+                 confirmButtonClass: "btn-primary",
+                 confirmButtonText: "확인",
+                 closeOnConfirm: false
+               },
+               function(){
+					location.reload();
+               });
 	     }
 	 
 		$(".fw_menu").click(function(){
@@ -170,17 +180,17 @@
 				}); 
 				
 				if(debtor!=creditor){
-					alert("차변, 대변 값이 같아야합니다.");
+					swal("차변, 대변 값이 같아야합니다.");
 				}
 				 
 			}else if(debtor==null){
-				alert("차변 값을 입력해주세요.");
+				 swal("차변값을 입력해주세요.");
 			}else if(creditor==""){
-				alert("대변 값을 입력해주세요.");
+				swal("대변값을 입력해주세요.");
 			}else if(debtor==creditor){
 				$("#chit_frm").submit();
 			}else{
-				alert("차변, 대변 값이 같아야합니다.");
+				swal("차변, 대변 값이 같아야합니다.");
 			}
 			
 		});

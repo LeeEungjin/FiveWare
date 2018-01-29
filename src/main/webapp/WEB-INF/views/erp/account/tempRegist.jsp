@@ -23,7 +23,18 @@
 	 
 		 var message = '${message}';
 	     if(message != ""){
-	        alert(message);
+	    	 swal({
+                 title:message,
+
+                 type: "success",
+                 showCancelButton: false,
+                 confirmButtonClass: "btn-primary",
+                 confirmButtonText: "확인",
+                 closeOnConfirm: false
+               },
+               function(){
+					location.reload();
+               });
 	     }
 	 
 		$(".fw_menu").click(function(){
@@ -91,8 +102,17 @@
 			url : "./tempRegistDelete",
 			type : "get",
 			success : function(data){
-				alert(data);
-				location.reload();
+				 swal({
+	                 title:data,
+	                 type: "success",
+	                 showCancelButton: false,
+	                 confirmButtonClass: "btn-primary",
+	                 confirmButtonText: "확인",
+	                 closeOnConfirm: false
+	               },
+	               function(){
+						location.reload();
+	               });
 			},error : function(){
 				alert("error")
 			}
@@ -101,11 +121,20 @@
 	 
 	 //전체삭제
 	 $("#deleteBtn").click(function(){
-		 if(confirm("정말 삭제하시겠습니까 ?") == false){
-		     alert("삭제가 취소되었습니다.")   
-			 return false;
-		    }else{
-		    	var count=0;
+		 
+		 var count=0;
+		 var code="";
+		 
+		 swal({
+             title:"삭제하시겠습니까?",
+             type: "success",
+             showCancelButton: true,
+             confirmButtonClass: "btn-primary",
+             confirmButtonText: "확인",
+             closeOnConfirm: false
+           },
+           function(){
+        	  	var count=0;
 		    	var code="";
 		    	var cod=[];
 		    	$(".eb_input_chk").each(function(d){
@@ -115,22 +144,32 @@
 		    			cod.push(code);
 		    		}
 		    	});
-
+	
+		    	$.ajax({
+					data : {"code" : cod.toString()},
+					url : "./tempRegistDelete",
+					type : "get",
+					success : function(data){
+						 swal({
+			                 title:data,
+			                 type: "success",
+			                 showCancelButton: false,
+			                 confirmButtonClass: "btn-primary",
+			                 confirmButtonText: "확인",
+			                 closeOnConfirm: false
+			               },
+			               function(){
+								location.reload();
+			               });
+					},error : function(){
+						alert("error")
+					}
+				 });
 		    	
-		    	 $.ajax({
-		 			data : {"code" : cod.toString()},
-		 			url : "./tempRegistDelete",
-		 			type : "get",
-		 			success : function(data){
-		 				alert(data);
-		 				location.reload();
-		 			},error : function(){
-		 				alert("error")
-		 			}
-		 		 });
-		    	
-		    	
-		    }
+           });
+		 
+		 
+		
 
 	 });
 	 

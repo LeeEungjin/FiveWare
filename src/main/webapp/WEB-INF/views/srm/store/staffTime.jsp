@@ -17,7 +17,17 @@
 	 
 		 var message = '${message}';
 	     if(message != ""){
-	        alert(message);
+	    	 swal({
+                 title:message,
+                 type: "success",
+                 showCancelButton: false,
+                 confirmButtonClass: "btn-primary",
+                 confirmButtonText: "확인",
+                 closeOnConfirm: false
+               },
+               function(){
+					location.reload();
+               });
 	     }
 	 
 		$(".fw_menu").click(function(){
@@ -64,7 +74,7 @@
 			
 			<div class="fw_subselected collapse in" id="sub1">
 				<ul>
-					<li><a href="${pageContext.request.contextPath}/member/myPageMain">매장 정보</a></li>
+					<li><a href="${pageContext.request.contextPath}/myPage/myPageMain">매장 정보</a></li>
 					<li><a href="${pageContext.request.contextPath}/srm/staff?store=${member.store}">직원 관리</a></li>
 					<li><a href="${pageContext.request.contextPath}/srm/staffTime?store=${member.store}">직원 출/퇴근 조회</a></li>
 				</ul>
@@ -80,18 +90,7 @@
 		
 		<div id="fw_main">
 			
-			<div id="eb_fw_main_1"></div>
-			
-			<div id="eb_fw_main_2">
-				<table id="eb_fw_main_2_table">
-					<tr >
-						<td class="eb_row">전체 지점 정보</td>
-						<td class="eb_row">우리 매장 관리</td>
-						<td class="eb_row">이벤트</td>
-						<td class="eb_row">공지사항</td>
-					</tr>
-				</table>
-			</div>
+		<img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png">
 				
 				
 		</div>
@@ -101,7 +100,7 @@
 			<div id="eb_contents_wrap">
 				 
 				<div class="eb_contents_text">
-				 	<span class="glyphicon glyphicon-file" id="eb_contents_text_p">출/퇴근조회</span>
+				 	<span  id="eb_contents_text_p">출/퇴근조회</span>
 				</div>
 				
 		
