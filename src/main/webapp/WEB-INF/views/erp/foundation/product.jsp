@@ -171,8 +171,9 @@
 	
 	function F_FileMultiUpload(files, code, mode) {
 		for(var i=0; i<files.length; i++) {
-			var ext = files[i].name.split('.',2)[1];
-			if(ext != 'jpg') {
+			var ext = files[i].name.split('.',2)[1].toLowerCase();
+			console.log(ext);
+			if(!(ext == 'jpg' || ext == 'png' || ext == 'jpeg')) {
 				swal("Error", "사진파일만 올릴 수 있습니다.");
 				return false;
 			}
