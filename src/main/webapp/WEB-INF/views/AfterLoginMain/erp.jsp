@@ -777,6 +777,7 @@
  <c:import url="${url}/resources/temp/message.jsp"></c:import> 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  
 >>>>>>> eunbi2
@@ -900,6 +901,9 @@
 
 				<div class="eb_line"></div>
 =======
+=======
+
+>>>>>>> ea1bde0e322c94e824732bc320b407a7c6488741
    <div id="login_after_wrap">
       <div id="lofin_after_header">
          <div id="lang_wrap">
@@ -1022,7 +1026,6 @@
 
 
             <div class="eb_line"></div>
->>>>>>> arin
             
             <div id="sche_add">
                <i class="fa fa-calendar-plus-o" style="font-size:25px; padding-top:10px;">Calendar</i>
