@@ -12,7 +12,8 @@
 			
 			<p>
 				<a id="ej_menu">
-					<span class="ej_icon"></span> <span id="ej_icon_contents">전체메뉴</span>
+					<span class="ej_icon"></span> 
+					<span id="ej_icon_contents">전체메뉴</span>
 				</a>
 			</p>
 		</div>

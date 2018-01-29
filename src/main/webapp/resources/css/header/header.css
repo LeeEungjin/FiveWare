@@ -38,7 +38,8 @@ a:ACTIVE, a:AFTER, a:HOVER, a:VISITED {
 }
 
 #ej_menu {
-	padding-left: 8px; 
+	padding-left: 8px;
+	cursor: pointer;
 }
 
 .ej_icon {
