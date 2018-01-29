@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<<<<<<< HEAD
 
-
-=======
->>>>>>> ea1bde0e322c94e824732bc320b407a7c6488741
 	<!-- header -->
 	<div id="ej_sidebar" style="float: left;">
 		<div class="ej_sidebar_contents">
