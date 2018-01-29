@@ -225,11 +225,9 @@
                   
                   <div class="srm_jk_srm">
                      
-                     <a href="./srm/store/allStoreInfo">
                         <span class="srm_jk_inerp"> 
                            <span class="srm_jk_bigdiv">전체 지점정보</span>
                         </span>
-                     </a>
                      
                      <a href="../../../ware/map/mapList">
                         <span class="srm_jk_smalldiv">
@@ -241,11 +239,9 @@
                   
                   <div class="srm_jk_srm">
                      
-                     <a href="#">
                         <span class="srm_jk_inerp">
                            <span class="srm_jk_bigdiv">우리 매장관리</span>
                         </span>
-                     </a> 
                      
                      <a href="./myPage/storeMyPage">
                         <span class="srm_jk_smalldiv">
@@ -269,11 +265,9 @@
                   
                   <div class="srm_jk_srm">
                      
-                     <a href="#">
                         <span class="srm_jk_inerp">
-                           <span class="srm_jk_bigdiv">이벤트</span>
+                           <span class="srm_jk_bigdiv">이벤트&공모전</span>
                         </span>
-                     </a> 
                      
                      <a href="./srm/event/eventList?perPage=5&curPage=1">
                         <span class="srm_jk_smalldiv">
@@ -296,11 +290,9 @@
                   
                   <div class="srm_jk_srm">
                      
-                     <a href="#">
                         <span class="srm_jk_inerp">
                            <span class="srm_jk_bigdiv">게시판</span>
                         </span>
-                     </a> 
                      
                      <a href="./srm/storeNotice">
                         <span class="srm_jk_smalldiv">
@@ -311,11 +303,9 @@
                   
                   <div class="srm_jk_srm">
                      
-                     <a href="#">
                         <span class="srm_jk_inerp">
                            <span class="srm_jk_bigdiv">포스기</span>
                         </span>
-                     </a>
                      
                        <a href="./srm/pos/pos?store=${member.store}">
                         <span class="srm_jk_smalldiv">

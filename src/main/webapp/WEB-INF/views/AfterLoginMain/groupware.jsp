@@ -222,11 +222,9 @@
 					<div class="groupWare_jk_all">
                   <div class="groupWare_jk_groupWare">
                      
-                     <a href="#"> 
                         <span class="groupWare_jk_inerp"> 
                            <span class="groupWare_jk_bigdiv">전자결재</span>
                         </span>
-                     </a> 
                      
 
                     <a href="${pageContext.request.contextPath}/GroupWare/epayment/formList?curPage=1">
@@ -257,15 +255,13 @@
                   </div>
                   <div class="groupWare_jk_groupWare">
                      
-                     <a href="#"> 
                         <span class="groupWare_jk_inerp"> 
                            <span class="groupWare_jk_bigdiv">게시판</span>
                         </span>
-                     </a> 
                      
                      <a href="../ware/free/freeList"> 
                         <span class="groupWare_jk_smalldiv"> 
-                           <span class="groupWare_jk_writing">공지사항</span>
+                           <span class="groupWare_jk_writing">답글<br>게시판</span>
                         </span>
                      </a> 
                      
@@ -277,11 +273,9 @@
                   </div>
                   <div class="groupWare_jk_groupWare">
                      
-                     <a href="#"> 
                         <span class="groupWare_jk_inerp"> 
                            <span class="groupWare_jk_bigdiv">일정관리</span>
                         </span>
-                     </a> 
                      
                      <a href="../ware/calendar/coding"> 
                         <span class="groupWare_jk_smalldiv"> 
@@ -304,11 +298,9 @@
                      </a>
                   </div>
                   <div class="groupWare_jk_groupWare">
-                     <a href="#"> 
                         <span class="groupWare_jk_inerp"> 
                            <span class="groupWare_jk_bigdiv ">마이 페이지</span>
                         </span>
-                     </a> 
                      
               
                           <a href="./myPage/memberMyPage">

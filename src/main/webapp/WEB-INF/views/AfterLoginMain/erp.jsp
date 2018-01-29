@@ -41,7 +41,7 @@
 	    slideIndex++;
 	    
 	    if (slideIndex > x.length) {slideIndex = 1} 
-	    //x[slideIndex-1].style.display = "inline-block"; 
+	   //x[slideIndex-1].style.display = "block"; 
 	    setTimeout(carousel, 3000); 
 	}
 	
@@ -584,7 +584,7 @@
          <div id="contents_wrap">
             <div id="notice_wrap">
                <div id="notice_title">
-                  <p id="notice_title_p"><a href="../ware/community/communityList">공지사항</a></p>
+                  <p id="notice_title_p"><a style="color: black; text-decoration: none;, font-size: 24px;" href="../ware/community/communityList">공지사항</a></p>
                </div>
 <!-- 
 
@@ -615,11 +615,9 @@
                <div class="erp_jk_all">
                      <div class="erp_jk_erp">
                         
-                        <a href="#">
                            <span class="erp_jk_inerp">
                               <span class="erp_jk_bigdiv">회계</span>
                            </span>
-                        </a> 
                         
                         <a href="./erp/storeRegist">
                            <span class="erp_jk_smalldiv">
@@ -639,11 +637,9 @@
                      
                      <div class="erp_jk_erp">
                         
-                        <a href="#">
                            <span class="erp_jk_inerp">
                               <span class="erp_jk_bigdiv">영업/구매</span>
                            </span>
-                        </a> 
                         
                         <a href="./erp/foundation/supplier">
                            <span class="erp_jk_smalldiv">
@@ -673,11 +669,9 @@
                      </div>
                      <div class="erp_jk_erp">
                         
-                        <a href="#">
                            <span class="erp_jk_inerp">
                               <span class="erp_jk_bigdiv">인사</span>
                            </span>
-                        </a> 
                         
                         <a href="#">
                            <span class="erp_jk_smalldiv">
@@ -718,11 +712,9 @@
                      </div>
                      <div class="erp_jk_erp">
                         
-                        <a href="#">
                            <span class="erp_jk_inerp">
                               <span class="erp_jk_bigdiv">일정</span>
                            </span>
-                        </a> 
                         
                         <a href="#">
                            <span class="erp_jk_smalldiv">

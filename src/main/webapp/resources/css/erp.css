@@ -138,6 +138,8 @@ td.eb_row:hover {
 
 #name_p {
 	font-size: 13px;
+    margin-top: 10%;
+    margin-left: 5%;
 }
 
 #sche_p {
@@ -222,8 +224,8 @@ td.eb_row:hover {
 
 #notice_title_p {
 	margin-top: 5px;
-	font-size: 30px;
-	color: #CE3636 !important;
+	font-size: 20px !important;
+	color: black !important;
 }
 
 #notice_icon {
@@ -317,6 +319,8 @@ td.eb_row:hover {
 	float: left;
 	margin-left: 15px;
 	margin-top: 15px;
+	color: black;
+    text-decoration: none;
 }
 
 .erp_jk_writing {
