@@ -361,7 +361,7 @@
 		<div id="lofin_after_header">
 			<div id="lang_wrap">
 				<div id="lang_icon">
-					<i class="fa fa-globe" style="font-size: 35px"></i>
+					<img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogoBlack.png">
 				</div>
 
 			</div>
@@ -369,14 +369,14 @@
 			<div id="menu_wrap">
 				<table id="eb_fw_main_2_table">
 					<tr>
-						<td class="eb_row"><a
+						<td class="eb_row"><a id="erpMenuWrapA" style="color: white;, text-decoration: none;"
 							href="${pageContext.request.contextPath}/">HOME</a></td>
-						<td class="eb_row"><a
+						<td class="eb_row"><a  style="color: white;, text-decoration: none;"
 							href="${pageContext.request.contextPath}/erp">ERP</a></td>
-						<td class="eb_row"><a
+						<td class="eb_row"><a  style="color: white;, text-decoration: none;"
 							href="${pageContext.request.contextPath}/groupware">Group
 								Ware</a></td>
-						<td class="eb_row"><a
+						<td class="eb_row"><a  style="color: white;, text-decoration: none;"
 							href="${pageContext.request.contextPath}/srm">SRM</a></td>
 					</tr>
 				</table>
@@ -400,11 +400,6 @@
 								class="eb_default_img">
 
 							<!-- 로그인하면 이름!!  -->
-
-							<p id="name_p">${member.name}님
-								<i class="glyphicon glyphicon-time" style="font-size: 20px;"
-									data-toggle="modal" data-target="#myModal" id="eb_timeBtn"></i>
-							</p>
 
 
 							<!--  출퇴근 modal-->
@@ -463,19 +458,21 @@
 
 
 					<div id="pro_info_2">
-						<i class="fa fa-bell-o" style="font-size: 36px">new</i>
+						<p id="name_p">${member.name}님
+								<i class="glyphicon glyphicon-time" style="font-size: 20px;"
+									data-toggle="modal" data-target="#myModal" id="eb_timeBtn"></i>
+						</p>
+						<i class="fa fa-bell-o" style="font-size: 20px">new</i>
 						<div id="alert_menu"></div>
 					</div>
 				</div>
 				<div id="sche_info">
-					<i class="fa fa-calendar" style="font-size: 36px">Clock</i>
-					<br>
+					<!-- <i class="fa fa-calendar" style="font-size: 36px">Clock</i> -->
 					<!-- Clock API Start -->
 					<div id="clock" class="light">
 						<div class="display">
 							<div class="weekdays"></div>
 							<div class="ampm"></div>
-							<div class="alarm"></div>
 							<div class="digits"></div>
 						</div>
 					</div>
@@ -486,8 +483,8 @@
 				<div class="eb_line"></div>
             
             <div id="sche_add">
-               <i class="fa fa-calendar-plus-o" style="font-size:36px; padding-top:10px;"></i>
-               <p id="sche_p">오늘의 일정을 등록해보세요.</p>
+               <i class="fa fa-calendar-plus-o" style="font-size:30px; padding-top:10px;">Calendar</i>
+               <p id="sche_p" style="font-size: 20px"><a href="calendar/coding" style="color: gray">일정 등록하기 <i class="fa fa-plus-square-o" style="font-size:23px;"></i></p></a>
             </div>
             
             
@@ -503,7 +500,7 @@
                
                <!-- 공지사항 -->
                <div class="quick_menu_box_1" >
-                  <i class="fa fa-list" style="font-size:45px" data-toggle="tooltip" data-placement="bottom" title="공지사항"></i>
+                  <a style="color: black;, text-decoration: none;" href="../../ware/community/communityList"><i class="fa fa-list" style="font-size:45px" data-toggle="tooltip" data-placement="bottom" title="공지사항"></i></a>
                </div>
                
                <!-- 쪽지 -->
@@ -545,7 +542,7 @@
                             <div class="start-form">
                                  <div class="landing-form">
                                      <div class="group">      
-                                       <input type="text" name="member" required>
+                                       <input id="ladderMemberInput" type="text" name="member" required>
                                        <span class="highlight"></span>
                                        <span class="bar"></span>
                                        <label>참여자 수</label>
@@ -587,13 +584,13 @@
          <div id="contents_wrap">
             <div id="notice_wrap">
                <div id="notice_title">
-                  <p id="notice_title_p"><a href="../ware/community/communityList">Notice</a></p>
+                  <p id="notice_title_p"><a href="../ware/community/communityList">공지사항</a></p>
                </div>
-
+<!-- 
 
                <div id="notice_icon">
-                  <i class="fa fa-bullhorn" style="font-size:48px;color: #CE3636"></i>
-               </div>
+                  <i class="fa fa-bullhorn" style="font-size:30px;color: #CE3636"></i>
+               </div> -->
                
                <c:forEach items="${randomList}" var="random">
                   <div class="mySlides w3-animate-bottom" id="notice_text">
@@ -601,7 +598,7 @@
                   </div>
                </c:forEach>
                
-               <div id="weather_div">
+               <!-- <div id="weather_div">
                   <i class="fa fa-cloud weather_div_p" style="font-size:36px">Weather</i>
                </div>
                
@@ -611,7 +608,7 @@
                
                <div id="edit_icon">
                   <i class="fa fa-cog weather_div_p" style="font-size:36px;"></i>
-               </div>
+               </div> -->
             </div>
             
             <div id="submenu_wrap">
@@ -759,7 +756,7 @@
       </div>
       
       <div id="login_after_footer">
-      
+      	Copyright © 2018 KH Information Educational | FiveWare | EungJin EunBi ARin JiHyun
       </div>
    </div>
 </body>

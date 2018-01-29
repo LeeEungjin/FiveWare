@@ -47,7 +47,7 @@
 	width: 50%;
 	height: 10%;
 	margin-left: 25%;
-	background-color: #D5D5D5;
+	background-color: #F6F6F6;
 	text-align: center;
 	padding: 1%;
 	font-size: 18px;
@@ -59,12 +59,28 @@
 	text-decoration: none;
 }
 
+#reportCommunity{
+	color: #c8c8c8;
+}
+
+.material-icons{
+	font-size: 16px;
+}
+
+#com_boldText{
+	text-decoration: none;
+}
+
 #com_contents {
 	width: 80%;
 	height: 83%;
-	background-color: #F6F6F6;
 	margin-left: 10%;
 	padding: 20px;
+}
+
+#com_contents thead{
+	color: white;
+	background-color: #824100;
 }
 
 #com_search {

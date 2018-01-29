@@ -27,7 +27,6 @@
 #free_icon{
 	height: 100%;
 	width: 15%;
-	background-color: #ff8080;
 	float: left;
 }
 
@@ -60,7 +59,14 @@
     background-color: #F6F6F6;
     margin-left: 10%;
     margin-top: 3%;
+    padding: 20px;
 }
+
+#free_contents thead{
+	color: white;
+	background-color: #824100;
+}
+
 .free_temp_select{
 	width: 80% !important;
 }

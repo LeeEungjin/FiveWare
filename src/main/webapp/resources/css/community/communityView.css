@@ -55,6 +55,12 @@
 	height: 90%;
 	background-color: #F6F6F6;
 	margin-left: 10%;
+	padding: 20px;
+}
+
+#com_contents thead{
+	color: white;
+	background-color: #824100;
 }
 
 .com_temp_select {
