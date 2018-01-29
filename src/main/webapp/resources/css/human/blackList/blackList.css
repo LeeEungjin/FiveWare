@@ -19,20 +19,19 @@
 }
 
 #logoImg {
-	margin-top: 9%;
+	    margin-top: 1.2%;
 }
 
 #event_title {
 	font-size: 30px;
 	font-weight: bold;
-	margin-left: 5%;
 	margin-top: 1.5%;
 }
 
 #erp_jh_event_sub {
 	width: 90%;
     height: 16%;
-    background-color: #fde9e9;
+    background-color: #f6f6f6;
     padding-top: 0.5%;
     margin-left: 5%;
 }
