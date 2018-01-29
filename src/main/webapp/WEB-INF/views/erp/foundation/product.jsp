@@ -81,7 +81,7 @@
 					F_FileMultiUpload_Callback(data.files, 'result_one');
 	            },
 	            error : function(data){
-	               alert("error");
+	               swal("error");
 	            }
          	}); 
 		});
@@ -154,8 +154,6 @@
 
 	          var files = e.originalEvent.dataTransfer.files;
 	          
-	          console.log(files);
-	          
 	          if(files.length < 1)
 	               return;
 	          
@@ -172,7 +170,14 @@
 	}); 
 	
 	function F_FileMultiUpload(files, code, mode) {
-		/*************** 이미지만 올릴 수 있도로고 처리!!!!!!! ******************/
+		for(var i=0; i<files.length; i++) {
+			var ext = files[i].name.split('.',2)[1];
+			if(ext != 'jpg') {
+				swal("Error", "사진파일만 올릴 수 있습니다.");
+				return false;
+			}
+		}
+		
 		var len = 0;
 		
 		$.ajax({
@@ -187,7 +192,6 @@
 		if( (files.length+len) < 5 ) {
 	         var data = new FormData();
 	         for (var i = 0; i < files.length; i++) {
-	        	console.log(files[i]);
 	            data.append('file', files[i]);
 	         }
 	         
@@ -201,16 +205,16 @@
 	            processData: false,
 	            contentType: false,
 	            success: function(data) {
-	            	alert("success!!");
+	            	swal("성공");
 	            	F_FileMultiUpload_Callback(data, mode);
 	            	
 	            },
 	            error: function() {
-	            	alert("error");
+	            	swal("error");
 	            }
 	         });
 		} else {
-			alert("이미지는 4개까지 업로드할 수 있습니다.");
+			swal("실패","이미지는 4개까지 업로드할 수 있습니다.");
 		}
 	    
 	}
@@ -226,14 +230,13 @@
 		    img.onclick = function() {
 		    	if(confirm("삭제하시겠습니까?") == true) {
 			    	var temp = this;
-			    	console.log(temp);
 					var fnum = this.getAttribute('title');
 					
 					$.ajax({
 						url: '../../ajax/fileDeleteOne',
 						data: {'fnum': fnum},
 						success:function(result) {
-							alert("삭제되었습니다.");
+							swal("삭제되었습니다.");
 							temp.remove();
 						}
 					});
@@ -267,7 +270,20 @@
     	margin-left: 2.5%;
     	margin-right: 2.5%;
     }
-    
+
+	#erp_jh_event_sub {
+		width: 90%;
+		height: 16%;
+		background-color: #f6f6f6;
+		padding-top: 0.5%;
+		margin-left: 5%;
+	}
+	
+	#erp_jh_event_sub p {
+		font-size: 30px;
+	    font-weight: bold;
+	    margin-top: 1.5%;
+	}
 </style>
 
 
@@ -366,9 +382,10 @@
 			
 			<!-- main contents -->
 			<div id="fw_main_contents">
-				<div id="erp_jh_contents_title">
+				<!-- erp_jh_contents_title -->
+				<div id="erp_jh_event_sub">
 					
-					<p id="mr_title">제품 등록</p>
+					<p>제품 등록</p>
 				</div>
 				
 				<!-- 검색 기능 -->
@@ -437,8 +454,8 @@
 				<!-- table 끝 -->
 					
 				<!-- 등록 버튼 -->
-				<div id="erp_jh_contents_bottom">
-					<c:if test="${member.temp == '영업/구매부'}">
+				<div class="container" id="erp_jh_contents_bottom">
+					<c:if test="${member.temp eq '영업/구매부'}">
 						<button class="ej_right_btn btn" id="ej_write_btn">신규등록</button>
 					</c:if>
 				</div>

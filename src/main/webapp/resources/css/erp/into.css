@@ -15,9 +15,6 @@
 	overflow: hidden;
 }
 
-#logoImg{
-	    margin-top: 9%;
-}
 
 #into_icon{
 	width: 15%;
@@ -28,7 +25,6 @@
 #into_title{
 	font-size: 30px;
 	font-weight: bold;
-	margin-left: 5%;
 	margin-top: 1.5%;
 }
 
@@ -65,7 +61,6 @@
 #erp_jh_contents_bottom{
 	width: 100%;
 	height: 10.5%;
-	background-color: #cee7ff;
 }
 
 #ej_excel_path{

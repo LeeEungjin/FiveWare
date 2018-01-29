@@ -6,12 +6,6 @@
 	height: 50%;
 }
 
-
-#logoImg{
-	    margin-top: 9%;
-}
-
-
 #mater_modal_table{
 	width: 100% !important;
 }
@@ -57,7 +51,7 @@
 #erp_jh_contents_search{
 	    width: 90%;
     height: 14.5%;
-    background-color: #f6f6f6;
+    background-color: #EAEAEA;
     padding-top: 0.5%;
     margin-left: 5%;
     margin-top: 1%;

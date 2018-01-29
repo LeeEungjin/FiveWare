@@ -42,7 +42,7 @@
 				url:"../codeName",
 				data:{  },
 				success:function(data){
-					alert(data);
+			
 					$("#eb_chitCode").val(data);
 				}
 			});
@@ -245,12 +245,8 @@
 	<div id="fw_mainwrap">
 		
 		<div id="fw_main">
-			
-			<div id="eb_fw_main_1"></div>
-			
-			<div id="eb_fw_main_2">
-				
-			</div>
+	
+	 <img alt="" src="${url}/resources/images/logo/smallLogo.png">
 				
 				
 		</div>
