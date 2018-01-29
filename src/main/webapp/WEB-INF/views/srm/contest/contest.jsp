@@ -66,6 +66,8 @@ $(function(){
 		document.ar_contestPage.submit();
 	});
 	
+	
+	
 	$(".ar_like").click(function(){
 		var t =$(this);
 		var cnum=$(this).attr("title");
@@ -233,9 +235,7 @@ $(function(){
 						<input type="button" value="올리기" class="ar_insertBtn" title="${i.code }" data-toggle="modal" data-target="#ar_contest_Modal">
 					</c:if>
 					
-					<c:if test="${i.edate >= sysdate  }">
-						<input type="button" value="결과보기" class="ar_insertBtn" title="${i.code }" data-toggle="modal" data-target="#ar_contest_Modal">
-					</c:if>
+				<input type="button" value="결과보기" class="ar_resultBtn" title="${i.code }" data-toggle="modal" data-target="#ar_result_Modal">
 				</div>	
 				
 					<div class="ar_ar_contestMenu">
@@ -410,6 +410,71 @@ $(function(){
 				<div class="modal fade" id="ar_View_Modal" role="dialog">
 				   
 				  </div>
+				<!-- Modal 끝 -->
+				
+				<!-- Modal -->
+				
+				<div class="modal fade" id="ar_result_Modal" role="dialog">
+				    <div class="modal-dialog2 modal-m">
+				      <div class="modal-content">
+				      
+				      	<!-- modal header -->
+				        <div class="modal-header">
+				          <button type="button" class="close jh_file_cancel" data-dismiss="modal">&times;</button>
+				          <h4 class="modal-title">| 공모전 결과</h4>
+				        </div>
+				        <!-- modal header 끝-->
+				        
+				        <!-- modal contents -->
+				        <form action="contestJoin" method="post" id="contestfrm" name="contestfrm" enctype="multipart/form-data">
+				        
+				        
+				        <div class="modal-body2">
+				        
+				        	<div class="ar_resultTop">
+				        		OOOO.OO.OO~OOOO.OO.OO 제 O회 공모전
+				        			신제품 개발 
+				        	</div>
+							
+							<div class="ar_contestJoin1">
+									<div class="ar_contestPhoto">
+										<img class="ar_menuimg" src="${url }/resources/contest/${j.photo}">
+									</div>
+									<div class="ar_contestContain">
+										<p>지점 : OOO </p>
+										<p>메뉴명 : OOO</p>
+										<p>메뉴설명: OOO</p>
+									</div>
+				        </div>
+				        
+				        <div class="ar_resultText">
+				        	OOO점 축하드립니다.
+				        	제 O회 공모전에서 당선되신 OOO점에는 부상으로
+				        	OOOO, OOOO 가 지급될 예정이며, 앞으로도 활발한 활동 부탁드립니다.
+				        	감사합니다.
+				        </div>
+				        <!-- modal contents 끝-->
+				        
+				        <!-- modal footer -->
+				        <div class="modal-footer">
+				          <input type="button" class="btn btn-default ar_InsertBtn"  value="올리기">
+				          <button type="button" class="btn btn-default" data-dismiss="modal">초기화</button>
+				        </div>
+				       </form>
+				      	<!-- modal footer 끝-->
+				      </div>
+				    </div>
+				  </div>
+				 
+				<!-- Modal 끝 -->
+
+
+			<!-- Modal -->
+				
+				<div class="modal fade" id="ar_View_Modal" role="dialog">
+				   
+				  </div>
+				  
 				<!-- Modal 끝 -->
 
 </div>

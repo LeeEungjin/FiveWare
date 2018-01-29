@@ -9,7 +9,7 @@
 				        
 				        <div class="modal-body1">
 							<div class="ar_Viewphoto">
-								<img src="${url }/resources/contest/${one.photo}">
+								<%-- <img src="${url }/resources/contest/${one.photo}"> --%>
 							 
 							</div>
 							

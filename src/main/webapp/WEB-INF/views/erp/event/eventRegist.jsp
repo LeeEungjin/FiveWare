@@ -200,79 +200,46 @@
 <div id="fw_container">
 	<!-- submenu -->
 	<div id="fw_subcontainer">
-   
-      <!-- submenu banner -->
-      <div id="fw_subbanner">
-         자재관리
-      </div>
-      <!-- submenu banner end -->
-      
-      <!-- submenu menu -->
-         <div class="fw_menu fw_selected" data-toggle="collapse" data-target="#sub1" title="sub1">
-            기초정보
-            <div class="fw_arrow sub1">
-               ∧
-            </div>
-         </div>
-         
-         <div class="fw_subselected collapse in" id="sub1">
-            <ul>
-               <li><a href="./../erp/foundation/supplier">거래처 등록</a></li>
-               <li><a href="./../erp/foundation/product">제품 등록</a></li>
-               <li><a href="./../erp/foundation/menuRegist">메뉴 등록</a></li>
-               <li><a href="./../erp/foundation/storageRegist">창고 등록</a></li>
-            </ul>
-         </div>
-         
-         <!-- ----------2---------- -->
-            <div class="fw_menu" data-toggle="collapse" data-target="#sub2" title="sub2" >
-               구매관리
-            <div class="fw_arrow sub2">
-               ∨
-            </div>
-         </div>
-         
-         <div class="fw_subsub collapse"  id="sub2">
-            <ul>
-               <li><a href="../erp/order/orderRegist">주문 입력</a></li>
-            	<li><a href="../erp/order/graph/orderGraph">주문 현황 보기</a></li>
-            </ul>
-         </div>
-         
-         <!-- ----------3---------- -->
-         <div class="fw_menu" data-toggle="collapse" data-target="#sub3" title="sub3" >
-               자재관리
-            <div class="fw_arrow sub3">
-               ∨
-            </div>
-         </div>
-         
-         <div class="fw_subsub collapse"  id="sub3">
-            <ul>
-               <li><a href="../../erp/mater/materRegist?materKind=enter">입고 입력</a></li>
-               <li><a href="../../erp/mater/materRegist?materKind=rele">출고 입력</a></li>
-               <li><a href="../../erp/mater/materRegist?materKind=back">반품 입력</a></li>
-               <li><a href="../../erp/mater/materRegist?materKind=confin">불출 입력</a></li>
-            </ul>
-         </div>
-         
-         <!-- ----------4---------- -->
-         <div class="fw_menu" data-toggle="collapse" data-target="#sub4" title="sub4" >
-               	조회
-            <div class="fw_arrow sub4">
-               	∨
-            </div>
-         </div>
-         
-         <div class="fw_subsub collapse"  id="sub4">
-            <ul>
-               <li><a href="../../ware/erp/into/intoList">조회 및 엑셀 다운</a></li>
-            </ul>
-         </div>
+	
+	 <!-- submenu menu -->
+         	<div id="fw_subbanner">
+			이벤트 & 공모전
+		</div>
+		<!-- submenu banner end -->
+		
+		<!-- submenu menu -->
+			<div class="fw_menu" data-toggle="collapse" data-target=".fw_subselected" title="sub1">
+				이벤트
+				<div class="fw_arrow sub1">
+					∨
+				</div>
+			</div>
+			
+			<div class="fw_subselected collapse" id="sub1">
+				<ul>
+					<li> 이벤트 등록 </li>
+				</ul>
+			</div>
+			
+			<!-- ----------2---------- -->
+				<div class="fw_menu  fw_selected" data-toggle="collapse" data-target="#sub2" title="sub2" >
+					공모전
+				<div class="fw_arrow sub2">
+					∧
+				</div>
+			</div>
+			
+			<div class="fw_subsub collapse  in"  id="sub2">
+				<ul>
+					<li> 공모전 등록 </li>
+				</ul>
+			</div>
+		
          
       <!-- submenu menu end -->
-   </div>
-	<!-- submenu end -->
+			
+		
+</div>
 	
 	<div id="fw_mainwrap">
 			<div id="fw_main">
