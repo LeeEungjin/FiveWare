@@ -77,7 +77,7 @@
   </select>
 
   <select id="tempMember" parameterType="String" resultType="MemberDTO">
-  	select * from member where temp=#{temp}
+  	select * from member where temp=#{temp} and kind != '퇴직'
   </select>
   
   <select id="memberSelect" parameterType="String" resultType="MemberDTO">

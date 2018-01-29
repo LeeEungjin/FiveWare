@@ -68,7 +68,7 @@
 }
 
 #fw_main{
-	background-color: green;
+	/* background-color: green; */
 	height: 8.5%;
 	width: 100%;
 }
@@ -79,3 +79,4 @@
     height: 100%;
     float: left;
 }
+
