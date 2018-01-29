@@ -68,9 +68,13 @@
 }
 
 #fw_main{
+<<<<<<< HEAD
 	/* background-color: green; */
+=======
+>>>>>>> master
 	height: 8.5%;
 	width: 100%;
+	border-bottom: 2px solid;
 }
 
 #fw_mainwrap{

@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
+<<<<<<< HEAD
 	<title>ERP</title>
 <link href="./resources/css/erp.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -10,10 +11,20 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+=======
+
+>>>>>>> master
 
 <meta name=description content="">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 
+<title>ERP</title>
+	<link href="./resources/css/erp.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	
 	<!-- clock library Start -->
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
@@ -422,9 +433,7 @@
 				<div id="pro_info">
 					<div id="pro_info_1">
 						<div id="pro_img">
-							<img
-								src="${pageContext.request.contextPath}/resources/images/sidebar/avatar82.png"
-								class="eb_default_img">
+							<img src="${pageContext.request.contextPath}/resources/member/${file.filename}" class="avatar">
 
 							<!-- 로그인하면 이름!!  -->
 
@@ -506,7 +515,11 @@
 					<!-- Clock API End -->
 				</div>
 
+<<<<<<< HEAD
 		
+=======
+
+>>>>>>> master
 				<div class="eb_line"></div>
             
             <div id="sche_add">
@@ -616,18 +629,17 @@
                <div id="notice_title">
                   <!-- <p id="notice_title_p"><a style="color: black; text-decoration: none;, font-size: 24px;" href="../ware/community/communityList">공지사항</a></p> -->
                </div>
-
 <!-- 
 
                <div id="notice_icon">
                   <i class="fa fa-bullhorn" style="font-size:30px;color: #CE3636"></i>
                </div> -->
                
-               <c:forEach items="${randomList}" var="random">
+               <%-- <c:forEach items="${randomList}" var="random">
                   <div class="mySlides w3-animate-bottom" id="notice_text">
                      <a href="#">${random.contents}</a>
                   </div>
-               </c:forEach>
+               </c:forEach> --%>
                
                <!-- <div id="weather_div">
                   <i class="fa fa-cloud weather_div_p" style="font-size:36px">Weather</i>
@@ -769,7 +781,6 @@
       <div id="login_after_footer">
       	Copyright © 2018 KH Information Educational | FiveWare | EungJin EunBi ARin JiHyun
       </div>
->>>>>>> master
    </div>
 </body>
 </html>

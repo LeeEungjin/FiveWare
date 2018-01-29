@@ -109,13 +109,12 @@
 	<!-- submenu end -->
 	
 	<div id="fw_mainwrap">
-			<!-- <div id="fw_main">
-
-			</div> -->
+			 <div id="fw_main">
+				<img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png">
+			</div> 
 			
 			<div id="fw_main_contents">
 				<div id="erp_jh_contents_title">
-					<div id="event_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
 					<p id="event_title">블랙리스트 관리</p>
 				</div>
 				<div id="erp_jh_event_sub">
