@@ -33,7 +33,7 @@
             </div>
             
             <div class="ej_user_name">
-            	${member.name}
+			<!-- 	<input id="headerLoginId"> -->
             </div>
             <div class="ej_user_sub_info">
             	<a href="${pageContext.request.contextPath}/myPage/myPageMain" class="ej_my_info">내정보</a>

@@ -494,7 +494,7 @@
 			        	<div id="skin4" onclick="selectPost(4)" class="postSkin" title="#e3e3ff"></div>
 			        	<div id="skin5" onclick="selectPost(5)" class="postSkin" title="#ffe1ff"></div>
 			        	
-				        <div id="postITarea" rows="5" name="contents"></div>
+				        <textarea id="postITarea" rows="5" name="contents"></textarea>
 				        <button style="font-size: 15px;" id="postInsertBtn" type="submit" class="btn btn-outline-secondary">등록</button>
 			     	</form>
 			     </div>

@@ -6,256 +6,198 @@
 	padding: 0px;
 }
 
-#fw_container{
-	width: 100%;
-	height: 100%;
-	background-color: lightblue;
-	transition: width 0.3s;	
-}
-
-#fw_subcontainer{
-	background-color: pink;
-	float:left;
-	width: 15%;
-	height: 100%;
-} 
-
-#fw_subbanner{
-		background-color: red;
-		height: 8.5%;
-		width: 100%;
-		font-size : 30px;
-		font-weight: bolder;
-		text-align: center;
-		line-height: 240.5%;
-}
-
-.fw_menu{
-	width: 100%;
-	height: 5%;
-	float:left;
-	background-color: yellow;
-	  font-weight: bold;
-    font-size: 16px;
-    line-height: 324%;
-    padding-left: 6%;
-    padding-top:1%;
-}
-
-
-.fw_selected{
-	color: red;
-   
-}
-
-.fw_arrow{
-	width:15%;
-	float:right;
-	height: 100%;
-	background-color: purple;
-	size:20px; 
-}
-
-.fw_subselected{
-	width: 70%;
-	background-color: #d1eaf1;
-	margin: 0 auto;
-	padding-top:1%;
-}
-
-.fw_subsub{
-		width: 70%;
-	background-color: #d1eaf1;
-	margin: 0 auto;
-	padding-top:1%;
-}
-
-#fw_main{
-	background-color: green;
-		height: 8.5%;
-		width: 100%;
-}
-
-#fw_mainwrap{
-	 /* background-color: blue; */
-	 width: 72%;
-	 height : 100%;
-	 /* margin-left: 28%; */
-	 float: left;
-}
 
 
 .ar_plusTitle{
 	width: 100%;
 	height: 5%;
-	background-color: #ff6666;
 	margin-bottom: 1%;
+	font-size: 30px;
+	font-weight: bold;
 	
 }
 
-#ar_plustext{
-	font-size: 18px;
-	font-weight: bold;
-	padding-top: 1.5%;
-	margin-left: 2%;
+#epayPager{
+	width: 100%;
+	text-align: center;
 }
 
 .ar_plusSearchWrap{
 	width: 100%;
-	height: 10%;
-	background-color: #fbc87b;
-	margin-bottom:2%;
-	border-top: 1px solid black;
+	background-color: #f6f6f6;
+}
+
+.ar_blank{
+   height: 10%;
+   width: 70%;
+   margin-left: 15%;
+   text-align: center;
+   border-bottom: 2px solid #929292;
+   border-top: 2px solid #929292;
+       
 }
 
 .ar_plusSearch{
-	width: 100%;
-	height: 50%;
-	background-color: #c46200;
-	margin-left: 2%;
+   width: 100%;
+   height: 50%;
+   background-color: #c46200;
+   margin-left: 2%;
 }
 
 #ar_psearch{
-	 width: 20%;
+    width: 20%;
     height: 77%;
     margin-left: 2%;
     margin-top: 1%;
 }
 
 #ar_psearchBtn{
-	width: 12%;
+   width: 12%;
     height: 75%;
-	background-color: #ffff80;
-	margin-left: 2%;
-	border: 0px;
-	font-size: 12px;
-	margin-bottom: 0.5%;
+   background-color: #ffff80;
+   margin-left: 2%;
+   border: 0px;
+   font-size: 12px;
+   margin-bottom: 0.5%;
 }
 
 .ar_plusDivWrap{
-	width: 100%;
-	height: 50%;
-	background-color: #f0f779;
-	margin-bottom: 2%;
-	    overflow: scroll;
+   width: 100%;
+   height: 50%;
+   background-color: #f0f779;
+   margin-bottom: 2%;
+       overflow: scroll;
 }
 
 
 .ar_titleDiv{
-	background-color: #b68db3;
-	width: 100%;
-	height: 7%;
-	text-align: center;
-	
+   background-color: #b68db3;
+   width: 100%;
+   height: 7%;
+   text-align: center;
+   
 }
 
 #ar_mainDivWrap{
-	width: 100%;
-    height: 72%;
-	background-color: pink;
+   width: 90%;
+    height: 67%;
+   /* background-color: pink; */
+   margin: 0 auto;
 }
 
 #ar_inhabitDiv{
-	width: 100%;
-	height: 50%;
-	background-color: #9dff9d;
-	border: 1px solid black;
+   width: 100%;
+   height: 50%;
+   /* background-color: #9dff9d; */
+   /* border: 1px solid black; */
 }
 
 #ar_inhabitWrap{
-	width: 33%;
-	height: 100%;
-	border: 1px solid black;
-	display: inline-block;
-	float: left;
+   width: 33%;
+   height: 100%;
+   border: 1px solid black;
+   display: inline-block;
+   float: left;
 }
 
 #ar_inhabitTableWrap{
-	width: 100%;
-	height: 100%;
-	display: inline-block;
-	border: 1px solid black;
-	float: left;
+   width: 100%;
+   height: 100%;
+   display: inline-block;
+   /* border: 1px solid black; */
+   float: left;
 }
 
 #ar_tableTop{
-	width: 100%;
-	height: 8%;
-	background-color: #ffff80;
-	margin-bottom: 2%;
+   width: 100%;
+   height: 8%;
+   /* background-color: #ffff80; */
+   margin-bottom: 2%;
 }
 
 #ar_latestInhabit{
-	width: 100%;
-	    margin-top: 14%;
+   width: 100%;
+       margin-top: 14%;
     height: 42%;
-	background-color: #bbdddd;
+   /* background-color: #bbdddd; */
 }
 
 #ar_tableWrap{
-	width: 100%;
-	height: 75%;
-	background-color: #D5D5D5;
+   width: 100%;
+   height: 75%;
+   /* background-color: #D5D5D5; */
 }
+
+#ar_tableWrap thead{
+	color: white;
+	background-color: black;
+}
+
 #eb_page{
-	margin: 0 auto;
-	width: 50%;
-	margin-top: 10px;
-	text-align: center;
+   margin: 0 auto;
+   width: 50%;
+   margin-top: 10px;
+   text-align: center;
 }
 
 #eb_table{
-	width: 100%;
+   width: 100%;
 }
 
 .ar_titleDiv1{
-	font-weight: bold;
-	display: inline-block;
-	border: 1px solid black;
-	height: 100%;
-	line-height: 220%;
-	float:left;
+   font-weight: bold;
+   display: inline-block;
+   border: 1px solid black;
+   height: 100%;
+   line-height: 220%;
+   float:left;
 }
 
 .ar_tableNum{
-	width: 10%;	
+   width: 10%;   
 }
 
 .ar_tableSystem{
-	width: 17%;	
+   width: 17%;   
 }
 
 .ar_tableFormName{
-	width: 10%;	
+   width: 10%;   
 }
 
 .ar_tableName{
-	width: 40%;	
+   width: 40%;   
 }
 
 .ar_tableOther{
-	width:50%;
+   width:50%;
 }
 
 #ar_tablenumber{
-	float:left;
-	margin-top: 2%;
+   float:left;
+   margin-top: 2%;
 }
 
 
 #ar_searchTitle{
-	float:right;
-	margin-top: 2%;
+   float:right;
+   margin-top: 2%;
+   
+}
+
+#ar_tableTitle{
+   background-color: black;
+   color:white;
 }
 
 #ar_searchInput{
-	float:right;
-	margin-top: 2%;
+   float:right;
+   margin-top: 2%;
 }
 
 #ar_searchBtn{
-	float:right;
-	margin-top: 2%;
+   float:right;
+   margin-top: 2%;
 }
 
 #eb_modal_table{
@@ -267,19 +209,19 @@
         margin-top: 4%;
 }
 .eb_modal_table_td{
-	width: 200px;
+   width: 200px;
 }
 .eb_modal_table_td_1{
-	width:100px;
-	text-align : center;
-	background-color: black;
-	color:white;
+   width:100px;
+   text-align : center;
+   background-color: black;
+   color:white;
 }
 .eb_modal_tr{
-	border-top: 1px solid #D5D5D5;
+   border-top: 1px solid #D5D5D5;
 }
 #eb_modal_tr_id{
-	    height: 318px;
+       height: 318px;
 }
 
 <!-- -->
@@ -296,148 +238,182 @@
 #eb_modal {
     height: 85%;
     width: 100%;
-    background-color: #a8a8ff;
+   /*  background-color: #a8a8ff; */
 }
 
 .modal-footer {
     padding-top: 28px;
     text-align: center;
-    background-color: #4444ff;
+    /* background-color: #4444ff; */
 }
 
 #ar_docuname{
-	text-align: center;
-	margin-bottom: 2%;
-	margin-top: 1%;
+   text-align: center;
+   margin-bottom: 2%;
+   margin-top: 1%;
 }
 
 
 #ar_signBoxWrap{
-	width: 100%;
-	    height: 14%;
-	background-color: #c8ffc8;
-	    margin-top: 4%;
+   width: 100%;
+       height: 14%;
+   /* background-color: #c8ffc8; */
+       margin-top: 4%;
 }
 
 #ar_signBoxDiv{
-	background-color: #c0e0e0;
-	height: 100%;
-	float:right;
-	/* width: 11%;  */
+   /* background-color: #c0e0e0; */
+   height: 100%;
+   float:right;
+   
+   /* width: 11%;  */
 }
 
 #ar_signText{
-	background-color: blue;
-	width: 20px;
-	height: 100%;
-	display: inline-block;
-	float:left;
-	text-align: center;	
+   /* background-color: blue; */
+   width: 20px;
+   height: 100%;
+   display: inline-block;
+   float:left;
+   text-align: center;   
     line-height: 46px;
+        border: 1px solid black;
 }
 
 #ar_signBoxBasis{
-	width: 100px;
-	height: 100%;
-	background-color: #7bbdff;
-	display: inline-block;
-	float:left;
+   width: 100px;
+   height: 100%;
+   /* background-color: #7bbdff; */
+   display: inline-block;
+   float:left;
+       border: 1px solid black;
 }
 
 #ar_signTemp{
-	display: inline-block;
-	width: 100%;
-	height: 25%;
-	background-color: #ffff80;
-	text-align: center;
+   display: inline-block;
+   width: 100%;
+   height: 25%;
+    background-color: #c0c0c0; 
+   text-align: center;
+       border-bottom: 1px solid black !important;
 }
 
 #ar_singMember> input{
-	border: 0px;
-	text-align: center;
-	width: 100%;
-	background-color: rgba(0,0,0,0);
+   border: 0px;
+   text-align: center;
+   width: 100%;
+   background-color: rgba(0,0,0,0);
 }
 
 #ar_singMember{
-	margin-top: 13%;
+   margin-top: 13%;
 }
 
 #ar_signTemp> input{
-	border: 0px;
-	text-align: center;
-	width: 100%;
-	background-color: rgba(0,0,0,0);
+   border: 0px;
+   text-align: center;
+   width: 100%;
+   background-color: rgba(0,0,0,0);
 }
 
 #ar_dateWrap{
-	width: 100%;
-	height: 8%;
-	background-color: #ff97cb;
+   width: 100%;
+   height: 8%;
+   /* background-color: #ff97cb; */
 }
 
 #ar_dateDiv{
-	width: 30%;
-	height: 100%;
-	background-color: #ffffaa;
-	margin: 0 auto;
+   width: 30%;
+   height: 100%;
+   /* background-color: #ffffaa; */
+   margin: 0 auto;
+   text-align: center;
 }
 
 #ar_signBoxBasis100{
-	width: 100px;
-	height: 100%;
-	background-color: #7bbdff;
-	display: inline-block;
-	float:left;
-	background-image: url("../../../images/stamp/ask.png");
-	background-repeat: repeat-x;
-	background-position: bottom;
-	
+   width: 100px;
+   height: 100%;
+   /* background-color: #7bbdff; */
+   display: inline-block;
+   float:left;
+   background-image: url("../../../images/stamp/ask.png");
+   background-repeat: repeat-x;
+   background-position: bottom;
+   border: 1px solid black;
 }
 
 .ar_approvalimg{
-	background-image: url("../../../images/stamp/approvalimg.png");
-	background-repeat: repeat-x;
-	background-position: bottom;
+   background-image: url("../../../images/stamp/approvalimg.png");
+   background-repeat: repeat-x;
+   background-position: bottom;
 }
 
 .ar_refuse{
-	background-image: url("../../../images/stamp/refuse.png");
-	background-repeat: repeat-x;
-	background-position: bottom;
+   background-image: url("../../../images/stamp/refuse.png");
+   background-repeat: repeat-x;
+   background-position: bottom;
 }
 
 .ar_backstamp{
-	width: 100px;
-	height: 100%;
-	background-color: #7bbdff;
-	display: inline-block;
-	float:left;
+   width: 100px;
+   height: 100%;
+   /* background-color: #7bbdff; */
+   display: inline-block;
+   float:left;
+       border: 1px solid black;
 }
 
 #ar_afterBtn{
-	display: none;
+   display: none;
 }
 
 #ar_fileLineWrap{
-	width: 100%;
-	height: 50px;
-	background-color: #ffff80;
+   width: 100%;
+   height: 50px;
+   /* background-color: #ffff80; */
 }
 
 #ar_fileWrap{
-	width: 93%;
-	height: 50%;
-	background-color: #ff80c0;
-	display: inline-block;
-	margin-top: 1%;
+   width: 93%;
+   height: 50%;
+   /* background-color: #ff80c0; */
+   display: inline-block;
+   margin-top: 1%;
 }
 
 .epaymentFile{
-	display: inline-block;
-	float: left;
+   display: inline-block;
+   float: left;
 }
 
 #ar_message{
-	width: 100%;
+   width: 100%;
+}
+
+#erp_jh_event_sub {
+   width: 90%;
+    height: 16%;
+    background-color: #f6f6f6;
+    padding-top: 0.5%;
+    margin-left: 5%;
+    margin-bottom: 5%;
+}
+
+#event_contents {
+   height: 90%;
+   width: 60%;
+   margin-left: 15%;
+   text-align: center;
+   border-bottom: 2px solid #929292;
+   border-top: 2px solid #929292;
+}
+
+.ar_pageWrap{
+   width: 90%;
+   height: 10%;
+   /* background-color: lightpink; */
+   margin: 0 auto;
+   text-align: center;
+   padding-top: 3%;
+   cursor: pointer;
 }

@@ -179,7 +179,7 @@ $(function(){
 
 	<div id="fw_mainwrap">
 			<div id="fw_main">
-				main Title
+				<img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png">
 			</div>
 			
 			<div class="ar_plusTitle">
@@ -187,13 +187,13 @@ $(function(){
 			</div>
 			
 			<div class="ar_plusSearchWrap">
-				<div class="ar_blank"></div>
+				<div class="ar_blank">
+				<p>　</p>
+				<p>내가 받은 ${title }</p>
+				<p>　</p>
+				</div>
 				
-			<form action="positionPlus" method="GET">
-				<div class="ar_plusSearch">
-					내가 받은 결재
-					</div>
-			</form>
+					
 			</div>
 			
 			<div id="ar_mainDivWrap">
@@ -212,7 +212,7 @@ $(function(){
 						
 						<input type="text" id="ar_searchInput" name="search" value="${search }">
 						
-							<select id="ar_searchTitle" name="kind"  >
+							<select style="height: 26px;" id="ar_searchTitle" name="kind"  >
 								<option value="title">문서 제목</option>
 								<option value="draftdate">기안 날짜</option>
 								<option value="kind">문서 유형</option>
@@ -275,7 +275,7 @@ $(function(){
 						</table>
 			 
 					</div>
-					<div>
+					<div id="epayPager">
 						<c:if test="${pager.curBlock>1}">
 							<span class="ar_paging" id="${pager.startNum-1 }">이전</span>
 						</c:if>
