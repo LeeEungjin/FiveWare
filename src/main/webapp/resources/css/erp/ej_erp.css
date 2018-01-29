@@ -16,6 +16,23 @@
 	height: 10%;
 }
 
+#sr_title{
+	font-size: 30px;
+	font-weight: bold;
+	margin-top: 1.5%;
+}
+
+#erp_jh_contents_bottom{
+	width: 100%;
+	height: 10.5%;
+	margin-top: 1%;
+}
+
+.sr_btn{
+	float: right !important;
+	margin-right: 3%;
+}
+
 #mr_icon{
 	width: 15%;
 	height: 100%;

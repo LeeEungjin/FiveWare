@@ -92,11 +92,12 @@ a:visited, a:hover, a:active {
 
 <div id="fw_container">
 
-	<div id="com_header">
-		<div id="com_icon"></div><div id="com_title"></div>	
+	<div id="free_header">
+		<div id="free_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
+		<div id="free_title">스케쥴</div>	
 	</div>
 	
-	<div id="com_middle">
+	<div id="free_middle">
 		<div class="middle_contents">
 		    <input type="hidden" id="chk" value="0" />
 		    <input type="hidden" id="calendarId" value="${calendarId}" />
