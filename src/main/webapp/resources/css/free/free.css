@@ -26,7 +26,6 @@
 #free_icon{
 	height: 100%;
 	width:15%;
-	background-color: #ff8080;
 	float: left;
 }
 
@@ -51,7 +50,7 @@
     text-align: center;
     padding: 1%;
     font-size: 18px;
-    background-color: #d5d5d5;
+    background-color: #f6f6f6;
     margin-top: 1%;
     margin-bottom: 1%;
 }
@@ -59,9 +58,13 @@
 #free_contents{
 	width: 80%;
     height: 83%;
-    background-color: #F6F6F6;
     margin-left: 10%;
     padding: 20px;
+}
+
+#free_contents thead{
+	color: white;
+	background-color: #824100;
 }
 
 #free_search{

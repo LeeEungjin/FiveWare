@@ -13,7 +13,6 @@
 #fw_container{
 	width: 99%;
 	height: 100%;
-	background-color: lightblue;
 	transition: width 0.3s;	
 	margin-left: 1%;
 }
@@ -27,7 +26,6 @@
 #free_icon{
 	height: 100%;
 	width: 15%;
-	background-color: #ff8080;
 	float: left;
 }
 
@@ -54,8 +52,14 @@
 #free_contents{
 	width: 80%;
     height: 88%;
-    background-color: #F6F6F6;
     margin-left: 10%;
+    background-color: #f6f6f6;
+    padding: 20px;
+}
+
+#free_contents thead{
+	color: white;
+	background-color: #824100;
 }
 
 .free_temp_select{

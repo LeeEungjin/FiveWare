@@ -157,12 +157,12 @@
 	
 	<div id="fw_mainwrap">
 			<div id="fw_main">
-				<h1>${table}</h1>
+				<div id="into_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
 			</div>
 			
 			<div id="fw_main_contents">
 				<div id="erp_jh_contents_title">
-					<div id="into_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
+					
 					<p id="into_title">조회 및 엑셀 다운로드</p>
 				</div>
 				

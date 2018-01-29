@@ -253,10 +253,10 @@
          
          <div class="fw_subsub collapse"  id="sub3">
             <ul>
-               <li><a href="../../mater/materRegist?materKind=enter">입고 입력</a></li>
-               <li><a href="../../mater/materRegist?materKind=rele">출고 입력</a></li>
-               <li><a href="../../mater/materRegist?materKind=back">반품 입력</a></li>
-               <li><a href="../../mater/materRegist?materKind=confin">불출 입력</a></li>
+               <li><a href="../mater/materRegist?materKind=enter">입고 입력</a></li>
+               <li><a href="../mater/materRegist?materKind=rele">출고 입력</a></li>
+               <li><a href="../mater/materRegist?materKind=back">반품 입력</a></li>
+               <li><a href="../mater/materRegist?materKind=confin">불출 입력</a></li>
             </ul>
          </div>
          
@@ -282,6 +282,7 @@
 	
 	<div id="fw_mainwrap">
 			<div id="fw_main">
+				<div id="or_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
 				<!-- <div class="sales_title_menu">기초 정보</div>
 				<div class="sales_title_menu">구매 관리</div>
 				<div class="sales_title_menu">자재 관리</div>
@@ -291,7 +292,7 @@
 			
 			<div id="fw_main_contents">
 				<div id="erp_jh_contents_title">
-					<div id="or_icon">icon</div>
+					
 					<p id="or_title">주문 입력</p>
 				</div>
 				<div id="erp_jh_contents_search">

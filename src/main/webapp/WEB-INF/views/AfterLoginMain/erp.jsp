@@ -545,7 +545,7 @@
                             <div class="start-form">
                                  <div class="landing-form">
                                      <div class="group">      
-                                       <input type="text" name="member" required>
+                                       <input id="ladderMemberInput" type="text" name="member" required>
                                        <span class="highlight"></span>
                                        <span class="bar"></span>
                                        <label>참여자 수</label>

@@ -418,12 +418,12 @@
 	
 	<div id="fw_mainwrap">
 			<div id="fw_main">
-
+				<div id="mr_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
 			</div>
 			
 			<div id="fw_main_contents">
 				<div id="erp_jh_contents_title">
-					<div id="mr_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
+					
 					<p id="mr_title">메뉴등록</p>
 				</div>
 				<div id="erp_jh_contents_search">

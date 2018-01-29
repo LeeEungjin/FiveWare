@@ -341,6 +341,7 @@
 	
 	<div id="fw_mainwrap">
 			<div id="fw_main">
+				<div id="sr_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
 				<!-- <div class="sales_title_menu">기초 정보</div>
 				<div class="sales_title_menu">구매 관리</div>
 				<div class="sales_title_menu">자재 관리</div>
@@ -350,7 +351,7 @@
 			
 			<div id="fw_main_contents">
 				<div id="erp_jh_contents_title">
-					<div id="sr_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
+					
 					<p id="sr_title">창고등록</p>
 				</div>
 				<div id="erp_jh_contents_search">

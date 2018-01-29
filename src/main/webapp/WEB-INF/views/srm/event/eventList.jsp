@@ -25,8 +25,6 @@
 		$(".list").click(function(){
 			var cur = $(this).attr("title");
 			
-			alert(cur);
-			
 			document.event_search_frm.curPage.value=cur;
 			document.event_search_frm.submit();
 		});

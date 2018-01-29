@@ -453,7 +453,8 @@ height : 250px;
   position:relative; 
   margin-bottom:45px; 
 }
-input               {
+
+#ladderMemberInput {
   padding:10px 10px 10px 5px;
   display:block;
   width:300px;

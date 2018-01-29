@@ -179,10 +179,10 @@
          
          <div class="fw_subsub collapse " id="sub1">
             <ul>
-               <li><a href="../foundation/supplier">거래처 등록</a></li>
-               <li><a href="../foundation/product">제품 등록</a></li>
-               <li><a href="./menuRegist">메뉴 등록</a></li>
-               <li><a href="./storageRegist">창고 등록</a></li>
+               <li><a href="../../erp/foundation/supplier">거래처 등록</a></li>
+               <li><a href="../../erp/foundation/product">제품 등록</a></li>
+               <li><a href="../../erp/foundation/menuRegist">메뉴 등록</a></li>
+               <li><a href="../../erp/foundation/storageRegist">창고 등록</a></li>
             </ul>
          </div>
          
@@ -196,13 +196,13 @@
          
          <div class="fw_subsub collapse"  id="sub2">
             <ul>
-               <li><a href="../order/orderRegist">주문 입력</a></li>
-               <li><a href="../order/graph/orderGraph">주문 현황 보기</a></li>
+               <li><a href="../../erp/order/orderRegist">주문 입력</a></li>
+            	<li><a href="../../erp/order/graph/orderGraph">주문 현황 보기</a></li>
             </ul>
          </div>
          
          <!-- ----------3---------- -->
-         <div class="fw_menu fw_subselected" data-toggle="collapse" data-target="#sub3" title="sub3" >
+         <div class="fw_menu fw_selected" data-toggle="collapse" data-target="#sub3" title="sub3" >
                자재관리
             <div class="fw_arrow sub3">
                ∨
@@ -219,7 +219,7 @@
          </div>
          
          <!-- ----------4---------- -->
-         <div class="fw_menu" data-toggle="collapse" data-target="#sub4" title="sub4" >
+       	 <div class="fw_menu" data-toggle="collapse" data-target="#sub4" title="sub4" >
                	조회
             <div class="fw_arrow sub4">
                	∨
@@ -240,6 +240,7 @@
 	
 	<div id="fw_mainwrap">
 			<div id="fw_main">
+				<div id="er_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
 				<!-- <div class="sales_title_menu">기초 정보</div>
 				<div class="sales_title_menu">구매 관리</div>
 				<div class="sales_title_menu">자재 관리</div>
@@ -249,7 +250,7 @@
 			
 			<div id="fw_main_contents">
 				<div id="erp_jh_contents_title">
-					<div id="er_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
+					
 					<p id="er_title">입고등록</p>
 				</div>
 				<div id="erp_jh_contents_search">

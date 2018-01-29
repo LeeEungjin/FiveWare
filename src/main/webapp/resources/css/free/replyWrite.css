@@ -21,7 +21,6 @@
 #reply_icon{
 	height: 100%;
 	width: 15%;
-	background-color: #ff8080;
 	float: left;
 }
 
@@ -56,7 +55,14 @@
     background-color: #F6F6F6;
     margin-left: 10%;
     margin-top: 1%;
+    padding: 20px;
 }
+
+#reply_contents thead{
+	color: white;
+	background-color: #824100;
+}
+
 .reply_temp_select{
 	width: 80% !important;
 }

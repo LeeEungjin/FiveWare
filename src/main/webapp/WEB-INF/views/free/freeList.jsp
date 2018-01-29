@@ -4,6 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 <c:import url="${url}/resources/temp/ref.jsp"></c:import> 
@@ -137,7 +139,7 @@
 				      	<td><p id="${list.target}" title="${list.num}" class="freeView">
 				      	<c:catch>
 							<c:forEach begin="1" end="${list.depth}">
-								└
+								<i class="material-icons">&#xe5da;</i>
 							</c:forEach>
 						</c:catch>
 				      	
