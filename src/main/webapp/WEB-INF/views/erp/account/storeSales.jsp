@@ -152,7 +152,7 @@
 			<div id="eb_contents_wrap">
 				 
 				<div class="eb_contents_text">
-				 	<span class="glyphicon glyphicon-file" id="eb_contents_text_p">지점매출</span>
+				 	<span  id="eb_contents_text_p">지점매출</span>
 				</div>
 				
 				<div id="eb_contents_box">

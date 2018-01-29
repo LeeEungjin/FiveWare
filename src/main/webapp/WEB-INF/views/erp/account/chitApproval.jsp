@@ -187,7 +187,7 @@
 			<div id="eb_contents_wrap">
 				 
 				<div class="eb_contents_text">
-				 	<span class="glyphicon glyphicon-file" id="eb_contents_text_p">승인전표</span>
+				 	<span  id="eb_contents_text_p">승인전표</span>
 				</div>
 				
 				<div id="eb_contents_box">

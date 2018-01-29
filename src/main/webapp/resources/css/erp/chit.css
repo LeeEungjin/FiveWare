@@ -18,8 +18,10 @@
 }
 
 #eb_contents_text_p{
-    font-size : 25px;
-	font-weight: bold;
+    font-size: 30px;
+    font-weight: bold;
+    /* margin-left: 5%; */
+    margin-top: 1.5%;
 }
 
 #eb_contents_box_chit{
@@ -54,7 +56,7 @@
 }
 #eb_chitTableBtn{
 	
-	margin-left: 680px;
+	margin-left: 700px;
 	margin-bottom: 10px;
 	
 }
@@ -78,7 +80,7 @@
 }
 
 .regist{
-	margin-left:800px;
+	margin-left:90%;
 	margin-top: 10px;
 }
 #eb_modal-content{
