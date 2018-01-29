@@ -1,15 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-				    <div class="modal-dialog modal-m">
+      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
+<c:import url="${url}/resources/temp/ref.jsp"></c:import> 
+   <script src="//cdn.ckeditor.com/4.8.0/basic/ckeditor.js"></script>
+ 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <link href="${url}/resources/css/srm/contest/contest.css" rel="stylesheet">
+
+<title>Insert title here</title>
+    </head>
+    <body>
 				      <div class="modal-content">
 				        
 				        <!-- modal contents -->
 				        <form action="contestJoin" method="post" id="contestfrm" name="contestfrm" enctype="multipart/form-data">
 				        
 				        
-				        <div class="modal-body1">
+				        <div class="modal-body">
 							<div class="ar_Viewphoto">
-								<%-- <img src="${url }/resources/contest/${one.photo}"> --%>
+								<img src="../../resources/contest/${one.photo}"> 
 							 
 							</div>
 							
@@ -44,4 +58,5 @@
 				      	<!-- modal footer 끝-->
 				      
 				      </div>
-				    </div>
+			</body>
+ </html>

@@ -81,4 +81,14 @@
  <select id="likeCount" parameterType="java.util.Map" resultType="int">
  	select count(num) from contestlike where code=#{code} and cnum=#{cnum}
  </select>
+ 
+ <select id="maxCnum"  parameterType="String" resultType="int">
+ 	select cnum from ( 
+		select count(cnum) c, cnum from contestlike where code=#{code} group by cnum) 
+		order by c desc, cnum desc
+ </select>
+ 
+<select id="likeResultCode" parameterType="String" resultType="ContestListDTO">
+ 	select * from contestList where code=#{code}
+ </select>
   </mapper>

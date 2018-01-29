@@ -130,7 +130,9 @@ $(function(){
 	$(".ar_view").click(function(){
 		var cnum = $(this).attr("title");
 		
-		$.ajax({
+		window.open("contestJoinView?cnum="+cnum,"", "width=700, height=761,top=100,left=500");
+		
+		/* $.ajax({
 			url:"./contestJoinView",
 			type:"POST",
 			data:{
@@ -138,7 +140,15 @@ $(function(){
 			}, success:function(data){
 				$("#ar_View_Modal").html(data);
 			}
-		});
+		}); */
+	});
+	
+ 	$(".ar_resultBtn").click(function(){
+		var cnum = $(this).attr("accesskey");
+		var code= $(this).attr("title");
+		
+		window.open("contestResultView?cnum="+cnum+"&code="+code, "", "width=700, height=761,top=100,left=500");
+
 	});
 });
 
@@ -229,13 +239,16 @@ $(function(){
 					<div class="ar_contestTitle">
 						${i.sdate } ~${i.edate}  ${i.name}
 					</div>
-					
+						
 				<div class="ar_contestTitleBtn">
 					<c:if test="${kind=='store' }">
 						<input type="button" value="올리기" class="ar_insertBtn" title="${i.code }" data-toggle="modal" data-target="#ar_contest_Modal">
 					</c:if>
 					
-				<input type="button" value="결과보기" class="ar_resultBtn" title="${i.code }" data-toggle="modal" data-target="#ar_result_Modal">
+					<c:if test="${size[a.index]=='small' }">
+				<input type="button" value="결과보기" class="ar_resultBtn" title="${i.code }" accesskey="${results[a.index]}" >
+				
+				</c:if>
 				</div>	
 				
 					<div class="ar_ar_contestMenu">
@@ -249,6 +262,7 @@ $(function(){
 										<p>지점 : ${j.store} </p>
 										<p>메뉴명 : ${j.menuname}</p>
 										<p>메뉴설명: ${j.account}</p>
+										
 									</div>
 									
 									<div class="ar_contestLike">
@@ -266,7 +280,9 @@ $(function(){
 									
 										
 										</p>
-										<p class="ar_big" title="${i.code}${j.cnum}"><i style="font-size:17px" class="fa ar_view"  id="${i.code}${j.cnum}" title="${j.cnum }"data-toggle="modal" data-target="#ar_View_Modal">&#xf0b2;</i></p>
+										<p class="ar_big" title="${i.code}${j.cnum}">
+											<i style="font-size:17px" class="fa ar_view"  id="${i.code}${j.cnum}" title="${j.cnum }">&#xf0b2;</i>
+										</p>
 									</div>
 								</div>							
 							</c:if> 
@@ -408,75 +424,20 @@ $(function(){
 			<!-- Modal -->
 				
 				<div class="modal fade" id="ar_View_Modal" role="dialog">
-				   
+				   <h1>Modeallllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll</h1>
 				  </div>
 				<!-- Modal 끝 -->
 				
 				<!-- Modal -->
 				
 				<div class="modal fade" id="ar_result_Modal" role="dialog">
-				    <div class="modal-dialog2 modal-m">
-				      <div class="modal-content">
-				      
-				      	<!-- modal header -->
-				        <div class="modal-header">
-				          <button type="button" class="close jh_file_cancel" data-dismiss="modal">&times;</button>
-				          <h4 class="modal-title">| 공모전 결과</h4>
-				        </div>
-				        <!-- modal header 끝-->
-				        
-				        <!-- modal contents -->
-				        <form action="contestJoin" method="post" id="contestfrm" name="contestfrm" enctype="multipart/form-data">
-				        
-				        
-				        <div class="modal-body2">
-				        
-				        	<div class="ar_resultTop">
-				        		OOOO.OO.OO~OOOO.OO.OO 제 O회 공모전
-				        			신제품 개발 
-				        	</div>
-							
-							<div class="ar_contestJoin1">
-									<div class="ar_contestPhoto">
-										<img class="ar_menuimg" src="${url }/resources/contest/${j.photo}">
-									</div>
-									<div class="ar_contestContain">
-										<p>지점 : OOO </p>
-										<p>메뉴명 : OOO</p>
-										<p>메뉴설명: OOO</p>
-									</div>
-				        </div>
-				        
-				        <div class="ar_resultText">
-				        	OOO점 축하드립니다.
-				        	제 O회 공모전에서 당선되신 OOO점에는 부상으로
-				        	OOOO, OOOO 가 지급될 예정이며, 앞으로도 활발한 활동 부탁드립니다.
-				        	감사합니다.
-				        </div>
-				        <!-- modal contents 끝-->
-				        
-				        <!-- modal footer -->
-				        <div class="modal-footer">
-				          <input type="button" class="btn btn-default ar_InsertBtn"  value="올리기">
-				          <button type="button" class="btn btn-default" data-dismiss="modal">초기화</button>
-				        </div>
-				       </form>
-				      	<!-- modal footer 끝-->
-				      </div>
-				    </div>
+				  	qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
 				  </div>
 				 
 				<!-- Modal 끝 -->
 
 
-			<!-- Modal -->
-				
-				<div class="modal fade" id="ar_View_Modal" role="dialog">
-				   
-				  </div>
-				  
-				<!-- Modal 끝 -->
-
+		
 </div>
 
 </body>
