@@ -385,127 +385,7 @@
 
 <body>
  <c:import url="${url}/resources/temp/message.jsp"></c:import> 
-<<<<<<< HEAD
-	<div id="login_after_wrap">
-		<div id="lofin_after_header">
-			<div id="lang_wrap">
-				<div id="lang_icon">
-					<img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogoBlack.png">
-				</div>
 
-			</div>
-
-			<div id="menu_wrap">
-				<table id="eb_fw_main_2_table">
-					<tr>
-						<td class="eb_row"><a id="erpMenuWrapA" style="color: white;, text-decoration: none;"
-							href="${pageContext.request.contextPath}/">HOME</a></td>
-						<td class="eb_row"><a  style="color: white;, text-decoration: none;"
-							href="${pageContext.request.contextPath}/erp">ERP</a></td>
-						<td class="eb_row"><a  style="color: white;, text-decoration: none;"
-							href="${pageContext.request.contextPath}/GroupWare">Group
-								Ware</a></td>
-						<td class="eb_row"><a  style="color: white;, text-decoration: none;"
-							href="${pageContext.request.contextPath}/srm">SRM</a></td>
-					</tr>
-				</table>
-			</div>
-
-			<div id="search_wrap">
-				<a href="./member/memberLogout"> <span
-					class="glyphicon glyphicon-log-out" id="eb_logoutBtn">Logout</span>
-				</a>
-			</div>
-		</div>
-
-		<div id="login_after_middle">
-
-			<div id="info_wrap">
-				<div id="pro_info">
-					<div id="pro_info_1">
-						<div id="pro_img">
-							<img  id="loginAfterImg" src="${pageContext.request.contextPath}/resources/member/${file.filename}" class="avatar">
-
-							<!-- 로그인하면 이름!!  -->
-
-
-							<!--  출퇴근 modal-->
-
-							<div class="modal fade" id="myModal" role="dialog">
-								<div class="modal-dialog">
-
-									<!-- Modal content-->
-									<div class="modal-content">
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal">&times;</button>
-											<h4 class="modal-title">출/퇴근 입력</h4>
-										</div>
-										<div class="modal-body">
-											<div class="eb_all">
-												<div class="eb_clock_1">
-													<canvas id="canvas">
-									</canvas>
-												</div>
-												<div class="eb_blank"></div>
-												<div class="eb_clock_2 w3-display-container">
-
-													<p id="demo_1">${sysdate }</p>
-
-													<img
-														src="${pageContext.request.contextPath}/resources/images/common/label.png"
-													class="eb_img">
-													<p id="demo_2" class="w3-display-middle w3-large"></p>
-
-												</div>
-
-
-												<div class="eb_click">
-													<p>
-														<input type="button" class="w3-btn w3-red eb_btn"
-															value="출근" id="start"> <input type="button"
-															class="w3-btn w3-red eb_btn" value="퇴근" id="last">
-													</p>
-												</div>
-											</div>
-											<button type="button" class="btn btn-default"
-												data-dismiss="modal">확인</button>
-										</div>
-
-
-									</div>
-
-								</div>
-							</div>
-
-							<!--출퇴근 MODAL 끝  -->
-
-						</div>
-					</div>
-
-
-
-					<div id="pro_info_2">
-						<p id="name_p">${member.name}님
-						</p>
-							<button data-toggle="modal" data-target="#myModal" id="eb_timeBtn" type="button" class="btn btn-danger">출/퇴근</button>
-					</div>
-				</div>
-				<div id="sche_info">
-					<!-- <i class="fa fa-calendar" style="font-size: 36px">Clock</i> -->
-					<!-- Clock API Start -->
-					<div id="clock" class="light">
-						<div class="display">
-							<div class="weekdays"></div>
-							<div class="ampm"></div>
-							<div class="digits"></div>
-						</div>
-					</div>
-					<!-- Clock API End -->
-				</div>
-
-
-				<div class="eb_line"></div>
-=======
    <div id="login_after_wrap">
       <div id="lofin_after_header">
          <div id="lang_wrap">
@@ -628,7 +508,6 @@
 
 
             <div class="eb_line"></div>
->>>>>>> arin
             
             <div id="sche_add">
                <i class="fa fa-calendar-plus-o" style="font-size:25px; padding-top:10px;">Calendar</i>
