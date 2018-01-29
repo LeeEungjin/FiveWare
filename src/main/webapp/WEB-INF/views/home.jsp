@@ -95,8 +95,6 @@
 			 }); // END ajax
 		  }
 	   }); // 로그인 버튼 끝
-<<<<<<< HEAD
-      
 	   
 	   
    			var kind='${kind}';
@@ -168,8 +166,6 @@
 	
 	   
        
-=======
->>>>>>> master
    });
 </script>
 
@@ -281,19 +277,13 @@
 			</table>
 			</form>
 
-<<<<<<< HEAD
 
 
 
 
              
-                </div>
-                </div>
-                
-=======
 		</div>
 	</div>
->>>>>>> master
 
 </body>
 </html>
