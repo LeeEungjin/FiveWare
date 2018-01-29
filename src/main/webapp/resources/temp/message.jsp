@@ -4,8 +4,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
-<link href="./resources/css/message.css" rel="stylesheet">
+<link href="${url}/resources/css/message.css" rel="stylesheet">
+
  <script src="//cdn.ckeditor.com/4.8.0/basic/ckeditor.js"></script>
+
+
  
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -35,7 +38,7 @@
 			 
 			 $.ajax({
 					type:"GET",
-					url:"./message/messageList",
+					url:"${url}/message/messageList",
 					success:function(data){
 						
 						var i=0;
@@ -83,7 +86,7 @@
 			
 			$.ajax({
 				type:"GET",
-				url:"./message/memberList",
+				url:"${url}/message/memberList",
 				data:{
 					"temp":temp
 				}, success:function(data){
@@ -114,7 +117,7 @@
 			var sCode='${member.code}';
 			$.ajax({
 				type : "get",
-				url : "./message/sList",
+				url : "${url}/message/sList",
 				data : {
 					"sCode" : sCode
 				},success : function(data){
@@ -135,7 +138,7 @@
 				var rCode='${member.code}';
 				$.ajax({
 					type : "get",
-					url : "./message/rList",
+					url : "${url}/message/rList",
 					data : {
 						"rCode" : rCode
 					},success : function(data){
@@ -193,7 +196,7 @@
 	
 		 	$.ajax({
 				type : "POST",
-				url : "./message/messageSend",
+				url : "${url}/message/messageSend",
 				data : {
 					"sCode" : sCode,
 					"sName" : sName,
@@ -219,7 +222,7 @@
 			
 			$.ajax({
 				type : "get",
-				url : "./message/view",
+				url : "${url}/message/view",
 				data : {
 					"num" : num
 				},success :function(data){
@@ -242,7 +245,7 @@
 			
 			$.ajax({
 				type : "get",
-				url : "./message/readUpdate",
+				url : "${url}/message/readUpdate",
 				data : {
 					"num" : num
 				},success : function(){
@@ -253,7 +256,7 @@
 			
 			$.ajax({
 				type : "get",
-				url : "./message/view",
+				url : "${url}/message/view",
 				data : {
 					"num" : num
 				},success :function(data){
@@ -296,7 +299,7 @@
 			
 			$.ajax({
 				type : "get",
-				url : "./message/delete",
+				url : "${url}/message/delete",
 				data : {
 					"num" : num
 				},success : function(data){
@@ -423,7 +426,7 @@
 			<div id="eb_Mview2">
 			
 	
-			<div id="eb_MviewText"  readonly="readonly"></div>
+			<div id="eb_MviewText" ></div>
 			
 			</div>
 		

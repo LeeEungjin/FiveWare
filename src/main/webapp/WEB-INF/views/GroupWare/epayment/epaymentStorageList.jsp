@@ -212,21 +212,18 @@ $(function(){
 
 	<div id="fw_mainwrap">
 			<div id="fw_main">
-				main Title
+				<div id="event_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
 			</div>
 			
 			<div class="ar_plusTitle">
 				<p id="ar_plustext">임시보관함</p>
 			</div>
 			
-			<div class="ar_plusSearchWrap">
-				<div class="ar_blank"></div>
-				
-			<form action="positionPlus" method="GET">
-				<div class="ar_plusSearch">
+			<div id="erp_jh_event_sub">
+					<div id="event_contents">
+						<p>　</p>
 					내가 받은 결재
 					</div>
-			</form>
 			</div>
 			
 			<div id="ar_mainDivWrap">
@@ -308,7 +305,7 @@ $(function(){
 						</table>
 			 
 					</div>
-					<div>
+					<div class="ar_pageWrap">
 						<c:if test="${pager.curBlock>1}">
 							<span class="ar_paging1" id="${pager.startNum-1 }">이전</span>
 						</c:if>

@@ -60,7 +60,7 @@ public class MessageController {
 	@RequestMapping(value="rList")
 	@ResponseBody
 	public ModelAndView rList(String rCode){
-
+		
 		ModelAndView mv=new ModelAndView();
 	
 		try {

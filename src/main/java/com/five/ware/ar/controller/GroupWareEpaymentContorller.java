@@ -56,7 +56,7 @@ public class GroupWareEpaymentContorller {
 	public String totalList(String state, ListData listData, Model model) throws Exception{
 		epaymentLeaveService.totalList(state, listData, model);
 		
-		model.addAttribute("title", state+"함");
+		model.addAttribute("title", state);
 		model.addAttribute("state", state);
 		model.addAttribute("kind", listData.getKind());
 		model.addAttribute("search", listData.getSearch());

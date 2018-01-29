@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 	<!-- header -->
 	<div id="ej_sidebar" style="float: left;">
 		<div class="ej_sidebar_contents">
@@ -33,7 +34,6 @@
             </div>
             
             <div class="ej_user_name">
-            	<%-- ${sessionScope.member.name} --%>
             </div>
             <div class="ej_user_sub_info">
             	<a href="${pageContext.request.contextPath}/myPage/myPageMain" class="ej_my_info">내정보</a>

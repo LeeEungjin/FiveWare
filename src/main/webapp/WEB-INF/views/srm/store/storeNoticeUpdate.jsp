@@ -18,7 +18,17 @@
 	 
 		 var message = '${message}';
 	     if(message != ""){
-	        alert(message);
+	    	 swal({
+                 title:message,
+                 type: "success",
+                 showCancelButton: false,
+                 confirmButtonClass: "btn-primary",
+                 confirmButtonText: "확인",
+                 closeOnConfirm: false
+               },
+               function(){
+					location.reload();
+               });
 	     }
 	 
 		$(".fw_menu").click(function(){
@@ -81,12 +91,7 @@
 		
 		<div id="fw_main">
 			
-			<div id="eb_fw_main_1"></div>
-			
-			<div id="eb_fw_main_2">
-	
-			</div>
-				
+		<img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png">
 				
 		</div>
 			
@@ -94,7 +99,7 @@
 			<!--contents 시작  -->
 			<div id="eb_contents_wrap">
 				<div class="eb_contents_text">
-				 	<span class="glyphicon glyphicon-file" id="eb_contents_text_p">자유 게시판</span>
+				 	<span id="eb_contents_text_p">자유 게시판</span>
 				</div> 
 				
 				

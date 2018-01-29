@@ -75,9 +75,15 @@
 			
 			<div class="fw_subselected collapse in" id="sub1">
 				<ul>
+				<c:if test="${member.code ne member.pw }">
 					<li><a href="${pageContext.request.contextPath}/myPage/myPageMain">내 정보</a></li>
 					<li><a href="${pageContext.request.contextPath}/myPage/timeRecord?memberCode=${member.code }">출/퇴근 조회</a></li>
-		
+				</c:if>
+				
+				<c:if test="${member.code eq member.pw }">
+					<li><a href="${pageContext.request.contextPath}/myPage/myPageMain">내 정보</a></li>
+				</c:if>
+				
 			
 				</ul>
 			</div>
@@ -101,10 +107,15 @@
 			
 			<div class="fw_subselected collapse in" id="sub1">
 				<ul>
-					<li><a href="${pageContext.request.contextPath}/member/storeMyPage">매장 정보</a></li>
-					<li><a href="${pageContext.request.contextPath}/srm/staff?store=${member.store}">직원 관리</a></li>
-					<li><a href="${pageContext.request.contextPath}/srm/staffTime?store=${member.store}">직원 출/퇴근 조회</a></li>
-			
+					<c:if test="${member.code ne member.pw}">
+						<li><a href="${pageContext.request.contextPath}/myPage/myPageMain">매장 정보</a></li>
+						<li><a href="${pageContext.request.contextPath}/srm/staff?store=${member.store}">직원 관리</a></li>
+						<li><a href="${pageContext.request.contextPath}/srm/staffTime?store=${member.store}">직원 출/퇴근 조회</a></li>
+					</c:if>
+					
+					<c:if test="${member.code eq member.pw }">
+						<li><a href="${pageContext.request.contextPath}/myPage/myPageMain">매장 정보</a></li>
+					</c:if>
 				</ul>
 			</div>
 			
@@ -131,7 +142,7 @@
 			<div id="eb_contents_wrap">
 				 
 				<div class="eb_contents_text">
-				 	<span class="glyphicon glyphicon-file" id="eb_contents_text_p">내정보</span>
+				 	<span id="eb_contents_text_p">내정보</span>
 				</div>
 		<!-- contents -->
 					

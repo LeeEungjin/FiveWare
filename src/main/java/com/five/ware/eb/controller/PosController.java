@@ -97,10 +97,12 @@ public class PosController {
 			e.printStackTrace();
 		}
 		
-		String message="결제 실패";
+		String message="fail";
 		 if(result>0){
-			 message="결제 성공";
+			 message="success";
 		 }
+		 
+		 System.out.println(message);
 		rd.addFlashAttribute("message", message);
 		
 		return "redirect:./pos";

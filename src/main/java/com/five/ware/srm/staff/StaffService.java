@@ -63,11 +63,17 @@ public class StaffService {
 		 }
 		
 		 //직원 출퇴근 조회
-		 public ModelAndView staffTimeList(String store)throws Exception{
+		 public ModelAndView staffTimeList(ListData listData,String store)throws Exception{
+			 RowNum rowNum=listData.makeRow();
+			 int totalCount=staffDAO.totalCountTime(rowNum);
 			 List<StaffTimeDTO> ar=new ArrayList<StaffTimeDTO>();
+			 ar=staffDAO.staffTimeList(rowNum, listData, store);
+			 Pager pager=listData.makePage(totalCount);
 			 ModelAndView mv=new ModelAndView();
-			 ar=staffDAO.staffTimeList(store);
+			 
 			 mv.addObject("list", ar);
+			 mv.addObject("pager", pager);
+			 
 			 
 			 return mv;
 		 }
