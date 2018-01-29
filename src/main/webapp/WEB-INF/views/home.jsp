@@ -226,9 +226,9 @@
 				<tr>
 
 
-					<td class="menu"><a href="erp" class="eb_login" id="eb_href_1">ERP</a></td>
-					<td class="menu"><a href="GroupWare" class="eb_login" id="eb_href_2">Group Ware</a></td>
-					<td class="menu"><a href="srm" class="eb_login" id="eb_href_3">SRM</a></td>
+					<td class="menu"><a style="font-size: 25px;" href="erp" class="eb_login" id="eb_href_1">ERP</a></td>
+					<td class="menu"><a style="font-size: 25px;" href="GroupWare" class="eb_login" id="eb_href_2">Group Ware</a></td>
+					<td class="menu"><a style="font-size: 25px;" href="srm" class="eb_login" id="eb_href_3">SRM</a></td>
 
 				</tr>
 				</thead>
@@ -325,13 +325,6 @@
          
                 </div>
                 </div>
-                
-
-
-<<<<<<< HEAD
-=======
-
->>>>>>> master
 
 </body>
 </html>

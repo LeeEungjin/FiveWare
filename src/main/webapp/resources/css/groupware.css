@@ -99,7 +99,8 @@ td.eb_row:hover {
 
 #pro_info{
 	width: 100%;
-	height: 10%;
+	height: 22.7%;
+	
 }
 
 #pro_info_1{
@@ -109,28 +110,33 @@ td.eb_row:hover {
 }
 
 #pro_img{
-	width: 60%;
-	height: 60%;
-	border-radius: 50%;
-	float: left;
-	margin-left: 20%;
-	margin-top: 4%;
+	    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    float: left;
+    margin-left: 20%;
+    margin-top: 28%;
 }
 .eb_default_img{
 	width: 60px;
 	height: 60px;
 }
 
+#loginAfterImg{
+	width: 50%;
+	height: 50%;
+}
+
 #name_p{
-	font-size: 13px;
-    margin-top: 10%;
+	    font-size: 18px;
+    margin-top: 52%;
     margin-left: 5%;
 }
 
 #sche_p{
 	margin-left: 20%;
 	color: gray;
-	margin-top: 6% !important;
+	margin-top: 18% !important;
 	text-decoration: none;
 }
 
@@ -158,6 +164,11 @@ td.eb_row:hover {
 	height: 100%;
 }
 
+.ampm {
+    margin-left: 5% !important;
+    font-size: 20px !important;
+}
+
 #alert_menu{
 	width: 100%;
 	height: 68%;
@@ -165,19 +176,19 @@ td.eb_row:hover {
 
 #sche_info{
 	width: 100%;
-	height: 25%;
+	height: 23%;
 	background-color: #F6F6F6;
 }
 
 #sche_add{
 	width: 100%;
-	height: 15%;
+	height: 24%;
 	background-color: #F6F6F6;
 }
 
 #quick_menu{
 	width: 100%;
-	height: 20%;
+	height: 30%;
 	background-color: #F6F6F6;
 }
 
@@ -660,4 +671,10 @@ html, body{
 #erpMenuWrapA{
 	color: #ffffff !important;
     text-decoration: none !important;
+}
+
+.landing-form .button {
+    margin-top: 20px !important;
+    width: 220px !important;
+    margin-left: 14% !important;
 }

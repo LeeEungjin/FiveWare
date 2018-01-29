@@ -16,7 +16,7 @@
 	background-color: #946c6b;
 	color: white;
 	text-decoration: none;
-	    padding: 10px;
+	padding: 10px;
 }
 
 #lang_wrap {
@@ -113,7 +113,7 @@ td.eb_row:hover {
 
 #pro_info {
 	width: 100%;
-	height: 10%;
+	height: 22.7%;
 }
 
 #pro_info_1 {
@@ -123,12 +123,17 @@ td.eb_row:hover {
 }
 
 #pro_img {
-	width: 60%;
-	height: 60%;
+	width: 100%;
+	height: 100%;
 	border-radius: 50%;
 	float: left;
 	margin-left: 20%;
-	margin-top: 4%;
+	margin-top: 28%;
+}
+
+#eb_timeBtn {
+	margin-left: 5%;
+	margin-top: 5%;
 }
 
 .eb_default_img {
@@ -137,15 +142,20 @@ td.eb_row:hover {
 }
 
 #name_p {
-	font-size: 13px;
-    margin-top: 10%;
-    margin-left: 5%;
+	font-size: 18px;
+	margin-top: 45%;
+	margin-left: 5%;
+}
+
+#loginAfterImg {
+	width: 50%;
+	height: 50%;
 }
 
 #sche_p {
 	margin-left: 20%;
 	color: gray;
-	margin-top: 6% !important;
+	margin-top: 18% !important;
 	text-decoration: none;
 }
 
@@ -181,19 +191,19 @@ td.eb_row:hover {
 
 #sche_info {
 	width: 100%;
-	height: 25%;
+	height: 23%;
 	background-color: #F6F6F6;
 }
 
 #sche_add {
 	width: 100%;
-	height: 15%;
+	height: 24%;
 	background-color: #F6F6F6;
 }
 
 #quick_menu {
 	width: 100%;
-	height: 20%;
+	height: 30%;
 	background-color: #F6F6F6;
 }
 
@@ -320,7 +330,7 @@ td.eb_row:hover {
 	margin-left: 15px;
 	margin-top: 15px;
 	color: black;
-    text-decoration: none;
+	text-decoration: none;
 }
 
 .erp_jk_writing {
@@ -413,60 +423,61 @@ td.eb_row:hover {
 /*--------------------*/
 
 /* Button */
-<<<<<<< HEAD
+<<<<<<<
+HEAD
     .button {
-      display: inline-block;
-      position: relative;
-      width: 120px;
-      height: 32px;
-      line-height: 32px;
-      border-radius: 2px;
-      font-size: 0.9em;
-      background-color: #fff;
-      color: #646464;
-    }
-    
-    .button > paper-ripple {
-      border-radius: 2px;
-      overflow: hidden;
-    }
-    
-    .button.green {
-      background-color: #0f9d58;
-      color: #fff;
-    }
-    
-    .button.raised {
-      transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-      transition-delay: 0.2s;
-      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-    }
-    
-    .button.raised:active {
-      box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
-      transition-delay: 0s;
-    }
-    
-    
-    /* Misc */
-    .center {
-      text-align: center;
-    }
-    
-    .label {
-      padding: 0 16px;
-    }
-    
-    .label-blue {
-      color: #4285f4; 
-    }
-    
-    .label-red {
-      color: #d23f31; 
-    }
-    .group            { 
-  position:relative; 
-  margin-bottom:45px; 
+	display: inline-block;
+	position: relative;
+	width: 120px;
+	height: 32px;
+	line-height: 32px;
+	border-radius: 2px;
+	font-size: 0.9em;
+	background-color: #fff;
+	color: #646464;
+}
+
+.button>paper-ripple {
+	border-radius: 2px;
+	overflow: hidden;
+}
+
+.button.green {
+	background-color: #0f9d58;
+	color: #fff;
+}
+
+.button.raised {
+	transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+	transition-delay: 0.2s;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+.button.raised:active {
+	box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+	transition-delay: 0s;
+}
+
+/* Misc */
+.center {
+	text-align: center;
+}
+
+.label {
+	padding: 0 16px;
+}
+
+.label-blue {
+	color: #4285f4;
+}
+
+.label-red {
+	color: #d23f31;
+}
+
+.group {
+	position: relative;
+	margin-bottom: 45px;
 }
 /* input{
   padding:10px 10px 10px 5px;
@@ -475,7 +486,10 @@ td.eb_row:hover {
   border:none;
   border-bottom:1px solid #757575;
 } */
-input:focus         { outline:none; }
+input:focus {
+	outline: none;
+}
+
 =======
 .button {
 	display: inline-block;
@@ -543,9 +557,9 @@ input:focus         { outline:none; }
 input:focus {
 	outline: none;
 }
->>>>>>> master
 
-/* LABEL ======================================= */
+>>>>>>>
+master /* LABEL ======================================= */ 
 label {
 	color: #999;
 	font-size: 18px;
@@ -837,4 +851,10 @@ html, body {
 
 #ladderImg {
 	cursor: pointer;
+}
+
+.landing-form .button {
+    margin-top: 20px !important;
+    width: 220px !important;
+    margin-left: 14% !important;
 }

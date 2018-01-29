@@ -21,7 +21,15 @@
 		<!-- info -->
 		<div class="ej_info_logout">
             <div class="ej_user_info">
+            
+            <c:if test="${kind eq 'store' }">
             	<img src="${pageContext.request.contextPath}/resources/images/sidebar/avatar82.png" class="ej_default_img">
+            </c:if>
+            
+            <c:if test="${kind eq 'member'}">
+            	<img  id="loginAfterImg" src="${pageContext.request.contextPath}/resources/member/${file.filename}" class="ej_default_img">
+            </c:if>
+            
             </div>
             
             <div class="ej_user_name">
@@ -53,31 +61,31 @@
 				</li>
 			
 				<li class="productMenu menuTooltip" title="공지">
-					<a href="#">
+					<a href="${pageContext.request.contextPath}/community/communityList">
 						<span class="ej_sidebar_menu ej_notice">공지</span>
 					</a>
 				</li>
 				
 				<li class="productMenu menuTooltip" title="회계">
-					<a href="#">
+					<a href="${pageContext.request.contextPath}/erp/storeRegist">
 						<span class="ej_sidebar_menu ej_account">회계</span>
 					</a>
 				</li>
 				
 				<li class="productMenu menuTooltip" title="영업/구매">
-					<a href="#">
+					<a href="${pageContext.request.contextPath}/erp/foundation/supplier">
 						<span class="ej_sidebar_menu ej_sales">영업/구매</span>
 					</a>
 				</li>
 				
 				<li class="productMenu menuTooltip" title="인사">
-					<a href="#">
+					<a href="${pageContext.request.contextPath}/">
 						<span class="ej_sidebar_menu ej_resource">인사</span>
 					</a>
 				</li>
 				
 				<li class="productMenu menuTooltip" title="일정">
-					<a href="#">
+					<a href="${pageContext.request.contextPath}/calendar/coding">
 						<span class="ej_sidebar_menu ej_calendar">일정</span>
 					</a>
 				</li>
@@ -88,7 +96,7 @@
 					</a>
 				</li>
 				
-				<li class="productMenu menuTooltip" title="주소록">
+				<!-- <li class="productMenu menuTooltip" title="주소록">
 					<a href="#">
 						<span class="ej_sidebar_menu ej_address">주소록</span>
 					</a>
@@ -98,7 +106,7 @@
 					<a href="#">
 						<span class="ej_sidebar_menu ej_organization">조직도</span>
 					</a>
-				</li>
+				</li> -->
 			</ul>
 		</div>
 	</div>

@@ -423,7 +423,7 @@
 				<div id="pro_info">
 					<div id="pro_info_1">
 						<div id="pro_img">
-							<img src="${pageContext.request.contextPath}/resources/member/${file.filename}" class="avatar">
+							<img  id="loginAfterImg" src="${pageContext.request.contextPath}/resources/member/${file.filename}" class="avatar">
 
 							<!-- 로그인하면 이름!!  -->
 
@@ -452,7 +452,7 @@
 
 													<img
 														src="${pageContext.request.contextPath}/resources/images/common/label.png"
-														class="eb_img">
+													class="eb_img">
 													<p id="demo_2" class="w3-display-middle w3-large"></p>
 
 												</div>
@@ -485,11 +485,8 @@
 
 					<div id="pro_info_2">
 						<p id="name_p">${member.name}님
-								<i class="glyphicon glyphicon-time" style="font-size: 20px;"
-									data-toggle="modal" data-target="#myModal" id="eb_timeBtn"></i>
 						</p>
-						<i class="fa fa-bell-o" style="font-size: 20px">new</i>
-						<div id="alert_menu"></div>
+							<button data-toggle="modal" data-target="#myModal" id="eb_timeBtn" type="button" class="btn btn-danger">출/퇴근</button>
 					</div>
 				</div>
 				<div id="sche_info">
@@ -509,7 +506,7 @@
 				<div class="eb_line"></div>
             
             <div id="sche_add">
-               <i class="fa fa-calendar-plus-o" style="font-size:30px; padding-top:10px;">Calendar</i>
+               <i class="fa fa-calendar-plus-o" style="font-size:25px; padding-top:10px;">Calendar</i>
                <p id="sche_p" style="font-size: 20px"><a href="calendar/coding" style="color: gray">일정 등록하기 <i class="fa fa-plus-square-o" style="font-size:23px;"></i></a></p>
             </div>
             

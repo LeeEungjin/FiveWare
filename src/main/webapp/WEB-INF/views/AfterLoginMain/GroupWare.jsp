@@ -88,13 +88,11 @@
 				<div id="pro_info">
 					<div id="pro_info_1">
 						<div id="pro_img">
-							<img src="${pageContext.request.contextPath}/resources/images/sidebar/avatar82.png" class="eb_default_img">
+							<img  id="loginAfterImg" src="${pageContext.request.contextPath}/resources/images/sidebar/avatar82.png" class="eb_default_img">
 						</div>
 					</div>
 					<div id="pro_info_2">
 						<p id="name_p">${member.name } 님</p>
-						<i class="fa fa-bell-o" style="font-size:20px">new</i>
-						<div id="alert_menu"></div>
 					</div>
 				</div>
 				<div id="sche_info">
@@ -112,7 +110,7 @@
 			<div class="eb_line"></div>
 				
 				<div id="sche_add">
-					<i class="fa fa-calendar-plus-o" style="font-size:30px; padding-top:10px;">Calendar</i>
+					<i class="fa fa-calendar-plus-o" style="font-size:25px; padding-top:10px;">Calendar</i>
                <p id="sche_p" style="font-size: 20px"><a href="calendar/coding" style="color: gray">일정 등록하기 <i class="fa fa-plus-square-o" style="font-size:23px;"></i></a></p>
 				</div>
 				<div id="quick_menu">
