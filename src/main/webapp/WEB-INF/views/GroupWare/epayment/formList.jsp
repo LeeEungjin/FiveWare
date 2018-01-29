@@ -102,21 +102,20 @@
 
 	<div id="fw_mainwrap">
 			<div id="fw_main">
-				main Title
+				<div id="event_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
 			</div>
 			
 			<div class="ar_plusTitle">
 				<p id="ar_plustext">양식목록</p>
 			</div>
-			
-			<div class="ar_plusSearchWrap">
-				<div class="ar_blank"></div>
+			<div id="erp_jh_event_sub">
+					<div id="event_contents">
+						<p>　</p>
 				
-				<div class="ar_plusSearch">
-					 시스템 항목이 '문서결재'인 양식은 전자결재 내에서 결재문서가 작성되어 결재가 처리됩니다. '문서결재' 외 양식은 해당 시스템에서 결재문서 관련 사항을 입력하여 결재요청하면 전자결재와 연계하여 결재가 처리됩니다.
-					<br> 어쩌구저쩌구 설명
-					</div>
-			
+					 <p>시스템 항목이 '문서결재'인 양식은 전자결재 내에서 결재문서가 작성되어 결재가 처리됩니다. </p>
+					 <p>'문서결재' 외 양식은 해당 시스템에서 결재문서 관련 사항을 입력하여 결재요청하면 </p>
+					 <p>전자결재와 연계하여 결재가 처리됩니다.</p>
+				</div>
 			</div>
 			
 			<div id="ar_mainDivWrap">
@@ -153,13 +152,13 @@
 						</div>
 				
 			 	<c:forEach items="${list}" var="list"> 
-					<div class="ar_titleDiv">
+					<div class="ar_titleDiv2">
 							<div class="ar_tableNum ar_titleDiv1"> ${list.num} </div>
 							<div class="ar_tableName ar_titleDiv1"><a href="explanatory" > ${list.formname}</a> </div>
 							<div class="ar_tableOther ar_titleDiv1">  ${list.forminfo} </div>
 						</div> 
 			 	</c:forEach> 
-			<div>
+			<div class="ar_pageWrap">
 						<c:if test="${pager.curBlock>1}">
 							<span class="ar_paging1" id="${pager.startNum-1 }">이전</span>
 						</c:if>

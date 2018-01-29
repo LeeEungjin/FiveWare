@@ -252,19 +252,19 @@
                         </span>
                      </a> 
                      
-                     <a href="${pageContext.request.contextPath}/GroupWare/epayment/epaymentPendency"> 
+                     <a href="${pageContext.request.contextPath}/GroupWare/epayment/epaymentTotalList?state=미결""> 
                         <span class="groupWare_jk_smalldiv"> 
                            <span class="groupWare_jk_writing">결재함</span>
                         </span>
                      </a> 
                      
-                     <a href="#"> 
+                     <a href="${pageContext.request.contextPath}/GroupWare/epayment/myEpayment"> 
                         <span class="groupWare_jk_smalldiv"> 
                            <span class="groupWare_jk_writing">발신함</span>
                         </span>
                      </a> 
                      
-                     <a href="#"> 
+                     <a href="${pageContext.request.contextPath}/GroupWare/epayment/epaymentReceive?statenum=0"> 
                         <span class="groupWare_jk_smalldiv"> 
                            <span class="groupWare_jk_writing">수신함</span>
                         </span>

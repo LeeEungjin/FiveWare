@@ -70,6 +70,7 @@ $(function(){
 	 $(".ar_paging1").click(function(){
 		var curPage = $(this).attr("id");
 		
+		/* $(this).prop("font-weight", "bold"); */
 		document.totalfrm.curPage.value=curPage;
 		document.totalfrm.submit();
 	 });
@@ -177,22 +178,23 @@ $(function(){
 
 	<div id="fw_mainwrap">
 			<div id="fw_main">
-				main Title
+				<div id="event_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
 			</div>
 			
 			<div class="ar_plusTitle">
-				<p id="ar_plustext">${title }</p>
+				<p id="ar_plustext">${title }함</p>
 			</div>
 			
-			<div class="ar_plusSearchWrap">
-				<div class="ar_blank"></div>
 				
 			<form action="positionPlus" method="GET">
-				<div class="ar_plusSearch">
-					내가 받은 결재
-					</div>
-			</form>
+				<div id="erp_jh_event_sub">
+					<div id="event_contents">
+						<p>　</p>
+								${title }된 문서 전체를 볼 수 있습니다.
+					<p>　</p>
+				</div>
 			</div>
+			</form>
 			
 			<div id="ar_mainDivWrap">
 	
@@ -223,7 +225,7 @@ $(function(){
 					<div id="ar_tableWrap">
 						<table class="table" id="eb_table">
 							<thead>
-								<tr>
+								<tr id="ar_tableTitle">
 									<th> No </th>
 									<th> 문서 제목 </th>
 									<th> 기안자 </th>
@@ -232,6 +234,7 @@ $(function(){
 									<th> 기안 날짜 </th>
 									<th> 상태 </th>
 									<th> 첨부 </th>
+									<th>  </th>
 								</tr>
 							</thead>
 							
@@ -271,7 +274,7 @@ $(function(){
 						</table>
 			 
 					</div>
-			 		<div>
+			 		<div class="ar_pageWrap">
 						<c:if test="${pager.curBlock>1}">
 							<span class="ar_paging1" id="${pager.startNum-1 }">이전</span>
 						</c:if>
