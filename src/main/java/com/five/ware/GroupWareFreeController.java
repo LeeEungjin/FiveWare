@@ -72,12 +72,12 @@ public class GroupWareFreeController {
 	@RequestMapping(value="freeWrite", method={RequestMethod.POST})
 	public String insert(RedirectAttributes rd, FreeDTO freeDTO, HttpSession session)throws Exception{
 		int result=0;
-		String message="글쓰기 실패";
+		String message="게시물 등록을 실패했습니다.";
 		
 		result=freeService.freeInsert(freeDTO, session);
 		
 		if(result>0){
-			message="글쓰기 성공";
+			message="게시물 등록을 성공했습니다.";
 		}
 		
 		rd.addFlashAttribute("message", message);
@@ -97,12 +97,12 @@ public class GroupWareFreeController {
 	@RequestMapping(value="freeReply", method={RequestMethod.POST})
 	public String reply(RedirectAttributes rd, FreeDTO freeDTO, HttpSession session)throws Exception{
 		int result=0;
-		String message="답글 실패";
+		String message="게시물 답글 등록을 실패했습니다.";
 		
 		result=freeService.freeReply(freeDTO, session);
 		
 		if(result>0){
-			message="답글 성공";
+			message="게시물 답글 등록을 성공했습니다.";
 		}
 		
 		rd.addFlashAttribute("message", message);
@@ -127,12 +127,12 @@ public class GroupWareFreeController {
 	@RequestMapping(value="freeUpdate", method={RequestMethod.POST})
 	public String update(RedirectAttributes rd, FreeDTO freeDTO, HttpSession session)throws Exception{
 		int result=0;
-		String message="수정 실패";
+		String message="게시물 수정을 실패했습니다.";
 		
 		result=freeService.update(freeDTO, session);
 		
 		if(result>0){
-			message="수정 성공";
+			message="게시물 수정을 성공했습니다.";
 		}
 		
 		rd.addFlashAttribute("message", message);
@@ -144,12 +144,12 @@ public class GroupWareFreeController {
 	@RequestMapping(value="freeDelete")
 	public String delete(int num, RedirectAttributes rd)throws Exception{
 		int result=0;
-		String message="삭제 실패";
+		String message="게시물 삭제를 실패했습니다.";
 		
 		result=freeService.delete(num);
 		
 		if(result>0){
-			message="삭제 성공";
+			message="게시물 삭제를 성공했습니다.";
 		}
 		
 		rd.addFlashAttribute("message", message);
@@ -161,7 +161,7 @@ public class GroupWareFreeController {
 	@RequestMapping(value="fileDelete")
 	@ResponseBody
 	public String fileDelete(int fnum)throws Exception{
-		String message="파일 삭제 실패";
+		String message="파일 삭제를 실패했습니다.";
 		int result=0;
 		
 		result=freeService.fileDelete(fnum);

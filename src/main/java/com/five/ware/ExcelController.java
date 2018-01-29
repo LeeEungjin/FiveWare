@@ -77,7 +77,6 @@ public class ExcelController {
 	public ModelAndView downloadExcel2(HttpServletResponse response){
 		response.setHeader("Content-disposition", "attachment; filename=" + "excelMater" + ".xls");
 		
-		System.out.println("here");
 		Map<String, List<IntoDTO>> map = new HashMap<String, List<IntoDTO>>();
 		
 		try {

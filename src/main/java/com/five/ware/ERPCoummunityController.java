@@ -46,7 +46,6 @@ public class ERPCoummunityController {
 	//selectOne
 	@RequestMapping(value="communityOne")
 	public String selectOne(Model model, int num)throws Exception{
-		System.out.println("왜안돼");
 
 		Map<String, Object> map=communityService.selectOne(num);
 		
@@ -74,10 +73,10 @@ public class ERPCoummunityController {
 		
 		result=communityService.insert(communityDTO, blackListDTO, session);
 		
-		String message="글쓰기 실패";
+		String message="공지사항 등록을 실패했습니다.";
 		
 		if(result>0){
-			message="글쓰기 성공;";
+			message="공지사항 등록을 성공했습니다.";
 		}
 		
 		rd.addFlashAttribute("message", message);
@@ -89,7 +88,7 @@ public class ERPCoummunityController {
 	@RequestMapping(value="communityUpdate", method={RequestMethod.GET})
 	public String update(int num, Model model)throws Exception{
 		Map<String, Object> map=communityService.selectOne(num);
-		System.out.println("?");
+
 		model.addAttribute("update", map.get("communityDTO"));
 		model.addAttribute("fileCount", map.get("fileCount"));
 		model.addAttribute("community", "ERP");
@@ -100,11 +99,11 @@ public class ERPCoummunityController {
 	//update->DB
 	@RequestMapping(value="communityUpdate", method={RequestMethod.POST})
 	public String update(CommunityDTO communityDTO, HttpSession session,RedirectAttributes rd)throws Exception{
-		String message="수정 실패";
+		String message="공지사항 수정을 실패했습니다.";
 		int result=communityService.update(communityDTO,session);
 		
 		if(result>0){
-			message="수정 성공";
+			message="공지사항 수정을 성공했습니다.";
 		}
 		
 		rd.addFlashAttribute("message", message);
@@ -114,12 +113,12 @@ public class ERPCoummunityController {
 	
 	@RequestMapping(value="fileDelete")
 	public int filedelete(int fnum, RedirectAttributes rd)throws Exception{
-		String message="file delete fail";
+		String message="파일 삭제를 실패했습니다.";
 		
 		int result=communityService.fileDelete(fnum);
 		
 		if(result>0){
-			message="file delete Success";
+			message="파일 삭제를 성공했습니다.";
 		}
 		
 		rd.addFlashAttribute("message", message);
@@ -129,12 +128,12 @@ public class ERPCoummunityController {
 	
 	@RequestMapping(value="communityDelete")
 	public String delete(int num, RedirectAttributes rd)throws Exception{
-		String message="삭제 실패";
+		String message="공지사항 삭제를 실패했습니다.";
 		
 		int result=communityService.delete(num);
 		
 		if(result>0){
-			message="삭제 성공";
+			message="공지사항 삭제를 성공했습니다.";
 		}
 		
 		rd.addFlashAttribute("message", message);

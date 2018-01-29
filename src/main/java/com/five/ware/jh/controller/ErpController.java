@@ -46,12 +46,12 @@ public class ErpController {
 	@RequestMapping(value="menuRegistWrite", method=RequestMethod.POST)
 	public String menuRegist(MenuRegistDTO menuRegistDTO, RedirectAttributes rd){
 		int result=0;
-		String message="fail";
+		String message="메뉴 등록을 실패했습니다.";
 		
 		try {
 			result=menuRegistService.menuRegistInsert(menuRegistDTO);
 			if(result>0){
-				message="Success";
+				message="메뉴 등록을 성공했습니다.";
 			}
 			rd.addFlashAttribute("message", message);
 		} catch (Exception e) {
@@ -77,11 +77,11 @@ public class ErpController {
 	
 	@RequestMapping(value="menuRegistUpdate", method=RequestMethod.POST)
 	public String update(MenuRegistDTO menuRegistDTO, RedirectAttributes rd)throws Exception{
-		String message="Fail";
+		String message="메뉴 수정을 실패했습니다.";
 		int result=menuRegistService.update(menuRegistDTO);
 		
 		if(result>0){
-			message="Success";
+			message="메뉴 수정을 성공했습니다.";
 		}
 		
 		rd.addFlashAttribute("message", message);
@@ -91,11 +91,11 @@ public class ErpController {
 	
 	@RequestMapping(value="menuRegistDelete")
 	public String delete(String menuCode, RedirectAttributes rd)throws Exception{
-		String message="Fail";
+		String message="메뉴 삭제를 실패하였습니다.";
 		int result=menuRegistService.delete(menuCode);
 		
 		if(result>0){
-			message="Success";
+			message="메뉴 삭제를 성공하였습니다.";
 		}
 		
 		rd.addFlashAttribute("message", message);
@@ -122,11 +122,11 @@ public class ErpController {
 	@RequestMapping(value="storagetWrite", method=RequestMethod.POST)
 	public String storageWrite(StorageRegistDTO storageRegistDTO, RedirectAttributes rd){
 		int result=0;
-		String message="fail";
+		String message="창고 등록을 실패하였습니다.";
 		try {
 			result=storageService.insert(storageRegistDTO);
 			if(result>0){
-				message="Success";
+				message="창고 등록을 성공하였습니다.";
 			}
 			rd.addFlashAttribute("message", message);
 		} catch (Exception e) {
@@ -148,11 +148,11 @@ public class ErpController {
 	
 	@RequestMapping(value="storageUpdate", method=RequestMethod.POST)
 	public String update(StorageRegistDTO storageRegistDTO, RedirectAttributes rd)throws Exception{
-		String message="Fail";
+		String message="창고 수정을 실패하였습니다.";
 		int result=storageService.update(storageRegistDTO);
 		
 		if(result>0){
-			message="Success";
+			message="창고 수정을 성공하였습니다.";
 		}
 		
 		rd.addFlashAttribute("message", message);
@@ -162,11 +162,11 @@ public class ErpController {
 	
 	@RequestMapping(value="storageDelete")
 	public String deleteStorage(String storageCode, RedirectAttributes rd)throws Exception{
-		String message="Fail";
+		String message="창고 삭제를 실패하였습니다.";
 		int result=storageService.delete(storageCode);
 		
 		if(result>0){
-			message="Success";
+			message="창고 삭제를 성공하였습니다.";
 		}
 		
 		rd.addFlashAttribute("message", message);

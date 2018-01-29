@@ -100,14 +100,14 @@ public class MaterController {
 	@RequestMapping(value="materWrite", method=RequestMethod.GET)
 	public String materRegist(MaterDTO materDTO, String [] orderCode, String [] code, RedirectAttributes rd){
 		int result=0;
-		String message="Fail";
+		String message="자재 등록을 실패하였습니다.";
 		String materCode=materDTO.getMaterCode();
 		MaterOrderReigstDTO materOrderReigstDTO=new MaterOrderReigstDTO();
 		
 		try {
 			result=materService.insert(materDTO);
 			if(result>0){
-				message="Success";
+				message="자재 등록을 성공하였습니다.";
 			}
 		
 		for(int i=0; i<orderCode.length; i++){
@@ -145,14 +145,14 @@ public class MaterController {
 	
 	@RequestMapping(value="materUpdate", method=RequestMethod.POST)
 	public String update(MaterDTO materDTO, RedirectAttributes rd){
-		String message="Fail";
+		String message="자재 수정을 실패하였습니다.";
 		int result=0;
 		
 		try {
 			result=materService.update(materDTO);
 			
 			if(result>0){
-				message="Success";
+				message="자재 수정을 성공하였습니다.";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -166,14 +166,14 @@ public class MaterController {
 	
 	@RequestMapping(value="materDelete")
 	public String delete(String materCode, String materKind, RedirectAttributes rd){
-		String message="Fail";
+		String message="자재 삭제를 실패하였습니다.";
 		int result=0;
 
 		try {
 			result=materService.delete(materCode);
 			
 			if(result>0){
-				message="Success";
+				message="자재 삭제를 성공하였습니다.";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

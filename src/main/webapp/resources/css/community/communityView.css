@@ -14,8 +14,8 @@
 
 #com_header {
 	width: 100%;
-	background-color: #ffdfe4;
-	height: 13%;
+    height: 13%;
+    border-bottom: 2px solid;
 }
 
 #com_icon {
@@ -90,7 +90,6 @@
 
 #com_footer {
 	width: 100%;
-	background-color: #cdcde7;
 	height: 12%;
 }
 

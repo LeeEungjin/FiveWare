@@ -40,7 +40,7 @@ public class BlackListController {
 				
 				if(string.equals(code)){
 					result=1;
-					message="already report";
+					message="이미 신고한 게시물입니다.";
 				}
 				
 			}
@@ -54,7 +54,7 @@ public class BlackListController {
 				result=blackListService.namesUpdate(blackListDTO);
 				
 				if(result>0){
-					message="report success";
+					message="해당 게시물을 신고하였습니다.";
 				}
 			}
 			
