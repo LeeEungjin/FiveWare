@@ -170,7 +170,7 @@
 				
 				
 				<ul class="nav nav-tabs">
-				    <li class="active"><a>검색</a></li>
+				    <li class="active"><a>목록</a></li>
 				    <li><a class="into" title="Supplier">거래처</a></li>
 				    <li><a class="into" title="Product">제품</a></li>
 				    <li><a class="into" title="Menu">메뉴</a></li>
