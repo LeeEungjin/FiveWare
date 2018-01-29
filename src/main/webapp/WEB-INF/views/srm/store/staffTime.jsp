@@ -104,15 +104,21 @@
 				</div>
 				
 		
-			 	
-				<div id="eb_contents_box">
+	
+				
+						<div id="eb_contents_box">
 				 <div class="eb_blank"></div>
-				 <div id="eb_selectBox">	
-						 <input type="date" name="search">~<input type="date" name="search">
+				 <form action="./staffTime" method="get">
+					<input type="hidden" name="curPage" value="1">
+						  <div id="eb_selectBox">	
+						  	
+						<input type="date" name="search">
+						
 						  <button class="btn btn-default">search</button>
 					</div>
+						
+				  </form>
 				</div> 
-				
 				
 				<div id="eb_contents_table">
 				  	

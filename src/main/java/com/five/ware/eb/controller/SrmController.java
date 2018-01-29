@@ -167,10 +167,11 @@ public class SrmController {
 	
 	//출퇴근조회
 	@RequestMapping(value="staffTime")
-	public ModelAndView staffTime(String store){
+	public ModelAndView staffTime(ListData listData,String store){
+		System.out.println("ss : "+listData.getKind());
 		ModelAndView mv=new ModelAndView();
 		try {
-			mv=staffService.staffTimeList(store);
+			mv=staffService.staffTimeList(listData, store);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

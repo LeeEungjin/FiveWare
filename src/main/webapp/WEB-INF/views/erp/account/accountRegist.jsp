@@ -314,7 +314,7 @@
 					
 					
 				<!-- 검색 -->
-				   <input type="hidden" name="curPage" value="1">
+				   
 					
 					
 				<form name="frm" action="./accountRegist" method="get">

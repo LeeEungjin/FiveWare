@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="${url}/resources/css/common/bootstrap-theme.min.css">
 	<script type="text/javascript" src='${url}/resources/js/sweetalert.min.js?ver=1'></script>
 	<link rel="stylesheet" type="text/css" href='${url}/resources/css/common/sweetalert.css?ver=1.2'>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link href="${url}/resources/css/header/header.css" rel="stylesheet">
 	<link href="${url}/resources/css/header/sample.css" rel="stylesheet">
