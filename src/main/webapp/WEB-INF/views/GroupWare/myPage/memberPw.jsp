@@ -157,12 +157,7 @@
 		
 		<div id="fw_main">
 			
-			<div id="eb_fw_main_1"></div>
-			
-			<div id="eb_fw_main_2">
-			
-			</div>
-				
+			<img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png">
 				
 		</div>
 			

@@ -228,7 +228,7 @@
 					$("#eb_viewName").text(data.rName);
 					$("#eb_viewRegdate").text(data.regdate);
 					$("#eb_viewTime").text(data.time);
-					$("#eb_MviewText").val(data.contents);
+					$("#eb_MviewText").html(data.contents);
 					$("#eb_Mnum").val(data.num);
 				}
 			})
@@ -262,7 +262,7 @@
 					$("#eb_viewName").text(data.sName);
 					$("#eb_viewRegdate").text(data.regdate);
 					$("#eb_viewTime").text(data.time);
-					$("#eb_MviewText").val(data.contents);
+					$("#eb_MviewText").html(data.contents);
 					$("#eb_MviewCode").val(data.sCode);
 					$("#eb_Mnum").val(data.num);
 				}
@@ -385,7 +385,8 @@
 			
 			<div id="eb_Mbox2">
 			
-			<textarea id="eb_Mtext" class="eb_Mtext"></textarea>
+			<div id="eb_Mtext" class="eb_Mtext"></div>
+		
 			
 			</div>
 		
@@ -421,7 +422,8 @@
 			
 			<div id="eb_Mview2">
 			
-			<textarea id="eb_MviewText" readonly="readonly" ></textarea>
+	
+			<div id="eb_MviewText"  readonly="readonly"></div>
 			
 			</div>
 		
