@@ -13,17 +13,36 @@
  <link href="${url}/resources/css/srm/contest/contest.css" rel="stylesheet">
 
 <title>Insert title here</title>
+<!-- <script type="text/javascript">
+$(function(){
+ 	/* CKEDITOR.instances.ar_recipe1.setData('${one.recipe }'); */
+	CKEDITOR.instances.ar_info1.val()="우아아";
+	/* replaceAll("\r\n", ""); */
+	
+		
+/* 	CKEDITOR.replace('ar_recipe1',{
+		width: 500,
+		height: 50
+	});
+	
+	CKEDITOR.replace('ar_info1',{
+		width: 500,
+		height: 50
+	}); */
+})
+
+</script> -->
     </head>
     <body>
 				      <div class="modal-content">
 				        
 				        <!-- modal contents -->
-				        <form action="contestJoin" method="post" id="contestfrm" name="contestfrm" enctype="multipart/form-data">
+				        <form action="contestJoin" method="post" id="ar_contestjoinpop" name="contestfrm" enctype="multipart/form-data">
 				        
 				        
 				        <div class="modal-body">
 							<div class="ar_Viewphoto">
-								<img src="../../resources/contest/${one.photo}"> 
+								<img src="../../resources/contest/${one.photo}" class="ar_imgsize"> 
 							 
 							</div>
 							
@@ -39,21 +58,17 @@
 							
 							<div class="input-group input-group_modal ar_area" >
 							   <div id="area_text"><label class="jh_label" for="comment">레시피</label></div> 
-							  <textarea name="recipe" id="ar_recipe" class="form-control form-control_area" readonly="readonly" >${one.recipe }</textarea>
-							</div>
+							  <div id="ar_recipe" class="form-control form-control_area" > ${one.recipe } </div>
 							
 							<div class="form-group  ar_area">
 						      <div id="area_text"><label class="jh_label" for="comment">메뉴설명</label></div> 
-						      <textarea id="ar_info" name="account" class="form-control form-control_area"  readonly="readonly">${one.account}</textarea>
+						      <div id="ar_info" class="form-control form-control_area"  > ${one.account}</div>
 						    </div>
 				        </div>
 				        <!-- modal contents 끝-->
 				        
 				        <!-- modal footer -->
-				        <div class="modal-footer">
-				          <input type="button" class="btn btn-default ar_InsertBtn"  value="올리기">
-				          <button type="button" class="btn btn-default" data-dismiss="modal">초기화</button>
-				        </div>
+				      
 				       </form>
 				      	<!-- modal footer 끝-->
 				      

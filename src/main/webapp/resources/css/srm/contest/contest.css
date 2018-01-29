@@ -135,7 +135,7 @@
 
 #ar_info{
 	width: 100%;
-	height: 100%;
+	height: 105px;
 }
 .ar_like{
 	display:inline-block;
@@ -143,6 +143,10 @@
 	margin-right: 2%;
 }
 
+#ar_contestjoinpop{
+	
+    height: 755px;
+}
 .ar_big{
 	display:inline-block;
 	text-align: right;
@@ -188,4 +192,9 @@
 	border: 1px solid black;
 	margin: 0 auto;
 	margin-bottom: 2%;
+}
+
+.ar_imgsize{
+	width: 100%;
+	height: 100%;
 }

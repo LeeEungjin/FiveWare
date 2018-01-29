@@ -62,7 +62,7 @@ public class ContestService {
 			long c = ca.getTimeInMillis();
 			
 			
-			if(c<= e){
+			if(c< e){
 				size.add("big");
 			}else {
 				size.add("small");

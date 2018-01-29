@@ -242,7 +242,6 @@
 
 
 
-<<<<<<< HEAD
 			<!-- 로그인 끝 화면 시작 -->
 			<%-- <c:if test="${member ne null }">
 			<div class="login_after">
@@ -289,7 +288,6 @@
 			<!-- 로그인 끝 화면 끝 -->
 		</div>
 	</div>
-=======
              </div>
              
                 <div class="menu">
@@ -380,7 +378,6 @@
        <!-- 로그인 끝 화면 끝 -->
    </div> 
 </div>
->>>>>>> arin
 
 </body>
 </html>
