@@ -18,6 +18,9 @@
 
 <script type="text/javascript">
    $(function(){
+	   
+	   
+	   
 	   $(".background-image").css("height", window.innerHeight);
 	   
 	   // 중간 구하기
@@ -97,21 +100,31 @@
 	   }); // 로그인 버튼 끝
 
       
-	   
-	   
    			var kind='${kind}';
    			var code='${member.code}';
    			var pw='${member.pw}';
    			
-      /* $("#eb_href_1").click(function(){
-    	  
-    	  if(kind==""){
-    		  alert("로그인 후 이용 가능합니다.")
-    	  }else if(kind=='member'){
+        $("#eb_href_1").click(function(){
+			
+
+    	 if(kind=='member'){
     		  
     		  if(pw==code){
-    			  alert("비밀번호 변경 후 이용해주세요.")
-        		  $("#eb_href_1").attr("href","./myPage/myPageMain");
+    			  swal({
+                      title:"비밀번호 변경 후",
+                      text: "이용해주세요",
+                      type: "success",
+                      showCancelButton: false,
+                      confirmButtonClass: "btn-primary",
+                      confirmButtonText: "확인",
+                      closeOnConfirm: false
+                    },
+                    function(){
+                    	//$("#eb_href_1").attr("href","./myPage/myPageMain");
+                    	location.href="./myPage/myPageMain";
+                    });
+    	
+        		  
     		  }else{
     			  $("#eb_href_1").attr("href","erp"); 
     		  }
@@ -119,33 +132,27 @@
     	  }else{
     		  alert("본사 사람들만 이용 가능합니다.")
     	  }
-    	  
-  
-    	  
+        	  
       });
       
+        
       $("#eb_href_2").click(function(){
-      
-    	  if(kind==""){
-    		  alert("로그인 후 이용 가능합니다.")
-    	  }else{
+
+    	 
     		  if(pw==code){
         		  alert("비밀번호 변경 후 이용해주세요.")
         		  $("#eb_href_2").attr("href","./myPage/myPageMain");
+        		  
         	  }else{
-        		  $("#eb_href_2").attr("href","groupware");
+        		  $("#eb_href_2").attr("href","GroupWare");
         	  } 
-    	  }
-    	
+    	  
       });
-      
       
       
       $("#eb_href_3").click(function(){
     	  
-    	  if(kind==""){
-    		  alert("로그인 후 이용 가능합니다.")
-    	  }else if(kind=='store'){
+    	if(kind=='store'){
     		  if(pw==code){
     			  alert("비밀번호 변경 후 이용해주세요.")
         		  $("#eb_href_3").attr("href","./myPage/myPageMain");
@@ -158,7 +165,7 @@
     	  }
     	  
     	 
-      }); */
+      }); 
 
    });
 </script>
@@ -176,9 +183,9 @@
 				<!-- 큰 메뉴 3개 (ERP, GROUPWARE, SRM) -->
 				<thead>
 				<tr>
-					<td class="menu"><a href="./erp" class="eb_login">ERP</a></td>
-					<td class="menu"><a href="./GroupWare" class="eb_login">Group Ware</a></td>
-					<td class="menu"><a href="./srm" class="eb_login">SRM</a></td>
+					<td class="menu"><a class="eb_login" id="eb_href_1">ERP</a></td>
+					<td class="menu"><a class="eb_login" id="eb_href_2">Group Ware</a></td>
+					<td class="menu"><a class="eb_login" id="eb_href_3">SRM</a></td>
 				</tr>
 				</thead>
 				

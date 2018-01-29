@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.five.ware.common.CommonDTO;
 import com.five.ware.erp.human.member.MemberDTO;
 import com.five.ware.erp.human.member.MemberService;
 import com.five.ware.erp.storeRegist.StoreRegistDTO;
@@ -40,8 +41,9 @@ public class MyPageController {
 	
 	//비밀번호 변경
 	@RequestMapping(value="memberPwUpdate",method=RequestMethod.POST)
-	public String memberPwUpdate(String code,String pw,RedirectAttributes rd,String kind){
+	public String memberPwUpdate(String code,String pw,RedirectAttributes rd,String kind,HttpSession session){
 	
+		
 		int result=0;
 		try {
 			if(kind.equals("member")){
@@ -57,11 +59,14 @@ public class MyPageController {
 		String message="fail";
 		if(result>0){
 			message="success";
+			session.invalidate();
 		}
 		
 		rd.addFlashAttribute("message", message);
-		return "redirect:./myPageMain";
+		
+		return "redirect:/";
 	}
+	
 	
 	//member pw
 		@RequestMapping(value="memberPwCheck",method=RequestMethod.GET)

@@ -22,10 +22,6 @@
 	<link href="./resources/css/common/clock.css" rel="stylesheet" />
 	<!-- clock library End -->
 
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 </head>
 
 <script type="text/javascript">
@@ -508,7 +504,7 @@
 							<div class="digits"></div>
 						</div>
 					</div>
-					<!-- Clock API End -->일ㅈ
+					<!-- Clock API End -->
 				</div>
 
 
@@ -621,9 +617,7 @@
                <div id="notice_title">
                   <p id="notice_title_p"><a style="color: black; text-decoration: none;, font-size: 24px;" href="../ware/community/communityList">공지사항</a></p>
                </div>
-<<<<<<< HEAD
 
-=======
 <!-- 
 >>>>>>> master
 
