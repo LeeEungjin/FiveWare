@@ -38,14 +38,14 @@ input[type="text"]{
 		<!-- submenu banner end -->
 		
 		<!-- submenu menu -->
-			<div class="fw_menu fw_selected" data-toggle="collapse" data-target=".fw_subselected" title="sub1">
+			<div class="fw_menu " data-toggle="collapse" data-target=".fw_subselected" title="sub1">
 				<a href="${url}/GroupWare/cloud/myCloud">내 드라이브</a>
 				<div class="fw_arrow sub1">
 					∧
 				</div>
 			</div>
 			
-			<div class="fw_subselected collapse in" id="sub1">
+			<div class="fw_subsub collapse " id="sub1">
 				<ul>
 					<c:forEach items="${folderList}" var="folder" varStatus="count">
 						<li><a href="javascript:enterFolder('${filePath}', '${folder.name}')">${folder.name}</a></li>
@@ -54,14 +54,14 @@ input[type="text"]{
 			</div>
 			
 			<!-- ----------2---------- -->
-				<div class="fw_menu" data-toggle="collapse" data-target="#sub2" title="sub2" >
+				<div class="fw_menu fw_selected" data-toggle="collapse" data-target="#sub2" title="sub2" >
 					<a href="${url}/GroupWare/wbs/projectList">프로젝트 관리</a>
 				<div class="fw_arrow sub2">
 					∨
 				</div>
 			</div>
 			
-			<div class="fw_subsub collapse"  id="sub2">
+			<div class="fw_subselected  collapse in"  id="sub2">
 				<ul>
 					<c:forEach items="${prjLists}" var="dto">
 						<li><a href="#" style="text-decoration: none;" onclick="projectSchdule('${dto.prj_no}')">${dto.prj_name}</a></li>

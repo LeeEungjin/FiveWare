@@ -246,7 +246,7 @@
 	
 	<div id="fw_mainwrap">
 		<div id="fw_main">
-			| 폴더
+			<img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png">
 		</div>
 		
 		<div class="cloud_title">

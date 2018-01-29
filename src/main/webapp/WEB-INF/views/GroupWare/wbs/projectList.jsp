@@ -12,6 +12,13 @@
 <c:import url="${url}/resources/temp/ref.jsp"></c:import> 
 <script type="text/javascript" src="${url}/resources/js/projectList.js"></script>
 
+<style type="text/css">
+.btn-color {
+	background-color: #cd5647;
+	color: white;
+}
+</style>
+
 </head>
 <body>
 
@@ -29,14 +36,14 @@
 		<!-- submenu banner end -->
 		
 		<!-- submenu menu -->
-			<div class="fw_menu fw_selected" data-toggle="collapse" data-target=".fw_subselected" title="sub1">
+			<div class="fw_menu " data-toggle="collapse" data-target=".fw_subselected" title="sub1">
 				<a href="${url}/GroupWare/cloud/myCloud">내 드라이브</a>
 				<div class="fw_arrow sub1">
 					∧
 				</div>
 			</div>
 			
-			<div class="fw_subselected collapse in" id="sub1">
+			<div class="fw_subsub collapse " id="sub1">
 				<ul>
 					<c:forEach items="${folderList}" var="folder" varStatus="count">
 						<li><a href="javascript:enterFolder('${filePath}', '${folder.name}')">${folder.name}</a></li>
@@ -45,14 +52,14 @@
 			</div>
 			
 			<!-- ----------2---------- -->
-				<div class="fw_menu" data-toggle="collapse" data-target="#sub2" title="sub2" >
+				<div class="fw_menu fw_selected" data-toggle="collapse" data-target="#sub2" title="sub2" >
 					<a href="${url}/GroupWare/wbs/projectList">프로젝트 관리</a>
 				<div class="fw_arrow sub2">
 					∨
 				</div>
 			</div>
 			
-			<div class="fw_subsub collapse"  id="sub2">
+			<div class="fw_subselected  collapse in"  id="sub2">
 				<ul>
 					<c:forEach items="${prjLists}" var="dto">
 						<li><a href="#" style="text-decoration: none;" onclick="projectSchdule('${dto.prj_no}')">${dto.prj_name}</a></li>
@@ -65,10 +72,14 @@
 	
 	<div id="fw_mainwrap">
 		<div id="fw_main">
-			| 프로젝트 생성
+			<img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png">
 		</div>
 		
-		<div class="container" style="margin-top: 30px;">
+		<div style="padding: 10px 15px; border-bottom: 1px solid black; margin-top: 30px;">
+			<h2>프로젝트 생성</h2>
+		</div>
+		
+		<div style="margin-top: 30px;">
 			<form action="./updateDelProject" method="post"
 				id='frmUpdateDelProject'>
 				<table class="table table-bordered table-hover">
@@ -95,8 +106,8 @@
 				</table>
 			</form>
 	
-			<input class='btn btn-sm btn-warning btn-center' type='button' value='생성' onclick='insertProjectForm()'> 
-			<input class='btn btn-sm btn-warning btn-center' type='button' value='삭제' onclick='updateDelProject()'>
+			<input class='btn btn-sm btn-color btn-center' type='button' value='생성' onclick='insertProjectForm()'> 
+			<input class='btn btn-sm btn-color btn-center' type='button' value='삭제' onclick='updateDelProject()'>
 	
 		</div>
 		<!-- 프로젝트일정 상세보기 -->
@@ -130,9 +141,9 @@
 							</div>
 							<input type='hidden' name='dept_no' value='${memDto.dept_no}'>
 							<div class='modal-footer'>
-								<input type="button" class='btn btn-sm btn-warning' value="확인" onclick="insertProject()" />
-								<input type="reset" class='btn btn-sm btn-warning' value="초기화" /> 
-								<input type='button' class='btn btn-sm btn-warning' data-dismiss='modal' value="취소" />
+								<input type="button" class='btn btn-sm btn-color' value="확인" onclick="insertProject()" />
+								<input type="reset" class='btn btn-sm btn-color' value="초기화" /> 
+								<input type='button' class='btn btn-sm btn-color' data-dismiss='modal' value="취소" />
 							</div>
 						</form>
 						
