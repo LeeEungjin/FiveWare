@@ -372,7 +372,7 @@
 				</div>
 				
 				<!-- 검색 기능 -->
-				<div id="erp_jh_contents_search">
+				<div class="container" style="background-color: #EAEAEA;">
 					<form name="ej_frm" action="./product" method="get">
 						<div class="erp_ej_search" style="max-width: 420px;">
 							<div class="erp_ej_inputBox">
@@ -395,7 +395,7 @@
 				
 				
 				<!-- table Start -->
-				<div id="erp_jh_contents_table">
+				<div class="container">
 					<table class="table">
 					    <thead>
 					      <tr>
@@ -421,7 +421,7 @@
 					 </table>
 					 
 					 <!-- pager Start -->
-					 	<div id="mr_pager" style="margin-top: 20px;">
+					 	<div id="mr_pager" class="container" style="margin-top: 20px;">
 							<c:if test="${pager.curBlock gt 1}">
 								<span class="ej_list" title="${pager.startNum-1}">◀</span>
 							</c:if>

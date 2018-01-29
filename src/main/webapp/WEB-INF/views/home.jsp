@@ -79,7 +79,7 @@
 						   title: msg.name+"님",
 						   text: "환영합니다!",
 						   type: "success",
-						   showCancelButton: true,
+						   showCancelButton: false,
 						   confirmButtonClass: "btn-primary",
 						   confirmButtonText: "확인",
 						   closeOnConfirm: false
@@ -95,39 +95,6 @@
 			 }); // END ajax
 		  }
 	   }); // 로그인 버튼 끝
-      
-      //로그인 후 이용
-/*        $(".eb_login").click(function(){
-    	  
-   			var member=$("#eb_code").val();
-   			var kind='${kind}';
-
-   			
-    	if(member==""){
-    		alert("로그인 후 이용해주세요.");
-    	}else{
-    	
-    		if(kind=="member"){
-    		$("#eb_href_1").attr("href","erp");
-    		$("#eb_href_2").attr("href","groupware");
-    		
-    		$("#eb_href_3").click(function(){
-    			alert("지점사람들만 이용가능합니다.");
-    	    });    		
-    			
-    		}else{
-    			$("#eb_href_2").attr("href","groupware");
-        		$("#eb_href_3").attr("href","srm");
-        		
-        		$("#eb_href_1").click(function(){
-        			alert("본사사람들만 이용가능합니다.");
-        	    }); 
-    			
-    		}
-    	}
-	  
-      });  */
-       
    });
 </script>
 
@@ -144,9 +111,9 @@
 				<!-- 큰 메뉴 3개 (ERP, GROUPWARE, SRM) -->
 				<thead>
 				<tr>
-					<td class="menu"><a href="erp" class="eb_login" id="eb_href_1">ERP</a></td>
-					<td class="menu"><a href="groupware" class="eb_login" id="eb_href_2">Group Ware</a></td>
-					<td class="menu"><a href="srm" class="eb_login" id="eb_href_3">SRM</a></td>
+					<td class="menu"><a href="./erp" class="eb_login">ERP</a></td>
+					<td class="menu"><a href="./GroupWare" class="eb_login">Group Ware</a></td>
+					<td class="menu"><a href="./srm" class="eb_login">SRM</a></td>
 				</tr>
 				</thead>
 				
@@ -239,6 +206,8 @@
 			</table>
 			</form>
 
+		</div>
+	</div>
 
 </body>
 </html>
