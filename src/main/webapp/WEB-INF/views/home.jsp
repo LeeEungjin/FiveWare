@@ -281,7 +281,6 @@
 			</table>
 			</form>
 
-<<<<<<< HEAD
 
 
 
@@ -289,11 +288,7 @@
              
                 </div>
                 </div>
-                
-=======
-		</div>
-	</div>
->>>>>>> master
+
 
 </body>
 </html>
