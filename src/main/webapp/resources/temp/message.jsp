@@ -6,6 +6,7 @@
 <c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 <link href="./resources/css/message.css" rel="stylesheet">
  <script src="//cdn.ckeditor.com/4.8.0/basic/ckeditor.js"></script>
+ 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -51,7 +52,9 @@
 						}); 
 						
 						//안읽은거 부트스트랩!!!!
-						alert(data[1]);
+						/* alert(data[1]); */
+						
+						$("#eb_new").text(data[1]);
 						
 					}
 				});
@@ -319,6 +322,7 @@
 			<span class="eb_messageList"><i class="fa fa-address-card-o" style="font-size:25px; color :white; padding-top:5px; padding-left: 10px;"></i></span>
 			<span class="eb_messageBox1" style="color : white; margin-left: 10px;">보낸 쪽지함</span>
 			<span class="eb_messageBox2" style="color : white; margin-left: 10px;">받은 쪽지함 </span>
+			<span class="badge" id="eb_new" style="background-color: black;"></span>
 			<span class="eb_Mclose"><i class="fa fa-remove" style="font-size:24px; color: white; "></i></span>
 		
 		</div>
@@ -350,16 +354,15 @@
 		<div class="eb_Mall">
 		
 			<div class="eb_M1">
-				<i class="fa fa-hand-o-up" style="font-size:20px" id="eb_Micon"></i>
-			</div>
 			
-			<div class="eb_M2" >
-		  		<p id="eb_Mp">Message</p>
-		    </div>
+				<i class="fa fa-envelope" style="font-size:35px; color: white;" id="eb_Micon"></i>
+				
+			</div>
+	
 
 </div>
 
-
+	<!-- 보내기 -->
 	<div class="w3-card-4 eb_MsendForm" style="display: none;">
 		<input type="hidden" id="eb_rCode" name="rCode">
 		<input type="hidden" id="eb_Mtime" name="time">
@@ -394,7 +397,7 @@
 	</div>
 	
 	<!--view  -->
-	<div class="w3-card-4 eb_Mview" style="display: none;">
+	<div class="w3-card-4 eb_Mview" style="display: none;" >
 	 <input type="hidden" id="eb_MviewCode">
 	 <input type="hidden" id="eb_Mnum">
 		<div class="eb_MsendForm_h">
@@ -426,11 +429,11 @@
 		
 		<div class="eb_MsendForm_f">
 			
-				<input type="button" value="삭제" class="eb_MdeleteBtn">
-				
-				<input type="button" value="답장" class="eb_MrSendBtn">
-			
-			<input type="button" value="확인" class="eb_viewClose">
+			   <input type="button" value="삭제" class="eb_MdeleteBtn">
+            
+            <input type="button" value="보내기" class="eb_MrSendBtn">
+         
+         <input type="button" value="확인" class="eb_viewClose" id="eb_viewClose2">
 		</div>
 	</div>
 

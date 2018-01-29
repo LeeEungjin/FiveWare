@@ -4,6 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 <c:import url="${url}/resources/temp/ref.jsp"></c:import> 
@@ -48,7 +50,8 @@
 <div id="fw_container">
 
 	<div id="com_header">
-		<div id="com_icon"></div><div id="com_title"></div>	
+		<div id="com_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
+		<div id="com_title">공지사항</div>	
 	</div>
 	
 	<div id="com_middle">
@@ -100,11 +103,11 @@
 				      	<td>
 				      	<c:choose>
 				      		<c:when test="${reportList[i.index] gt 4}">
-				      			<span id="reportCommunity">신고된 게시물입니다.</span>
+				      			<span id="reportCommunity">신고된 게시물입니다.<i class="material-icons">&#xe8f5;</i></span>
 				      		</c:when>
 				      		
 				      		<c:otherwise>
-				      			 <a href="communityOne?num=${list.num}">${list.title}</a>
+				      			 <a id="com_boldText" href="communityOne?num=${list.num}">${list.title}</a>
 				      		</c:otherwise>
 				      	</c:choose>
 				      	</td>
@@ -138,7 +141,9 @@
 	</div>
 	
 	<div id="com_footer">
+	<c:if test="${kind eq 'member'}">
 		<a href="communityWrite"><button id="comInsertBtn" type="button" class="btn btn-default">신규 등록</button></a>
+	</c:if>
 	</div>
 </div>
 

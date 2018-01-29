@@ -9,7 +9,6 @@
 			<th>부서</th>
 			<th>작성자</th>
 			<th>거래처</th>
-			<th>담당자</th>
 			<th>납부처</th>
 			<th>납부일</th>
 			<th>창고명</th>
@@ -25,9 +24,7 @@
 				<td>${dto.temp}</td>
 				<td>${dto.name}</td>
 				<td>${dto.account }</td>
-				<td>${dto.division }</td>
 				<td>${dto.delivery }</td>
-				<td>${dto.condition }</td>
 				<td>${dto.deadline }</td>
 				<td>${dto.storageName }</td>
 				<td>${dto.orderMemo }</td>

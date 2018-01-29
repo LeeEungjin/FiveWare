@@ -9,7 +9,7 @@
 	<!-- modal header -->
 	<div class="modal-header">
 	    <button type="button" class="close" data-dismiss="modal">&times;</button>
-	     <h4 class="modal-title">|입고 입력</h4>
+	     <h4 class="modal-title">|자재 관리</h4>
 				        </div>
 	<!-- modal header 끝-->
 				        
@@ -68,7 +68,9 @@
 		<!-- modal footer -->
 			<div class="modal-footer">
 				<!-- <button type="button" class="btn btn-default or_update_btn">수정 하기</button> -->
+				<c:if test="${member.temp eq '영업/구매부'}">
 				<button title="${materDTO.materCode}" type="button" data-dismiss="modal" class="btn btn-default mater_delete">삭제</button>
+				</c:if>
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			</div>
 		</form>

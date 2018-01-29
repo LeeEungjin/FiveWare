@@ -18,6 +18,9 @@
 
 <script type="text/javascript">
    $(function(){
+	   
+	   
+	   
 	   $(".background-image").css("height", window.innerHeight);
 	   
 	   // 중간 구하기
@@ -79,7 +82,7 @@
 						   title: msg.name+"님",
 						   text: "환영합니다!",
 						   type: "success",
-						   showCancelButton: true,
+						   showCancelButton: false,
 						   confirmButtonClass: "btn-primary",
 						   confirmButtonText: "확인",
 						   closeOnConfirm: false
@@ -95,39 +98,118 @@
 			 }); // END ajax
 		  }
 	   }); // 로그인 버튼 끝
-      
-      //로그인 후 이용
-/*        $(".eb_login").click(function(){
-    	  
-   			var member=$("#eb_code").val();
-   			var kind='${kind}';
 
+      
+   			var kind='${kind}';
+   			var code='${member.code}';
+   			var pw='${member.pw}';
    			
-    	if(member==""){
-    		alert("로그인 후 이용해주세요.");
-    	}else{
+        $("#eb_href_1").click(function(){
+			
+
+    	 if(kind=='member'){
+    		  
+    		  if(pw==code){
+    			  swal({
+                      title:"비밀번호 변경 후",
+                      text: "이용해주세요",
+                      type: "success",
+                      showCancelButton: false,
+                      confirmButtonClass: "btn-primary",
+                      confirmButtonText: "확인",
+                      closeOnConfirm: false
+                    },
+                    function(){
+                    	
+                    	location.href="./myPage/myPageMain";
+                    });
     	
-    		if(kind=="member"){
-    		$("#eb_href_1").attr("href","erp");
-    		$("#eb_href_2").attr("href","groupware");
-    		
-    		$("#eb_href_3").click(function(){
-    			alert("지점사람들만 이용가능합니다.");
-    	    });    		
-    			
-    		}else{
-    			$("#eb_href_2").attr("href","groupware");
-        		$("#eb_href_3").attr("href","srm");
-        		
-        		$("#eb_href_1").click(function(){
-        			alert("본사사람들만 이용가능합니다.");
-        	    }); 
-    			
-    		}
-    	}
-	  
-      });  */
-       
+        		  
+    		  }else{
+    			  $("#eb_href_1").attr("href","erp"); 
+    		  }
+    		  
+    	  }else{
+    	
+    		  swal({
+                  title:"본사 사람들만 이용가능합니다.",
+                  type: "success",
+                  showCancelButton: false,
+                  confirmButtonClass: "btn-primary",
+                  confirmButtonText: "확인",
+                  closeOnConfirm: false
+                },
+                function(){
+                	
+                	location.reload();
+                });
+    	  }
+        	  
+      });
+      
+        
+      $("#eb_href_2").click(function(){
+
+    	 
+    		  if(pw==code){
+    			  swal({
+                      title:"비밀번호 변경 후 이용해주세요.",
+                      type: "success",
+                      showCancelButton: false,
+                      confirmButtonClass: "btn-primary",
+                      confirmButtonText: "확인",
+                      closeOnConfirm: false
+                    },
+                    function(){
+                    
+                    	location.href="./myPage/myPageMain";
+                    });
+    			  
+        	  }else{
+        		  $("#eb_href_2").attr("href","GroupWare");
+        	  } 
+    	  
+      });
+      
+      
+      $("#eb_href_3").click(function(){
+    	  
+    	if(kind=='store'){
+    		  if(pw==code){
+    			  swal({
+                      title:"비밀번호 변경 후 이용해주세요.",
+                      type: "success",
+                      showCancelButton: false,
+                      confirmButtonClass: "btn-primary",
+                      confirmButtonText: "확인",
+                      closeOnConfirm: false
+                    },
+                    function(){
+                  
+                    	location.href="./myPage/myPageMain";
+                    });
+    		  }else{
+    			  $("#eb_href_3").attr("href","srm"); 
+    		  }
+    		  
+    	  }else{
+    		  swal({
+                  title:"지점 사람들만 이용가능합니다.",
+                  type: "success",
+                  showCancelButton: false,
+                  confirmButtonClass: "btn-primary",
+                  confirmButtonText: "확인",
+                  closeOnConfirm: false
+                },
+                function(){
+                	
+                	location.reload();
+                });
+    	  }
+    	  
+    	 
+      }); 
+
    });
 </script>
 
@@ -144,9 +226,15 @@
 				<!-- 큰 메뉴 3개 (ERP, GROUPWARE, SRM) -->
 				<thead>
 				<tr>
-					<td class="menu"><a href="erp" class="eb_login" id="eb_href_1">ERP</a></td>
-					<td class="menu"><a href="groupware" class="eb_login" id="eb_href_2">Group Ware</a></td>
-					<td class="menu"><a href="srm" class="eb_login" id="eb_href_3">SRM</a></td>
+<<<<<<< HEAD
+					<td class="menu"><a class="eb_login" id="eb_href_1">ERP</a></td>
+					<td class="menu"><a class="eb_login" id="eb_href_2">Group Ware</a></td>
+					<td class="menu"><a class="eb_login" id="eb_href_3">SRM</a></td>
+=======
+					<td class="menu"><a style="font-size: 25px;" href="erp" class="eb_login" id="eb_href_1">ERP</a></td>
+					<td class="menu"><a style="font-size: 25px;" href="groupware" class="eb_login" id="eb_href_2">Group Ware</a></td>
+					<td class="menu"><a style="font-size: 25px;" href="srm" class="eb_login" id="eb_href_3">SRM</a></td>
+>>>>>>> master
 				</tr>
 				</thead>
 				
@@ -238,6 +326,7 @@
 				</tbody>
 			</table>
 			</form>
+<<<<<<< HEAD
 
 
 
@@ -278,9 +367,17 @@
 							------------------------------------------------<br> 알림?
 						</div>
 					</c:if>
+=======
+<<<<<<< HEAD
+         
+                </div>
+                </div>
+                
+=======
+>>>>>>> master
 
-				</div>
 
+<<<<<<< HEAD
 				<!--  인사말? -->
 				<div class="welcome">인사말? 동영상? 할일 ?</div>
 			</div>
@@ -299,52 +396,14 @@
         <c:if test="${member eq null}">  
        <div class="login_wrap">
     
+=======
+>>>>>>> master
 
-       <div class="logini_pic">
-            	 로그인 아이콘
-          </div>
-          
-          <!-- id, pw -->
-         <form action="" id="eb_frm"> 
-          <div class="login" >
 
-              <input type="text" placeholder="id" class="loginid wrap" name="code" id="eb_code" value="A002">
-             <input type="text" placeholder="password" class="loginpw wrap" name="pw" value="A002">
 
-           	  아이디저장
-             <div class="idsave wrap">
-                <input type="checkbox" >  <!-- 아이디 저장 -->
-             </div>
              
-            <!--  보안문자 -->
-             <div class="security wrap">
-                
-             </div>
-             
-          <!--    로그인버튼   -->           
-                <input type="button"  class="wrap loginbtn" id="eb_cbtn" value="본사 로그인">
-   				
-   				<input type="button"  class="wrap loginbtn" id="eb_sbtn" value="지점 로그인">
-   
-             
-          </div>
-       </form>
-          </div>
-       
-          </c:if>
-       
-    <!--    로그인 전 화면 끝 -->
-       
-       <!-- 로그인 끝 화면 시작 -->
-       <c:if test="${member ne null }">
-           <div class="login_after">
-          
-          <!-- 사원 정보 -->
-              <div class="member_wrap">
-                <div class="member_pci">
-                   사진
-                   사진
                 </div>
+<<<<<<< HEAD
                 
                <c:if test="${kind eq 'member'}"> 
                  <div class="member_info">
@@ -378,6 +437,11 @@
        <!-- 로그인 끝 화면 끝 -->
    </div> 
 </div>
+=======
+                </div>
+>>>>>>> master
+
+>>>>>>> master
 
 </body>
 </html>

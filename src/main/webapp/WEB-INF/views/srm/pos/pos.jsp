@@ -8,6 +8,12 @@
   <link href="${pageContext.request.contextPath}/resources/css/srm/pos/pos.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <html>
 <script type="text/javascript">
 	$(function(){
@@ -17,7 +23,7 @@
 		
 		var message = '${message}';
 	     if(message != ""){
-	        alert(message);
+	        swal(message);
 	     }
 		
 		var myVar = setInterval(myTimer, 1000);
@@ -42,7 +48,7 @@
 				
 					
 				},error : function(){
-					alert("error");
+					swal("error");
 				}
 			});
 			
@@ -61,7 +67,7 @@
 			
 					
 					if(confirm("출근처리 하시겠습니까?")==false){
-						alert("출근처리가 취소되었습니다.");
+						swal("출근처리가 취소되었습니다.");
 						return false;
 					}else{
 					
@@ -75,9 +81,9 @@
 							"lastTime" : '-',
 							"store" : store
 						},success : function(data){
-							alert(regdate+time+"출근처리 완료");
+							swal(regdate+time+"출근처리 완료");
 						},error : function(){
-							alert("Error");
+							swal("Error");
 						}
 						
 					}); 
@@ -93,7 +99,7 @@
 					var time=$("#time").text();
 					
 					if(confirm("퇴근처리하시겠습니까?")==false){
-						alert("퇴근 처리가 취소되었습니다.")
+						swal("퇴근 처리가 취소되었습니다.")
 						return false;
 					}else{
 					
@@ -185,7 +191,7 @@
 			 			success : function(data){
 			 				$("#drink").html(data);
 			 			},error : function(){
-			 				alert("error");
+			 				swal("error");
 			 			}
 			 		});
 			 	});
@@ -199,7 +205,7 @@
 			 			success : function(data){
 			 				$("#bread").html(data);
 			 			},error : function(){
-			 				alert("error");
+			 				swal("error");
 			 			}
 			 		});
 			 		
@@ -375,7 +381,7 @@
 			 			data : { "num" : num,
 			 					"store" : store},
 			 			success : function(){
-			 				alert("삭제 성공");
+			 				swal("삭제 성공");
 			 				location.reload();
 			 			}
 					});
@@ -454,16 +460,16 @@
 		<div class="logo">
 			<table id="logo_Table">
 				<tr> 
-					<td><a href="${pageContext.request.contextPath}/srm" id="eb_home">Home Page</a></td> 
+					<td><a href="${pageContext.request.contextPath}/srm" id="eb_home"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></a></td> 
 					<td>지점 : ${member.store}</td> 
 					<td>영업일자 : ${sysdate}</td> 
 					<td>지점장 : ${member.name}</td> 
 					<td><span id="time"></span></td> 
 					<td>
-						<input type="button" value="출/퇴근" class="btn btn-default" data-toggle="modal" data-target="#myModal" id="eb_staff_time">
+						<input style="font-size: 13px;" type="button" value="출/퇴근" class="btn btn-default" data-toggle="modal" data-target="#myModal" id="eb_staff_time">
 					</td>
 					<td>
-						<input type="button" data-toggle="modal" data-target="#postIT" class="btn btn-default" value="포스트잇">
+						<input style="font-size: 13px;" type="button" data-toggle="modal" data-target="#postIT" class="btn btn-default" value="포스트잇">
 					</td>
 				</tr>
 				
@@ -476,7 +482,6 @@
 			   <div class="modal-content post-content">
 			     <div class="modal-header">
 			       <button type="button" class="close" data-dismiss="modal">&times;</button>
-			       <h3 class="modal-title">포스트잇</h3>
 			     </div>
 			     <div class="modal-body post-body">
 			        <form action="../postIT/postInsert" id="postFrm" method="post">
@@ -490,11 +495,11 @@
 			        	<div id="skin5" onclick="selectPost(5)" class="postSkin" title="#ffe1ff"></div>
 			        	
 				        <textarea id="postITarea" rows="5" name="contents"></textarea>
-				        <button id="postInsertBtn" type="submit" class="btn btn-default">등록</button>
+				        <button style="font-size: 15px;" id="postInsertBtn" type="submit" class="btn btn-outline-secondary">등록</button>
 			     	</form>
 			     </div>
 			     <div class="modal-footer">
-			        <button type="button" class="btn" data-dismiss="modal">Close</button>
+			        <button style="font-size: 12px;" type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
 			     </div>
 			  </div>
 			</div>
@@ -576,23 +581,23 @@
 			<div class="menu3">
 			
 			<div class="btn-group" id="eb_btn-group_1">
-   			 	<button type="button" class="btn btn-primary b1" id="eb_allCancel">전체<br>취소</button>
-   			 	<button type="button" class="btn btn-primary b1">선택<br>취소</button>
-    			<button type="button" class="btn btn-primary b1">할인<br>처리</button>
-    			<button type="button" class="btn btn-primary b1">수량<br>변경</button>
+   			 	<button style="font-size: 17px;, width: 26%;" type="button" class="btn btn-outline-primary b1" id="eb_allCancel">전체<br>취소</button>
+   			 	<button style="font-size: 17px;, width: 26%;" type="button" class="btn btn-outline-primary b1">선택<br>취소</button>
+    			<button style="font-size: 17px;, width: 26%;" type="button" class="btn btn-outline-primary b1">할인<br>처리</button>
+    			<button style="font-size: 17px;, width: 26%;" type="button" class="btn btn-outline-primary b1">수량<br>변경</button>
  			</div>
  			
  			  <div class="btn-group" id="eb_btn-group_2">
-   			 	<button type="button" class="btn btn-primary b1">-</button>
-   			 	<button type="button" class="btn btn-primary b1">+</button>
-    			<button type="button" class="btn btn-primary b1">▲</button>
-    			<button type="button" class="btn btn-primary b1">▼</button>
+   			 	<button style="font-size: 30px;, width: 25%;" type="button" class="btn btn-outline-primary b1">-</button>
+   			 	<button style="font-size: 30px;, width: 25%;" type="button" class="btn btn-outline-primary b1">+</button>
+    			<button style="font-size: 30px;, width: 25%;" type="button" class="btn btn-outline-primary b1">▲</button>
+    			<button style="font-size: 30px;, width: 25%;" type="button" class="btn btn-outline-primary b1">▼</button>
  			</div>  
 				
 			</div>
 			
 			<div class="menu4">
-				<p id="p3">결제 정보</p>
+				<p style="font-size: 20px;" id="p3">결제 정보</p>
 					<div class="blank"></div>
 						<table id="menu4_table">
 							<tr>
@@ -626,37 +631,37 @@
 		       
 		       <div class="price_1">
 		       <div class="btn-group-vertical1">
-    				<button type="button" class="btn btn-primary b3" value="7" id="eb_7">7</button>
-    				<button type="button" class="btn btn-primary b3" value="4" id="eb_4">4</button>
-    				<button type="button" class="btn btn-primary b3" value="1">1</button>
-    				<button type="button" class="btn btn-primary b3" value="0">0</button>
+    				<button style="font-size: 20px;" type="button" class="btn btn-outline-primary b3" value="7" id="eb_7">7</button>
+    				<button style="font-size: 20px;" type="button" class="btn btn-outline-primary b3" value="4" id="eb_4">4</button>
+    				<button style="font-size: 20px;" type="button" class="btn btn-outline-primary b3" value="1">1</button>
+    				<button style="font-size: 20px;" type="button" class="btn btn-outline-primary b3" value="0">0</button>
   				</div>
 		       </div>
 		       
 		       <div class="price_2">
 		      	 <div class="btn-group-vertical1">
-    				<button type="button" class="btn btn-primary b3" value="8">8</button>
-    				<button type="button" class="btn btn-primary b3" value="5">5</button>
-    				<button type="button" class="btn btn-primary b3" value="2">2</button>
-    				<button type="button" class="btn btn-primary b3" value="00">00</button>
+    				<button style="font-size: 20px;" type="button" class="btn btn-outline-primary b3" value="8">8</button>
+    				<button style="font-size: 20px;" type="button" class="btn btn-outline-primary b3" value="5">5</button>
+    				<button style="font-size: 20px;" type="button" class="btn btn-outline-primary b3" value="2">2</button>
+    				<button style="font-size: 20px;" type="button" class="btn btn-outline-primary b3" value="00">00</button>
   				</div>
 		       </div>
 		       
 		       <div class="price_3">
 		       	<div class="btn-group-vertical1">
-    				<button type="button" class="btn btn-primary b3" value="9">9</button>
-    				<button type="button" class="btn btn-primary b3" value="6">6</button>
-    				<button type="button" class="btn btn-primary b3" value="3">3</button>
-    				<button type="button" class="btn btn-primary b3" id="eb_remove">C</button>
+    				<button style="font-size: 20px;" type="button" class="btn btn-outline-primary b3" value="9">9</button>
+    				<button style="font-size: 20px;" type="button" class="btn btn-outline-primary b3" value="6">6</button>
+    				<button style="font-size: 20px;" type="button" class="btn btn-outline-primary b3" value="3">3</button>
+    				<button style="font-size: 20px;" type="button" class="btn btn-outline-primary b3" id="eb_remove">C</button>
   					</div>
 		       </div>
 		       
 		       <div class="price_4">
-		       		<button type="button" class="btn btn-primary b4">〈 </button>
+		       		<button style="font-size: 20px;" type="button" class="btn btn-outline-primary b4">〈 </button>
 		       </div>
 		       
 		       <div class="price_5">
-		    		<button type="button" class="btn btn-primary b4" id="eb_enter">Enter </button>
+		    		<button style="font-size: 20px;" type="button" class="btn btn-outline-primary b4" id="eb_enter">Enter </button>
 		       </div>
 			</div>
 			
@@ -668,9 +673,9 @@
 		  <div class="menu5">
 		  
 		   <ul class="nav nav-tabs">
-    		<li class="active"><a data-toggle="tab" href="#coffee" id="eb_coffee">Coffee</a></li>
-    		<li><a data-toggle="tab" href="#drink" id="eb_drink">Drink</a></li>
-    		<li><a data-toggle="tab" href="#bread" id="eb_bread">Bread</a></li>
+    		<li class="active"><a style="font-size: 20px;" data-toggle="tab" href="#coffee" id="eb_coffee">Coffee</a></li>
+    		<li><a style="font-size: 20px;" data-toggle="tab" href="#drink" id="eb_drink">Drink</a></li>
+    		<li><a style="font-size: 20px;" data-toggle="tab" href="#bread" id="eb_bread">Bread</a></li>
   		</ul>
 
   			<div class="tab-content">
@@ -718,27 +723,27 @@
 		   		
 		   		<div class="menu6_1">
 		   			
-		   			<input type="submit" class="btn btn-primary b4" value="결제" id="eb_paymentBtn">
+		   			<input style="font-size: 20px;" type="submit" class="btn btn-outline-primary b4" value="결제" id="eb_paymentBtn">
 		   			
 		   		</div>
 		
 		   		
 		   		<div class="menu6_234">
 		   			<div class="menu6_2">
-		   				<button type="button" class="btn btn-primary b4">영수증 관리</button>
+		   				<button style="font-size: 20px;" type="button" class="btn btn-outline-primary b4">영수증 관리</button>
 		   			</div>
 		   		
 		   			<div class="menu6_3">
-		   				<button type="button" class="btn btn-primary b4" id="eb_total">정산</button>
+		   				<button style="font-size: 20px;" type="button" class="btn btn-outline-primary b4" id="eb_total">정산</button>
 		   			</div> 
 		   		
 		   			<div class="menu6_4">
-		   				<button type="button" class="btn btn-primary b4">현금 영수증</button>
+		   				<button style="font-size: 20px;" type="button" class="btn btn-outline-primary b4">현금 영수증</button>
 		   			</div>
 		   		</div>
 		   		
 		   		 <div class="menu6_5">
-		   				<button type="button" id="eb_salesList" class="btn btn-primary b4 " data-toggle="modal" data-target="#eb_payment">결제 내역 보기</button>
+		   				<button style="font-size: 20px;" type="button" id="eb_salesList" class="btn btn-outline-primary b4 " data-toggle="modal" data-target="#eb_payment">결제 내역 보기</button>
 		   		</div> 
 		   
 		   </div>

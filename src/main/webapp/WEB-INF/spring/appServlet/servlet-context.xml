@@ -11,6 +11,18 @@
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
+	
+	<!-- AuthorInterceptor -->
+	<beans:bean class="com.five.ware.interceptor.AuthorInterceptor" id="author"></beans:bean>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/erp/**"/>
+			<mapping path="/GroupWare/**"/>
+			<mapping path="/srm/**"/>
+			<beans:ref bean="author"/>
+		</interceptor>
+	</interceptors>
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/"/>

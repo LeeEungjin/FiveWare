@@ -1,6 +1,8 @@
 package com.five.ware.erp.human.member;
 
-public class MemberDTO {
+import com.five.ware.common.CommonDTO;
+
+public class MemberDTO extends CommonDTO{
 
 	private int num;
 	private String kind;

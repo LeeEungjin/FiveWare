@@ -1,6 +1,6 @@
 package com.five.ware.erp.human.member;
 
-import java.lang.management.MemoryManagerMXBean;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +16,25 @@ public class MemberDAO {
 	@Inject
 	SqlSession sqlSession;
 	private final String NAMESPACE="humanMemberMapper.";
+	
+	
+	//pw 변경
+	public int pwUpdate(String code,String pw)throws Exception{
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("code", code);
+		map.put("pw", pw);
+		int result=sqlSession.update(NAMESPACE+"pwUpdate",map);
+		return result;
+	}
+	
+	//pw 확인
+	public String pwCheck(String code)throws Exception{
+		String dbpw="";
+		
+		dbpw=sqlSession.selectOne(NAMESPACE+"pwCheck", code);
+
+		return dbpw;
+	}
 	
 	//myPage
 	public int myPageUpdate(MemberDTO memberDTO)throws Exception{
@@ -77,7 +96,7 @@ public class MemberDAO {
 		Map<String, String> map = new HashMap<String, String>();
 		
 		map.put("search", search);
-		map.put("kind", "퇴직"	);
+		map.put("kind", "퇴직");
 		
 		System.out.println("dd");
 		List<MemberDTO> ar = sqlSession.selectList(NAMESPACE+"retireeList", map);

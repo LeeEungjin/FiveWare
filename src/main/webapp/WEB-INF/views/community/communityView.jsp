@@ -53,7 +53,8 @@
 	<div id="fw_container">
 	
 		<div id="com_header">
-			<div id="com_icon"></div><div id="com_title"></div>	
+			<div id="com_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
+			<div id="com_title">공지사항</div>	
 		</div>
 		
 		<div id="com_middle">
@@ -96,8 +97,10 @@
 			</c:forEach>
 			
 			<a href="communityList"><button id="comviewBtn1" type="button" class="btn btn-default comViewBtns">목록</button></a>
+			<c:if test="${kind eq 'member' and member.name eq view.writer}">
 			<a href="communityDelete?num=${view.num}"><button id="comviewBtn2" type="button" class="btn btn-default comViewBtns">삭제</button></a>
 			<a href="communityUpdate?num=${view.num}"><button type="button" id="comviewBtn3" class="btn btn-default comViewBtns com_update_btn">수정</button></a>
+			</c:if>
 		</div>
 	
 	</div>

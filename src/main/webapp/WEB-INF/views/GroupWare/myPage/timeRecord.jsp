@@ -4,16 +4,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 <c:import url="${url}/resources/temp/ref.jsp"></c:import> 
 <link href="${url}/resources/css/myPage/myPage.css" rel="stylesheet">
 
-<link href='${url}/resources/css/fullCalendar/fullcalendar.min.css' rel='stylesheet' />
+ <link href='${url}/resources/css/fullCalendar/fullcalendar.min.css' rel='stylesheet' />
 <link href='${url}/resources/css/fullCalendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
 <script src='${url}/resources/js/moment.min.js'></script>
-<script src='${url}/resources/js/jquery.min.js'></script>
-<script src='${url}/resources/js/fullcalendar.min.js'></script>
+<script src='${url}/resources/js/fullcalendar.min.js'></script>  
 
 
 <title>Insert title here</title>
@@ -108,17 +109,17 @@
 			
 			<div class="fw_subselected collapse in" id="sub1">
 				<ul>
-					<li><a href="${pageContext.request.contextPath}/myPage/memberMyPage">내 정보</a></li>
+					<li><a href="${pageContext.request.contextPath}/myPage/myPageMain">내 정보</a></li>
 					<li><a href="${pageContext.request.contextPath}/myPage/timeRecord?memberCode=${member.code }">출/퇴근 조회</a></li>
-					<li><a href="#">년/월차 휴가 조회</a></li>
+		
 			
 				</ul>
 			</div>
-		</div>	
+			
 	
 
 		<!-- submenu menu end -->
-	
+	</div>
 	<!-- submenu end -->
 	
 	<div id="fw_mainwrap">
@@ -128,15 +129,7 @@
 			<div id="eb_fw_main_1"></div>
 			
 			<div id="eb_fw_main_2">
-				<table id="eb_fw_main_2_table">
-					<tr >
-						<td class="eb_row">전자결재</td>
-						<td class="eb_row">게시판</td>
-						<td class="eb_row">일정관리</td>
-						<td class="eb_row">클라우드</td>
-						<td class="eb_row">마이페이지</td>
-					</tr>
-				</table>
+			
 			</div>
 				
 				
@@ -150,7 +143,7 @@
 				 	<span class="glyphicon glyphicon-file" id="eb_contents_text_p">출/퇴근조회</span>
 				</div>
 		<!-- contents -->
-				 <div id='calendar'></div>
+				 <div id='calendar'></div> 
 				
 			
 					

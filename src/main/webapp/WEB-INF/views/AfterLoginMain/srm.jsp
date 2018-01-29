@@ -25,7 +25,7 @@
 	    slideIndex++;
 	    
 	    if (slideIndex > x.length) {slideIndex = 1} 
-	    x[slideIndex-1].style.display = "block"; 
+	    x[slideIndex-1].style.display = "inline-block"; 
 	    setTimeout(carousel, 3000); 
 	}
 	
@@ -51,7 +51,7 @@
 		<div id="lofin_after_header">
 			 <div id="lang_wrap">
 				<div id="lang_icon">
-					<i class="fa fa-globe" style="font-size:35px"></i>
+					<img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogoBlack.png">
 				</div>
 			  
 			</div> 
@@ -59,10 +59,10 @@
 			  <div id="menu_wrap">
 				 <table id="eb_fw_main_2_table">
 					<tr >
-						<td class="eb_row"><a href="${pageContext.request.contextPath}/">HOME</a></td>
-						<td class="eb_row"><a href="${pageContext.request.contextPath}/erp">ERP</a></td>
-						<td class="eb_row"><a href="${pageContext.request.contextPath}/groupware">Group Ware</a></td>
-						<td class="eb_row"><a href="${pageContext.request.contextPath}/srm">SRM</a></td>
+						<td class="eb_row"><a href="${pageContext.request.contextPath}/"  style="color: white;, text-decoration: none;">HOME</a></td>
+						<td class="eb_row"><a href="${pageContext.request.contextPath}/erp"  style="color: white;, text-decoration: none;">ERP</a></td>
+						<td class="eb_row"><a href="${pageContext.request.contextPath}/groupware"  style="color: white;, text-decoration: none;">Group Ware</a></td>
+						<td class="eb_row"><a href="${pageContext.request.contextPath}/srm"  style="color: white;, text-decoration: none;">SRM</a></td>
 					</tr>
 				</table>
 			</div>  
@@ -70,7 +70,7 @@
 		<div id="search_wrap">
 		
 		        <a href="./member/memberLogout">
-						<span class="glyphicon glyphicon-log-out" id="eb_logoutBtn">Logout</span>
+						<span style="font-size: 15px;, margin-right: 6%;" class="glyphicon glyphicon-log-out" id="eb_logoutBtn">Logout</span>
 		        </button></a>
 			</div>
 			
@@ -84,17 +84,11 @@
 						<div id="pro_img">
 							<img src="${pageContext.request.contextPath}/resources/images/sidebar/avatar82.png" class="eb_default_img">
 						
-						
-						
-						
-						<p id="name_p">${member.name} 님</p>
-					
-		
-					  
 						</div>
 					</div>
 					<div id="pro_info_2">
-						<i class="fa fa-bell-o" style="font-size:36px">new</i>
+						<p id="name_p">${member.name} 님</p>
+						<i class="fa fa-bell-o" style="font-size:20px">new</i>
 						<div id="alert_menu"></div>
 					</div>
 				</div>
@@ -105,8 +99,8 @@
 			<div class="eb_line"></div>
 				
 				<div id="sche_add">
-					<i class="fa fa-calendar-plus-o" style="font-size:36px; padding-top:10px;"></i>
-					<p id="sche_p">오늘의 일정을 등록해보세요.</p>
+					<i class="fa fa-calendar-plus-o" style="font-size:30px; padding-top:10px;">Calendar</i>
+               <p id="sche_p" style="font-size: 20px"><a href="calendar/coding" style="color: gray">일정 등록하기 <i class="fa fa-plus-square-o" style="font-size:23px;"></i></p></a>
 				</div>
 				<div id="quick_menu">
 					<p id="quick_p">바로가기
@@ -124,14 +118,17 @@
 							</div>
 							
 							<!-- 쪽지 -->
-							<div class="quick_menu_box_1">
+							<!-- <div class="quick_menu_box_1">
 								<i class="fa fa-envelope-o" style="font-size:45px" data-toggle="tooltip" data-placement="bottom" title="쪽지"></i>
-							</div>
+							</div> -->
 							
 							<!-- 마이페이지 -->
-							<div class="quick_menu_box_1">
-								<i class="fa fa-user-circle-o" style="font-size:45px" data-toggle="tooltip" data-placement="bottom" title="마이페이지"></i>
-							</div>
+							  <div class="quick_menu_box_1">
+				                  <a href="./myPage/myPageMain" style="color : black;">
+				                  	<i class="fa fa-user-circle-o" style="font-size:45px"  data-toggle="tooltip" data-placement="bottom" title="마이페이지"></i>
+				                  </a>
+				                  
+				               </div>
 							
 							<!-- 사다리타기 -->
 							<div class="quick_menu_box_1" data-toggle="modal" data-target="#game">
@@ -199,12 +196,12 @@
 			<div id="contents_wrap">
 				<div id="notice_wrap">
 					<div id="notice_title">
-						<p id="notice_title_p"> SRM</p>
+						<p id="notice_title_p">게시판</p>
 					</div>
 
-					<div id="notice_icon">
-						<i class="fa fa-bullhorn" style="font-size:48px;color:#CE3636"></i>
-					</div>
+					<!-- <div id="notice_icon">
+						<i class="fa fa-bullhorn" style="font-size:30px;color:#CE3636"></i>
+					</div> -->
 					
 					<c:forEach items="${randomList}" var="random">
 						<div  class="mySlides w3-animate-bottom" id="notice_text">
@@ -212,7 +209,7 @@
 						</div>
 					</c:forEach>
 					
-					<div id="weather_div">
+					<!-- <div id="weather_div">
 						<i class="fa fa-cloud weather_div_p" style="font-size:36px">Weather</i>
 					</div>
 					
@@ -222,7 +219,7 @@
 					
 					<div id="edit_icon">
 						<i class="fa fa-cog weather_div_p" style="font-size:36px;"></i>
-					</div>
+					</div> -->
 				</div>
 				
 				<div id="submenu_wrap">
@@ -231,11 +228,9 @@
                   
                   <div class="srm_jk_srm">
                      
-                     <a href="./srm/store/allStoreInfo">
                         <span class="srm_jk_inerp"> 
                            <span class="srm_jk_bigdiv">전체 지점정보</span>
                         </span>
-                     </a>
                      
                      <a href="../../../ware/map/mapList">
                         <span class="srm_jk_smalldiv">
@@ -247,13 +242,11 @@
                   
                   <div class="srm_jk_srm">
                      
-                     <a href="#">
                         <span class="srm_jk_inerp">
                            <span class="srm_jk_bigdiv">우리 매장관리</span>
                         </span>
-                     </a> 
                      
-                     <a href="./myPage/storeMyPage">
+                     <a href="./myPage/myPageMain">
                         <span class="srm_jk_smalldiv">
                            <span class="srm_jk_writing">매장 정보</span>
                         </span>
@@ -275,11 +268,9 @@
                   
                   <div class="srm_jk_srm">
                      
-                     <a href="#">
                         <span class="srm_jk_inerp">
-                           <span class="srm_jk_bigdiv">이벤트</span>
+                           <span class="srm_jk_bigdiv">이벤트&공모전</span>
                         </span>
-                     </a> 
                      
                      <a href="./srm/event/eventList?perPage=5&curPage=1">
                         <span class="srm_jk_smalldiv">
@@ -302,11 +293,9 @@
                   
                   <div class="srm_jk_srm">
                      
-                     <a href="#">
                         <span class="srm_jk_inerp">
                            <span class="srm_jk_bigdiv">게시판</span>
                         </span>
-                     </a> 
                      
                      <a href="./srm/storeNotice">
                         <span class="srm_jk_smalldiv">
@@ -317,11 +306,9 @@
                   
                   <div class="srm_jk_srm">
                      
-                     <a href="#">
                         <span class="srm_jk_inerp">
                            <span class="srm_jk_bigdiv">포스기</span>
                         </span>
-                     </a>
                      
                        <a href="./srm/pos/pos?store=${member.store}">
                         <span class="srm_jk_smalldiv">
@@ -339,7 +326,7 @@
 		</div>
 		
 		<div id="login_after_footer">
-		
+		Copyright © 2018 KH Information Educational | FiveWare | EungJin EunBi ARin JiHyun
 		</div>
 	</div>
 

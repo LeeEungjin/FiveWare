@@ -15,22 +15,29 @@
 
 #all_store_header{
 	width: 100%;
-    background-color: #ffdfe4;
     height: 13%;
+    background-color: #587888;
+    color: white;
+}
+
+#logoImg {
+	margin-top: 9%;
+	margin-left: 11%;
 }
 
 #all_store_icon{
 	height: 100%;
-	width: 5%;
-	background-color: #ff8080;
+	width: 15%;
 	float: left;
 }
 
 #all_store_title{
 	height: 100%;
 	width: 15%;
-	background-color: #ffc8b0;
 	float: left;
+	font-size: 30px;
+	font-weight: bold;
+	margin-top: 1.4%;
 }
 
 #all_store_middle{
@@ -57,14 +64,15 @@
 }
 
 #map_title{
-	width: 49%;
-	height: 100%;
-	/* background-color: #D5D5D5; */
-	margin-right: 2%;
-	float: left;
-	font-size: 30px;
-    font-weight: bold;
+	    width: 49%;
+    height: 100%;
+    background-color: #824100;
+    margin-right: 2%;
+    float: left;
+    font-size: 25px;
     text-align: center;
+    color: white;
+    padding-top: 1%;
 }
 
 #all_store_table{
@@ -77,11 +85,12 @@
 #table_title{
 	width: 49%;
 	height: 100%;
-	/* background-color: #D5D5D5; */
+	background-color: #824100;
 	float: right;
-	font-size: 30px;
-    font-weight: bold;
+	font-size: 25px;
     text-align: center;
+    color: white;
+    padding-top: 1%;
 }
 
 #all_store_sub_title{
@@ -93,7 +102,6 @@
 
 #all_store_footer{
 	width: 100%;
-    background-color: #cdcde7;
     height: 7%;
 }
 

@@ -8,12 +8,10 @@
 #fw_container{
 	width: 100%;
 	height: 100%;
-	background-color: lightblue;
 	transition: width 0.3s;	
 }
 
 #fw_subcontainer{
-  background-color: pink;
     float: left;
     width: 15%;
     /* position: fixed;
@@ -22,7 +20,8 @@
 } 
 
 #fw_subbanner{
-		background-color: red;
+	color:white;
+	background-color: black;
 		height: 8.5%;
 		width: 100%;
 		font-size : 30px;
@@ -35,7 +34,7 @@
 	width: 100%;
 	height: 5%;
 	float:left;
-	background-color: yellow;
+	background-color: #f6f6f6;
 	  font-weight: bold;
     font-size: 16px;
     line-height: 324%;
@@ -53,20 +52,17 @@
 	width:15%;
 	float:right;
 	height: 100%;
-	background-color: purple;
 	size:20px; 
 }
 
 .fw_subselected{
 	width: 70%;
-	background-color: #d1eaf1;
 	margin: 0 auto;
 	padding-top:1%;
 }
 
 .fw_subsub{
 		width: 70%;
-	background-color: #d1eaf1;
 	margin: 0 auto;
 	padding-top:1%;
 }

@@ -12,8 +12,11 @@
 
 #lofin_after_header{
 	width: 100%;
-	height: 5%;
-	background-color: #282828;
+	height: 7%;
+	background-color: #4c674c;
+	color: white;
+	text-decoration: none;
+	    padding: 10px;
 }
 
 #lang_wrap{
@@ -64,6 +67,7 @@ td.eb_row{
 	height: 100%;
 	font-size: 20px;
 	text-align: center;
+	    padding-top: 1.5%;
 }
 
 td.eb_row:hover {
@@ -84,7 +88,7 @@ td.eb_row:hover {
 }
 #login_after_middle{
 	width: 100%;
-	height: 90%;
+	height: 88%;
 }
 
 #info_wrap{
@@ -95,7 +99,7 @@ td.eb_row:hover {
 
 #pro_info{
 	width: 100%;
-	height: 15%;
+	height: 10%;
 }
 
 #pro_info_1{
@@ -119,12 +123,15 @@ td.eb_row:hover {
 
 #name_p{
 	font-size: 13px;
-	
+    margin-top: 10%;
+    margin-left: 5%;
 }
 
 #sche_p{
 	margin-left: 20%;
-	color : gray;
+	color: gray;
+	margin-top: 6% !important;
+	text-decoration: none;
 }
 
 #quick_p{
@@ -192,6 +199,7 @@ td.eb_row:hover {
 #notice_wrap{
 	width: 100%;
 	height: 10%;
+	padding: 20px;
 }
 
 #notice_title{
@@ -202,8 +210,8 @@ td.eb_row:hover {
 
 #notice_title_p{
 	margin-top : 5px;
-	font-size: 35px;
-	color:#CE3636;
+	font-size: 20px;
+	color:black;
 }
 
 #notice_icon{
@@ -213,7 +221,7 @@ td.eb_row:hover {
 }
 
 #notice_text{
-	width: 48%;
+	width: 30%;
 	height: 100%;
 	margin-top: 15px;
 	font-size:20px;
@@ -249,8 +257,11 @@ td.eb_row:hover {
 
 #login_after_footer{
 	width: 100%;
-	height: 5%;
-	background-color: #282828;
+    height: 5%;
+    background-color: #4c674c;
+    color: #f6f6f6;
+    font-size: 12px;
+    padding: 1%;
 }
 
 .fa{
@@ -278,7 +289,7 @@ td.eb_row:hover {
    border-top-right-radius : 15px;
    width: 100%;
    height: 22%;
-   background-color: #282828;
+   background-color: #4c674c;
 }
 
 .groupWare_jk_bigdiv {
@@ -299,6 +310,8 @@ td.eb_row:hover {
    float: left;
    margin-left: 10px;
    margin-top: 15px;
+   color: black;
+    text-decoration: none;
 }
 
 .groupWare_jk_writing {
@@ -641,4 +654,10 @@ html, body{
 	height: 100%;
 	 margin-left : 10px;
 	float: left;
+}
+
+
+#erpMenuWrapA{
+	color: #ffffff !important;
+    text-decoration: none !important;
 }

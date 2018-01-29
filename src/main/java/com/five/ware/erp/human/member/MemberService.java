@@ -12,7 +12,20 @@ public class MemberService {
 	@Inject
 	MemberDAO memberDAO;
 	
+	//pwUpdate
+	public int pwUpdate(String code,String pw)throws Exception{
+		int result=memberDAO.pwUpdate(code,pw);
+		return result;
+	}
 	
+	//pwCheck
+	public String pwCheck(String code)throws Exception{
+		
+		String dbpw=memberDAO.pwCheck(code);
+
+		
+		return dbpw;
+	}
 	
 	//myPage
 	public int myPageUpdate(MemberDTO memberDTO) throws Exception{

@@ -18,11 +18,9 @@ public class MessageService {
 	//read Count
 	public int readCount(String rCode)throws Exception{
 		
-		System.out.println(rCode);
 		
 		int readCount=messageDAO.readCount(rCode);
 
-		System.out.println(readCount);
 		
 		return readCount;
 	}

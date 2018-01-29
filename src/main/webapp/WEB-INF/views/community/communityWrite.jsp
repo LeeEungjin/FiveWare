@@ -77,7 +77,8 @@
 	<div id="fw_container">
 	
 		<div id="com_header">
-			<div id="com_icon"></div><div id="com_title"></div>	
+			<div id="com_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
+			<div id="com_title">공지사항</div>	
 		</div>
 		
 		<form id="com_erp_frm" action="communityWrite" method="post"  enctype="multipart/form-data">

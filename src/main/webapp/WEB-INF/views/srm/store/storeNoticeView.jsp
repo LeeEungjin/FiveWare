@@ -131,14 +131,7 @@
 			<div id="eb_fw_main_1"></div>
 			
 			<div id="eb_fw_main_2">
-				<table id="eb_fw_main_2_table">
-					<tr >
-						<td class="eb_row">전체 지점 정보</td>
-						<td class="eb_row">우리 매장 관리</td>
-						<td class="eb_row">이벤트</td>
-						<td class="eb_row">공지사항</td>
-					</tr>
-				</table>
+	
 			</div>
 				
 				
@@ -159,7 +152,7 @@
              				
              		<table id="eb_viewTable" >
 						   <tr>
-						   	<td colspan="4" class="eb_tableTitle"> ${view.title }</td>
+						   	<td colspan="4" class="eb_tableTitle"> ${view.title}</td>
 						   
 						   </tr>
 			
@@ -176,7 +169,7 @@
 						    </tr>
 					
 						    <tr>
-						    	<td colspan="4" id="eb_td">${view.contents}</td>
+						    	<td colspan="4" id="eb_td"><span>${view.contents}</span></td>
 						    </tr>
 						    
 						

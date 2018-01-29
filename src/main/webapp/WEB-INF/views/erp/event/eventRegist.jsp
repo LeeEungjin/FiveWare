@@ -29,8 +29,6 @@
 		$(".list").click(function(){
 			var cur = $(this).attr("title");
 			
-			alert(cur);
-			
 			document.event_search_frm.curPage.value=cur;
 			document.event_search_frm.submit();
 		});
@@ -53,7 +51,6 @@
 						edate : edate
 					},
 					success:function(data){
-						alert(data);
 						$("#erp_jh_contents_table").html(data);
 					}
 				});
@@ -199,6 +196,7 @@
 
 <div id="fw_container">
 	<!-- submenu -->
+<<<<<<< HEAD
 	<div id="fw_subcontainer">
 	
 	 <!-- submenu menu -->
@@ -240,15 +238,83 @@
 			
 		
 </div>
+=======
+	<!-- <div id="fw_subcontainer">
+   
+      <div id="fw_subbanner">
+         자재관리
+      </div>
+         <div class="fw_menu fw_selected" data-toggle="collapse" data-target="#sub1" title="sub1">
+            기초정보
+            <div class="fw_arrow sub1">
+               ∧
+            </div>
+         </div>
+         
+         <div class="fw_subselected collapse in" id="sub1">
+            <ul>
+               <li><a href="./../erp/foundation/supplier">거래처 등록</a></li>
+               <li><a href="./../erp/foundation/product">제품 등록</a></li>
+               <li><a href="./../erp/foundation/menuRegist">메뉴 등록</a></li>
+               <li><a href="./../erp/foundation/storageRegist">창고 등록</a></li>
+            </ul>
+         </div>
+         
+            <div class="fw_menu" data-toggle="collapse" data-target="#sub2" title="sub2" >
+               구매관리
+            <div class="fw_arrow sub2">
+               ∨
+            </div>
+         </div>
+         
+         <div class="fw_subsub collapse"  id="sub2">
+            <ul>
+               <li><a href="../erp/order/orderRegist">주문 입력</a></li>
+            	<li><a href="../erp/order/graph/orderGraph">주문 현황 보기</a></li>
+            </ul>
+         </div>
+         
+         <div class="fw_menu" data-toggle="collapse" data-target="#sub3" title="sub3" >
+               자재관리
+            <div class="fw_arrow sub3">
+               ∨
+            </div>
+         </div>
+         
+         <div class="fw_subsub collapse"  id="sub3">
+            <ul>
+               <li><a href="../../erp/mater/materRegist?materKind=enter">입고 입력</a></li>
+               <li><a href="../../erp/mater/materRegist?materKind=rele">출고 입력</a></li>
+               <li><a href="../../erp/mater/materRegist?materKind=back">반품 입력</a></li>
+               <li><a href="../../erp/mater/materRegist?materKind=confin">불출 입력</a></li>
+            </ul>
+         </div>
+         
+         <div class="fw_menu" data-toggle="collapse" data-target="#sub4" title="sub4" >
+               	조회
+            <div class="fw_arrow sub4">
+               	∨
+            </div>
+         </div>
+         
+         <div class="fw_subsub collapse"  id="sub4">
+            <ul>
+               <li><a href="../../ware/erp/into/intoList">조회 및 엑셀 다운</a></li>
+            </ul>
+         </div>
+         
+   </div> -->
+	<!-- submenu end -->
+>>>>>>> master
 	
 	<div id="fw_mainwrap">
 			<div id="fw_main">
-
+				<div id="event_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
 			</div>
 			
 			<div id="fw_main_contents">
 				<div id="erp_jh_contents_title">
-					<div id="event_icon">icon</div>
+					
 					<p id="event_title">이벤트 등록</p>
 				</div>
 				<div id="erp_jh_contents_search">
@@ -323,9 +389,11 @@
 				
 				<!-- 등록 버튼 -->
 					<div id="erp_jh_contents_bottom">
+					
+					<c:if test="${member.temp == '영업/구매부' or member.temp=='마케팅부' }">
 						<button id="event_checkDelete" class="btn btn-default">선택삭제</button>
 						<button class="modal_btn btn btn-default" data-toggle="modal" data-target="#jh_event_Modal">신규등록</button>
-						
+					</c:if>
 					</div>
 				<!-- 등록 버튼 끝 -->
 				
@@ -448,8 +516,10 @@
 					        
 					        <!-- modal footer -->
 					        <div class="modal-footer">
+					        <c:if test="${member.temp eq '영업/구매부' or member.temp eq '마케팅부' }">
 					          <input type="button" class="btn btn-default eventUpdateBtn"  value="수정">
 					          <input type="button" class="btn btn-default eventDeleteBtn"  value="삭제">
+					        </c:if>
 					          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					        </div>
 					       </form>

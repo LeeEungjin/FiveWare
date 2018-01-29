@@ -5,6 +5,16 @@
   
   <mapper namespace="cloudFileMapper">
   
+  	<delete id="fileDelete" parameterType="String">
+  		delete from cloudfile where filename=#{filename}	
+  	</delete>
+  
+  	<select id="fileList" parameterType="java.util.Map" resultType="com.five.ware.cloud.CloudFileDTO">
+  		select * from cloudfile where code=#{code} and foldername=#{filename}
+  	</select>
+  
+  	<!-- ****************************************************************************** -->
+  	
   	<select id="selectList" parameterType="String" resultType="com.five.ware.cloud.CloudFileDTO">
   		select * from cloudfile where oriname=#{oriname}
   	</select>
@@ -14,7 +24,7 @@
   	</select>
   	
   	<insert id="insert" parameterType="com.five.ware.cloud.CloudFileDTO">
-  		insert into cloudfile values(file_seq.nextval, #{filename}, #{oriname})
+  		insert into cloudfile values(file_seq.nextval, #{filename}, #{oriname}, #{code}, #{foldername})
   	</insert>
   	
   </mapper>

@@ -4,8 +4,8 @@
 <p>보낸 쪽지함</p>
 <c:forEach items="${sList}" var="dto">
 <div class="eb_MsList" title="${dto.num}">
-	<p style="padding-left: 70%;"> ${dto.time}</p>
-	<p style="padding-left: 10%;">받는 사람 : ${dto.rName} | ${dto.read}</p>
+	<p style="padding-left: 20%; padding-top: 10px;"> ${dto.regdate} ${dto.time}  | ${dto.read}</p>
+	<p style="padding-left: 10%;">받는 사람 : ${dto.rName}</p>
 
 
 </div>

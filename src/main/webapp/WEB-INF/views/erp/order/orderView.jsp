@@ -91,8 +91,10 @@
 				        
 		<!-- modal footer -->
 			<div class="modal-footer">
-				<!-- <button type="button" class="btn btn-default or_update_btn">수정 하기</button> -->
+				<c:if test="${member.temp eq '영업/구매부'}">
+				<button type="button" class="btn btn-default or_update_btn">수정 하기</button>
 				<button title="${orderDTO.orderCode}" type="button" data-dismiss="modal" class="btn btn-default or_delete">삭제</button>
+				</c:if>
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			</div>
 		</form>

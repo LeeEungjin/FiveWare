@@ -4,6 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 <c:import url="${url}/resources/temp/ref.jsp"></c:import> 
@@ -75,7 +77,8 @@
 <div id="fw_container">
 
 	<div id="free_header">
-		<div id="free_icon"></div><div id="free_title"></div>	
+		<div id="free_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
+		<div id="free_title">게시판</div>	
 	</div>
 	
 	<div id="free_middle">
@@ -83,14 +86,14 @@
 			
 			<a href="./freeList">모두보기</a>&nbsp;|&nbsp;
 		
-			<a href="./freeList?kind=target&target=전체">전체공개 보기</a>&nbsp;|&nbsp;
+			<a href="./freeList?kind=target&target=전체">전체공개 보기</a>
 		
 			<c:if test="${kind eq 'member'}">
-				<a href="./freeList?kind=target&target=${member.temp}">우리 부서 공개 보기</a>
+				<a href="./freeList?kind=target&target=${member.temp}">&nbsp;|&nbsp;우리 부서 공개 보기</a>
 			</c:if>
 			
 			<c:if test="${kind eq 'store'}">
-				<a href="./freeList?kind=target&target=${member.store}">우리 지점 공개 보기</a>
+				<a href="./freeList?kind=target&target=${member.store}">&nbsp;|&nbsp;우리 지점 공개 보기</a>
 			</c:if>
 		</div>
 		
@@ -136,7 +139,7 @@
 				      	<td><p id="${list.target}" title="${list.num}" class="freeView">
 				      	<c:catch>
 							<c:forEach begin="1" end="${list.depth}">
-								└
+								<i class="material-icons">&#xe5da;</i>
 							</c:forEach>
 						</c:catch>
 				      	

@@ -10,6 +10,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- clock library Start -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
+<script src="./resources/js/clock.js"></script>
+<link href="./resources/css/common/clock.css" rel="stylesheet" />
+<!-- clock library End -->
+
 </head>
 <script type="text/javascript">
 	var slideIndex = 0;
@@ -25,7 +32,7 @@
 	    slideIndex++;
 	    
 	    if (slideIndex > x.length) {slideIndex = 1} 
-	    x[slideIndex-1].style.display = "block"; 
+	    x[slideIndex-1].style.display = "inline-block"; 
 	    setTimeout(carousel, 3000); 
 	}
 
@@ -50,7 +57,7 @@
 		<div id="lofin_after_header">
 			 <div id="lang_wrap">
 				<div id="lang_icon">
-					<i class="fa fa-globe" style="font-size:35px"></i>
+					<img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogoBlack.png">
 				</div>
 		  
 			</div> 
@@ -58,10 +65,10 @@
 		 	 <div id="menu_wrap">
 				 <table id="eb_fw_main_2_table">
 					<tr >
-						<td class="eb_row"><a href="${pageContext.request.contextPath}/">HOME</a></td>
-						<td class="eb_row"><a href="${pageContext.request.contextPath}/erp">ERP</a></td>
-						<td class="eb_row"><a href="${pageContext.request.contextPath}/groupware">Group Ware</a></td>
-						<td class="eb_row"><a href="${pageContext.request.contextPath}/srm">SRM</a></td>
+						<td class="eb_row"><a href="${pageContext.request.contextPath}/"  style="color: white;, text-decoration: none;">HOME</a></td>
+						<td class="eb_row"><a href="${pageContext.request.contextPath}/erp"  style="color: white;, text-decoration: none;">ERP</a></td>
+						<td class="eb_row"><a href="${pageContext.request.contextPath}/GroupWare"  style="color: white;, text-decoration: none;">Group Ware</a></td>
+						<td class="eb_row"><a href="${pageContext.request.contextPath}/srm"  style="color: white;, text-decoration: none;">SRM</a></td>
 					</tr>
 				</table> 
 			</div> 
@@ -82,23 +89,31 @@
 					<div id="pro_info_1">
 						<div id="pro_img">
 							<img src="${pageContext.request.contextPath}/resources/images/sidebar/avatar82.png" class="eb_default_img">
-						<p id="name_p">${member.name } 님</p>
 						</div>
 					</div>
 					<div id="pro_info_2">
-						<i class="fa fa-bell-o" style="font-size:36px">new</i>
+						<p id="name_p">${member.name } 님</p>
+						<i class="fa fa-bell-o" style="font-size:20px">new</i>
 						<div id="alert_menu"></div>
 					</div>
 				</div>
 				<div id="sche_info">
-					<i class="fa fa-calendar" style="font-size:36px">Calendar</i>
+					<!-- Clock API Start -->
+					<div id="clock" class="light">
+						<div class="display">
+							<div class="weekdays"></div>
+							<div class="ampm"></div>
+							<div class="digits"></div>
+						</div>
+					</div>
+					<!-- Clock API End -->
 				</div>
 				
 			<div class="eb_line"></div>
 				
 				<div id="sche_add">
-					<i class="fa fa-calendar-plus-o" style="font-size:36px; padding-top:10px;"></i>
-					<p id="sche_p">오늘의 일정을 등록해보세요.</p>
+					<i class="fa fa-calendar-plus-o" style="font-size:30px; padding-top:10px;">Calendar</i>
+               <p id="sche_p" style="font-size: 20px"><a href="calendar/coding" style="color: gray">일정 등록하기 <i class="fa fa-plus-square-o" style="font-size:23px;"></i></p></a>
 				</div>
 				<div id="quick_menu">
 					<p id="quick_p">바로가기
@@ -112,18 +127,21 @@
 					<div id="quick_menu_box">
 								<!-- 공지사항 -->
 							<div class="quick_menu_box_1">
-								<i class="fa fa-list" style="font-size:45px" data-toggle="tooltip" data-placement="bottom" title="공지사항"></i>
+								<a style="color: black;, text-decoration: none;" href="../../ware/free/freeList"><i class="fa fa-list" style="font-size:45px" data-toggle="tooltip" data-placement="bottom" title="게시판"></i></a>
 							</div>
 							
 							<!-- 쪽지 -->
-							<div class="quick_menu_box_1">
+							<!-- <div class="quick_menu_box_1">
 								<i class="fa fa-envelope-o" style="font-size:45px" data-toggle="tooltip" data-placement="bottom" title="쪽지"></i>
-							</div>
+							</div> -->
 							
 							<!-- 마이페이지 -->
-							<div class="quick_menu_box_1">
-								<i class="fa fa-user-circle-o" style="font-size:45px" data-toggle="tooltip" data-placement="bottom" title="마이페이지"></i>
-							</div>
+							  <div class="quick_menu_box_1">
+				                  <a href="./myPage/myPageMain" style="color : black;">
+				                  	<i class="fa fa-user-circle-o" style="font-size:45px"  data-toggle="tooltip" data-placement="bottom" title="마이페이지"></i>
+				                  </a>
+				                  
+               				</div>
 							
 							<!-- 사다리타기 -->
 							<div class="quick_menu_box_1" data-toggle="modal" data-target="#game">
@@ -193,12 +211,12 @@
 			<div id="contents_wrap">
 				<div id="notice_wrap">
 					<div id="notice_title">
-						<p id="notice_title_p">Group Ware</p>
+						<p id="notice_title_p">게시판</p>
 					</div>
 
-					<div id="notice_icon">
-						<i class="fa fa-bullhorn" style="font-size:48px;color:#CE3636"></i>
-					</div>
+					<!-- <div id="notice_icon">
+						<i class="fa fa-bullhorn" style="font-size:30px;color:#CE3636"></i>
+					</div> -->
 					
 					<c:forEach items="${randomList}" var="random">
 						<div  class="mySlides w3-animate-bottom" id="notice_text">
@@ -206,7 +224,7 @@
 						</div>
 					</c:forEach>
 					
-					<div id="weather_div">
+					<!-- <div id="weather_div">
 						<i class="fa fa-cloud weather_div_p" style="font-size:36px">Weather</i>
 					</div>
 					
@@ -216,18 +234,16 @@
 					
 					<div id="edit_icon">
 						<i class="fa fa-cog weather_div_p" style="font-size:36px;"></i>
-					</div>
+					</div> -->
 				</div>
 				
 				<div id="submenu_wrap">
 					<div class="groupWare_jk_all">
                   <div class="groupWare_jk_groupWare">
                      
-                     <a href="#"> 
                         <span class="groupWare_jk_inerp"> 
                            <span class="groupWare_jk_bigdiv">전자결재</span>
                         </span>
-                     </a> 
                      
 
                     <a href="${pageContext.request.contextPath}/GroupWare/epayment/formList?curPage=1">
@@ -258,15 +274,13 @@
                   </div>
                   <div class="groupWare_jk_groupWare">
                      
-                     <a href="#"> 
                         <span class="groupWare_jk_inerp"> 
                            <span class="groupWare_jk_bigdiv">게시판</span>
                         </span>
-                     </a> 
                      
                      <a href="../ware/free/freeList"> 
                         <span class="groupWare_jk_smalldiv"> 
-                           <span class="groupWare_jk_writing">공지사항</span>
+                           <span class="groupWare_jk_writing">답글<br>게시판</span>
                         </span>
                      </a> 
                      
@@ -278,11 +292,9 @@
                   </div>
                   <div class="groupWare_jk_groupWare">
                      
-                     <a href="#"> 
                         <span class="groupWare_jk_inerp"> 
                            <span class="groupWare_jk_bigdiv">일정관리</span>
                         </span>
-                     </a> 
                      
                      <a href="../ware/calendar/coding"> 
                         <span class="groupWare_jk_smalldiv"> 
@@ -305,22 +317,14 @@
                      </a>
                   </div>
                   <div class="groupWare_jk_groupWare">
-                     <a href="#"> 
                         <span class="groupWare_jk_inerp"> 
                            <span class="groupWare_jk_bigdiv ">마이 페이지</span>
                         </span>
-                     </a> 
                      
               
-                          <a href="./myPage/memberMyPage">
+                          <a href="./myPage/myPageMain">
                         <span class="groupWare_jk_smalldiv"> 
                            <span class="groupWare_jk_writing">내 정보</span>
-                        </span>
-                     </a> 
-                
-                     <a href="#"> 
-                        <span class="groupWare_jk_smalldiv"> 
-                           <span class="groupWare_jk_writing" id="groupWare_jk_mr">년/월차<br>휴가조회</span>
                         </span>
                      </a> 
                      
@@ -339,7 +343,7 @@
 		</div>
 		
 		<div id="login_after_footer">
-		
+		Copyright © 2018 KH Information Educational | FiveWare | EungJin EunBi ARin JiHyun
 		</div>
 	</div>
 

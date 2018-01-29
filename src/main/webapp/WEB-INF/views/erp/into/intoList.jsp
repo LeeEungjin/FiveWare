@@ -89,14 +89,14 @@
       <!-- submenu banner end -->
       
       <!-- submenu menu -->
-         <div class="fw_menu fw_selected sub1" data-toggle="collapse" data-target="#sub1" title="sub1">
+         <div class="fw_menu" data-toggle="collapse" data-target="#sub1" title="sub1">
             기초정보
             <div class="fw_arrow sub1">
                ∧
             </div>
          </div>
          
-         <div class="fw_subselected collapse" id="sub1">
+         <div class="fw_subsub collapse" id="sub1">
             <ul>
                <li><a href="../foundation/supplier">거래처 등록</a></li>
                <li><a href="../foundation/product">제품 등록</a></li>
@@ -138,14 +138,14 @@
          </div>
          
          <!-- ----------4---------- -->
-         <div class="fw_menu" data-toggle="collapse" data-target="#sub4" title="sub4" >
+         <div class="fw_menu fw_selected sub4" data-toggle="collapse" data-target="#sub4" title="sub4" >
                	조회
             <div class="fw_arrow sub4">
                	∨
             </div>
          </div>
          
-         <div class="fw_subsub collapse"  id="sub4">
+         <div class="fw_subselected collapse in"  id="sub4">
             <ul>
                <li><a href="../../erp/into/intoList">조회 및 엑셀 다운</a></li>
             </ul>
@@ -157,32 +157,42 @@
 	
 	<div id="fw_mainwrap">
 			<div id="fw_main">
-				<h1>${table}</h1>
+				<div id="into_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
 			</div>
 			
 			<div id="fw_main_contents">
 				<div id="erp_jh_contents_title">
-					<div id="into_icon">icon</div>
+					
 					<p id="into_title">조회 및 엑셀 다운로드</p>
 				</div>
 				
 				<div id="erp_jh_contents_search">
-					<button class="into" title="Supplier">거래처</button>
-					<button class="into" title="Product">제품</button>
-					<button class="into" title="Menu">메뉴</button>
-					<button class="into" title="Storage">창고</button>
-					<button class="into" title="Order">주문</button>
-					<div class="dropdown" style="display: inline;">
-						<button data-toggle="dropdown">재료</button>
-						<ul class="dropdown-menu">
-						  <li><a href="#" class="into" title="allMater">전체</a></li>
-					      <li><a href="#" class="mater" title="enter">입고</a></li>
-					      <li><a href="#" class="mater" title="rele">출고</a></li>
-					      <li><a href="#" class="mater" title="back">반품</a></li>
-					      <li><a href="#" class="mater" title="confin">불출</a></li>
-					    </ul>
-					</div>
+				
+				
+				<ul class="nav nav-tabs">
+				    <li class="active"><a>검색</a></li>
+				    <li><a class="into" title="Supplier">거래처</a></li>
+				    <li><a class="into" title="Product">제품</a></li>
+				    <li><a class="into" title="Menu">메뉴</a></li>
+				    <li><a class="into" title="Storage">창고</a></li>
+				    <li><a class="into" title="Order">주문</a></li>
+				    
+				    
+				     <li class="dropdown">
+				      <a class="dropdown-toggle" data-toggle="dropdown">재료<span class="caret"></span></a>
+				      <ul class="dropdown-menu">
+				        <li><a class="into" title="allMater">전체</a></li>
+				        <li><a class="mater" title="enter">입고</a></li>
+				        <li><a class="mater" title="rele">출고</a></li>      
+				        <li><a class="mater" title="back">반품</a></li>      
+				        <li><a class="mater" title="confin">불출</a></li>                        
+				      </ul>
+				    </li>
+
+				</ul>
+				
 				</div>
+
 				
 				<!-- table -->
 					<div id="erp_jh_contents_table"></div>

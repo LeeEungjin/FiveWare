@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <html>
 <head>
+<<<<<<< HEAD
 	<title>ERP</title>
 <link href="./resources/css/erp.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -11,6 +11,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+=======
+
+>>>>>>> master
 
 <meta name=description content="">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
@@ -22,7 +25,10 @@
 	<link href="./resources/css/common/clock.css" rel="stylesheet" />
 	<!-- clock library End -->
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 </head>
 
 <script type="text/javascript">
@@ -39,7 +45,7 @@
 	    slideIndex++;
 	    
 	    if (slideIndex > x.length) {slideIndex = 1} 
-	    //x[slideIndex-1].style.display = "inline-block"; 
+	   //x[slideIndex-1].style.display = "inline-block"; 
 	    setTimeout(carousel, 3000); 
 	}
 	
@@ -348,6 +354,37 @@
 		$("#ladderClose").click(function(){
 			location.reload();
 		})
+		
+		$("#eb_Dmessage").click(function(){
+			$(".eb_Mall").css("display","none");
+			$(".eb_Mlist").css("display","block");
+			
+			 $.ajax({
+					type:"GET",
+					url:"./message/messageList",
+					success:function(data){
+						
+						var i=0;
+						$(data[0]).each(function(){
+							var temp="<div  class='eb_MlistDiv eb_Mclick' id="+i+" title="+data[0][i]+" accesskey='1'>";
+							temp=temp+"<div class='eb_MplusImg' id=eb_MplusImg"+i+"></div>";
+							temp=temp+"<div class='eb_Mconpany'><i class='fa fa-angle-double-down' style='font-size:24px'></i> "+ data[0][i] +"</div>"; 
+							temp=temp+"</div>";
+						 	temp=temp+"<div class='eb_MtempMem' id='eb_MtempMem"+i+"'></div>"; 
+							
+							$(".eb_message2").append(temp);
+							
+							i++;
+						}); 
+						
+						//안읽은거 부트스트랩!!!!
+						/* alert(data[1]); */
+						
+						$("#eb_new").text(data[1]);
+						
+					}
+				});
+		})
 	 
 	});
 </script>
@@ -359,7 +396,7 @@
 		<div id="lofin_after_header">
 			<div id="lang_wrap">
 				<div id="lang_icon">
-					<i class="fa fa-globe" style="font-size: 35px"></i>
+					<img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogoBlack.png">
 				</div>
 
 			</div>
@@ -367,14 +404,14 @@
 			<div id="menu_wrap">
 				<table id="eb_fw_main_2_table">
 					<tr>
-						<td class="eb_row"><a
+						<td class="eb_row"><a id="erpMenuWrapA" style="color: white;, text-decoration: none;"
 							href="${pageContext.request.contextPath}/">HOME</a></td>
-						<td class="eb_row"><a
+						<td class="eb_row"><a  style="color: white;, text-decoration: none;"
 							href="${pageContext.request.contextPath}/erp">ERP</a></td>
-						<td class="eb_row"><a
-							href="${pageContext.request.contextPath}/groupware">Group
+						<td class="eb_row"><a  style="color: white;, text-decoration: none;"
+							href="${pageContext.request.contextPath}/GroupWare">Group
 								Ware</a></td>
-						<td class="eb_row"><a
+						<td class="eb_row"><a  style="color: white;, text-decoration: none;"
 							href="${pageContext.request.contextPath}/srm">SRM</a></td>
 					</tr>
 				</table>
@@ -398,11 +435,6 @@
 								class="eb_default_img">
 
 							<!-- 로그인하면 이름!!  -->
-
-							<p id="name_p">${member.name}님
-								<i class="glyphicon glyphicon-time" style="font-size: 20px;"
-									data-toggle="modal" data-target="#myModal" id="eb_timeBtn"></i>
-							</p>
 
 
 							<!--  출퇴근 modal-->
@@ -461,25 +493,28 @@
 
 
 					<div id="pro_info_2">
-						<i class="fa fa-bell-o" style="font-size: 36px">new</i>
+						<p id="name_p">${member.name}님
+								<i class="glyphicon glyphicon-time" style="font-size: 20px;"
+									data-toggle="modal" data-target="#myModal" id="eb_timeBtn"></i>
+						</p>
+						<i class="fa fa-bell-o" style="font-size: 20px">new</i>
 						<div id="alert_menu"></div>
 					</div>
 				</div>
 				<div id="sche_info">
-					<i class="fa fa-calendar" style="font-size: 36px">Clock</i>
-					<br>
+					<!-- <i class="fa fa-calendar" style="font-size: 36px">Clock</i> -->
 					<!-- Clock API Start -->
 					<div id="clock" class="light">
 						<div class="display">
 							<div class="weekdays"></div>
 							<div class="ampm"></div>
-							<div class="alarm"></div>
 							<div class="digits"></div>
 						</div>
 					</div>
 					<!-- Clock API End -->
 				</div>
 
+<<<<<<< HEAD
 					<div id="notice_icon">
 						<i class="fa fa-bullhorn" style="font-size:48px;color: #CE3636"></i>
 					</div>
@@ -665,6 +700,277 @@
 		
 		</div>
 	</div>
+=======
+
+				<div class="eb_line"></div>
+            
+            <div id="sche_add">
+               <i class="fa fa-calendar-plus-o" style="font-size:30px; padding-top:10px;">Calendar</i>
+               <p id="sche_p" style="font-size: 20px"><a href="calendar/coding" style="color: gray">일정 등록하기 <i class="fa fa-plus-square-o" style="font-size:23px;"></i></a></p>
+            </div>
+            
+            
+            
+            <div id="quick_menu" class="dropdown">
+               <p id="quick_p">바로가기
+                  <a href="#" data-toggle="tooltip" title="바로가기 메뉴입니다.">
+                  <i class="fa fa-cog" style="font-size:20px; color : gray;"></i>
+                  </a>
+               </p>
+
+               <div id="quick_menu_box">
+               
+               <!-- 공지사항 -->
+               <div class="quick_menu_box_1" >
+                  <a style="color: black;, text-decoration: none;" href="../../ware/community/communityList"><i class="fa fa-list" style="font-size:45px" data-toggle="tooltip" data-placement="bottom" title="공지사항"></i></a>
+               </div>
+               
+               <!-- 쪽지 -->
+               <div class="quick_menu_box_1" >
+                  <i class="fa fa-envelope-o" style="font-size:45px" data-toggle="tooltip" data-placement="bottom" title="쪽지" id="eb_Dmessage"></i>
+               </div>
+               
+               <!-- 마이페이지 -->
+               <div class="quick_menu_box_1">
+                  <a href="./myPage/myPageMain" style="color : black;">
+                  	<i class="fa fa-user-circle-o" style="font-size:45px"  data-toggle="tooltip" data-placement="bottom" title="마이페이지"></i>
+                  </a>
+                  
+               </div>
+               
+               <!-- 사다리타기 -->
+               <div class="quick_menu_box_1" data-toggle="modal" data-target="#game">
+                  <img id="ladderImg" src="./resources/images/shortCut/ladder.png" data-toggle="tooltip" data-placement="bottom" title="사다리 게임">
+               </div>
+               
+               
+               <!-- 사다리 타기 모달 -->
+                <div class="modal fade" id="game">
+                   <div class="modal-dialog">
+                     <div class="modal-content">
+                     
+                       <!-- Modal Header -->
+                       <div class="modal-header">
+                         <h4 class="modal-title">사다리 타기</h4>
+                         <button type="button" id="ladderClose" class="close" data-dismiss="modal">&times;</button>
+                       </div>
+                       
+                       <!-- Modal body -->
+                       <div class="modal-body">
+                         <!--    참여 인원 : <input id="gamePeople" type="number"><input id="gamePeopleBtn" type="button" value="확인">
+                          
+                          <div id="game_contents">
+                             
+                          </div> -->
+                          
+                          <div class="landing" id="landing">
+                            <div class="start-form">
+                                 <div class="landing-form">
+                                     <div class="group">      
+                                       <input id="ladderMemberInput" type="text" name="member" required>
+                                       <span class="highlight"></span>
+                                       <span class="bar"></span>
+                                       <label>참여자 수</label>
+                                         <div  id="button" class="button raised green">
+                                           <div  class="center" fit>START</div>
+                                           <paper-ripple fit></paper-ripple>
+                                         </div>
+                                     </div>
+                                 </div>
+                            </div>
+                         </div>
+                         <div id="ladder" class="ladder">
+                             <div class="dim"></div>
+                              <canvas class="ladder_canvas" id="ladder_canvas"></canvas>
+                         </div>
+                     <script src="./resources/js/ladder.js"></script>
+                       
+                       </div>
+                       
+                     </div>
+                   </div>
+                 </div>
+               
+               
+               </div>
+            </div>
+            
+            <!-- 
+            <div id="often_call">
+               <p id="quick_p">자주 연락하는 사람들
+                  <a href="#" data-toggle="tooltip" title="목록 설정">
+                  <i class="fa fa-cog" style="font-size:20px; 
+                  color : gray;"></i>
+                  </a>
+               </p>
+            </div>    -->         
+         </div>
+         
+         <div id="contents_wrap">
+            <div id="notice_wrap">
+               <div id="notice_title">
+                  <!-- <p id="notice_title_p"><a style="color: black; text-decoration: none;, font-size: 24px;" href="../ware/community/communityList">공지사항</a></p> -->
+               </div>
+
+<!-- 
+>>>>>>> master
+
+               <div id="notice_icon">
+                  <i class="fa fa-bullhorn" style="font-size:30px;color: #CE3636"></i>
+               </div> -->
+               
+               <c:forEach items="${randomList}" var="random">
+                  <div class="mySlides w3-animate-bottom" id="notice_text">
+                     <a href="#">${random.contents}</a>
+                  </div>
+               </c:forEach>
+               
+               <!-- <div id="weather_div">
+                  <i class="fa fa-cloud weather_div_p" style="font-size:36px">Weather</i>
+               </div>
+               
+               <div id="skin_icon">
+                  <i class="fa fa-desktop weather_div_p" style="font-size:36px"></i>
+               </div>
+               
+               <div id="edit_icon">
+                  <i class="fa fa-cog weather_div_p" style="font-size:36px;"></i>
+               </div> -->
+            </div>
+            
+            <div id="submenu_wrap">
+               <div class="erp_jk_all">
+                     <div class="erp_jk_erp">
+                        
+                           <span class="erp_jk_inerp">
+                              <span class="erp_jk_bigdiv">회계</span>
+                           </span>
+                        
+                        <a href="./erp/storeRegist">
+                           <span class="erp_jk_smalldiv">
+                              <span class="erp_jk_writing">기초 정보</span>
+                          
+                           </span>
+                        </a> 
+                        
+                        <a href="./erp/chit">
+                           <span class="erp_jk_smalldiv">
+                              <span class="erp_jk_writing">전표 관리</span>
+                              
+                           </span>
+                        </a> 
+                      
+                     </div>
+                     
+                     <div class="erp_jk_erp">
+                        
+                           <span class="erp_jk_inerp">
+                              <span class="erp_jk_bigdiv">영업/구매</span>
+                           </span>
+                        
+                        <a href="./erp/foundation/supplier">
+                           <span class="erp_jk_smalldiv">
+                              <span class="erp_jk_writing">기초정보</span>
+                            
+                              
+                           </span>
+                        </a> 
+                        
+                        <a href="./erp/order/orderRegist">
+                           <span class="erp_jk_smalldiv">
+                              <span class="erp_jk_writing">구매관리</span>
+                           </span>
+                        </a> 
+                        
+                        <a href="./erp/mater/materRegist?materKind=enter">
+                           <span class="erp_jk_smalldiv">
+                              <span class="erp_jk_writing">자재관리</span>
+                           </span>
+                        </a> 
+                                           
+                        <a href="./erp/into/intoList">
+                           <span class="erp_jk_smalldiv">
+                              <span class="erp_jk_writing">조회</span>
+                           </span>
+                        </a>
+                     </div>
+                     <div class="erp_jk_erp">
+                        
+                           <span class="erp_jk_inerp">
+                              <span class="erp_jk_bigdiv">인사</span>
+                           </span>
+                        
+                        <a href="#">
+                           <span class="erp_jk_smalldiv">
+                              <span class="erp_jk_writing">기초정보</span>
+                       
+                           </span>
+                        </a> 
+                        
+                        <a href="#">
+                           <span class="erp_jk_smalldiv">
+                              <span class="erp_jk_writing">사원관리</span>
+                           </span>
+                        </a> 
+                        
+                        <a href="#">
+                           <span class="erp_jk_smalldiv">
+                              <span class="erp_jk_writing">급여관리</span>
+                           </span>
+                        </a> 
+                        
+                        <a href="#">
+                           <span class="erp_jk_smalldiv">
+                              <span class="erp_jk_writing">근태관리</span>
+                           </span>
+                        </a> 
+                        
+                        <a href="#">
+                           <span class="erp_jk_smalldiv">
+                              <span class="erp_jk_writing">조회</span>
+                           </span>
+                        </a>
+                        
+                        <a href="./community/blackList">
+                           <span class="erp_jk_smalldiv">
+                              <span class="erp_jk_writing">블랙 <br> 리스트</span>
+                           </span>
+                        </a>
+                     </div>
+                     <div class="erp_jk_erp">
+                        
+                           <span class="erp_jk_inerp">
+                              <span class="erp_jk_bigdiv">일정</span>
+                           </span>
+                        
+                        <a href="calendar/coding">
+                           <span class="erp_jk_smalldiv">
+                              <span class="erp_jk_writing">스케쥴</span>
+                           </span>
+                        </a> 
+                        
+                        
+                        <a href="./event/eventRegist">
+                           <span class="erp_jk_smalldiv">
+                              <span class="erp_jk_writing" id="erp_jk_mr">
+                                    이벤트<br>&nbsp;등록
+                              </span>
+                           </span>
+                        </a>
+   
+                     </div>
+                     </div>
+               
+            </div>
+         
+         </div>
+         
+      </div>
+      
+      <div id="login_after_footer">
+      	Copyright © 2018 KH Information Educational | FiveWare | EungJin EunBi ARin JiHyun
+      </div>
+>>>>>>> master
    </div>
 </body>
 </html>

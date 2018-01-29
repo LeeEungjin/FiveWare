@@ -101,21 +101,7 @@ li{
 	font-size: 20px;
 }
 
-#eb_fw_main_2_table{
-	width: 90%;
-	height: 100%;
-	color:white;
-	
-}
 
-td.eb_row{
-	width: 25%;
-	height: 100%;
-	
-}
-td.eb_row:hover {
-	background-color: #353535; 
-} 
 
 
 #eb_contents_wrap{
@@ -156,7 +142,7 @@ td.eb_row:hover {
 	
 }
  .eb_writetable{
- 	width: 100%;
+ 	width: 80%;
  	height: 100%;
  
  
@@ -233,4 +219,7 @@ td.eb_row:hover {
 	margin-top: 10px;
 	margin-left: 15px;
 	
+}
+#cke_1_contents{
+	height: 355px !important;
 }
