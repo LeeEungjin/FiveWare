@@ -318,27 +318,8 @@
             </tbody>
          </table>
          </form>
-<<<<<<< HEAD
+</div>
+</div>
 
-         
-                </div>
-                </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-                
-
-
->>>>>>> arin
-=======
-      </div>
-      </div>
->>>>>>> ea1bde0e322c94e824732bc320b407a7c6488741
-
-=======
-                
-
-
->>>>>>> eunbi2
 </body>
 </html>
