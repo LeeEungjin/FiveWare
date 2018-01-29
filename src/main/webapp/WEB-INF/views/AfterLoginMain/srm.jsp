@@ -10,6 +10,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- clock library Start -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
+<script src="./resources/js/clock.js"></script>
+<link href="./resources/css/common/clock.css" rel="stylesheet" />
+<!-- clock library End -->
+	
 </head>
 <script type="text/javascript">
 	var slideIndex = 0;
@@ -61,7 +68,7 @@
 					<tr >
 						<td class="eb_row"><a href="${pageContext.request.contextPath}/"  style="color: white;, text-decoration: none;">HOME</a></td>
 						<td class="eb_row"><a href="${pageContext.request.contextPath}/erp"  style="color: white;, text-decoration: none;">ERP</a></td>
-						<td class="eb_row"><a href="${pageContext.request.contextPath}/groupware"  style="color: white;, text-decoration: none;">Group Ware</a></td>
+						<td class="eb_row"><a href="${pageContext.request.contextPath}/GroupWare"  style="color: white;, text-decoration: none;">Group Ware</a></td>
 						<td class="eb_row"><a href="${pageContext.request.contextPath}/srm"  style="color: white;, text-decoration: none;">SRM</a></td>
 					</tr>
 				</table>
@@ -93,7 +100,15 @@
 					</div>
 				</div>
 				<div id="sche_info">
-					<i class="fa fa-calendar" style="font-size:36px">Calendar</i>
+					<!-- Clock API Start -->
+					<div id="clock" class="light">
+						<div class="display">
+							<div class="weekdays"></div>
+							<div class="ampm"></div>
+							<div class="digits"></div>
+						</div>
+					</div>
+					<!-- Clock API End -->
 				</div>
 				
 			<div class="eb_line"></div>

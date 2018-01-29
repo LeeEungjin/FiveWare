@@ -22,8 +22,6 @@
 	<link href="./resources/css/common/clock.css" rel="stylesheet" />
 	<!-- clock library End -->
 
-
-
 </head>
 
 <script type="text/javascript">
@@ -373,7 +371,7 @@
 						<td class="eb_row"><a  style="color: white;, text-decoration: none;"
 							href="${pageContext.request.contextPath}/erp">ERP</a></td>
 						<td class="eb_row"><a  style="color: white;, text-decoration: none;"
-							href="${pageContext.request.contextPath}/groupware">Group
+							href="${pageContext.request.contextPath}/GroupWare">Group
 								Ware</a></td>
 						<td class="eb_row"><a  style="color: white;, text-decoration: none;"
 							href="${pageContext.request.contextPath}/srm">SRM</a></td>
@@ -475,7 +473,7 @@
 							<div class="digits"></div>
 						</div>
 					</div>
-					<!-- Clock API End -->
+					<!-- Clock API End -->일ㅈ
 				</div>
 
 
@@ -483,7 +481,7 @@
             
             <div id="sche_add">
                <i class="fa fa-calendar-plus-o" style="font-size:30px; padding-top:10px;">Calendar</i>
-               <p id="sche_p" style="font-size: 20px"><a href="calendar/coding" style="color: gray">일정 등록하기 <i class="fa fa-plus-square-o" style="font-size:23px;"></i></p></a>
+               <p id="sche_p" style="font-size: 20px"><a href="calendar/coding" style="color: gray">일정 등록하기 <i class="fa fa-plus-square-o" style="font-size:23px;"></i></a></p>
             </div>
             
             
@@ -715,19 +713,12 @@
                               <span class="erp_jk_bigdiv">일정</span>
                            </span>
                         
-                        <a href="#">
+                        <a href="calendar/coding">
                            <span class="erp_jk_smalldiv">
                               <span class="erp_jk_writing">스케쥴</span>
                            </span>
                         </a> 
                         
-                        <a href="#">
-                           <span class="erp_jk_smalldiv">
-                              <span class="erp_jk_writing" id="erp_jk_mr">
-                                    회의실<br>&nbsp;예약
-                              </span>
-                           </span>
-                        </a>
                         
                         <a href="./event/eventRegist">
                            <span class="erp_jk_smalldiv">

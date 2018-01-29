@@ -104,7 +104,7 @@ public class HomeController {
 		ModelAndView mv=new ModelAndView();
 		List<FreeDTO> randomList=new ArrayList<FreeDTO>();
 		
-		System.out.println("????");
+		System.out.println("HomeController - GroupWare");
 		
 		try {
 			randomList=freeService.randomNotice();
