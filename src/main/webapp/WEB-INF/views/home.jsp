@@ -120,7 +120,7 @@
                       closeOnConfirm: false
                     },
                     function(){
-                    	//$("#eb_href_1").attr("href","./myPage/myPageMain");
+                    	
                     	location.href="./myPage/myPageMain";
                     });
     	
@@ -130,7 +130,19 @@
     		  }
     		  
     	  }else{
-    		  alert("본사 사람들만 이용 가능합니다.")
+    	
+    		  swal({
+                  title:"본사 사람들만 이용가능합니다.",
+                  type: "success",
+                  showCancelButton: false,
+                  confirmButtonClass: "btn-primary",
+                  confirmButtonText: "확인",
+                  closeOnConfirm: false
+                },
+                function(){
+                	
+                	location.reload();
+                });
     	  }
         	  
       });
@@ -140,9 +152,19 @@
 
     	 
     		  if(pw==code){
-        		  alert("비밀번호 변경 후 이용해주세요.")
-        		  $("#eb_href_2").attr("href","./myPage/myPageMain");
-        		  
+    			  swal({
+                      title:"비밀번호 변경 후 이용해주세요.",
+                      type: "success",
+                      showCancelButton: false,
+                      confirmButtonClass: "btn-primary",
+                      confirmButtonText: "확인",
+                      closeOnConfirm: false
+                    },
+                    function(){
+                    
+                    	location.href="./myPage/myPageMain";
+                    });
+    			  
         	  }else{
         		  $("#eb_href_2").attr("href","GroupWare");
         	  } 
@@ -154,14 +176,35 @@
     	  
     	if(kind=='store'){
     		  if(pw==code){
-    			  alert("비밀번호 변경 후 이용해주세요.")
-        		  $("#eb_href_3").attr("href","./myPage/myPageMain");
+    			  swal({
+                      title:"비밀번호 변경 후 이용해주세요.",
+                      type: "success",
+                      showCancelButton: false,
+                      confirmButtonClass: "btn-primary",
+                      confirmButtonText: "확인",
+                      closeOnConfirm: false
+                    },
+                    function(){
+                  
+                    	location.href="./myPage/myPageMain";
+                    });
     		  }else{
     			  $("#eb_href_3").attr("href","srm"); 
     		  }
     		  
     	  }else{
-    		  alert("지점 사람들만 이용 가능합니다.")
+    		  swal({
+                  title:"지점 사람들만 이용가능합니다.",
+                  type: "success",
+                  showCancelButton: false,
+                  confirmButtonClass: "btn-primary",
+                  confirmButtonText: "확인",
+                  closeOnConfirm: false
+                },
+                function(){
+                	
+                	location.reload();
+                });
     	  }
     	  
     	 
