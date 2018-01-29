@@ -68,7 +68,7 @@
 			
 			<div class="fw_subselected collapse in" id="sub1">
 				<ul>
-					<li><a href="${pageContext.request.contextPath}/myPage/memberMyPage">내 정보</a></li>
+					<li><a href="${pageContext.request.contextPath}/myPage/myPageMain">내 정보</a></li>
 					<li><a href="${pageContext.request.contextPath}/myPage/timeRecord?memberCode=${member.code }">출/퇴근 조회</a></li>
 		
 			
@@ -105,12 +105,9 @@
 					
 		
 					<div id="submenu_table_1" class="w3-panel w3-card-4">
-					<div class="eb_table_text">
-							<h3>기본 정보</h3>
-						
-						</div>
+			
 					
-					<table class="table" >
+					<table class="table" style="margin-top: 30px;">
 						<tr>
 							<td class="eb_td">사원번호</td>
 							<td>${member.code}</td>
@@ -144,10 +141,12 @@
 				
 				
 				<div id="submenu_table_2" class="w3-panel w3-card-4">
-					<h3>수정할수있는정보</h3>
+					
 					<!--원글  -->
 				<div class="eb_table_1">	
-					<table class="table ">	
+					<table class="table " style="margin-top: 30px;">	
+				
+					
 						<tr>
 							<td class="eb_td">전화번호</td>
 							<td>${member.phone}</td>
@@ -184,7 +183,9 @@
 		 <div class="eb_table_2">	
 		 <form action="memberUpdate" method="post">
 		 <input type="hidden" value="${member.code}" name="code">
-			<table class="table ">	
+			<table class="table " style="margin-top: 30px;">	
+						
+						
 						<tr>
 							<td class="eb_td">전화번호</td>
 							<td><input type="text" value="${member.phone}" name="phone"></td>

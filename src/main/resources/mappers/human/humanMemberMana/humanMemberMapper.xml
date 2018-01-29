@@ -5,6 +5,16 @@
   
   <mapper namespace="humanMemberMapper">
   
+  <!--pw 변경  -->
+  <update id="pwUpdate" parameterType="java.util.Map">
+  	update member set pw=#{pw} where code=#{code}
+  </update>
+  
+  <!--pw확인  -->
+  <select id="pwCheck" parameterType="String" resultType="String">
+  	select pw from member where code=#{code}
+  </select>
+  
   <!-- login -->
   <select id="login" resultType="MemberDTO" parameterType="MemberDTO">
   	select * from member where code=#{code} and pw=#{pw}

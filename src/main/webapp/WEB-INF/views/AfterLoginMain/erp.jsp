@@ -349,6 +349,37 @@
 		$("#ladderClose").click(function(){
 			location.reload();
 		})
+		
+		$("#eb_Dmessage").click(function(){
+			$(".eb_Mall").css("display","none");
+			$(".eb_Mlist").css("display","block");
+			
+			 $.ajax({
+					type:"GET",
+					url:"./message/messageList",
+					success:function(data){
+						
+						var i=0;
+						$(data[0]).each(function(){
+							var temp="<div  class='eb_MlistDiv eb_Mclick' id="+i+" title="+data[0][i]+" accesskey='1'>";
+							temp=temp+"<div class='eb_MplusImg' id=eb_MplusImg"+i+"></div>";
+							temp=temp+"<div class='eb_Mconpany'><i class='fa fa-angle-double-down' style='font-size:24px'></i> "+ data[0][i] +"</div>"; 
+							temp=temp+"</div>";
+						 	temp=temp+"<div class='eb_MtempMem' id='eb_MtempMem"+i+"'></div>"; 
+							
+							$(".eb_message2").append(temp);
+							
+							i++;
+						}); 
+						
+						//안읽은거 부트스트랩!!!!
+						/* alert(data[1]); */
+						
+						$("#eb_new").text(data[1]);
+						
+					}
+				});
+		})
 	 
 	});
 </script>
@@ -507,12 +538,15 @@
                
                <!-- 쪽지 -->
                <div class="quick_menu_box_1" >
-                  <i class="fa fa-envelope-o" style="font-size:45px" data-toggle="tooltip" data-placement="bottom" title="쪽지"></i>
+                  <i class="fa fa-envelope-o" style="font-size:45px" data-toggle="tooltip" data-placement="bottom" title="쪽지" id="eb_Dmessage"></i>
                </div>
                
                <!-- 마이페이지 -->
                <div class="quick_menu_box_1">
-                  <i class="fa fa-user-circle-o" style="font-size:45px"  data-toggle="tooltip" data-placement="bottom" title="마이페이지"></i>
+                  <a href="./myPage/myPageMain" style="color : black;">
+                  	<i class="fa fa-user-circle-o" style="font-size:45px"  data-toggle="tooltip" data-placement="bottom" title="마이페이지"></i>
+                  </a>
+                  
                </div>
                
                <!-- 사다리타기 -->
