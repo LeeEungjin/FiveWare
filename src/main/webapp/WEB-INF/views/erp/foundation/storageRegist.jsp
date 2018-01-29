@@ -159,7 +159,15 @@
 	
 	
 	function F_FileMultiUpload(files, code, mode) {
-		/*************** 이미지만 올릴 수 있도로고 처리!!!!!!! ******************/
+		
+		for(var i=0; i<files.length; i++) {
+			var ext = files[i].name.split('.',2)[1];
+			if(ext != 'jpg') {
+				swal("Error", "사진파일만 올릴 수 있습니다.");
+				return false;
+			}
+		}
+		
 		var len = 0;
 		
 		$.ajax({

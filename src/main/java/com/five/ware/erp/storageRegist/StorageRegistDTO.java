@@ -1,5 +1,6 @@
 package com.five.ware.erp.storageRegist;
 
+import com.five.ware.common.CommonDTO;
 import com.five.ware.erp.into.IntoDTO;
 
 public class StorageRegistDTO extends IntoDTO {

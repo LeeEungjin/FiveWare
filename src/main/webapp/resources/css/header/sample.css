@@ -53,6 +53,7 @@
 	float:right;
 	height: 100%;
 	size:20px; 
+	cursor: pointer;
 }
 
 .fw_subselected{
@@ -70,7 +71,10 @@
 #fw_main{
 	height: 8.5%;
 	width: 100%;
-	border-bottom: 2px solid;
+	padding-top: 1.2%;
+	background-color: rgba(255,255,255,.15);
+    padding-left: 1%;
+    border-bottom: 2px solid black;
 }
 
 #fw_mainwrap{
