@@ -8,8 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.five.ware.erp.human.member.MemberDTO;
-import com.five.ware.erp.storeRegist.StoreRegistDTO;
+import com.five.ware.common.CommonDTO;
 
 public class AuthorInterceptor extends HandlerInterceptorAdapter {
 
@@ -20,24 +19,12 @@ public class AuthorInterceptor extends HandlerInterceptorAdapter {
 		boolean check = false;
 		
 		HttpSession session = request.getSession();
-		String kind = (String)session.getAttribute("kind");
-		if(kind.equals("member")) {
-			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		
+		if(((CommonDTO)session.getAttribute("member")) == null) {
+			modelAndView.setViewName("common/authorResult");
+			modelAndView.addObject("check", !check);
 			
-			if(memberDTO == null) {
-				modelAndView.setViewName("common/authorResult");
-				modelAndView.addObject("check", !check);
-			}
-			
-		} else {
-			StoreRegistDTO storeRegistDTO = (StoreRegistDTO)session.getAttribute("member");
-			
-			if(storeRegistDTO == null) {
-				modelAndView.setViewName("common/authorResult");
-				modelAndView.addObject("check", !check);
-			}
-			
-		}
+		} // END if
 		
 	}
 }

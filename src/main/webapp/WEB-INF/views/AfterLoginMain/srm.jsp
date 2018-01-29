@@ -61,7 +61,7 @@
 					<tr >
 						<td class="eb_row"><a href="${pageContext.request.contextPath}/"  style="color: white;, text-decoration: none;">HOME</a></td>
 						<td class="eb_row"><a href="${pageContext.request.contextPath}/erp"  style="color: white;, text-decoration: none;">ERP</a></td>
-						<td class="eb_row"><a href="${pageContext.request.contextPath}/groupware"  style="color: white;, text-decoration: none;">Group Ware</a></td>
+						<td class="eb_row"><a href="${pageContext.request.contextPath}/GroupWare"  style="color: white;, text-decoration: none;">Group Ware</a></td>
 						<td class="eb_row"><a href="${pageContext.request.contextPath}/srm"  style="color: white;, text-decoration: none;">SRM</a></td>
 					</tr>
 				</table>
