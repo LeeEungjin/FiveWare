@@ -114,7 +114,7 @@
 }
 
 .modal-body1 {
-	position: relative;
+/* 	position: relative; */
     padding: 15px;
     height: 790px !important;
 }
@@ -135,7 +135,7 @@
 
 #ar_info{
 	width: 100%;
-	height: 100%;
+	height: 105px;
 }
 .ar_like{
 	display:inline-block;
@@ -143,6 +143,10 @@
 	margin-right: 2%;
 }
 
+#ar_contestjoinpop{
+	
+    height: 755px;
+}
 .ar_big{
 	display:inline-block;
 	text-align: right;
@@ -154,4 +158,43 @@
 	height: 300px;
 	background-color: yellow;
 	margin-bottom: 3%;
+}
+
+.ar_resultTop{
+	width: 90%;
+	height: 10%;
+	background-color: #d2d200;
+	border: 1px solid black;
+	margin: 0 auto;
+	margin-bottom: 3%;
+}
+
+.modal-body2 {
+    height: 700px !important;
+}
+
+.modal-dialog2{
+	height: 900px;
+	width: 700px;
+	margin: 30px auto;
+}
+
+.ar_contestJoin1{
+	margin: 0 auto;
+	width: 40%;
+	height: 60%;
+}
+
+.ar_resultText{
+	width: 80%;
+	height: 15%;
+	background-color: #8080ff;
+	border: 1px solid black;
+	margin: 0 auto;
+	margin-bottom: 2%;
+}
+
+.ar_imgsize{
+	width: 100%;
+	height: 100%;
 }

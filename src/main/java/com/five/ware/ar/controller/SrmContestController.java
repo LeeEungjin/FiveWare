@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.support.ContextExposingHttpServletRequest;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -62,12 +63,13 @@ public class SrmContestController {
 		
 		List<ContestListDTO> ar =contestService.contestList(listData, model, store);
 		List<List<ContestJoinDTO>>ar2 =contestService.contestJoinList(subcurPage, ar, model, store);
-
+		
 		Calendar calendar = Calendar.getInstance();
+		
 		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
 		String sysdate = sd.format(calendar.getTime());
 		
-		System.out.println(sysdate);
+		System.out.println("dd:"+sysdate);
 		
 		model.addAttribute("todaydate", sysdate);
 		model.addAttribute("curPage", curPage);
@@ -259,7 +261,7 @@ public class SrmContestController {
 		return message;
 	}
 	
-	@RequestMapping(value="contestJoinView", method=RequestMethod.POST)
+	@RequestMapping(value="contestJoinView", method=RequestMethod.GET)
 	public ModelAndView contestJoinView(String cnum) throws Exception{
 		ContestJoinDTO contestJoinDTO = contestService.contestJoinView(cnum);
 		
@@ -267,6 +269,21 @@ public class SrmContestController {
 		
 		mv.addObject("one", contestJoinDTO);
 		mv.setViewName("srm/contest/contestJoinView");
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="contestResultView", method=RequestMethod.GET)
+	public ModelAndView contestResultView(String  cnum, String code) throws Exception{
+		ContestJoinDTO contestJoinDTO = contestService.contestJoinView(cnum);
+		ContestListDTO contestListDTO = contestService.likeResultCode(code);
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("one", contestJoinDTO);
+		mv.addObject("clist", contestListDTO);
+		
+		mv.setViewName("srm/contest/contestResultView");
 		
 		return mv;
 	}

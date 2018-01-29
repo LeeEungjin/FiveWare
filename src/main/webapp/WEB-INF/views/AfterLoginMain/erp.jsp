@@ -423,9 +423,7 @@
 				<div id="pro_info">
 					<div id="pro_info_1">
 						<div id="pro_img">
-							<img
-								src="${pageContext.request.contextPath}/resources/images/sidebar/avatar82.png"
-								class="eb_default_img">
+							<img src="${pageContext.request.contextPath}/resources/member/${file.filename}" class="avatar">
 
 							<!-- 로그인하면 이름!!  -->
 
@@ -617,19 +615,17 @@
                <div id="notice_title">
                   <!-- <p id="notice_title_p"><a style="color: black; text-decoration: none;, font-size: 24px;" href="../ware/community/communityList">공지사항</a></p> -->
                </div>
-
 <!-- 
->>>>>>> master
 
                <div id="notice_icon">
                   <i class="fa fa-bullhorn" style="font-size:30px;color: #CE3636"></i>
                </div> -->
                
-               <c:forEach items="${randomList}" var="random">
+               <%-- <c:forEach items="${randomList}" var="random">
                   <div class="mySlides w3-animate-bottom" id="notice_text">
                      <a href="#">${random.contents}</a>
                   </div>
-               </c:forEach>
+               </c:forEach> --%>
                
                <!-- <div id="weather_div">
                   <i class="fa fa-cloud weather_div_p" style="font-size:36px">Weather</i>

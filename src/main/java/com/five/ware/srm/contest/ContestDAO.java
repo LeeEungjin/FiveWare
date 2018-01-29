@@ -157,4 +157,15 @@ public class ContestDAO {
 		return result;
 	}
 	
+	public int maxCnum(String code) throws Exception{
+		int result = sqlSession.selectOne(NAMESPACE+"maxCnum", code);
+		
+		return result;
+	}
+	
+	public ContestListDTO likeResultCode(String code) throws Exception{
+		ContestListDTO contestListDTO = sqlSession.selectOne(NAMESPACE+"likeResultCode", code);
+		
+		return contestListDTO;
+	}
 }

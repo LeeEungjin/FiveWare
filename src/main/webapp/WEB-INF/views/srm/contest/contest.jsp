@@ -66,6 +66,8 @@ $(function(){
 		document.ar_contestPage.submit();
 	});
 	
+	
+	
 	$(".ar_like").click(function(){
 		var t =$(this);
 		var cnum=$(this).attr("title");
@@ -128,15 +130,16 @@ $(function(){
 	$(".ar_view").click(function(){
 		var cnum = $(this).attr("title");
 		
-		$.ajax({
-			url:"./contestJoinView",
-			type:"POST",
-			data:{
-				"cnum":cnum
-			}, success:function(data){
-				$("#ar_View_Modal").html(data);
-			}
-		});
+		window.open("contestJoinView?cnum="+cnum,"", "width=700, height=761,top=100,left=500");
+		
+	});
+	
+ 	$(".ar_resultBtn").click(function(){
+		var cnum = $(this).attr("accesskey");
+		var code= $(this).attr("title");
+		
+		window.open("contestResultView?cnum="+cnum+"&code="+code, "", "width=700, height=761,top=100,left=500");
+
 	});
 });
 
@@ -227,15 +230,16 @@ $(function(){
 					<div class="ar_contestTitle">
 						${i.sdate } ~${i.edate}  ${i.name}
 					</div>
-					
+						
 				<div class="ar_contestTitleBtn">
 					<c:if test="${kind=='store' }">
 						<input type="button" value="올리기" class="ar_insertBtn" title="${i.code }" data-toggle="modal" data-target="#ar_contest_Modal">
 					</c:if>
 					
-					<c:if test="${i.edate >= sysdate  }">
-						<input type="button" value="결과보기" class="ar_insertBtn" title="${i.code }" data-toggle="modal" data-target="#ar_contest_Modal">
-					</c:if>
+					<c:if test="${size[a.index]=='small' }">
+				<input type="button" value="결과보기" class="ar_resultBtn" title="${i.code }" accesskey="${results[a.index]}" >
+				
+				</c:if>
 				</div>	
 				
 					<div class="ar_ar_contestMenu">
@@ -249,6 +253,7 @@ $(function(){
 										<p>지점 : ${j.store} </p>
 										<p>메뉴명 : ${j.menuname}</p>
 										<p>메뉴설명: ${j.account}</p>
+										
 									</div>
 									
 									<div class="ar_contestLike">
@@ -266,7 +271,9 @@ $(function(){
 									
 										
 										</p>
-										<p class="ar_big" title="${i.code}${j.cnum}"><i style="font-size:17px" class="fa ar_view"  id="${i.code}${j.cnum}" title="${j.cnum }"data-toggle="modal" data-target="#ar_View_Modal">&#xf0b2;</i></p>
+										<p class="ar_big" title="${i.code}${j.cnum}">
+											<i style="font-size:17px" class="fa ar_view"  id="${i.code}${j.cnum}" title="${j.cnum }">&#xf0b2;</i>
+										</p>
 									</div>
 								</div>							
 							</c:if> 
@@ -408,10 +415,20 @@ $(function(){
 			<!-- Modal -->
 				
 				<div class="modal fade" id="ar_View_Modal" role="dialog">
-				   
+				   <h1>Modeallllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll</h1>
 				  </div>
 				<!-- Modal 끝 -->
+				
+				<!-- Modal -->
+				
+				<div class="modal fade" id="ar_result_Modal" role="dialog">
+				  	qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+				  </div>
+				 
+				<!-- Modal 끝 -->
 
+
+		
 </div>
 
 </body>

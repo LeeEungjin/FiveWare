@@ -98,8 +98,6 @@
 			 }); // END ajax
 		  }
 	   }); // 로그인 버튼 끝
-
-      
    			var kind='${kind}';
    			var code='${member.code}';
    			var pw='${member.pw}';
@@ -226,11 +224,17 @@
 				<!-- 큰 메뉴 3개 (ERP, GROUPWARE, SRM) -->
 				<thead>
 				<tr>
+<<<<<<< HEAD
 
 					<td class="menu"><a href="erp" class="eb_login" id="eb_href_1">ERP</a></td>
 					<td class="menu"><a href="GroupWare" class="eb_login" id="eb_href_2">Group Ware</a></td>
 					<td class="menu"><a href="srm" class="eb_login" id="eb_href_3">SRM</a></td>
 
+=======
+					<td class="menu"><a style="font-size: 25px;" href="erp" class="eb_login" id="eb_href_1">ERP</a></td>
+					<td class="menu"><a style="font-size: 25px;" href="GroupWare" class="eb_login" id="eb_href_2">Group Ware</a></td>
+					<td class="menu"><a style="font-size: 25px;" href="srm" class="eb_login" id="eb_href_3">SRM</a></td>
+>>>>>>> master
 				</tr>
 				</thead>
 				
@@ -322,6 +326,7 @@
 				</tbody>
 			</table>
 			</form>
+<<<<<<< HEAD
 
          
                 </div>
@@ -329,6 +334,10 @@
                 
 
 
+=======
+</div>
+</div>
+>>>>>>> master
 
 </body>
 </html>

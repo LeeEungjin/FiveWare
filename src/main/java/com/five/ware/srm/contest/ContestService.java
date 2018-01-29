@@ -1,6 +1,10 @@
 package com.five.ware.srm.contest;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -16,6 +20,7 @@ import com.five.ware.util.RowNum;
 @Service
 public class ContestService {
 
+	
 	@Inject
 	private ContestDAO contestDAO;
 	
@@ -41,12 +46,36 @@ public class ContestService {
 		
 		List<ContestListDTO> ar = contestDAO.contestList(rowNum);
 		List<Integer> counts = new ArrayList<Integer>();
+		Calendar ca = Calendar.getInstance();
+		
+		List<String> size = new ArrayList<String>();
+		List<Integer> results=new ArrayList<Integer>();
 		
 		for(ContestListDTO contestListDTO : ar ){
 			int count = contestDAO.likeSelectJoinCount(contestListDTO, store);
 			System.out.println("count"+count);
 			counts.add(count);
+			//Date
+			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+			Date d= df.parse(contestListDTO.getEdate());
+			long e = d.getTime();
+			long c = ca.getTimeInMillis();
+			
+			
+			if(c< e){
+				size.add("big");
+			}else {
+				size.add("small");
+			}
+			
+			int result = contestDAO.maxCnum(contestListDTO.getCode());
+			results.add(result);
+			 
 		}
+		
+		
+		model.addAttribute("results", results);
+		model.addAttribute("size", size);
 		model.addAttribute("list", ar);
 		model.addAttribute("count", counts);
 		model.addAttribute("pager", pager);
@@ -93,57 +122,15 @@ public class ContestService {
 			
 			pagers.add(pager);
 		} /// for문 끝
-	/*	ContestLikeDTO contestLikeDTO = contestDAO.likeSelectOne(ar2.get(z).getCode() ,ar2.get(z).getCnum(),store );*/
-	/*		for(int o=0; o<joins.size(); o++){
-		ContestLikeDTO contestLikeDTO =null;
-		for(int z=0; z<ar2.size(); z++){
-			System.out.println("ar2code"+ar2.get(z).getCode());
-			contestLikeDTO = contestDAO.likeSelectOne(ar2.get(z).getCode() ,ar2.get(z).getCnum(),store );
-			
-		}
-		likes.add(contestLikeDTO);
-		
-	}
-		
-		blikes.add(likes);*/
-		
-		/*for(int j=0; j<ar2.size(); j++){
-			System.out.println("joinList"+ ar2.get(j).getCode());
-			System.out.println("joinList"+ ar2.get(j).getCnum());
-			
-		}
-		System.out.println(joins);*/
-		
-	/*	for(ContestJoinDTO joinList : ar2){
-			ContestLikeDTO contestLikeDTO = contestDAO.likeSelectOne(joinList.getCode() , joinList.getCnum(),store );
-			
-			likes.add(contestLikeDTO);
-		}*/
-		
-	/*	for(List<ContestJoinDTO> join : joins){
-			for(int i=0; i<ar2.size(); i++){
-				ContestJoinDTO jDTO = new ContestJoinDTO();
-				
-				if(jDTO.getCode()==ar2.get(i).getCode()){
-					ContestLikeDTO contestLikeDTO = contestDAO.likeSelectOne(jDTO.getCode() , jDTO.getCnum(),store );
-					
-					likes.add(contestLikeDTO);
-					
-				}
-				
-				System.out.println("joinSize"+join.size());
-			}
-			blikes.add(likes);
-		}
-		
-		
-		*/
+
 		List<ContestLikeDTO> likes=null;
 		List<Integer> nums=null;
+		
 	for(int o=0; o<ar.size(); o++){
 		ContestLikeDTO contestLikeDTO =null;
 		likes=new ArrayList<ContestLikeDTO>();
 		nums=new ArrayList<Integer>();		
+		
 		for(int z=0; z<joins.get(o).size(); z++){
 			System.out.println("---------------------"+z);
 			System.out.println("ar2code"+joins.get(o).get(z).getCode());
@@ -194,9 +181,9 @@ public class ContestService {
 		return contestJoinDTO;
 	}
 	
-/*	public int likeCount(String code, int cnum) throws Exception{
-		int result = contestDAO.likeCount(code, cnum);
+	public ContestListDTO likeResultCode(String code) throws Exception{
+		ContestListDTO contestListDTO = contestDAO.likeResultCode(code);
 		
-		return result;
-	}*/
+		return contestListDTO;
+	}
 }

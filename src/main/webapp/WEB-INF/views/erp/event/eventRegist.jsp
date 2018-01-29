@@ -196,6 +196,49 @@
 
 <div id="fw_container">
 	<!-- submenu -->
+<<<<<<< HEAD
+	<div id="fw_subcontainer">
+	
+	 <!-- submenu menu -->
+         	<div id="fw_subbanner">
+			이벤트 & 공모전
+		</div>
+		<!-- submenu banner end -->
+		
+		<!-- submenu menu -->
+			<div class="fw_menu" data-toggle="collapse" data-target=".fw_subselected" title="sub1">
+				이벤트
+				<div class="fw_arrow sub1">
+					∨
+				</div>
+			</div>
+			
+			<div class="fw_subselected collapse" id="sub1">
+				<ul>
+					<li> 이벤트 등록 </li>
+				</ul>
+			</div>
+			
+			<!-- ----------2---------- -->
+				<div class="fw_menu  fw_selected" data-toggle="collapse" data-target="#sub2" title="sub2" >
+					공모전
+				<div class="fw_arrow sub2">
+					∧
+				</div>
+			</div>
+			
+			<div class="fw_subsub collapse  in"  id="sub2">
+				<ul>
+					<li> 공모전 등록 </li>
+				</ul>
+			</div>
+		
+         
+      <!-- submenu menu end -->
+			
+		
+</div>
+=======
 	<!-- <div id="fw_subcontainer">
    
       <div id="fw_subbanner">
@@ -262,6 +305,7 @@
          
    </div> -->
 	<!-- submenu end -->
+>>>>>>> master
 	
 	<div id="fw_mainwrap">
 			<div id="fw_main">

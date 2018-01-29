@@ -117,8 +117,7 @@ $(function(){
 			
 			<div class="fw_subselected collapse" id="sub1">
 				<ul>
-					<li> 이벤트 현황 </li>
-					<li> 이벤트 스케줄 </li>
+					<li> 이벤트 등록 </li>
 				</ul>
 			</div>
 			
@@ -132,8 +131,7 @@ $(function(){
 			
 			<div class="fw_subsub collapse  in"  id="sub2">
 				<ul>
-					<li> 공모전 현황 </li>
-					<li> 공모전 참가 </li>
+					<li> 공모전 등록 </li>
 				</ul>
 			</div>
 		
