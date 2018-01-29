@@ -38,7 +38,7 @@
 	    slideIndex++;
 	    
 	    if (slideIndex > x.length) {slideIndex = 1} 
-	   //x[slideIndex-1].style.display = "block"; 
+	   //x[slideIndex-1].style.display = "inline-block"; 
 	    setTimeout(carousel, 3000); 
 	}
 	
@@ -615,7 +615,7 @@
          <div id="contents_wrap">
             <div id="notice_wrap">
                <div id="notice_title">
-                  <p id="notice_title_p"><a style="color: black; text-decoration: none;, font-size: 24px;" href="../ware/community/communityList">공지사항</a></p>
+                  <!-- <p id="notice_title_p"><a style="color: black; text-decoration: none;, font-size: 24px;" href="../ware/community/communityList">공지사항</a></p> -->
                </div>
 
 <!-- 
