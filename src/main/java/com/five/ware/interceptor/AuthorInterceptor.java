@@ -17,7 +17,7 @@ public class AuthorInterceptor extends HandlerInterceptorAdapter {
    @Override
    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
          ModelAndView modelAndView) throws Exception {
-
+	   // 본사 SRM 서로 못들어가게!!!
       boolean check = false;
       
       HttpSession session = request.getSession();
