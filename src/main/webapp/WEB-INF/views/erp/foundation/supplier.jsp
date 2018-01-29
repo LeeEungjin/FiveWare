@@ -136,7 +136,7 @@
 	
 		<!-- submenu banner -->
 		<div id="fw_subbanner">
-			인사
+			구매/영업
 		</div>
 		<!-- submenu banner end -->
 		
