@@ -192,7 +192,7 @@ $(function(){
 </div>
 	<div id="fw_mainwrap">
 			<div id="fw_main">
-				main Title
+				<img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png">
 			</div>
 			
 			<div class="ar_plusTitle">
@@ -203,11 +203,12 @@ $(function(){
 				<div class="ar_blank"></div>
 			
 				<div id="ar_contestInfo">
-					저희 아린카페에서는 회사의 발전을 위해 끈ㅇ님없이 공모전을 준비하고 있습니다. <br>
+				<p>　</p>
+					저희 아린카페에서는 회사의 발전을 위해 끊임없이 공모전을 준비하고 있습니다. <br>
 					공모전에서 1위 할 시에 성과금, 감사표 등 공모전마다 부상이 준비되어 있습니다.<br>
 					각 지점장님들은 마음에 드는 게시글에 좋아요를 눌러주시기 바랍니다.<br>
 					회사의 발전을 위하여 지점장님들의 활발한 참여 부탁드립니다.<br>
-					감사합니다
+					감사합니다.<br>
 				</div>
 			</div>
 			
@@ -368,11 +369,11 @@ $(function(){
 				        
 				        	<div class="ar_modalTop">
 				        		* 등록 시 수정, 삭제가 불가한 점을 참고하여 제출하여 주십시오. <br>
-				        		------------------------------------------------<br>
+				        		--------------------------------------------------------------------<br>
 				        	</div>
 							
 							<div class="input-group input-group_modal">
-								<input type="text" name="code" id="ar_contestCode">
+								<input type="hidden" name="code" id="ar_contestCode">
 							  <span class="input-group-addon">지점명</span>
 							  <input id="ar_store" name="store" type="text" class="form-control" placeholder="Additional Info">
 							</div>
@@ -412,20 +413,8 @@ $(function(){
 				<!-- Modal 끝 -->
 
 
-			<!-- Modal -->
 				
-				<div class="modal fade" id="ar_View_Modal" role="dialog">
-				   <h1>Modeallllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll</h1>
-				  </div>
-				<!-- Modal 끝 -->
 				
-				<!-- Modal -->
-				
-				<div class="modal fade" id="ar_result_Modal" role="dialog">
-				  	qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
-				  </div>
-				 
-				<!-- Modal 끝 -->
 
 
 		

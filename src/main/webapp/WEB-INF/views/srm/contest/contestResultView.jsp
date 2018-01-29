@@ -47,11 +47,10 @@
 				        </div>
 				        
 				        <div class="ar_resultText">
-				        	${one.store }점 축하드립니다.
+				        	${one.store }점 축하드립니다.<br>
 				        	제 ${clist.num }회 공모전에서 당선되신 ${one.store }점에는 부상이
-				        	지급될 예정이며, 앞으로도 활발한 활동 부탁드립니다.
-				        	감사합니다.
-				        	
+				        	지급될 예정이며,<br> 앞으로도 활발한 활동 부탁드립니다.<br>
+				        	감사합니다.<br>
 				        	부상: ${clist.prize }
 				        </div>
 				        <!-- modal contents 끝-->
