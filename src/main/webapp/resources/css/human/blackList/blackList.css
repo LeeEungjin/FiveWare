@@ -2,22 +2,24 @@
 
 #fw_main_contents {
 	width: 100%;
-	height: 91%;
+	height: 95%;
 	background-color: white;
 }
 
 #erp_jh_contents_title {
 	width: 100%;
 	height: 10%;
-	background-color: #ffe1e7;
 	overflow: hidden;
 }
 
 #event_icon {
-	width: 6%;
+	width: 15%;
 	height: 100%;
-	background-color: #ff84c1;
 	float: left;
+}
+
+#logoImg {
+	margin-top: 9%;
 }
 
 #event_title {
@@ -28,10 +30,11 @@
 }
 
 #erp_jh_event_sub {
-	width: 100%;
-	height: 16%;
-	background-color: #D5D5D5;
-	padding-top: 0.5%;
+	width: 90%;
+    height: 16%;
+    background-color: #fde9e9;
+    padding-top: 0.5%;
+    margin-left: 5%;
 }
 
 #event_contents {
@@ -51,10 +54,10 @@
 }
 
 #erp_jh_contents_table {
-	width: 100%;
-	height: 70%;
-	margin-top: 1%;
-	overflow: scroll;
+	    width: 100%;
+    height: 71%;
+    margin-top: 3%;
+    overflow: scroll;
 }
 
 .eventList {
@@ -103,5 +106,4 @@
 #erp_jh_contents_bottom {
 	width: 100%;
 	height: 3%;
-	background-color: #c0c0c0;
 }

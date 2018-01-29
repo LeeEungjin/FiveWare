@@ -1,110 +1,122 @@
 @CHARSET "UTF-8";
 
-*{
+* {
 	margin: 0px;
 	padding: 0px;
 }
 
-#fw_container{
+#fw_container {
 	width: 99%;
 	height: 100%;
-	transition: width 0.3s;	
+	transition: width 0.3s;
 	margin-left: 1%;
 }
 
-#com_header{
+#com_header {
 	width: 100%;
-    background-color: #ffdfe4;
-    height: 13%;
+	background-color: #ffdfe4;
+	height: 13%;
 }
 
-#com_icon{
-	height: 100%;
-	width: 5%;
-	background-color: #ff8080;
-	float: left;
-}
-
-#com_title{
+#com_icon {
 	height: 100%;
 	width: 15%;
-	background-color: #ffc8b0;
 	float: left;
 }
 
-#com_middle{
+#logoImg {
+	margin-top: 9%;
+	margin-left: 11%;
+}
+
+#com_title {
+	height: 100%;
+	width: 15%;
+	float: left;
+	font-size: 30px;
+	font-weight: bold;
+	margin-top: 1.4%;
+}
+
+#com_middle {
 	width: 100%;
-    height: 75%;
+	height: 75%;
 }
 
-#com_sub_title{
+#com_sub_title {
 	width: 8%;
-    height: 10%;
-    margin-left: 83%;
-    padding: 2%;
+	height: 10%;
+	margin-left: 83%;
+	padding: 2%;
 }
 
-#com_contents{
+#com_contents {
 	width: 80%;
-    height: 90%;
-    background-color: #F6F6F6;
-    margin-left: 10%;
+	height: 90%;
+	background-color: #F6F6F6;
+	margin-left: 10%;
+	padding: 20px;
 }
 
-.com_temp_select{
+#com_contents thead{
+	color: white;
+	background-color: #824100;
+}
+
+.com_temp_select {
 	width: 40% !important;
 }
 
-.com_write_input{
+.com_write_input {
 	width: 80% !important;
 }
 
-.com_textarea{
+.com_textarea {
 	width: 92.5% !important;
 	height: 450px !important;
 }
 
-#com_file_add{
+#com_file_add {
 	float: left;
 	margin-left: 5%;
 }
 
 #com_file_div {
-    width: 50%;
-    height: 79%;
-    margin-left: 2%;
-    float: left;
+	width: 50%;
+	height: 79%;
+	margin-left: 2%;
+	float: left;
 }
 
-#com_footer{
+#com_footer {
 	width: 100%;
-    background-color: #cdcde7;
-    height: 12%;
+	background-color: #cdcde7;
+	height: 12%;
 }
 
-.com_write_btn{
+.com_write_btn {
 	margin-left: 10%;
 }
 
-.com_file_sdiv{
+.com_file_sdiv {
 	float: left;
 	width: 55%;
 }
 
-.comViewBtns{
+.comViewBtns {
 	float: right;
-    margin-top: 1%;
+	margin-top: 1%;
 }
 
-#comviewBtn1{
+#comviewBtn1 {
 	margin-right: 10%;
 	margin-left: 1%;
 }
 
-#comviewBtn2{
+#comviewBtn2 {
 	margin-left: 1%;
 }
 
-.comViewImgs{
+.comViewImgs {
 	margin-left: 10%;
 }

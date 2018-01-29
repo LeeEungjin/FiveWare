@@ -33,18 +33,16 @@ public class SupplierDAO {
 	
 	
 	public int insert(SupplierDTO supplierDTO) {
-		int result = 0;
+		/*int result = 0;
 
-		String code = sqlSession.selectOne(NAMESPACE+"makeCode");
-		supplierDTO.setCode(code);
 		
 		if(!supplierDTO.getCode().equals("")) {
 			result = sqlSession.insert(NAMESPACE+"supplierWrite", supplierDTO);
 		} else {
 			result = 0;
-		}
+		}*/
 		
-		return result;
+		return sqlSession.insert(NAMESPACE+"supplierWrite", supplierDTO);
 	}
 	
 	public SupplierDTO selectOne(String code) {

@@ -23,16 +23,19 @@
 #erp_jh_contents_title{
 	width: 100%;
 	height: 10%;
-	background-color: #ffe1e7;
 	overflow: hidden;
 }
 
 #sr_icon{
-	width: 6%;
+	width: 15%;
 	height: 100%;
-	background-color: #ff84c1;
 	float: left;
 }
+
+#logoImg{
+	    margin-top: 9%;
+}
+
 
 #sr_title{
 	font-size: 30px;
@@ -42,10 +45,13 @@
 }
 
 #erp_jh_contents_search{
-	width: 100%;
+	    width: 90%;
     height: 14.5%;
-    background-color: #e7ceff;
+    background-color: #f6f6f6;
     padding-top: 0.5%;
+    margin-left: 5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
 }
 
 #sr_search{
@@ -78,7 +84,6 @@
 
 #erp_jh_contents_table{
 	width: 100%;
-	background-color: #ffffce;
 }
 
 #test{
@@ -99,8 +104,8 @@
 #sr_pager{
 	width: 20%;
 	height: 10%;
-	/* background-color: #ffff5b; */
 	margin-left: 40%;
+	text-align: center;
 }
 
 .pager_a{
@@ -111,16 +116,34 @@
 #erp_jh_contents_bottom{
 	width: 100%;
 	height: 10.5%;
-	background-color: #cee7ff;
+	margin-top: 1%;
 }
 
-.btn{
+.sr_btn{
 	float: right !important;
-	margin-right: 25%;
+	margin-right: 3%;
+}
+
+.sr_file_cancel{
+	float: right !important;
+	margin-right: 3%;
 }
 
 #jh_bold_text{
 	font-weight: bold;
+}
+
+.table thead{
+	color: white;
+	background-color: black;
+}
+
+.storageRegistInsertModal{
+    height: 480px !important;
+}
+
+#comment{
+	width: 100% !important;
 }
 
 /*------------- modal -----------------*/
@@ -172,10 +195,16 @@ label {
 }
 
 /**/
-
+    
 #storageSearchInput{
 	float: left;
 	width: 85% !important;
+	
+}
+
+
+.modal-footer{
+	margin-top: 15% !important;
 }
 
 #sr_insert{

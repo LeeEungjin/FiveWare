@@ -73,42 +73,55 @@ $(function(){
 		var store='${member.store}';
 		var state=$(this).attr("accesskey");
 		var Tstate=$("#ar_"+code).attr("title");
+		var edate = $("#ar_hicode"+cnum).val();
+		var todaydate = $("#ar_hidate"+cnum).val();
 		
-		if($(".fa").html()=="Like &#xf08a;"){
-			alert("ㄴㅇ미라ㅓ미아럼니ㅏ");
-		}
-	
+		var likenum=$("#ar_likenum"+cnum).text();
+		var likeheart=$("#ar_likeheart"+cnum).text();
+		
 		var a=true;
 		var check=1;
 		
 		
-		
-		if(Tstate =='yes'){
+		if(edate<=todaydate){
 			
-			if(state=="yes"){
-				a = confirm("취소하시겠습니까?");
-				check=0;
-			}else{
-				alert("이미 참여하셨습니다.");
-				a=false;
+				alert("이미 마감된 공모전입니다.");
+			
+		}else{
+			if(Tstate =='yes'){
+				
+				if(state=="yes"){
+					a = confirm("취소하시겠습니까?");
+					check=0;
+				}else{
+					alert("이미 참여하셨습니다.");
+					a=false;
+				}
+			}
+			if(a){			
+			  	$.post("./like/"+check, {cnum:cnum, code:code, store:store, state:state}, function(data){
+			  		if(data=="delete"){
+			  			alert("취소되었습니다.");
+			  			/* $("#"+cnum).html("Like &#xf08a;"); */
+			  			$("#ar_likeheart"+cnum).html("&#xf08a;");
+			  			$("#ar_likenum"+cnum).text(likenum*1-1);
+			  			$(t).attr("accesskey","no");
+			  			$("#ar_"+code).attr("title",'no');
+			  		}else{
+			  			alert("참여해주셔서 감사합니다.");
+			  			/* $("#"+cnum).html("Like &#xf004;"); */
+			  			$("#ar_likeheart"+cnum).html("&#xf004;");
+			  			$("#ar_likenum"+cnum).text(likenum*1+1);
+			  			$(t).attr("accesskey","yes");
+			  			$("#ar_"+code).attr("title", "yes");
+			  			
+			  		}
+				});  
 			}
 		}
-		if(a){			
-		  	$.post("./like/"+check, {cnum:cnum, code:code, store:store, state:state}, function(data){
-		  		if(data=="delete"){
-		  			alert("취소되었습니다.");
-		  			$("#"+cnum).html("Like &#xf08a;");
-		  			$(t).attr("accesskey","no");
-		  			$("#ar_"+code).attr("title",'no');
-		  		}else{
-		  			alert("참여해주셔서 감사합니다.");
-		  			$("#"+cnum).html("Like &#xf004;");
-		  			$(t).attr("accesskey","yes");
-		  			$("#ar_"+code).attr("title", "yes");
-		  			
-		  		}
-			});  
-		}
+		
+		
+		
 
 	});
 	
@@ -219,6 +232,10 @@ $(function(){
 					<c:if test="${kind=='store' }">
 						<input type="button" value="올리기" class="ar_insertBtn" title="${i.code }" data-toggle="modal" data-target="#ar_contest_Modal">
 					</c:if>
+					
+					<c:if test="${i.edate >= sysdate  }">
+						<input type="button" value="결과보기" class="ar_insertBtn" title="${i.code }" data-toggle="modal" data-target="#ar_contest_Modal">
+					</c:if>
 				</div>	
 				
 					<div class="ar_ar_contestMenu">
@@ -235,14 +252,16 @@ $(function(){
 									</div>
 									
 									<div class="ar_contestLike">
-										<p class="ar_like" title="${j.cnum}" id="${j.code }" accesskey="yes">
-										
-											<c:if test="${result[k.index]==null}">
-												<i style="font-size:17px" class="fa" id="${j.cnum}" >Like &#xf08a;</i>
+										<%-- <p class="ar_like" title="${j.cnum}" id="${j.code }" accesskey="no"> --%>
+											<input type="hidden" value="${i.edate}" id="ar_hicode${j.cnum }"> 
+											<input type="hidden" value="${todaydate}" id="ar_hidate${j.cnum }"> 
+											<c:if test="${result[a.index][k.index]==null}">
+												<p class="ar_like" title="${j.cnum}" id="${j.code }" accesskey="no">
+												<i style="font-size:17px" class="fa" id="${j.cnum}" >Like(<span id="ar_likenum${j.cnum }">${num[a.index][k.index]}</span>) <span id="ar_likeheart${j.cnum }">&#xf08a;</span> </i>
 											</c:if>
-											<c:if test="${result[k.index]!=null}">
-											
-												<i style="font-size:17px" class="fa" id="${j.cnum}" >Like &#xf004;</i>
+											<c:if test="${result[a.index][k.index]!=null}">
+												<p class="ar_like" title="${j.cnum}" id="${j.code }" accesskey="yes">
+												<i style="font-size:17px" class="fa" id="${j.cnum}" >Like (<span id="ar_likenum${j.cnum }">${num[a.index][k.index]}</span>)<span id="ar_likeheart${j.cnum }">&#xf004;</span> </i>
 											</c:if>
 									
 										

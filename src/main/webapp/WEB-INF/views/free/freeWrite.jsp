@@ -93,7 +93,8 @@
 	<div id="fw_container">
 	
 		<div id="free_header">
-			<div id="free_icon"></div><div id="free_title"></div>	
+			<div id="free_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
+			<div id="free_title"></div>	
 		</div>
 		
 		<form id="free_frm" action="freeWrite" method="post"  enctype="multipart/form-data">

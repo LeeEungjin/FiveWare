@@ -61,22 +61,15 @@ public class SrmContestController {
 		String store = storeRegistDTO.getStore().trim();
 		
 		List<ContestListDTO> ar =contestService.contestList(listData, model, store);
-		List<List<ContestJoinDTO>>ar2 =contestService.contestJoinList(subcurPage, ar, model);
-		List<ContestLikeDTO> result2 = new ArrayList<ContestLikeDTO>();
+		List<List<ContestJoinDTO>>ar2 =contestService.contestJoinList(subcurPage, ar, model, store);
+
+		Calendar calendar = Calendar.getInstance();
+		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+		String sysdate = sd.format(calendar.getTime());
 		
-		for(List<ContestJoinDTO> list : ar2){
-			
-			for(ContestJoinDTO contestJoinDTO : list){
-				ContestLikeDTO contestLikeDTO = new ContestLikeDTO();
-				
-				contestLikeDTO = contestService.likeSelectOne(contestJoinDTO.getCode().trim(), contestJoinDTO.getCnum() , store);
-				
-				result2.add(contestLikeDTO);
-			}
-		}
+		System.out.println(sysdate);
 		
-		
-		model.addAttribute("result", result2);
+		model.addAttribute("todaydate", sysdate);
 		model.addAttribute("curPage", curPage);
 		model.addAttribute("subcurPage", subcurPage);
 		model.addAttribute("state", state);

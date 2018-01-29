@@ -356,6 +356,7 @@
 	
 	<div id="fw_mainwrap">
 			<div id="fw_main">
+				<div id="mr_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
 				<!-- <div class="sales_title_menu">기초 정보</div>
 				<div class="sales_title_menu">구매 관리</div>
 				<div class="sales_title_menu">자재 관리</div>
@@ -366,12 +367,12 @@
 			<!-- main contents -->
 			<div id="fw_main_contents">
 				<div id="erp_jh_contents_title">
-					<div id="mr_icon">icon</div>
+					
 					<p id="mr_title">제품 등록</p>
 				</div>
 				
 				<!-- 검색 기능 -->
-				<div id="erp_jh_contents_search">
+				<div class="container" style="background-color: #EAEAEA;">
 					<form name="ej_frm" action="./product" method="get">
 						<div class="erp_ej_search" style="max-width: 420px;">
 							<div class="erp_ej_inputBox">
@@ -394,7 +395,7 @@
 				
 				
 				<!-- table Start -->
-				<div id="erp_jh_contents_table">
+				<div class="container">
 					<table class="table">
 					    <thead>
 					      <tr>
@@ -420,7 +421,7 @@
 					 </table>
 					 
 					 <!-- pager Start -->
-					 	<div id="mr_pager" style="margin-top: 20px;">
+					 	<div id="mr_pager" class="container" style="margin-top: 20px;">
 							<c:if test="${pager.curBlock gt 1}">
 								<span class="ej_list" title="${pager.startNum-1}">◀</span>
 							</c:if>
@@ -437,7 +438,9 @@
 					
 				<!-- 등록 버튼 -->
 				<div id="erp_jh_contents_bottom">
-					<button class="ej_right_btn btn" id="ej_write_btn">신규등록</button>
+					<c:if test="${member.temp == '영업/구매부'}">
+						<button class="ej_right_btn btn" id="ej_write_btn">신규등록</button>
+					</c:if>
 				</div>
 				<!-- 등록 버튼 끝 -->
 				
@@ -569,9 +572,11 @@
         
         <!-- modal footer -->
         <div class="modal-footer">
+        <c:if test="${member.temp eq '영업/구매부'}">
 			<input type="submit" id="ej_modal_update" class="btn" value="수정">
 			<input type="button" id="ej_modal_stop" class="btn" value="사용중지">
 			<input type="button" id="ej_modal_delete" class="btn" value="삭제">
+		</c:if>
 			<button type="button" class="btn btn-default ej_file_cancel" data-dismiss="modal">Close</button>
         </div>
       </form>

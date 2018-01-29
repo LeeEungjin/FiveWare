@@ -233,10 +233,10 @@
 <style>
     .dropzone
     {
-        border:2px dotted #3292A2;
+        border:2px dotted #CE3636;
         width:100%;
         height:50px;
-        color:#92AAB0;
+        color:#CE3636;
         text-align:center;
         font-size:24px;
         padding:10px;
@@ -341,6 +341,7 @@
 	
 	<div id="fw_mainwrap">
 			<div id="fw_main">
+				<div id="sr_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
 				<!-- <div class="sales_title_menu">기초 정보</div>
 				<div class="sales_title_menu">구매 관리</div>
 				<div class="sales_title_menu">자재 관리</div>
@@ -350,7 +351,7 @@
 			
 			<div id="fw_main_contents">
 				<div id="erp_jh_contents_title">
-					<div id="sr_icon">icon</div>
+					
 					<p id="sr_title">창고등록</p>
 				</div>
 				<div id="erp_jh_contents_search">
@@ -429,7 +430,9 @@
 				
 				<!-- 등록 버튼 -->
 					<div id="erp_jh_contents_bottom">
+					<c:if test="${member.temp == '영업/구매부'}">
 						<button id="sr_insert" class="modal_btn btn-default btn" data-toggle="modal" data-target="#jh_sr_Modal">신규등록</button>
+					</c:if>
 					</div>
 				<!-- 등록 버튼 끝 -->
 				
@@ -450,7 +453,7 @@
 				         <form action="./storagetWrite" method="post" id="sr_frm">
 				         <input type="hidden" id="path" name="path" value="storageRegist">
 				         <input type="hidden" name="imgNull" value="false">
-				        <div class="modal-body">
+				        <div class="modal-body storageRegistInsertModal">
 				        	<div class="input-group input-group_modal">
 							  <span class="input-group-addon">창고코드</span>
 							  <input name="storageCode" id="storageCode" type="text" class="form-control" placeholder="Additional Info">
@@ -544,8 +547,10 @@
 				        
 				        <!-- modal footer -->
 				        <div class="modal-footer">
+				        <c:if test="${member.temp eq '영업/구매부'}">
 				          <button type="button" class="btn btn-default srUpdate" data-dismiss="modal">수정</button>
 				          <button type="button" class="btn btn-default srDelete" data-dismiss="modal">삭제</button>
+				        </c:if>
 				          <button type="button" class="btn btn-default sr_file_cancel" data-dismiss="modal">Close</button>
 				        </div>
 				        </form>

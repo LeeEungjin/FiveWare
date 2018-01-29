@@ -79,7 +79,7 @@
 						   title: msg.name+"님",
 						   text: "환영합니다!",
 						   type: "success",
-						   showCancelButton: true,
+						   showCancelButton: false,
 						   confirmButtonClass: "btn-primary",
 						   confirmButtonText: "확인",
 						   closeOnConfirm: false
@@ -95,6 +95,7 @@
 			 }); // END ajax
 		  }
 	   }); // 로그인 버튼 끝
+<<<<<<< HEAD
       
 	   
 	   
@@ -167,6 +168,8 @@
 	
 	   
        
+=======
+>>>>>>> master
    });
 </script>
 
@@ -183,9 +186,9 @@
 				<!-- 큰 메뉴 3개 (ERP, GROUPWARE, SRM) -->
 				<thead>
 				<tr>
-					<td class="menu"><a href="erp" class="eb_login" id="eb_href_1">ERP</a></td>
-					<td class="menu"><a href="groupware" class="eb_login" id="eb_href_2">Group Ware</a></td>
-					<td class="menu"><a href="srm" class="eb_login" id="eb_href_3">SRM</a></td>
+					<td class="menu"><a href="./erp" class="eb_login">ERP</a></td>
+					<td class="menu"><a href="./GroupWare" class="eb_login">Group Ware</a></td>
+					<td class="menu"><a href="./srm" class="eb_login">SRM</a></td>
 				</tr>
 				</thead>
 				
@@ -201,9 +204,9 @@
 							
 							<div class="container" style="float: left; width: 50%;">
 								<label><b>사원번호</b></label> 
-								<input type="text" class="inputTextBox" placeholder="Enter Code" name="code" id="code"> 
+								<input type="text" class="inputTextBox" placeholder="Enter Code" name="code" id="code" value="A002"> 
 								<label><b>비밀번호</b></label>
-								<input type="password" class="inputTextBox" placeholder="Enter Password" name="pw" id="pw">
+								<input type="password" class="inputTextBox" placeholder="Enter Password" name="pw" id="pw" value="A002">
 						
 								<div class="container">
 									<label class="radioBox"><input type="radio" name="login" id="erp-login"> 본사 로그인</label>
@@ -278,6 +281,7 @@
 			</table>
 			</form>
 
+<<<<<<< HEAD
 
 
 
@@ -286,6 +290,10 @@
                 </div>
                 </div>
                 
+=======
+		</div>
+	</div>
+>>>>>>> master
 
 </body>
 </html>

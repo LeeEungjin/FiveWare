@@ -5,10 +5,14 @@
 	padding: 0px;
 }
 
+#logoImg {
+	margin-top: 9%;
+	margin-left: 11%;
+}
+
 #fw_container{
 	width: 99%;
 	height: 100%;
-	background-color: lightblue;
 	transition: width 0.3s;	
 	margin-left: 1%;
 }
@@ -21,16 +25,17 @@
 
 #free_icon{
 	height: 100%;
-	width: 5%;
-	background-color: #ff8080;
+	width: 15%;
 	float: left;
 }
 
 #free_title{
 	height: 100%;
 	width: 15%;
-	background-color: #ffc8b0;
 	float: left;
+	font-size: 30px;
+	font-weight: bold;
+	margin-top: 1.4%;
 }
 
 #free_middle{
@@ -47,8 +52,14 @@
 #free_contents{
 	width: 80%;
     height: 88%;
-    background-color: #F6F6F6;
     margin-left: 10%;
+    background-color: #f6f6f6;
+    padding: 20px;
+}
+
+#free_contents thead{
+	color: white;
+	background-color: #824100;
 }
 
 .free_temp_select{

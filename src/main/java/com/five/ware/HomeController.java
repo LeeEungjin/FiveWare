@@ -99,10 +99,12 @@ public class HomeController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/groupware")
+	@RequestMapping(value="/GroupWare")
 	public ModelAndView groupware(){
 		ModelAndView mv=new ModelAndView();
 		List<FreeDTO> randomList=new ArrayList<FreeDTO>();
+		
+		System.out.println("HomeController - GroupWare");
 		
 		try {
 			randomList=freeService.randomNotice();
@@ -111,7 +113,7 @@ public class HomeController {
 		}
 		
 		mv.addObject("randomList", randomList);
-		mv.setViewName("AfterLoginMain/groupware");
+		mv.setViewName("AfterLoginMain/GroupWare");
 		
 		return mv;
 	}
@@ -140,11 +142,11 @@ public class HomeController {
 		String filePath = session.getServletContext().getRealPath("resources/code");
 		String fileName = "code.code";
 		File f = new File(filePath, fileName);		
-		// �뙆�씪 �씫�쓣 以�鍮�
+		// 占쎈솁占쎌뵬 占쎌뵭占쎌뱽 餓ο옙�뜮占�
 			FileReader fr = new FileReader(f);
-			// �뙆�씪 �씫湲�
+			// 占쎈솁占쎌뵬 占쎌뵭疫뀐옙
 			BufferedReader br = new BufferedReader(fr);
-			// �븳 以꾩쓣 �씫�뼱���씪
+			// 占쎈립 餓κ쑴�뱽 占쎌뵭占쎈선占쏙옙占쎌뵬
 			fileName=br.readLine();
 		
 		String code=fileName;
@@ -236,7 +238,7 @@ public class HomeController {
 		fw.flush();
 		fw.close();
 		
-		System.out.println("肄붾뱶:"+code);		
+		System.out.println("�굜遺얜굡:"+code);		
 		
 		return code;
 	}
@@ -247,11 +249,11 @@ public class HomeController {
 		String filePath = session.getServletContext().getRealPath("resources/code");
 		String fileName = "storeCode";
 		File f = new File(filePath, fileName);		
-		// �뙆�씪 �씫�쓣 以�鍮�
+		// 占쎈솁占쎌뵬 占쎌뵭占쎌뱽 餓ο옙�뜮占�
 			FileReader fr = new FileReader(f);
-			// �뙆�씪 �씫湲�
+			// 占쎈솁占쎌뵬 占쎌뵭疫뀐옙
 			BufferedReader br = new BufferedReader(fr);
-			// �븳 以꾩쓣 �씫�뼱���씪
+			// 占쎈립 餓κ쑴�뱽 占쎌뵭占쎈선占쏙옙占쎌뵬
 			fileName=br.readLine();
 		
 		String code=fileName;

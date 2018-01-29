@@ -1,4 +1,17 @@
 /*-------------------------
+	Default
+--------------------------*/
+
+a {
+	text-decoration: none;
+}
+
+
+a:ACTIVE, a:AFTER, a:HOVER, a:VISITED {
+	text-decoration: none;
+}
+
+/*-------------------------
 	The clocks
 --------------------------*/
 

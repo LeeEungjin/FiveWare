@@ -4,7 +4,22 @@ public class CloudFileDTO {
 	private int fnum;
 	private String filename;
 	private String oriname;
+	private String code;
+	private String foldername;
 	
+	
+	public String getFoldername() {
+		return foldername;
+	}
+	public void setFoldername(String foldername) {
+		this.foldername = foldername;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
 	public int getFnum() {
 		return fnum;
 	}

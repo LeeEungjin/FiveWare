@@ -29,15 +29,17 @@
 #erp_jh_contents_title{
 	width: 100%;
 	height: 10%;
-	background-color: #ffe1e7;
 	overflow: hidden;
 }
 
 #rr_icon{
-	width: 6%;
+	width: 15%;
 	height: 100%;
-	background-color: #ff84c1;
 	float: left;
+}
+
+#logoImg{
+	    margin-top: 9%;
 }
 
 #rr_title{
@@ -48,10 +50,13 @@
 }
 
 #erp_jh_contents_search{
-	width: 100%;
+	    width: 90%;
     height: 14.5%;
-    background-color: #e7ceff;
+    background-color: #f6f6f6;
     padding-top: 0.5%;
+    margin-left: 5%;
+    margin-bottom: 1%;
+    margin-top: 1%;
 }
 
 #rr_search{
@@ -85,8 +90,18 @@
 #erp_jh_contents_table{
 	width: 100%;
 	height: 65%;
-	background-color: #ffffce;
 	overflow: scroll;
+}
+
+#erp_jh_contents_table thead{
+	color: white;
+	background-color: black;
+}
+
+#rr_insert{
+	float: right;
+    margin-top: 1%;
+    margin-right: 9%;
 }
 
 #test{
@@ -153,7 +168,7 @@ label {
 
 .form-control_area{
 	height: 100px !important;
-    width: 80% !important;
+    width: 100% !important;
 }
 
 #sel2{
@@ -161,4 +176,14 @@ label {
     float: left !important;
     margin-right: 2% !important;
     margin-left: 0% !important;
+}
+
+.materView{
+	font-weight: bold;
+}
+
+
+.materOrderTable{
+	margin-left: 0% !important;
+	width: 100% !important;
 }

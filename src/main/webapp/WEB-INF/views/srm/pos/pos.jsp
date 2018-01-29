@@ -17,7 +17,7 @@
 		
 		var message = '${message}';
 	     if(message != ""){
-	        alert(message);
+	        swal(message);
 	     }
 		
 		var myVar = setInterval(myTimer, 1000);
@@ -42,7 +42,7 @@
 				
 					
 				},error : function(){
-					alert("error");
+					swal("error");
 				}
 			});
 			
@@ -61,7 +61,7 @@
 			
 					
 					if(confirm("출근처리 하시겠습니까?")==false){
-						alert("출근처리가 취소되었습니다.");
+						swal("출근처리가 취소되었습니다.");
 						return false;
 					}else{
 					
@@ -75,9 +75,9 @@
 							"lastTime" : '-',
 							"store" : store
 						},success : function(data){
-							alert(regdate+time+"출근처리 완료");
+							swal(regdate+time+"출근처리 완료");
 						},error : function(){
-							alert("Error");
+							swal("Error");
 						}
 						
 					}); 
@@ -93,7 +93,7 @@
 					var time=$("#time").text();
 					
 					if(confirm("퇴근처리하시겠습니까?")==false){
-						alert("퇴근 처리가 취소되었습니다.")
+						swal("퇴근 처리가 취소되었습니다.")
 						return false;
 					}else{
 					
@@ -185,7 +185,7 @@
 			 			success : function(data){
 			 				$("#drink").html(data);
 			 			},error : function(){
-			 				alert("error");
+			 				swal("error");
 			 			}
 			 		});
 			 	});
@@ -199,7 +199,7 @@
 			 			success : function(data){
 			 				$("#bread").html(data);
 			 			},error : function(){
-			 				alert("error");
+			 				swal("error");
 			 			}
 			 		});
 			 		
@@ -375,7 +375,7 @@
 			 			data : { "num" : num,
 			 					"store" : store},
 			 			success : function(){
-			 				alert("삭제 성공");
+			 				swal("삭제 성공");
 			 				location.reload();
 			 			}
 					});

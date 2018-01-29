@@ -29,8 +29,6 @@
 		$(".list").click(function(){
 			var cur = $(this).attr("title");
 			
-			alert(cur);
-			
 			document.event_search_frm.curPage.value=cur;
 			document.event_search_frm.submit();
 		});
@@ -53,7 +51,6 @@
 						edate : edate
 					},
 					success:function(data){
-						alert(data);
 						$("#erp_jh_contents_table").html(data);
 					}
 				});
@@ -199,15 +196,11 @@
 
 <div id="fw_container">
 	<!-- submenu -->
-	<div id="fw_subcontainer">
+	<!-- <div id="fw_subcontainer">
    
-      <!-- submenu banner -->
       <div id="fw_subbanner">
          자재관리
       </div>
-      <!-- submenu banner end -->
-      
-      <!-- submenu menu -->
          <div class="fw_menu fw_selected" data-toggle="collapse" data-target="#sub1" title="sub1">
             기초정보
             <div class="fw_arrow sub1">
@@ -224,7 +217,6 @@
             </ul>
          </div>
          
-         <!-- ----------2---------- -->
             <div class="fw_menu" data-toggle="collapse" data-target="#sub2" title="sub2" >
                구매관리
             <div class="fw_arrow sub2">
@@ -239,7 +231,6 @@
             </ul>
          </div>
          
-         <!-- ----------3---------- -->
          <div class="fw_menu" data-toggle="collapse" data-target="#sub3" title="sub3" >
                자재관리
             <div class="fw_arrow sub3">
@@ -256,7 +247,6 @@
             </ul>
          </div>
          
-         <!-- ----------4---------- -->
          <div class="fw_menu" data-toggle="collapse" data-target="#sub4" title="sub4" >
                	조회
             <div class="fw_arrow sub4">
@@ -270,18 +260,17 @@
             </ul>
          </div>
          
-      <!-- submenu menu end -->
-   </div>
+   </div> -->
 	<!-- submenu end -->
 	
 	<div id="fw_mainwrap">
 			<div id="fw_main">
-
+				<div id="event_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
 			</div>
 			
 			<div id="fw_main_contents">
 				<div id="erp_jh_contents_title">
-					<div id="event_icon">icon</div>
+					
 					<p id="event_title">이벤트 등록</p>
 				</div>
 				<div id="erp_jh_contents_search">
@@ -356,9 +345,11 @@
 				
 				<!-- 등록 버튼 -->
 					<div id="erp_jh_contents_bottom">
+					
+					<c:if test="${member.temp == '영업/구매부' or member.temp=='마케팅부' }">
 						<button id="event_checkDelete" class="btn btn-default">선택삭제</button>
 						<button class="modal_btn btn btn-default" data-toggle="modal" data-target="#jh_event_Modal">신규등록</button>
-						
+					</c:if>
 					</div>
 				<!-- 등록 버튼 끝 -->
 				
@@ -481,8 +472,10 @@
 					        
 					        <!-- modal footer -->
 					        <div class="modal-footer">
+					        <c:if test="${member.temp eq '영업/구매부' or member.temp eq '마케팅부' }">
 					          <input type="button" class="btn btn-default eventUpdateBtn"  value="수정">
 					          <input type="button" class="btn btn-default eventDeleteBtn"  value="삭제">
+					        </c:if>
 					          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					        </div>
 					       </form>
