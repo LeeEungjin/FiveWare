@@ -61,9 +61,9 @@
 			var month=$("#memberMonth").val();
 			var other=$("#ar_memberOther").val();
 			var photo=$("#ar_photo").attr("src");
-			alert(photo);
+			/* alert(photo);
 			
-			alert("등록");
+			alert("등록"); */
 		
 			if(photo==""){
 				alert("사진을 선택하세요");
@@ -112,7 +112,6 @@
 	                            data: formData,
 	                            type: 'POST',
 	                            success: function(result){
-	                                alert(result);
 	                                $("#ar_photo").attr("src", "../../resources/member/"+result);
 	                                $("#ar_filename").val(result);
 	                            },error:function(){
@@ -139,8 +138,8 @@
 	 			 
 	 			var today=year+"-" + month + "-" + day;
 			
-	 			alert(today);
-			  $.ajax({
+/* 	 			alert(today);
+ */			  $.ajax({
 				 type:"GET",
 				 url:"./memberUpdate",
 				 data:{
@@ -191,7 +190,7 @@
 	                            data: formData,
 	                            type: 'POST',
 	                            success: function(result){
-	                                alert(result);
+	                                /* alert(result); */
 	                                $("#ar_uphoto").attr("src", "../../resources/member/"+result);
 	                                $("#ar_ufilename").val(result);
 	                            },error:function(){
@@ -297,8 +296,8 @@
 			
 			<div class="fw_subselected collapse" id="sub1">
 				<ul>
-					<li> <a href="positionPlus">직책 등록 </a></li>
-					<li> <a href="salPlus">급여 등록</a> </li>
+					<li> <a href="${url }/human/basisInfo/positionPlus">직책 등록 </a></li>
+					<li> <a href="${url }/human/basisInfo/salPlus">급여 등록</a> </li>
 				</ul>
 			</div>
 			
@@ -312,30 +311,13 @@
 			
 			<div class="fw_subsub collapse in"  id="sub2">
 				<ul>
-					<li><a href="memberPlus"> 사원 등록</a> </li>
-					<li> 급여 등록 </li>
-					<li> 퇴직자 </li>
+					<li><a href="#"> 사원 등록</a> </li>
+					<li> <a href="retireeMana"> 퇴직자 </a></li>
 				</ul>
 			</div>
 			
 			<!-- -------------------- -->
-				<div class="fw_menu" data-toggle="collapse" data-target="#sub3" title="sub3" >
-					급여관리
-				<div class="fw_arrow sub3" >
-					∨
-				</div>
-			</div>
-			
-			<div class="fw_subsub collapse"  id="sub3">
-				<ul>
-					<li> 급여 계산 </li>
-					<li> 퇴직금 계산 </li>
-					<li> 개인별 급여 현황 </li>
-				</ul>
-			</div>
-			
-			<!-- -------------------- -->
-				<div class="fw_menu" data-toggle="collapse" data-target="#sub4" title="sub4" >
+					<div class="fw_menu" data-toggle="collapse" data-target="#sub4" title="sub4" >
 					근태 관리
 				<div class="fw_arrow sub4">
 					∨
@@ -344,17 +326,27 @@
 			
 			<div class="fw_subsub collapse"  id="sub4">
 				<ul>
-					<li> 근태항목 등록 </li>
-					<li> 휴가일수 등록 </li>
-					<li> 근태 입력 </li>
-					<li> 근태 조회 </li>
+					<li><a href="${url}/human/diliMana/diliPlus">  근태항목 등록 </a></li>
+					<li><a href="${url}/human/diliMana/diliInput">  근태 입력 </a></li>
+					<li><a href="${url}/human/diliMana/diliSearch">  근태 조회</a> </li>
 				</ul>
 			</div>
 			
 			<!-- -------------------- -->
-				<div class="fw_menu" data-toggle="collapse" data-target="#sub5" title="sub5" >
-					조회
 			
+			
+			<!-- -------------------- -->
+				<div class="fw_menu" data-toggle="collapse" data-target="#sub5" title="sub5" >
+					블랙리스트
+				<div class="fw_arrow sub5">
+					∨
+				</div>
+			</div>
+			
+			<div class="fw_subsub collapse"  id="sub5">
+				<ul>
+					<li><a href="${url}/community/blackList">  블랙리스트 </a></li>
+				</ul>
 			</div>
 			
 		<!-- submenu menu end -->
@@ -363,23 +355,23 @@
 	
 	<div id="fw_mainwrap">
 			<div id="fw_main">
-				mainTitle
+				<div id="event_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
 			</div>
 			
 			<div class="ar_plusTitle">
 				<p id="ar_plustext">사원 등록</p>
 			</div>
 			
-			<div class="ar_plusSearchWrap">
-				<div class="ar_blank"></div>
-				
 			<form action="memberPlus" method="GET">
-				<div class="ar_plusSearch">
+				<div id="erp_jh_event_sub">
+					<div id="event_contents">
+						<p>　</p>
 					사원명  <input type="text" name="search" id="ar_psearch">
 					<input type="submit" value="검색" id="ar_psearchBtn">
+					<p>　</p>
 				</div>
-			</form>
 			</div>
+			</form>
 			
 			<div class="ar_plusDivWrap">
 				<div class="ar_titleDiv">

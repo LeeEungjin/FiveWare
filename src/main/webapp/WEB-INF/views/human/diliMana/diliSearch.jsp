@@ -44,8 +44,8 @@
 			
 			<div class="fw_subselected collapse" id="sub1">
 				<ul>
-					<li> <a href="positionPlus">직책 등록 </a></li>
-					<li> <a href="salPlus">급여 등록</a> </li>
+					<li> <a href="${url }/human/basisInfo/positionPlus">직책 등록 </a></li>
+					<li> <a href="${url }/human/basisInfo/salPlus">급여 등록</a> </li>
 				</ul>
 			</div>
 			
@@ -57,19 +57,15 @@
 				</div>
 			</div>
 			
-			<div class="fw_subsub collapse"  id="sub2">
+			<div class="fw_subsub collapse"   id="sub2">
 				<ul>
-					<li><a href="${url}/human/memberMana/memberPlus"> 사원 등록</a> </li>
-					<li> 급여 등록 </li>
-					<li> 퇴직자 </li>
+					<li><a href="${url }/human/memberMana/memberPlus"> 사원 등록</a> </li>
+					<li> <a href="${url }/human/memberMana/retireeMana"> 퇴직자 </a></li>
 				</ul>
 			</div>
 			
 			<!-- -------------------- -->
-		
-			
-			<!-- -------------------- -->
-				<div class="fw_menu  fw_selected" data-toggle="collapse" data-target="#sub4" title="sub4" >
+					<div class="fw_menu fw_selected" data-toggle="collapse" data-target="#sub4" title="sub4" >
 					근태 관리
 				<div class="fw_arrow sub4">
 					∧
@@ -78,14 +74,28 @@
 			
 			<div class="fw_subsub collapse in"  id="sub4">
 				<ul>
-					<li> 근태항목 등록 </li>
-					<li> 근태 입력 </li>
-					<li> 근태 조회 </li>
+					<li><a href="${url}/human/diliMana/diliPlus">  근태항목 등록 </a></li>
+					<li><a href="${url}/human/diliMana/diliInput">  근태 입력 </a></li>
+					<li><a href="${url}/human/diliMana/diliSearch">  근태 조회</a> </li>
 				</ul>
 			</div>
 			
 			<!-- -------------------- -->
-				
+			
+			
+			<!-- -------------------- -->
+				<div class="fw_menu" data-toggle="collapse" data-target="#sub5" title="sub5" >
+					블랙리스트
+				<div class="fw_arrow sub5">
+					∨
+				</div>
+			</div>
+			
+			<div class="fw_subsub collapse"  id="sub5">
+				<ul>
+					<li><a href="${url}/community/blackList">  블랙리스트 </a></li>
+				</ul>
+			</div>
 			
 		<!-- submenu menu end -->
 	</div>
@@ -93,32 +103,32 @@
 	
 	<div id="fw_mainwrap">
 			<div id="fw_main">
-				mainTitle
+				<div id="event_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
 			</div>
 			
 			<div class="ar_plusTitle">
 				<p id="ar_plustext">근태 현황 조회</p>
 			</div>
 			
-			<div class="ar_plusSearchWrap">
-				<div class="ar_blank"></div>
 				
 				
 				
 				<!-- ID 수정해!!!! -->
 				
 				<form action="diliSearch" method="GET">
-					<div class="ar_plusSearch">
+					<div id="erp_jh_event_sub">
+					<div id="event_contents">
+						<p>　</p>
 						<%-- 조회 기간 <input type="date" name="startdate" id="ar_ssearch" value="${startdate }"> ~<input type="date" name="enddate" id="ar_ssearch" value="${enddate }"> --%>
-						직원명<input type="text" name="search" value=${param.search }>
+						직원명<input type="text" name="search" id="ar_searchBtn"value=${param.search }>
 						<input type="submit"  value="검색" id="ar_ssearchBtn">
-					</div>
-					
+						<p>　</p>
+				</div>
+			</div>
 				
 				</form>
 				<!-- ID 수정끝!!!! -->
 				
-			</div>
 			
 		<div class="ar_plusDivWrap">
 			<div class="ar_wrapWrap">

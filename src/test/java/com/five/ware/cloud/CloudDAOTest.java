@@ -1,4 +1,4 @@
-package com.five.ware.cloud;
+/*package com.five.ware.cloud;
 
 import static org.junit.Assert.*;
 
@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.five.ware.AbstractTest;
+
 
 public class CloudDAOTest extends AbstractTest {
 
@@ -58,7 +59,7 @@ public class CloudDAOTest extends AbstractTest {
 		assertTrue(result > 0);
 	}
 	
-	/*public void selectList() {
+	public void selectList() {
 		String code = "A001";
 		
 		try {
@@ -69,6 +70,7 @@ public class CloudDAOTest extends AbstractTest {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}*/
+	}
 
 }
+*/

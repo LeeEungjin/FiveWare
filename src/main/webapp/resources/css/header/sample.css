@@ -70,6 +70,7 @@
 }
 
 #fw_main{
+	/* background-color: green; */
 	height: 8.5%;
 	width: 100%;
 	padding-top: 1.2%;
@@ -83,4 +84,8 @@
     width: 77%;
     height: 100%;
     float: left;
+}
+
+.modal-header{
+	background-color: #f78478;;
 }

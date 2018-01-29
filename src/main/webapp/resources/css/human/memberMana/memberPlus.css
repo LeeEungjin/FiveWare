@@ -1,18 +1,19 @@
 @CHARSET "UTF-8";
 
+
 .ar_plusTitle{
 	width: 100%;
 	height: 5%;
-	background-color: #ff6666;
+	/* background-color: #ff6666; */
 	margin-bottom: 1%;
 	
 }
 
 #ar_plustext{
-	font-size: 18px;
-	font-weight: bold;
-	padding-top: 1.5%;
-	margin-left: 2%;
+	 font-size: 30px;
+    font-weight: bold;
+    /* margin-left: 5%; */
+    margin-top: 1.5%;
 }
 
 .ar_plusSearchWrap{
@@ -47,19 +48,21 @@
 }
 
 .ar_plusDivWrap{
-	width: 100%;
+	width: 90%;
 	height: 50%;
-	background-color: #f0f779;
+	/* background-color: #f0f779; */
 	margin-bottom: 2%;
 	overflow: scroll;
+	margin: 0 auto;
 }
 
 .ar_titleDiv{
-	background-color: #b68db3;
+	background-color: black;
 	width: 100%;
 	height: 10%;
 	text-align: center;
 	font-weight: bold;
+	color:white;
 }
 
 .ar_titleDiv1 {
@@ -75,9 +78,9 @@
 }
 
 .ar_listDiv{
-	background-color: #ffb3ff;
+	/* background-color: #ffb3ff; */
 	width: 100%;
-	height: 8%;
+	height: 10%;
 	text-align: center;
 	border-bottom: 1px lightgray solid;
 	
@@ -132,9 +135,11 @@
 
 
 .ar_plusButtonWrap{
-	width: 100%;
+	width: 90%;
 	height: 8%;
-	background-color: #c1ffc1;
+	margin: 0 auto;
+	margin-top: 3%;
+	/* background-color: #c1ffc1; */
 }
 
 #ar_deleteBtn{
@@ -147,7 +152,7 @@
 #ar_insertBtn{
 	width: 10%;
 	height: 40%;
-	background-color: gray;
+	background-color: #c0c0c0;
 	border: 1px black solid;
 	float: right;
 }
@@ -358,8 +363,47 @@
 .ar_memberCode{
 	font-weight: bold;
 	text-decoration: underline;
+	cursor: pointer;
 }
 
 #retiredate{
 	display: none;
+}
+
+#erp_jh_event_sub {
+   width: 90%;
+    height: 16%;
+    background-color: #f6f6f6;
+    padding-top: 0.5%;
+    margin-left: 5%;
+    margin-bottom: 5%;
+}
+
+#event_contents {
+   height: 90%;
+   width: 60%;
+   margin-left: 15%;
+   text-align: center;
+   border-bottom: 2px solid #929292;
+   border-top: 2px solid #929292;
+}
+
+.modal-dialog {
+    width: 600px;
+    margin: 30px 400px;
+}
+
+#ar_psearchBtn{
+	width: 12%;
+    height: 100%;
+	background-color: #000000;
+	color: white;
+	margin-left: 2%;
+	border: 0px;
+	font-size: 12px;
+	margin-bottom: 0.5%;
+}
+
+input[type=date], input[type=time], input[type=datetime-local], input[type=month] {
+    line-height: 22px;
 }

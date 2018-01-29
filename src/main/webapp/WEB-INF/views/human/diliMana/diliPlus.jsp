@@ -10,13 +10,94 @@
  
  <link href="${url}/resources/css/human/diliMana/diliPlus.css" rel="stylesheet">
 
+<title>Insert title here</title>
 <script type="text/javascript">
 	$(function(){
+
+		$("#ar_insertBtn").click(function(){
+			
+			$.ajax({
+				type:"GET",
+				url:"../../codeName",
+				success:function(data){
+					$("#ar_dcode").val(data);
+				}
+			});
+		});
+		
+		$("#ar_dInsertBtn").click(function(){
+			var workname=$("#ar_dname").val();
+			
+			if(workname==""){
+				alert("근태명칭을 입력하세요.");
+			}else{
+				$(this).attr("data-dismiss", "modal");
+				dili_insert_Frm.submit();
+			} 
+		});
+		
+		$("#ar_dilicode").click(function(){
+			var code=$(this).html().trim();
+
+			$.ajax({
+				type:"GET",
+				url:"./diliUpdate",
+				data:{
+					"code":code
+				}, success:function(data){
+					$("#ar_ddcode").val(data.code);
+					$("#ar_ddname").val(data.workname);
+					
+					if(data.vacation=="사용"){
+						$("#ar_vacok").prop("selected", true);
+					}else{
+						$("#ar_vacno").prop("selected", true);
+					}
+					
+					if(data.sal=="유급"){
+						$("#ar_salok").prop("selected",true);
+					}else{
+						$("#ar_salno").prop("selected",true);
+					}
+					
+					$("#ar_ddother").html(data.other);
+				}
+			});
+		});
+		
+		$("#ar_diliUpdateBtn").click(function(){
+			dili_update_Frm.submit();
+		});
+		
+		$("#ar_deleteBtn").click(function(){
+			var count=0;
+			var code="";
+			var cod=[];
+			
+			$(".ar_diliselect").each(function(d){
+				if(this.checked){
+					code = $(this).attr("id");
+					count++;
+					cod.push(code);
+				}
+			});
+			
+			$.ajax({
+				type: "POST",
+				url:"./diliDelete",
+				data:{
+					"code":cod.toString()
+				}, success:function(data){
+					alert(count+"개의 급여항목이 삭제되었습니다.");
+					
+					location.reload();
+				}
+			});
+		});
 		
 		
 	});
 </script>
-<title>Insert title here</title>
 </head>
 <body>
 <c:import url="${url}/resources/temp/headerExample.jsp"></c:import> 
@@ -36,14 +117,14 @@
 			<div class="fw_menu" data-toggle="collapse" data-target=".fw_subselected" title="sub1">
 				기초정보
 				<div class="fw_arrow sub1">
-					∧
+					∨
 				</div>
 			</div>
 			
 			<div class="fw_subselected collapse" id="sub1">
 				<ul>
-					<li> <a href="positionPlus">직책 등록 </a></li>
-					<li> <a href="salPlus">급여 등록</a> </li>
+					<li> <a href="${url }/human/basisInfo/positionPlus">직책 등록 </a></li>
+					<li> <a href="${url }/human/basisInfo/salPlus">급여 등록</a> </li>
 				</ul>
 			</div>
 			
@@ -57,34 +138,43 @@
 			
 			<div class="fw_subsub collapse"  id="sub2">
 				<ul>
-					<li><a href="${url}/human/memberMana/memberPlus"> 사원 등록</a> </li>
-					<li> 급여 등록 </li>
-					<li> 퇴직자 </li>
+					<li><a href="${url }/human/memberMana/memberPlus"> 사원 등록</a> </li>
+					<li> <a href="${url }/human/memberMana/retireeMana"> 퇴직자 </a></li>
 				</ul>
 			</div>
 			
 			<!-- -------------------- -->
-		
-			
-			<!-- -------------------- -->
-				<div class="fw_menu  fw_selected" data-toggle="collapse" data-target="#sub4" title="sub4" >
+					<div class="fw_menu fw_selected" data-toggle="collapse" data-target="#sub4" title="sub4" >
 					근태 관리
 				<div class="fw_arrow sub4">
-					∨
+					∧
 				</div>
 			</div>
 			
 			<div class="fw_subsub collapse in"  id="sub4">
 				<ul>
-					<li> 근태항목 등록 </li>
-					<li> 휴가일수 등록 </li>
-					<li> 근태 입력 </li>
-					<li> 근태 조회 </li>
+					<li><a href="${url}/human/diliMana/diliPlus">  근태항목 등록 </a></li>
+					<li><a href="${url}/human/diliMana/diliInput">  근태 입력 </a></li>
+					<li><a href="${url}/human/diliMana/diliSearch">  근태 조회</a> </li>
 				</ul>
 			</div>
 			
 			<!-- -------------------- -->
-				
+			
+			
+			<!-- -------------------- -->
+				<div class="fw_menu" data-toggle="collapse" data-target="#sub5" title="sub5" >
+					블랙리스트
+				<div class="fw_arrow sub5">
+					∨
+				</div>
+			</div>
+			
+			<div class="fw_subsub collapse"  id="sub5">
+				<ul>
+					<li><a href="${url}/community/blackList">  블랙리스트 </a></li>
+				</ul>
+			</div>
 			
 		<!-- submenu menu end -->
 	</div>
@@ -92,23 +182,24 @@
 	
 	<div id="fw_mainwrap">
 			<div id="fw_main">
-				mainTitle
+				<div id="event_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
 			</div>
 			
 			<div class="ar_plusTitle">
 				<p id="ar_plustext">근태항목 등록</p>
 			</div>
 			
-			<div class="ar_plusSearchWrap">
-				<div class="ar_blank"></div>
 				
-				<form action="diliPlus" method="GET">
-					<div class="ar_plusSearch">
+			<form action="diliPlus" method="GET">
+				<div id="erp_jh_event_sub">
+					<div id="event_contents">
+						<p>　</p>
 						근태항목명  <input type="text" name="search" id="ar_ssearch">
 						<input type="submit"  value="검색" id="ar_ssearchBtn">
-					</div>
-				</form>
+						<p>　</p>
+				</div>
 			</div>
+				</form>
 			
 			<div class="ar_plusDivWrap">
 				<div class="ar_titleDiv">

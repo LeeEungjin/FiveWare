@@ -1,125 +1,139 @@
 @CHARSET "UTF-8";
 
 *{
-	margin: auto 0;
-	padding: auto 0;
+   margin: auto 0;
+   padding: auto 0;
 }
 
 #login_after_wrap{
-	width: 100%;
-	height: 100%;
+   width: 100%;
+   height: 100%;
 }
 
 #lofin_after_header{
-	width: 100%;
-	height: 7%;
-	background-color: #587888;
-	color: white;
-	text-decoration: none;
-	    padding: 10px;
+   width: 100%;
+   height: 7%;
+   background-color: #587888;
+   color: white;
+   text-decoration: none;
+       padding: 10px;
 }
 
 #lang_wrap{
-	width: 15%;
-	height: 100%;
-	float: left;
+   width: 15%;
+   height: 100%;
+   float: left;
 }
 
 #lang_icon{
-	width: 20%;
-	height: 100%;
-	float: left;
-	color:white;
+   width: 20%;
+   height: 100%;
+   float: left;
+   color:white;
 }
 
 #lang_eng{
-	width: 35%;
+   width: 35%;
     height: 100%;
- 	color : white;
+    color : white;
     float: left;
 }
 
 #lang_kor{
-	width: 35%;
+   width: 35%;
     height: 100%;
-	color : white;
+   color : white;
     float: left;
 }
 
 #lang_p{
-	font-size: 20px;
+   font-size: 20px;
 }
 
 #menu_wrap{
-	width: 40%;
+   width: 40%;
     height: 100%;
     float: left;
     margin-left: 5%;
     font-size: 30px;
 }
 #eb_fw_main_2_table{
-	width: 90%;
-	height: 100%;
-	color:white;
+   width: 90%;
+   height: 100%;
+   color:white;
 }
 td.eb_row{
-	width: 25%;
-	height: 100%;
-	font-size: 20px;
-	text-align: center;
-	    padding-top: 1.5%;
+   width: 25%;
+   height: 100%;
+   font-size: 20px;
+   text-align: center;
+       padding-top: 1.5%;
 }
 
 td.eb_row:hover {
-	background-color: #5D5D5D; 
+   background-color: #5D5D5D; 
 } 
 
 
 #search_wrap{
-	width: 6%;
-	height: 100%;
-	float: right;
+   width: 6%;
+   height: 100%;
+   float: right;
 }
 
 #eb_logoutBtn{
-	font-size: 20px;
-	color : white;
-	margin-top: 5px;
+   font-size: 20px;
+   color : white;
+   margin-top: 5px;
 }
 
 #login_after_middle{
-	width: 100%;
-	height: 88%;
+   width: 100%;
+   height: 88%;
 }
 
 #info_wrap{
-	width: 20%;
-	height: 100%;
-	float: left;
+   width: 20%;
+   height: 100%;
+   float: left;
 }
 
 #pro_info{
+<<<<<<< HEAD
 	width: 100%;
 	height: 22.7%;
+=======
+   width: 100%;
+   height: 10%;
+>>>>>>> arin
 }
 
 #pro_info_1{
-	width: 50%;
-	height: 100%;
-	float: left;
+   width: 50%;
+   height: 100%;
+   float: left;
 }
 
 #pro_img{
+<<<<<<< HEAD
 	    width: 100%;
     height: 100%;
     border-radius: 50%;
     float: left;
     margin-left: 20%;
     margin-top: 28%;
+=======
+   width: 60%;
+   height: 60%;
+   border-radius: 50%;
+   float: left;
+   margin-left: 20%;
+   margin-top: 4%;
+>>>>>>> arin
 }
 .eb_default_img{
-	width: 60px;
-	height: 60px;
+   width: 60px;
+   height: 60px;
 }
 
 #loginAfterImg{
@@ -128,48 +142,61 @@ td.eb_row:hover {
 }
 
 #name_p{
+<<<<<<< HEAD
 	    font-size: 18px;
     margin-top: 52%;
+=======
+   font-size: 13px;
+    margin-top: 10%;
+>>>>>>> arin
     margin-left: 5%;
 }
 
 #sche_p{
+<<<<<<< HEAD
 	margin-left: 20%;
 	color: gray;
 	margin-top: 18% !important;
 	text-decoration: none;
+=======
+   margin-left: 20%;
+   color: gray;
+   margin-top: 6% !important;
+   text-decoration: none;
+>>>>>>> arin
 }
 
 #quick_p{
-	color : #CE3636;
-	font-size: 15px;
-	font-weight: bold;
-	padding-left: 5px;
+   color : #CE3636;
+   font-size: 15px;
+   font-weight: bold;
+   padding-left: 5px;
 }
 
 #quick_menu_box{
-	width: 80%;
-	height: 40%;
-	margin: 0 auto;
+   width: 80%;
+   height: 40%;
+   margin: 0 auto;
 }
 .eb_line{
-	width: 95%;
-	margin : 0 auto;
-	border-bottom: 1px solid #D5D5D5;
+   width: 95%;
+   margin : 0 auto;
+   border-bottom: 1px solid #D5D5D5;
 }
 
 #pro_info_2{
-	width: 50%;
-	float: right;
-	height: 100%;
+   width: 50%;
+   float: right;
+   height: 100%;
 }
 
 #alert_menu{
-	width: 100%;
-	height: 68%;
+   width: 100%;
+   height: 68%;
 }
 
 #sche_info{
+<<<<<<< HEAD
 	width: 100%;
 	height: 23%;
 	background-color: #F6F6F6;
@@ -179,6 +206,17 @@ td.eb_row:hover {
 	width: 100%;
 	height: 24%;
 	background-color: #F6F6F6;
+=======
+   width: 100%;
+   height: 25%;
+   background-color: #F6F6F6;
+}
+
+#sche_add{
+   width: 100%;
+   height: 15%;
+   background-color: #F6F6F6;
+>>>>>>> arin
 }
 
 .ampm {
@@ -187,81 +225,87 @@ td.eb_row:hover {
 }
 
 #quick_menu{
+<<<<<<< HEAD
 	width: 100%;
 	height: 30%;
 	background-color: #F6F6F6;
+=======
+   width: 100%;
+   height: 20%;
+   background-color: #F6F6F6;
+>>>>>>> arin
 }
 
 #often_call{
-	width: 100%;
-	height: 25%;
-	background-color: #F6F6F6;
+   width: 100%;
+   height: 25%;
+   background-color: #F6F6F6;
 }
 
 
 
 #contents_wrap{
-	width: 80%;
+   width: 80%;
     height: 100%;
     background-color: #F6F6F6;
     float: right;
 }
 
 #notice_wrap{
-	width: 100%;
-	height: 10%;
-	padding: 20px;
+   width: 100%;
+   height: 10%;
+   padding: 20px;
 }
 
 #notice_title{
-	width: 8%;
-	height: 100%;
-	float: left;
+   width: 8%;
+   height: 100%;
+   float: left;
 }
 
 #notice_title_p{
-	margin-top : 5px;
-	font-size: 20px;
-	color:black;
+   margin-top : 5px;
+   font-size: 20px;
+   color:black;
 }
 
 #notice_icon{
-	width: 5%;
-	height: 100%;
-	float: left;
+   width: 5%;
+   height: 100%;
+   float: left;
 }
 
 #notice_text{
-	width: 55%;
-	height: 100%;
-	margin-top: 15px;
-	font-size:20px;
-	float: left;
+   width: 55%;
+   height: 100%;
+   margin-top: 15px;
+   font-size:20px;
+   float: left;
 }
 
 #weather_div{
-	width: 20%;
-	height: 100%;
-	float: left;
+   width: 20%;
+   height: 100%;
+   float: left;
 }
 .weather_div_p{
-	padding-top: 15px;
+   padding-top: 15px;
 }
 
 #skin_icon{
-	width: 5%;
-	height: 100%;
-	float: left;
+   width: 5%;
+   height: 100%;
+   float: left;
 }
 
 #edit_icon{
-	width: 5%;
-	height: 100%;
-	float: left;
+   width: 5%;
+   height: 100%;
+   float: left;
 }
 
 #login_after_footer{
-	width: 100%;
+   width: 100%;
     height: 5%;
     background-color: #587888;
     color: #f6f6f6;
@@ -270,14 +314,14 @@ td.eb_row:hover {
 }
 
 #submenu_wrap{
-	width: 100%;
-	height: 90%;
-	background-color: #E6E6E6;
+   width: 100%;
+   height: 90%;
+   background-color: #E6E6E6;
 }
 
 
 .fa{
-	margin-left: 3% !important;
+   margin-left: 3% !important;
     margin-top: 2% !important;
 }
 
@@ -298,7 +342,7 @@ td.eb_row:hover {
 
 .srm_jk_inerp {
    border-top-left-radius : 15px;
-   border-top-right-radius : 15px;		
+   border-top-right-radius : 15px;      
    width: 100%;
    height: 22%;
    background-color: #587888;
@@ -658,15 +702,16 @@ html, body{
 }
 
 .fa{
-	cursor: pointer;
+   cursor: pointer;
 }
 
 #ladderImg{
-	cursor: pointer;
+   cursor: pointer;
 }
 
 
 .quick_menu_box_1{
+<<<<<<< HEAD
 	width: 20%;
 	height: 100%;
 	 margin-left : 10px;
@@ -677,4 +722,10 @@ html, body{
     margin-top: 20px !important;
     width: 220px !important;
     margin-left: 14% !important;
+=======
+   width: 20%;
+   height: 100%;
+    margin-left : 10px;
+   float: left;
+>>>>>>> arin
 }
