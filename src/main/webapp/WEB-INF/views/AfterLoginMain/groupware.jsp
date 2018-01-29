@@ -25,7 +25,7 @@
 	    slideIndex++;
 	    
 	    if (slideIndex > x.length) {slideIndex = 1} 
-	    x[slideIndex-1].style.display = "block"; 
+	    x[slideIndex-1].style.display = "inline-block"; 
 	    setTimeout(carousel, 3000); 
 	}
 

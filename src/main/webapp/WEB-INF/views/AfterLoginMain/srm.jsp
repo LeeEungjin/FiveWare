@@ -25,7 +25,7 @@
 	    slideIndex++;
 	    
 	    if (slideIndex > x.length) {slideIndex = 1} 
-	    x[slideIndex-1].style.display = "block"; 
+	    x[slideIndex-1].style.display = "inline-block"; 
 	    setTimeout(carousel, 3000); 
 	}
 	
@@ -70,7 +70,7 @@
 		<div id="search_wrap">
 		
 		        <a href="./member/memberLogout">
-						<span class="glyphicon glyphicon-log-out" id="eb_logoutBtn">Logout</span>
+						<span style="font-size: 15px;, margin-right: 6%;" class="glyphicon glyphicon-log-out" id="eb_logoutBtn">Logout</span>
 		        </button></a>
 			</div>
 			
