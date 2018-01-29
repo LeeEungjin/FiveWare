@@ -301,15 +301,19 @@
                   </div>
                   <div class="groupWare_jk_groupWare">
                      
-                     <a href="${pageContext.request.contextPath}/GroupWare/cloud/myCloud"> 
-                        <span class="groupWare_jk_inerp"> 
-                           <span class="groupWare_jk_bigdiv">클라우드</span>
-                        </span>
-                     </a> 
+                      <span class="groupWare_jk_inerp"> 
+                         <span class="groupWare_jk_bigdiv">클라우드</span>
+                      </span>
                      
-                     <a href="#"> 
+                      <a href="${pageContext.request.contextPath}/GroupWare/cloud/myCloud"> 
                         <span class="groupWare_jk_smalldiv"> 
                            <span class="groupWare_jk_writing" id="groupWare_jk_file">파일공유<br> 및<br> 다운로드</span>
+                        </span>
+                     </a>
+                     
+                     <a href="${pageContext.request.contextPath}/GroupWare/cloud/myCloud"> 
+                        <span class="groupWare_jk_smalldiv"> 
+                           <span class="groupWare_jk_writing" id="groupWare_jk_file">프로젝트&nbsp;<br>생성 및<br> 관리</span>
                         </span>
                      </a>
                   </div>
