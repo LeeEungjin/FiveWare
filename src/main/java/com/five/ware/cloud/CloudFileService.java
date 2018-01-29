@@ -12,6 +12,10 @@ public class CloudFileService {
 	@Inject
 	private CloudFileDAO cloudFileDAO;
 	
+	public int delete(String filename) throws Exception {
+		return cloudFileDAO.delete(filename);
+	}
+	
 	public List<CloudFileDTO> fileList (String code, String foldername) throws Exception {
 		return cloudFileDAO.fileList(code, foldername);
 	}

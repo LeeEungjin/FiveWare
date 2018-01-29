@@ -5,6 +5,10 @@
   
   <mapper namespace="cloudFileMapper">
   
+  	<delete id="fileDelete" parameterType="String">
+  		delete from cloudfile where filename=#{filename}	
+  	</delete>
+  
   	<select id="fileList" parameterType="java.util.Map" resultType="com.five.ware.cloud.CloudFileDTO">
   		select * from cloudfile where code=#{code} and foldername=#{filename}
   	</select>

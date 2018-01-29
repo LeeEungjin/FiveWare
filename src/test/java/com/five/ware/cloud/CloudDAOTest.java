@@ -2,6 +2,8 @@ package com.five.ware.cloud;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -18,8 +20,25 @@ public class CloudDAOTest extends AbstractTest {
 	}
 	
 	@Test
-	public void cloud() {
-		insert();
+	public void main() {
+		searach();
+	}
+	
+	public void searach() {
+		try {
+			List<CloudDTO> ar = cloudDAO.search("f");
+			
+			assertTrue(ar.size() > 0);
+			
+			for (CloudDTO cloudDTO : ar) {
+				System.out.println(cloudDTO.getFoldername());
+				System.out.println("-------------------------------------------");
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void insert() {

@@ -9,38 +9,39 @@
 <c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 <c:import url="${url}/resources/temp/ref.jsp"></c:import> 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/GroupWare/cloud/myCloud.css">
 
 <script type="text/javascript">
 	$(function() {
 		
 		//파일 찾기
-		/* $("#searchInput").on({
+		$("#searchInput").on({
 			keyup: function() {
+				$('#searchResult').css('display', 'block');
+				//$('#searachResult').slideDown("slow");
 				
-				ajax({
+				var search = $(this).val();
+				
+				$.ajax({
 					url: "./cloudSearch",
 					type: "POST",
-					data: {
-						
-					},
-					success: function() {
-						
+					data: { "foldername":search },
+					success: function(data) {
+						console.log(data);
+						var text = "<ul> <li> - 폴더</li>";
+						$.each(data, function(index, item){
+							var path = item.folderpath;
+							var index = path.lastIndexOf('/');
+							path = path.substring(0, index);
+							text += "<li><a href=javascript:enterFolder('"+path+"','"+item.foldername+"')>"+item.foldername+"</a></li>"
+						});
+						text += "</ul>";
+						$('#searchResult').html(text);
 					}
 				});
 			}
-		}); */
-		$("#searchInput").keyup(function() {
-			var search = $(this).val();
-			
-			$.ajax({
-				url: "./cloudSearch",
-				type: "POST",
-				data: { "search":search },
-				success: function() {
-					alert("성공!");
-				}
-			});
 		});
+		
 		
 		// Start Location
 		var session = '${member.code}';
@@ -193,110 +194,6 @@
 </script>
 
 <title>클라우드</title>
-<style type="text/css">
-.cloud_title {
-	width: 100%;
-	padding: 20px 10px;
-	border-bottom: 1px solid black;
-	font-size: 16px;
-	font-weight: bold;
-}
-
-.cloud_title img {
-	width: 50px;
-	height: 50px;
-	cursor: pointer;
-	margin-left: 10px;
-}
-
-#searchInput {
-	  background-image: url('${url}/resources/images/common/searchicon.gif');
-	  background-position: 10px 12px;
-	  background-repeat: no-repeat;
-	  width: 90%;
-	  font-size: 12px;
-	  padding: 12px 20px 12px 40px;
-	  border: 1px solid #ddd;
-}
-
-.cloud-search-box {
-	width: 90%;
-	font-size: 12px;
-	padding: 12px;
-}
-
-.cloud_filePlus {
-	background-image: url('${url}/resources/images/common/plus.png');
-	background-position: 10px 12px;
-	background-repeat: no-repeat;
-}
-
-#cloud_contents {
-	width: 100%;
-	height: 100%;
-	padding: 30px;
-    background-color: antiquewhite;
-}
-
-.cloud_location {
-	width: 100%;
-	height: 30px;
-	font-size: 16px;
-	background-color: yellow;
-	margin-bottom: 10px;
-}
-
-.rClick_modal {
-	height: 88px;
-	display: none;
-	z-index: 999;
-	position: absolute;
-	box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2);
-}
-
-.folder_rClick {
-	width: 150px;
-	height: 44px;
-	display: none;
-	z-index: 999;
-	position: absolute;
-	box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2);
-}
-
-.cloud_contents_title {
-	padding-bottom: 10px;
-	color: gray;
-}
-
-.cloud_dir  {
-	position: relative;
-    display: inline-block;
-    width: 12%;
-    height: 150px;
-	border: 1px solid lightgray;
-	box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2);
-	margin: 0 10px 30px 0;
-}
-
-.cloud_dir_img {
-	width: 100%;
-	height: 75%;
-	text-align: center;
-	line-height: 151px;
-	background-color: white;
-}
-
-.cloud_dir_text {
-	width: 100%;
-	height: 25%;
-	text-align: center;
-    line-height: 38px;
-	background-color: yellow;
-	text-overflow: ellipsis;
-	overflow: hidden;
-}
-
-</style>
 
 </head>
 <body>
@@ -352,30 +249,19 @@
 			| 폴더
 		</div>
 		
-		<div class="cloud_title"> 
-			<input type="text" id="searchInput" placeholder="파일명을 입력해주세요">
-			<!-- Serch BOX -->
-			<div class="cloud-search-box" style="display: block">
-				<ul>
-					<li>asdasd</li>
-					<li>asdasd</li>
-					<li>asdasd</li>
-				</ul>
-				
-				<ul>
-					<li>fqwfqd</li>
-					<li>fqwfqd</li>
-				</ul>
-			</div>
-			
-			<div class="dropdown" style="display: inline;">
-				<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-					<i class="fa fa-navicon" style="font-size:24px"></i>
-				</button>
-				<ul class="dropdown-menu">
-					<li><a href="javascript:folderModal();">새 폴더</a></li>
-					<li><a href="#">파일 업로드</a></li>
-			    </ul>
+		<div class="cloud_title">
+			<div class="search_box">
+				<input type="text" id="searchInput" placeholder="폴더명을 입력해주세요">
+				<div class="dropdown" style="display: inline;">
+					<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+						<i class="fa fa-navicon" style="font-size:24px"></i>
+					</button>
+					<ul class="dropdown-menu">
+						<li><a href="javascript:folderModal();">새 폴더</a></li>
+						<li><a href="#">파일 업로드</a></li>
+				    </ul>
+				</div>
+				<div class="cloud-search-box" id="searchResult"></div>
 			</div>
 		</div>
 		

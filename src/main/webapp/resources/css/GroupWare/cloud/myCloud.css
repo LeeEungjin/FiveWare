@@ -1,0 +1,128 @@
+@CHARSET "UTF-8";
+.cloud_title {
+	width: 100%;
+	padding: 20px 10px;
+	border-bottom: 1px solid black;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.cloud_title img {
+	width: 50px;
+	height: 50px;
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+.search_box {
+	position: relative;
+	width: 80%;
+}
+
+#searchInput {
+	  background-image: url('../../../../resources/images/common/searchicon.gif');
+	  background-position: 10px 12px;
+	  background-repeat: no-repeat;
+	  width: 90%;
+	  font-size: 12px;
+	  padding: 12px 20px 12px 40px;
+	  border: 1px solid #ddd;
+}
+
+
+.cloud-search-box {
+	display: none;
+	width: 90%;
+	font-size: 12px;
+	background-color: #fff;
+	border: 2px solid #94c4f8;
+	transition: display 2s;
+	position: absolute;
+	top: 44px;
+}
+
+.cloud-search-box ul {
+	list-style-type: none;
+}
+
+.cloud-search-box li:FIRST-CHILD {
+	padding: 5px 30px;
+}
+
+.cloud-search-box li {
+	margin-bottom: 5px;
+	padding: 0 40px;
+}
+
+
+
+.cloud_filePlus {
+	background-image: url('${url}/resources/images/common/plus.png');
+	background-position: 10px 12px;
+	background-repeat: no-repeat;
+}
+
+#cloud_contents {
+	width: 100%;
+	height: 100%;
+	padding: 30px;
+    background-color: antiquewhite;
+}
+
+.cloud_location {
+	width: 100%;
+	height: 30px;
+	font-size: 16px;
+	background-color: yellow;
+	margin-bottom: 10px;
+}
+
+.rClick_modal {
+	height: 88px;
+	display: none;
+	z-index: 999;
+	position: absolute;
+	box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2);
+}
+
+.folder_rClick {
+	width: 150px;
+	height: 44px;
+	display: none;
+	z-index: 999;
+	position: absolute;
+	box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2);
+}
+
+.cloud_contents_title {
+	padding-bottom: 10px;
+	color: gray;
+}
+
+.cloud_dir  {
+	position: relative;
+    display: inline-block;
+    width: 12%;
+    height: 150px;
+	border: 1px solid lightgray;
+	box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2);
+	margin: 0 10px 30px 0;
+}
+
+.cloud_dir_img {
+	width: 100%;
+	height: 75%;
+	text-align: center;
+	line-height: 151px;
+	background-color: white;
+}
+
+.cloud_dir_text {
+	width: 100%;
+	height: 25%;
+	text-align: center;
+    line-height: 38px;
+	background-color: yellow;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}

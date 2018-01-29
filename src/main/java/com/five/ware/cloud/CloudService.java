@@ -16,6 +16,14 @@ public class CloudService {
 	@Inject
 	private CloudDAO cloudDAO;
 	
+	public int delete(String foldername, String folderpath) throws Exception {
+		return cloudDAO.delete(foldername, folderpath);
+	}
+	
+	public List<CloudDTO> search(String foldername) throws Exception {
+		return cloudDAO.search(foldername);
+	}
+	
 	public int insert(HttpSession session, String path) throws Exception {
 		String code = ((MemberDTO)session.getAttribute("member")).getCode();
 		String folderpath = session.getServletContext().getRealPath(path);
@@ -30,7 +38,7 @@ public class CloudService {
 		CloudDTO cloudDTO = new CloudDTO();
 		cloudDTO.setCode(code);
 		cloudDTO.setFoldername(foldername);
-		cloudDTO.setFolderpath(folderpath);
+		cloudDTO.setFolderpath(path);
 		cloudDTO.setUppername(uppername);
 		
 		return cloudDAO.insert(cloudDTO);

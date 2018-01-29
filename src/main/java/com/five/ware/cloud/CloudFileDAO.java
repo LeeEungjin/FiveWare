@@ -16,6 +16,10 @@ public class CloudFileDAO {
 	private SqlSession sqlSession;
 	private static String NAMESPACE = "cloudFileMapper.";
 	
+	public int delete(String filename) throws Exception {
+		return sqlSession.delete(NAMESPACE+"fileDelete", filename);
+	}
+	
 	public List<CloudFileDTO> fileList(String code, String foldername) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("code", code);

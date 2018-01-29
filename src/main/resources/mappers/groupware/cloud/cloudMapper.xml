@@ -5,6 +5,14 @@
   
   <mapper namespace="cloudMapper">
   
+  	<delete id="cloudDelete" parameterType="java.util.Map">
+  		delete from cloud
+  		where foldername=#{foldername} and folderpath like '%'||#{folderpath}||'%' 
+  	</delete>
+  
+  	<select id="cloudSearch" parameterType="String" resultType="com.five.ware.cloud.CloudDTO">
+  		select * from cloud where foldername like '%'||#{foldername}||'%'
+  	</select>
 
 	<insert id="cloudInsert" parameterType="com.five.ware.cloud.CloudDTO">
 		insert into cloud values(file_seq.nextval, #{code}, #{folderpath}, #{foldername}, #{uppername})

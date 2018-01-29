@@ -34,11 +34,20 @@ public class CloudController {
 	@Inject
 	private CloudFileService cloudFileService;
 	
-	// Cloud Search **********************************************
+	// Cloud Search
 	@RequestMapping(value="cloudSearch", method=RequestMethod.POST)
 	@ResponseBody
-	public String cloudSearch() {
-		return "";
+	public List<CloudDTO> cloudSearch(String foldername) {
+		List<CloudDTO> list = null;
+		
+		try {
+			list = cloudService.search(foldername);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
 	
 	// Download
@@ -63,18 +72,22 @@ public class CloudController {
 	//Delete
 	@RequestMapping(value="fileDelete", method=RequestMethod.POST)
 	public String fileDelete(HttpSession session, String path, String filename) {
-		
 		String filepath = session.getServletContext().getRealPath(path+"/"+filename);
 		System.out.println("fileDelete - filepath: "+filepath);
 		
-		File file = new File(filepath);
-		if(file.exists()) { 
-			System.out.println("File Exist!!!");
-			if(file.delete()) {
-				System.out.println("Delete Success!");
-			} else {
-				System.out.println("Delete Fail");
+		try {
+			File file = new File(filepath);
+			if(file.exists()) { 
+				if(file.delete()) {
+					// 폴더 파일 구분
+					int result = cloudService.delete(filename, path);
+					if(result < 1) {
+						result = cloudFileService.delete(filename);
+					}
+				}
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		return "redirect:./myCloud";
@@ -190,7 +203,7 @@ public class CloudController {
 		}
 		
 		
-		if(folders.size() > 0) {
+		if(folders != null && folders.size() > 0) {
 			for (CloudDTO tempFile : folders) {
 				String temp = tempFile.getFoldername();
 				String ext = null;
@@ -225,7 +238,7 @@ public class CloudController {
 			}
 		} //END if -> Size() > 0
 		
-		if(files.size() > 0) {
+		if(files != null && files.size() > 0) {
 			for (CloudFileDTO cloudFileDTO : files) {
 				String oriname = null;
 				String filename = null;
