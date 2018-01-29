@@ -37,7 +37,6 @@
 		
 		$(".ar_code").click(function(){
 			var code = $(this).html().trim();
-			alert(code);
 			
 			$.ajax({
 				type:"GET",
@@ -45,7 +44,6 @@
 				data:{
 					"code" : code
 				}, success:function(data){
-					alert(data);
 					$("#ppcode").val(data.code);
 					$("#ppname").val(data.rank);
 					$("#ppranking").val(data.ranking);
@@ -66,7 +64,6 @@
 					cod.push(code);
 				}
 			});
-					alert(cod.toString());
 				$.ajax({
 					type: "POST",
 					url: "./positionDelete",
@@ -193,16 +190,17 @@
 				<p id="ar_plustext">직급 등록</p>
 			</div>
 			
-			<div class="ar_plusSearchWrap">
-				<div class="ar_blank"></div>
 				
 			<form action="positionPlus" method="GET">
-				<div class="ar_plusSearch">
-					직급명  <input type="text" name="search" id="ar_psearch">
-					<input type="submit" value="검색" id="ar_psearchBtn">
+			<div id="erp_jh_event_sub">
+				<div id="event_contents">
+						<p>　</p>
+							직급명  <input type="text" name="search" id="ar_psearch">
+							<input type="submit" value="검색" id="ar_psearchBtn">
+						<p>　</p>
 				</div>
-			</form>
 			</div>
+			</form>
 			
 			<div class="ar_plusDivWrap">
 				<div class="ar_titleDiv">
@@ -249,8 +247,7 @@
 					        <div class="modal-body">
 					        	<div class="ar_positionInsert" >
 					        		<span class="ar_positiontext">직책코드</span>
-					        		<input type="text" name="code" class="arin_pcodeInput1" id="pocode">
-					        		<input type="button" value="중복 여부" id="pcode_btn">
+					        		<input type="text" name="code" class="arin_pcodeInput1" id="pocode" readonly="readonly">
 					        	</div>
 					        	
 					        	<div class="ar_positionInsert" >

@@ -1,18 +1,17 @@
 @CHARSET "UTF-8";
-
 .ar_plusTitle{
 	width: 100%;
 	height: 5%;
-	background-color: #ff6666;
+	/* background-color: #ff6666; */
 	margin-bottom: 1%;
 	
 }
 
 #ar_plustext{
-	font-size: 18px;
-	font-weight: bold;
-	padding-top: 1.5%;
-	margin-left: 2%;
+	 font-size: 30px;
+    font-weight: bold;
+    /* margin-left: 5%; */
+    margin-top: 1.5%;
 }
 
 .ar_plusSearchWrap{
@@ -55,23 +54,26 @@
 }
 
 .ar_plusDivWrap{
-	width: 100%;
+	width: 90%;
 	height: 50%;
-	background-color: #f0f779;
+	/* background-color: #f0f779; */
 	margin-bottom: 2%;
+	margin: 0 auto;
+	overflow: scroll;
 }
 
 .ar_titleDiv{
-	background-color: #b68db3;
+	background-color: black;
 	width: 100%;
 	height: 10%;
 	text-align: center;
-	
+	color: white;
+	font-weight: bold;
 }
 
 .ar_titleDiv1 {
  	display: inline-block;	
- 	font-weight: bold;
+ 	
  	border-right: 1px solid white;
 }
 
@@ -81,9 +83,9 @@
 }
 
 .ar_listDiv{
-	background-color: #ffb3ff;
+	/* background-color: #ffb3ff; */
 	width: 100%;
-	height: 8%;
+	height: 10%;
 	text-align: center;
 	border-bottom: 1px lightgray solid;
 	
@@ -94,6 +96,7 @@
 	height: 50%;
 	margin-top: 1%;
 	display: inline-block;
+	font-weight: bold;
 }
 
 .ar_NameTitle{
@@ -150,9 +153,10 @@
 }
 
 .ar_plusButtonWrap{
-	width: 100%;
+	width: 90%;
 	height: 8%;
-	background-color: #c1ffc1;
+	margin: 0 auto;
+	margin-top: 3%;
 }
 
 #ar_deleteBtn{
@@ -165,7 +169,7 @@
 #ar_insertBtn{
 	width: 10%;
 	height: 40%;
-	background-color: gray;
+	background-color: #c0c0c0;
 	border: 1px black solid;
 	float: right;
 }
@@ -193,9 +197,9 @@
 }
 
 .modal_topWrap{
-	background-color: #ffbdde;
-	border: 1px solid #ff80c0;
-	height: 115px;
+	border: 1px solid gray;
+    height: 115px;
+    margin-bottom: 2%;
 }
 
 .ar_salInsert{
@@ -242,10 +246,11 @@
 }
 
 .ar_TempSearch{
-	background-color: #ef7a98;
-	height: 50px;
+	/* background-color: #ef7a98; */
+	border: 1px solid #80808057;
+	height: 54px;
 	width: 100%;
-	padding-top: 4%;
+	padding-top: 3%;
 	padding-left: 3%;
 	
 }
@@ -281,14 +286,14 @@
 
 .ar_memsearchBtnWrap{
 	width: 100%;
-	background-color: gray;
+	/* background-color: gray; */
 	margin-top: 1.5%;
-	height: 35px;
+	height: 38px;
 }
 
 .ar_memVacTitle{
 	display: inline-block;
-	background-color: lime;
+	/* background-color: lime; */
 	height: 10%;
 	text-align: center;
 	font-weight: bold;
@@ -309,7 +314,8 @@
 }
 
 .ar_memberVacWrap{
-	background-color: yellow;
+	border-top: 1px gray solid;
+	padding-top: 1%;
 }
 
 .ar_tempSelect{
@@ -324,7 +330,7 @@
 .ar_memberWrap{
     width: 95%;
     height: 404px;
-    background-color: lightgray;
+  /*   background-color: lightgray; */
     margin: 0 auto;
     margin-top: 5%;
     overflow: scroll;
@@ -338,7 +344,7 @@
 .ar_memListTop{
 	width: 100%;
 	height: 10%;
-	background-color: #ffcaff;
+	/* background-color: #ffcaff; */
 	padding-top: 2%;
 }
 
@@ -405,14 +411,14 @@
 }
 
 .ar_mmmem_plus{
-    background-color: gray;
+    /* background-color: gray; */
     width: 56%;
     display: inline-block;
     float: left;
 }
 
 #ar_mmmem_other{
-	background-color: lightgray;
+	/* background-color: lightgray; */
     width: 40%;
     display: inline-block;
     float: left;
@@ -427,4 +433,42 @@
     width: 9.78%;
     height: 100%;
     display: inline-block;
+}
+
+
+#erp_jh_event_sub {
+    width: 90%;
+    height: 16%;
+    background-color: #f6f6f6;
+    padding-top: 0.5%;
+    margin-left: 5%;
+    margin-bottom: 5%;
+}
+
+.ar_memberWorkUpdate{
+	cursor: pointer;
+}
+
+#event_contents {
+   height: 90%;
+   width: 70%;
+   margin-left: 15%;
+   text-align: center;
+   border-bottom: 2px solid #929292;
+   border-top: 2px solid #929292;
+}
+
+#ar_dsearchBtn{
+	width: 8%;
+    height: 100%;
+	background-color: #000000;
+	color: white;
+	margin-left: 2%;
+	border: 0px;
+	font-size: 12px;
+	margin-bottom: 0.5%;
+}
+
+input[type=date], input[type=time], input[type=datetime-local], input[type=month] {
+    line-height: 22px;
 }

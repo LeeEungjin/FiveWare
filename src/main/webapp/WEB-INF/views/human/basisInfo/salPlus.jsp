@@ -184,23 +184,24 @@
 	
 	<div id="fw_mainwrap">
 			<div id="fw_main">
-				mainTitle
+				<div id="event_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
 			</div>
 			
 			<div class="ar_plusTitle">
 				<p id="ar_plustext">급여항목 등록</p>
 			</div>
 			
-			<div class="ar_plusSearchWrap">
-				<div class="ar_blank"></div>
 				
 				<form action="salPlus" method="GET">
-					<div class="ar_plusSearch">
-						급여항목명  <input type="text" name="search" id="ar_ssearch">
-						<input type="submit"  value="검색" id="ar_ssearchBtn">
+					<div id="erp_jh_event_sub">
+						<div id="event_contents">
+							<p>　</p>
+							급여항목명  <input type="text" name="search" id="ar_ssearch">
+							<input type="submit"  value="검색" id="ar_ssearchBtn">
+							<p>　</p>
 					</div>
+				</div>
 				</form>
-			</div>
 			
 			<div class="ar_plusDivWrap">
 				<div class="ar_titleDiv">

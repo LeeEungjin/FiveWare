@@ -61,9 +61,9 @@
 			var month=$("#memberMonth").val();
 			var other=$("#ar_memberOther").val();
 			var photo=$("#ar_photo").attr("src");
-			alert(photo);
+			/* alert(photo);
 			
-			alert("등록");
+			alert("등록"); */
 		
 			if(photo==""){
 				alert("사진을 선택하세요");
@@ -112,7 +112,6 @@
 	                            data: formData,
 	                            type: 'POST',
 	                            success: function(result){
-	                                alert(result);
 	                                $("#ar_photo").attr("src", "../../resources/member/"+result);
 	                                $("#ar_filename").val(result);
 	                            },error:function(){
@@ -139,8 +138,8 @@
 	 			 
 	 			var today=year+"-" + month + "-" + day;
 			
-	 			alert(today);
-			  $.ajax({
+/* 	 			alert(today);
+ */			  $.ajax({
 				 type:"GET",
 				 url:"./memberUpdate",
 				 data:{
@@ -191,7 +190,7 @@
 	                            data: formData,
 	                            type: 'POST',
 	                            success: function(result){
-	                                alert(result);
+	                                /* alert(result); */
 	                                $("#ar_uphoto").attr("src", "../../resources/member/"+result);
 	                                $("#ar_ufilename").val(result);
 	                            },error:function(){
@@ -356,23 +355,23 @@
 	
 	<div id="fw_mainwrap">
 			<div id="fw_main">
-				mainTitle
+				<div id="event_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
 			</div>
 			
 			<div class="ar_plusTitle">
 				<p id="ar_plustext">사원 등록</p>
 			</div>
 			
-			<div class="ar_plusSearchWrap">
-				<div class="ar_blank"></div>
-				
 			<form action="memberPlus" method="GET">
-				<div class="ar_plusSearch">
+				<div id="erp_jh_event_sub">
+					<div id="event_contents">
+						<p>　</p>
 					사원명  <input type="text" name="search" id="ar_psearch">
 					<input type="submit" value="검색" id="ar_psearchBtn">
+					<p>　</p>
 				</div>
-			</form>
 			</div>
+			</form>
 			
 			<div class="ar_plusDivWrap">
 				<div class="ar_titleDiv">

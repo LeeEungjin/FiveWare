@@ -378,18 +378,17 @@
 	
 	<div id="fw_mainwrap">
 			<div id="fw_main">
-				mainTitle
+				<div id="event_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
 			</div>
 			
 			<div class="ar_plusTitle">
 				<p id="ar_plustext">근태항목 등록</p>
 			</div>
 			
-			<div class="ar_plusSearchWrap">
-				<div class="ar_blank"></div>
-				
 				<form action="diliInput" method="POST" name="ar_memberWorkList">
-					<div class="ar_plusSearch">
+				<div id="erp_jh_event_sub">
+					<div id="event_contents">
+						<p>　</p>
 						근태명  
 						<select class="diliselected" name="search">
 							<option value="">전체</option>
@@ -401,9 +400,11 @@
 						<span class="ar_blanktext">기간</span>
 						<input type="date" name="startdate" class="ar_searchdate" id="ar_search1" value="${startdate }"> ~ <input type="date" name="enddate"class="ar_searchdate" id="ar_search2" value="${enddate }">
 						<input type="submit"  value="검색" id="ar_dsearchBtn">
-					</div>
-				</form>
+					<p>　</p>
+				</div>
 			</div>
+				</form>
+			
 			
 		<div class="ar_plusDivWrap">
 				<div class="ar_titleDiv">
