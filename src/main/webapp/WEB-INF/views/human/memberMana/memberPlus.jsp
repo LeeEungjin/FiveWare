@@ -297,8 +297,8 @@
 			
 			<div class="fw_subselected collapse" id="sub1">
 				<ul>
-					<li> <a href="positionPlus">직책 등록 </a></li>
-					<li> <a href="salPlus">급여 등록</a> </li>
+					<li> <a href="${url }/human/basisInfo/positionPlus">직책 등록 </a></li>
+					<li> <a href="${url }/human/basisInfo/salPlus">급여 등록</a> </li>
 				</ul>
 			</div>
 			
@@ -312,30 +312,13 @@
 			
 			<div class="fw_subsub collapse in"  id="sub2">
 				<ul>
-					<li><a href="memberPlus"> 사원 등록</a> </li>
-					<li> 급여 등록 </li>
-					<li> 퇴직자 </li>
+					<li><a href="#"> 사원 등록</a> </li>
+					<li> <a href="retireeMana"> 퇴직자 </a></li>
 				</ul>
 			</div>
 			
 			<!-- -------------------- -->
-				<div class="fw_menu" data-toggle="collapse" data-target="#sub3" title="sub3" >
-					급여관리
-				<div class="fw_arrow sub3" >
-					∨
-				</div>
-			</div>
-			
-			<div class="fw_subsub collapse"  id="sub3">
-				<ul>
-					<li> 급여 계산 </li>
-					<li> 퇴직금 계산 </li>
-					<li> 개인별 급여 현황 </li>
-				</ul>
-			</div>
-			
-			<!-- -------------------- -->
-				<div class="fw_menu" data-toggle="collapse" data-target="#sub4" title="sub4" >
+					<div class="fw_menu" data-toggle="collapse" data-target="#sub4" title="sub4" >
 					근태 관리
 				<div class="fw_arrow sub4">
 					∨
@@ -344,17 +327,27 @@
 			
 			<div class="fw_subsub collapse"  id="sub4">
 				<ul>
-					<li> 근태항목 등록 </li>
-					<li> 휴가일수 등록 </li>
-					<li> 근태 입력 </li>
-					<li> 근태 조회 </li>
+					<li><a href="${url}/human/diliMana/diliPlus">  근태항목 등록 </a></li>
+					<li><a href="${url}/human/diliMana/diliInput">  근태 입력 </a></li>
+					<li><a href="${url}/human/diliMana/diliSearch">  근태 조회</a> </li>
 				</ul>
 			</div>
 			
 			<!-- -------------------- -->
-				<div class="fw_menu" data-toggle="collapse" data-target="#sub5" title="sub5" >
-					조회
 			
+			
+			<!-- -------------------- -->
+				<div class="fw_menu" data-toggle="collapse" data-target="#sub5" title="sub5" >
+					블랙리스트
+				<div class="fw_arrow sub5">
+					∨
+				</div>
+			</div>
+			
+			<div class="fw_subsub collapse"  id="sub5">
+				<ul>
+					<li><a href="${url}/community/blackList">  블랙리스트 </a></li>
+				</ul>
 			</div>
 			
 		<!-- submenu menu end -->
