@@ -43,12 +43,12 @@ public class EventController {
 	@RequestMapping(value="eventUpdate")
 	public String update(EventDTO eventDTO, RedirectAttributes rd, HttpSession session)throws Exception{
 		int result=0;
-		String message="이벤트 수정 실패";
+		String message="이벤트 수정을 실패하였습니다.";
 		
 		result=eventService.update(eventDTO, session);
 		
 		if(result>0){
-			message="이벤트 수정 성공";
+			message="이벤트 수정을 성공하였습니다.";
 		}
 		
 		rd.addFlashAttribute("message", message);
@@ -60,12 +60,12 @@ public class EventController {
 	@RequestMapping(value="eventInsert")
 	public String insert(EventDTO eventDTO, RedirectAttributes rd, HttpSession session)throws Exception{
 		int result=0;
-		String message="이벤트 등록 실패";
+		String message="이벤트 등록을 실패하였습니다.";
 		
 		result=eventService.insert(eventDTO, session);
 		
 		if(result>0){
-			message="이벤트 등록 성공";
+			message="이벤트 등록을 성공하였습니다.";
 		}
 		
 		rd.addFlashAttribute("message", message);
@@ -106,12 +106,12 @@ public class EventController {
 	@RequestMapping(value="eventDelete")
 	public String delete(int eventNum, RedirectAttributes rd)throws Exception{
 		int result=0;
-		String message="삭제 실패";
+		String message="이벤트 삭제를 실패하였습니다.";
 		
 		result=eventService.delete(eventNum);
 		
 		if(result>0){
-			message="삭제 성공";
+			message="이벤트 삭제를 성공하였습니다.";
 		}
 		
 		rd.addFlashAttribute("message", message);

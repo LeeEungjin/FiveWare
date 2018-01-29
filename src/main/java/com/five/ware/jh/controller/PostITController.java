@@ -25,12 +25,12 @@ public class PostITController {
 	@RequestMapping(value="postInsert" ,method=RequestMethod.POST)
 	public String postInsert(PostITDTO postITDTO, RedirectAttributes rd)throws Exception{
 		int result=0;
-		String message="등록 실패";
+		String message="메모 등록을 실패하였습니다.";
 		
 		result=postITService.postInsert(postITDTO);
 		
 		if(result>0){
-			message="등록 성공";
+			message="메모를 등록하였습니다.";
 		}
 		
 		rd.addFlashAttribute("message", message);

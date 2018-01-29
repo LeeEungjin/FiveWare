@@ -29,13 +29,13 @@ public class OrderController {
 	
 	@RequestMapping(value="orderDelete")
 	public String delete(RedirectAttributes rd, String orderCode){
-		String message="Fail";
+		String message="주문 삭제를 실패하였습니다.";
 		int result=0;
 		
 		try {
 			result=orderService.delete(orderCode);
 			if(result>0){
-				message="Success";
+				message="주문 삭제를 성공하였습니다.";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -95,7 +95,7 @@ public class OrderController {
 	@RequestMapping(value="orderWrite",method=RequestMethod.POST)
 	public String orderWrite(RedirectAttributes rd, OrderDTO orderDTO, String [] code, int [] amount, int [] price){
 		int result=0;
-		String message="Fail";
+		String message="주문 등록을 실패하였습니다.";
 		String orderCode=orderDTO.getOrderCode();
 		OrderProductDTO orderProductDTO=new OrderProductDTO();
 		
@@ -115,7 +115,7 @@ public class OrderController {
 			try {
 				result=orderService.insert(orderProductDTO);
 				if(result>0){
-					message="Success";
+					message="주문 등록을 성공하였습니다.";
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
