@@ -4,6 +4,7 @@
 
 <c:set value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}" var="url" />
 
+
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="${url}/resources/js/jquery-3.1.1.min.js"></script>
 	<script src="${url}/resources/js/bootstrap.min.js"></script>

@@ -77,6 +77,7 @@ input[type="text"]{
 			| 프로젝트 생성
 		</div>
 		
+		<div class="container" style="overflow: scroll; height: 100%;">
 		<form action="#" method="post" id='insertProjectSchdule' style="margin-top: 30px;">
 			<input type="hidden" id="prj_no" name='prj_no'
 				value="${prjDto.prj_no}" />
@@ -151,6 +152,7 @@ input[type="text"]{
 				</div>
 			</div>
 		</form>
+		</div>
 	</div>
 </div>
 </body>

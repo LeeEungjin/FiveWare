@@ -53,66 +53,6 @@
 </script>
 <body>
 
-<<<<<<< HEAD
-	<div id="login_after_wrap">
-		<div id="lofin_after_header">
-			 <div id="lang_wrap">
-				<div id="lang_icon">
-					<img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogoBlack.png">
-				</div>
-		  
-			</div> 
-			
-		 	 <div id="menu_wrap">
-				 <table id="eb_fw_main_2_table">
-					<tr >
-						<td class="eb_row"><a href="${pageContext.request.contextPath}/"  style="color: white;, text-decoration: none;">HOME</a></td>
-						<td class="eb_row"><a href="${pageContext.request.contextPath}/erp"  style="color: white;, text-decoration: none;">ERP</a></td>
-						<td class="eb_row"><a href="${pageContext.request.contextPath}/GroupWare"  style="color: white;, text-decoration: none;">Group Ware</a></td>
-						<td class="eb_row"><a href="${pageContext.request.contextPath}/srm"  style="color: white;, text-decoration: none;">SRM</a></td>
-					</tr>
-				</table> 
-			</div> 
-			
-			<div id="search_wrap">
-				
-		        <a href="./member/memberLogout">
-						<span class="glyphicon glyphicon-log-out" id="eb_logoutBtn">Logout</span>
-				</a>
-			</div>
-			
-		</div>
-		
-		<div id="login_after_middle">
-			
-				<div id="info_wrap">
-				<div id="pro_info">
-					<div id="pro_info_1">
-						<div id="pro_img">
-							<img  id="loginAfterImg" src="${pageContext.request.contextPath}/resources/images/sidebar/avatar82.png" class="eb_default_img">
-						</div>
-					</div>
-					<div id="pro_info_2">
-						<p id="name_p">${member.name } 님</p>
-					</div>
-				</div>
-				<div id="sche_info">
-					<!-- Clock API Start -->
-					<div id="clock" class="light">
-						<div class="display">
-							<div class="weekdays"></div>
-							<div class="ampm"></div>
-							<div class="digits"></div>
-						</div>
-					</div>
-					<!-- Clock API End -->
-				</div>
-				
-			<div class="eb_line"></div>
-				
-				<div id="sche_add">
-					<i class="fa fa-calendar-plus-o" style="font-size:25px; padding-top:10px;">Calendar</i>
-=======
    <div id="login_after_wrap">
       <div id="lofin_after_header">
           <div id="lang_wrap">
@@ -148,13 +88,11 @@
             <div id="pro_info">
                <div id="pro_info_1">
                   <div id="pro_img">
-                     <img src="${pageContext.request.contextPath}/resources/images/sidebar/avatar82.png" class="eb_default_img">
+                     <img  id="loginAfterImg" src="${pageContext.request.contextPath}/resources/images/sidebar/avatar82.png" class="eb_default_img">
                   </div>
                </div>
                <div id="pro_info_2">
                   <p id="name_p">${member.name } 님</p>
-                  <i class="fa fa-bell-o" style="font-size:20px">new</i>
-                  <div id="alert_menu"></div>
                </div>
             </div>
             <div id="sche_info">
@@ -172,8 +110,7 @@
          <div class="eb_line"></div>
             
             <div id="sche_add">
-               <i class="fa fa-calendar-plus-o" style="font-size:30px; padding-top:10px;">Calendar</i>
->>>>>>> arin
+               <i class="fa fa-calendar-plus-o" style="font-size:25px; padding-top:10px;">Calendar</i>
                <p id="sche_p" style="font-size: 20px"><a href="calendar/coding" style="color: gray">일정 등록하기 <i class="fa fa-plus-square-o" style="font-size:23px;"></i></a></p>
             </div>
             <div id="quick_menu">
