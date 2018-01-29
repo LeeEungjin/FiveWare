@@ -7,10 +7,6 @@
     margin-bottom: 2%;
 }
 
-#logoImg{
-	    margin-top: 20%;
-}
-
 .sales_title_menu{
 	width: 10%;
 	height: 30%;
@@ -33,14 +29,12 @@
 #erp_jh_contents_title{
 	width: 100%;
 	height: 10%;
-	background-color: #ffe1e7;
 	overflow: hidden;
 }
 
 #or_icon{
 	width: 6%;
 	height: 100%;
-	background-color: #ff84c1;
 	float: left;
 }
 
@@ -54,7 +48,7 @@
 #erp_jh_contents_search{
 	width: 90%;
     height: 14.5%;
-    background-color: #f6f6f6;
+    background-color: #EAEAEA;
     padding-top: 0.5%;
     margin-left: 5%;
     margin-top: 1%;
@@ -65,7 +59,7 @@
 	width: 70%;
     height: 70%;
     margin-left: 20%;
-    ackground-color: #ce9dff;
+    ackground-color: #EAEAEA;
     margin-top: 3.5%;
 }
 
@@ -84,7 +78,6 @@
 #sub_search{
 	width: 50%;
     height: 45%;
-    background-color: #e188b7;
     float: right;
     margin-top: 2%;
 }
