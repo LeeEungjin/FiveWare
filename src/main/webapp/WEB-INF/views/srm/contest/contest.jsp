@@ -132,15 +132,6 @@ $(function(){
 		
 		window.open("contestJoinView?cnum="+cnum,"", "width=700, height=761,top=100,left=500");
 		
-		/* $.ajax({
-			url:"./contestJoinView",
-			type:"POST",
-			data:{
-				"cnum":cnum
-			}, success:function(data){
-				$("#ar_View_Modal").html(data);
-			}
-		}); */
 	});
 	
  	$(".ar_resultBtn").click(function(){
