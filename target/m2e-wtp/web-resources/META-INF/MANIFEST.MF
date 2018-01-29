@@ -1,5 +1,15 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: ￬ﾡﾰ￬ﾝﾀ￫ﾹﾄ
 Build-Jdk: 1.8.0_131
+=======
+<<<<<<< HEAD
+Built-By: ￬ﾡﾰ￬ﾝﾀ￫ﾹﾄ
+Build-Jdk: 1.8.0_131
+=======
+Built-By: user1
+Build-Jdk: 1.8.0_141
+>>>>>>> master
+>>>>>>> eunbi2
 Created-By: Maven Integration for Eclipse
 

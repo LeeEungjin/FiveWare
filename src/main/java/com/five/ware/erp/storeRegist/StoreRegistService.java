@@ -20,6 +20,21 @@ public class StoreRegistService {
 	private StoreRegistDAO storeRegistDAO;
 	
 	
+	//pwUpdate
+	public int pwUpdate(String code,String pw)throws Exception{
+		int result=storeRegistDAO.pwUpdate(code,pw);
+		return result;
+	}
+	
+	//pwCheck
+	public String pwCheck(String code)throws Exception{
+		
+		String dbpw=storeRegistDAO.pwCheck(code);
+
+		
+		return dbpw;
+	}
+	
 	
 	//myPage
 	public int myPageUpdate(StoreRegistDTO storeRegistDTO) throws Exception{

@@ -135,7 +135,7 @@
 	 });
 	 
 	 /* 코드 */
-	/*   $("#eb_insertBtn").click(function(){
+	  $("#eb_insertBtn").click(function(){
 			
 			$.ajax({
 				type:"GET",
@@ -147,7 +147,7 @@
 				}
 			});
 		}); 
-	  */
+	 
  });
  
  
@@ -219,14 +219,7 @@
 			<div id="eb_fw_main_1"></div>
 			
 			<div id="eb_fw_main_2">
-				<table id="eb_fw_main_2_table">
-					<tr >
-						<td class="eb_row">회계</td>
-						<td class="eb_row">영업/구매</td>
-						<td class="eb_row">인사</td>
-						<td class="eb_row">일정</td>
-					</tr>
-				</table>
+		
 			</div>
 				
 				
@@ -297,9 +290,11 @@
 						   </tbody>
 					 </table>
 					
+					
+					
 					<!-- view Modal -->
 					<form action="tempRegistUpdate" method="post">
-               <div class="modal fade" id="eb_view_modal">
+               <div class="modal fade eb_view_modal" id="eb_view_modal">
           
             <div class="modal-dialog">
             
@@ -316,33 +311,29 @@
                           
                          <!--  Modal body -->
              <div class="modal-body">
-             
-               <table id="eb_modal_table">
-                  <tr>
-                     <td>부서 코드</td>
-                     <td><input type="text" class="eb_viewCode" name="code" readonly="readonly"></td>
-                  </tr>
-                  <tr> 
-                     <td>부서명</td>
-                     <td><input type="text" class="eb_viewTemp" name="temp"></td>
-                  </tr>
-                  <tr>   
-                     <td>비고</td>
-                     <td><input type="text" class="eb_viewMemo" name="memo"></td>
-                  </tr>
-                  
-                  
-               
-                            
-               </table>
+
+               		 <div class="input-group input-group_modal">
+							  <span class="input-group-addon">부서 코드</span>
+							  <input type="text" class="form-control eb_viewCode"  readonly="readonly" name="code">
+					</div>
+					
+						 <div class="input-group input-group_modal">
+							  <span class="input-group-addon">부서명</span>
+							  <input type="text" class="form-control eb_viewTemp" name="temp">
+					</div>
+					
+						 <div class="input-group input-group_modal">
+							  <span class="input-group-addon">비고</span>
+							  <input type="text" class="form-control eb_viewMemo" name="memo">
+					</div>
                
              </div>
                           
                           <!-- modal footer -->
             <div class="modal-footer">
-               <button id="eb_tempUpdate">수정</button>
+               <button id="eb_tempUpdate"  class="btn btn-default">수정</button>
                
-               <input type="button" id="eb_tempDelete" data-dismiss="modal" value="삭제">
+               <input type="button" id="eb_tempDelete" data-dismiss="modal"  class="btn btn-default" value="삭제">
                
                   
              </div>
@@ -388,7 +379,7 @@
 			 
 				<div class="modal-dialog">
 				
-					 <div class="modal-content" id="tModal">
+					 <div class="modal-content" >
 						      
 						        <!-- Modal Header -->
 						<div class="modal-header">
@@ -402,25 +393,22 @@
 						        <!-- Modal body -->
 				 <div class="modal-body ">
 	
-				<table id="eb_modal_tableT">
-						<tr>
-						
-						   <td>부서 코드</td>
-						   <td><input type="text"  name="code" id="eb_tempCode"></td>
-						</tr>
-						<tr>  
-							
-						   <td>부서명</td>
-						   <td><input type="text" name="temp"></td>
-						 </tr>
-						 <tr>  
-						
-						   <td>비고</td>
-						   <td><input type="text" name="memo"></td>
-						</tr>
+	
+						 <div class="input-group input-group_modal">
+							  <span class="input-group-addon">부서 코드</span>
+							  <input type="text" class="form-control"  id="eb_tempCode" readonly="readonly" name="code">
+					</div>
 					
-						          
-					</table> 
+						 <div class="input-group input-group_modal">
+							  <span class="input-group-addon">부서명</span>
+							  <input type="text" class="form-control" name="temp">
+					</div>
+					
+						 <div class="input-group input-group_modal">
+							  <span class="input-group-addon">비고</span>
+							  <input type="text" class="form-control" name="memo">
+					</div>
+	
 					
 				 </div>
 						        

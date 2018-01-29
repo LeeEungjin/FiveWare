@@ -138,9 +138,12 @@
 							</div> -->
 							
 							<!-- 마이페이지 -->
-							<div class="quick_menu_box_1">
-								<i class="fa fa-user-circle-o" style="font-size:45px" data-toggle="tooltip" data-placement="bottom" title="마이페이지"></i>
-							</div>
+							  <div class="quick_menu_box_1">
+				                  <a href="./myPage/myPageMain" style="color : black;">
+				                  	<i class="fa fa-user-circle-o" style="font-size:45px"  data-toggle="tooltip" data-placement="bottom" title="마이페이지"></i>
+				                  </a>
+				                  
+				               </div>
 							
 							<!-- 사다리타기 -->
 							<div class="quick_menu_box_1" data-toggle="modal" data-target="#game">
@@ -258,7 +261,7 @@
                            <span class="srm_jk_bigdiv">우리 매장관리</span>
                         </span>
                      
-                     <a href="./myPage/storeMyPage">
+                     <a href="./myPage/myPageMain">
                         <span class="srm_jk_smalldiv">
                            <span class="srm_jk_writing">매장 정보</span>
                         </span>
