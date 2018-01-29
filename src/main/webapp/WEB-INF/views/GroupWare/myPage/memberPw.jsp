@@ -17,7 +17,17 @@
 	 
 		 var message = '${message}';
 	     if(message != ""){
-	        alert(message);
+	    	 swal({
+                 title:message,
+                 type: "success",
+                 showCancelButton: false,
+                 confirmButtonClass: "btn-primary",
+                 confirmButtonText: "확인",
+                 closeOnConfirm: false
+               },
+               function(){
+					location.reload();
+               });
 	     }
 	 
 		$(".fw_menu").click(function(){
@@ -52,7 +62,7 @@
 						$("#submenu_table_1").css("display","none");
 						$("#submenu_table_2").css("display","block");
 					}else{
-						alert("비밀번호를 확인해주세요.");
+						  swal("비밀번호를 확인해주세요.");
 						return false;
 					}
 					
@@ -68,7 +78,7 @@
 			if(pw1==pw2){
 				$("#eb_frm").submit();
 			}else{
-				alert("비밀번호가 일치 하지 않습니다. 다시 입력해주세요");
+				  swal("비밀번호가 일치 하지 않습니다. 다시 입력해주세요.");
 				return false;
 			}
 		
@@ -166,7 +176,7 @@
 			<div id="eb_contents_wrap">
 				 
 				<div class="eb_contents_text">
-				 	<span class="glyphicon glyphicon-file" id="eb_contents_text_p">비밀번호수정</span>
+				 	<span  id="eb_contents_text_p">비밀번호수정</span>
 				</div>
 		<!-- contents -->
 					
@@ -192,9 +202,9 @@
 					<div class="panel panel-danger">
      			 		<div class="panel-heading">새로운 비밀번호를 입력해주세요. </div>
       					<div class="panel-body">
-      						비밀번호 <input type="password" name="pw" style="margin-bottom: 20px;" id="eb_pw1"> <br>
-      						비밀번호 확인 <input type="password" style="margin-bottom: 20px;" id="eb_pw2">
-      						 <input type="button" value="확인" class="btn" id="eb_pwResult"> 
+      						 <input type="password" name="pw" style="margin-bottom: 20px; width: 95%; height: 40px;" id="eb_pw1" placeholder="새 비밀번호"> <br>
+      						 <input type="password" style="margin-bottom: 20px;  width: 95%; height: 40px;" id="eb_pw2" placeholder="새 비밀번호 확인">
+      						 <input type="button" value="확인" class="btn" id="eb_pwResult" style="width: 95%; height: 40px;"> 
       					
       					</div>
       					 

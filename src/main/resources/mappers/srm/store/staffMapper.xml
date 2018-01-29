@@ -5,6 +5,9 @@
   
   <mapper namespace="staffMapper">
 
+	<select id="totalCountTime" resultType="int">
+  		select nvl(count(num),0) from stafftime 
+  	</select>
 
 	<update id="staffTimeUpdate" parameterType="staffTimeDTO">
 		update stafftime set lastTime=#{lastTime} where name=#{name} and regdate=#{regdate}
@@ -13,8 +16,12 @@
 		insert into stafftime values(#{regdate},#{startTime},#{lastTime},#{store},#{name},staff_seq.nextval) 
 	</insert>
 	
-	<select id="staffTimeList" parameterType="staffTimeDTO" resultType="staffTimeDTO">
+	<select id="staffTimeList" parameterType="com.five.ware.util.RowNum" resultType="staffTimeDTO">
 		select * from staffTime where store=#{store}
+		<if test="kind=='regdate'"> 
+				and regdate like '%'||#{search}||'%' 
+			</if>
+			
 	</select>
 	
 	<select id="posStaffList" resultType="staffDTO" parameterType="String">

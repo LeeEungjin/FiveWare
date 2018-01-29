@@ -23,7 +23,17 @@
 	 
 		 var message = '${message}';
 	     if(message != ""){
-	        alert(message);
+	       	 swal({
+                 title:message,
+                 type: "success",
+                 showCancelButton: false,
+                 confirmButtonClass: "btn-primary",
+                 confirmButtonText: "확인",
+                 closeOnConfirm: false
+               },
+               function(){
+					location.reload();
+               });
 	     }
 	 
 		$(".fw_menu").click(function(){
@@ -90,26 +100,42 @@
 	 
 	 //승인
 	 $("#eb_cancel").click(function(){
-		 if(confirm("승인하시겠습니까 ?") == false){
-		     alert("취소되었습니다.")   
-			 return false;
-		  }else{
-			  var approval='미승인';
-			  var code=$(".eb_view").attr("title");
-			  $.ajax({
-				 data : {"code" : code ,"approval" : approval},
-				 type : "post",
-				 url : "./chitApprovalUpdate",
-				 success : function(data){
-					 alert(data);
-					 location.reload();
-				 },error : function(){
-					 alert("error")
-				 }
-			  });
-			  
-		  
-		 }
+		 swal({
+             title:"승인 하시겠습니까?",
+             type: "success",
+             showCancelButton: true,
+             confirmButtonClass: "btn-primary",
+             confirmButtonText: "확인",
+             closeOnConfirm: false
+           },
+           function(){
+        		  var approval='미승인';
+    			  var code=$(".eb_view").attr("title");
+    			  $.ajax({
+    				 data : {"code" : code ,"approval" : approval},
+    				 type : "post",
+    				 url : "./chitApprovalUpdate",
+    				 success : function(data){
+    					 swal({
+     		                 title:data,
+     		                 type: "success",
+     		                 showCancelButton: false,
+     		                 confirmButtonClass: "btn-primary",
+     		                 confirmButtonText: "확인",
+     		                 closeOnConfirm: false
+     		               },
+     		               function(){
+     							location.reload();
+     		               });
+    				 },error : function(){
+    					 alert("error")
+    				 }
+    			  });
+    			  
+		    	
+           });
+		
+	
 	 });
 	 
 	 //delete
@@ -120,8 +146,17 @@
 				url : "./chitDelete",
 				type : "get",
 				success : function(data){
-					alert(data);
-					location.reload();
+					 swal({
+ 		                 title:data,
+ 		                 type: "success",
+ 		                 showCancelButton: false,
+ 		                 confirmButtonClass: "btn-primary",
+ 		                 confirmButtonText: "확인",
+ 		                 closeOnConfirm: false
+ 		               },
+ 		               function(){
+ 							location.reload();
+ 		               });
 				},error : function(){
 					alert("error")
 				}

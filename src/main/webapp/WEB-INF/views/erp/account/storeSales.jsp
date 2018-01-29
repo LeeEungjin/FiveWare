@@ -23,7 +23,18 @@
 	 
 		 var message = '${message}';
 	     if(message != ""){
-	        alert(message);
+	    	 swal({
+                 title:message,
+
+                 type: "success",
+                 showCancelButton: false,
+                 confirmButtonClass: "btn-primary",
+                 confirmButtonText: "확인",
+                 closeOnConfirm: false
+               },
+               function(){
+					location.reload();
+               });
 	     }
 	 
 		$(".fw_menu").click(function(){
@@ -43,17 +54,17 @@
 			var regdate=$("#eb_selectRegdate").val();
 		
 			if(regdate==""){
-				alert("날짜를 선택해주세요.");
+				  swal("날짜를 선택해주세요.");
 				return false;
 			}
 			
 			if(store=="-선택-"){
-				alert("지점을 선택해주세요.");
+				  swal("지점을 선택해주세요.");
 				return false;
 			}
 			
 			if(menu=="-선택-"){
-				alert("메뉴를 선택해주세요.");
+				  swal("메뉴를 선택해주세요.");
 				return false;
 			}
 			$("#eb_contents_table").css("display","block");

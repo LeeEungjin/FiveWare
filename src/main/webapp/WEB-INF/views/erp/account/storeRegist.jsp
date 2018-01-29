@@ -24,7 +24,18 @@
 	 
 		 var message = '${message}';
 	     if(message != ""){
-	        alert(message);
+	    	 swal({
+                 title:message,
+
+                 type: "success",
+                 showCancelButton: false,
+                 confirmButtonClass: "btn-primary",
+                 confirmButtonText: "확인",
+                 closeOnConfirm: false
+               },
+               function(){
+					location.reload();
+               });
 	     }
 	 
 
@@ -102,8 +113,17 @@
 			url : "./storeRegistDelete",
 			type : "get",
 			success : function(data){
-				alert(data);
-				location.reload();
+				swal({
+	                 title:data,
+	                 type: "success",
+	                 showCancelButton: false,
+	                 confirmButtonClass: "btn-primary",
+	                 confirmButtonText: "확인",
+	                 closeOnConfirm: false
+	               },
+	               function(){
+						location.reload();
+	               });
 			},error : function(){
 				alert("error");
 			}
@@ -112,11 +132,20 @@
 	 
 	  //전체삭제
 		 $("#deleteBtn").click(function(){
-		 if(confirm("정말 삭제하시겠습니까 ?") == false){
-			     alert("삭제가 취소되었습니다.")   
-				 return false;
-			    }else{
-			    	var count=0;
+			 
+			 var count=0;
+			 var code="";
+			 
+			 swal({
+	             title:"삭제하시겠습니까?",
+	             type: "success",
+	             showCancelButton: true,
+	             confirmButtonClass: "btn-primary",
+	             confirmButtonText: "확인",
+	             closeOnConfirm: false
+	           },
+	           function(){
+	        	  	var count=0;
 			    	var code="";
 			    	var cod=[];
 			    	$(".eb_input_chk").each(function(d){
@@ -126,21 +155,30 @@
 			    			cod.push(code);
 			    		}
 			    	});
-			    
-			 
-			    	 $.ajax({
+		
+			    	$.ajax({
 						data : {"code" : cod.toString()},
-						url : "./storeRegistDelete",
+						url :"./storeRegistDelete",
 						type : "get",
 						success : function(data){
-							alert(data);
-							location.reload();
+							 swal({
+				                 title:data,
+				                 type: "success",
+				                 showCancelButton: false,
+				                 confirmButtonClass: "btn-primary",
+				                 confirmButtonText: "확인",
+				                 closeOnConfirm: false
+				               },
+				               function(){
+									location.reload();
+				               });
 						},error : function(){
-							alert("error");
+							alert("error")
 						}
-					});
+					 });
 			    	
-			    }
+	           });
+			 
 		
 		 });
 	 
@@ -161,28 +199,28 @@
 	  $("#eb_bankBtn").click(function(){
 		   var bank=$("#eb_bank").val(); 
 		   var account=$("#eb_account").val().length;
-		alert(account);
+
 		  if(bank=='국민은행'){
 			  
 			  if(account==14){
-				  alert("확인되었습니다.");
+				  swal("확인 되었습니다.");
 			  }else{
-				  alert("잘못입력되었습니다. 확인 후 다시 입력해주세요");
+				  swal("잘못 입력 되었습니다." ,"확인 후 다시 입력해주세요");
 			  }
 		  
 		  }else if(bank=='신한은행'){
 			  
 			  if(account==12){
-				  alert("확인되었습니다.");
+				  swal("확인 되었습니다.");
 			  }else{
-				  alert("잘못입력되었습니다. 확인 후 다시 입력해주세요");
+				  swal("잘못 입력 되었습니다." ,"확인 후 다시 입력해주세요");
 			  }
 		 
 		  }else{
 			  if(account==13){
-				  alert("확인되었습니다.");
+				  swal("확인 되었습니다.");
 			  }else{
-				  alert("잘못입력되었습니다. 확인 후 다시 입력해주세요");
+				  swal("잘못 입력 되었습니다." ,"확인 후 다시 입력해주세요");
 			  }
 		  }
 		  
@@ -257,6 +295,7 @@
 </head>
 <body>
 <c:import url="${url}/resources/temp/headerExample.jsp"></c:import> 
+<c:import url="${url}/resources/temp/message.jsp"></c:import> 
 
 
 <div id="fw_container">

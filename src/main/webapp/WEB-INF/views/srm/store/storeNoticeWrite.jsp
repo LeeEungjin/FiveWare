@@ -18,7 +18,17 @@
 	 
 		 var message = '${message}';
 	     if(message != ""){
-	        alert(message);
+	    	 swal({
+                 title:message,
+                 type: "success",
+                 showCancelButton: false,
+                 confirmButtonClass: "btn-primary",
+                 confirmButtonText: "확인",
+                 closeOnConfirm: false
+               },
+               function(){
+					location.reload();
+               });
 	     }
 	 
 		$(".fw_menu").click(function(){
@@ -80,21 +90,14 @@
 	<div id="fw_mainwrap">
 		
 		<div id="fw_main">
-			
-			<div id="eb_fw_main_1"></div>
-			
-			<div id="eb_fw_main_2">
-	
-			</div>
-				
-				
+			<img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png">
 		</div>
 			
 			
 			<!--contents 시작  -->
 			<div id="eb_contents_wrap">
 				<div class="eb_contents_text">
-				 	<span class="glyphicon glyphicon-file" id="eb_contents_text_p">자유게시판</span>
+				 	<span  id="eb_contents_text_p">자유게시판</span>
 				</div> 
 				
 				
@@ -105,7 +108,7 @@
 					<table border="1" class="eb_writetable">
 						<tr>
 							<td class="eb_Wtable_td1">글쓴이</td>
-							<td class="eb_Wtable_td"><input type="text" name="write" class="eb_input" value="${member.name}"></td>
+							<td class="eb_Wtable_td"><input type="text" name="write" class="eb_input" value="${member.name}" readonly="readonly"></td>
 						</tr>	
 						<tr>	
 							<td class="eb_Wtable_td1">제목</td>

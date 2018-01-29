@@ -63,8 +63,14 @@ public class StaffDAO {
 	}
 	
 	//직원 출퇴근 조회
-	public List<StaffTimeDTO> staffTimeList(String store)throws Exception{
-		return sqlSession.selectList(namespace+"staffTimeList", store);
+	public List<StaffTimeDTO> staffTimeList(RowNum rowNum, ListData listData,String store)throws Exception{
+		Map<String,Object> map=new HashMap<String, Object>();
+		map.put("startRow", rowNum.getStartRow());
+		map.put("lastRow", rowNum.getLastRow());
+		map.put("kind", listData.getKind());
+		map.put("search", listData.getSearch());
+		map.put("store", store);
+		return sqlSession.selectList(namespace+"staffTimeList", map);
 	}
 	
 	//pos staff List
@@ -83,6 +89,11 @@ public class StaffDAO {
 		
 		return sqlSession.selectList(namespace+"selectList", map);
 	}
+	
+	//totalCountTime
+		public int totalCountTime(RowNum rowNum) throws Exception{
+			return sqlSession.selectOne(namespace+"totalCount", rowNum);
+		}
 	
 	//totalCount
 	public int totalCount(RowNum rowNum) throws Exception{
