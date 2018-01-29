@@ -318,16 +318,10 @@
             </tbody>
          </table>
          </form>
-<<<<<<< HEAD
+
 </div>
 </div>
 
-=======
 
-         
-                </div>
-                </div>
-
->>>>>>> 6105c38e10eccf4a49fe7b3096b0c972a12d9481
 </body>
 </html>
