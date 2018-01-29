@@ -5,6 +5,17 @@
   
   <mapper namespace="storeRegistMapper">
   
+  
+  <!--pw 변경  -->
+  <update id="pwUpdate" parameterType="java.util.Map">
+  	update storeregist set pw=#{pw} where code=#{code}
+  </update>
+  
+  <!--pw확인  -->
+  <select id="pwCheck" parameterType="String" resultType="String">
+  	select pw from storeregist where code=#{code}
+  </select>
+  
    <!-- login -->
   <select id="login" resultType="storeRegistDTO" parameterType="storeRegistDTO">
   	select * from storeregist where code=#{code} and pw=#{pw}

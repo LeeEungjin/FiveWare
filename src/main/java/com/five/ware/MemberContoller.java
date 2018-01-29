@@ -30,6 +30,9 @@ public class MemberContoller {
 	@Inject
 	private FileService fileService;
 	
+
+	
+	
 	//logout
 	@RequestMapping(value="memberLogout")
 	public String memberLogout(HttpSession session) throws Exception{

@@ -61,7 +61,7 @@
         	   $(".eb_viewStore").val(data.store);
         	   $(".eb_viewStoreNum").val(data.storeNum);
         	   $(".eb_viewName").val(data.name);
-        	   $(".eb_viewAddr").html(data.addr);
+        	   $(".eb_viewAddr").val(data.addr);
         	   $(".eb_viewTel").val(data.tel);
         	   $(".eb_viewEmail").val(data.email);
         	   $(".eb_viewBank").val(data.bank);
@@ -190,7 +190,7 @@
 	 
 	 
 		 /* 코드 */
- /*  	  $("#eb_insertBtn").click(function(){
+  	  $("#eb_insertBtn").click(function(){
 			
 			$.ajax({
 				type:"GET",
@@ -201,7 +201,7 @@
 					$(".eb_code").val(data);
 				}
 			});
-		});  */ 
+		});  
 		
 		
 	
@@ -317,14 +317,7 @@
 			<div id="eb_fw_main_1"></div>
 			
 			<div id="eb_fw_main_2">
-				<table id="eb_fw_main_2_table">
-					<tr >
-						<td class="eb_row">회계</td>
-						<td class="eb_row">영업/구매</td>
-						<td class="eb_row">인사</td>
-						<td class="eb_row">일정</td>
-					</tr>
-				</table>
+		
 			</div>
 				
 				
@@ -402,7 +395,7 @@
 					<!-- view Modal -->
 					
 			<form action="storeRegistUpdate" method="post">
-					<div class="modal fade" id="eb_view_modal">
+					 <div class="modal fade" id="eb_view_modal">
 			 
 				<div class="modal-dialog">
 				
@@ -420,65 +413,69 @@
 						        <!-- Modal body -->
 				 <div class="modal-body">
 				 
-					<table id="eb_modal_table">
-						<tr>
-						
-						   <td>지점명 코드</td>
-						   <td><input type="text" class="eb_viewCode" name="code" readonly="readonly"></td>
-						   <td>지점명</td>
-						   <td><input type="text" class="eb_viewStore" name="store"></td>
-						   
-						</tr>
-						
-						<tr>
-						   <td>대표자</td>
-						   <td><input type="text" class="eb_viewName" name="name"></td>
-						   <td>사업자 등록 번호</td>
-						   <td><input type="text" class="eb_viewStoreNum" name="storeNum"></td>
-						   
-						</tr>
-						          	
-						<tr>
-						   <td>주소</td>
-						   <td> <textarea name="addr" class="eb_viewAddr" rows="4" ></textarea></td>
-						   <td>영업시간</td>
-						   <td><input type="text" class="eb_viewTime" name="time"></td>
-						 
-						</tr>
-						          	
-						<tr>
-						   <td>전화번호</td>
-						   <td><input type="text" class="eb_viewTel" name="tel"></td> 
-						   <td>E-mail</td>
-						   <td><input type="text" class="eb_viewEmail" name="email"></td>
-						</tr>
-						          	
-						<tr>
-						   <td>은행</td>
-						   <td>
-						   		<select name="bank" class="eb_viewBank">
+				  	<div class="input-group input-group_modal">
+							  <span class="input-group-addon">지점 코드</span>
+							  <input type="text" class="form-control eb_viewCode"  readonly="readonly" name="code">
+					</div>
+					
+					<div class="input-group input-group_modal">
+							  <span class="input-group-addon">지점명</span>
+							  <input type="text" class="form-control eb_viewStore" name="store">
+					</div>
+					
+					<div class="input-group input-group_modal">
+							  <span class="input-group-addon">대표자</span>
+							  <input type="text" class="form-control eb_viewName"  name="name">
+					</div>
+					
+					<div class="input-group input-group_modal">
+							  <span class="input-group-addon">사업자 등록 번호</span>
+							  <input type="text" class="form-control eb_viewStoreNum"    name="storeNum">
+					</div>
+					
+					<div class="input-group input-group_modal">
+							 	<span class="input-group-addon">주소</span>
+								<input type="text" class="form-control eb_viewAddr"  name="addr">  
+					</div>
+					
+					
+					<div class="input-group input-group_modal">
+							  <span class="input-group-addon">영업시간</span>
+							  <input type="text" class="form-control eb_viewTime"  name="time">
+					</div>
+					
+					
+					<div class="input-group input-group_modal">
+							  <span class="input-group-addon">전화번호</span>
+							  <input type="text" class="form-control eb_viewTel"   name="tel">
+					</div>
+					
+					
+					<div class="input-group input-group_modal">
+							  <span class="input-group-addon">E-mail</span>
+							  <input type="text" class="form-control eb_viewEmail"  name="email">
+					</div>
+		
+		
+				<div class="input-group input-group_modal">
+							  <span class="input-group-addon">은행</span>
+							  <select name="bank" class="eb_viewBank">
 						   			<option value="국민은행">국민 은행</option>
 						   			<option value="신한은행">신한 은행</option>
 						   			<option value="농협">농협</option>
 						   		</select>
-						   </td>
-						   <td>계좌번호</td>
-						   <td>
-						   		<input type="text" name="account" class="eb_viewAccount">
-							</td>
-						 </tr>
-						          
-					</table>
-					
+							  <input type="text" class="form-control eb_viewAccount"  id="eb_account"  name="account" placeholder="-없이 입력해주세요.">
+							
+					</div>
+		
+		
+	
 				 </div>
 						        
 						        <!-- Modal footer -->
 				<div class="modal-footer">
-					<button id="eb_storeUpdate">수정</button>
-					
-					<input type="button" id="eb_storeDelete" data-dismiss="modal" value="삭제">
-					
-						
+						<input type="button" class="btn btn-default" value="확인" data-dismiss="modal">
+						<input type="submit" id="eb_btn" class="btn btn-default" value="수정">
 				 </div>
 						        
 					</div>
@@ -535,71 +532,67 @@
 						        
 						        <!-- Modal body -->
 				 <div class="modal-body">
-		
-					<table id="eb_modal_table">
-						<tr class="eb_modal_table_tr">
-						   <td  class="eb_modal_table_td">지점명 코드</td>
-						   <td> <input type="text" name="code" class="eb_code" ></td>
-						   <td class="eb_modal_table_td">지점명</td>
-						   <td><input type="text" name="store" id="eb_store"></td>
-						   
-						</tr>
-						
-						<tr class="eb_modal_table_tr">
-						   <td class="eb_modal_table_td">대표자</td>
-						   <td><input type="text" name="name" id="eb_name"></td>
-						   <td class="eb_modal_table_td">사업자 등록 번호</td>
-						   <td><input type="text" name="storeNum" id="eb_storeNum"></td>
-						   
-						</tr>
-						          	
-						<tr class="eb_modal_table_tr">
-						   <td class="eb_modal_table_td">주소</td>
-						   <td> 
-							   	<input type="text" id="sample6_postcode" placeholder="우편번호" name="addr">
+				 
+				  	<div class="input-group input-group_modal">
+							  <span class="input-group-addon">지점 코드</span>
+							  <input type="text" class="form-control eb_code"  readonly="readonly" name="code">
+					</div>
+					
+					<div class="input-group input-group_modal">
+							  <span class="input-group-addon">지점명</span>
+							  <input type="text" class="form-control" id="eb_store"  name="store">
+					</div>
+					
+					<div class="input-group input-group_modal">
+							  <span class="input-group-addon">대표자</span>
+							  <input type="text" class="form-control"  id="eb_name"  name="name">
+					</div>
+					
+					<div class="input-group input-group_modal">
+							  <span class="input-group-addon">사업자 등록 번호</span>
+							  <input type="text" class="form-control"  id="eb_storeNum"  name="storeNum">
+					</div>
+					
+					<div class="input-group input-group_modal">
+							  <span class="input-group-addon">주소</span>
+							 <input type="text" id="sample6_postcode" placeholder="우편번호" class="form-control" name="addr">
 								<input type="button" class="btn btn-primary" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-								<input type="text"  id="sample6_address" placeholder="주소" name="addr" id="eb_addr"><br>
-								<input type="text" id="sample6_address2" placeholder="나머지 주소를 입력해주세요." name="addr">  
-						   </td>
-                               
-						      
-						  <td class="eb_modal_table_td">영업시간</td>
-						   <td><input type="text" name="time" id="eb_time"></td>
-						 
-						 
-						</tr>
-				
-						          	
-						<tr class="eb_modal_table_tr">
-						   <td class="eb_modal_table_td">전화번호</td>
-						   <td><input type="text" name="tel" id="eb_tel"></td> 
-						   <td class="eb_modal_table_td">E-mail</td>
-						   <td><input type="text" name="email" id="eb_email"></td>
-						</tr>
-						          	
-						<tr>
-							
-						</tr> 
-						       
-						<tr class="eb_modal_table_tr">
-						   <td class="eb_modal_table_td">은행</td>
-						   <td>
-						   		<select name="bank" id="eb_bank">
+								<input type="text"  id="sample6_address" class="form-control" placeholder="주소" name="addr" id="eb_addr"><br>
+								<input type="text" id="sample6_address2" class="form-control" placeholder="나머지 주소를 입력해주세요." name="addr">  
+					</div>
+					
+					
+					<div class="input-group input-group_modal">
+							  <span class="input-group-addon">영업시간</span>
+							  <input type="text" class="form-control"  id="eb_time"  name="time">
+					</div>
+					
+					
+					<div class="input-group input-group_modal">
+							  <span class="input-group-addon">전화번호</span>
+							  <input type="text" class="form-control"  id="eb_tel"  name="tel">
+					</div>
+					
+					
+					<div class="input-group input-group_modal">
+							  <span class="input-group-addon">E-mail</span>
+							  <input type="text" class="form-control"  id="eb_email"  name="email">
+					</div>
+		
+		
+				<div class="input-group input-group_modal">
+							  <span class="input-group-addon">은행</span>
+							  <select name="bank" id="eb_bank">
 						   			<option value="국민은행">국민 은행</option>
 						   			<option value="신한은행">신한 은행</option>
 						   			<option value="농협">농협</option>
 						   		</select>
-						   </td>
-						   <td class="eb_modal_table_td">계좌번호</td>
-						   <td>
-						   		<input type="text" name="account" id="eb_account" placeholder="-없이 입력해주세요.">
-						   		<input type="button" id="eb_bankBtn" value="확인">
-						   </td>
-						 </tr>
-						          
-					</table> 
-
-				
+							  <input type="text" class="form-control"  id="eb_account"  name="account" placeholder="-없이 입력해주세요.">
+							  <input type="button" id="eb_bankBtn" value="확인">
+					</div>
+		
+		
+	
 				 </div>
 						        
 						        <!-- Modal footer -->

@@ -133,12 +133,12 @@ public class MessageController {
 	@ResponseBody
 	public List<Object> signData(HttpSession session, Model model) throws Exception{
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		System.out.println("code : "+memberDTO.getCode());
+	
 		List<String> temps = epaymentService.tempList();
 		List<Object> ar = new ArrayList<Object>();
 		
 		ar.add(temps);
-		/*model.addAttribute("readCount", messageService.readCount(memberDTO.getCode()));*/
+
 		
 		int readCount=messageService.readCount(memberDTO.getCode());
 		

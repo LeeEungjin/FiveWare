@@ -1,5 +1,5 @@
 @CHARSET "UTF-8";
-@CHARSET "UTF-8";
+
 
 *{
 	margin: 0px;
@@ -101,6 +101,13 @@ li{
 	font-size: 20px;
 }
 
+#eb_fw_main_2_table{
+	width: 90%;
+	height: 100%;
+	color:white;
+	
+}
+
 
 
 
@@ -109,7 +116,7 @@ li{
 	height: 90%;
 	margin : 0 auto;
 	margin-top : 10px;
-
+	background-color: white;  
 }
 
 .eb_contents_text{
@@ -122,104 +129,39 @@ li{
 	font-weight: bold;
 }
 
-#eb_contents_table{
-	width: 80%;
-	height: 50%;
-	margin-bottom: 40px;
-	margin-top: 50px;
-	
+
+.eb_text{
+	font-size: 20px;
+	color:red;
 }
+
 
 .eb_blank{
 	width: 100%;
 	height: 30px;
 }
 
-.eb_contents{
-	width: 90%;
-	height: 75%;
-	margin-top: 30px;
-	
+#eb_contents_table{
+	width:80%;
+	height:300px;
+	margin-top : 20px;
+
 }
- .eb_writetable{
- 	width: 80%;
- 	height: 100%;
- 
- 
- }
- .eb_Wtable_td{
- 	width: 300px;
- 	height: 40px;
- }
- 
- .eb_Wtable_td1{
- 	width: 10%;
- 	height: 40px;
- 	text-align: center;
- }
- 
-  .eb_Wtable_td2{
- 	width: 15%;
- 	height: 40px;
- 	text-align: center;
- }
- #eb_viewTable{
- 	width : 850px;
- 	border:1px #EAEAEA solid;
- }
- #eb_td{
- 	height: 300px;
- }
-.eb_tableTitle{
-	height : 45px;
-	border-bottom : 1px #EAEAEA solid;
-	text-align: center;
-	font-size : 25px;
-	font-weight: bold;
+
+
+
+
+#submenu_table_1{
+	padding-top : 15%;
+	width: 30%;
+	height: 40%;
+	margin: 0 auto;
 }
-.eb_input{
-	width: 95%;
-	height: 30px;
-	border: 0;
-	
-}
-  .eb_textarea{
- 	width: 900px;
- 	height: 400px;
- } 
- 
- #eb_replyBox{
- 	width: 850px;
- 	height: 100px;
- 	border : 1px solid #EAEAEA;
- 	margin-top: 50px;
- 	margin-bottom: 20px;
- }
-#eb_replyBox2{
-	width: 850px;
- 	border : 1px solid #EAEAEA;
- 	margin-bottom: 20px;
-}
-#eb_replyText{
-	width: 700px;
- 	height: 80px;
- 	margin-top: 10px;
- 	margin-left: 10px;
- 	
- 	
-}
-#eb_replyBtn{
-	margin-bottom: 30px;
-	
-}
-.eb_line{
-	border: 1px solid #EAEAEA;	
-}
-.eb_p{
-	margin-top: 10px;
-	margin-left: 15px;
-	
-}
-#cke_1_contents{
-	height: 355px !important;
+
+#submenu_table_2{
+	padding-top : 15%;
+	width: 30%;
+	height: 40%;
+	margin: 0 auto;
+	display: none;
 }

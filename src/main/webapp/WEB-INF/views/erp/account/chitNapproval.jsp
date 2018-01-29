@@ -70,14 +70,14 @@
 			url : "./chitView",
 			type : "get",
 			success : function(data){
-				$(".eb_viewCode").text(data.code);
-				$(".eb_viewRegdate").text(data.regdate);
-				$(".eb_viewTemp").text(data.temp);
-				$(".eb_viewAccount").text(data.account);
-				$(".eb_viewMemo").text(data.memo);
-				$(".eb_viewDebtor").text(data.debtor);
-				$(".eb_viewCreditor").text(data.creditor);
-				$(".eb_viewApproval").text(data.approval);
+				$(".eb_viewCode").val(data.code);
+				$(".eb_viewRegdate").val(data.regdate);
+				$(".eb_viewTemp").val(data.temp);
+				$(".eb_viewAccount").val(data.account);
+				$(".eb_viewMemo").val(data.memo);
+				$(".eb_viewDebtor").val(data.debtor);
+				$(".eb_viewCreditor").val(data.creditor);
+				$(".eb_viewApproval").val(data.approval);
 			},
 			error : function(){
 				alert("데이터를 불러 오지 못했습니다.");
@@ -195,14 +195,7 @@
 			<div id="eb_fw_main_1"></div>
 			
 			<div id="eb_fw_main_2">
-				<table id="eb_fw_main_2_table">
-					<tr >
-						<td class="eb_row">회계</td>
-						<td class="eb_row">영업/구매</td>
-						<td class="eb_row">인사</td>
-						<td class="eb_row">일정</td>
-					</tr>
-				</table>
+		
 			</div>
 				
 				
@@ -300,43 +293,59 @@
                          <!--  Modal body -->
              <div class="modal-body" id="eb_modal-content_chit">
              
-              <table id="eb_table_chit" >
-              
-						   
-						
-						    <tr>
-						     <td>코드</td>
-						     <td><span class="eb_viewCode"></span></td>
-						     <td>날짜</td>	
-						     <td><span class="eb_viewRegdate"></span></td>
-						   </tr>
-						   <tr>  					
-						     <td>부서명</td>	
-						     <td><span class="eb_viewTemp"></span></td>
-						     <td>계좌</td>	
-						     <td><span class="eb_viewAccount"></span></td>
-						   </tr>
-						   <tr>  
-						     <td>차변</td>
-						     <td><span class="eb_viewDebtor"></span></td>
-						     <td>대변</td>	
-						     <td><span class="eb_viewCreditor"></span></td>
-						   </tr>
-						   <tr>  	
-						     <td>적요</td>	
-						     <td><span class="eb_viewMemo"></span></td>
-						     <td>승인여부</td>   
-						     <td><span class="eb_viewApproval"></span></td>
-						    </tr>
-	
-					 </table>
+                      <div class="modal-body" id="eb_modal-content_chit">
+             	 <div class="input-group input-group_modal">
+							  <span class="input-group-addon">코드</span>
+							  <input type="text" class="form-control eb_viewCode" readonly="readonly">
+					</div>
+					
+					 <div class="input-group input-group_modal">
+							  <span class="input-group-addon">날짜</span>
+							  <input type="text" class="form-control eb_viewRegdate" readonly="readonly">
+					</div>
+					
+						 <div class="input-group input-group_modal">
+							  <span class="input-group-addon">부서명</span>
+							  <input type="text" class="form-control eb_viewTemp" readonly="readonly">
+					</div>
+					
+						 <div class="input-group input-group_modal">
+							  <span class="input-group-addon">계좌</span>
+							  <input type="text" class="form-control eb_viewAccount" readonly="readonly">
+					</div>
+					
+					 <div class="input-group input-group_modal">
+							  <span class="input-group-addon">차변</span>
+							  <input type="text" class="form-control eb_viewDebtor" readonly="readonly">
+					</div>
+					
+					 <div class="input-group input-group_modal">
+							  <span class="input-group-addon">대변</span>
+							  <input type="text" class="form-control eb_viewCreditor" readonly="readonly">
+					</div>
+					
+					 <div class="input-group input-group_modal">
+							  <span class="input-group-addon">적요</span>
+							  <input type="text" class="form-control eb_viewMemo" readonly="readonly">
+					</div>
+					
+					 <div class="input-group input-group_modal">
+							  <span class="input-group-addon">승인여부</span>
+							  <input type="text" class="form-control eb_viewApproval" readonly="readonly">
+					</div>
+             
+             
+             
+           
+               
+             </div>
                
              </div>
                               <!-- modal footer -->
             <div class="modal-footer">
-            	<input type="button" id="eb_cancel"  value="승인" data-dismiss="modal"> 
-            	<input type="button" value="삭제" id="eb_delete" data-dismiss="modal"> 
-            	<input type="button" value="확인" data-dismiss="modal"> 
+            	<input type="button" id="eb_cancel"  value="승인" data-dismiss="modal" class="btn btn-default"> 
+            	<input type="button" value="삭제" id="eb_delete" data-dismiss="modal" class="btn btn-default"> 
+            	<input type="button" value="확인" data-dismiss="modal" class="btn btn-default"> 
           
        		 </div>
                           

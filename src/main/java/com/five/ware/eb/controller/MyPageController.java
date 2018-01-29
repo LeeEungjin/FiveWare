@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.test.web.ModelAndViewAssert;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -34,6 +35,71 @@ public class MyPageController {
 	@Inject
 	private TimeService timeService;
 	
+	
+	
+	
+	//비밀번호 변경
+	@RequestMapping(value="memberPwUpdate",method=RequestMethod.POST)
+	public String memberPwUpdate(String code,String pw,RedirectAttributes rd,String kind){
+	
+		int result=0;
+		try {
+			if(kind.equals("member")){
+				result = memberService.pwUpdate(code,pw);
+			}else{
+				result=storeRegistService.pwUpdate(code, pw);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String message="fail";
+		if(result>0){
+			message="success";
+		}
+		
+		rd.addFlashAttribute("message", message);
+		return "redirect:./myPageMain";
+	}
+	
+	//member pw
+		@RequestMapping(value="memberPwCheck",method=RequestMethod.GET)
+		@ResponseBody
+		public boolean memberPw(String code,String pw,String kind)throws Exception{
+			boolean check=false;
+
+			if(kind.equals("member")){
+			String dbpw=memberService.pwCheck(code);
+
+			
+			if(dbpw.equals(pw)){
+				check=true;
+			}
+			
+			}else{
+				String dbpw=storeRegistService.pwCheck(code);
+				if(dbpw.equals(pw)){
+					check=true;
+				}
+			}
+			
+			return check;
+		}
+	
+		//member pw
+		@RequestMapping(value="memberPw")
+		public String memberPw()throws Exception{
+			return "/GroupWare/myPage/memberPw";
+		}
+		
+	
+	//main
+	@RequestMapping(value="myPageMain")
+	public String myPageMain()throws Exception{
+		
+		return "/GroupWare/myPage/myPageMain";
+	}
 	
 	
 	//출퇴근 기록

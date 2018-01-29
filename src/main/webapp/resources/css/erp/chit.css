@@ -101,21 +101,6 @@ li{
 	font-size: 20px;
 }
 
-#eb_fw_main_2_table{
-	width: 70%;
-	height: 100%;
-	color:white;
-	
-}
-
-td.eb_row{
-	width: 25%;
-	height: 100%;
-	
-}
-td.eb_row:hover {
-	background-color: #353535; 
-} 
 
 
 #eb_contents_wrap{
@@ -174,7 +159,7 @@ td.eb_row:hover {
 }
 
 #eb_contents_table{
-	width:80%;
+	width:90%;
 	height:350px;
 	margin-top : 20px;
 	background-color: #EAEAEA;
@@ -210,7 +195,7 @@ td.eb_row:hover {
 	height: 80%;
 }
 .eb_total{
-	width: 80%;
+	width: 90%;
 	height: 26px;
 	background-color: black;
 }
@@ -218,7 +203,7 @@ td.eb_row:hover {
 	margin-left: 30px;
 }
 #eb_debtor{
-	margin-left: 455px;
+	margin-left: 62%;
 }
 
 .eb_table_th{

@@ -95,6 +95,81 @@
 			 }); // END ajax
 		  }
 	   }); // 로그인 버튼 끝
+<<<<<<< HEAD
+      
+	   
+	   
+   			var kind='${kind}';
+   			var code='${member.code}';
+   			var pw='${member.pw}';
+   			
+      /* $("#eb_href_1").click(function(){
+    	  
+    	  if(kind==""){
+    		  alert("로그인 후 이용 가능합니다.")
+    	  }else if(kind=='member'){
+    		  
+    		  if(pw==code){
+    			  alert("비밀번호 변경 후 이용해주세요.")
+        		  $("#eb_href_1").attr("href","./myPage/myPageMain");
+    		  }else{
+    			  $("#eb_href_1").attr("href","erp"); 
+    		  }
+    		  
+    	  }else{
+    		  alert("본사 사람들만 이용 가능합니다.")
+    	  }
+    	  
+  
+    	  
+      });
+      
+      $("#eb_href_2").click(function(){
+      
+    	  if(kind==""){
+    		  alert("로그인 후 이용 가능합니다.")
+    	  }else{
+    		  if(pw==code){
+        		  alert("비밀번호 변경 후 이용해주세요.")
+        		  $("#eb_href_2").attr("href","./myPage/myPageMain");
+        	  }else{
+        		  $("#eb_href_2").attr("href","groupware");
+        	  } 
+    	  }
+    	
+      });
+      
+      
+      
+      $("#eb_href_3").click(function(){
+    	  
+    	  if(kind==""){
+    		  alert("로그인 후 이용 가능합니다.")
+    	  }else if(kind=='store'){
+    		  if(pw==code){
+    			  alert("비밀번호 변경 후 이용해주세요.")
+        		  $("#eb_href_3").attr("href","./myPage/myPageMain");
+    		  }else{
+    			  $("#eb_href_3").attr("href","srm"); 
+    		  }
+    		  
+    	  }else{
+    		  alert("지점 사람들만 이용 가능합니다.")
+    	  }
+    	  
+    	 
+      }); */
+      
+
+   
+      
+    	  
+	   
+	
+	   
+       
+=======
+>>>>>>> master
    });
 </script>
 
@@ -206,8 +281,19 @@
 			</table>
 			</form>
 
+<<<<<<< HEAD
+
+
+
+
+             
+                </div>
+                </div>
+                
+=======
 		</div>
 	</div>
+>>>>>>> master
 
 </body>
 </html>

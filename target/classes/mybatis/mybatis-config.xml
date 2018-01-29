@@ -29,7 +29,13 @@
   		<typeAlias type="com.five.ware.storeSales.StoreSalesDTO" alias="storeSalesDTO"/>
   		<typeAlias type="com.five.ware.storeSales.StoreMoneyDTO" alias="storeMoneyDTO"/>
 		<typeAlias type="com.five.ware.srm.storeNotice.StoreNoticeDTO" alias="storeNoticeDTO"/>
+<<<<<<< HEAD
+
 		<typeAlias type="com.five.ware.message.MessageDTO" alias="messageDTO"/>
+
+=======
+		<typeAlias type="com.five.ware.message.MessageDTO" alias="messageDTO"/>
+>>>>>>> master
   		<typeAlias type="com.five.ware.event.EventDTO" alias="EventDTO"/>
   		<typeAlias type="com.five.ware.project.ProjectDTO" alias="ProjectDTO"/>
   		<typeAlias type="com.five.ware.project.ProjectScheduleDTO" alias="ProjectScheduleDTO"/>
@@ -38,5 +44,9 @@
   		<typeAlias type="com.five.ware.srm.contest.ContestLikeDTO" alias="ContestLikeDTO"/>
   		<typeAlias type="com.five.ware.util.RowNum" alias="RowNum"/>
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> master
   	</typeAliases>
   </configuration>

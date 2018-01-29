@@ -19,6 +19,24 @@ private SqlSession sqlsession;
 private static final String namespace="storeRegistMapper.";
 
 
+		//pw 변경
+		public int pwUpdate(String code,String pw)throws Exception{
+			Map<String, Object> map=new HashMap<String, Object>();
+			map.put("code", code);
+			map.put("pw", pw);
+			int result=sqlsession.update(namespace+"pwUpdate",map);
+			return result;
+		}
+		
+		//pw 확인
+		public String pwCheck(String code)throws Exception{
+			String dbpw="";
+			
+			dbpw=sqlsession.selectOne(namespace+"pwCheck", code);
+		
+			return dbpw;
+		}
+
    //myPageUpdate
 	public int myPageUpdate(StoreRegistDTO storeRegistDTO) throws Exception{
 		int result=sqlsession.update(namespace+"myPageUpdate" ,storeRegistDTO);
