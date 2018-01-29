@@ -197,7 +197,7 @@
 				url:"../storeNum",
 				data:{  },
 				success:function(data){
-					alert(data);
+					
 					$(".eb_code").val(data);
 				}
 			});

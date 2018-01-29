@@ -42,7 +42,7 @@
 				url:"../codeName",
 				data:{  },
 				success:function(data){
-					alert(data);
+			
 					$("#eb_chitCode").val(data);
 				}
 			});

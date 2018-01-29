@@ -142,7 +142,7 @@
 				url:"../codeName",
 				data:{  },
 				success:function(data){
-					alert(data);
+					
 					$("#eb_tempCode").val(data);
 				}
 			});
