@@ -9,10 +9,10 @@
 }
 
 #ar_plustext{
-	font-size: 30px;
-	font-weight: bold;
-	padding-top: 1%;
-	margin-left: 2%;
+	 font-size: 30px;
+    font-weight: bold;
+    /* margin-left: 5%; */
+    margin-top: 1.5%;
 }
 
 .ar_plusSearchWrap{
