@@ -12,6 +12,13 @@
 <c:import url="${url}/resources/temp/ref.jsp"></c:import> 
 <script type="text/javascript" src="${url}/resources/js/projectList.js"></script>
 
+<style type="text/css">
+.btn-color {
+	background-color: #cd5647;
+	color: white;
+}
+</style>
+
 </head>
 <body>
 
@@ -68,7 +75,7 @@
 			<img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png">
 		</div>
 		
-		<div style="padding: 10px 15px; border-bottom: 1px solid black;">
+		<div style="padding: 10px 15px; border-bottom: 1px solid black; margin-top: 30px;">
 			<h2>프로젝트 생성</h2>
 		</div>
 		
@@ -99,8 +106,8 @@
 				</table>
 			</form>
 	
-			<input class='btn btn-sm btn-warning btn-center' type='button' value='생성' onclick='insertProjectForm()'> 
-			<input class='btn btn-sm btn-warning btn-center' type='button' value='삭제' onclick='updateDelProject()'>
+			<input class='btn btn-sm btn-color btn-center' type='button' value='생성' onclick='insertProjectForm()'> 
+			<input class='btn btn-sm btn-color btn-center' type='button' value='삭제' onclick='updateDelProject()'>
 	
 		</div>
 		<!-- 프로젝트일정 상세보기 -->
@@ -134,9 +141,9 @@
 							</div>
 							<input type='hidden' name='dept_no' value='${memDto.dept_no}'>
 							<div class='modal-footer'>
-								<input type="button" class='btn btn-sm btn-warning' value="확인" onclick="insertProject()" />
-								<input type="reset" class='btn btn-sm btn-warning' value="초기화" /> 
-								<input type='button' class='btn btn-sm btn-warning' data-dismiss='modal' value="취소" />
+								<input type="button" class='btn btn-sm btn-color' value="확인" onclick="insertProject()" />
+								<input type="reset" class='btn btn-sm btn-color' value="초기화" /> 
+								<input type='button' class='btn btn-sm btn-color' data-dismiss='modal' value="취소" />
 							</div>
 						</form>
 						

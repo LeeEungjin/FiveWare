@@ -113,7 +113,7 @@
 				
 				<div id="sche_add">
 					<i class="fa fa-calendar-plus-o" style="font-size:30px; padding-top:10px;">Calendar</i>
-               <p id="sche_p" style="font-size: 20px"><a href="calendar/coding" style="color: gray">일정 등록하기 <i class="fa fa-plus-square-o" style="font-size:23px;"></i></p></a>
+               <p id="sche_p" style="font-size: 20px"><a href="calendar/coding" style="color: gray">일정 등록하기 <i class="fa fa-plus-square-o" style="font-size:23px;"></i></a></p>
 				</div>
 				<div id="quick_menu">
 					<p id="quick_p">바로가기
@@ -311,7 +311,7 @@
                         </span>
                      </a>
                      
-                     <a href="${pageContext.request.contextPath}/GroupWare/cloud/myCloud"> 
+                     <a href="${pageContext.request.contextPath}/GroupWare/wbs/projectList"> 
                         <span class="groupWare_jk_smalldiv"> 
                            <span class="groupWare_jk_writing" id="groupWare_jk_file">프로젝트&nbsp;<br>생성 및<br> 관리</span>
                         </span>

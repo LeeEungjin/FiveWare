@@ -69,7 +69,7 @@
 					}
 	            },
 	            error : function(data){
-	               alert("error");
+	               swal("error");
 	            }
          	}); 
 		});

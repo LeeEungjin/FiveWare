@@ -473,7 +473,7 @@
 							<div class="digits"></div>
 						</div>
 					</div>
-					<!-- Clock API End -->일ㅈ
+					<!-- Clock API End -->
 				</div>
 
 
