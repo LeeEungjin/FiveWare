@@ -88,6 +88,8 @@ public class GroupWareFreeController {
 	//reply->form
 	@RequestMapping(value="freeReply", method={RequestMethod.GET})
 	public String reply(Model model, int num)throws Exception{
+		System.out.println("??????????????????????????");
+		
 		model.addAttribute("reply", freeService.selectOne(num));
 		
 		return "free/freeReply";

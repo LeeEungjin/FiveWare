@@ -13,7 +13,6 @@
 #fw_container {
 	width: 99%;
 	height: 100%;
-	background-color: lightblue;
 	transition: width 0.3s;
 	margin-left: 1%;
 }
@@ -53,7 +52,6 @@
 #com_contents {
 	width: 80%;
 	height: 90%;
-	background-color: #F6F6F6;
 	margin-left: 10%;
 	margin-top: 1%;
 	margin-bottom: 1%;
