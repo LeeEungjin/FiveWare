@@ -12,7 +12,7 @@
 <link href='${url}/resources/css/fullCalendar/fullcalendar.min.css' rel='stylesheet' />
 <link href='${url}/resources/css/fullCalendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
 <script src='${url}/resources/js/moment.min.js'></script>
-<script src='${url}/resources/js/jquery.min.js'></script>
+<%-- <script src='${url}/resources/js/jquery.min.js'></script> --%>
 <script src='${url}/resources/js/fullcalendar.min.js'></script>
 
 
@@ -89,8 +89,7 @@
 
 
 <div id="fw_container">
-	<!-- submenu -->
-	<div id="fw_subcontainer">
+<div id="fw_subcontainer">
 	
 		<!-- submenu banner -->
 		<div id="fw_subbanner">
@@ -108,37 +107,33 @@
 			
 			<div class="fw_subselected collapse in" id="sub1">
 				<ul>
-					<li>이벤트 현황</li>
-					<li>이벤트 스케줄</li>
-			
+					<li> <a href="${url }/srm/event/eventList?perPage=5&curPage=1">이벤트 현황</a> </li>
+					<li> <a href="${url }/srm/event/eventRecord">이벤트 스케줄 </a></li>
 				</ul>
 			</div>
 			
-			<div class="fw_menu" data-toggle="collapse" data-target=".fw_subselected" title="sub1">
-				공모전
-				<div class="fw_arrow sub1">
-					∧
+			<!-- ----------2---------- -->
+				<div class="fw_menu  " data-toggle="collapse" data-target="#sub2" title="sub2" >
+					공모전
+				<div class="fw_arrow sub2">
+					∨
 				</div>
 			</div>
 			
-			<div class="fw_subselected collapse in" id="sub1">
+			<div class="fw_subsub collapse  "  id="sub2">
 				<ul>
-					<li>이벤트 현황</li>
-					<li>이벤트 스케줄</li>
-			
+					<li> <a href="${url }/srm/contest/contestList">공모전 현황 </a></li>
+					<li>  <a href="${url }/srm/contest/contest">공모전 참가</a> </li>
 				</ul>
 			</div>
-		</div>	
-	
+		
 
-		<!-- submenu menu end -->
-	
-	<!-- submenu end -->
+</div>
 	
 	<div id="fw_mainwrap">
 		
 		<div id="fw_main">
-			title
+				<div id="event_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
 		</div>
 			
 			
@@ -146,7 +141,7 @@
 			<div id="eb_contents_wrap">
 				 
 				<div class="eb_contents_text">
-				 	<span class="glyphicon glyphicon-file" id="eb_contents_text_p">이벤트 스케줄</span>
+				 	<span  id="eb_contents_text_p">이벤트 스케줄</span>
 				</div>
 		<!-- contents -->
 				 <div id='calendar'></div>

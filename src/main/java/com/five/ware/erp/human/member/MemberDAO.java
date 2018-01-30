@@ -111,4 +111,10 @@ public class MemberDAO {
 		
 		return result;
 	}
+	
+	public List<String> tempList() throws Exception{
+		List<String> ar = sqlSession.selectList(NAMESPACE+"tempList");
+		
+		return ar;
+	}
 }

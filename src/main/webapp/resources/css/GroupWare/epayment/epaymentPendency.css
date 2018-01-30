@@ -1,7 +1,6 @@
 @CHARSET "UTF-8";
 
 
-<<<<<<< HEAD
 *{
 	margin: 0px;
 	padding: 0px;
@@ -12,29 +11,27 @@
 .ar_plusTitle{
 	width: 100%;
 	height: 5%;
-=======
+}
+
 .ar_plusTitle{
 	width: 100%;
 	height: 5%;
 	/* background-color: #ff6666; */
->>>>>>> arin
 	margin-bottom: 1%;
 	font-size: 30px;
 	font-weight: bold;
 	
 }
 
-<<<<<<< HEAD
 #epayPager{
 	width: 100%;
 	text-align: center;
-=======
+}
 #ar_plustext{
 	 font-size: 30px;
     font-weight: bold;
     /* margin-left: 5%; */
     margin-top: 1.5%;
->>>>>>> arin
 }
 
 .ar_plusSearchWrap{
@@ -94,7 +91,6 @@
 }
 
 #ar_mainDivWrap{
-<<<<<<< HEAD
    width: 90%;
     height: 67%;
    /* background-color: pink; */
@@ -106,7 +102,6 @@
    height: 50%;
    /* background-color: #9dff9d; */
    /* border: 1px solid black; */
-=======
 	width: 90%;
     height: 67%;
 	/* background-color: pink; */
@@ -118,7 +113,6 @@
 	height: 50%;
 	/* background-color: #9dff9d; */
 	/* border: 1px solid black; */
->>>>>>> arin
 }
 
 #ar_inhabitWrap{
@@ -130,7 +124,6 @@
 }
 
 #ar_inhabitTableWrap{
-<<<<<<< HEAD
    width: 100%;
    height: 100%;
    display: inline-block;
@@ -143,7 +136,6 @@
    height: 8%;
    /* background-color: #ffff80; */
    margin-bottom: 2%;
-=======
 	width: 100%;
 	height: 100%;
 	display: inline-block;
@@ -156,14 +148,12 @@
 	height: 8%;
 	/* background-color: #ffff80; */
 	margin-bottom: 2%;
->>>>>>> arin
 }
 
 #ar_latestInhabit{
    width: 100%;
        margin-top: 14%;
     height: 42%;
-<<<<<<< HEAD
    /* background-color: #bbdddd; */
 }
 
@@ -171,7 +161,6 @@
    width: 100%;
    height: 75%;
    /* background-color: #D5D5D5; */
-=======
 	/* background-color: #bbdddd; */
 }
 
@@ -179,7 +168,6 @@
 	width: 100%;
 	height: 75%;
 	/* background-color: #D5D5D5; */
->>>>>>> arin
 }
 
 #ar_tableWrap thead{
@@ -234,7 +222,6 @@
 
 
 #ar_searchTitle{
-<<<<<<< HEAD
    float:right;
    margin-top: 2%;
    
@@ -243,7 +230,6 @@
 #ar_tableTitle{
    background-color: black;
    color:white;
-=======
 	float:right;
 	margin-top: 2%;
 	
@@ -252,7 +238,6 @@
 #ar_tableTitle{
 	background-color: black;
 	color:white;
->>>>>>> arin
 }
 
 #ar_searchInput{
@@ -274,14 +259,11 @@
         margin-top: 4%;
 }
 .eb_modal_table_td{
-<<<<<<< HEAD
    width: 200px;
-=======
 	width: 200px;
 	
 	
     padding-left: 1%;
->>>>>>> arin
 }
 .eb_modal_table_td_1{
    width:100px;
@@ -327,7 +309,6 @@
 
 
 #ar_signBoxWrap{
-<<<<<<< HEAD
    width: 100%;
        height: 14%;
    /* background-color: #c8ffc8; */
@@ -349,7 +330,6 @@
    display: inline-block;
    float:left;
    text-align: center;   
-=======
 	width: 100%;
 	    height: 14%;
 	/* background-color: #c8ffc8; */
@@ -371,13 +351,11 @@
 	display: inline-block;
 	float:left;
 	text-align: center;	
->>>>>>> arin
     line-height: 46px;
         border: 1px solid black;
 }
 
 #ar_signBoxBasis{
-<<<<<<< HEAD
    width: 100px;
    height: 100%;
    /* background-color: #7bbdff; */
@@ -393,7 +371,6 @@
     background-color: #c0c0c0; 
    text-align: center;
        border-bottom: 1px solid black !important;
-=======
 	width: 100px;
 	height: 100%;
 	/* background-color: #7bbdff; */
@@ -409,7 +386,6 @@
 	 background-color: #c0c0c0; 
 	text-align: center;
 	    border-bottom: 1px solid black !important;
->>>>>>> arin
 }
 
 #ar_singMember> input{
@@ -431,7 +407,6 @@
 }
 
 #ar_dateWrap{
-<<<<<<< HEAD
    width: 100%;
    height: 8%;
    /* background-color: #ff97cb; */
@@ -455,7 +430,6 @@
    background-repeat: repeat-x;
    background-position: bottom;
    border: 1px solid black;
-=======
 	width: 100%;
 	height: 8%;
 	/* background-color: #ff97cb; */
@@ -479,7 +453,6 @@
 	background-repeat: repeat-x;
 	background-position: bottom;
 	border: 1px solid black;
->>>>>>> arin
 }
 
 .ar_approvalimg{
@@ -495,21 +468,18 @@
 }
 
 .ar_backstamp{
-<<<<<<< HEAD
    width: 100px;
    height: 100%;
    /* background-color: #7bbdff; */
    display: inline-block;
    float:left;
        border: 1px solid black;
-=======
 	width: 100px;
 	height: 100%;
 	/* background-color: #7bbdff; */
 	display: inline-block;
 	float:left;
 	    border: 1px solid black;
->>>>>>> arin
 }
 
 #ar_afterBtn{
@@ -517,7 +487,6 @@
 }
 
 #ar_fileLineWrap{
-<<<<<<< HEAD
    width: 100%;
    height: 50px;
    /* background-color: #ffff80; */
@@ -529,7 +498,6 @@
    /* background-color: #ff80c0; */
    display: inline-block;
    margin-top: 1%;
-=======
 	width: 100%;
 	height: 50px;
 	/* background-color: #ffff80; */
@@ -541,7 +509,6 @@
 	/* background-color: #ff80c0; */
 	display: inline-block;
 	margin-top: 1%;
->>>>>>> arin
 }
 
 .epaymentFile{
@@ -550,11 +517,8 @@
 }
 
 #ar_message{
-<<<<<<< HEAD
    width: 100%;
-=======
 	width: 100%;
->>>>>>> arin
 }
 
 #erp_jh_event_sub {
@@ -576,7 +540,6 @@
 }
 
 .ar_pageWrap{
-<<<<<<< HEAD
    width: 90%;
    height: 10%;
    /* background-color: lightpink; */
@@ -584,7 +547,6 @@
    text-align: center;
    padding-top: 3%;
    cursor: pointer;
-=======
 	width: 90%;
 	height: 10%;
 	/* background-color: lightpink; */
@@ -592,5 +554,4 @@
 	text-align: center;
 	padding-top: 3%;
 	cursor: pointer;
->>>>>>> arin
 }

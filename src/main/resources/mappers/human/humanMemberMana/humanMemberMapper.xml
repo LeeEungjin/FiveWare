@@ -71,4 +71,8 @@
  <update id="retireeDelete" parameterType="MemberDTO">
  	update member set kind='재직', retiredate='-' where code=#{code}
  </update>
+ 
+ <select id="tempList" resultType="String">
+ 	select distinct temp from tempregist 
+ </select>
   </mapper>

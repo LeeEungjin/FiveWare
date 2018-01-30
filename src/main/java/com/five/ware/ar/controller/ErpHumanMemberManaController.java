@@ -134,6 +134,15 @@ public class ErpHumanMemberManaController {
 		return rank ;
 	}
 	
+	@RequestMapping(value="tempList")
+	@ResponseBody
+	public List<String> tempList() throws Exception{
+		List<String> temp = memberService.tempList();
+		
+		return temp;
+	}
+	
+	
 	@RequestMapping(value="memberUpdate", method=RequestMethod.GET)
 	@ResponseBody
 	public List<Object> memberOne(String code) throws Exception{
