@@ -351,7 +351,7 @@
 </script>
 </head>
 <body>
-<c:import url="${url}/resources/temp/headerExample.jsp"></c:import> 
+<c:import url="/WEB-INF/views/headerExample.jsp"></c:import> 
 
 <div id="fw_container">
 	<!-- submenu -->

@@ -14,7 +14,8 @@
 
 </head>
 <body>
-<c:import url="${url}/resources/temp/headerExample.jsp"></c:import> 
+<c:import url="/WEB-INF/views/headerExample.jsp"></c:import> 
+<c:import url="/WEB-INF/views/message.jsp"></c:import> t> 
 
 <div id="fw_container">
 

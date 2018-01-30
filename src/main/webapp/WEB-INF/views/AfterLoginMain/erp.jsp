@@ -405,7 +405,8 @@
 
 
 <body>
- <c:import url="${url}/resources/temp/message.jsp"></c:import> 
+
+<c:import url="/WEB-INF/views/message.jsp"></c:import> 
 
 	<div id="login_after_wrap">
 		<div id="lofin_after_header">
