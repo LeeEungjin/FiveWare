@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -23,7 +25,7 @@ public class CalendarDAOTest extends AbstractTest {
 	
 	@Test
 	public void calendar() {
-		insert();
+
 	}
 	
 	public void insert() {

@@ -7,6 +7,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.five.ware.common.CommonDTO;
+import com.five.ware.erp.storeRegist.StoreRegistDTO;
+
 public class SrmInterceptor extends HandlerInterceptorAdapter {
 
 	@Override
@@ -16,10 +19,13 @@ public class SrmInterceptor extends HandlerInterceptorAdapter {
 		
 		HttpSession session = request.getSession();
 		
-		String kind = (String)session.getAttribute("kind");
-		if(kind.equals("store")) {
-			modelAndView.setViewName("common/notSrmResult");
-			modelAndView.addObject("check", !check);
+		if(((CommonDTO)session.getAttribute("member")) != null) {
+			String kind = (String)session.getAttribute("kind");
+			if(kind.equals("store")) {
+				modelAndView.setViewName("common/notSrmResult");
+				modelAndView.addObject("check", !check);
+			}
+			
 		}
 	}
 }
