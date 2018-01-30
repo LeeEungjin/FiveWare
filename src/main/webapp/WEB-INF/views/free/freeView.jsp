@@ -75,8 +75,8 @@
 			</c:forEach>
 			
 			<a href="freeList"><button id="freeViewBtn4" type="button" class="freeViewBtns btn btn-default">목록</button></a>
-			<c:if test="${member.name eq view.writer}">
 			<a href="freeReply?num=${view.num}"><button type="button" class="freeViewBtns btn btn-default">답글</button></a>
+			<c:if test="${member.name eq view.writer}">
 			<a href="freeUpdate?num=${view.num}"><button type="button" class="freeViewBtns btn btn-default free_update_btn">수정</button></a>
 			<a href="freeDelete?num=${view.num}"><button type="button" class="freeViewBtns btn btn-default">삭제</button></a>
 			</c:if>

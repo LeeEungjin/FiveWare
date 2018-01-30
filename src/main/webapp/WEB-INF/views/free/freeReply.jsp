@@ -93,7 +93,7 @@
 				    <thead>
 				      <tr>
 				      	<th>target</th>
-				      	<th><input name="target" type="text" value="${reply.temp}" readonly="readonly" class="form-control reply_write_input"></th>
+				      	<th><input name="target" type="text" value="${reply.target}" readonly="readonly" class="form-control reply_write_input"></th>
 				      
 				        <th>작성자</th>
 				        <th><input value="${member.name}" readonly="readonly" name="writer" type="text" class="form-control reply_write_input"></th>
