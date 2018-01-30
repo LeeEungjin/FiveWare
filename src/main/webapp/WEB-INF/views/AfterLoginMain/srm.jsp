@@ -285,13 +285,13 @@
                         </span>
                      </a> 
                      
-                     <a href="#">
+                     <a href="./srm/contest/contestList">
                         <span class="srm_jk_smalldiv">
                            <span class="srm_jk_writing">공모전</span>
                         </span>
                      </a> 
                      
-                     <a href="#">
+                     <a href="./srm/contest/contest">
                         <span class="srm_jk_smalldiv">
                            <span class="srm_jk_writing">공모전 결과</span>
                         </span>
@@ -320,6 +320,12 @@
                        <a href="./srm/pos/pos?store=${member.store}">
                         <span class="srm_jk_smalldiv">
                            <span class="srm_jk_writing">우리 매장 <br>포스기</span>
+                        </span>
+                     </a>
+                     
+                        <a href="./srm/pos/revenueTable">
+                        <span class="srm_jk_smalldiv">
+                           <span class="srm_jk_writing">매출 현황</span>
                         </span>
                      </a>
                   </div>

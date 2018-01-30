@@ -113,35 +113,39 @@ $(function(){
 
 	<div id="fw_mainwrap">
 			<div id="fw_main">
-				main Title
+					<div id="event_icon"><img id="logoImg" src="${pageContext.request.contextPath}/resources/images/logo/smallLogo.png"></div>
 			</div>
 			
 			<div class="ar_plusTitle">
 				<p id="ar_plustext">매출현황</p>
 			</div>
 			
-			<div class="ar_plusSearchWrap">
-				<div class="ar_blank"></div>
-				
 			<form action="revenueTable" method="GET">
-				<div class="ar_plusSearch">
+				<div id="erp_jh_event_sub">
+						<div id="event_contents">
+							<p>　</p>
 					날짜  <input type="date" name="regdate" id="ar_psearch" value="${todayd }">
 					<input type="submit" value="검색" id="ar_psearchBtn">
+					<p>　</p>
+					</div>
+					<div id="ar_moneyTotal">
+				${state } 매출 : ${moneytotal } 
+			</div>
 				</div>
 			</form>
 			
-			<div id="ar_moneyTotal">
-				${state } 매출 : ${moneytotal } 
-			</div>
-			</div>
+			
 			
 			<div id="ar_graphWrap">
 			
 			</div>
 			
 			<div id="ar_graphdate">
-				<a href="./revenueTable?kind=week&regdate=${todayd }">일주일 전</a>
-				<a href="./revenueTable?kind=month&regdate=${todayd }">한달 전</a>
+				 <ul class="nav nav-pills">
+				    <li><a href="./revenueTable?kind=week&regdate=${todayd }">일주일 전</a></li>
+				    <li><a href="./revenueTable?kind=month&regdate=${todayd }">한달 전</a></li>
+				  </ul>
+				
 			</div>
 			
 			<div class="ar_plusDivWrap">
@@ -177,6 +181,5 @@ $(function(){
 			
 	</div>
 </div>
-
 </body>
 </html>
