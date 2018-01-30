@@ -234,7 +234,9 @@ $(function(){
 						
 				<div class="ar_contestTitleBtn">
 					<c:if test="${kind=='store' }">
+						<c:if test="${size[a.index]=='big' }">
 						<input type="button" value="올리기" class="ar_insertBtn" title="${i.code }" data-toggle="modal" data-target="#ar_contest_Modal">
+						</c:if>
 					</c:if>
 					
 					<c:if test="${size[a.index]=='small' }">

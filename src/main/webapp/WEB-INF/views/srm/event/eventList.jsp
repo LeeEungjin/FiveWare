@@ -42,9 +42,6 @@
 
 <div id="fw_container">
 	<!-- submenu -->
-<<<<<<< HEAD
-	
-=======
 	<div id="fw_subcontainer">
 	
 		<!-- submenu banner -->
@@ -85,7 +82,6 @@
 		
 
 </div>
->>>>>>> arin
 	<!-- submenu end -->
 	
 	<div id="fw_mainwrap">

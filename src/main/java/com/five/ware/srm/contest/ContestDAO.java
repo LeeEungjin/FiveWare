@@ -157,8 +157,14 @@ public class ContestDAO {
 		return result;
 	}
 	
-	public int maxCnum(String code) throws Exception{
-		int result = sqlSession.selectOne(NAMESPACE+"maxCnum", code);
+	public int maxCnum(String code){
+		int result = 0;
+		try {
+			result = sqlSession.selectOne(NAMESPACE+"maxCnum", code);
+			
+		} catch (Exception e) {
+			result =0;
+		}
 		
 		return result;
 	}
