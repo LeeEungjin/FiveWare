@@ -86,8 +86,6 @@
 				swal("이벤트 시작 기간을 입력해주세요.");
 			}else if(eventEdate==""){
 				swal("이벤트 마감 기간을 입력해주세요.");
-			}else if(eventOption==""){
-				swal("이벤트 설명을 입력해주세요.");
 			}else if(eventFile==""){
 				swal("첨부파일을 입력해주세요.");
 			}else{

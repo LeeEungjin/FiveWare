@@ -39,6 +39,7 @@
 	transition: display 2s;
 	position: absolute;
 	top: 44px;
+	z-index: 9999;
 }
 
 .cloud-search-box ul {

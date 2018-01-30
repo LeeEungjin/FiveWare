@@ -20,7 +20,7 @@
 				$('#searchResult').css('display', 'block');
 				//$('#searachResult').slideDown("slow");
 				
-				var search = $(this).val();
+				var search = $(this).val().toLowerCase();
 				
 				$.ajax({
 					url: "./cloudSearch",

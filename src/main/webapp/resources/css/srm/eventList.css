@@ -18,21 +18,16 @@
 	float: left;
 }
 
-#logoImg {
-	margin-top: 9%;
-}
-
 #event_title {
 	font-size: 30px;
 	font-weight: bold;
-	margin-left: 5%;
 	margin-top: 1.5%;
 }
 
 #erp_jh_event_sub {
 	width: 90%;
 	height: 16%;
-	background-color: #ffeeee;
+	background-color: #F6F6F6;
 	padding-top: 0.5%;
 	margin-left: 5%;
 }
