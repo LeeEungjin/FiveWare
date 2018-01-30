@@ -68,6 +68,9 @@ public class MapDAO {
 
 		coords[1] = latitudeLongitude.getLng().floatValue();
 
+			
+		
+		
 		return coords;
 		
 

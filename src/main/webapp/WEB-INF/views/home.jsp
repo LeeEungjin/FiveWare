@@ -242,9 +242,9 @@
                      
                      <div class="container" style="float: left; width: 50%;">
                         <label><b>사원번호</b></label> 
-                        <input type="text" class="inputTextBox" placeholder="Enter Code" name="code" id="code" value="180108-008"> 
+                        <input type="text" class="inputTextBox" placeholder="Enter Code" name="code" id="code"> 
                         <label><b>비밀번호</b></label>
-                        <input type="password" class="inputTextBox" placeholder="Enter Password" name="pw" id="pw" value="a">
+                        <input type="password" class="inputTextBox" placeholder="Enter Password" name="pw" id="pw">
                   
                         <div class="container">
                            <label class="radioBox"><input type="radio" name="login" id="erp-login"> 본사 로그인</label>

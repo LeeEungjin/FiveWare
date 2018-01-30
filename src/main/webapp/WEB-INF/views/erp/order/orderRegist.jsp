@@ -254,10 +254,10 @@
          
          <div class="fw_subsub collapse"  id="sub3">
             <ul>
-               <li><a href="../mater/materRegist?materKind=enter">입고 입력</a></li>
-               <li><a href="../mater/materRegist?materKind=rele">출고 입력</a></li>
-               <li><a href="../mater/materRegist?materKind=back">반품 입력</a></li>
-               <li><a href="../mater/materRegist?materKind=confin">불출 입력</a></li>
+               <li><a href="../../mater/materRegist?materKind=enter">입고 입력</a></li>
+               <li><a href="../../mater/materRegist?materKind=rele">출고 입력</a></li>
+               <li><a href="../../mater/materRegist?materKind=back">반품 입력</a></li>
+               <li><a href="../../mater/materRegist?materKind=confin">불출 입력</a></li>
             </ul>
          </div>
          

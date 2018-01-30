@@ -41,8 +41,13 @@ public class MapService {
 		//JSON
 		JsonArray ar = new JsonArray();
 		
+		
 		for(int i=0; i<geoList.size();i++){
 			JsonObject obj = new JsonObject();
+			
+			System.out.println(geoList.get(i)[0]);
+			System.out.println(geoList.get(i)[1]);
+			
 			obj.addProperty("lat", geoList.get(i)[0]);
 			obj.addProperty("lng", geoList.get(i)[1]);
 			ar.add(obj);
