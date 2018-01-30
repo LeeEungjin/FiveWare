@@ -16,6 +16,14 @@
 	<beans:bean class="com.five.ware.interceptor.AuthorInterceptor" id="author"></beans:bean>
 	<beans:bean class="com.five.ware.interceptor.ErpInterceptor" id="erp"></beans:bean>
 	<beans:bean class="com.five.ware.interceptor.SrmInterceptor" id="srm"></beans:bean>
+	<beans:bean class="com.five.ware.interceptor.ContestInterceptor" id="contest"></beans:bean>
+	
+	<!-- <interceptors>
+		<interceptor>
+			<mapping path="/srm/contest/contestWrite"/>
+			<beans:ref bean="contest" />
+		</interceptor>
+	</interceptors> -->
 	
 	<interceptors>
 		<interceptor>
@@ -29,6 +37,7 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/srm/**"/>
+			<exclude-mapping path="/srm/contest/contestWrite"/>
 			<beans:ref bean="erp" />
 		</interceptor>
 	</interceptors>

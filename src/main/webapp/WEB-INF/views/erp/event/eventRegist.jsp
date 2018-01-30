@@ -207,30 +207,30 @@
 		<!-- submenu banner end -->
 		
 		<!-- submenu menu -->
-			<div class="fw_menu" data-toggle="collapse" data-target=".fw_subselected" title="sub1">
+			<div class="fw_menu fw_selected" data-toggle="collapse" data-target=".fw_subselected" title="sub1">
 				이벤트
 				<div class="fw_arrow sub1">
 					∨
 				</div>
 			</div>
 			
-			<div class="fw_subselected collapse" id="sub1">
+			<div class="fw_subselected collapse  in" id="sub1">
 				<ul>
-					<li> 이벤트 등록 </li>
+					<li><a href="./event/eventRegist">이벤트 등록</a> </li>
 				</ul>
 			</div>
 			
 			<!-- ----------2---------- -->
-				<div class="fw_menu  fw_selected" data-toggle="collapse" data-target="#sub2" title="sub2" >
+				<div class="fw_menu  " data-toggle="collapse" data-target="#sub2" title="sub2" >
 					공모전
 				<div class="fw_arrow sub2">
 					∧
 				</div>
 			</div>
 			
-			<div class="fw_subsub collapse  in"  id="sub2">
+			<div class="fw_subsub collapse"  id="sub2">
 				<ul>
-					<li> 공모전 등록 </li>
+					<li><a href="${url }/srm/contest/contestWrite">공모전 등록 </a></li>
 				</ul>
 			</div>
 		
