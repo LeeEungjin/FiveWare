@@ -107,11 +107,11 @@
 				<div class="eb_contents">
 					<table border="1" class="eb_writetable">
 						<tr>
-							<td class="eb_Wtable_td1">글쓴이</td>
+							<td class="eb_Wtable_td1" style="background-color: black; color: white;">글쓴이</td>
 							<td class="eb_Wtable_td"><input type="text" name="write" class="eb_input" value="${member.name}" readonly="readonly"></td>
 						</tr>	
 						<tr>	
-							<td class="eb_Wtable_td1">제목</td>
+							<td class="eb_Wtable_td1" style="background-color: black; color: white;">제목</td>
 							<td class="eb_Wtable_td"><input type="text" name="title" class="eb_input"></td>
 						</tr>
 						
