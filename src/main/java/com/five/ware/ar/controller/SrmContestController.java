@@ -202,7 +202,7 @@ public class SrmContestController {
 		ModelAndView mv = new ModelAndView();
 		
 		mv.addObject("message", message);
-		mv.addObject("addr", "contestList");
+		mv.addObject("addr", "contestWrite");
 		
 		mv.setViewName("common/result");
 		

@@ -38,6 +38,19 @@
 								$("#memberRank").append("<option value=" + data[i] +">"+data[i]+"</option>");
 								i++;
 							});
+							
+							$.ajax({
+								type:"GET",
+								url:"./tempList",
+								success:function(data){
+									var i=0;
+									$(data).each(function(){
+										$("#memberTemp").append("<option value=" + data[i] +">"+data[i]+"</option>");
+										i++;
+									});
+									
+								}
+							});
 						}
 							});
 					}
@@ -475,7 +488,10 @@
 					        	
 					        	<div class="ar_positionInsert" >
 					        		<span class="ar_positiontext">부&nbsp&nbsp&nbsp서</span>
-					        		<input type="text" name="temp" class="ar_employeeInput" id="memberTemp">
+					        		<!-- <input type="text" name="temp" class="ar_employeeInput" id="memberTemp"> -->
+					        		<select id="memberTemp" name="temp">
+					        			
+					        		</select>
 					        	</div>
 					        	
 					        	<div class="ar_positionInsert2" >

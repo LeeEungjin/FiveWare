@@ -97,4 +97,10 @@ public class MemberService {
 		
 		return result;
 	}
+	
+	public List<String> tempList() throws Exception{
+		List<String>  ar= memberDAO.tempList();
+		
+		return ar;
+	}
 }
