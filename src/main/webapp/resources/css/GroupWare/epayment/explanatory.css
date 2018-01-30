@@ -71,7 +71,7 @@
 /* 	background-color: #7bbdff; */
 	display: inline-block;
 	float:left;
-	/* border: 1px solid black; */
+	border-right: 1px solid black;
 }
 
 #ar_signTemp{
