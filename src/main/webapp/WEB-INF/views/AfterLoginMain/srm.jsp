@@ -100,7 +100,15 @@
                </div>
             </div>
             <div id="sche_info">
-               <i class="fa fa-calendar" style="font-size:36px">Calendar</i>
+               <!-- Clock API Start -->
+               <div id="clock" class="light">
+                  <div class="display">
+                     <div class="weekdays"></div>
+                     <div class="ampm"></div>
+                     <div class="digits"></div>
+                  </div>
+               </div>
+               <!-- Clock API End -->
             </div>
             
          <div class="eb_line"></div>
