@@ -5,122 +5,49 @@
 	padding: 0px;
 }
 
-#fw_container{
-	width: 100%;
-	height: 100%;
-	background-color: lightblue;
-	transition: width 0.3s;	
-}
-
-#fw_subcontainer{
-	background-color: pink;
-	float:left;
-	width: 15%;
-	height: 100%;
-} 
-
-#fw_subbanner{
-		background-color: red;
-		height: 8.5%;
-		width: 100%;
-		font-size : 30px;
-		font-weight: bolder;
-		text-align: center;
-		line-height: 240.5%;
-}
-
-.fw_menu{
-	width: 100%;
-	height: 5%;
-	float:left;
-	background-color: yellow;
-	  font-weight: bold;
-    font-size: 16px;
-    line-height: 324%;
-    padding-left: 6%;
-    padding-top:1%;
-}
-
-
-.fw_selected{
-	color: red;
-   
-}
-
-.fw_arrow{
-	width:15%;
-	float:right;
-	height: 100%;
-	background-color: purple;
-	size:20px; 
-}
-
-.fw_subselected{
-	width: 70%;
-	background-color: #d1eaf1;
-	margin: 0 auto;
-	padding-top:1%;
-}
-
-.fw_subsub{
-		width: 70%;
-	background-color: #d1eaf1;
-	margin: 0 auto;
-	padding-top:1%;
-}
-
-#fw_main{
-	background-color: green;
-		height: 8.5%;
-		width: 100%;
-}
-
 #fw_mainwrap{
-	 /* background-color: blue; */
-	 width: 98% !important;
-	 height : 100%;
-	 /* margin-left: 28%; */
-	 float: left;
+    width: 96% !important;
+	
 }
-
 
 .ar_plusTitle{
 	width: 100%;
 	height: 5%;
-	background-color: #ff6666;
+	/* background-color: #ff6666; */
 	margin-bottom: 1%;
 	
 }
 
 #ar_plustext{
-	font-size: 18px;
-	font-weight: bold;
-	padding-top: 1.5%;
-	margin-left: 2%;
+	 font-size: 30px;
+    font-weight: bold;
+    /* margin-left: 5%; */
+    margin-top: 1.5%;
 }
 
 .ar_plusSearchWrap{
 	width: 100%;
 	height: 7%;
-	background-color: #fbc87b;
+	/* background-color: #fbc87b; */
 	margin-bottom:2%;
 
 }
 
 #ar_moneyTotal{
-	width: 50%;
-	height: 50%;
-	background-color: #c46200;
+	width: 28%;
+	height: 8%;
+	/* background-color: #c46200; */
 	margin-left: 2%;
 	display: inline-block;
-	float: left;
-	font-size: 30px;
+	float: right;
+	font-size: 25px;
+	    margin-top: 1%;
 }
 
 .ar_plusSearch{
 	width: 40%;
 	height: 50%;
-	background-color: #c46200;
+	/* background-color: #c46200; */
 	margin-left: 2%;
 	display: inline-block;
 	float: left;
@@ -136,7 +63,8 @@
 #ar_psearchBtn{
 	width: 12%;
     height: 75%;
-	background-color: #ffff80;
+	background-color: #000000;
+	color: white;
 	margin-left: 2%;
 	border: 0px;
 	font-size: 12px;
@@ -146,14 +74,18 @@
 .ar_plusDivWrap{
 	width: 100%;
 	height: 50%;
-	background-color: #f0f779;
+/* 	background-color: #f0f779; */
 	margin-bottom: 2%;
 	    overflow: scroll;
 }
 
+#eb_table_head{
+	background-color: #000000;
+	color: white;
+}
 
 .ar_titleDiv{
-	background-color: #b68db3;
+/* 	background-color: #b68db3; */
 	width: 100%;
 	height: 10%;
 	text-align: center;
@@ -163,6 +95,38 @@
 #ar_graphWrap{
 	width:30%;
 	height: 50%;
-	background-color: #ff0000;
+	/* background-color: #ff0000; */
 	margin: 0 auto;
+}
+
+
+#erp_jh_event_sub {
+   width: 90%;
+    height: 16%;
+    background-color: #f6f6f6;
+    padding-top: 0.5%;
+    margin-left: 5%;
+    margin-bottom: 5%;
+}
+
+#event_contents {
+   height: 90%;
+   width: 60%;
+   margin-left: 15%;
+   text-align: center;
+   border-bottom: 2px solid #929292;
+   border-top: 2px solid #929292;
+}
+
+#eb_result{
+	font-weight: normal;
+}
+
+#ar_graphdate{
+	color:red;
+}
+
+.nav {
+    width: 13%;
+    float: right;
 }
