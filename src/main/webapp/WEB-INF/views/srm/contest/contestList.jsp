@@ -42,9 +42,9 @@
 <div id="fw_container">
 	<!-- submenu -->
 	<div id="fw_subcontainer">
-      
-      <!-- submenu menu -->
-         	<div id="fw_subbanner">
+	
+		<!-- submenu banner -->
+		<div id="fw_subbanner">
 			이벤트 & 공모전
 		</div>
 		<!-- submenu banner end -->
@@ -59,8 +59,8 @@
 			
 			<div class="fw_subselected collapse" id="sub1">
 				<ul>
-					<li> 이벤트 현황 </li>
-					<li> 이벤트 스케줄 </li>
+					<li> <a href="${url }/srm/event/eventList?perPage=5&curPage=1">이벤트 현황</a> </li>
+					<li> <a href="${url }/srm/event/eventRecord">이벤트 스케줄 </a></li>
 				</ul>
 			</div>
 			
@@ -74,14 +74,13 @@
 			
 			<div class="fw_subsub collapse  in"  id="sub2">
 				<ul>
-					<li> 공모전 현황 </li>
-					<li> 공모전 참가 </li>
+					<li> <a href="${url }/srm/contest/contestList">공모전 현황 </a></li>
+					<li>  <a href="${url }/srm/contest/contest">공모전 참가</a> </li>
 				</ul>
 			</div>
 		
-         
-      <!-- submenu menu end -->
-   </div>
+
+</div>
 	<!-- submenu end -->
 	
 	<div id="fw_mainwrap">

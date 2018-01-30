@@ -83,7 +83,7 @@ public class EventService {
 		for(int i=0; i<eventList.size(); i++){
 			System.out.println("num : "+eventList.get(i).getEventNum());
 			ar.add(eventDAO.fileOne(eventList.get(i).getEventNum()));
-			System.out.println("fileName : "+ar.get(i).getFilename());
+			//System.out.println("fileName : "+ar.get(i).getFilename());
 			
 		}
 		

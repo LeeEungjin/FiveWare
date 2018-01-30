@@ -27,6 +27,7 @@
 .ar_contestWrap {
 	width: 100%;
 	height: 50%;
+	margin-top: 3%;
 }
 
 .ar_contestTitle {
@@ -194,4 +195,13 @@
 .ar_imgsize {
 	width: 100%;
 	height: 100%;
+}
+
+#ar_pageWrap1	{
+	margin-top: 5%;
+	font-size: 16px;
+	margin: 0 auto;
+	text-align: center;
+	border-top: 1px solid gray;
+	margin-top: 3%;
 }

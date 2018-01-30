@@ -168,8 +168,8 @@ $(function(){
 			
 			<div class="fw_subselected collapse" id="sub1">
 				<ul>
-					<li> 이벤트 현황 </li>
-					<li> 이벤트 스케줄 </li>
+					<li> <a href="${url }/srm/event/eventList?perPage=5&curPage=1">이벤트 현황</a> </li>
+					<li> <a href="${url }/srm/event/eventRecord">이벤트 스케줄 </a></li>
 				</ul>
 			</div>
 			
@@ -183,8 +183,8 @@ $(function(){
 			
 			<div class="fw_subsub collapse  in"  id="sub2">
 				<ul>
-					<li> 공모전 현황 </li>
-					<li> 공모전 참가 </li>
+					<li> <a href="${url }/srm/contest/contestList">공모전 현황 </a></li>
+					<li>  <a href="${url }/srm/contest/contest">공모전 참가</a> </li>
 				</ul>
 			</div>
 		
@@ -328,7 +328,7 @@ $(function(){
 					</div>
 					</c:forEach> 
 				
-						<div id="ar_pageWrap">
+						<div id="ar_pageWrap1">
 					
 					<c:if test="${pager.curBlock gt 1}">
 						<span class="list" title="${pager.startNum-1}">[이전]</span>

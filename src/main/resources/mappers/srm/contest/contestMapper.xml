@@ -83,9 +83,10 @@
  </select>
  
  <select id="maxCnum"  parameterType="String" resultType="int">
- 	select cnum from ( 
+ 	select cnum from ( select * from (
 		select count(cnum) c, cnum from contestlike where code=#{code} group by cnum) 
-		order by c desc, cnum desc
+		order by c desc, cnum desc)
+		where rownum=1
  </select>
  
 <select id="likeResultCode" parameterType="String" resultType="ContestListDTO">
