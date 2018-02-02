@@ -18,7 +18,7 @@
 														<div id="ar_signBoxBasis100">
 															<div id="ar_signTemp"> 기 안</div>
 															<div id="ar_singMember"><input type=text  readonly=readonly value='${docuC.drafttemp}'><input type=text  readonly=readonly value='${docuC.draftname }'></div>
-															<input type=hidden value="${docuC.draftcode}" name="draftcode">
+															<input type=hidden value="${member.code}" name="draftcode">
 														</div>
 													<!-- for문 돌리기(결재선) -->
 													<c:forEach items="${signmember}" var="list" varStatus="i" >
